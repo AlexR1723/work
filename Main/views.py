@@ -7,3 +7,6 @@ def Main(request):
 
 def About(request):
     return render(request, 'Main/About.html', locals())
+
+def Contact(request):
+    return render(request, 'Main/Contact.html', locals())

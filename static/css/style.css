@@ -2,7 +2,15 @@ body{
 	background-color: #fff;
 	font-family: 'Source Sans Pro', sans-serif;
 }
-
+.a-center{
+    text-align: center;
+}
+.a-left{
+    text-align: left;
+}
+.a-right{
+    text-align: right;
+}
 
 /*кнопки полные заполненные цветом например НАЙТИ*/
 .btn.chColorFull{
@@ -262,4 +270,28 @@ section#titleText {
     text-transform: uppercase;
     align-items: center;
 
+}
+
+.bg-map{
+	background: url('../image/bg-map.jpg') no-repeat center center;
+	background-size: cover;
+	height: 100%;
+}
+.bg-color-light{
+    background: rgba(255,255,255,.8);
+}
+.bg-color{
+	background: rgba(131,173,172,.3);
+}
+.contact-icon{
+    /*color: white;*/
+    color: black;
+    /*color: rgba(131,173,172,1);*/
+    font-size: 2.3rem;
+    padding-bottom: 1.2rem;
+}
+.contact-text{
+    color: black;
+    font-weight: 700;
+    font-size: 1.4rem;
 }
