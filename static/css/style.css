@@ -12,6 +12,9 @@ body{
     text-align: right;
 }
 
+nav{
+	background-color: #fff;
+}
 /*кнопки полные заполненные цветом например НАЙТИ*/
 .btn.chColorFull{
 background-color: #3E789D;
@@ -252,6 +255,11 @@ div.row.rec_ser, div.sectionNote, div.row.sectionOtziv, .sectionHowWork.rec_ser,
 	margin-right: 0px !important;
     margin-left: 0px !important;
 }
+
+
+
+
+
 section#titleText {
     margin-top: 3rem;
     padding-top: 17rem;
@@ -298,3 +306,4 @@ section#titleText {
 .contact-a, .contact-a:hover{
     color: black;
 }
+
