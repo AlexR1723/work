@@ -188,7 +188,7 @@ background-color: #fff ;
 .sectionNote{
 	height: 60vh;
     min-height: 500px;
-    background:  url('./note1.png') no-repeat center center;
+    background:  url('../image/note1.png') no-repeat center center;
     background-size: cover;
    
     color: #fff ;
@@ -210,7 +210,7 @@ background-color: #fff ;
 .sectionOtziv{
 	height: 60vh;
     min-height: 500px;
-    background:  url('./podlogka.png') no-repeat center center;
+    background:  url('../image/podlogka.png') no-repeat center center;
     background-size: cover;
    
     color: #fff ;
