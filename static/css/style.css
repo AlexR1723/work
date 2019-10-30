@@ -1,0 +1,246 @@
+body{
+	background-color: #fff;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+/*кнопки полные заполненные цветом например НАЙТИ*/
+.btn.chColorFull{
+background-color: #3E789D;
+	color: #fff;
+	
+}
+
+.btn.chColorFull:hover{
+background-color: #5394bd;
+	color: #fff;
+	
+}
+
+.btn.chColorFull:active{
+background-color: #5394bd;
+	color: #fff;
+	box-shadow: none;
+	
+}
+.btn.chColorFull:focus{
+background-color: #5394bd;
+	color: #fff;
+	box-shadow: none;
+	
+}
+
+/*кнопки полные заполненные цветом например НАЙТИ*/
+
+/*кнопка с цветом при наведении*/
+.btn.chColorBorder{
+border: 1px solid #3E789D;
+
+}
+
+.btn.chColorBorder:hover{
+	
+	border: 1px solid #3E789D;
+	color: #fff;
+}
+
+.btn.chColorBorder:focus{
+ 
+	border: 1px solid #3E789D;
+	color: #fff;
+	box-shadow: none;
+}
+
+.btn.chColorBorder:active{
+	
+	border: none;
+	color: #fff;
+	box-shadow: none;
+}
+
+.colorSearch{
+	color:  #5394bd;
+}
+.colorSearch:active{
+background-color: #5394bd ;	
+}
+.colorSearch:focus{
+	background-color: #5394bd ;
+}
+.colorSearch:hover{
+	background-color: #5394bd ;
+}
+
+/*кнопка с цветом при наведении*/
+
+
+
+/*кнопка Войти*/
+.btn.DisableBorder{
+	border: none;
+	color: #AF4B53;
+	font-size: 1.2rem;
+}
+
+
+.btn.DisableBorder:hover{
+	border: none;
+	color: #AF4B53;
+	background-color:#FAF9F7;
+}
+
+.btn.DisableBorder:focus{
+  background-color: #FAF9F7;
+	border: none;
+	box-shadow: none;
+}
+.btn.DisableBorder:active{
+ 
+	border: none;
+	box-shadow: none;
+}
+/*кнопка Войти*/
+
+.colorRed{
+	 background-color: #FAF9F7;
+}
+
+.rec_ser{	
+  padding-top: 2rem;
+ 
+    background-color: #FAF9F7;
+    
+}
+
+.topCarusel div.carousel-caption{
+	text-align: start;
+	background: rgba(62,120, 157, 0.4);
+	bottom: 150px;
+	padding-top:40px;
+	padding-bottom:40px;
+	
+}
+
+/*Кнопка в карусели*/
+.colorbtnCarusel{
+	border: 1px solid #fff;
+	color: #fff;
+}
+.colorbtnCarusel:active{
+background-color: #fff ;	
+	color: #3E789D;
+}
+.colorbtnCarusel:focus{
+	background-color: #fff ;
+	color: #3E789D;
+}
+.colorbtnCarusel:hover{
+	background-color: #fff ;
+	color: #3E789D;
+}
+/*Кнопка в карусели*/
+
+.fontCategoryDemi{
+	font-weight: 600;
+	font-size: 1.5rem;
+}
+.fontCategory{
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+.fontCategory3Rem{
+	font-weight: 700;
+	font-size: 3rem;
+}
+.fontSizeH{
+	margin-top: 15vh;
+	font-size:2rem;
+	
+}
+.fontSizeHH{
+	margin-top: 10vh;
+	font-size:3rem;
+	font-weight: 700;
+}
+
+.fontCategorySmall{
+	font-weight: 600;
+		font-size: 1rem;
+	
+	
+}
+.fontCategoryVerySmall{
+	font-weight: 300;
+		font-size: 1rem;
+}
+
+.colorDarkGrey{
+	color: #797979;
+}
+.colorDarkGrey:hover{
+	color: #797979;
+}
+
+.sectionHowWork{
+	min-height: 45vh;
+}	
+
+.sectionNote{
+	height: 60vh;
+    min-height: 500px;
+    background:  url('./note1.png') no-repeat center center;
+    background-size: cover;
+   
+    color: #fff ;
+    text-align: center;
+}
+
+.rectW{
+	background-color: #fff;
+	width: 80%;
+	border-radius: 5px;
+  
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: all 0.3s ease-in-out;
+}
+.rectW:hover{
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.sectionOtziv{
+	height: 60vh;
+    min-height: 500px;
+    background:  url('./podlogka.png') no-repeat center center;
+    background-size: cover;
+   
+    color: #fff ;
+    text-align: center;
+}
+.colorBlue{
+	background-color: #3E789D;
+	color: #fff;
+	
+}
+.colorDarkBlue{
+	background-color: #305e7a;
+	color: #fff;
+	
+}
+.colorBlue a {
+	color: #fff;
+	
+}
+
+.blokOtziv{
+	background: rgba(62,120, 157, 0.4);
+	height: 80%;
+	margin-top: 6vh;
+}
+.textOtziv{
+	font-size: 1.25rem;
+}
+
+div.row.rec_ser, div.sectionNote, div.row.sectionOtziv, .sectionHowWork.rec_ser, .category{
+	margin-right: 0px !important;
+    margin-left: 0px !important;
+}

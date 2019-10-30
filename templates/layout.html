@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Work</title>
+    {% load staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container-fluid ">
+		<form>
+			<div class="row rec_ser">
+				<div class="col-md-2">
+					<div class="form-group">
+						<select class="form-control ModifySelect">
+							<option>Выберите регион</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<button type="button" class=" form-control btn btn-outline chColorBorder colorSearch">Создать задание</button>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<input type="text" class=" form-control form-control" placeholder="">
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<button type="button" class=" form-control btn chColorFull">Найти</button>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<button type="button" class=" align-middle form-control btn DisableBorder colorRed">Войти</button>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<button type="button" class="form-control btn btn-outline chColorBorder colorSearch">Зарегистрироваться</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		<nav class="navbar navbar-expand-lg navbar-light ">
+			<a class="navbar-brand" href="#">
+				<img src="./money-pig_icon-icons.com_56372.png" alt="">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0 ">
+					<li class="nav-item ml-5">
+						<a class="nav-link" href="#">
+							<h4>О нас</h4>
+						</a>
+					</li>
+					<li class="nav-item ml-5">
+						<a class="nav-link" href="#">
+							<h4>Заказы</h4>
+						</a>
+					</li>
+					<li class="nav-item ml-5">
+						<a class="nav-link " href="#">
+							<h4>Объявления</h4>
+						</a>
+					</li>
+					<li class="nav-item ml-5">
+						<a class="nav-link " href="#">
+							<h4>Новости</h4>
+						</a>
+					</li>
+					<li class="nav-item ml-5">
+						<a class="nav-link " href="#">
+							<h4>Ответы</h4>
+						</a>
+					</li>
+					<li class="nav-item ml-5">
+						<a class="nav-link " href="#">
+							<h4>Контакты</h4>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+        {% block content %}
+
+        {% endblock %}
+		<!-- Footer -->
+		<footer class="page-footer font-small colorBlue">
+			<!-- Footer Links -->
+			<div class="container text-center text-md-left">
+				<!-- Grid row -->
+				<div class="row">
+					<!-- Grid column -->
+					<div class="col-md-3 mx-auto">
+						<!-- Links -->
+						<h5 class="font-weight-bold text-uppercase mt-3 mb-4">Как мы работаем</h5>
+						<ul class="list-unstyled">
+							<li>
+								<a href="#!">Как заказать услугу</a>
+							</li>
+							<li>
+								<a href="#!">Как стать исполнителем</a>
+							</li>
+							<li>
+								<a href="#!">Преимущества для компаний</a>
+							</li>
+							<li>
+								<a href="#!">Гарантии и безопасность</a>
+							</li>
+							<li>
+								<a href="#!">Безопасная сделка</a>
+							</li>
+							<li>
+								<a href="#!">Топ исполнителей</a>
+							</li>
+							<li>
+								<a href="#!">Все категории услуг</a>
+							</li>
+						</ul>
+					</div>
+					<!-- Grid column -->
+					<hr class="clearfix w-100 d-md-none">
+					<!-- Grid column -->
+					<div class="col-md-3 mx-auto">
+						<!-- Links -->
+						<h5 class="font-weight-bold text-uppercase mt-3 mb-4">Помощь</h5>
+						<ul class="list-unstyled">
+							<li>
+								<a href="#!">Вопрос / ответ</a>
+							</li>
+							<li>
+								<a href="#!">Публичная оферта</a>
+							</li>
+							<li>
+								<a href="#!">Правила конфиденциальности</a>
+							</li>
+							<li>
+								<a href="#!">Правила проекта</a>
+							</li>
+							<li>
+								<a href="#!">Служба поддержки</a>
+							</li>
+						</ul>
+					</div>
+					<!-- Grid column -->
+					<hr class="clearfix w-100 d-md-none">
+					<!-- Grid column -->
+					<div class="col-md-3 mx-auto">
+						<!-- Links -->
+						<h5 class="font-weight-bold text-uppercase mt-3 mb-4">О проекте</h5>
+						<ul class="list-unstyled">
+							<li>
+								<a href="#!">О нас</a>
+							</li>
+							<li>
+								<a href="#!">Контакты</a>
+							</li>
+							<li>
+								<a href="#!">Новости</a>
+							</li>
+						</ul>
+					</div>
+					<!-- Grid column -->
+					<hr class="clearfix w-100 d-md-none">
+					<!-- Grid column -->
+					<div class="col-md-3 mt-4 sochial">
+						<a class="mr-4" href="">
+							<i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+						</a>
+						<a class="mr-4" href=""> <i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i> </a>
+						<a href=""> <i class="fa fa-vk fa-3x" aria-hidden="true"></i></a>
+						<ul class="list-unstyled mt-3">
+							<li>
+								<a href="#!">email@gmail.com</a>
+							</li>
+							<li>
+								<a href="#!">071-123-45-67</a>
+							</li>
+							<li>
+								<a href="#!">071-234-56-78</a>
+							</li>
+							<li>
+								<a href="#!">Пн-Пт: 8:00-20:00</a>
+							</li>
+							<li>
+								<a href="#!">Сб-Вс: 9:00-18:00</a>
+							</li>
+						</ul>
+					</div>
+					<!-- Grid column -->
+				</div>
+				<!-- Grid row -->
+			</div>
+			<!-- Footer Links -->
+
+			<!-- Copyright -->
+			<div class="footer-copyright text-center py-3 colorDarkBlue">© 2019 Copyright:
+				<a href="https://vk.com/webdevgroup">Web Dev Group</a>
+			</div>
+			<!-- Copyright -->
+
+		</footer>
+		<!-- Footer -->
+
+	</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
