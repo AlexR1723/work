@@ -1,10 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% block content %}
+<!--заголовок на картинке-->
+    <section class="mt-4 mb-5" id="about">
+        <div class="container"   style="background-color: #fff">
+            <section id="titleText">
+                <h2 class="portfolio-header d-xl-block d-block d-md-none mb-5 ">
+                <span class="font-weight-normal" style="color:#000">О проекте<span>  <br>
+                <span class="font-weight-bold">frilansdnr.ru</span> </h2>
+            </section>
+        </div>
+    </section>
 
-</body>
-</html>
+<!--Кто мы? Наша миссия-->
+<section id="info1">
+        <div class="container"  >
+            <div class="row">
+                <div class="col-md-12">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p style="font-size:2.5rem" class="font-weight-bold"> Кто мы и что делаем?</p>
+                                            <p style="font-size:2rem" >Наш онлайн сервис поможет найти специалистов для решения Ваших задач. Мы объединяем заказчиков и исполнителей.</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-12">
+                                                <p style="font-size:2.5rem" class="font-weight-bold"> Наша миссия</p>
+                                                <p style="font-size:2rem">Помочь страждущим заказчикам и дать работу несчастным фрилансерам.</p>
+                                             </div>
+                                    </div>
+                                </div>
+                 </div>
+            </div>
+        </div>
+</section>
+<!--показатели-->
+<section id="indicator">
+        <div class="container"   style="background-color: #fff"  >
+    <div class="row mt-5 text-center">
+
+        <div class="col-md-6 text-center" style="font-size:30px">
+            <div class="rectW mx-auto">
+
+            <img src="{% static 'image/executor.png' %}" class="image-fluid commentImg">
+            <p style="font-size:20px">Количество заказчиков</p>
+            <p class="fontStatistic">1000</p>
+
+        </div>
+        </div>
+
+        <div class="col-md-6 text-center" style="font-size:30px">
+            <div class="rectW mx-auto">
+                <img src="{% static 'image/customer.png' %}" alt class="image-fluid commentImg">
+            <p style="font-size:20px">Количество исполнителей</p>
+            <p class="fontStatistic">1000</p>
+        </div>
+    </div>
+    </div>
+
+    <div class="row mt-5 text-center">
+
+           <div class="col-md-6 text-center" style="font-size:30px">
+            <div class="rectW mx-auto">
+                <img src="{% static 'image/task.png' %}" alt class="image-fluid commentImg">
+                <p style="font-size:20px">Количество заданий</p>
+                <p class="fontStatistic">1000</p>
+
+            </div>
+            </div>
+            <div class="col-md-6 text-center" style="font-size:30px">
+                <div class="rectW mx-auto">
+                    <img src="{% static 'image/reviews.png' %}" alt class="image-fluid commentImg">
+                <p style="font-size:20px">Количество отзывов</p>
+                <p class="fontStatistic">1000</p>
+            </div>
+        </div>
+</div>
+</div>
+</section>
+<!--история проекта-->
+<section id="info2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+
+                                <div class="card-body">
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <p style="font-size:2.5rem" class="font-weight-bold"> История проекта</p>
+
+                                            <p style="font-size:2rem">Сервис стартовал совсем недавно, но мы уже покорили множество стран постсоветского пространства.</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                            <div class="col-md-12">
+                                                <p style="font-size:2.5rem" class="font-weight-bold"> Команда</p>
+
+                                                <p style="font-size:2rem">Проект процветает благодаря амбициозной команде. Нас всех объединяет желание улучшить сферу услуг, помочь заказчикам найти проффессионалов-исполнителей, а исполнителям найти благодарных заказчиков.</p>
+                                            </div>
+                                        </div>
+                                </div>
+
+
+                </div>
+            </div>
+        </div>
+</section>
+<!--кнопки-->
+<section id="buttons">
+        <div class="container"  style="background-color: #fff">
+            <div class="col-md-12 text-center">
+
+                     <button type="button" class="btn btn-secondary btn-danger mr-2" style="font-size:22px">Найти исполнителя</button>
+
+
+                     <button type="button" class="btn btn-secondary btn-outline-danger  " style="font-size:22px ">Стать исполнителем</button>
+
+            </div>
+        </div>
+</section>
+{% endblock %}

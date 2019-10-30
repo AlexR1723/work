@@ -244,3 +244,22 @@ div.row.rec_ser, div.sectionNote, div.row.sectionOtziv, .sectionHowWork.rec_ser,
 	margin-right: 0px !important;
     margin-left: 0px !important;
 }
+section#titleText {
+    margin-top: 3rem;
+    padding-top: 17rem;
+    height: 50vh;
+        min-height: 500px;
+        background: url('../image/123.jpeg') no-repeat center center;
+        background-size: cover;
+        color: #fff;
+        text-align: center;
+
+}
+.portfolio-header{
+    text-align: center;
+    font-weight: 700;
+    font-size: 5rem;
+    text-transform: uppercase;
+    align-items: center;
+
+}
