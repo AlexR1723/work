@@ -18,4 +18,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Main, name="Main"),
+    url(r'^about/$', views.About, name="About"),
 ]
