@@ -295,3 +295,6 @@ section#titleText {
     font-weight: 700;
     font-size: 1.4rem;
 }
+.contact-a, .contact-a:hover{
+    color: black;
+}
