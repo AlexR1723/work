@@ -11,10 +11,33 @@ body{
 .a-right{
     text-align: right;
 }
-
-nav{
-	background-color: #fff;
+div.row{
+	margin-left: 0 !important;
+	margin-right: 0 !important;
 }
+.fix-top{
+	 z-index: 9999;
+    position: sticky;
+    top: 0;
+    min-height: 2em;
+}
+.sel{
+	background: none;
+	border: none;
+}
+.search-input{
+	border-right: none;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.search-bttn{
+	border: 1px solid #3E789D;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+/*nav{*/
+/*	background-color: #fff;*/
+/*}*/
 /*кнопки полные заполненные цветом например НАЙТИ*/
 .btn.chColorFull{
 background-color: #3E789D;
@@ -95,6 +118,7 @@ background-color: #5394bd ;
 
 
 .btn.DisableBorder:hover{
+	text-decoration: underline;
 	border: none;
 	color: #AF4B53;
 	background-color:#FAF9F7;
@@ -116,11 +140,11 @@ background-color: #5394bd ;
 	 background-color: #FAF9F7;
 }
 
-.rec_ser{	
-  padding-top: 2rem;
- 
+.rec_ser{
+  /*padding-top: 2rem;*/
+
     background-color: #FAF9F7;
-    
+
 }
 
 .topCarusel div.carousel-caption{
@@ -251,10 +275,10 @@ background-color: #fff ;
 	font-size: 1.25rem;
 }
 
-div.row.rec_ser, div.sectionNote, div.row.sectionOtziv, .sectionHowWork.rec_ser, .category{
-	margin-right: 0px !important;
-    margin-left: 0px !important;
-}
+/*div.row.rec_ser, div.sectionNote, div.row.sectionOtziv, .sectionHowWork.rec_ser, .category{*/
+/*	margin-right: 0px !important;*/
+/*    margin-left: 0px !important;*/
+/*}*/
 
 
 
