@@ -11,6 +11,7 @@ body{
 .a-right{
     text-align: right;
 }
+
 div.row{
 	margin-left: 0 !important;
 	margin-right: 0 !important;
@@ -34,6 +35,16 @@ div.row{
 	border: 1px solid #3E789D;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
+}
+.topCarucel-head{
+	font-weight: 700;
+	font-size: 2rem;
+	color: white;
+}
+.topCarucel-text{
+	font-weight: 400;
+	font-size: 1.1rem;
+	color: white;
 }
 /*nav{*/
 /*	background-color: #fff;*/
@@ -146,13 +157,16 @@ background-color: #5394bd ;
     background-color: #FAF9F7;
 
 }
+.topCarusel, .carousel-inner, .carousel-item{
+	height: 60vh;
+}
 
-.topCarusel div.carousel-caption{
-	text-align: start;
+.topCarusel-caption{
+	/*text-align: start;*/
 	background: rgba(62,120, 157, 0.4);
-	bottom: 150px;
-	padding-top:40px;
-	padding-bottom:40px;
+	/*bottom: 150px;*/
+	/*padding-top:40px;*/
+	/*padding-bottom:40px;*/
 	
 }
 
@@ -160,6 +174,8 @@ background-color: #5394bd ;
 .colorbtnCarusel{
 	border: 1px solid #fff;
 	color: #fff;
+	padding-left: 2rem;
+	padding-right: 2rem;
 }
 .colorbtnCarusel:active{
 background-color: #fff ;	
