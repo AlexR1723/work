@@ -13,3 +13,6 @@ def Contact(request):
 
 def News(request):
     return render(request, 'Main/News.html', locals())
+
+def Top_performers(request):
+    return render(request, 'Main/Top_performers.html', locals())
