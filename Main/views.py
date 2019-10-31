@@ -10,3 +10,6 @@ def About(request):
 
 def Contact(request):
     return render(request, 'Main/Contact.html', locals())
+
+def News(request):
+    return render(request, 'Main/News.html', locals())
