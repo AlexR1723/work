@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^about/$', views.About, name="About"),
     url(r'^contact/$', views.Contact, name="Contact"),
     url(r'^news/$', views.News, name="News"),
+    url(r'^news_detail/$', views.news_detail, name="news_detail"),
     url(r'^top/$', views.Top_performers, name="Top_performers"),
 ]

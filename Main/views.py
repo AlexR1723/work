@@ -14,5 +14,8 @@ def Contact(request):
 def News(request):
     return render(request, 'Main/News.html', locals())
 
+def news_detail(request):
+    return render(request, 'Main/News_detail.html', locals())
+
 def Top_performers(request):
     return render(request, 'Main/Top_performers.html', locals())

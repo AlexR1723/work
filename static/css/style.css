@@ -470,6 +470,33 @@ section#titleText {
 p{
     cursor: default;
 }
+
+.news_img{
+    height: 20vh;
+    min-height: 100px;
+    background: url(../image/news_bg.jpg) 100% 100% no-repeat;
+    background-size: cover;
+}
+.news_img_fon{
+    background-color: rgba(255,255,255,.5);
+    /*align-content: end;*/
+    height: 100%;
+}
+.news_img_p{
+    font-size: 2.5rem;
+    /*line-height: 1;*/
+    margin: 0px;
+    /*text-align: center;*/
+}
+.news_det_text{
+    font-size: 1.5rem;
+    margin: 0px
+}
+.news_det_type{
+    font-size: 1.5rem;
+    color: #777;
+    margin: 0px;
+}
 .top-bg{
     background:  #f3f3f3;
     border-radius: 5px;
