@@ -542,3 +542,17 @@ hr.line{
     font-weight: 700;
     font-size: 2rem;
 }
+.category-head-img{
+    background: url("../image/bg-cat.jpg") no-repeat center center;
+    background-size: cover;
+    height: 20vh;
+}
+.category-head-fon{
+    background: rgba(0,0,0,.3);
+    height: 100%;
+}
+.category-head{
+    font-weight: 400;
+    color: white;
+    font-size: 2.5rem;
+}
