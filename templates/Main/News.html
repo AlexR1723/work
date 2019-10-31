@@ -4,9 +4,7 @@
 
 <div class="row justify-content-center ">
 
-    <div class="col-12 col-sm-10 col-md-10 col-lg-9 col-xl-8 mb-5">
-
-        <div class="header_img ">
+    <div class="header_img w-100">
             <div class="header_img_fon row justify-content-center align-items-center">
                 <p class="header_img_p">Новости</p>
             </div>
@@ -14,9 +12,13 @@
 
         </div>
 
-        <div class="row justify-content-center align-items-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 mb-5">
+
+
+
+        <div class="row align-items-center">
             <!--            <div class="col-2">-->
-            <p class="news_filter_p mt-3">Тип новостей: </p>
+<!--            <p class="news_filter_p mt-3">Тип новостей: </p>-->
             <!--            </div>-->
             <div class="col-12 col-sm-9 col-md-4 col-lg-4 col-xl-3 p-0 mt-3">
                 <select class="custom-select news_filter_select" id="inputGroupSelect04"
@@ -27,15 +29,16 @@
                     <option value="3">Мировые новости</option>
                 </select>
             </div>
-            <div class="col-12 col-sm-6 col-md-2 col-lg-2 col-xl-2 p-0 mt-3">
-                <div class="input-group-append">
-                    <button class="btn btn_news_filter w-100" type="button">Показать</button>
-                </div>
-            </div>
+<!--            <div class="col-12 col-sm-6 col-md-2 col-lg-2 col-xl-2 p-0 mt-3">-->
+<!--                <div class="input-group-append">-->
+<!--                    <button class="btn btn_news_filter w-100" type="button">Показать</button>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 
-    <div class="row col-11 col-sm-10 col-md-10 col-lg-9 col-xl-8 p-0 mb-5 news_block">
+    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">
+
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">
             <img src="/static/image/123.jpeg" class="w-100" alt="">
         </div>
@@ -47,11 +50,14 @@
                 ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus
                 ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex
                 risus eu eros.</p>
-            <form action="" class="float-right mt-3">
-                <button class="btn btn_news_filter">Подробнее</button>
-            </form>
+<!--            <form action="" class="float-right mt-3">-->
+            <div class="w-100 text-right mt-3">
+                <button class="btn_news">Подробнее</button>
+            </div>
+
+<!--            </form>-->
         </div>
-    </div>
+    </form>
 
 
 </div>
