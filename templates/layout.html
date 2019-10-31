@@ -111,7 +111,7 @@
         {% endblock %}
     <div class="container-fluid p-0">
 		<!-- Footer -->
-		<footer class="page-footer font-small colorBlue">
+		<footer class="page-footer font-small colorBlue pt-5">
 			<!-- Footer Links -->
 			<div class="container text-center text-md-left">
 				<!-- Grid row -->
@@ -119,7 +119,7 @@
 					<!-- Grid column -->
 					<div class="col-md-3 mx-auto">
 						<!-- Links -->
-						<h5 class="font-weight-bold text-uppercase mt-3 mb-4">Как мы работаем</h5>
+						<h5 class="font-weight-bold mt-3 mb-4">Как мы работаем</h5>
 						<ul class="list-unstyled">
 							<li>
 								<a href="#!">Как заказать услугу</a>
@@ -149,7 +149,7 @@
 					<!-- Grid column -->
 					<div class="col-md-3 mx-auto">
 						<!-- Links -->
-						<h5 class="font-weight-bold text-uppercase mt-3 mb-4">Помощь</h5>
+						<h5 class="font-weight-bold mt-3 mb-4">Помощь</h5>
 						<ul class="list-unstyled">
 							<li>
 								<a href="#!">Вопрос / ответ</a>
@@ -173,7 +173,7 @@
 					<!-- Grid column -->
 					<div class="col-md-3 mx-auto">
 						<!-- Links -->
-						<h5 class="font-weight-bold text-uppercase mt-3 mb-4">О проекте</h5>
+						<h5 class="font-weight-bold mt-3 mb-4">О проекте</h5>
 						<ul class="list-unstyled">
 							<li>
 								<a href="{% url 'About' %}">О нас</a>
@@ -190,11 +190,30 @@
 					<hr class="clearfix w-100 d-md-none">
 					<!-- Grid column -->
 					<div class="col-md-3 mt-4 sochial">
-						<a class="mr-4" href="">
-							<i class="fab fa-instagram fa-3x" aria-hidden="true"></i>
-						</a>
-						<a class="mr-4" href=""> <i class="fab fa-facebook-f fa-3x" aria-hidden="true"></i> </a>
-						<a href=""> <i class="fab fa-vk fa-3x" aria-hidden="true"></i></a>
+                        <div class="row">
+                            <div class="col-auto pl-0">
+                                <div class="circle row justify-content-center align-items-center">
+                                    <a href="">
+                                        <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="col-auto">
+                                <div class="circle row justify-content-center align-items-center">
+                                    <a href="">
+                                        <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="circle row justify-content-center align-items-center">
+                                    <a href="">
+                                        <i class="fab fa-vk fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 						<ul class="list-unstyled mt-3">
 							<li>
 								<a href="#!">email@gmail.com</a>
