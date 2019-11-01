@@ -17,6 +17,9 @@ def Safety(request):
 def Rabota(request):
     return render(request, 'Main/Rabota.html', locals())
 
+def For_business(request):
+    return render(request, 'Main/For_business.html', locals())
+
 def Top_performers(request):
     return render(request, 'Main/Top_performers.html', locals())
 

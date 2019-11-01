@@ -5,256 +5,411 @@
     <title>Work</title>
     {% load staticfiles %}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-{#	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">#}
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--    {#-->
+<!--    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"-->
+<!--          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+<!--    #}-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div class="container-fluid p-0">
-{#		<form>#}
-			<div class="row rec_ser m-0 justify-content-center">
-                <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <div class="row">
-                                <div class="col-6">
-                                    <select class="form-control sel">
-                                        <option>Выберите регион</option>
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <button type="button" class=" form-control btn btn-outline chColorBorder colorSearch">Создать задание</button>
-                                </div>
+<div class="container-fluid p-0">
+<!--    {#-->
+<!--    <form>#}-->
+        <div class="row rec_ser m-0 justify-content-center">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="row align-items-center">
+                            <div class="col-5">
+                                <select class="sel w-100">
+                                    <option>Регион</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                            <div class="row">
-                                <div class="col-9 pr-0 ">
-                                    <input type="text" class="form-control search-input" placeholder="">
-                                </div>
-                                <div class="col-3 pl-0">
-                                    <button type="button" class="form-control btn chColorFull search-bttn">Найти</button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                            <div class="row justify-content-end">
-                                <div class="col-6">
-                                    <button type="button" class="align-middle form-control btn DisableBorder colorRed">Войти</button>
-                                </div>
-                                <div class="col-6">
-                                    <button type="button" class="form-control btn btn-outline chColorBorder colorSearch">Зарегистрироваться</button>
-                                </div>
+                            <div class="col-7">
+                                <button type="button" class="w-100 btn btn-outline chColorBorder colorSearch">
+                                    Создать задание
+                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-{#		</form>#}
-    </div>
-    <div class="container-fluid p-0 fix-top">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 ">
-                <div class="row">
-                    <div class="col-12">
-                        <nav id="top-a" class="navbar navbar-expand-lg navbar-light" >
-                            <a class="navbar-brand" href="{% url 'Main' %}">
-                                <img src="{% static 'image/logo.png' %}" alt="">
-                            </a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
-                                <ul class="navbar-nav ml-auto mt-2 mt-lg-0 ">
-                                    <li class="nav-item ml-5">
-                                        <a class="nav-link" href="{% url 'About' %}">
-                                            <h4>О нас</h4>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ml-5">
-                                        <a class="nav-link" href="#">
-                                            <h4>Задания</h4>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ml-5">
-                                        <a class="nav-link " href="#">
-                                            <h4>Объявления</h4>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ml-5">
-                                        <a class="nav-link " href="{% url 'News' %}">
-                                            <h4>Новости</h4>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ml-5">
-                                        <a class="nav-link " href="#">
-                                            <h4>Ответы</h4>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item ml-5">
-                                        <a class="nav-link " href="{% url 'Contact' %}">
-                                            <h4>Контакты</h4>
-                                        </a>
-                                    </li>
-                                </ul>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-0">
+                        <div class="row">
+                            <div class="col-9 p-0 ">
+                                <input type="text" class="form-control search-input" placeholder="">
                             </div>
-                        </nav>
+                            <div class="col-3 p-0">
+                                <button type="button" class="form-control btn chColorFull search-bttn">Найти</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="row justify-content-end">
+                            <div class="col-6">
+                                <button type="button" class="w-100 align-middle btn DisableBorder colorRed">
+                                    Войти
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" class="w-100 btn btn-outline chColorBorder colorSearch">
+                                    Регистрация
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-        {% block content %}
+<!--        {#-->
 
-        {% endblock %}
-    <div class="container-fluid p-0">
-		<!-- Footer -->
-		<footer class="page-footer font-small colorBlue pt-5">
-			<!-- Footer Links -->
-			<div class="container text-center text-md-left">
-				<!-- Grid row -->
-				<div class="row">
-					<!-- Grid column -->
-					<div class="col-md-3 mx-auto">
-						<!-- Links -->
-						<h5 class="font-weight-bold mt-3 mb-4">Как мы работаем</h5>
-						<ul class="list-unstyled">
-							<li>
-								<a href="{% url 'How_it_work' %}">Как заказать услугу</a>
-							</li>
-							<li>
-								<a href="{% url 'Rabota' %}">Как стать исполнителем</a>
-							</li>
-							<li>
-								<a href="#!">Преимущества для компаний</a>
-							</li>
-							<li>
-								<a href="{% url 'Safety' %}">Гарантии и безопасность</a>
-							</li>
-							<li>
-								<a href="{% url 'Secure_transaction' %}">Безопасная сделка</a>
-							</li>
-							<li>
-								<a href="{% url 'Top_performers' %}">Топ исполнителей</a>
-							</li>
-							<li>
-								<a href="{% url 'All_category' %}">Все категории услуг</a>
-							</li>
-						</ul>
-					</div>
-					<!-- Grid column -->
-					<hr class="clearfix w-100 d-md-none">
-					<!-- Grid column -->
-					<div class="col-md-3 mx-auto">
-						<!-- Links -->
-						<h5 class="font-weight-bold mt-3 mb-4">Помощь</h5>
-						<ul class="list-unstyled">
-							<li>
-								<a href="#!">Вопрос / ответ</a>
-							</li>
-							<li>
-								<a href="#!">Публичная оферта</a>
-							</li>
-							<li>
-								<a href="#!">Правила конфиденциальности</a>
-							</li>
-							<li>
-								<a href="#!">Правила проекта</a>
-							</li>
-							<li>
-								<a href="{% url 'Contact' %}">Служба поддержки</a>
-							</li>
-						</ul>
-					</div>
-					<!-- Grid column -->
-					<hr class="clearfix w-100 d-md-none">
-					<!-- Grid column -->
-					<div class="col-md-3 mx-auto">
-						<!-- Links -->
-						<h5 class="font-weight-bold mt-3 mb-4">О проекте</h5>
-						<ul class="list-unstyled">
-							<li>
-								<a href="{% url 'About' %}">О нас</a>
-							</li>
-							<li>
-								<a href="{% url 'Contact' %}">Контакты</a>
-							</li>
-							<li>
-								<a href="{% url 'News' %}">Новости</a>
-							</li>
-						</ul>
-					</div>
-					<!-- Grid column -->
-					<hr class="clearfix w-100 d-md-none">
-					<!-- Grid column -->
-					<div class="col-md-3 mt-4 sochial">
-                        <div class="row">
-                            <div class="col-auto pl-0">
-                                <div class="circle row justify-content-center align-items-center">
+
+
+
+<!--    <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-6">-->
+<!--                                <select class="form-control sel">-->
+<!--                                    <option>Выберите регион</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                            <div class="col-6">-->
+<!--                                <button type="button" class=" form-control btn btn-outline chColorBorder colorSearch">-->
+<!--                                    Создать задание-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-9 pr-0 ">-->
+<!--                                <input type="text" class="form-control search-input" placeholder="">-->
+<!--                            </div>-->
+<!--                            <div class="col-3 pl-0">-->
+<!--                                <button type="button" class="form-control btn chColorFull search-bttn">Найти</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+<!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">-->
+<!--                        <div class="row justify-content-end">-->
+<!--                            <div class="col-6">-->
+<!--                                <button type="button" class="align-middle form-control btn DisableBorder colorRed">-->
+<!--                                    Войти-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                            <div class="col-6">-->
+<!--                                <button type="button" class="form-control btn btn-outline chColorBorder colorSearch">-->
+<!--                                    Регистрация-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+
+
+
+
+<!--    </form>-->
+<!--    #}-->
+</div>
+<div class="container-fluid p-0 fix-top">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 ">
+            <div class="row">
+                <div class="col-12">
+                    <nav id="top-a" class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="{% url 'Main' %}">
+                            <img src="{% static 'image/logo.png' %}" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+                                aria-expanded="false" aria-label="Toggle navigation">Меню
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+                            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 ">
+                                <li class="nav-item ml-5">
+                                    <a class="nav-link" href="{% url 'About' %}">
+                                        <h4>О нас</h4>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-5">
+                                    <a class="nav-link" href="#">
+                                        <h4>Задания</h4>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-5">
+                                    <a class="nav-link " href="#">
+                                        <h4>Объявления</h4>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-5">
+                                    <a class="nav-link " href="{% url 'News' %}">
+                                        <h4>Новости</h4>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-5">
+                                    <a class="nav-link " href="#">
+                                        <h4>Ответы</h4>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-5">
+                                    <a class="nav-link " href="{% url 'Contact' %}">
+                                        <h4>Контакты</h4>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block content %}
+
+{% endblock %}
+<div class="container-fluid p-0">
+    <!-- Footer -->
+    <footer class="page-footer font-small colorBlue pt-5">
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+            <!-- Grid row -->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-3 mx-auto">
+                    <!-- Links -->
+                    <h5 class="font-weight-bold mt-3 mb-4">Как мы работаем</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{% url 'How_it_work' %}">Как заказать услугу</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Rabota' %}">Как стать исполнителем</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'For_business' %}">Преимущества для компаний</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Safety' %}">Гарантии и безопасность</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Secure_transaction' %}">Безопасная сделка</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Top_performers' %}">Топ исполнителей</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'All_category' %}">Все категории услуг</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
+                <!-- Grid column -->
+                <div class="col-md-3 mx-auto">
+                    <!-- Links -->
+                    <h5 class="font-weight-bold mt-3 mb-4">Помощь</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Вопрос / ответ</a>
+                        </li>
+                        <li>
+                            <a href="#!">Публичная оферта</a>
+                        </li>
+                        <li>
+                            <a href="#!">Правила конфиденциальности</a>
+                        </li>
+                        <li>
+                            <a href="#!">Правила проекта</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Contact' %}">Служба поддержки</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
+                <!-- Grid column -->
+                <div class="col-md-3 mx-auto">
+                    <!-- Links -->
+                    <h5 class="font-weight-bold mt-3 mb-4">О проекте</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{% url 'About' %}">О нас</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Contact' %}">Контакты</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'News' %}">Новости</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
+                <!-- Grid column -->
+                <div class="col-md-3 mt-4 sochial">
+                    <div class="row justify-content-center d-flex d-sm-flex d-md-none d-lg-none d-xl-none ">
+                        <div class="col-3 p-1">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="circle">
                                     <a href="">
                                         <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
                                     </a>
                                 </div>
-
                             </div>
-                            <div class="col-auto">
-                                <div class="circle row justify-content-center align-items-center">
+                        </div>
+                        <div class="col-3 p-1">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="circle">
                                     <a href="">
                                         <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-auto">
-                                <div class="circle row justify-content-center align-items-center">
+                        </div>
+                        <div class="col-3 p-1">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="circle">
                                     <a href="">
                                         <i class="fab fa-vk fa-2x" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
-						<ul class="list-unstyled mt-3">
-							<li>
-								<a href="#!">email@gmail.com</a>
-							</li>
-							<li>
-								<a href="#!">071-123-45-67</a>
-							</li>
-							<li>
-								<a href="#!">071-234-56-78</a>
-							</li>
-							<li>
-								<a href="#!">Пн-Пт: 8:00-20:00</a>
-							</li>
-							<li>
-								<a href="#!">Сб-Вс: 9:00-18:00</a>
-							</li>
-						</ul>
-					</div>
-					<!-- Grid column -->
-				</div>
-				<!-- Grid row -->
-			</div>
-			<!-- Footer Links -->
 
-			<!-- Copyright -->
-			<div class="footer-copyright text-center py-3 colorDarkBlue">© 2019 Copyright:
-				<a href="https://vk.com/webdevgroup">Web Dev Group</a>
-			</div>
-			<!-- Copyright -->
 
-		</footer>
-		<!-- Footer -->
+                    </div>
+                    <div class="row justify-content-between d-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
+                        <div class="col-3 p-0">
+                            <div class="circle row justify-content-center align-items-center">
+                                    <a href="">
+                                        <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+                                    </a>
+                            </div>
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class="circle row justify-content-center align-items-center">
+                                    <a href="">
+                                        <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>
+                                    </a>
+                            </div>
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class="circle row justify-content-center align-items-center">
+                                    <a href="">
+                                        <i class="fab fa-vk fa-2x" aria-hidden="true"></i>
+                                    </a>
+                            </div>
+                        </div>
 
-	</div>
-    <script src="https://kit.fontawesome.com/2c9fd467ea.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+
+                    </div>
+                    <ul class="list-unstyled mt-3">
+                        <li>
+                            <a href="#!">email@gmail.com</a>
+                        </li>
+                        <li>
+                            <a href="#!">071-123-45-67</a>
+                        </li>
+                        <li>
+                            <a href="#!">071-234-56-78</a>
+                        </li>
+                        <li>
+                            <a href="#!">Пн-Пт: 8:00-20:00</a>
+                        </li>
+                        <li>
+                            <a href="#!">Сб-Вс: 9:00-18:00</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+
+
+                <!--                    <div class="col-md-3 mt-4 sochial">-->
+                <!--                        <div class="row">-->
+                <!--                            <div class="col-auto pl-0">-->
+                <!--                                <div class="circle row justify-content-center align-items-center">-->
+                <!--                                    <a href="">-->
+                <!--                                        <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
+                <!--                                    </a>-->
+                <!--                                </div>-->
+
+                <!--                            </div>-->
+                <!--                            <div class="col-auto">-->
+                <!--                                <div class="circle row justify-content-center align-items-center">-->
+                <!--                                    <a href="">-->
+                <!--                                        <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>-->
+                <!--                                    </a>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            <div class="col-auto">-->
+                <!--                                <div class="circle row justify-content-center align-items-center">-->
+                <!--                                    <a href="">-->
+                <!--                                        <i class="fab fa-vk fa-2x" aria-hidden="true"></i>-->
+                <!--                                    </a>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--						<ul class="list-unstyled mt-3">-->
+                <!--							<li>-->
+                <!--								<a href="#!">email@gmail.com</a>-->
+                <!--							</li>-->
+                <!--							<li>-->
+                <!--								<a href="#!">071-123-45-67</a>-->
+                <!--							</li>-->
+                <!--							<li>-->
+                <!--								<a href="#!">071-234-56-78</a>-->
+                <!--							</li>-->
+                <!--							<li>-->
+                <!--								<a href="#!">Пн-Пт: 8:00-20:00</a>-->
+                <!--							</li>-->
+                <!--							<li>-->
+                <!--								<a href="#!">Сб-Вс: 9:00-18:00</a>-->
+                <!--							</li>-->
+                <!--						</ul>-->
+                <!--					</div>-->
+
+
+            </div>
+            <!-- Grid row -->
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3 colorDarkBlue">© 2019 Copyright:
+            <a href="https://vk.com/webdevgroup">Web Dev Group</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+</div>
+<script src="https://kit.fontawesome.com/2c9fd467ea.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-	<script src="{% static 'js/main.js' %}" > </script>
-	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
 </body>
 </html>

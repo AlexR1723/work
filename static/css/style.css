@@ -453,6 +453,10 @@ section#titleText {
     height: 3rem;
     background: white;
     border-radius: 50%;
+
+    align-items: center;
+    justify-content: center;
+    display: flex
 }
 
 .fa-instagram, .fa-facebook-f, .fa-vk {
@@ -543,6 +547,9 @@ p {
 }
 .line_height_1{
     line-height: 1;
+}
+.img_circle{
+    border-radius: 50%;
 }
 
 /*.news_img {*/

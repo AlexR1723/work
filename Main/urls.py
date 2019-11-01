@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^secure_transaction/$', views.Secure_transaction, name="Secure_transaction"),
     url(r'^safety/$', views.Safety, name="Safety"),
     url(r'^rabota/$', views.Rabota, name="Rabota"),
+    url(r'^for_business/$', views.For_business, name="For_business"),
     url(r'^top_performers/$', views.Top_performers, name="Top_performers"),
 ]
