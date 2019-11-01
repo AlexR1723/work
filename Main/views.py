@@ -14,6 +14,9 @@ def Secure_transaction(request):
 def Safety(request):
     return render(request, 'Main/Safety.html', locals())
 
+def Rabota(request):
+    return render(request, 'Main/Rabota.html', locals())
+
 def Top_performers(request):
     return render(request, 'Main/Top_performers.html', locals())
 
