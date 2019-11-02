@@ -1,8 +1,9 @@
 from django.shortcuts import render
-
+from .models import *
 
 # Create your views here.
 def Main(request):
+    category=Category.objects.all()[:3]
     return render(request, 'Main/Main.html', locals())
 
 def How_it_work(request):
