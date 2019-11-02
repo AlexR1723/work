@@ -9,117 +9,117 @@
           rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!--    {#-->
-<!--    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"-->
-<!--          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
-<!--    #}-->
+    <!--    {#-->
+    <!--    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"-->
+    <!--          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+    <!--    #}-->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 <div class="container-fluid p-0">
-<!--    {#-->
-<!--    <form>#}-->
-        <div class="row rec_ser m-0 justify-content-center">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">
-                <div class="row justify-content-between">
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                        <div class="row align-items-center">
-                            <div class="col-5">
-                                <select class="sel w-100">
-                                    <option>Регион</option>
-                                </select>
-                            </div>
-                            <div class="col-7">
-                                <button type="button" class="w-100 btn btn-outline chColorBorder colorSearch">
-                                    Создать задание
-                                </button>
-                            </div>
+    <!--    {#-->
+    <!--    <form>#}-->
+    <div class="row rec_ser m-0 justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-0">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 p-0">
+                            <!--                                <select class="sel w-100">-->
+                            <!--                                    <option>Регион</option>-->
+                            <!--                                </select>-->
+                            <a href="">Днепропетровск</a>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-0">
-                        <div class="row">
-                            <div class="col-9 p-0 ">
-                                <input type="text" class="form-control search-input" placeholder="">
-                            </div>
-                            <div class="col-3 p-0">
-                                <button type="button" class="form-control btn chColorFull search-bttn">Найти</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                        <div class="row justify-content-end">
-                            <div class="col-xl-4">
-                                <button type="button" class="w-100 align-middle btn DisableBorder colorRed">
-                                    Войти
-                                </button>
-                            </div>
-                            <div class="col-xl-5">
-                                <button type="button" class="w-100 btn btn-outline chColorBorder colorSearch">
-                                    Регистрация
-                                </button>
-                            </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-7 col-xl-6">
+                            <button type="button" class="w-100 px-1 btn btn-outline chColorBorder colorSearch">
+                                Создать задание
+                            </button>
                         </div>
                     </div>
                 </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-0">
+                    <div class="row">
+                        <div class="col-9 p-0 ">
+                            <input type="text" class="form-control search-input" placeholder="">
+                        </div>
+                        <div class="col-3 p-0">
+                            <button type="button" class="form-control btn chColorFull search-bttn">Найти</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <div class="row justify-content-end d-none s-sm-none d-md-none d-lg-flex d-xl-flex">
+                        <div class="col-lg-5 col-xl-4">
+                            <button type="button" class="w-100 align-middle btn DisableBorder colorRed">
+                                Войти
+                            </button>
+                        </div>
+                        <div class="col-lg-7 col-xl-5 p-0">
+                            <button type="button" class="w-100 btn btn-outline chColorBorder colorSearch">
+                                Регистрация
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-flex s-sm-flex d-md-flex d-lg-none d-xl-none">
+                        <i class="fas fa-user fz_2rem"></i>
+                    </div>
+
+                </div>
             </div>
         </div>
-<!--        {#-->
+    </div>
+    <!--        {#-->
 
 
+    <!--    <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">-->
+    <!--                <div class="row">-->
+    <!--                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">-->
+    <!--                        <div class="row">-->
+    <!--                            <div class="col-6">-->
+    <!--                                <select class="form-control sel">-->
+    <!--                                    <option>Выберите регион</option>-->
+    <!--                                </select>-->
+    <!--                            </div>-->
+    <!--                            <div class="col-6">-->
+    <!--                                <button type="button" class=" form-control btn btn-outline chColorBorder colorSearch">-->
+    <!--                                    Создать задание-->
+    <!--                                </button>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                    <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">-->
+    <!--                        <div class="row">-->
+    <!--                            <div class="col-9 pr-0 ">-->
+    <!--                                <input type="text" class="form-control search-input" placeholder="">-->
+    <!--                            </div>-->
+    <!--                            <div class="col-3 pl-0">-->
+    <!--                                <button type="button" class="form-control btn chColorFull search-bttn">Найти</button>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+
+    <!--                    </div>-->
+    <!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">-->
+    <!--                        <div class="row justify-content-end">-->
+    <!--                            <div class="col-6">-->
+    <!--                                <button type="button" class="align-middle form-control btn DisableBorder colorRed">-->
+    <!--                                    Войти-->
+    <!--                                </button>-->
+    <!--                            </div>-->
+    <!--                            <div class="col-6">-->
+    <!--                                <button type="button" class="form-control btn btn-outline chColorBorder colorSearch">-->
+    <!--                                    Регистрация-->
+    <!--                                </button>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
 
 
-<!--    <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-6">-->
-<!--                                <select class="form-control sel">-->
-<!--                                    <option>Выберите регион</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div class="col-6">-->
-<!--                                <button type="button" class=" form-control btn btn-outline chColorBorder colorSearch">-->
-<!--                                    Создать задание-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-9 pr-0 ">-->
-<!--                                <input type="text" class="form-control search-input" placeholder="">-->
-<!--                            </div>-->
-<!--                            <div class="col-3 pl-0">-->
-<!--                                <button type="button" class="form-control btn chColorFull search-bttn">Найти</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
-<!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">-->
-<!--                        <div class="row justify-content-end">-->
-<!--                            <div class="col-6">-->
-<!--                                <button type="button" class="align-middle form-control btn DisableBorder colorRed">-->
-<!--                                    Войти-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                            <div class="col-6">-->
-<!--                                <button type="button" class="form-control btn btn-outline chColorBorder colorSearch">-->
-<!--                                    Регистрация-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-
-
-
-
-
-<!--    </form>-->
-<!--    #}-->
+    <!--    </form>-->
+    <!--    #}-->
 </div>
 <div class="container-fluid p-0 fix-top">
     <div class="row justify-content-center">
@@ -137,32 +137,32 @@
                         </button>
                         <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
                             <ul class="navbar-nav ml-auto mt-2 mt-lg-0 ">
-                                <li class="nav-item ml-5">
+                                <li class="nav-item">
                                     <a class="nav-link" href="{% url 'About' %}">
                                         <h4>О нас</h4>
                                     </a>
                                 </li>
-                                <li class="nav-item ml-5">
+                                <li class="nav-item">
                                     <a class="nav-link" href="#">
                                         <h4>Задания</h4>
                                     </a>
                                 </li>
-                                <li class="nav-item ml-5">
+                                <li class="nav-item">
                                     <a class="nav-link " href="#">
                                         <h4>Объявления</h4>
                                     </a>
                                 </li>
-                                <li class="nav-item ml-5">
+                                <li class="nav-item">
                                     <a class="nav-link " href="{% url 'News' %}">
                                         <h4>Новости</h4>
                                     </a>
                                 </li>
-                                <li class="nav-item ml-5">
+                                <li class="nav-item">
                                     <a class="nav-link " href="#">
                                         <h4>Ответы</h4>
                                     </a>
                                 </li>
-                                <li class="nav-item ml-5">
+                                <li class="nav-item">
                                     <a class="nav-link " href="{% url 'Contact' %}">
                                         <h4>Контакты</h4>
                                     </a>
@@ -293,23 +293,23 @@
                     <div class="row justify-content-between d-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
                         <div class="col-3 p-0">
                             <div class="circle row justify-content-center align-items-center">
-                                    <a href="">
-                                        <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
-                                    </a>
+                                <a href="">
+                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="col-3 p-0">
                             <div class="circle row justify-content-center align-items-center">
-                                    <a href="">
-                                        <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>
-                                    </a>
+                                <a href="">
+                                    <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="col-3 p-0">
                             <div class="circle row justify-content-center align-items-center">
-                                    <a href="">
-                                        <i class="fab fa-vk fa-2x" aria-hidden="true"></i>
-                                    </a>
+                                <a href="">
+                                    <i class="fab fa-vk fa-2x" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
 
