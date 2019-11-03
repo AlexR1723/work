@@ -21,3 +21,13 @@ class FirstSliderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(FirstSlider, FirstSliderAdmin)
+
+
+class LinkAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Link._meta.fields]
+
+    class Meta:
+        model = Link
+
+
+admin.site.register(Link, LinkAdmin)

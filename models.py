@@ -163,6 +163,15 @@ class FirstSlider(models.Model):
         db_table = 'first_slider'
 
 
+class Link(models.Model):
+    link = models.CharField(max_length=100, blank=True, null=True)
+    icon = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'link'
+
+
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(max_length=100, blank=True, null=True)
