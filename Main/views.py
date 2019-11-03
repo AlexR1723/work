@@ -6,6 +6,7 @@ def Main(request):
     fslide=FirstSlider.objects.all()[0]
     slide=FirstSlider.objects.all()[1:]
     category=Category.objects.all()[:3]
+    all_category=Category.objects.all()[3:]
     return render(request, 'Main/Main.html', locals())
 
 def How_it_work(request):

@@ -55,7 +55,14 @@ $("#safety_btn_executor").click(function () {
 
 $(document).ready(function() {
     $(".more_sub").click(function(){
-        var el=$(this)
+        var el=$(this);
         el.addClass('d-none');
     });
+    $("#more_category").click(function () {
+        var el=document.getElementById('more_category');
+        if(el.textContent==="Больше категорий")
+            el.textContent="Меньше категорий";
+        else
+            el.textContent="Больше категорий";
+    })
 })

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container-fluid p-0">
     <div class="row justify-content-center">
-			<div id="carouselExampleCaptions" class="carousel slide topCarusel w-100" data-ride="carousel">
+			<div id="carouselExampleCaptions" class="carousel slide topCarusel h60 w-100" data-ride="carousel">
 				<ol class="carousel-indicators">
 					<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                     {% for s in slide %}
@@ -11,8 +11,8 @@
                     {% endfor %}
 				</ol>
 
-				<div class="carousel-inner ">
-					<div class="carousel-item active" style="background: url({{MEDIA_URL}}{{fslide.image.url}}) no-repeat center center; background-size: cover;">
+				<div class="carousel-inner h60">
+					<div class="carousel-item h60 active" style="background: url({{MEDIA_URL}}{{fslide.image.url}}) no-repeat center center; background-size: cover;">
                         <div class="row w-100 h-100 justify-content-center align-items-center">
                             <div class="col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-4 topCarusel-caption">
@@ -26,7 +26,7 @@
                         </div>
 					</div>
                     {% for s in slide %}
-					<div class="carousel-item" style="background: url({{MEDIA_URL}}{{s.image.url}}) no-repeat center center; background-size: cover;">
+					<div class="carousel-item h60" style="background: url({{MEDIA_URL}}{{s.image.url}}) no-repeat center center; background-size: cover;">
 						<div class="row w-100 h-100 justify-content-center align-items-center">
                             <div class="col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-4 topCarusel-caption">
@@ -92,12 +92,51 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <div class="collapse row" id="collapseExample">
+                        {% for c in all_category %}
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
+                            <div class="row align-items-center">
+                                <div class="col-2 p-0">
+                                    <img class="w-100" src="{% static 'image/11.png' %}" alt="">
+                                </div>
+                                <span class="col-10 fontCategory">
+                                    {{c.name}}
+                                </span>
+                            </div>
+                            {% for s in c.first_five %}
+                            <div class="row mt-2">
+                                <div class="col-md-12 ">
+                                    <a class="fontCategorySmall colorDarkGrey" href="#">{{s.name}}</a>
+                                    <small class="ml-2 colorLightGrey">1145</small>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <div class="collapse" id="collapseExample{{forloop.counter}}_all">
+                                {% for s in c.rest %}
+                                <div class="row mt-2">
+                                    <div class="col-md-12 ">
+                                        <a class="fontCategorySmall colorDarkGrey" href="#">{{s.name}}</a>
+                                        <small class="ml-2 colorLightGrey">1145</small>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12 ">
+                                    <a class="fontCategorySmall colorDarkGrey more_sub" data-toggle="collapse" href="#collapseExample{{forloop.counter}}_all" aria-expanded="false" aria-controls="collapseExample">Еще...</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
+
             </div>
 		</div>
 		<div class="row justify-content-center pt-3 pb-5">
 			<div class="col-md-12 text-center">
-				<button type="button" class="btn btn-outline-danger mr-2">Больше категорий</button>
+				<button type="button" id="more_category" class="btn btn-outline-danger mr-2"  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Больше категорий</button>
 				<button type="button" class="btn btn-outline-danger">Все категории</button>
 			</div>
 		</div>

@@ -231,7 +231,7 @@ div.row {
 
 }
 
-.topCarusel, .carousel-inner, .carousel-item {
+.topCarusel.h60, .carousel-inner.h60, .carousel-item.h60 {
     height: 60vh;
 }
 
