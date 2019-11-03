@@ -75,52 +75,38 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование категории")
-    image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Иконка")
+    name = models.CharField(max_length=100, blank=True, null=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'category'
-        verbose_name = _("Категория")
-        verbose_name_plural = _("Категории")
-
-    def __str__(self):
-        return self.name
 
 
 class Comments(models.Model):
-    user_id = models.IntegerField(blank=True, null=True, verbose_name="Пользователь")
-    text = models.CharField(max_length=1000, blank=True, null=True, verbose_name="Текст отзыва")
+    user_id = models.IntegerField(blank=True, null=True)
+    text = models.CharField(max_length=1000, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'comments'
-        verbose_name = _("Отзыв")
-        verbose_name_plural = _("Отзывы")
 
 
 class Contact(models.Model):
-    type = models.ForeignKey('ContactType', models.DO_NOTHING, blank=True, null=True, verbose_name="Тип контакта")
-    name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Текст")
+    type = models.ForeignKey('ContactType', models.DO_NOTHING, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'contact'
-        verbose_name = _("Контакт")
-        verbose_name_plural = _("Контакты")
 
 
 class ContactType(models.Model):
-    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+    name = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'contact_type'
-        verbose_name = _("Тип контакта")
-        verbose_name_plural = _("Типы контактов")
-
-    def __str__(self):
-        return self.name
 
 
 class DjangoAdminLog(models.Model):
@@ -167,12 +153,20 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class FirstSlider(models.Model):
+    image = models.CharField(max_length=500, blank=True, null=True)
+    text = models.CharField(max_length=100, blank=True, null=True)
+    description = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'first_slider'
+
+
 class SubCategory(models.Model):
-    category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")
-    name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование")
+    category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'sub_category'
-        verbose_name = _("Подкатегория")
-        verbose_name_plural = _("Подкатегории")

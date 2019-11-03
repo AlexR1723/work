@@ -1,6 +1,21 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 # Create your models here.
+
+
+class FirstSlider(models.Model):
+    text = models.CharField(max_length=100, blank=True, null=True, verbose_name="Заголовок")
+    description = models.CharField(max_length=500, blank=True, null=True, verbose_name="Описание")
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Изображение")
+
+    class Meta:
+        managed = False
+        db_table = 'first_slider'
+        verbose_name = _("Слайдер")
+        verbose_name_plural = _("Слайды")
+
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование категории")
     image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Иконка")
