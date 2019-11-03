@@ -33,6 +33,10 @@ class Category(models.Model):
         sub=SubCategory.objects.all().filter(category=self)[:5]
         return sub
 
+    def rest(self):
+        sub=SubCategory.objects.all().filter(category=self)[5:]
+        return sub
+
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")

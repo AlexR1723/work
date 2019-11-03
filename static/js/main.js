@@ -52,3 +52,10 @@ $("#safety_btn_executor").click(function () {
     document.getElementById('div_customer').style.display = "none"
      document.getElementById('div_executor').style.display = "block"
 });
+
+$(document).ready(function() {
+    $(".more_sub").click(function(){
+        var el=$(this)
+        el.addClass('d-none');
+    });
+})

@@ -74,6 +74,22 @@
                             </div>
                         </div>
                         {% endfor %}
+
+                        <div class="collapse" id="collapseExample{{forloop.counter}}">
+                            {% for s in c.rest %}
+                            <div class="row mt-2">
+                                <div class="col-md-12 ">
+                                    <a class="fontCategorySmall colorDarkGrey" href="#">{{s.name}}</a>
+                                    <small class="ml-2 colorLightGrey">1145</small>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12 ">
+                                <a class="fontCategorySmall colorDarkGrey more_sub" data-toggle="collapse" href="#collapseExample{{forloop.counter}}" aria-expanded="false" aria-controls="collapseExample">Еще...</a>
+                            </div>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
