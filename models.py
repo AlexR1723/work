@@ -172,6 +172,26 @@ class Link(models.Model):
         db_table = 'link'
 
 
+class News(models.Model):
+    type = models.ForeignKey('NewsType', models.DO_NOTHING, blank=True, null=True)
+    text = models.CharField(max_length=500, blank=True, null=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'news'
+
+
+class NewsType(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'news_type'
+
+
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(max_length=100, blank=True, null=True)

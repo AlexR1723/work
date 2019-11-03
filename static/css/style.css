@@ -766,3 +766,10 @@ hr.line {
     color: white;
     font-size: 2.5rem;
 }
+.no-style-a{
+    color: black;
+}
+.no-style-a:hover{
+    text-decoration: none;
+    color: black;
+}
