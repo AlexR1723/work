@@ -3,6 +3,8 @@ from .models import *
 
 # Create your views here.
 def Main(request):
+    fslide=FirstSlider.objects.all()[0]
+    slide=FirstSlider.objects.all()[1:]
     category=Category.objects.all()[:3]
     return render(request, 'Main/Main.html', locals())
 

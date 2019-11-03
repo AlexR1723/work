@@ -11,8 +11,8 @@ class FirstSlider(models.Model):
     class Meta:
         managed = False
         db_table = 'first_slider'
-        verbose_name = _("Слайдер")
-        verbose_name_plural = _("Слайды")
+        verbose_name = _("Слайд")
+        verbose_name_plural = _("Слайдер")
 
 
 
@@ -31,7 +31,6 @@ class Category(models.Model):
 
     def first_five(self):
         sub=SubCategory.objects.all().filter(category=self)[:5]
-        print(sub)
         return sub
 
 
