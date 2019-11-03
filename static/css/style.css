@@ -551,6 +551,10 @@ p {
 .img_circle{
     border-radius: 50%;
 }
+.head_icon_color{
+    color: black;
+    text-decoration: none;
+}
 
 /*.news_img {*/
 /*    height: auto;*/
