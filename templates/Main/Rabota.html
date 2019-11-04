@@ -3,7 +3,12 @@
 {% block content %}
 
 <div class="row justify-content-center">
-    <div class="page_head_img w-100">
+    <div class="page_head_img w-100" style="
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/rabota_bg.jpg) 50% 55% no-repeat;
+    background-size: cover;
+">
         <div class="page_head_img_fon row justify-content-center align-items-center">
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
                 <p class="m-0 fz_25rem line_height_1 text-center">Как стать исполнителем</p>
@@ -11,8 +16,8 @@
         </div>
     </div>
     <div class="col-10 col-sm-5 col-md-4 col-lg-4 col-xl-3 p-0 mt-5">
-                    <button class="hiw_btn w-100">Зарегистрироваться</button>
-                </div>
+        <button class="hiw_btn w-100">Зарегистрироваться</button>
+    </div>
 </div>
 <!--<div class="row justify-content-center">-->
 <!--    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">-->
@@ -35,22 +40,22 @@
                 <p class="hiw_headers">Как у нас заработать?</p>
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/rab1.svg" alt=""></div>
+                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/registration.png" alt=""></div>
                 <p class="hiw_header">1. Зарегистрируйтесь</p>
                 <p class="hiw_text">Подтвердите персональные данные и станьте проверенным специалистом</p>
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/rab2.svg" alt=""></div>
+                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/menu.png" alt=""></div>
                 <p class="hiw_header">2. Выберите заказ</p>
                 <p class="hiw_text">Если вас устраивают условия заказа, нажмите кнопку "Выполнить"</p>
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/rab3.svg" alt=""></div>
+                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/time.png" alt=""></div>
                 <p class="hiw_header">3. Выполните работу</p>
                 <p class="hiw_text">Если заказчик выбрал вас для выполнения заказа, приступайте к работе</p>
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/rab4.svg" alt=""></div>
+                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/payment.png" alt=""></div>
                 <p class="hiw_header">4. Получите деньги</p>
                 <p class="hiw_text">После выполнения работы попросите заказчика оставить отзыв и получите оплату</p>
             </div>
@@ -73,7 +78,7 @@
             <div class="col-12">
                 <div class="row py-3">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
-                        <img src="/static/image/123.jpeg" class="w-100" alt="">
+                        <img src="/static/image/nik-macmillan-YXemfQiPR_E-unsplash.jpg" class="w-100" alt="">
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
                         <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
@@ -101,12 +106,12 @@
                         </p>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
-                        <img src="/static/image/123.jpeg" class="w-100" alt="">
+                        <img src="/static/image/helloquence-5fNmWej4tAA-unsplash.jpg" class="w-100" alt="">
                     </div>
                 </div>
                 <div class="row py-3">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
-                        <img src="/static/image/123.jpeg" class="w-100" alt="">
+                        <img src="/static/image/croissant-oUKiDSdTTyg-unsplash.jpg" class="w-100" alt="">
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
                         <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
@@ -206,19 +211,30 @@
                 <p class="hiw_headers">Отзывы</p>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv1.jpg" alt=""></div>
+                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv1.jpg" alt="">
+                </div>
                 <p class="hiw_header">МАРЬЯНА, КЛИНЕР</p>
-                <p class="hiw_text">На Кабанчике мне нравится то, что я могу сама планировать свое личное время и финансы. Здорово, что нет никаких начальников и я сама отвечаю за качество своей работы. Отличным бонусом также есть то, что я могу подстроить свою работу так, чтобы больше времени проводить со своим ребенком.</p>
+                <p class="hiw_text">На Кабанчике мне нравится то, что я могу сама планировать свое личное время и
+                    финансы. Здорово, что нет никаких начальников и я сама отвечаю за качество своей работы. Отличным
+                    бонусом также есть то, что я могу подстроить свою работу так, чтобы больше времени проводить со
+                    своим ребенком.</p>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv2.jpg" alt=""></div>
+                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv2.jpg" alt="">
+                </div>
                 <p class="hiw_header">ВАСИЛИЙ, ДОМАШНИЙ МАСТЕР</p>
-                <p class="hiw_text">Кабанчик мне нравится тем, что этот сервис сделан для людей, здесь очень человеческие условия для работы. Он отлично помогает тем, кому нужен дополнительный заработок или даже основная работа. Я чувствую здесь перспективы и развитие — это мотивирует работать.</p>
+                <p class="hiw_text">Кабанчик мне нравится тем, что этот сервис сделан для людей, здесь очень
+                    человеческие условия для работы. Он отлично помогает тем, кому нужен дополнительный заработок или
+                    даже основная работа. Я чувствую здесь перспективы и развитие — это мотивирует работать.</p>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv3.jpg" alt=""></div>
+                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv3.jpg" alt="">
+                </div>
                 <p class="hiw_header">ДИАНА, ДИЗАЙНЕР</p>
-                <p class="hiw_text">С Кабанчиком дружу давно:) Всегда есть работа для специалиста. Помимо того, что это неплохая подработка, мне нравится, что на Кабанчике можно выбирать и фильтровать заказы. Еще огромный плюс в том, что здесь собрано мое полное портфолио с галереей работ, услугами, прайсом и отзывами заказчиков. Это очень удобно.</p>
+                <p class="hiw_text">С Кабанчиком дружу давно:) Всегда есть работа для специалиста. Помимо того, что это
+                    неплохая подработка, мне нравится, что на Кабанчике можно выбирать и фильтровать заказы. Еще
+                    огромный плюс в том, что здесь собрано мое полное портфолио с галереей работ, услугами, прайсом и
+                    отзывами заказчиков. Это очень удобно.</p>
             </div>
         </div>
     </div>

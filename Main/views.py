@@ -22,6 +22,7 @@ def Main(request):
 def How_it_work(request):
     contact = layout_contact()
     link = layout_link()
+    # seo=
     return render(request, 'Main/How_it_works.html', locals())
 
 def Secure_transaction(request):
