@@ -86,3 +86,7 @@ def News_page(request,page):
 
 def News_detail(request, id):
     return render(request, 'News/News_detail.html', locals())
+
+def Filter(request, f):
+    print('filter')
+    return render(request, 'News/News.html', locals())

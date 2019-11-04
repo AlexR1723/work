@@ -128,19 +128,23 @@ $("#safety_btn_executor").click(function () {
     exe.setAttribute('class', 'safety_btn_choosen safety_btn')
     cus.setAttribute('class', 'safety_btn_not_choosen safety_btn')
     document.getElementById('div_customer').style.display = "none"
-    document.getElementById('div_executor').style.display = "block"
+     document.getElementById('div_executor').style.display = "block"
 });
 
-$(document).ready(function () {
-    $(".more_sub").click(function () {
-        var el = $(this);
+$(document).ready(function() {
+    $(".more_sub").click(function(){
+        var el=$(this);
         el.addClass('d-none');
     });
     $("#more_category").click(function () {
-        var el = document.getElementById('more_category');
-        if (el.textContent === "Больше категорий")
-            el.textContent = "Меньше категорий";
+        var el=document.getElementById('more_category');
+        if(el.textContent==="Больше категорий")
+            el.textContent="Меньше категорий";
         else
-            el.textContent = "Больше категорий";
-    })
-})
+            el.textContent="Больше категорий";
+    });
+     $('#inputGroupSelect04').change(function () {
+        var value=$('#inputGroupSelect04 option:selected').val();
+        window.location.href = '/news/'+value;
+    });
+});
