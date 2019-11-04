@@ -15,7 +15,7 @@ def Main(request):
 
     fslide=FirstSlider.objects.all()[0]
     slide=FirstSlider.objects.all()[1:]
-    category=Category.objects.all()[:3]
+    category=Category.objects.all().order_by('id')[:3]
     all_category=Category.objects.all()[3:]
     return render(request, 'Main/Main.html', locals())
 
@@ -28,6 +28,9 @@ def How_it_work(request):
 def Secure_transaction(request):
     contact = layout_contact()
     link = layout_link()
+
+    what=WhatSafe.objects.all()
+    benefits=BenefitsSafe.objects.all()
     return render(request, 'Main/Secure_transaction.html', locals())
 
 def Safety(request):

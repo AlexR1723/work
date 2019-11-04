@@ -61,3 +61,25 @@ class BecomePerformerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(BecomePerformer, BecomePerformerAdmin)
+
+
+
+class WhatSafeAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in WhatSafe._meta.fields]
+
+    class Meta:
+        model = WhatSafe
+
+
+admin.site.register(WhatSafe, WhatSafeAdmin)
+
+
+
+class BenefitsSafeAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in BenefitsSafe._meta.fields]
+
+    class Meta:
+        model = BenefitsSafe
+
+
+admin.site.register(BenefitsSafe, BenefitsSafeAdmin)

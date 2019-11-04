@@ -126,3 +126,25 @@ class BecomePerformer(models.Model):
         db_table = 'become_performer'
         verbose_name = _("Текст")
         verbose_name_plural = _("Текст 'Как стать исполнителем'")
+
+
+class WhatSafe(models.Model):
+    text = models.TextField(max_length=5000, blank=True, null=True, verbose_name="Текст")
+
+    class Meta:
+        managed = False
+        db_table = 'what_safe'
+        verbose_name = _("Текст")
+        verbose_name_plural = _("Текст 'Что такое безопасная сделка'")
+
+
+class BenefitsSafe(models.Model):
+    header = models.CharField(max_length=200, blank=True, null=True, verbose_name="Заголовок")
+    text = models.TextField(max_length=500, blank=True, null=True, verbose_name="Текст")
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Изображение")
+
+    class Meta:
+        managed = False
+        db_table = 'benefits_safe'
+        verbose_name = _("Преимущества безопасной сделки")
+        verbose_name_plural = _("Преимущество безопасной сделки")

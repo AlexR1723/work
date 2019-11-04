@@ -82,6 +82,16 @@ class BecomePerformer(models.Model):
         db_table = 'become_performer'
 
 
+class BenefitsSafe(models.Model):
+    header = models.CharField(max_length=200, blank=True, null=True)
+    text = models.CharField(max_length=500, blank=True, null=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'benefits_safe'
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     image = models.CharField(max_length=500, blank=True, null=True)
@@ -217,10 +227,19 @@ class SubCategory(models.Model):
         db_table = 'sub_category'
 
 
+class WhatSafe(models.Model):
+    text = models.CharField(max_length=5000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'what_safe'
+
+
 class WhyWe(models.Model):
     text = models.CharField(max_length=500, blank=True, null=True)
     image = models.CharField(max_length=500, blank=True, null=True)
     left = models.BooleanField(blank=True, null=True)
+    header = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         managed = False

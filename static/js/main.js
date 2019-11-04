@@ -149,6 +149,9 @@ $(document).ready(function() {
     });
      $('#inputGroupSelect04').change(function () {
         var value=$('#inputGroupSelect04 option:selected').val();
-        window.location.href = '/news/'+value;
+        if(value == 0)
+            window.location.href = '/news/';
+        else
+            window.location.href = '/news/'+value;
     });
 });
