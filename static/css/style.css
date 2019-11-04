@@ -231,7 +231,7 @@ div.row {
 
 }
 
-.topCarusel, .carousel-inner, .carousel-item {
+.topCarusel.h60, .carousel-inner.h60, .carousel-item.h60 {
     height: 60vh;
 }
 
@@ -765,4 +765,11 @@ hr.line {
     font-weight: 400;
     color: white;
     font-size: 2.5rem;
+}
+.no-style-a{
+    color: black;
+}
+.no-style-a:hover{
+    text-decoration: none;
+    color: black;
 }

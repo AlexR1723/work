@@ -157,7 +157,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="{% url 'News' %}">
+                                        <a class="nav-link " href="{% url 'New' %}">
                                             <h4>Новости</h4>
                                         </a>
                                     </li>
@@ -256,7 +256,7 @@
                             <a href="{% url 'Contact' %}">Контакты</a>
                         </li>
                         <li>
-                            <a href="{% url 'News' %}">Новости</a>
+                            <a href="{% url 'New' %}">Новости</a>
                         </li>
                     </ul>
                 </div>
@@ -266,42 +266,43 @@
                 <div class="col-9 col-sm-8 col-md-3 col-lg-4 col-xl-3 mt-4 sochial m-auto">
 
                     <div class="row justify-content-around">
-
-                        <div class="col-3 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
+                        {% for l in link %}
+                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
                             <div class="circle">
-                                <a href="">
-                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+                                <a href="{{l.link}}">
+                                    {% autoescape off %}{{l.icon}}{% endautoescape %}
                                 </a>
                             </div>
                         </div>
-                        <div class="col-3 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
-                            <div class="circle">
-                                <a href="">
-                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-3 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
-                            <div class="circle">
-                                <a href="">
-                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-3 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
-                            <div class="circle">
-                                <a href="">
-                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-3 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
-                            <div class="circle">
-                                <a href="">
-                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
+                        {% endfor %}
+<!--                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">-->
+<!--                            <div class="circle">-->
+<!--                                <a href="">-->
+<!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">-->
+<!--                            <div class="circle">-->
+<!--                                <a href="">-->
+<!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">-->
+<!--                            <div class="circle">-->
+<!--                                <a href="">-->
+<!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">-->
+<!--                            <div class="circle">-->
+<!--                                <a href="">-->
+<!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
 
                         <!--                        <div class="circle my-2 mx-1">-->
@@ -401,21 +402,29 @@
                     <!--                    </div>-->
 
                     <ul class="list-unstyled mt-3">
-                        <li>
-                            <a href="#!">email@gmail.com</a>
-                        </li>
-                        <li>
-                            <a href="#!">071-123-45-67</a>
-                        </li>
-                        <li>
-                            <a href="#!">071-234-56-78</a>
-                        </li>
-                        <li>
-                            <a href="#!">Пн-Пт: 8:00-20:00</a>
-                        </li>
-                        <li>
-                            <a href="#!">Сб-Вс: 9:00-18:00</a>
-                        </li>
+                        {% for ct in contact %}
+                            {% if ct.name == "email" %}
+                                {% for c in ct.contact_set.all %}
+                                <li>
+                                    <a href="mailto:{{c.name}}">{{c.name}}</a>
+                                </li>
+                                {% endfor %}
+                                {% else %}
+                                    {% if ct.name == "телефон" %}
+                                        {% for c in ct.contact_set.all %}
+                                        <li>
+                                            <a href="tel:{{c.name}}">{{c.name}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for c in ct.contact_set.all %}
+                                        <li>
+                                            <a href="#!">{{c.name}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
                 <!-- Grid column -->

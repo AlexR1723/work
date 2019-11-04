@@ -17,6 +17,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.News, name="News"),
-    url(r'^detail/$', views.News_detail, name="News_detail"),
+    url(r'^$', views.New, name="New"),
+    url(r'^(?P<page>[0-9]+)/$', views.News_page, name="News_page"),
+    url(r'^detail/(?P<id>[0-9]+)/$', views.News_detail, name="News_detail"),
 ]

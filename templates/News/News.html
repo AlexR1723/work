@@ -18,103 +18,169 @@
                 <select class="custom-select news_filter_select" id="inputGroupSelect04"
                         aria-label="Example select with button addon">
                     <option selected value="0">Все типы</option>
-                    <option value="1">Полезные советы</option>
-                    <option value="2">Новости сервиса</option>
-                    <option value="3">Мировые новости</option>
+                    {% for nt in news_type %}
+                    <option value="{{nt.id}}">{{nt.name}}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
     </div>
-
-    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">
-
+    {% for n in news %}
+    <div class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">
-            <img src="/static/image/123.jpeg" class="w-100" alt="">
+            <img src="{{MEDIA_URL}}{{n.image.url}}" class="w-100" alt="">
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">
-            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-            <p class="news_type">Lorem ipsum dolor sit amet</p>
-            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis
-                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus
-                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus
-                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex
-                risus eu eros.</p>
+            <p class="news_header">{{n.text}}</p>
+            <p class="news_type">{{n.type}}</p>
+            <p class="news_text mt-2">{{n.description}}</p>
             <div class="w-100 text-right mt-3">
-                <button class="btn_news">Подробнее</button>
+                <a href="{% url 'News_detail' n.id %}">Подробнее</a>
             </div>
         </div>
-    </form>
-    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">
+    </div>
+<!--    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">-->
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">
-            <img src="/static/image/123.jpeg" class="w-100" alt="">
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">
-            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-            <p class="news_type">Lorem ipsum dolor sit amet</p>
-            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis
-                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus
-                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus
-                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex
-                risus eu eros.</p>
-            <div class="w-100 text-right mt-3">
-                <button class="btn_news">Подробнее</button>
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">-->
+<!--            <img src="{{MEDIA_URL}}{{n.image.url}}" class="w-100" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">-->
+<!--            <p class="news_header">{{n.text}}</p>-->
+<!--            <p class="news_type">{{n.type}}</p>-->
+<!--            <p class="news_text mt-2">{{n.description}}</p>-->
+<!--            <div class="w-100 text-right mt-3">-->
+<!--                <button class="btn_news">Подробнее</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+    {% endfor %}
+    {% if k > 1 %}
+    <div class="row w-100">
+        <div class="col-md-12">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                    {% if page == 1 %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class = "page-link" href="{% url 'News_page' pre %}"><span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span></a>
+                    </li>
+                    {% endif %}
+                    {% for i in list_page %}
+                        {% if i != '...' %}
+                            {% if page == i %}
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        {{i}}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class = "page-link" href="{% url 'News_page' i %}">{{i}}</a>
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">{{i}}</span>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page == k %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class = "page-link" href="{% url 'News_page' next %}"><span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span></a>
+                        </li>
+                    {% endif %}
+                    </ul>
+                </nav>
             </div>
         </div>
-    </form>
-    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">
+    {% endif %}
+<!--    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">-->
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">
-            <img src="/static/image/123.jpeg" class="w-100" alt="">
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">
-            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-            <p class="news_type">Lorem ipsum dolor sit amet</p>
-            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis
-                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus
-                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus
-                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex
-                risus eu eros.</p>
-            <div class="w-100 text-right mt-3">
-                <button class="btn_news">Подробнее</button>
-            </div>
-        </div>
-    </form>
-    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">-->
+<!--            <img src="/static/image/123.jpeg" class="w-100" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">-->
+<!--            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>-->
+<!--            <p class="news_type">Lorem ipsum dolor sit amet</p>-->
+<!--            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis-->
+<!--                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus-->
+<!--                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus-->
+<!--                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex-->
+<!--                risus eu eros.</p>-->
+<!--            <div class="w-100 text-right mt-3">-->
+<!--                <button class="btn_news">Подробнее</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">-->
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">
-            <img src="/static/image/123.jpeg" class="w-100" alt="">
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">
-            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-            <p class="news_type">Lorem ipsum dolor sit amet</p>
-            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis
-                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus
-                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus
-                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex
-                risus eu eros.</p>
-            <div class="w-100 text-right mt-3">
-                <button class="btn_news">Подробнее</button>
-            </div>
-        </div>
-    </form>
-    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">-->
+<!--            <img src="/static/image/123.jpeg" class="w-100" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">-->
+<!--            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>-->
+<!--            <p class="news_type">Lorem ipsum dolor sit amet</p>-->
+<!--            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis-->
+<!--                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus-->
+<!--                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus-->
+<!--                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex-->
+<!--                risus eu eros.</p>-->
+<!--            <div class="w-100 text-right mt-3">-->
+<!--                <button class="btn_news">Подробнее</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">-->
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">
-            <img src="/static/image/123.jpeg" class="w-100" alt="">
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">
-            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-            <p class="news_type">Lorem ipsum dolor sit amet</p>
-            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis
-                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus
-                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus
-                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex
-                risus eu eros.</p>
-            <div class="w-100 text-right mt-3">
-                <button class="btn_news">Подробнее</button>
-            </div>
-        </div>
-    </form>
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">-->
+<!--            <img src="/static/image/123.jpeg" class="w-100" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">-->
+<!--            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>-->
+<!--            <p class="news_type">Lorem ipsum dolor sit amet</p>-->
+<!--            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis-->
+<!--                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus-->
+<!--                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus-->
+<!--                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex-->
+<!--                risus eu eros.</p>-->
+<!--            <div class="w-100 text-right mt-3">-->
+<!--                <button class="btn_news">Подробнее</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--    <form class="row col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-2 mb-5 news_block">-->
+
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 p-3">-->
+<!--            <img src="/static/image/123.jpeg" class="w-100" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-8 p-3">-->
+<!--            <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>-->
+<!--            <p class="news_type">Lorem ipsum dolor sit amet</p>-->
+<!--            <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis-->
+<!--                purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus-->
+<!--                ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie convallis purus-->
+<!--                ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo turpis, vel rhoncus ex-->
+<!--                risus eu eros.</p>-->
+<!--            <div class="w-100 text-right mt-3">-->
+<!--                <button class="btn_news">Подробнее</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
 </div>
 {% endblock %}

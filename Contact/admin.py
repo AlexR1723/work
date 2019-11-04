@@ -14,11 +14,11 @@ class ContactAdmin(admin.ModelAdmin):
 admin.site.register(Contact, ContactAdmin)
 
 
-class ContactTypeAdmin(admin.ModelAdmin):
-    list_display = [field.name for field in ContactType._meta.fields]
-
-    class Meta:
-        model = ContactType
-
-
-admin.site.register(ContactType, ContactTypeAdmin)
+# class ContactTypeAdmin(admin.ModelAdmin):
+#     list_display = [field.name for field in ContactType._meta.fields]
+#
+#     class Meta:
+#         model = ContactType
+#
+#
+# admin.site.register(ContactType, ContactTypeAdmin)

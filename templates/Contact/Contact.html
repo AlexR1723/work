@@ -8,21 +8,34 @@
             <div class="row m-0 justify-content-center">
                 <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-3 pb-3">
                     <div class="row m-0 justify-content-center">
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 a-center pt-3 pb-3">
-                            <i class="fas fa-envelope-open-text contact-icon"></i>
-                            <label class="contact-text w-100 mb-0"><a href="mailto:email@gmail.com" class="contact-a">email@gmail.com</a></label>
-                            <label class="contact-text w-100 mb-0"><a href="mailto:email2@gmail.com" class="contact-a">email2.gmail.com</a></label>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 a-center pt-3 pb-3">
-                            <i class="fas fa-phone-alt contact-icon"></i>
-                            <label class="contact-text w-100 mb-0"><a href="tel:0710000000" class="contact-a">0710000000</a></label>
-                            <label class="contact-text w-100 mb-0"><a href="tel:0710000000" class="contact-a">0710000000</a></label>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 a-center pt-3 pb-3">
-                            <i class="fas fa-clock contact-icon"></i>
-                            <label class="contact-text w-100 mb-0">Пн-Пт: 8:00-20:00</label>
-                            <label class="contact-text w-100 mb-0">Сб-Вс: 9:00-18:00</label>
-                        </div>
+                         {% for ct in contact %}
+                            {% if ct.name == "email" %}
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 a-center pt-3 pb-3">
+                                <i class="fas fa-envelope-open-text contact-icon"></i>
+                                {% for c in ct.contact_set.all %}
+                                    <label class="contact-text w-100 mb-0"><a href="mailto:{{c.name}}" class="contact-a">{{c.name}}</a></label>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {% if ct.name == "телефон" %}
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 a-center pt-3 pb-3">
+                                    <i class="fas fa-phone-alt contact-icon"></i>
+                                    {% for c in ct.contact_set.all %}
+                                        <label class="contact-text w-100 mb-0"><a href="tel:{{c.name}}" class="contact-a">{{c.name}}</a></label>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                    {% if ct.name == "время работы" %}
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 a-center pt-3 pb-3">
+                                        <i class="fas fa-clock contact-icon"></i>
+                                        {% for c in ct.contact_set.all %}
+                                            <label class="contact-text w-100 mb-0">{{c.name}}</label>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

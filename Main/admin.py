@@ -11,3 +11,23 @@ class CommentsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Comments, CommentsAdmin)
+
+
+class FirstSliderAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in FirstSlider._meta.fields]
+
+    class Meta:
+        model = FirstSlider
+
+
+admin.site.register(FirstSlider, FirstSliderAdmin)
+
+
+class LinkAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Link._meta.fields]
+
+    class Meta:
+        model = Link
+
+
+admin.site.register(Link, LinkAdmin)
