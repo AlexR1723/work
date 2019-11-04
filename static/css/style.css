@@ -540,10 +540,10 @@ p {
     background-size: cover;
 }
 .page_head_img_fon{
-    background-color: rgba(0, 0, 0, .2);
+    background-color: rgba(128, 128, 128, .3);
     color: white;
     height: auto;
-    min-height: 20vh;
+    min-height: 30vh;
 }
 .line_height_1{
     line-height: 1;
