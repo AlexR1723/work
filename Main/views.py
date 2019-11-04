@@ -28,6 +28,9 @@ def How_it_work(request):
 def Secure_transaction(request):
     contact = layout_contact()
     link = layout_link()
+
+    what=WhatSafe.objects.all()
+    benefits=BenefitsSafe.objects.all()
     return render(request, 'Main/Secure_transaction.html', locals())
 
 def Safety(request):

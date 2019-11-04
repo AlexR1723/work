@@ -19,8 +19,8 @@ def New(request):
 
     news_type=NewsType.objects.all()
     news=News.objects.all().order_by('-date')[0:10]
-
     news_count = News.objects.order_by('-date').count()
+
     k = 0
     while (news_count > 0):
         k = k + 1
@@ -46,13 +46,12 @@ def News_page(request,page):
     filter=0
 
     news_type = NewsType.objects.all()
-
     page=int(page)
     start=page*10-10
     end=page*10
     news=News.objects.all().order_by('-date')[start:end]
-
     news_count = News.objects.order_by('-date').count()
+
     k =0
     while (news_count > 0):
         k = k + 1
@@ -90,17 +89,14 @@ def News_detail(request, id):
     return render(request, 'News/News_detail.html', locals())
 
 def News_filter(request, filter):
-    print('filter')
     contact = layout_contact()
     link = layout_link()
     filter=str(filter)
 
     news_type = NewsType.objects.all()
     news = News.objects.all().order_by('-date').filter(type__name=filter)[0:10]
-
-
     news_count = News.objects.order_by('-date').filter(type__name=filter).count()
-    print(news_count)
+
     k = 0
     while (news_count > 0):
         k = k + 1
@@ -127,13 +123,12 @@ def News_filter_page(request, filter,page):
     filter = str(filter)
 
     news_type = NewsType.objects.all()
-
     page = int(page)
     start = page * 10 - 10
     end = page * 10
     news = News.objects.all().order_by('-date').filter(type__name=filter)[start:end]
-
     news_count = News.objects.order_by('-date').filter(type__name=filter).count()
+
     k = 0
     while (news_count > 0):
         k = k + 1
