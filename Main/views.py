@@ -45,11 +45,36 @@ def Rabota(request):
     whyme=WhyWe.objects.all().order_by('id')
     seo=BecomePerformer.objects.all()
 
+    category=Category.objects.all().order_by('name')
+    sub=SubCategory.objects.values('category_id')
+
+    list=[]
+    for i in category:
+        list1=[]
+        list1.append(i.image)
+        list1.append(i.name)
+        list1.append(sub.filter(category_id=i.id).count())
+        list1.reverse()
+        list.append(list1)
+
     return render(request, 'Main/Rabota.html', locals())
 
 def For_business(request):
     contact = layout_contact()
     link = layout_link()
+
+    category=Category.objects.all().order_by('name')
+    sub=SubCategory.objects.values('category_id')
+
+    list=[]
+    for i in category:
+        list1=[]
+        list1.append(i.image)
+        list1.append(i.name)
+        list1.append(sub.filter(category_id=i.id).count())
+        list1.reverse()
+        list.append(list1)
+
     return render(request, 'Main/For_business.html', locals())
 
 def Top_performers(request):

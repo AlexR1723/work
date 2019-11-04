@@ -16,26 +16,17 @@
     <div class="page_head_img w-100">
         <div class="page_head_img_fon row justify-content-center align-items-center">
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                <p class="m-0 fz_25rem line_height_1 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+                <p class="m-0 fz_25rem line_height_1 text-center">{{header}}</p>
             </div>
         </div>
     </div>
 
+
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <p class="news_det_type my-3"> Lorem ipsum dolor sit amet</p>
+        <p class="news_det_type my-3"> {{category}}</p>
+        <p class="news_det_type fz_15rem my-3"> {{date}}</p>
         <p class="news_det_text mb-5">
-            <img class="float-left news_det_img mr-3 my-3" src="/static/image/news_bg.jpg" alt="">
-<!--            <span class="news_det_type my-3">Lorem ipsum dolor sit amet</span><br>-->
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed leo urna, imperdiet a dolor mattis, mollis
-            mattis leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque libero libero, mollis
-            vitae aliquet id, volutpat et libero. Morbi at cursus risus, vel laoreet nibh. Donec viverra, sapien a
-            tincidunt malesuada, nibh ex finibus sapien, nec sollicitudin leo dolor nec risus. Sed quis nisi in turpis
-            condimentum malesuada eu ac nibh. In posuere auctor molestie. Integer interdum molestie mi, in maximus diam
-            iaculis quis. Phasellus sed turpis porttitor, posuere urna a, suscipit libero. Etiam nibh nunc, rutrum at
-            justo ac, vulputate dignissim risus. In id dapibus tortor. Suspendisse potenti. Pellentesque non finibus
-            ipsum. Suspendisse ultricies nisl aliquet nunc suscipit, non placerat felis fringilla. Aliquam eleifend,
-            ipsum vel commodo dictum, arcu tellus aliquam mauris, quis malesuada nisi tortor et libero. Donec suscipit
-            facilisis nibh, non consequat mauris placerat vitae. Sed pulvinar.
+            <img class="float-left news_det_img mr-3 my-3" src="{{MEDIA.URL}}{{image.url}}" alt="">{{text}}
         </p>
     </div>
 </div>

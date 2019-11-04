@@ -261,56 +261,18 @@
                 <p class="hiw_headers">Какую работу у нас можно выполнять?</p>
             </div>
 
+<!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
+<!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
+<!--                <p class="hiw_header m-0">Домашний мастер</p>-->
+<!--                <p class="hiw_text">7 подкатегорий</p>-->
+<!--            </div>-->
+            {% for i in list %}
             <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
+                <div class="w-100 my-3 text-center"><img class="w-50" src="{{MEDIA.URL}}{{i.pop.url}}" alt=""></div>
+                <p class="hiw_header m-0">{{i.pop}}</p>
+                <p class="hiw_text">{{i.pop}} подкатегорий</p>
             </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>
-                <p class="hiw_header m-0">Домашний мастер</p>
-                <p class="hiw_text">7 подкатегорий</p>
-            </div>
+            {% endfor %}
 
 
         </div>
