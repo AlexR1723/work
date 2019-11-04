@@ -64,5 +64,9 @@ $(document).ready(function() {
             el.textContent="Меньше категорий";
         else
             el.textContent="Больше категорий";
-    })
-})
+    });
+     $('#inputGroupSelect04').change(function () {
+        var value=$('#inputGroupSelect04 option:selected').val();
+        window.location.href = '/news/'+value;
+    });
+});

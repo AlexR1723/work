@@ -19,5 +19,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.New, name="New"),
     url(r'^(?P<page>[0-9]+)/$', views.News_page, name="News_page"),
+    url(r'^(?P<f>[А-Яа-я]+\s[А-Яа-я]+)/$', views.Filter, name="Filter"),
     url(r'^detail/(?P<id>[0-9]+)/$', views.News_detail, name="News_detail"),
 ]
