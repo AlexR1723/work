@@ -102,3 +102,26 @@ class OrderService(models.Model):
         db_table = 'order_service'
         verbose_name = _("Текст")
         verbose_name_plural = _("Текст 'Как заказать услугу'")
+
+
+class WhyWe(models.Model):
+    text = models.CharField(max_length=500, blank=True, null=True, verbose_name="Текст")
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Картинка")
+    left = models.BooleanField(blank=True, null=True, default=True, verbose_name="Картинка слева")
+
+    class Meta:
+        managed = False
+        db_table = 'why_we'
+        verbose_name = _("Текст")
+        verbose_name_plural = _("Текст 'Почему мы'")
+
+
+
+class BecomePerformer(models.Model):
+    text = models.CharField(max_length=5000, blank=True, null=True, verbose_name="Текст")
+
+    class Meta:
+        managed = False
+        db_table = 'become_performer'
+        verbose_name = _("Текст")
+        verbose_name_plural = _("Текст 'Как стать исполнителем'")

@@ -74,6 +74,14 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class BecomePerformer(models.Model):
+    text = models.CharField(max_length=5000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'become_performer'
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     image = models.CharField(max_length=500, blank=True, null=True)
@@ -207,3 +215,13 @@ class SubCategory(models.Model):
     class Meta:
         managed = False
         db_table = 'sub_category'
+
+
+class WhyWe(models.Model):
+    text = models.CharField(max_length=500, blank=True, null=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
+    left = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'why_we'

@@ -41,3 +41,23 @@ class OrderServiceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(OrderService, OrderServiceAdmin)
+
+
+class WhyWeAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in WhyWe._meta.fields]
+
+    class Meta:
+        model = WhyWe
+
+
+admin.site.register(WhyWe, WhyWeAdmin)
+
+
+class BecomePerformerAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in BecomePerformer._meta.fields]
+
+    class Meta:
+        model = BecomePerformer
+
+
+admin.site.register(BecomePerformer, BecomePerformerAdmin)
