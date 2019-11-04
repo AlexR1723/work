@@ -31,3 +31,33 @@ class LinkAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Link, LinkAdmin)
+
+
+class OrderServiceAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in OrderService._meta.fields]
+
+    class Meta:
+        model = OrderService
+
+
+admin.site.register(OrderService, OrderServiceAdmin)
+
+
+class WhyWeAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in WhyWe._meta.fields]
+
+    class Meta:
+        model = WhyWe
+
+
+admin.site.register(WhyWe, WhyWeAdmin)
+
+
+class BecomePerformerAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in BecomePerformer._meta.fields]
+
+    class Meta:
+        model = BecomePerformer
+
+
+admin.site.register(BecomePerformer, BecomePerformerAdmin)
