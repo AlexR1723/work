@@ -22,7 +22,7 @@ def Main(request):
 def How_it_work(request):
     contact = layout_contact()
     link = layout_link()
-    # seo=
+    seo=OrderService.objects.all()
     return render(request, 'Main/How_it_works.html', locals())
 
 def Secure_transaction(request):
@@ -38,6 +38,10 @@ def Safety(request):
 def Rabota(request):
     contact = layout_contact()
     link = layout_link()
+
+    whyme=WhyWe.objects.all().order_by('id')
+    seo=BecomePerformer.objects.all()
+
     return render(request, 'Main/Rabota.html', locals())
 
 def For_business(request):

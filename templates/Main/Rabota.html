@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row justify-content-center">
-    <div class="page_head_img w-100" style="
+    <div class=" w-100" style="
     height: auto;
     min-height: 30vh;
     background: url(/static/image/rabota_bg.jpg) 50% 55% no-repeat;
@@ -76,55 +76,67 @@
                 <p class="hiw_headers">Почему мы?</p>
             </div>
             <div class="col-12">
+                {% for i in whyme%}
                 <div class="row py-3">
+                    {% if i.left %}
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
-                        <img src="/static/image/nik-macmillan-YXemfQiPR_E-unsplash.jpg" class="w-100" alt="">
+<!--                        <img src="/static/image/nik-macmillan-YXemfQiPR_E-unsplash.jpg" class="w-100" alt="">-->
+                        <img src="{{MEDIA.URL}}{{i.image.url}}" class="w-100" alt="">
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
-                        <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-                        <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie
-                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo
-                            turpis,
-                            vel rhoncus ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                            molestie
-                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo
-                            turpis, vel rhoncusex risus eu eros.
+                        <p class="news_header">{{i.header}}</p>
+                        <p class="news_text mt-2">{{i.text}}
                         </p>
                     </div>
+                    {% else %}
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
+                        <p class="news_header">{{i.header}}</p>
+                        <p class="news_text mt-2">{{i.text}}
+                        </p>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
+<!--                        <img src="/static/image/nik-macmillan-YXemfQiPR_E-unsplash.jpg" class="w-100" alt="">-->
+                        <img src="{{MEDIA.URL}}{{i.image.url}}" class="w-100" alt="">
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="row py-3">
+                {% endfor %}
 
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
-                        <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-                        <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie
-                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo
-                            turpis,
-                            vel rhoncus ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                            molestie
-                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo
-                            turpis, vel rhoncusex risus eu eros.
-                        </p>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
-                        <img src="/static/image/helloquence-5fNmWej4tAA-unsplash.jpg" class="w-100" alt="">
-                    </div>
-                </div>
-                <div class="row py-3">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
-                        <img src="/static/image/croissant-oUKiDSdTTyg-unsplash.jpg" class="w-100" alt="">
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
-                        <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-                        <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie
-                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo
-                            turpis,
-                            vel rhoncus ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                            molestie
-                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo
-                            turpis, vel rhoncusex risus eu eros.
-                        </p>
-                    </div>
-                </div>
+
+
+<!--                <div class="row py-3">-->
+
+<!--                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">-->
+<!--                        <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>-->
+<!--                        <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie-->
+<!--                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo-->
+<!--                            turpis,-->
+<!--                            vel rhoncus ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In-->
+<!--                            molestie-->
+<!--                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo-->
+<!--                            turpis, vel rhoncusex risus eu eros.-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">-->
+<!--                        <img src="/static/image/helloquence-5fNmWej4tAA-unsplash.jpg" class="w-100" alt="">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row py-3">-->
+<!--                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">-->
+<!--                        <img src="/static/image/croissant-oUKiDSdTTyg-unsplash.jpg" class="w-100" alt="">-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">-->
+<!--                        <p class="news_header">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>-->
+<!--                        <p class="news_text mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie-->
+<!--                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo-->
+<!--                            turpis,-->
+<!--                            vel rhoncus ex risus eu eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In-->
+<!--                            molestie-->
+<!--                            convallis purus ut dignissim. Vivamus accumsan, lectus vel cursus interdum, mi arcu commodo-->
+<!--                            turpis, vel rhoncusex risus eu eros.-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -143,27 +155,22 @@
                 <p class="hiw_headers">Наши достижения в цифрах</p>
 
 
-                <div class="row m-0 justify-content-center" id="counter-main">
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                        <div class="rectW a-center">
-                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">За вчера создано заказов</p>
-                            <div data-num="256" class="fontSizeHH number">0</div>
-                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">штук</p>
-                        </div>
+                <div class="row justify-content-around">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
+                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">За сегодня создано заказов</p>
+                        <p class="fz_2rem m-0 text-center" id="counter1">0</p>
+                        <p class="m-0 pt-5 fz_15rem colorDarkGrey text-center">заказов</p>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                        <div class="rectW a-center">
-                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">Средняя стоимость заказа</p>
-                            <div data-num="345" class="fontSizeHH number">0</div>
-                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">РУБ</p>
-                        </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
+                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">Количество исполнителей</p>
+                        <p class="fz_2rem m-0 text-center" id="counter2">0</p>
+                        <p class="m-0 pt-5 fz_15rem colorDarkGrey text-center">человек</p>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
-                        <div class="rectW a-center">
-                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">За вчера заработано</p>
-                            <div data-num="187" class="fontSizeHH number">0</div>
-                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">РУБ</p>
-                        </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
+                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">Количество выполненных
+                                заданий</p>
+                        <p class="fz_2rem m-0 text-center" id="counter3">0</p>
+                        <p class="m-0 pt-5 fz_15rem colorDarkGrey text-center">штук</p>
                     </div>
                 </div>
             </div>
@@ -330,7 +337,9 @@
             </div>
         </div>
         <div class="row justify-content-around py-2">
-            текст, текст, текст, текст,текст,текст,текст,текст,текст,текст,текст,текст,
+            {% for i in seo %}
+            <p class="m-0">{{i.text}}</p>
+            {% endfor %}
         </div>
     </div>
 </div>

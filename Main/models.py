@@ -105,9 +105,10 @@ class OrderService(models.Model):
 
 
 class WhyWe(models.Model):
+    header = models.CharField(max_length=500, blank=True, null=True, verbose_name="Заголовок")
     text = models.CharField(max_length=500, blank=True, null=True, verbose_name="Текст")
     image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Картинка")
-    left = models.BooleanField(blank=True, null=True, default=True, verbose_name="Картинка слева")
+    left = models.BooleanField(blank=True, null=True, default=True, verbose_name="Картинка слева?")
 
     class Meta:
         managed = False

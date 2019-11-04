@@ -1,34 +1,112 @@
-var time = 2, cc = 1;
-$(window).scroll(function () {
-    $('#counter-main').each(function () {
-        var
-            cPos = $(this).offset().top,
-            topWindow = $(window).scrollTop();
-        if (cPos < topWindow + 1000) {
+// var time = 2, cc = 1;
+// $(window).scroll(function () {
+// //     $('#counter-main').each(function () {
+// //         var
+// //             cPos = $(this).offset().top,
+// //             topWindow = $(window).scrollTop();
+// //         if (cPos < topWindow + 1000) {
+// //
+// //             if (cc < 2) {
+// //                 $(".number").addClass("viz")
+// //                 $('div').each(function () {
+// //                     var
+// //                         i = 1,
+// //                         num = $(this).data('num'),
+// //                         step = 1000 * time / num,
+// //                         that = $(this),
+// //                         int = setInterval(function () {
+// //                             if (i <= num) {
+// //                                 that.html(i);
+// //                             } else {
+// //                                 cc = cc + 2;
+// //                                 clearInterval(int);
+// //
+// //                             }
+// //                             i++;
+// //                         }, step);
+// //                 });
+// //             }
+// //         }
+// //     });
+// // });
 
-            if (cc < 2) {
-                $(".number").addClass("viz")
-                $('div').each(function () {
-                    var
-                        i = 1,
-                        num = $(this).data('num'),
-                        step = 1000 * time / num,
-                        that = $(this),
-                        int = setInterval(function () {
-                            if (i <= num) {
-                                that.html(i);
-                            } else {
-                                cc = cc + 2;
-                                clearInterval(int);
+function counter(counts,target_blocks) {
+    let blockStatus = true;
+    let inc=0
+    // let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3"),]
+    $(window).scroll(function () {
+        for (let i = 0; i < target_blocks.length; i++) {
+            let pos =$(window).scrollTop()
+            let block =target_blocks[i].position().top
+            let height =$(window).height()
+            let block2=document.getElementById('counter1').getBoundingClientRect().top
+            console.log(pos+' > '+height+'-'+block+'='+(height-block)+'  |  '+block2)
+            // let block1=target_blocks[i].getBoundingClientRect()
+            // let block2=document.getElementById('counter1').getBoundingClientRect()
+            let pos1=$('#counter1').scrollTop()
+            let res=height-block
+            // if(pos>res){
+            //
+            // }
+            // var scrollEvent = ($(window).scrollTop() > (target_blocks[i].position().top -$(window).height()));
+            if (pos>res && blockStatus) {
 
-                            }
-                            i++;
-                        }, step);
+                $({numberValue: 0}).animate({numberValue: counts[i]}, {
+                    duration: 5000, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
+                    easing: "linear",
+                    step: function (val) {
+                        // $("#counter").html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                        target_blocks[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                    }
                 });
+                console.log('added? inc='+inc)
+                inc++
             }
         }
+        if(inc>1){
+            blockStatus = false; // Запрещаем повторное выполнение функции до следующей перезагрузки страницы.
+        }
+
     });
-});
+}
+
+window.onload = function () {
+    try {
+        let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3")]
+        if( target_blocks[0].length!=0 && target_blocks[1].length!=0 && target_blocks[2].length!=0){
+            counter([10000,10,70000],target_blocks)
+        }
+
+    }
+    catch (e) {
+
+    }{
+
+    }
+    // if (window.location.href.indexOf('for_business')!= -1  || window.location.href.indexOf('for_business') != -1 || window.location.href.indexOf('main') != -1) {
+    //     counter([10000,52222,70000])
+    //
+    // }
+};
+
+
+// $(function() {
+// 		var target_block = $(".price"); // Ищем блок 		var blockStatus = true;
+// 		$(window).scroll(function() {
+// 			var scrollEvent = ($(window).scrollTop() > (target_block.position().top - $(window).height()));
+// 			if(scrollEvent && blockStatus) {
+// 				blockStatus = false; // Запрещаем повторное выполнение функции до следующей перезагрузки страницы.
+// 				$({numberValue: 0}).animate({numberValue: 1000}, {
+// 					duration: 500, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
+// 					easing: "linear",
+// 					step: function(val) {
+// 						$(".price").html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+// 					}
+// 				});
+// 			}
+// 		});
+// 	});
+
 
 $("#safety_btn_customer").click(function () {
     let cus = document.getElementById('safety_btn_customer')
@@ -50,19 +128,19 @@ $("#safety_btn_executor").click(function () {
     exe.setAttribute('class', 'safety_btn_choosen safety_btn')
     cus.setAttribute('class', 'safety_btn_not_choosen safety_btn')
     document.getElementById('div_customer').style.display = "none"
-     document.getElementById('div_executor').style.display = "block"
+    document.getElementById('div_executor').style.display = "block"
 });
 
-$(document).ready(function() {
-    $(".more_sub").click(function(){
-        var el=$(this);
+$(document).ready(function () {
+    $(".more_sub").click(function () {
+        var el = $(this);
         el.addClass('d-none');
     });
     $("#more_category").click(function () {
-        var el=document.getElementById('more_category');
-        if(el.textContent==="Больше категорий")
-            el.textContent="Меньше категорий";
+        var el = document.getElementById('more_category');
+        if (el.textContent === "Больше категорий")
+            el.textContent = "Меньше категорий";
         else
-            el.textContent="Больше категорий";
+            el.textContent = "Больше категорий";
     })
 })
