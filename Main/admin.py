@@ -31,3 +31,13 @@ class LinkAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Link, LinkAdmin)
+
+
+class OrderServiceAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in OrderService._meta.fields]
+
+    class Meta:
+        model = OrderService
+
+
+admin.site.register(OrderService, OrderServiceAdmin)

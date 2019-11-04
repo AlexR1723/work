@@ -192,6 +192,14 @@ class NewsType(models.Model):
         db_table = 'news_type'
 
 
+class OrderService(models.Model):
+    text = models.CharField(max_length=5000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'order_service'
+
+
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(max_length=100, blank=True, null=True)

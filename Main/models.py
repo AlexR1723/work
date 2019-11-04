@@ -92,3 +92,13 @@ class ContactType(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class OrderService(models.Model):
+    text = models.TextField(max_length=5000, blank=True, null=True, verbose_name="Текст")
+
+    class Meta:
+        managed = False
+        db_table = 'order_service'
+        verbose_name = _("Текст")
+        verbose_name_plural = _("Текст 'Как заказать услугу'")
