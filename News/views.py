@@ -85,6 +85,16 @@ def News_page(request,page):
     return render(request, 'News/News.html', locals())
 
 def News_detail(request, id):
+    contact = layout_contact()
+    link = layout_link()
+
+    news=News.objects.get(id=id)
+    header=news.text
+    text=news.description
+    image=news.image
+    category=NewsType.objects.get(id=news.type_id)
+    date=news.date
+
     return render(request, 'News/News_detail.html', locals())
 
 def Filter(request, f):

@@ -30,33 +30,36 @@
 // //     });
 // // });
 
-function counter(counts,target_blocks) {
+function counter(counts) {
     let blockStatus = true;
     let inc=0
+    let target_blocks=['counter1','counter2','counter3']
+    let target_blocks1=[$("#counter1"), $("#counter2"), $("#counter3")]
     // let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3"),]
     $(window).scroll(function () {
         for (let i = 0; i < target_blocks.length; i++) {
             let pos =$(window).scrollTop()
-            let block =target_blocks[i].position().top
-            let height =$(window).height()
-            let block2=document.getElementById('counter1').getBoundingClientRect().top
-            console.log(pos+' > '+height+'-'+block+'='+(height-block)+'  |  '+block2)
+            // let block =target_blocks[i].position().top
+            // let height =$(window).height()
+            let block=document.getElementById(target_blocks[i]).getBoundingClientRect().top
+            // console.log(pos+' > '+height+'-'+block+'='+(height-block)+'  |  '+block2)
+            console.log(pos+' - '+block+' = '+(pos-block))
             // let block1=target_blocks[i].getBoundingClientRect()
             // let block2=document.getElementById('counter1').getBoundingClientRect()
-            let pos1=$('#counter1').scrollTop()
-            let res=height-block
+            // let pos1=$('#counter1').scrollTop()
+            let res=pos-block-600
             // if(pos>res){
             //
             // }
             // var scrollEvent = ($(window).scrollTop() > (target_blocks[i].position().top -$(window).height()));
-            if (pos>res && blockStatus) {
+            if (res>0 && blockStatus) {
 
                 $({numberValue: 0}).animate({numberValue: counts[i]}, {
                     duration: 5000, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
                     easing: "linear",
                     step: function (val) {
                         // $("#counter").html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
-                        target_blocks[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                        target_blocks1[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
                     }
                 });
                 console.log('added? inc='+inc)
@@ -72,9 +75,10 @@ function counter(counts,target_blocks) {
 
 window.onload = function () {
     try {
-        let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3")]
+        // let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3")]
+        let target_blocks = ['counter1','counter2','counter3']
         if( target_blocks[0].length!=0 && target_blocks[1].length!=0 && target_blocks[2].length!=0){
-            counter([10000,10,70000],target_blocks)
+            counter([10000,10,70000])
         }
 
     }
