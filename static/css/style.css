@@ -204,10 +204,12 @@ div.row {
     border: none;
     color: #AF4B53;
     background-color: #FAF9F7;
+    /*background-color: rgb(216,216,216);*/
 }
 
 .btn.DisableBorder:focus {
     background-color: #FAF9F7;
+    /*background-color: rgb(216,216,216);*/
     border: none;
     box-shadow: none;
 }
@@ -222,12 +224,14 @@ div.row {
 
 .colorRed {
     background-color: #FAF9F7;
+    /*background-color: rgb(216,216,216);*/
 }
 
 .rec_ser {
     /*padding-top: 2rem;*/
 
-    background-color: #FAF9F7;
+    /*background-color: #FAF9F7;*/
+    background-color: rgba(216,216,216,.5);
 
 }
 
@@ -674,7 +678,8 @@ p {
 }
 
 .bg_color_FAF9F7{
-    background-color: #FAF9F7;
+    /*background-color: #FAF9F7;*/
+    background-color: rgba(216,216,216,.5);
 }
 .fz_2rem{
     font-size: 2rem;
