@@ -203,8 +203,8 @@ div.row {
     text-decoration: underline;
     border: none;
     color: #AF4B53;
-    background-color: #FAF9F7;
-    /*background-color: rgb(216,216,216);*/
+    /*background-color: #FAF9F7;*/
+    background-color: rgba(216,216,216,.5);
 }
 
 .btn.DisableBorder:focus {
