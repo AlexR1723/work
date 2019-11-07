@@ -92,7 +92,8 @@ div.row {
 }
 
 .search-bttn {
-    border: 1px solid #3E789D;
+    /*border: 1px solid #3E789D;*/
+    border: 1px solid #AF4B53;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -119,13 +120,16 @@ div.row {
 /*}*/
 /*кнопки полные заполненные цветом например НАЙТИ*/
 .btn.chColorFull {
-    background-color: #3E789D;
+    /*background-color: #3E789D;*/
+    background-color: #AF4B53;
+    /*color:#3E789D;*/
     color: #fff;
 
 }
 
 .btn.chColorFull:hover {
-    background-color: #5394bd;
+    /*background-color: #5394bd;*/
+    background-color: #AF4B53;
     color: #fff;
 
 }
@@ -204,8 +208,6 @@ div.row {
     text-decoration: underline;
     border: none;
     color: #AF4B53;
-    /*background-color: #FAF9F7;*/
-    background-color: rgba(216,216,216,.5);
 }
 
 .btn.DisableBorder:focus {
@@ -314,11 +316,13 @@ div.row {
 }
 
 .colorDarkGrey {
-    color: #555555;
+    /*color: #555555;*/
+    color: black;
 }
 
 .colorDarkGrey:hover {
-    color: #555555;
+    /*color: #555555;*/
+    color: black;
 }
 
 .colorLightGrey {
@@ -682,6 +686,9 @@ p {
     /*background-color: #FAF9F7;*/
     background-color: rgba(216,216,216,.5);
 }
+.fw_700{
+    font-weight: 700;
+}
 .fz_2rem{
     font-size: 2rem;
 }
@@ -778,4 +785,53 @@ hr.line {
 .no-style-a:hover{
     text-decoration: none;
     color: black;
+}
+
+.title-l-r {
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: white;
+}
+.title-l-r span {
+    display: inline-block;
+}
+.title-l-r:before,
+.title-l-r:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    position: relative;
+}
+.title-l-r:before {
+    margin-left: -100%;
+    left: -14px;
+}
+.title-l-r:after {
+    margin-right: -100%;
+    right: -14px;
+}
+.span-title{
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.bg-img-count1{
+    background: url('../image/man.png') no-repeat center left;
+    background-size: 100%;
+}
+.bg-img-count2{
+    background: url('../image/clipboard.png') no-repeat center left;
+    background-size: 100%;
+}
+.bg-img-count3{
+    background: url('../image/man_1.png') no-repeat center left;
+    background-size: 100%;
+}
+.bg-img-white{
+    background: rgba(255,255,255,.8);
 }

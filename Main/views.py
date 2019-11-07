@@ -16,7 +16,7 @@ def Main(request):
     fslide=FirstSlider.objects.all()[0]
     slide=FirstSlider.objects.all()[1:]
     category=Category.objects.all().order_by('id')[:3]
-    all_category=Category.objects.all()[3:]
+    all_category=Category.objects.all().order_by('id')[3:]
     return render(request, 'Main/Main.html', locals())
 
 def How_it_work(request):
@@ -82,4 +82,5 @@ def Top_performers(request):
     link = layout_link()
     return render(request, 'Main/Top_performers.html', locals())
 
-
+def Dev(request):
+    return render(request, 'Main/Dev.html', locals())

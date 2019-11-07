@@ -15,11 +15,33 @@
 					<div class="carousel-item h60 active" style="background: url({{MEDIA_URL}}{{fslide.image.url}}) no-repeat center center; background-size: cover;">
                         <div class="row w-100 h-100 justify-content-center align-items-center">
                             <div class="col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-4 topCarusel-caption">
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6 p-4 topCarusel-caption">
                                     <label class="topCarucel-head mb-0 w-100">{{fslide.text}}</label>
                                     <label class="topCarucel-text mb-0">{{fslide.description}}</label>
                                     <div class="row justify-content-center pt-4">
-                                        <button type="button" class=" btn btn-outline colorbtnCarusel">СОЗДАТЬ ЗАДАНИЕ</button>
+                                        <button type="button" class=" btn btn-outline colorbtnCarusel">СОЗДАЙТЕ ЗАДАНИЕ</button>
+                                    </div>
+                                    <div class="row justify-content-center align-items-center title-l-r mt-2">
+                                        <span>
+                                            или
+                                        </span>
+                                    </div>
+                                    <div class="row justify-content-center align-items-center ">
+                                        <span class="span-title">
+                                             найдите специалиста
+                                        </span>
+                                    </div>
+                                    <div class="row justify-content-center align-items-center mt-2">
+                                        <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
+                                            <input type="text" class="form-control search-input" placeholder="">
+                                        </div>
+                                        <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">
+                                            <button type="button" class="form-control btn chColorFull search-bttn d-flex s-sm-none d-md-none d-lg-none d-xl-none p-0">
+                                                <i class="fas fa-search w-100"></i></button>
+                                            <button type="button" class="form-control btn chColorFull search-bttn d-none s-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center">
+                                                НАЙТИ
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -29,11 +51,33 @@
 					<div class="carousel-item h60" style="background: url({{MEDIA_URL}}{{s.image.url}}) no-repeat center center; background-size: cover;">
 						<div class="row w-100 h-100 justify-content-center align-items-center">
                             <div class="col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 p-4 topCarusel-caption">
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6 p-4 topCarusel-caption">
                                     <label class="topCarucel-head mb-0 w-100">{{s.text}}</label>
                                     <label class="topCarucel-text mb-0">{{s.description}}</label>
                                     <div class="row justify-content-center pt-4">
-                                        <button type="button" class=" btn btn-outline colorbtnCarusel">СОЗДАТЬ ЗАДАНИЕ</button>
+                                        <button type="button" class=" btn btn-outline colorbtnCarusel">СОЗДАЙТЕ ЗАДАНИЕ</button>
+                                    </div>
+                                    <div class="row justify-content-center align-items-center title-l-r mt-2">
+                                        <span>
+                                            или
+                                        </span>
+                                    </div>
+                                    <div class="row justify-content-center align-items-center ">
+                                        <span class="span-title">
+                                             найдите специалиста
+                                        </span>
+                                    </div>
+                                    <div class="row justify-content-center align-items-center mt-2">
+                                        <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
+                                            <input type="text" class="form-control search-input" placeholder="">
+                                        </div>
+                                        <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">
+                                            <button type="button" class="form-control btn chColorFull search-bttn d-flex s-sm-none d-md-none d-lg-none d-xl-none p-0">
+                                                <i class="fas fa-search w-100"></i></button>
+                                            <button type="button" class="form-control btn chColorFull search-bttn d-none s-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center">
+                                                НАЙТИ
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -153,19 +197,25 @@
 
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <img src="{% static 'image/222.png' %}" alt="" class="img-fluid">
-                        <h4 class="fontCategoryDemi mt-3">Создавайте задание</h4>
-                        <h5>Подробно опишите задание</h5>
+                        <a href="{% url 'Dev' %}" class="no-style-a">
+                            <img src="{% static 'image/222.png' %}" alt="" class="img-fluid">
+                            <h4 class="fontCategoryDemi mt-3">Создавайте задание</h4>
+                            <h5>Подробно опишите задание</h5>
+                        </a>
                     </div>
                     <div class="col-md-4">
-                        <img src="{% static 'image/333.png' %}" alt="" class="img-fluid">
-                        <h4 class="fontCategoryDemi mt-3">Выбирайте исполнителей</h4>
-                        <h5>Выберите компетентного специалиста</h5>
+                        <a href="{% url 'Dev' %}" class="no-style-a">
+                            <img src="{% static 'image/333.png' %}" alt="" class="img-fluid">
+                            <h4 class="fontCategoryDemi mt-3">Выбирайте исполнителей</h4>
+                            <h5>Выберите компетентного специалиста</h5>
+                        </a>
                     </div>
                     <div class="col-md-4">
-                        <img src="{% static 'image/111.png' %}" alt="" class="img-fluid">
-                        <h4 class="fontCategoryDemi mt-3">Закройте задание</h4>
-                        <h5>Оставьте отзыв об исполнителе</h5>
+                        <a href="{% url 'Dev' %}" class="no-style-a">
+                            <img src="{% static 'image/111.png' %}" alt="" class="img-fluid">
+                            <h4 class="fontCategoryDemi mt-3">Закройте задание</h4>
+                            <h5>Оставьте отзыв об исполнителе</h5>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -191,21 +241,27 @@
                 <div class="row m-0 justify-content-center pb-3">
                     <h1>Наша работа в цифрах</h1>
                 </div>
-                <div class="row justify-content-around">
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
-                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">Зарегистрировано исполнителей</p>
-                        <p class="fz_2rem m-0 text-center" id="counter1">0</p>
-                        <p class="m-0 pt-5 colorDarkGrey text-center">ЧЕЛОВЕК</p>
+                <div class="row justify-content-around align-items-center">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count1">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ИСПОЛНИТЕЛЕЙ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
-                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">Доступно заданий</p>
-                        <p class="fz_2rem m-0 text-center" id="counter2">0</p>
-                        <p class="m-0 pt-5 colorDarkGrey text-center">ШТУК</p>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count2">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ДОСТУПНО <br> ЗАДАНИЙ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
-                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">Зарегистрировано заказчиков</p>
-                        <p class="fz_2rem m-0 text-center" id="counter3">0</p>
-                        <p class="m-0 pt-5 colorDarkGrey text-center">ЧЕЛОВЕК</p>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count3">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ЗАКАЗЧИКОВ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
+                        </div>
                     </div>
                 </div>
 
