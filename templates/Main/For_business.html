@@ -11,7 +11,7 @@
 ">
         <div class="page_head_img_fon row justify-content-center align-items-center">
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                <p class="m-0 fz_25rem line_height_1 text-center">Преимущества для компаний</p>
+                <p class="m-0 fz_3rem line_height_1 text-center">Преимущества для компаний</p>
             </div>
         </div>
     </div>
@@ -30,25 +30,28 @@
 <div class="row justify-content-center bg_color_FAF9F7">
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
         <div class="row justify-content-around py-5">
-            <!--            <div class="col-12">-->
-            <!--                <p class="hiw_headers">Как у нас заработать?</p>-->
-            <!--            </div>-->
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/registration%20(1).png" alt="">
-                </div>
-                <p class="hiw_header">Зарегистрируйтесь</p>
-                <p class="hiw_text">Подтвердите регистрационные данные и получите статус "Проверенной компании"</p>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4">
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/registration%20(1).png" alt="">
+                    </div>
+                    <h5 class="hiw_header">Зарегистрируйтесь</h5>
+                    <h6 class="hiw_text">Подтвердите регистрационные данные и получите статус "Проверенной компании"</h6>
+                </a>
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/lecture.png" alt=""></div>
-                <p class="hiw_header">Расскажите о себе</p>
-                <p class="hiw_text">Бесплатно добавьте объявления, прайсы, а также свое портфолио</p>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4">
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/lecture.png" alt=""></div>
+                    <h5 class="hiw_header">Расскажите о себе</h5>
+                    <h6 class="hiw_text">Бесплатно добавьте объявления, прайсы, а также свое портфолио</h6>
+                </a>
             </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/payment%20(1).png" alt="">
-                </div>
-                <p class="hiw_header">Зарабатывайте</p>
-                <p class="hiw_text">Выполняйте интересные для вас заказы и получайте оплату</p>
+            <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4">
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/payment%20(1).png" alt="">
+                    </div>
+                    <h5 class="hiw_header">Зарабатывайте</h5>
+                    <h6 class="hiw_text">Выполняйте интересные для вас заказы и получайте оплату</h6>
+                </a>
             </div>
         </div>
     </div>
@@ -68,72 +71,28 @@
 
 
                 <div class="row justify-content-around">
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
-                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">За сегодня создано заказов</p>
-                        <p class="fz_2rem m-0 text-center" id="counter1">0</p>
-                        <p class="m-0 pt-5 fz_15rem colorDarkGrey text-center">ЗАКАЗОВ</p>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count4">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗА СЕГОДНЯ <br> СОЗДАНО</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ЗАДАНИЙ</p>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
-                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">Количество исполнителей</p>
-                        <p class="fz_2rem m-0 text-center" id="counter2">0</p>
-                        <p class="m-0 pt-5 fz_15rem colorDarkGrey text-center">ЧЕЛОВЕК</p>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count1">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">КОЛИЧЕСТВО <br> ИСПОЛНИТЕЛЕЙ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 py-5 rectW">
-                        <p class="m-0 text-center fontCategorySmall colorDarkGrey pb-5">Количество выполненных
-                            заданий</p>
-                        <p class="fz_2rem m-0 text-center" id="counter3">0</p>
-                        <p class="m-0 pt-5 fz_15rem colorDarkGrey text-center">ШТУК</p>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count5">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ВСЕГО <br> ВЫПОЛНЕНО</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ЗАДАНИЙ</p>
+                        </div>
                     </div>
                 </div>
-
-                <!--                <div class="row  justify-content-center" id="counter-main">-->
-                <!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">-->
-                <!--                        <div class="rectW a-center" id="counter">-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">За сегодня создано заказов</p>-->
-                <!--                            <div data-num="256" class="fontSizeHH number">0</div>-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">штук</p>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">-->
-                <!--                        <div class="rectW a-center">-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">Количество исполнителей</p>-->
-                <!--                            <div data-num="345" class="fontSizeHH number">0</div>-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">ЧЕЛ</p>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">-->
-                <!--                        <div class="rectW a-center">-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">Количество выполненных-->
-                <!--                                заданий</p>-->
-                <!--                            <div data-num="187" class="fontSizeHH number">0</div>-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">ШТУК</p>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-                <!--                <div class="row m-0 justify-content-center" id="counter-main">-->
-                <!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">-->
-                <!--                        <div class="rectW a-center">-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">За сегодня создано заказов</p>-->
-                <!--                            <div data-num="256" class="fontSizeHH number">0</div>-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">штук</p>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">-->
-                <!--                        <div class="rectW a-center">-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">Количество исполнителей</p>-->
-                <!--                            <div data-num="345" class="fontSizeHH number">0</div>-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">ЧЕЛ</p>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">-->
-                <!--                        <div class="rectW a-center">-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-1">Количество успешно выполненных заданий</p>-->
-                <!--                            <div data-num="187" class="fontSizeHH number">0</div>-->
-                <!--                            <p class="colorDarkGrey fontCategorySmall pt-3 pb-3">ШТУК</p>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
             </div>
         </div>
     </div>
@@ -154,30 +113,36 @@
                 <p class="hiw_headers">Отзывы</p>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv1.jpg" alt="">
-                </div>
-                <p class="hiw_header">МАРЬЯНА, КЛИНЕР</p>
-                <p class="hiw_text">На Кабанчике мне нравится то, что я могу сама планировать свое личное время и
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv1.jpg" alt="">
+                    </div>
+                    <p class="hiw_header">МАРЬЯНА, КЛИНЕР</p>
+                    <p class="hiw_text">На Кабанчике мне нравится то, что я могу сама планировать свое личное время и
                     финансы. Здорово, что нет никаких начальников и я сама отвечаю за качество своей работы. Отличным
                     бонусом также есть то, что я могу подстроить свою работу так, чтобы больше времени проводить со
                     своим ребенком.</p>
+                </a>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv2.jpg" alt="">
-                </div>
-                <p class="hiw_header">ВАСИЛИЙ, ДОМАШНИЙ МАСТЕР</p>
-                <p class="hiw_text">Кабанчик мне нравится тем, что этот сервис сделан для людей, здесь очень
-                    человеческие условия для работы. Он отлично помогает тем, кому нужен дополнительный заработок или
-                    даже основная работа. Я чувствую здесь перспективы и развитие — это мотивирует работать.</p>
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv2.jpg" alt="">
+                    </div>
+                    <p class="hiw_header">ВАСИЛИЙ, ДОМАШНИЙ МАСТЕР</p>
+                    <p class="hiw_text">Кабанчик мне нравится тем, что этот сервис сделан для людей, здесь очень
+                        человеческие условия для работы. Он отлично помогает тем, кому нужен дополнительный заработок или
+                        даже основная работа. Я чувствую здесь перспективы и развитие — это мотивирует работать.</p>
+                </a>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv3.jpg" alt="">
-                </div>
-                <p class="hiw_header">ДИАНА, ДИЗАЙНЕР</p>
-                <p class="hiw_text">С Кабанчиком дружу давно:) Всегда есть работа для специалиста. Помимо того, что это
-                    неплохая подработка, мне нравится, что на Кабанчике можно выбирать и фильтровать заказы. Еще
-                    огромный плюс в том, что здесь собрано мое полное портфолио с галереей работ, услугами, прайсом и
-                    отзывами заказчиков. Это очень удобно.</p>
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv3.jpg" alt="">
+                    </div>
+                    <p class="hiw_header">ДИАНА, ДИЗАЙНЕР</p>
+                    <p class="hiw_text">С Кабанчиком дружу давно:) Всегда есть работа для специалиста. Помимо того, что это
+                        неплохая подработка, мне нравится, что на Кабанчике можно выбирать и фильтровать заказы. Еще
+                        огромный плюс в том, что здесь собрано мое полное портфолио с галереей работ, услугами, прайсом и
+                        отзывами заказчиков. Это очень удобно.</p>
+                </a>
             </div>
         </div>
     </div>
@@ -197,9 +162,11 @@
             </div>
             {% for i in list %}
             <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3 rectW">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="{{MEDIA.URL}}{{i.pop.url}}" alt=""></div>
-                <p class="hiw_header m-0">{{i.pop}}</p>
-                <p class="hiw_text">{{i.pop}} подкатегорий</p>
+                 <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50" src="{{MEDIA.URL}}{{i.pop.url}}" alt=""></div>
+                    <p class="hiw_header m-0">{{i.pop}}</p>
+                    <p class="hiw_text">{{i.pop}} подкатегорий</p>
+                 </a>
             </div>
             {% endfor %}
 
