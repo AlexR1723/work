@@ -643,7 +643,21 @@ p {
     color: white;
     transition: 0.5s;
 }
+.hiw_btn-red {
+    border: 1px solid #AF4B53;
+    border-radius: 5px;
+    background-color: white;
+    color: #AF4B53;
+    padding: 10px;
+    font-size: 1.4rem;
+    transition: 0.5s;
+}
 
+.hiw_btn-red:hover {
+    background-color: #AF4B53;
+    color: white;
+    transition: 0.5s;
+}
 .hiw_headers {
     font-size: 2.5rem;
     text-align: center;
@@ -833,6 +847,14 @@ hr.line {
 }
 .bg-img-count3{
     background: url('../image/man_1.png') no-repeat center left;
+    background-size: 100%;
+}
+.bg-img-count4{
+    background: url('../image/clipboard_1.png') no-repeat center left;
+    background-size: 100%;
+}
+.bg-img-count5{
+    background: url('../image/clipboard_2.png') no-repeat center left;
     background-size: 100%;
 }
 .bg-img-white{
