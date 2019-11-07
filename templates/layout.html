@@ -53,14 +53,18 @@
                 <div class="col-2 col-sm-2 col-md-3 col-lg-4 col-xl-4 px-2 text-right">
                     <div class="row justify-content-end d-none s-sm-none d-md-none d-lg-flex d-xl-flex">
                         <div class="col-lg-5 col-xl-3 px-0">
+                            <a href="{% url 'Dev' %}">
                             <button type="button" class="w-100 align-middle btn DisableBorder colorRed ">
                                 Войти
                             </button>
+                            </a>
                         </div>
                         <div class="col-lg-6 col-xl-4 p-0">
+                            <a href="{% url 'Dev' %}">
                             <button type="button" class="w-100 btn btn-outline chColorBorder colorSearch ">
                                 Регистрация
                             </button>
+                            </a>
                         </div>
                     </div>
 
@@ -72,56 +76,6 @@
             </div>
         </div>
     </div>
-    <!--        {#-->
-
-
-    <!--    <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">-->
-    <!--                <div class="row">-->
-    <!--                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">-->
-    <!--                        <div class="row">-->
-    <!--                            <div class="col-6">-->
-    <!--                                <select class="form-control sel">-->
-    <!--                                    <option>Выберите регион</option>-->
-    <!--                                </select>-->
-    <!--                            </div>-->
-    <!--                            <div class="col-6">-->
-    <!--                                <button type="button" class=" form-control btn btn-outline chColorBorder colorSearch">-->
-    <!--                                    Создать задание-->
-    <!--                                </button>-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                    <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">-->
-    <!--                        <div class="row">-->
-    <!--                            <div class="col-9 pr-0 ">-->
-    <!--                                <input type="text" class="form-control search-input" placeholder="">-->
-    <!--                            </div>-->
-    <!--                            <div class="col-3 pl-0">-->
-    <!--                                <button type="button" class="form-control btn chColorFull search-bttn">Найти</button>-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-
-    <!--                    </div>-->
-    <!--                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">-->
-    <!--                        <div class="row justify-content-end">-->
-    <!--                            <div class="col-6">-->
-    <!--                                <button type="button" class="align-middle form-control btn DisableBorder colorRed">-->
-    <!--                                    Войти-->
-    <!--                                </button>-->
-    <!--                            </div>-->
-    <!--                            <div class="col-6">-->
-    <!--                                <button type="button" class="form-control btn btn-outline chColorBorder colorSearch">-->
-    <!--                                    Регистрация-->
-    <!--                                </button>-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-
-
-    <!--    </form>-->
-    <!--    #}-->
 </div>
 <div class="container-fluid p-0 fix-top">
     <div class="row justify-content-center">
@@ -138,21 +92,20 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-end px-0" id="navbarTogglerDemo02">
-                            <!--                            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 ">-->
                             <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-8 px-0">
                                 <ul class="navbar-nav justify-content-around text-center">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="{% url 'Dev' %}">
                                             <h4>О нас</h4>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="{% url 'Dev' %}">
                                             <h4>Задания</h4>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="#">
+                                        <a class="nav-link " href="{% url 'Dev' %}">
                                             <h4>Объявления</h4>
                                         </a>
                                     </li>
@@ -162,7 +115,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="#">
+                                        <a class="nav-link " href="{% url 'Dev' %}">
                                             <h4>Ответы</h4>
                                         </a>
                                     </li>
@@ -226,16 +179,16 @@
                     <h5 class="font-weight-bold mt-3 mb-4">Помощь</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">Вопрос / ответ</a>
+                            <a href="{% url 'Dev' %}">Вопрос / ответ</a>
                         </li>
                         <li>
-                            <a href="#!">Публичная оферта</a>
+                            <a href="{% url 'Dev' %}">Публичная оферта</a>
                         </li>
                         <li>
-                            <a href="#!">Правила конфиденциальности</a>
+                            <a href="{% url 'Dev' %}">Правила конфиденциальности</a>
                         </li>
                         <li>
-                            <a href="#!">Правила проекта</a>
+                            <a href="{% url 'Dev' %}">Правила проекта</a>
                         </li>
                         <li>
                             <a href="{% url 'Contact' %}">Служба поддержки</a>
@@ -250,7 +203,7 @@
                     <h5 class="font-weight-bold mt-3 mb-4">О проекте</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">О нас</a>
+                            <a href="{% url 'Dev' %}">О нас</a>
                         </li>
                         <li>
                             <a href="{% url 'Contact' %}">Контакты</a>
@@ -275,131 +228,7 @@
                             </div>
                         </div>
                         {% endfor %}
-<!--                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">-->
-<!--                            <div class="circle">-->
-<!--                                <a href="">-->
-<!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">-->
-<!--                            <div class="circle">-->
-<!--                                <a href="">-->
-<!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">-->
-<!--                            <div class="circle">-->
-<!--                                <a href="">-->
-<!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">-->
-<!--                            <div class="circle">-->
-<!--                                <a href="">-->
-<!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-
-                        <!--                        <div class="circle my-2 mx-1">-->
-                        <!--                            <a href="">-->
-                        <!--                                <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-                        <!--                            </a>-->
-                        <!--                        </div>-->
-                        <!--                        </div>-->
-
-
-                        <!--                        <div class="col-3 p-1">-->
-                        <!--                            <div class="row justify-content-center align-items-center">-->
-                        <!--                                <div class="circle">-->
-                        <!--                                    <a href="">-->
-                        <!--                                        <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-                        <!--                                    </a>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="col-3 p-1">-->
-                        <!--                            <div class="row justify-content-center align-items-center">-->
-                        <!--                                <div class="circle">-->
-                        <!--                                    <a href="">-->
-                        <!--                                        <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>-->
-                        <!--                                    </a>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="col-3 p-1">-->
-                        <!--                            <div class="row justify-content-center align-items-center">-->
-                        <!--                                <div class="circle">-->
-                        <!--                                    <a href="">-->
-                        <!--                                        <i class="fab fa-vk fa-2x" aria-hidden="true"></i>-->
-                        <!--                                    </a>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
-
                     </div>
-
-                    <!--                    <div class="row justify-content-center d-flex d-sm-flex d-md-none d-lg-none d-xl-none ">-->
-                    <!--                        <div class="col-3 p-1">-->
-                    <!--                            <div class="row justify-content-center align-items-center">-->
-                    <!--                                <div class="circle">-->
-                    <!--                                    <a href="">-->
-                    <!--                                        <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-                    <!--                                    </a>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="col-3 p-1">-->
-                    <!--                            <div class="row justify-content-center align-items-center">-->
-                    <!--                                <div class="circle">-->
-                    <!--                                    <a href="">-->
-                    <!--                                        <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>-->
-                    <!--                                    </a>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="col-3 p-1">-->
-                    <!--                            <div class="row justify-content-center align-items-center">-->
-                    <!--                                <div class="circle">-->
-                    <!--                                    <a href="">-->
-                    <!--                                        <i class="fab fa-vk fa-2x" aria-hidden="true"></i>-->
-                    <!--                                    </a>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-
-
-                    <!--                    </div>-->
-                    <!--                    <div class="row justify-content-between d-none d-sm-none d-md-flex d-lg-flex d-xl-flex">-->
-                    <!--                        <div class="col-3 p-0">-->
-                    <!--                            <div class="circle row justify-content-center align-items-center">-->
-                    <!--                                <a href="">-->
-                    <!--                                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-                    <!--                                </a>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="col-3 p-0">-->
-                    <!--                            <div class="circle row justify-content-center align-items-center">-->
-                    <!--                                <a href="">-->
-                    <!--                                    <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>-->
-                    <!--                                </a>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="col-3 p-0">-->
-                    <!--                            <div class="circle row justify-content-center align-items-center">-->
-                    <!--                                <a href="">-->
-                    <!--                                    <i class="fab fa-vk fa-2x" aria-hidden="true"></i>-->
-                    <!--                                </a>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-
-
-                    <!--                    </div>-->
 
                     <ul class="list-unstyled mt-3">
                         {% for ct in contact %}
@@ -427,54 +256,6 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <!-- Grid column -->
-
-
-                <!--                    <div class="col-md-3 mt-4 sochial">-->
-                <!--                        <div class="row">-->
-                <!--                            <div class="col-auto pl-0">-->
-                <!--                                <div class="circle row justify-content-center align-items-center">-->
-                <!--                                    <a href="">-->
-                <!--                                        <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>-->
-                <!--                                    </a>-->
-                <!--                                </div>-->
-
-                <!--                            </div>-->
-                <!--                            <div class="col-auto">-->
-                <!--                                <div class="circle row justify-content-center align-items-center">-->
-                <!--                                    <a href="">-->
-                <!--                                        <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>-->
-                <!--                                    </a>-->
-                <!--                                </div>-->
-                <!--                            </div>-->
-                <!--                            <div class="col-auto">-->
-                <!--                                <div class="circle row justify-content-center align-items-center">-->
-                <!--                                    <a href="">-->
-                <!--                                        <i class="fab fa-vk fa-2x" aria-hidden="true"></i>-->
-                <!--                                    </a>-->
-                <!--                                </div>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--						<ul class="list-unstyled mt-3">-->
-                <!--							<li>-->
-                <!--								<a href="#!">email@gmail.com</a>-->
-                <!--							</li>-->
-                <!--							<li>-->
-                <!--								<a href="#!">071-123-45-67</a>-->
-                <!--							</li>-->
-                <!--							<li>-->
-                <!--								<a href="#!">071-234-56-78</a>-->
-                <!--							</li>-->
-                <!--							<li>-->
-                <!--								<a href="#!">Пн-Пт: 8:00-20:00</a>-->
-                <!--							</li>-->
-                <!--							<li>-->
-                <!--								<a href="#!">Сб-Вс: 9:00-18:00</a>-->
-                <!--							</li>-->
-                <!--						</ul>-->
-                <!--					</div>-->
-
-
             </div>
             <!-- Grid row -->
         </div>
