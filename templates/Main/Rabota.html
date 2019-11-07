@@ -31,28 +31,28 @@
             <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
                 <a href="{% url 'Dev' %}" class="no-style-a">
                     <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/registration.png" alt=""></div>
-                    <h6 class="hiw_header">1. Зарегистрируйтесь</h6>
+                    <h6 class="hiw_header fz_12rem">1. Зарегистрируйтесь</h6>
                     <p class="hiw_text">Подтвердите персональные данные и станьте проверенным специалистом</p>
                 </a>
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
                 <a href="{% url 'Dev' %}" class="no-style-a">
                     <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/menu.png" alt=""></div>
-                    <p class="hiw_header">2. Выберите заказ</p>
+                    <p class="hiw_header fz_12rem">2. Выберите заказ</p>
                     <p class="hiw_text">Если вас устраивают условия заказа, нажмите кнопку "Выполнить"</p>
                 </a>
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
                 <a href="{% url 'Dev' %}" class="no-style-a">
                     <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/time.png" alt=""></div>
-                    <p class="hiw_header">3. Выполните работу</p>
+                    <p class="hiw_header fz_12rem">3. Выполните работу</p>
                     <p class="hiw_text">Если заказчик выбрал вас для выполнения заказа, приступайте к работе</p>
                 </a>
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
                 <a href="{% url 'Dev' %}" class="no-style-a">
                     <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/payment.png" alt=""></div>
-                    <p class="hiw_header">4. Получите деньги</p>
+                    <p class="hiw_header fz_12rem">4. Получите деньги</p>
                     <p class="hiw_text">После выполнения работы попросите заказчика оставить отзыв и получите оплату</p>
                 </a>
             </div>
@@ -212,7 +212,7 @@
             <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3 rectW">
                 <a href="{% url 'Dev' %}" class="no-style-a">
                     <div class="w-100 my-3 text-center"><img class="w-50" src="{{MEDIA.URL}}{{i.pop.url}}" alt=""></div>
-                    <p class="hiw_header m-0">{{i.pop}}</p>
+                    <p class="hiw_header fz_12rem m-0">{{i.pop}}</p>
                     <p class="hiw_text">{{i.pop}} подкатегорий</p>
                 </a>
             </div>
@@ -236,10 +236,14 @@
                 <p class="hiw_headers">Зарегистрируйтесь и начните зарабатывать прямо сейчас</p>
             </div>
             <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-3">
-                <button class="hiw_btn-red w-100">Создать задание</button>
+                <a href="{% url 'Dev' %}">
+                    <button class="hiw_btn-red w-100">Создать задание</button>
+                </a>
             </div>
             <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-3">
-                <button class="hiw_btn w-100">Регистрация</button>
+                <a href="{% url 'Dev' %}">
+                    <button class="hiw_btn w-100">Регистрация</button>
+                </a>
             </div>
         </div>
         <div class="row justify-content-around pt-2 pb-5">

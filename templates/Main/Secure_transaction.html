@@ -11,7 +11,7 @@
 ">
         <div class="page_head_img_fon row justify-content-center align-items-center">
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                <p class="m-0 fz_25rem line_height_1 text-center">Безопасная сделка</p>
+                <p class="m-0 fz_3rem line_height_1 text-center">Безопасная сделка</p>
             </div>
         </div>
     </div>
@@ -37,21 +37,27 @@
             <div class="col-12">
                 <p class="hiw_headers">Как работает "Безопасная сделка"?</p>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/notepad.svg" alt=""></div>
-                <p class="hiw_header">Создается заказ</p>
-                <p class="hiw_text">Заказчик публикует заказ на сервисе и выбирает специалиста из предложений</p>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/notepad.svg" alt=""></div>
+                    <p class="hiw_header fz_15rem">Создается заказ</p>
+                    <p class="hiw_text">Заказчик публикует заказ на сервисе и выбирает специалиста из предложений</p>
+                </a>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/cash_1.svg" alt=""></div>
-                <p class="hiw_header">Резервируется оплата</p>
-                <p class="hiw_text">Бюджет списывается с карты заказчика и резервируется в банке до закрытия заказа</p>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/cash_1.svg" alt=""></div>
+                    <p class="hiw_header fz_15rem">Резервируется оплата</p>
+                    <p class="hiw_text">Бюджет списывается с карты заказчика и резервируется в банке до закрытия заказа</p>
+                </a>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/pay-per-click.svg" alt=""></div>
-                <p class="hiw_header">Заказ оплачивается/возвращаются средства</p>
-                <p class="hiw_text">Если заказ был успешно выполнен, то деньги поступают специалисту, иначе —
-                    возвращаются заказчику.</p>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                <a href="{% url 'Dev' %}" class="no-style-a">
+                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/pay-per-click.svg" alt=""></div>
+                    <p class="hiw_header fz_15rem">Заказ оплачивается/возвращаются средства</p>
+                    <p class="hiw_text">Если заказ был успешно выполнен, то деньги поступают специалисту, иначе —
+                        возвращаются заказчику.</p>
+                </a>
             </div>
         </div>
     </div>
@@ -68,11 +74,11 @@
                 <p class="hiw_headers pb-5">Преимущества "Безопасной сделки"</p>
                 <div class="row justify-content-around">
                     {% for b in benefits %}
-                    <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xl-4 mx-1">
+                    <div class="col-10 col-sm-5 col-md-6 col-lg-5 col-xl-5 mx-1">
                         <div class="w-100 my-3 text-center"><img class="w-50" src="{{MEDIA_URL}}{{b.image.url}}" alt="">
                         </div>
-                        <p class="hiw_header">{{b.header}}</p>
-                        <p class="hiw_text">{{b.text}}</p>
+                        <h5 class="hiw_header fz_15rem">{{b.header}}</h5>
+                        <h6 class="hiw_text">{{b.text}}</h6>
                     </div>
                     {% endfor %}
                 </div>
@@ -81,7 +87,9 @@
 
             <div class="row justify-content-center mt-5 col-12">
                 <div class="col-10 col-sm-5 col-md-4 col-lg-4 col-xl-3 p-0">
-                    <button class="hiw_btn w-100">Создать задание</button>
+                    <a href="{% url 'Dev' %}">
+                        <button class="hiw_btn-red w-100">Создать задание</button>
+                    </a>
                 </div>
             </div>
 

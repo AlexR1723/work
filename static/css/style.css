@@ -599,11 +599,13 @@ p {
 }
 
 .hiw_header {
-    font-size: 1.2rem;
+    /*font-size: 1.2rem;*/
     font-weight: 700;
     text-align: center;
 }
-
+.fz_12rem{
+    font-size: 1.2rem;
+}
 .hiw_text {
     /*font-weight: 400;*/
     text-align: center;
