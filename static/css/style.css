@@ -860,6 +860,10 @@ hr.line {
     background: url('../image/clipboard_2.png') no-repeat center left;
     background-size: 100%;
 }
+.bg-img-count6{
+    background: url('../image/chat_1.png') no-repeat center left;
+    background-size: 100%;
+}
 .bg-img-white{
     background: rgba(255,255,255,.8);
 }

@@ -1,126 +1,129 @@
 {% extends "layout.html" %}
 {% load staticfiles %}
 {% block content %}
-<!--заголовок на картинке-->
-    <section class="mt-4 mb-5" id="about">
-        <div class="container"   style="background-color: #fff">
-            <section id="titleText">
-                <h2 class="portfolio-header d-xl-block d-block d-md-none mb-5 ">
-                <span class="font-weight-normal" style="color:#000">О проекте<span>  <br>
-                <span class="font-weight-bold">frilansdnr.ru</span> </h2>
-            </section>
-        </div>
-    </section>
-
-<!--Кто мы? Наша миссия-->
-<section id="info1">
-        <div class="container"  >
-            <div class="row">
-                <div class="col-md-12">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p style="font-size:2.5rem" class="font-weight-bold"> Кто мы и что делаем?</p>
-                                            <p style="font-size:2rem" >Наш онлайн сервис поможет найти специалистов для решения Ваших задач. Мы объединяем заказчиков и исполнителей.</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                            <div class="col-md-12">
-                                                <p style="font-size:2.5rem" class="font-weight-bold"> Наша миссия</p>
-                                                <p style="font-size:2rem">Помочь страждущим заказчикам и дать работу несчастным фрилансерам.</p>
-                                             </div>
-                                    </div>
-                                </div>
-                 </div>
+<div class="row justify-content-center">
+    <div class=" w-100" style="
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/123.jpeg) 50% 50% no-repeat;
+    background-size: cover;
+">
+        <div class="page_head_img_fon row justify-content-center align-items-center">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                <p class="m-0 fz_3rem line_height_1 text-center">О проекте</p>
             </div>
-        </div>
-</section>
-<!--показатели-->
-<section id="indicator">
-        <div class="container"   style="background-color: #fff"  >
-    <div class="row mt-5 text-center">
-
-        <div class="col-md-6 text-center" style="font-size:30px">
-            <div class="rectW mx-auto">
-
-            <img src="{% static 'image/executor.png' %}" class="image-fluid commentImg">
-            <p style="font-size:20px">Количество заказчиков</p>
-            <p class="fontStatistic">1000</p>
-
-        </div>
-        </div>
-
-        <div class="col-md-6 text-center" style="font-size:30px">
-            <div class="rectW mx-auto">
-                <img src="{% static 'image/customer.png' %}" alt class="image-fluid commentImg">
-            <p style="font-size:20px">Количество исполнителей</p>
-            <p class="fontStatistic">1000</p>
         </div>
     </div>
-    </div>
-
-    <div class="row mt-5 text-center">
-
-           <div class="col-md-6 text-center" style="font-size:30px">
-            <div class="rectW mx-auto">
-                <img src="{% static 'image/task.png' %}" alt class="image-fluid commentImg">
-                <p style="font-size:20px">Количество заданий</p>
-                <p class="fontStatistic">1000</p>
-
-            </div>
-            </div>
-            <div class="col-md-6 text-center" style="font-size:30px">
-                <div class="rectW mx-auto">
-                    <img src="{% static 'image/reviews.png' %}" alt class="image-fluid commentImg">
-                <p style="font-size:20px">Количество отзывов</p>
-                <p class="fontStatistic">1000</p>
-            </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+        <div class="row pl-5 pr-5 pt-5 col-12">
+            <p class="fz_2rem mb-3 w-100">Кто мы и что делаем?</p>
+            <p>Наш онлайн сервис поможет найти специалистов
+                                                    для
+                                                    решения
+                                                    Ваших задач. Мы объединяем заказчиков и исполнителей.</p>
         </div>
+    </div>
 </div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+        <div class="row pl-5 pr-5 pt-3 col-12">
+            <p class="fz_2rem mb-3 w-100">Наша миссия</p>
+            <p>Помочь страждущим заказчикам и дать работу
+                                                    несчастным
+                                                    фрилансерам.</p>
+        </div>
+    </div>
 </div>
-</section>
-<!--история проекта-->
-<section id="info2">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-
-
-                                <div class="card-body">
-                                    <div class="row">
-
-                                        <div class="col-md-12">
-                                            <p style="font-size:2.5rem" class="font-weight-bold"> История проекта</p>
-
-                                            <p style="font-size:2rem">Сервис стартовал совсем недавно, но мы уже покорили множество стран постсоветского пространства.</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-
-                                            <div class="col-md-12">
-                                                <p style="font-size:2.5rem" class="font-weight-bold"> Команда</p>
-
-                                                <p style="font-size:2rem">Проект процветает благодаря амбициозной команде. Нас всех объединяет желание улучшить сферу услуг, помочь заказчикам найти проффессионалов-исполнителей, а исполнителям найти благодарных заказчиков.</p>
-                                            </div>
-                                        </div>
-                                </div>
-
-
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+        <hr class="block_hr">
+    </div>
+</div>
+<div class="row justify-content-center bg_color_FAF9F7 pt-4 pb-5">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+        <div class="row m-0 justify-content-center pb-3">
+                    <h1>Наша работа в цифрах</h1>
                 </div>
+        <div class="row justify-content-around align-items-center">
+                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0 mt-2 mb-4 rectW bg-img-count1">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ИСПОЛНИТЕЛЕЙ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
+                        </div>
+                    </div>
+            <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count3">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ЗАКАЗЧИКОВ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
+                        </div>
+                    </div>
+
+        </div>
+        <div class="row justify-content-around align-items-center">
+                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count2">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ДОСТУПНО <br> ЗАДАНИЙ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>
+                        </div>
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count6">
+                        <div class="row justify-content-center bg-img-white py-5">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">КОЛИЧЕСТВО<br> ОТЗЫВОВ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter4">0</p>
+                            <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+        <hr class="block_hr">
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+        <div class="row pl-5 pr-5 pt-5 col-12">
+            <p class="fz_2rem mb-3 w-100">История проекта</p>
+            <p>Сервис стартовал совсем недавно, но мы уже
+                                                        покорили
+                                                        множество стран постсоветского пространства.</p>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+        <div class="row pl-5 pr-5 pt-3 col-12">
+            <p class="fz_2rem mb-3 w-100">Команда</p>
+            <p>Проект процветает благодаря амбициозной
+                                                        команде.
+                                                        Нас
+                                                        всех объединяет желание улучшить сферу услуг, помочь заказчикам
+                                                        найти
+                                                        проффессионалов-исполнителей, а исполнителям найти благодарных
+                                                        заказчиков.</p>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+        <div class="row justify-content-center py-5">
+            <div class="col-auto my-3">
+                <a href="{% url 'Dev' %}">
+                    <button class="hiw_btn-red w-100">Найти исполнителя</button>
+                </a>
+            </div>
+            <div class="col-auto my-3">
+                <a href="{% url 'Dev' %}">
+                    <button class="hiw_btn w-100">Стать исполнителем</button>
+                </a>
             </div>
         </div>
-</section>
-<!--кнопки-->
-<section id="buttons">
-        <div class="container"  style="background-color: #fff">
-            <div class="col-md-12 text-center">
-
-                     <button type="button" class="btn btn-secondary btn-danger mr-2" style="font-size:22px">Найти исполнителя</button>
-
-
-                     <button type="button" class="btn btn-secondary btn-outline-danger  " style="font-size:22px ">Стать исполнителем</button>
-
-            </div>
-        </div>
-</section>
+    </div>
+</div>
 {% endblock %}
