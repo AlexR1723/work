@@ -73,7 +73,7 @@ div.row {
 }
 
 .fix-top {
-    z-index: 9999;
+    z-index: 100;
     position: sticky;
     top: 0;
     min-height: 2em;
