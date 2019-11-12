@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container mx-lg-auto">
+    <div class="row justify-content-center register-block">
+        <div class="col-sm-12 col-md-6 register-form text-center">
+            <h3>Регистрация</h3>
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Имя">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Фамилия">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="RegisterInputEmail1" aria-describedby="emailHelp" placeholder="E-mail" />
+              </div>
+              <div class="form-group">
+                <input type="tel" class="form-control" placeholder="Номер телефона">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="RegisterInputPassword1" placeholder="Пароль">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="RegisterInputPassword2" placeholder="Повторно пароль">
+              </div>
+                <a href="#"><button type="submit" class="btn btn-outline-primary">Зарегистрироваться</button></a>
+            </form>
+        </div>
+        <div class="col-sm-12 col-md-6 register-right text-center">
+            <p>Скорее регистрируйся и выполняй задания<br> либо ищи исполнителей</p>
+            <span>У нас:</span>
+            <div class="d-flex flex-column sectionHowWork justify-content-center pt-2">
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6 p-0 rectW bg-img-count1 mx-auto mb-3">
+                        <div class="row justify-content-center bg-img-white py-4">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ИСПОЛНИТЕЛЕЙ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>
+                            <p class="m-0 colorDarkGrey fontCategorySmall text-center w-100">ЧЕЛОВЕК</p>
+                        </div>
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6 p-0 rectW bg-img-count2 mx-auto mb-3">
+                        <div class="row justify-content-center bg-img-white py-4">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ДОСТУПНО <br> ЗАДАНИЙ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>
+                            <p class="m-0 fontCategorySmall colorDarkGrey text-center w-100">ШТУК</p>
+                        </div>
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6 p-0 rectW bg-img-count3 mx-auto">
+                        <div class="row justify-content-center bg-img-white py-4">
+                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ЗАКАЗЧИКОВ</p>
+                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>
+                            <p class="m-0 fontCategorySmall colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
+                        </div>
+                    </div>
+<!--                </div>-->
+		</div>
+        </div>
+    </div>
+    <p class="register-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+{% endblock %}
