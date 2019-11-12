@@ -2,6 +2,10 @@ body {
     background-color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
 }
+.br-red{
+    border:1px solid #AF4B53;
+    /*box-shadow: 0 0 10px #AF4B53;*/
+}
 
 @media (min-width: 320px) {
     .news_det_img {
