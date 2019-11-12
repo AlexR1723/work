@@ -115,3 +115,10 @@ def Test(request):
 
 def Login(request):
     return render(request, 'Main/Login.html', locals())
+
+def Help(request):
+    contact = layout_contact()
+    link = layout_link()
+    # quest=HelpCategory.objects.a
+    category=HelpCategory.objects.all()
+    return render(request, 'Main/Help.html', locals())

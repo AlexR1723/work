@@ -589,6 +589,9 @@ p {
 .line_height_1{
     line-height: 1;
 }
+.line_height_2{
+    line-height: 2;
+}
 .img_circle{
     border-radius: 50%;
 }
@@ -783,7 +786,25 @@ p {
     color: white;
     background-color: #3E789D;
 }
+.help_i{
+    /*color: #777777;*/
+    opacity: 0.5;
+    font-size: 1.3rem;
+}
+.help_a{
+    color: black;
+    text-decoration: none;
+}
+.help_a:hover{
+    color: #3E789D;
+}
+.help_li{
+    list-style-type: none;
+}
 
+/*.help_a:hover, help_i{*/
+/*    opacity: 1;*/
+/*}*/
 
 
 

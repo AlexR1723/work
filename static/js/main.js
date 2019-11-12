@@ -33,28 +33,31 @@
 function counter(counts) {
     let blockStatus = true;
     let inc = 0
-    let target_blocks = ['counter1', 'counter2', 'counter3']
+    let target_blocks = ['div_counter1', 'div_counter2', 'div_counter3']
     let target_blocks1 = [$("#counter1"), $("#counter2"), $("#counter3")]
     // let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3"),]
     $(window).scroll(function () {
         for (let i = 0; i < target_blocks.length; i++) {
             let pos = $(window).scrollTop()
             // let block =target_blocks[i].position().top
-            // let height =$(window).height()
+            let height =$(window).height()
             let block = document.getElementById(target_blocks[i]).getBoundingClientRect().top
             // console.log(pos+' > '+height+'-'+block+'='+(height-block)+'  |  '+block2)
-            console.log(pos + ' - ' + block + ' = ' + (pos - block))
+            // console.log('niz:'+(pos+height)+' block_pos:'+(pos - block)+' pos:'+pos+' height:'+height+' block:'+block)
             // let block1=target_blocks[i].getBoundingClientRect()
             // let block2=document.getElementById('counter1').getBoundingClientRect()
             // let pos1=$('#counter1').scrollTop()
-            let res = pos - block - 600
+            // let res = pos - block - (height*0.8)
+            // let res = pos - block
+            let res = height - block-(height*0.3)
             // if(pos>res){
             //
             // }
             // var scrollEvent = ($(window).scrollTop() > (target_blocks[i].position().top -$(window).height()));
             if (res > 0 && blockStatus) {
-
-                $({numberValue: 0}).animate({numberValue: counts[i]}, {
+                let start_val=document.getElementById(target_blocks[i]).textContent
+                // start_val=start_val/2
+                $({numberValue: start_val}).animate({numberValue: counts[i]}, {
                     duration: 5000, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
                     easing: "linear",
                     step: function (val) {
@@ -62,7 +65,7 @@ function counter(counts) {
                         target_blocks1[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
                     }
                 });
-                console.log('added? inc=' + inc)
+                // console.log('added? inc=' + inc)
                 inc++
             }
         }
@@ -106,8 +109,12 @@ window.onload = function () {
 
     try {
         // let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3")]
-        let target_blocks = ['counter1', 'counter2', 'counter3']
-        if (target_blocks[0].length != 0 && target_blocks[1].length != 0 && target_blocks[2].length != 0) {
+        // let target_blocks = ['counter1', 'counter2', 'counter3']
+        let check1 = document.getElementById('counter1')
+        let check2 = document.getElementById('counter2')
+        let check3 = document.getElementById('counter3')
+        // if (target_blocks[0].length != 0 && target_blocks[1].length != 0 && target_blocks[2].length != 0) {
+        if (check1 != null && check2 != null && check3 != null) {
             counter([10000, 10, 70000])
         }
 

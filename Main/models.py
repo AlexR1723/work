@@ -170,3 +170,32 @@ class Region(models.Model):
         verbose_name = _("Регион")
         verbose_name_plural = _("Регионы")
 
+
+class HelpCategory(models.Model):
+    name = models.CharField(max_length=200, blank=True, null=True, verbose_name="Наименование")
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Картинка")
+
+    class Meta:
+        managed = False
+        db_table = 'help_category'
+        verbose_name = _("Категория вопроса")
+        verbose_name_plural = _("Категории вопросов")
+
+    def __str__(self):
+        return self.name
+
+    def questions(self):
+        quest=HelpSubcategory.objects.filter(help_category_id=self)
+        return quest
+
+
+class HelpSubcategory(models.Model):
+    help_category = models.ForeignKey(HelpCategory, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")
+    text = models.CharField(max_length=500, blank=True, null=True, verbose_name="Текст вопроса")
+
+    class Meta:
+        managed = False
+        db_table = 'help_subcategory'
+        verbose_name = _("Вопрос")
+        verbose_name_plural = _("Вопросы")
+
