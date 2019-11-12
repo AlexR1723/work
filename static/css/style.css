@@ -476,7 +476,8 @@ section#titleText {
 
 .contact-text {
     color: black;
-    font-weight: 700;
+    /*font-weight: 700;*/
+    font-weight: 400;
     font-size: 1.4rem;
 }
 
@@ -841,7 +842,7 @@ hr.line {
     font-weight: 300;
     color: white;
 }
-.title-l-r span {
+.title-l-r span, .title-l-r h4 {
     display: inline-block;
 }
 .title-l-r:before,
@@ -976,3 +977,16 @@ hr.line {
     }
 }
 /*-----------------------*/
+.send-btn{
+    background:none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    padding: .3rem 1rem .3rem 1rem;
+    border-radius: 5px;
+    transition: .3s;
+}
+.send-btn:hover{
+    background: #AF4B53;
+    color: white;
+    transition: .3s;
+}
