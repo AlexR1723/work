@@ -185,4 +185,57 @@ $(document).ready(function () {
         else
             window.location.href = '/news/' + value;
     });
+    $("#name").click(function () {
+        $('#name').removeClass('br-red');
+    });
+    $("#email").click(function () {
+        $('#email').removeClass('br-red');
+    });
+    $("#message").click(function () {
+        $('#message').removeClass('br-red');
+    });
+    $("#send").click(function () {
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var message = $("#message").val();
+        if (name == "") {
+            $('#name').addClass('br-red');
+        }
+        if (email == "") {
+            $('#email').addClass('br-red');
+        }
+        if (message == "") {
+            $('#message').addClass('br-red');
+        }
+        if (name != "" && email != "" && message != "") {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: 'send/',
+                data: {
+                    name: name,
+                    email: email,
+                    message: message
+                },
+                success: function (data) {
+                    $("#alert-success").show('slow');
+                    setTimeout(function () {
+                        $("#alert-success").hide('slow');
+                    }, 5000);
+                },
+                error: function (data) {
+                    $("#alert-danger").show('slow');
+                    setTimeout(function () {
+                        $("#alert-danger").hide('slow');
+                    }, 5000);
+                }
+            })
+        } else {
+            $("#alert-danger").show('slow');
+            setTimeout(function () {
+                $("#alert-danger").hide('slow');
+            }, 5000);
+        }
+    });
+
 });

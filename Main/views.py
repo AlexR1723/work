@@ -110,5 +110,8 @@ def Top_performers(request):
 def Dev(request):
     return render(request, 'Main/Dev.html', locals())
 
+def Test(request):
+    return render(request, 'Test.html', locals())
+
 def Login(request):
     return render(request, 'Main/Login.html', locals())

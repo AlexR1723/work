@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container mx-lg-auto">
+    <div class="row justify-content-center login-block">
+        <div class="col-sm-12 col-md-6 register-link text-center">
+            <h3>Еще не зарегистрирован?</h3>
+            <p>Тогда скорее присоединяйся и выполняй <br> задания, либо ищи исполнителей</p>
+            <a href="#"><button class="btn btn-primary">Регистрация</button></a>
+        </div>
+        <div class="col-sm-12 col-md-6 login-form text-center">
+            <h3>Вход</h3>
+            <form>
+              <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль" />
+              </div>
+                <a href="#"><button type="submit" class="btn btn-outline-primary">Вход</button></a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
