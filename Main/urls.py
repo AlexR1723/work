@@ -24,7 +24,8 @@ urlpatterns = [
     url(r'^rabota/$', views.Rabota, name="Rabota"),
     url(r'^for_business/$', views.For_business, name="For_business"),
     url(r'^top_performers/$', views.Top_performers, name="Top_performers"),
-    url(r'^test/$', views.Test, name="Test"),
+    url(r'^login/$', views.Login, name="Login"),
+    # url(r'^test/$', views.Test, name="Test"),
 
     url(r'^dev/$', views.Dev, name="Dev"),
 ]

@@ -87,3 +87,6 @@ def Dev(request):
 
 def Test(request):
     return render(request, 'Test.html', locals())
+
+def Login(request):
+    return render(request, 'Main/Login.html', locals())
