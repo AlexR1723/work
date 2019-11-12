@@ -148,3 +148,25 @@ class BenefitsSafe(models.Model):
         db_table = 'benefits_safe'
         verbose_name = _("Преимущества безопасной сделки")
         verbose_name_plural = _("Преимущество безопасной сделки")
+
+
+class City(models.Model):
+    region = models.ForeignKey('Region', models.DO_NOTHING, blank=True, null=True, verbose_name="Регион")
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'city'
+        verbose_name = _("Город")
+        verbose_name_plural = _("Города")
+
+
+class Region(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'region'
+        verbose_name = _("Регион")
+        verbose_name_plural = _("Регионы")
+

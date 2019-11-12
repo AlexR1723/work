@@ -73,7 +73,7 @@ div.row {
 }
 
 .fix-top {
-    z-index: 9999;
+    z-index: 100;
     position: sticky;
     top: 0;
     min-height: 2em;
@@ -686,6 +686,12 @@ p {
     /*background-color: #FAF9F7;*/
     background-color: rgba(216,216,216,.5);
 }
+.bg_color_white{
+    background-color: white;
+}
+.bg_color_e7e7e7{
+    background-color: #e7e7e7;
+}
 .fw_700{
     font-weight: 700;
 }
@@ -702,6 +708,28 @@ p {
     width: 100%;
     /*border-color: ;*/
     border-top: 2px solid #3E789D;
+}
+/*.modal_city_header{*/
+    /*background-color: #d8d8d8;*/
+    /*background-image: linear-gradient(to right, white , #ddd, #ddd, #ddd, #ddd, #ddd, #ddd, #ddd, #ddd, #ddd, #ddd, white);*/
+/*}*/
+.mch_btn{
+    background-color: white;
+    color: #3E789D;
+    border: 1px solid #3E789D;
+    /*border-bottom: none;*/
+    width: 100%;
+    font-size: 2rem;
+    border-radius: 7px;
+    /*border-top-left-radius: 7px;*/
+    /*border-top-right-radius: 7px;*/
+    /*padding: 3px 10px;*/
+    /*margin: 0px 5px;*/
+    /*text-decoration: none;*/
+}
+.mch_btn:hover{
+    color: white;
+    background-color: #3E789D;
 }
 
 

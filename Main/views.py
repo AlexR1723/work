@@ -7,16 +7,41 @@ def layout_contact():
 def layout_link():
     link=Link.objects.all()
     return link
+# def region_city():
+    # city=City.objects.all()
+    # region=Region.objects.all()
+    # city_dnr=City.objects.filter(region_id=(Region.filter(name='ДНР')[0].id)).order_by('name')
+    # city_lnr=City.objects.filter(region_id=(Region.filter(name='ЛНР')[0].id)).order_by('name')
+    # city_rus=City.objects.filter(region_id=(Region.filter(name='Россия')[0].id)).order_by('name')
+    # city_urk=City.objects.filter(region_id=(Region.filter(name='Украина')[0].id)).order_by('name')
+    # print(city_dnr)
+    # city1=[]
+    # city1.append(city_dnr)
+    # city1.append(city_dnr1)
+    # return city_dnr
 
 # Create your views here.
 def Main(request):
     contact=layout_contact()
     link=layout_link()
+    city_dnr = City.objects.filter(region_id=(Region.objects.filter(name='ДНР')[0].id)).order_by('name')
+    city_lnr = City.objects.filter(region_id=(Region.objects.filter(name='ЛНР')[0].id)).order_by('name')
+    city_rus = City.objects.filter(region_id=(Region.objects.filter(name='Россия')[0].id)).order_by('name')
+    city_ukr = City.objects.filter(region_id=(Region.objects.filter(name='Украина')[0].id)).order_by('name')
 
     fslide=FirstSlider.objects.all()[0]
     slide=FirstSlider.objects.all()[1:]
     category=Category.objects.all().order_by('id')[:3]
     all_category=Category.objects.all().order_by('id')[3:]
+
+
+    # str='Распространение рекламы#Услуги промоутеров#Изготовление и монтаж наружной рекламы#Услуги звукорежиссера#Реклама в Интернете#Услуги модели#Другая реклама'
+    # list_str=str.split('#')
+    # models.Feedback.objects.create(name=name, phonenumber=phone, text=text) 6
+    # print(list_str)
+    # for i in list_str:
+    #     SubCategory.objects.create(category_id=14,name=i)
+
     return render(request, 'Main/Main.html', locals())
 
 def How_it_work(request):
@@ -84,3 +109,6 @@ def Top_performers(request):
 
 def Dev(request):
     return render(request, 'Main/Dev.html', locals())
+
+def Login(request):
+    return render(request, 'Main/Login.html', locals())
