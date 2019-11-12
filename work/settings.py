@@ -141,3 +141,12 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "romanenko.anastasiya1998@yandex.ua"
+EMAIL_HOST_PASSWORD = "anastasiya1998"
+EMAIL_USE_SSL = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
