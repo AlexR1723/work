@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^for_business/$', views.For_business, name="For_business"),
     url(r'^top_performers/$', views.Top_performers, name="Top_performers"),
     url(r'^login/$', views.Login, name="Login"),
+    url(r'^register/$', views.Register, name="Register"),
     url(r'^help/$', views.Help, name="Help"),
     # url(r'^test/$', views.Test, name="Test"),
 

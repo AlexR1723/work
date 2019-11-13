@@ -116,6 +116,9 @@ def Test(request):
 def Login(request):
     return render(request, 'Main/Login.html', locals())
 
+def Register(request):
+    return render(request, 'Main/Register.html', locals())
+
 def Help(request):
     contact = layout_contact()
     link = layout_link()
