@@ -14,10 +14,10 @@
 				<div class="carousel-inner h60">
 					<div class="carousel-item h60 active" style="background: url({{MEDIA_URL}}{{fslide.image.url}}) no-repeat center center; background-size: cover;">
                         <div class="row w-100 h-100 justify-content-center align-items-center">
-                            <div class="col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9">
+                            <div class="row col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9 justify-content-center">
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6 p-4 topCarusel-caption">
                                     <label class="topCarucel-head mb-0 w-100">{{fslide.text}}</label>
-                                    <label class="topCarucel-text mb-0">{{fslide.description}}</label>
+                                    <label class="topCarucel-text mb-0 w-100">{{fslide.description}}</label>
                                     <div class="row justify-content-center pt-4">
                                         <button type="button" class=" btn btn-outline colorbtnCarusel">СОЗДАЙТЕ ЗАДАНИЕ</button>
                                     </div>
@@ -31,9 +31,9 @@
                                              найдите специалиста
                                         </span>
                                     </div>
-                                    <div class="row justify-content-center align-items-center mt-2">
-                                        <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
-                                            <input type="text" class="form-control search-input" placeholder="">
+                                    <div class="row justify-content-center align-items-center mt-2 search-block">
+                                        <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="text" class="form-control search-input" placeholder="Напишите, чем вам помочь">
                                         </div>
                                         <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">
                                             <button type="button" class="form-control btn chColorFull search-bttn d-flex s-sm-none d-md-none d-lg-none d-xl-none p-0">
@@ -50,10 +50,10 @@
                     {% for s in slide %}
 					<div class="carousel-item h60" style="background: url({{MEDIA_URL}}{{s.image.url}}) no-repeat center center; background-size: cover;">
 						<div class="row w-100 h-100 justify-content-center align-items-center">
-                            <div class="col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9">
+                            <div class="row col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9 justify-content-center">
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6 p-4 topCarusel-caption">
                                     <label class="topCarucel-head mb-0 w-100">{{s.text}}</label>
-                                    <label class="topCarucel-text mb-0">{{s.description}}</label>
+                                    <label class="topCarucel-text mb-0 w-100">{{s.description}}</label>
                                     <div class="row justify-content-center pt-4">
                                         <button type="button" class=" btn btn-outline colorbtnCarusel">СОЗДАЙТЕ ЗАДАНИЕ</button>
                                     </div>
@@ -67,9 +67,9 @@
                                              найдите специалиста
                                         </span>
                                     </div>
-                                    <div class="row justify-content-center align-items-center mt-2">
+                                    <div class="row justify-content-center align-items-center mt-2 search-block">
                                         <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
-                                            <input type="text" class="form-control search-input" placeholder="">
+                                            <input type="text" class="form-control search-input" placeholder="Напишите, чем вам помочь">
                                         </div>
                                         <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">
                                             <button type="button" class="form-control btn chColorFull search-bttn d-flex s-sm-none d-md-none d-lg-none d-xl-none p-0">
@@ -190,8 +190,8 @@
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0">
                 <div class="row text-center mb-5">
                     <div class="col-md-12 ">
-                        <h1>Как мы работаем?</h1>
-                        <h4 class="mt-2">Все просто</h4>
+                        <h1>С нами вы экономите до 70%</h1>
+                        <h4 class="mt-2">Как это возможно?</h4>
                     </div>
                 </div>
 

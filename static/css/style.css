@@ -124,17 +124,31 @@ div.row {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-
+.search-block{
+    border-radius: 5px;
+    transition: .3s;
+}
+.search-block:hover{
+    box-shadow: 0 0 10px white;
+    transition: .3s;
+}
+.search-block:hover .search-input{
+    border:1px solid #aaa;
+}
 .topCarucel-head {
     font-weight: 700;
     font-size: 2rem;
     color: white;
+    text-shadow: 0 0 10px grey;
+    text-align: center;
 }
 
 .topCarucel-text {
     font-weight: 400;
     font-size: 1.1rem;
     color: white;
+    text-shadow: 0 0 10px grey;
+    text-align: center;
 }
 
 .viz {
