@@ -895,15 +895,17 @@ hr.line {
     background: rgba(255,255,255,.8);
 }
 
-/*------страница Вход------*/
+/*------страница Вход и Регистрация------*/
 
-.login-block {
+.login-block,
+.register-block {
     height: auto;
     margin: 60px 0;
     border-top: 2px solid rgba(216, 216, 216, 0.5);;
     border-bottom: 2px solid rgba(216, 216, 216, 0.5);;
 }
-.login-block h3 {
+.login-block h3,
+.register-block h3 {
     margin: 0;
     margin-bottom: 20px;
     font-size: 34px;
@@ -922,6 +924,10 @@ hr.line {
 .login-form {
     padding: 55px 60px;
 }
+.register-form,
+.register-right {
+    padding: 75px 60px;
+}
 .register-link button {
     padding: 0;
     padding: 7px 30px;
@@ -934,14 +940,35 @@ hr.line {
     border: 1px solid #AF4B53;
     color: #AF4B53;
 }
-.login-form {
+.register-form button {
+    padding: 0;
+    padding: 7px 25px;
+    margin-top: 10px;
+    font-size: 20px;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    transition: .3s;
+}
+.register-form button:hover {
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+}
+.login-form,
+.register-form {
     background: rgba(216, 216, 216, 0.7);
 }
-.login-form .form-control {
+.login-form .form-control,
+.register-form .form-control {
     padding: 0;
     padding-left: 15px ;
     font-size: 20px;
     border: none;
+}
+.register-form .form-control::-webkit-input-placeholder {
+    color: #C4C4C4;
+}
+.register-form .form-control:focus::-webkit-input-placeholder {
+    color: transparent;
 }
 .login-form .form-control::-webkit-input-placeholder {
     color: #C4C4C4;
@@ -987,12 +1014,23 @@ hr.line {
     font-size: 15px;
 }
 @media (min-width: 320px) and (max-width: 992px) {
-    .login-block h3 {
+    .login-block h3,
+    .register-form h3 {
         font-size: 28px;
     }
     .register-link,
-    .login-form {
+    .login-form,
+    .register-form {
         padding: 30px 20px;
+    }
+    .register-right p {
+        font-size: 16px;
+    }
+    .register-text {
+        font-size: 16px;
+    }
+    .register-right .fontCategorySmall {
+        font-size: 12px;
     }
 }
 /*-----------------------*/
