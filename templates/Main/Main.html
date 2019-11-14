@@ -113,13 +113,13 @@
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0">
                 <div class="row m-0 justify-content-center pt-3 pb-3">
                     {% for c in category %}
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
-                            <div class="row align-items-center">
-                                <div class="col-2 p-0">
-                                    <img class="w-100" src="{% static 'image/11.png' %}" alt="">
-                                </div>
-                                <span class="col-10 fontCategory">
-                                {{ c.name }}
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
+                        <div class="row align-items-center">
+                            <div class="col-2 p-0">
+                                <img class="w-100" src="{{MEDIA_URL}}{{c.image.url}}" alt="">
+                            </div>
+                            <span class="col-10 fontCategory">
+                                {{c.name}}
                             </span>
                             </div>
                             {% for s in c.first_five %}
@@ -152,13 +152,13 @@
                     {% endfor %}
                     <div class="collapse row" id="collapseExample">
                         {% for c in all_category %}
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
-                                <div class="row align-items-center">
-                                    <div class="col-2 p-0">
-                                        <img class="w-100" src="{% static 'image/11.png' %}" alt="">
-                                    </div>
-                                    <span class="col-10 fontCategory">
-                                    {{ c.name }}
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
+                            <div class="row align-items-center">
+                                <div class="col-2 p-0">
+                                    <img class="w-100" src="{{MEDIA_URL}}{{c.image.url}}" alt="">
+                                </div>
+                                <span class="col-10 fontCategory">
+                                    {{c.name}}
                                 </span>
                                 </div>
                                 {% for s in c.first_five %}

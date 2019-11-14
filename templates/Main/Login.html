@@ -7,7 +7,7 @@
         <div class="col-sm-12 col-md-6 register-link text-center">
             <h3>Еще не зарегистрирован?</h3>
             <p>Тогда скорее присоединяйся и выполняй <br> задания, либо ищи исполнителей</p>
-            <a href="#"><button class="btn btn-primary">Регистрация</button></a>
+            <a href="{% url 'Register' %}"><button class="btn btn-primary">Регистрация</button></a>
         </div>
         <div class="col-sm-12 col-md-6 login-form text-center">
             <h3>Вход</h3>
@@ -18,7 +18,7 @@
               <div class="form-group">
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль" />
               </div>
-                <a href="#"><button type="submit" class="btn btn-outline-primary">Вход</button></a>
+                <a href="{% url 'Dev' %}"><button type="submit" class="btn btn-outline-primary">Вход</button></a>
             </form>
         </div>
     </div>

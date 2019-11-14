@@ -8,6 +8,9 @@ class News(models.Model):
     description = models.TextField(max_length=5000, blank=True, null=True, verbose_name="Описание")
     image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Изображение")
     date = models.DateField(blank=True, null=True, verbose_name="Дата добавления")
+    meta_title = models.CharField(max_length=500, blank=True, null=True)
+    meta_description = models.CharField(max_length=500, blank=True, null=True)
+    image_alt = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False

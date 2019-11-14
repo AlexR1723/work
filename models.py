@@ -101,6 +101,15 @@ class Category(models.Model):
         db_table = 'category'
 
 
+class City(models.Model):
+    region = models.ForeignKey('Region', models.DO_NOTHING, blank=True, null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'city'
+
+
 class Comments(models.Model):
     user_id = models.IntegerField(blank=True, null=True)
     text = models.CharField(max_length=1000, blank=True, null=True)
@@ -181,6 +190,24 @@ class FirstSlider(models.Model):
         db_table = 'first_slider'
 
 
+class HelpCategory(models.Model):
+    name = models.CharField(max_length=200, blank=True, null=True)
+    image = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'help_category'
+
+
+class HelpSubcategory(models.Model):
+    text = models.CharField(max_length=500, blank=True, null=True)
+    help_category = models.ForeignKey(HelpCategory, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'help_subcategory'
+
+
 class Link(models.Model):
     link = models.CharField(max_length=100, blank=True, null=True)
     icon = models.CharField(max_length=100, blank=True, null=True)
@@ -196,6 +223,9 @@ class News(models.Model):
     image = models.CharField(max_length=500, blank=True, null=True)
     description = models.CharField(max_length=5000, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
+    meta_title = models.CharField(max_length=500, blank=True, null=True)
+    meta_description = models.CharField(max_length=500, blank=True, null=True)
+    image_alt = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -216,6 +246,14 @@ class OrderService(models.Model):
     class Meta:
         managed = False
         db_table = 'order_service'
+
+
+class Region(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'region'
 
 
 class SubCategory(models.Model):
