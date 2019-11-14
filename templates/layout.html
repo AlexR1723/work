@@ -17,18 +17,17 @@
 </head>
 <body>
 <div class="container-fluid p-0">
-    <!--    {#-->
-    <!--    <form>#}-->
     <div class="row rec_ser m-0 justify-content-center">
-        <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-2 pb-2">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-3 pb-3">
             <div class="row justify-content-between align-items-center">
                 <div class="col-2 col-sm-2 col-md-3 col-lg-4 col-xl-4 px-2">
                     <div class="row align-items-center">
                         <div class="col-12 text-center p-0">
-                            <a href="" class="head_icon_color">
-                                <i class="fas fa-map-marked-alt fz_2rem d-inline d-sm-inline d-md-none d-lg-none d-xl-none"></i>
-                            </a>
-                            <a href="" class="d-none d-sm-none d-md-flex d-lg-flex d-xl-flex">Донецк</a>
+                            <a data-toggle="modal" data-target="#modal_city" href="" class="head_icon_color"> <i
+                                    class="fas fa-map-marked-alt fz_2rem d-inline d-sm-inline d-md-none d-lg-none d-xl-none"></i></a>
+
+                            <a data-toggle="modal" data-target="#modal_city" href=""
+                               class="d-none d-sm-none d-md-flex d-lg-flex d-xl-flex">Донецк</a>
                         </div>
                     </div>
                 </div>
@@ -166,7 +165,7 @@
                     <h5 class="font-weight-bold mt-3 mb-4">Помощь</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="{% url 'Dev' %}">Вопрос / ответ</a>
+                            <a href="{% url 'Help' %}">Вопрос / ответ</a>
                         </li>
                         <li>
                             <a href="{% url 'Dev' %}">Публичная оферта</a>
@@ -207,13 +206,13 @@
 
                     <div class="row justify-content-around">
                         {% for l in link %}
-                        <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
-                            <div class="circle">
-                                <a href="{{l.link}}">
-                                    {% autoescape off %}{{l.icon}}{% endautoescape %}
-                                </a>
+                            <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
+                                <div class="circle">
+                                    <a href="{{ l.link }}">
+                                        {% autoescape off %}{{ l.icon }}{% endautoescape %}
+                                    </a>
+                                </div>
                             </div>
-                        </div>
                         {% endfor %}
                     </div>
 
@@ -221,24 +220,24 @@
                         {% for ct in contact %}
                             {% if ct.name == "email" %}
                                 {% for c in ct.contact_set.all %}
-                                <li>
-                                    <a href="mailto:{{c.name}}">{{c.name}}</a>
-                                </li>
+                                    <li>
+                                        <a href="mailto:{{ c.name }}">{{ c.name }}</a>
+                                    </li>
                                 {% endfor %}
+                            {% else %}
+                                {% if ct.name == "телефон" %}
+                                    {% for c in ct.contact_set.all %}
+                                        <li>
+                                            <a href="tel:{{ c.name }}">{{ c.name }}</a>
+                                        </li>
+                                    {% endfor %}
                                 {% else %}
-                                    {% if ct.name == "телефон" %}
-                                        {% for c in ct.contact_set.all %}
+                                    {% for c in ct.contact_set.all %}
                                         <li>
-                                            <a href="tel:{{c.name}}">{{c.name}}</a>
+                                            <a href="#!">{{ c.name }}</a>
                                         </li>
-                                        {% endfor %}
-                                    {% else %}
-                                        {% for c in ct.contact_set.all %}
-                                        <li>
-                                            <a href="#!">{{c.name}}</a>
-                                        </li>
-                                        {% endfor %}
-                                    {% endif %}
+                                    {% endfor %}
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -256,6 +255,170 @@
 
     </footer>
     <!-- Footer -->
+{#    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="modal_city">Large modal</button>#}
+    <!--    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Large modal</button>-->
+
+    <div class="modal fade bd-example-modal-xl" id="modal_city" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" style="z-index: 200">
+
+            <div class="modal-content bg_color_e7e7e7">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Выберите город</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+{#                    <div class="row pb-5">#}
+{#                        <div class="col-9 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center">#}
+{#                            <button id="btn_city_dnr" class="mch_btn">ДНР</button>#}
+{#                        </div>#}
+{#                        <div class="col-9 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center">#}
+{#                            <button id="btn_city_lnr" class="mch_btn">ЛНР</button>#}
+{#                        </div>#}
+{#                        <div class="col-9 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center">#}
+{#                            <button id="btn_city_rus" class="mch_btn">Россия</button>#}
+{#                        </div>#}
+{#                        <div class="col-9 col-sm-6 col-md-5 col-lg-3 col-xl-2 text-center">#}
+{#                            <button id="btn_city_ukr" class="mch_btn">Украина</button>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div id="cities_dnr" class="row">#}
+{#                        {% for i in city_dnr %}#}
+{#                            <div class="col-9 col-sm-6 col-md-3 col-lg-3 col-xl-3">#}
+{#                                <a class="">{{ i.name }}</a>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                    <div id="cities_lnr" class="row">#}
+{#                        {% for i in city_lnr %}#}
+{#                            <div class="col-9 col-sm-6 col-md-3 col-lg-3 col-xl-3">#}
+{#                                <a class="">{{ i.name }}</a>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                    <div id="cities_rus" class="row">#}
+{#                        {% for i in city_rus %}#}
+{#                            <div class="col-9 col-sm-6 col-md-3 col-lg-3 col-xl-3">#}
+{#                                <a class="">{{ i.name }}</a>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                    <div id="cities_ukr" class="row">#}
+{#                        {% for i in city_ukr %}#}
+{#                            <div class="col-9 col-sm-6 col-md-3 col-lg-3 col-xl-3">#}
+{#                                <a class="">{{ i.name }}</a>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+
+
+                    <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="cities_dnr">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1"
+                                   href="#cities_dnr_collapse"
+                                   aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        ДНР <i class="fas fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+
+                            <div id="cities_dnr_collapse" class="collapse" role="tabpanel" aria-labelledby="cities_dnr"
+                                 data-parent="#accordionEx1">
+                                <div class="card-body row p-2">
+                                    {% for i in city_dnr %}
+                                        <div class="col-9 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                            <a class="">{{ i.name }}</a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="card-header" role="tab" id="cities_lnr">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1"
+                                   href="#cities_lnr_collapse"
+                                   aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        ЛНР <i class="fas fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+
+                            <div id="cities_lnr_collapse" class="collapse" role="tabpanel" aria-labelledby="cities_lnr"
+                                 data-parent="#accordionEx1">
+                                <div class="card-body row p-2">
+                                    {% for i in city_lnr %}
+                                        <div class="col-9 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                            <a class="">{{ i.name }}</a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="card-header" role="tab" id="cities_rus">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1"
+                                   href="#cities_rus_collapse"
+                                   aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        Россия <i class="fas fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+
+                            <div id="cities_rus_collapse" class="collapse" role="tabpanel" aria-labelledby="cities_rus"
+                                 data-parent="#accordionEx1">
+                                <div class="card-body row p-2">
+                                    {% for i in city_rus %}
+                                        <div class="col-9 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                            <a class="">{{ i.name }}</a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="card-header" role="tab" id="cities_ukr">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1"
+                                   href="#cities_ukr_collapse"
+                                   aria-expanded="false" aria-controls="collapseTwo1">
+                                    <h5 class="mb-0">
+                                        Украина <i class="fas fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                </a>
+                            </div>
+
+                            <div id="cities_ukr_collapse" class="collapse" role="tabpanel" aria-labelledby="cities_ukr"
+                                 data-parent="#accordionEx1">
+                                <div class="card-body row p-2">
+                                    {% for i in city_ukr %}
+                                        <div class="col-9 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                            <a class="">{{ i.name }}</a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 </div>
 <script src="https://kit.fontawesome.com/2c9fd467ea.js"></script>
