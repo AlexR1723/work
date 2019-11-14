@@ -29,5 +29,7 @@ urlpatterns = [
     url(r'^help/$', views.Help, name="Help"),
     # url(r'^test/$', views.Test, name="Test"),
 
+    url(r'/search_input/', views.search_input, name='search_input'),
+
     url(r'^dev/$', views.Dev, name="Dev"),
 ]

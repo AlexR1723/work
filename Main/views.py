@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.core import serializers
+# from django.forms.models import model_to_dict as to_js
+import json
 from .models import *
 
 def layout_contact():
@@ -125,3 +129,33 @@ def Help(request):
     # quest=HelpCategory.objects.a
     category=HelpCategory.objects.all()
     return render(request, 'Main/Help.html', locals())
+
+def search_input(request):
+    word = request.GET.get("word")
+    word = str(word).strip()
+    print(word)
+    res=SubCategory.objects.filter(name__icontains=word)[:6]
+    # list = models.Products.objects.all()
+    # list1 = []
+    # for i in list:
+    #     list2 = []
+    #     list2.append(i.id)
+    #     list2.append(i.name.lower())
+    #     list1.append(list2)
+    # return HttpResponse(json.dumps({'data': res}))
+    #     obj = MyModel.objects.get(pk=id)
+    list=[]
+    for i in res:
+        list1=[]
+        list1.append(i.id)
+        list1.append(i.name)
+        list1.append(Category.objects.get(id=i.category_id).name)
+        list.append(list1)
+
+    # data = serializers.serialize('json', res,fields=('name'))
+    # struct = json.loads(data)
+    # data = json.dumps(struct[0])
+    # return HttpResponse(data, mimetype='application/json')
+    # return HttpResponse(word)
+    # obj=to_js(res)
+    return HttpResponse(json.dumps(list))
