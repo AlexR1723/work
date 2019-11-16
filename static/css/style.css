@@ -1126,3 +1126,36 @@ hr.line {
     color: white;
     transition: .3s;
 }
+/*---------Оферта--------------*/
+.offer_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/3eabf99674833ed66719c.jpg) 70% 70% no-repeat;
+    background-size: cover;
+}
+.offer_hdr_bg_layout {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .5);
+    color: #FFFFFF;
+}
+.offer_blk ol {
+    list-style: none;
+    counter-reset: li;
+}
+.offer_blk ol li:before {
+    counter-increment: li;
+    content: counters(li,".") ".";
+    padding-right: 10px;
+}
+.offer_blk_list > li {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+.offer_blk_inside_list li {
+    line-height: 25px;
+    font-size: 1.125rem;
+    font-weight: normal;
+}
+/*-----------------------*/
