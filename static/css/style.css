@@ -1158,4 +1158,49 @@ hr.line {
     font-size: 1.125rem;
     font-weight: normal;
 }
+/*---------Правила-------*/
+.rules_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/documents.jpg) 30% 30% no-repeat;
+    background-size: cover;
+}
+.rules_hdr_bg_layout {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .5);
+    color: #FFFFFF;
+}
+.rules_blk ol {
+    list-style: none;
+}
+.rules_blk_inside_list {
+    list-style: none;
+    counter-reset: li;
+}
+.rules_blk_list > li {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+.rules_blk_inside_list li {
+    line-height: 25px;
+    font-size: 1.125rem;
+    font-weight: normal;
+    padding-left: 40px;
+}
+.rules_blk_inside_list li:before {
+    counter-increment: li;
+    content: counters(li,".") " ";
+    position: absolute;
+    left: 7rem;
+}
+@media (min-width: 320px) and (max-width: 992px) {
+    .rules_blk_inside_list li {
+        padding-left: 0;
+    }
+    .rules_blk_inside_list li:before {
+        left: 2rem;
+    }
+}
 /*-----------------------*/

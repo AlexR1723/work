@@ -126,6 +126,9 @@ def Register(request):
 def Public_offer(request):
     return render(request, 'Main/Public_offer.html', locals())
 
+def Rules(request):
+    return render(request, 'Main/Rules.html', locals())
+
 def Help(request):
     contact = layout_contact()
     link = layout_link()
