@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^help/$', views.Help, name="Help"),
     url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
     url(r'^rules/$', views.Rules, name="Rules"),
+    url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
 
     # url(r'^test/$', views.Test, name="Test"),
 
