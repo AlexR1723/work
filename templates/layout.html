@@ -204,9 +204,12 @@
                 <!-- Grid column -->
                 <div class="col-9 col-sm-8 col-md-3 col-lg-4 col-xl-3 mt-4 sochial m-auto">
 
-                    <div class="row justify-content-around">
+                    <div class="row justify-content-between">
+
+{#                        div.#}
+
                         {% for l in link %}
-                            <div class="col-2 col-sm-2 col-md-4 col-lg-2 col-xl-2 p-1  justify-content-center">
+                            <div class="col-2 col-sm-2 col-md-6 col-lg-3 col-xl-3 p-1  justify-content-center">
                                 <div class="circle">
                                     <a href="{{ l.link }}">
                                         {% autoescape off %}{{ l.icon }}{% endautoescape %}

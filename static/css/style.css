@@ -509,13 +509,14 @@ section#titleText {
     height: 2.7rem;
     background: white;
     border-radius: 50%;
+    /*color:#3E789D;*/
 
     align-items: center;
     justify-content: center;
     display: flex
 }
 
-.fa-instagram, .fa-facebook-f, .fa-vk {
+.circle a i {
     color: #3E789D;
 }
 

@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse
+from uuslug import slugify
 # Create your models here.
 
 class News(models.Model):
@@ -11,12 +13,26 @@ class News(models.Model):
     meta_title = models.CharField(max_length=500, blank=True, null=True)
     meta_description = models.CharField(max_length=500, blank=True, null=True)
     image_alt = models.CharField(max_length=500, blank=True, null=True)
+    slug = models.TextField(blank=True, null=True, verbose_name="Ссылка")
 
     class Meta:
         managed = False
         db_table = 'news'
         verbose_name = _("Новость")
         verbose_name_plural = _("Новости")
+
+    def get_absolute_url(self):
+        return reverse('News_detail', kwargs={'slug': str(self.id)+'-'+self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            count=News.objects.count()
+            string = str(count+1) + '-' + self.text
+        else:
+            arr=News.objects.get(id=self.id).slug.split('-')
+            string=arr[0]+'-'+self.text
+        self.slug = slugify(string)
+        super(News, self).save(*args, **kwargs)
 
 
 class NewsType(models.Model):

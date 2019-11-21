@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import *
 
+from django.views.generic import ListView, DetailView
+
+
 def layout_contact():
     contact=ContactType.objects.all()
     return contact
@@ -85,7 +88,9 @@ def News_page(request,page):
     next = page+1
     return render(request, 'News/News.html', locals())
 
-def News_detail(request, id):
+# def News_detail(request, id):
+def News_detail(request, slug):
+    id=slug.split('-')[0]
     contact = layout_contact()
     link = layout_link()
 
