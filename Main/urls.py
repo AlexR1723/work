@@ -27,6 +27,10 @@ urlpatterns = [
     url(r'^login/$', views.Login, name="Login"),
     url(r'^register/$', views.Register, name="Register"),
     url(r'^help/$', views.Help, name="Help"),
+    url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
+    url(r'^rules/$', views.Rules, name="Rules"),
+    url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
+
     # url(r'^test/$', views.Test, name="Test"),
 
     url(r'/search_input/', views.search_input, name='search_input'),

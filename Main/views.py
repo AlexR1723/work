@@ -123,6 +123,15 @@ def Login(request):
 def Register(request):
     return render(request, 'Main/Register.html', locals())
 
+def Public_offer(request):
+    return render(request, 'Main/Public_offer.html', locals())
+
+def Rules(request):
+    return render(request, 'Main/Rules.html', locals())
+
+def Privacy_rules(request):
+    return render(request, 'Main/Privacy_rules.html', locals())
+
 def Help(request):
     contact = layout_contact()
     link = layout_link()
