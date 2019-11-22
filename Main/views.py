@@ -138,6 +138,9 @@ def Search_results(request):
 def Question_category(request):
     return render(request, 'Main/Question_category.html', locals())
 
+def Category_item(request):
+    return render(request, 'Main/Category_item.html', locals())
+
 def Help(request):
     contact = layout_contact()
     link = layout_link()
