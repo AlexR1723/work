@@ -132,6 +132,9 @@ def Rules(request):
 def Privacy_rules(request):
     return render(request, 'Main/Privacy_rules.html', locals())
 
+def Search_results(request):
+    return render(request, 'Main/Search_results.html', locals())
+
 def Help(request):
     contact = layout_contact()
     link = layout_link()
