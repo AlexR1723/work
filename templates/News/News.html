@@ -42,7 +42,8 @@
             <p class="news_type">{{n.type}}</p>
             <p class="news_text mt-2">{{n.description}}</p>
             <div class="w-100 text-right mt-3">
-                <a href="{% url 'News_detail' n.id %}">Подробнее</a>
+{#                <a href="{% url 'News_detail' n.id %}">Подробнее</a>#}
+                <a href="{{n.get_absolute_url}}">Подробнее</a>
             </div>
         </div>
     </div>
