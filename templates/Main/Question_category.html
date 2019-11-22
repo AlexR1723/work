@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container-fluid p-0 category-quest-blk">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-start">
+                <div class="row align-items-center mt-5">
+                    <div class="col-2 col-sm-1 col-md-1 p-0">
+                        <img class="w-100" src="/media/uploads/user.png" alt="">
+                    </div>
+                    <div class="col-10 col-sm-11 col-md-11">
+                        <h3>Настройки профиля</h3>
+                    </div>
+                </div>
+
+                <ul class="p-0 mb-3 w-100">
+                    <li class="search-res_li mt-4">
+                        <a class="search-res_a w-100" href="">
+                            <div class="w-100 d-flex align-items-start">
+                                <i class="fas help_i fa-question-circle mt-1 mr-2"></i>
+                                <p class="search-res_p m-0">Как поменять фото профиля?</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="search-res_li mt-2">
+                        <a class="search-res_a w-100" href="">
+                            <div class="w-100 d-flex align-items-start">
+                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>
+                                <p class="search-res_p m-0">Как поменять общую информацию о себе?</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="search-res_li mt-2">
+                        <a class="search-res_a w-100" href="">
+                            <div class="w-100 d-flex align-items-start">
+                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>
+                                <p class="search-res_p m-0">Как поменять пароль для входа в профиль?</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="search-res_li mt-2">
+                        <a class="search-res_a w-100" href="">
+                            <div class="w-100 d-flex align-items-start">
+                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>
+                                <p class="search-res_p m-0">Как изменить номер телефона или эл. почту в профиле?</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row m-0 justify-content-center pt-5">
+                    <hr class="line m-0">
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container-fluid p-0 mt-5 question_blk mb-5">
+        <div class="row text-center mb-5">
+            <div class="col-md-12">
+                <h2 class="mb-1">Что-то не нашли?</h2>
+                <h4 class="m-0">Воспользуйтесь поиском</h4>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-7 col-sm-7 col-md-6 col-lg-5 col-xl-4 px-0">
+                <input type="text" id="question_input" class="form-control question-input" placeholder="Чем вам помочь?">
+            </div>
+            <a href="#">
+                <button type="button" class="w-100 btn question-btn fz_12rem px-sm-4 px-md-5">НАЙТИ</button>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^rules/$', views.Rules, name="Rules"),
     url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
     url(r'^search_results/$', views.Search_results, name="Search_results"),
+    url(r'^question_category/$', views.Question_category, name="Question_category"),
 
 
     # url(r'^test/$', views.Test, name="Test"),
