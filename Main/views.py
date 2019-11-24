@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.core import serializers
 import json
+import random
 from .models import *
 
 def layout_contact():
@@ -134,6 +135,12 @@ def Login(request):
     return render(request, 'Main/Login.html', locals())
 
 def Register(request):
+    # list = [1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    # key=''
+    # while (len(key)<50):
+    #     i=random.randint(0,len(list)-1)
+    #     key+=str(list[i])
+    # print(key)
     return render(request, 'Main/Register.html', locals())
 
 def Public_offer(request):
@@ -144,6 +151,15 @@ def Rules(request):
 
 def Privacy_rules(request):
     return render(request, 'Main/Privacy_rules.html', locals())
+
+def Search_results(request):
+    return render(request, 'Main/Search_results.html', locals())
+
+def Question_category(request):
+    return render(request, 'Main/Question_category.html', locals())
+
+def Category_item(request):
+    return render(request, 'Main/Category_item.html', locals())
 
 def Help(request):
     contact = layout_contact()

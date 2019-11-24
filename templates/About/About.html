@@ -19,10 +19,9 @@
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
         <div class="row pl-5 pr-5 pt-5 col-12">
             <p class="fz_2rem mb-3 w-100">Кто мы и что делаем?</p>
-            <p>Наш онлайн сервис поможет найти специалистов
-                                                    для
-                                                    решения
-                                                    Ваших задач. Мы объединяем заказчиков и исполнителей.</p>
+            {% for w in who %}
+            <p>{{w.text}}</p>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -30,9 +29,9 @@
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
         <div class="row pl-5 pr-5 pt-3 col-12">
             <p class="fz_2rem mb-3 w-100">Наша миссия</p>
-            <p>Помочь страждущим заказчикам и дать работу
-                                                    несчастным
-                                                    фрилансерам.</p>
+            {% for m in mission %}
+            <p>{{m.text}}</p>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -90,9 +89,9 @@
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
         <div class="row pl-5 pr-5 pt-5 col-12">
             <p class="fz_2rem mb-3 w-100">История проекта</p>
-            <p>Сервис стартовал совсем недавно, но мы уже
-                                                        покорили
-                                                        множество стран постсоветского пространства.</p>
+            {% for s in story %}
+            <p>{{s.text}}</p>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -100,13 +99,9 @@
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
         <div class="row pl-5 pr-5 pt-3 col-12">
             <p class="fz_2rem mb-3 w-100">Команда</p>
-            <p>Проект процветает благодаря амбициозной
-                                                        команде.
-                                                        Нас
-                                                        всех объединяет желание улучшить сферу услуг, помочь заказчикам
-                                                        найти
-                                                        проффессионалов-исполнителей, а исполнителям найти благодарных
-                                                        заказчиков.</p>
+            {% for t in team %}
+            <p>{{t.text}}</p>
+            {% endfor %}
         </div>
     </div>
 </div>

@@ -2,6 +2,14 @@ body {
     background-color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
 }
+.check{
+     font-size: 18px;
+    vertical-align: middle;
+}
+input.check{
+    width: 18px;
+    height: 18px;
+}
 
 @media (min-width: 320px) {
     .news_det_img {
@@ -20,7 +28,9 @@ body {
         order: 2;
     }
 }
-
+.br-red{
+    border:1px solid #AF4B53;
+}
 @media (min-width: 576px) {
     .news_det_img {
         width: 100%;
@@ -813,20 +823,31 @@ p {
     color: white;
     background-color: #3E789D;
 }
-.help_i{
+.help_i,
+.search-res_i {
     /*color: #777777;*/
     opacity: 0.5;
     font-size: 1.3rem;
 }
-.help_a{
+.help_a,
+.search-res_a {
     color: black;
     text-decoration: none;
 }
-.help_a:hover{
+.help_a:hover {
     color: #3E789D;
 }
-.help_li{
+.help_li,
+.search-res_li {
     list-style-type: none;
+}
+.search-res_a:hover {
+    text-decoration: none;
+    color: black;
+}
+.search-res_p:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 .search_input_drop{
     /*border: 1px solid black;*/
@@ -1060,7 +1081,7 @@ hr.line {
     padding: 0;
     padding-left: 15px ;
     font-size: 20px;
-    border: none;
+    /*border: none;*/
 }
 .register-form .form-control::-webkit-input-placeholder {
     color: #C4C4C4;
@@ -1160,7 +1181,8 @@ hr.line {
 }
 .offer_hdr_bg_layout,
 .rules_hdr_bg_layout,
-.privacy_hdr_bg_layout {
+.privacy_hdr_bg_layout,
+.category_hdr_bg_layout {
     height: 100%;
     width: 100%;
     background: rgba(0, 0, 0, .5);
@@ -1220,11 +1242,114 @@ hr.line {
     position: absolute;
     left: 7rem;
 }
+.search-res_header {
+    margin-top: 7%;
+}
+.question_blk {
+    margin-bottom: 6%;
+}
+.search-res_span {
+    font-size: 1.6rem;
+}
+.search-res_num {
+    font-size: 1.1rem;
+}
+.question-input {
+    border-right: none;
+    border-radius: 0;
+    font-size: 18px;
+    height: 50px;
+}
+.question-input::-webkit-input-placeholder {
+    color: #AAAAAA;
+}
+.question-input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+.question-btn {
+    border: 1px solid transparent;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    height: 50px;
+    background: #AF4B53;
+    color: #FFFFFF;
+}
+.question-btn:hover {
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    background: transparent;
+}
+.category_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/klining-odincovo-uborka-kvartir-asssfggaa.jpg) 70% 70% no-repeat;
+    background-size: cover;
+}
+.category-info_blk {
+    background: rgba(62,120,157,.2);
+}
+.category-info_text {
+    padding: 8% 11%;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000000;
+}
+.category-card_label {
+    font-size: 24px;
+    line-height: 30px;
+    color: #000000;
+}
+.category-card_text {
+    font-size: 1.1rem;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.category-money_label {
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 45px;
+    color: #000000;
+}
+.category-apply_btn {
+    font-size: 1.3rem;
+    font-weight: 400;
+    background: #AF4B53;
+    color: white;
+    border: 1px solid transparent;
+    padding: .5rem 1.5rem .5rem 1.5rem;
+    border-radius: 5px;
+    transition: .3s;
+}
+.category-apply_btn:hover {
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    background: transparent;
+}
+.category-apply_btn:focus {
+    outline: #AF4B53;
+}
+hr.category-line {
+    background: #aaaaaa;
+    border: none;
+    height: 1px;
+    width: 100%;
+}
+
 @media (min-width: 320px) and (max-width: 992px) {
     .rules_blk_inside_list li {
         padding-left: 0;
     }
     .rules_blk_inside_list li:before {
         left: 2rem;
+    }
+    .question-btn {
+        font-size: 1rem;
+    }
+    .search-res-blk span {
+        font-size: 1.3rem;
+    }
+    .search-res-blk h3,
+    .category-quest-blk h3 {
+        font-size: 1.5rem;
     }
 }

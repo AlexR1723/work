@@ -17,5 +17,5 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.About, name="About"),
+    url(r'^$', views.About_, name="About"),
 ]

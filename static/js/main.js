@@ -561,6 +561,7 @@ $(document).ready(function () {
     $("#send").click(function () {
         var name = $("#name").val();
         var email = $("#email").val();
+        var theme = $("#theme").val();
         var message = $("#message").val();
         if (name == "") {
             $('#name').addClass('br-red');
@@ -579,6 +580,7 @@ $(document).ready(function () {
                 data: {
                     name: name,
                     email: email,
+                    theme: theme,
                     message: message
                 },
                 success: function (data) {
@@ -601,4 +603,74 @@ $(document).ready(function () {
             }, 5000);
         }
     });
+    $("#RegisterInputName").click(function () {
+        $('#RegisterInputName').removeClass('br-red');
+    });
+    $("#RegisterInputSurname").click(function () {
+        $('#RegisterInputSurname').removeClass('br-red');
+    });
+    $("#RegisterInputEmail1").click(function () {
+        $('#RegisterInputEmail1').removeClass('br-red');
+    });
+    $("#RegisterInputPhone").click(function () {
+        $('#RegisterInputPhone').removeClass('br-red');
+    });
+    $("#RegisterInputPassword1").click(function () {
+        $('#RegisterInputPassword1').removeClass('br-red');
+    });
+    $("#RegisterInputPassword2").click(function () {
+        $('#RegisterInputPassword2').removeClass('br-red');
+    });
+    $('#registry').click(function () {
+        var name = $("#RegisterInputName").val();
+        var surname = $("#RegisterInputSurname").val();
+        var email = $("#RegisterInputEmail1").val();
+        var tel = $("#RegisterInputPhone").val();
+        var pass1 = $("#RegisterInputPassword1").val();
+        var pass2 = $("#RegisterInputPassword2").val();
+        var check = $("#RegisterInputCheckbox").is(':checked');
+
+        if (name == "") $('#RegisterInputName').addClass('br-red');
+        if (surname == "") $('#RegisterInputSurname').addClass('br-red');
+        if (email == "") $('#RegisterInputEmail1').addClass('br-red');
+        if (tel == "") $('#RegisterInputPhone').addClass('br-red');
+        if (pass1 == "") $('#RegisterInputPassword1').addClass('br-red');
+        if (pass2 == "") $('#RegisterInputPassword2').addClass('br-red');
+        if (check==false)
+            $("#alert-check").show('slow');
+            setTimeout(function () {
+                $("#alert-check").hide('slow');
+            }, 5000);
+
+        if (name != "" && surname != "" && email != "" && tel != "" && pass1 != "" && pass2 != "" && check==true) {
+            // $.ajax({
+            //     type: "GET",
+            //     dataType: "json",
+            //     url: 'send/',
+            //     data: {
+            //         name: name,
+            //         email: email,
+            //         theme: theme,
+            //         message: message
+            //     },
+            //     success: function (data) {
+            //         $("#alert-success").show('slow');
+            //         setTimeout(function () {
+            //             $("#alert-success").hide('slow');
+            //         }, 5000);
+            //     },
+            //     error: function (data) {
+            //         $("#alert-danger").show('slow');
+            //         setTimeout(function () {
+            //             $("#alert-danger").hide('slow');
+            //         }, 5000);
+            //     }
+            // })
+        } else {
+            $("#alert-danger").show('slow');
+            setTimeout(function () {
+                $("#alert-danger").hide('slow');
+            }, 5000);
+        }
+    })
 });
