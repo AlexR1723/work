@@ -20,7 +20,9 @@ body {
         order: 2;
     }
 }
-
+.br-red{
+    border:1px solid #AF4B53;
+}
 @media (min-width: 576px) {
     .news_det_img {
         width: 100%;

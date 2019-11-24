@@ -335,6 +335,7 @@ $(document).ready(function () {
     $("#send").click(function () {
         var name = $("#name").val();
         var email = $("#email").val();
+        var theme = $("#theme").val();
         var message = $("#message").val();
         if (name == "") {
             $('#name').addClass('br-red');
@@ -353,6 +354,7 @@ $(document).ready(function () {
                 data: {
                     name: name,
                     email: email,
+                    theme: theme,
                     message: message
                 },
                 success: function (data) {
