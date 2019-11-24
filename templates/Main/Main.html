@@ -113,13 +113,13 @@
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0">
                 <div class="row m-0 justify-content-center pt-3 pb-3">
                     {% for c in category %}
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
-                        <div class="row align-items-center">
-                            <div class="col-2 p-0">
-                                <img class="w-100" src="{{MEDIA_URL}}{{c.image.url}}" alt="">
-                            </div>
-                            <span class="col-10 fontCategory">
-                                {{c.name}}
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
+                            <div class="row align-items-center">
+                                <div class="col-2 p-0">
+                                    <img class="w-100" src="{{ MEDIA_URL }}{{ c.image.url }}" alt="">
+                                </div>
+                                <span class="col-10 fontCategory">
+                                {{ c.name }}
                             </span>
                             </div>
                             {% for s in c.first_five %}
@@ -152,13 +152,13 @@
                     {% endfor %}
                     <div class="collapse row" id="collapseExample">
                         {% for c in all_category %}
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
-                            <div class="row align-items-center">
-                                <div class="col-2 p-0">
-                                    <img class="w-100" src="{{MEDIA_URL}}{{c.image.url}}" alt="">
-                                </div>
-                                <span class="col-10 fontCategory">
-                                    {{c.name}}
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pt-2 pb-2">
+                                <div class="row align-items-center">
+                                    <div class="col-2 p-0">
+                                        <img class="w-100" src="{{ MEDIA_URL }}{{ c.image.url }}" alt="">
+                                    </div>
+                                    <span class="col-10 fontCategory">
+                                    {{ c.name }}
                                 </span>
                                 </div>
                                 {% for s in c.first_five %}
@@ -198,11 +198,42 @@
             <div class="col-md-12 text-center">
                 <button type="button" id="more_category" class="btn btn-outline-danger mr-2 mt-2 mb-2"
                         data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-                        aria-controls="collapseExample">Больше категорий</button>
+                        aria-controls="collapseExample">Больше категорий
+                </button>
                 <a class="btn btn-outline-danger mt-2 mb-2" href="{% url 'All_category' %}">Все категории</a>
             </div>
         </div>
     </div>
+
+    <div class="container-fluid py-5 bg_color_blue_opac">
+        <div class="row text-center mb-5">
+            <div class="col-md-12 ">
+                <h1>Что-то не нашли?</h1>
+                <h4 class="mt-2">Попробуйте поиск</h4>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-8 col-sm-8 col-md-6 col-lg-5 col-xl-4 p-0">
+                <form action="/dev/" method="get" id="main_input_form">
+{#                    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#}
+                    <input type="text" id="main_input" class=" form-control search-input" placeholder=""
+                           name="id">
+                </form>
+            </div>
+            <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-1 p-0">
+                {#                <form action="/dev/" method=""></form>#}
+                <button type="submit" class="w-100 btn chColorFull pl-4 pr-4 search-bttn" form="main_input_form">Найти
+                </button>
+            </div>
+
+        </div>
+        <div class="row justify-content-center align-items-center position-relative bg_color_white">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-5 p-0 search_dropdown">
+                <div class="col-12 search_input_drop p-0" id="res_list" style="display: none"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid p-0">
         <div class="row rec_ser justify-content-center pt-5 pb-5">
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0">
@@ -392,28 +423,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid p-0 mt-5 pb-5">
-        <div class="row text-center mb-5">
-            <div class="col-md-12 ">
-                <h1>Что-то не нашли?</h1>
-                <h4 class="mt-2">Попробуйте поиск</h4>
-            </div>
-        </div>
-        <div class="row justify-content-center align-items-center">
-            <div class="col-8 col-sm-8 col-md-6 col-lg-5 col-xl-4 pr-0">
-                <input type="text" id="main_input" class=" form-control form-control search-input" placeholder="">
-            </div>
-            <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-1 pl-0">
-                <button type="button" class="w-100 btn chColorFull pl-4 pr-4 search-bttn">Найти</button>
-            </div>
 
-        </div>
-        <div class="row justify-content-center align-items-center">
-            <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-5">
-                <div class="col-12 search_input_drop p-0" id="res_list" style="display: none"></div>
-            </div>
-        </div>
-    </div>
 
 
 {% endblock %}

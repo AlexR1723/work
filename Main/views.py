@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.core import serializers
-# from django.forms.models import model_to_dict as to_js
 import json
 from .models import *
 
@@ -38,6 +37,16 @@ def Main(request):
     category=Category.objects.all().order_by('id')[:3]
     all_category=Category.objects.all().order_by('id')[3:]
 
+
+    # subs=SubCategory.objects.all()
+    # for i in subs:
+    #     name = i.name
+    #     inc=0
+    #     for j in subs:
+    #         if j.name==name:
+    #             inc=inc+1
+    #     if inc>1:
+    #         print(str(i.id) +' '+i.name)
 
     # str='Распространение рекламы#Услуги промоутеров#Изготовление и монтаж наружной рекламы#Услуги звукорежиссера#Реклама в Интернете#Услуги модели#Другая реклама'
     # list_str=str.split('#')
@@ -112,6 +121,10 @@ def Top_performers(request):
     return render(request, 'Main/Top_performers.html', locals())
 
 def Dev(request):
+    id= request.GET.get('id')
+    print(id)
+    # if id:
+
     return render(request, 'Main/Dev.html', locals())
 
 def Test(request):
@@ -140,10 +153,20 @@ def Help(request):
     return render(request, 'Main/Help.html', locals())
 
 def search_input(request):
-    word = request.GET.get("word")
-    word = str(word).strip()
-    print(word)
-    res=SubCategory.objects.filter(name__icontains=word)[:6]
+    # word = request.GET.get("word")
+    # word = str(word).strip()
+    # print(word)
+    # arr=word.split(' ')
+    # res=SubCategory.objects.filter(name__icontains=word)[:6]
+    # if arr.count()>1:
+    #     list = res=SubCategory.objects.filter(name__icontains=arr[0])
+    #     for i in range(arr.count() - 1):
+    #         if(list[])
+    #
+    # else:
+    #     res=SubCategory.objects.filter(name__icontains=arr[0])[:10]
+
+
     # list = models.Products.objects.all()
     # list1 = []
     # for i in list:
@@ -153,13 +176,26 @@ def search_input(request):
     #     list1.append(list2)
     # return HttpResponse(json.dumps({'data': res}))
     #     obj = MyModel.objects.get(pk=id)
-    list=[]
-    for i in res:
-        list1=[]
-        list1.append(i.id)
-        list1.append(i.name)
-        list1.append(Category.objects.get(id=i.category_id).name)
-        list.append(list1)
+    cat = []
+    res_cat = Category.objects.all()
+    for i in res_cat:
+        cat1 = []
+        cat1.append(i.id)
+        cat1.append(i.name)
+        # list1.append(Category.objects.get(id=i.category_id).name)
+        # subcat1.append(i.category_id)
+        cat.append(cat1)
+
+    subcat=[]
+    res_subcat = SubCategory.objects.all()
+    for i in res_subcat:
+        subcat1=[]
+        subcat1.append(i.id)
+        subcat1.append(i.name)
+        # list1.append(Category.objects.get(id=i.category_id).name)
+        # subcat1.append(res_cat.get(id=i.category_id).name)
+        subcat1.append(i.category_id)
+        subcat.append(subcat1)
 
     # data = serializers.serialize('json', res,fields=('name'))
     # struct = json.loads(data)
@@ -167,4 +203,13 @@ def search_input(request):
     # return HttpResponse(data, mimetype='application/json')
     # return HttpResponse(word)
     # obj=to_js(res)
+    count1=SubCategory.objects.count()
+    count1=SubCategory.objects.count()
+    count1=SubCategory.objects.count()
+    count1=SubCategory.objects.count()
+
+    list=[]
+    list.append(cat)
+    list.append(subcat)
+
     return HttpResponse(json.dumps(list))

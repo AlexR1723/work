@@ -777,8 +777,22 @@ p {
 .bg_color_e7e7e7{
     background-color: #e7e7e7;
 }
+.bg_color_blue_opac{
+   background-color: rgba(62, 120, 157, 0.4);
+}
 .line_height_2{
     line-height: 2;
+}
+.search_dropdown{
+    position: absolute;
+    /*left: 30%;*/
+    /*width: 50%;*/
+    z-index: 200;
+    top: 0;
+    background-color: white;
+}
+.cursor_inherit{
+    cursor: inherit;
 }
 
 .mch_btn{
@@ -827,8 +841,12 @@ p {
     background: none;
     /*line-height: 2;*/
 }
+.sid_focus{
+    background-color: rgba(62, 120, 157, 0.3);
+}
 .search_input_drop_el:hover{
-    cursor: pointer;
+    /*cursor: pointer;*/
+    background-color: rgba(62, 120, 157, 0.2);
 }
 .color_gray{
     color: #777777;

@@ -90,6 +90,7 @@ def News_page(request,page):
 
 # def News_detail(request, id):
 def News_detail(request, slug):
+    print(slug)
     id=slug.split('-')[0]
     contact = layout_contact()
     link = layout_link()
