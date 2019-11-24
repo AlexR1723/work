@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.core import serializers
 # from django.forms.models import model_to_dict as to_js
 import json
+import random
 from .models import *
 
 def layout_contact():
@@ -121,6 +122,12 @@ def Login(request):
     return render(request, 'Main/Login.html', locals())
 
 def Register(request):
+    # list = [1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    # key=''
+    # while (len(key)<50):
+    #     i=random.randint(0,len(list)-1)
+    #     key+=str(list[i])
+    # print(key)
     return render(request, 'Main/Register.html', locals())
 
 def Public_offer(request):

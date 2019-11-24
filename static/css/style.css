@@ -2,6 +2,14 @@ body {
     background-color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
 }
+.check{
+     font-size: 18px;
+    vertical-align: middle;
+}
+input.check{
+    width: 18px;
+    height: 18px;
+}
 
 @media (min-width: 320px) {
     .news_det_img {
@@ -1055,7 +1063,7 @@ hr.line {
     padding: 0;
     padding-left: 15px ;
     font-size: 20px;
-    border: none;
+    /*border: none;*/
 }
 .register-form .form-control::-webkit-input-placeholder {
     color: #C4C4C4;
