@@ -106,6 +106,7 @@ def Rabota(request):
     list=[]
     for i in category:
         list1=[]
+        list1.append(i.name)
         list1.append(i.image)
         list1.append(i.name)
         list1.append(sub.filter(category_id=i.id).count())
@@ -125,6 +126,7 @@ def For_business(request):
     list = []
     for i in category:
         list1 = []
+        list1.append(i.name)
         list1.append(i.image)
         list1.append(i.name)
         list1.append(sub.filter(category_id=i.id).count())
@@ -262,8 +264,17 @@ def Category_item(request,name):
     contact = layout_contact()
     link = layout_link()
     regions = layout_regions()
-    print(name)
 
+    name=str(name).lower()
+    category_item=Category.objects.get(name__icontains=name)
+    # id=category_item.id
+    subs=SubCategory.objects.filter(category_id=category_item.id)
+
+
+    # all_cat=Category.objects.all()
+    # for i in all_cat:
+    #     i.text="Описание категории "+i.name+" vehicula ipsum a arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas maecenas"
+    #     i.save()
     return render(request, 'Main/Category_item.html', locals())
 
 def Help(request):

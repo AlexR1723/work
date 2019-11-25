@@ -761,6 +761,9 @@ p {
     /*background-color: #FAF9F7;*/
     background-color: rgba(216,216,216,.5);
 }
+.color_black{
+    color: black;
+}
 .fw_700{
     font-weight: 700;
 }
