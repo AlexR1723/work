@@ -164,7 +164,7 @@
                                 {% for s in c.first_five %}
                                     <div class="row mt-2">
                                         <div class="col-md-12 ">
-                                            <a class="fontCategorySmall colorDarkGrey" href="#">{{ s.name }}</a>
+                                            <a class="fontCategorySmall colorDarkGrey" href="{% url 'Category_item' s.name %}">{{ s.name }}</a>
                                             <small class="ml-2 colorLightGrey">1145</small>
                                         </div>
                                     </div>

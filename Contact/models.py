@@ -34,3 +34,28 @@ class Link(models.Model):
         db_table = 'link'
         verbose_name = _("Ссылка")
         verbose_name_plural = _("Ссылки")
+
+
+class City(models.Model):
+    region = models.ForeignKey('Region', models.DO_NOTHING, blank=True, null=True, verbose_name="Регион")
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'city'
+        verbose_name = _("Город")
+        verbose_name_plural = _("Города")
+
+
+class Region(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'region'
+        verbose_name = _("Регион")
+        verbose_name_plural = _("Регионы")
+
+    def cities(self):
+        city=City.objects.filter(region=self)
+        return city

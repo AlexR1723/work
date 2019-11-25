@@ -106,3 +106,36 @@ class HelpCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(HelpCategory, HelpCategoryAdmin)
 
+
+
+class PrivacyRulesAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in PrivacyRules._meta.fields]
+
+    class Meta:
+        model = PrivacyRules
+
+
+admin.site.register(PrivacyRules, PrivacyRulesAdmin)
+
+
+
+class ProjectRulesAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in ProjectRules._meta.fields]
+
+    class Meta:
+        model = ProjectRules
+
+
+admin.site.register(ProjectRules, ProjectRulesAdmin)
+
+
+
+class PublicOfferAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in PublicOffer._meta.fields]
+
+    class Meta:
+        model = PublicOffer
+
+
+admin.site.register(PublicOffer, PublicOfferAdmin)
+

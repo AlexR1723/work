@@ -33,7 +33,9 @@ urlpatterns = [
     url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
     url(r'^search_results/$', views.Search_results, name="Search_results"),
     url(r'^question_category/$', views.Question_category, name="Question_category"),
-    url(r'category_item/$', views.Category_item, name="Category_item"),
+    # url(r'^category_item/$', views.Category_item, name="Category_item"),
+
+    url(r'^(?P<name>[А-Яа-я]+\s[А-Яа-я]+)/$', views.Category_item, name="Category_item"),
 
 
     # url(r'^test/$', views.Test, name="Test"),

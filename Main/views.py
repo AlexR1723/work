@@ -10,9 +10,20 @@ from django.contrib.auth.models import User
 def layout_contact():
     contact=ContactType.objects.all()
     return contact
+
 def layout_link():
     link=Link.objects.all()
     return link
+
+def layout_regions():
+    regions = Region.objects.all()
+    return regions
+
+# def layout_cities():
+#     cities = City.objects.all()
+#     return cities
+
+
 # def region_city():
     # city=City.objects.all()
     # region=Region.objects.all()
@@ -69,22 +80,25 @@ def How_it_work(request):
 def Secure_transaction(request):
     contact = layout_contact()
     link = layout_link()
+    regions = layout_regions()
 
-    what=WhatSafe.objects.all()
-    benefits=BenefitsSafe.objects.all()
+    what = WhatSafe.objects.all()
+    benefits = BenefitsSafe.objects.all()
     return render(request, 'Main/Secure_transaction.html', locals())
 
 def Safety(request):
     contact = layout_contact()
     link = layout_link()
+    regions = layout_regions()
     return render(request, 'Main/Safety.html', locals())
 
 def Rabota(request):
     contact = layout_contact()
     link = layout_link()
+    regions = layout_regions()
 
-    whyme=WhyWe.objects.all().order_by('id')
-    seo=BecomePerformer.objects.all()
+    whyme = WhyWe.objects.all().order_by('id')
+    seo = BecomePerformer.objects.all()
 
     category=Category.objects.all().order_by('name')
     sub=SubCategory.objects.values('category_id')
@@ -103,13 +117,14 @@ def Rabota(request):
 def For_business(request):
     contact = layout_contact()
     link = layout_link()
+    regions = layout_regions()
 
-    category=Category.objects.all().order_by('name')
-    sub=SubCategory.objects.values('category_id')
+    category = Category.objects.all().order_by('name')
+    sub = SubCategory.objects.values('category_id')
 
-    list=[]
+    list = []
     for i in category:
-        list1=[]
+        list1 = []
         list1.append(i.image)
         list1.append(i.name)
         list1.append(sub.filter(category_id=i.id).count())
@@ -121,10 +136,11 @@ def For_business(request):
 def Top_performers(request):
     contact = layout_contact()
     link = layout_link()
+    regions = layout_regions()
     return render(request, 'Main/Top_performers.html', locals())
 
 def Dev(request):
-    id= request.GET.get('id')
+    id = request.GET.get('id')
     print(id)
     # if id:
 
@@ -174,29 +190,88 @@ def Registrate(request):
     # user=models.User(name=name,login=email,password=password)
 
 
+
 def Public_offer(request):
+    contact = layout_contact()
+    link = layout_link()
+    regions = layout_regions()
+
+    po = PublicOffer.objects.all().order_by('number')
+    public_offer = []
+    for i in po:
+        po1 = []
+        po1.append(i.header)
+        arr = i.text.split("\n\r\n\r")
+        po2 = []
+        for j in arr:
+            po2.append(j)
+        po1.append(po2)
+        public_offer.append(po1)
     return render(request, 'Main/Public_offer.html', locals())
 
 def Rules(request):
+    contact = layout_contact()
+    link = layout_link()
+    regions = layout_regions()
+
+    rl = ProjectRules.objects.all().order_by('number')
+    rules = []
+    for i in rl:
+        rl1 = []
+        rl1.append(i.header)
+        arr = i.text.split("\n\r\n\r")
+        rl2 = []
+        for j in arr:
+            rl2.append(j)
+        rl1.append(rl2)
+        rules.append(rl1)
     return render(request, 'Main/Rules.html', locals())
 
 def Privacy_rules(request):
+    contact = layout_contact()
+    link = layout_link()
+    regions = layout_regions()
+
+    pr=PrivacyRules.objects.all().order_by('number')
+    privacy_rules=[]
+    for i in pr:
+        pr1=[]
+        pr1.append(i.header)
+        arr = i.text.split("\n\r\n\r")
+        pr2=[]
+        for j in arr:
+            pr2.append(j)
+        pr1.append(pr2)
+        privacy_rules.append(pr1)
     return render(request, 'Main/Privacy_rules.html', locals())
 
 def Search_results(request):
+    contact = layout_contact()
+    link = layout_link()
+    regions = layout_regions()
     return render(request, 'Main/Search_results.html', locals())
 
 def Question_category(request):
+    contact = layout_contact()
+    link = layout_link()
+    regions = layout_regions()
     return render(request, 'Main/Question_category.html', locals())
 
-def Category_item(request):
+
+def Category_item(request,name):
+    contact = layout_contact()
+    link = layout_link()
+    regions = layout_regions()
+    print(name)
+
     return render(request, 'Main/Category_item.html', locals())
 
 def Help(request):
     contact = layout_contact()
     link = layout_link()
+    regions = layout_regions()
     # quest=HelpCategory.objects.a
-    category=HelpCategory.objects.all()
+    category = HelpCategory.objects.all()
     return render(request, 'Main/Help.html', locals())
 
 def search_input(request):

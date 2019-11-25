@@ -11,11 +11,15 @@ def layout_contact():
 def layout_link():
     link=Link.objects.all()
     return link
+def layout_regions():
+    regions = Region.objects.all()
+    return regions
 
 # Create your views here.
 def Contact(request):
     contact = layout_contact()
     link = layout_link()
+    regions = layout_regions()
     return render(request, 'Contact/Contact.html', locals())
 
 def Send(request):
