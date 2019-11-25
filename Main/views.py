@@ -4,6 +4,8 @@ from django.core import serializers
 import json
 import random
 from .models import *
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 def layout_contact():
     contact=ContactType.objects.all()
@@ -142,6 +144,35 @@ def Register(request):
     #     key+=str(list[i])
     # print(key)
     return render(request, 'Main/Register.html', locals())
+
+def Registrate(request):
+    name = request.GET.get("name")
+    surname = request.GET.get("surname")
+    email = request.GET.get("email")
+    tel = request.GET.get("tel")
+    password = request.GET.get("pass1")
+    list = [1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
+    try:
+        key = ''
+        while (len(key) < 50):
+            i = random.randint(0, len(list) - 1)
+            key += str(list[i])
+        user = User.objects.create_user(email, email, password)
+        user.first_name = name
+        user.last_name=surname
+        user.save()
+        print('1')
+        new_user=Users(auth_user=user.id, phone=tel,uuid=key)
+        print('2')
+        new_user.save()
+        print('3')
+    except:
+        print('error')
+    return HttpResponse(json.dumps({'data': 'ok'}))
+
+    # user=models.User(name=name,login=email,password=password)
+
 
 def Public_offer(request):
     return render(request, 'Main/Public_offer.html', locals())

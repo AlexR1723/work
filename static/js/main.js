@@ -650,36 +650,45 @@ $(document).ready(function () {
             setTimeout(function () {
                 $("#alert-check").hide('slow');
             }, 5000);
-
-        if (name != "" && surname != "" && email != "" && tel != "" && pass1 != "" && pass2 != "" && check==true) {
-            // $.ajax({
-            //     type: "GET",
-            //     dataType: "json",
-            //     url: 'send/',
-            //     data: {
-            //         name: name,
-            //         email: email,
-            //         theme: theme,
-            //         message: message
-            //     },
-            //     success: function (data) {
-            //         $("#alert-success").show('slow');
-            //         setTimeout(function () {
-            //             $("#alert-success").hide('slow');
-            //         }, 5000);
-            //     },
-            //     error: function (data) {
-            //         $("#alert-danger").show('slow');
-            //         setTimeout(function () {
-            //             $("#alert-danger").hide('slow');
-            //         }, 5000);
-            //     }
-            // })
-        } else {
-            $("#alert-danger").show('slow');
-            setTimeout(function () {
-                $("#alert-danger").hide('slow');
-            }, 5000);
-        }
+            if (name != "" && surname != "" && email != "" && tel != "" && pass1 != "" && pass2 != "" && check == true) {
+                if(pass1==pass2) {
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        url: 'registrate/',
+                        data: {
+                            name: name,
+                            surname: surname,
+                            email: email,
+                            tel: tel,
+                            pass1: pass1
+                        },
+                        success: function (data) {
+                            $("#alert-success").show('slow');
+                            setTimeout(function () {
+                                $("#alert-success").hide('slow');
+                            }, 5000);
+                        },
+                        error: function (data) {
+                            $("#alert-error").show('slow');
+                            setTimeout(function () {
+                                $("#alert-error").hide('slow');
+                            }, 5000);
+                        }
+                    })
+                }
+                else
+                {
+                    $("#alert-pass").show('slow');
+                    setTimeout(function () {
+                        $("#alert-pass").hide('slow');
+                    }, 5000);
+                }
+            } else {
+                $("#alert-danger").show('slow');
+                setTimeout(function () {
+                    $("#alert-danger").hide('slow');
+                }, 5000);
+            }
     })
 });

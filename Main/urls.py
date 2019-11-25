@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^top_performers/$', views.Top_performers, name="Top_performers"),
     url(r'^login/$', views.Login, name="Login"),
     url(r'^register/$', views.Register, name="Register"),
+    url(r'registrate/', views.Registrate),
     url(r'^help/$', views.Help, name="Help"),
     url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
     url(r'^rules/$', views.Rules, name="Rules"),
