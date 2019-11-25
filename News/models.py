@@ -22,15 +22,16 @@ class News(models.Model):
         verbose_name_plural = _("Новости")
 
     def get_absolute_url(self):
-        return reverse('News_detail', kwargs={'slug': str(self.id)+'-'+self.slug})
+        # return reverse('News_detail', kwargs={'slug': str(self.id)+'-'+self.slug})
+        return reverse('News_detail', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         if not self.id:
-            count=News.objects.count()
-            string = str(count+1) + '-' + self.text
+            super(News, self).save(*args, **kwargs)
+            # id = News.objects.all().order_by('id').reverse()[0].id
+            string = str(self.id) + '-' + self.text
         else:
-            arr=News.objects.get(id=self.id).slug.split('-')
-            string=arr[0]+'-'+self.text
+            string = str(self.id) + '-' + self.text
         self.slug = slugify(string)
         super(News, self).save(*args, **kwargs)
 
@@ -81,3 +82,26 @@ class ContactType(models.Model):
 
     def __str__(self):
         return self.name
+
+class City(models.Model):
+    region = models.ForeignKey('Region', models.DO_NOTHING, blank=True, null=True, verbose_name="Регион")
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'city'
+        verbose_name = _("Город")
+        verbose_name_plural = _("Города")
+
+class Region(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'region'
+        verbose_name = _("Регион")
+        verbose_name_plural = _("Регионы")
+
+    def cities(self):
+        city = City.objects.filter(region=self)
+        return city

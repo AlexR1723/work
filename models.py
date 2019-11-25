@@ -8,6 +8,23 @@
 from django.db import models
 
 
+class About(models.Model):
+    type = models.ForeignKey('AboutType', models.DO_NOTHING, blank=True, null=True)
+    text = models.CharField(max_length=5000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'about'
+
+
+class AboutType(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'about_type'
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -190,6 +207,14 @@ class FirstSlider(models.Model):
         db_table = 'first_slider'
 
 
+class Gender(models.Model):
+    name = models.CharField(max_length=10, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gender'
+
+
 class HelpCategory(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     image = models.TextField(blank=True, null=True)
@@ -226,6 +251,7 @@ class News(models.Model):
     meta_title = models.CharField(max_length=500, blank=True, null=True)
     meta_description = models.CharField(max_length=500, blank=True, null=True)
     image_alt = models.CharField(max_length=500, blank=True, null=True)
+    slug = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -248,6 +274,36 @@ class OrderService(models.Model):
         db_table = 'order_service'
 
 
+class PrivacyRules(models.Model):
+    header = models.CharField(max_length=500, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    number = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'privacy_rules'
+
+
+class ProjectRules(models.Model):
+    number = models.IntegerField()
+    header = models.CharField(max_length=500, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'project_rules'
+
+
+class PublicOffer(models.Model):
+    number = models.IntegerField()
+    header = models.CharField(max_length=500, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'public_offer'
+
+
 class Region(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
 
@@ -263,6 +319,29 @@ class SubCategory(models.Model):
     class Meta:
         managed = False
         db_table = 'sub_category'
+
+
+class User(models.Model):
+    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    phone = models.CharField(max_length=13, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    type = models.ForeignKey('UserType', models.DO_NOTHING, blank=True, null=True)
+    uuid = models.CharField(max_length=50, blank=True, null=True)
+    gender = models.ForeignKey(Gender, models.DO_NOTHING, blank=True, null=True)
+    birthday = models.DateField(blank=True, null=True)
+    about_me = models.CharField(max_length=5000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user'
+
+
+class UserType(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_type'
 
 
 class WhatSafe(models.Model):

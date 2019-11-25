@@ -10,6 +10,9 @@ def layout_contact():
 def layout_link():
     link=Link.objects.all()
     return link
+def layout_regions():
+    regions = Region.objects.all()
+    return regions
 
 list_page = []
 news_count = 0
@@ -18,6 +21,7 @@ news_count = 0
 def New(request):
     contact=layout_contact()
     link=layout_link()
+    regions=layout_regions()
     filter = 0
 
     news_type=NewsType.objects.all()
@@ -46,6 +50,7 @@ def New(request):
 def News_page(request,page):
     contact = layout_contact()
     link = layout_link()
+    regions=layout_regions()
     filter=0
 
     news_type = NewsType.objects.all()
@@ -90,6 +95,7 @@ def News_page(request,page):
 
 # def News_detail(request, id):
 def News_detail(request, slug):
+    print(slug)
     id=slug.split('-')[0]
     contact = layout_contact()
     link = layout_link()

@@ -11,20 +11,29 @@ def layout_contact():
 def layout_link():
     link=Link.objects.all()
     return link
+def layout_regions():
+    regions = Region.objects.all()
+    return regions
 
 # Create your views here.
 def Contact(request):
     contact = layout_contact()
     link = layout_link()
+    regions = layout_regions()
     return render(request, 'Contact/Contact.html', locals())
 
 def Send(request):
     name = request.GET.get("name")
     email=request.GET.get("email")
+    theme=request.GET.get("theme")
     mes=request.GET.get("message")
     message='Имя пользователя - '+ name + '\n'
     message=message + 'Email - '+ email + '\n'
     message=message + mes
-    send_mail('Обратная связь', message, 'romanenko.anastasiya1998@yandex.ua',
-              ['romanenko.anastasiya1998@yandex.ua'], fail_silently=False)
+    if (theme == ''):
+        send_mail('Обратная связь', message, 'romanenko.anastasiya1998@yandex.ua',
+                  ['romanenko.anastasiya1998@yandex.ua'], fail_silently=False)
+    else:
+        send_mail(theme, message, 'romanenko.anastasiya1998@yandex.ua',
+                  ['romanenko.anastasiya1998@yandex.ua'], fail_silently=False)
     return HttpResponse(json.dumps({'data': 'ok'}))

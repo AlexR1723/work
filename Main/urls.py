@@ -26,12 +26,16 @@ urlpatterns = [
     url(r'^top_performers/$', views.Top_performers, name="Top_performers"),
     url(r'^login/$', views.Login, name="Login"),
     url(r'^register/$', views.Register, name="Register"),
+    url(r'registrate/', views.Registrate),
     url(r'^help/$', views.Help, name="Help"),
     url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
     url(r'^rules/$', views.Rules, name="Rules"),
     url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
     url(r'^search_results/$', views.Search_results, name="Search_results"),
     url(r'^question_category/$', views.Question_category, name="Question_category"),
+    # url(r'^category_item/$', views.Category_item, name="Category_item"),
+
+    url(r'^category_item/(?P<name>[А-Яа-я\s0-9]+)/$', views.Category_item, name="Category_item"),
     url(r'category_item/$', views.Category_item, name="Category_item"),
     url(r'profile_settings/$', views.Profile_settings, name="Profile_settings"),
 

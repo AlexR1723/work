@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^(?P<filter>[А-Яа-я]+\s[А-Яа-я]+)/(?P<page>[0-9]+)/$', views.News_filter_page, name="News_filter_page"),
     # url(r'^detail/(?P<id>[0-9]+)/$', views.News_detail, name="News_detail"),
     path('<slug:slug>', views.News_detail, name='News_detail'),
+    # path('<slug>/$', views.News_detail, name='News_detail'),
 ]

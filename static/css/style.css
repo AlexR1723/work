@@ -2,6 +2,14 @@ body {
     background-color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
 }
+.check{
+     font-size: 18px;
+    vertical-align: middle;
+}
+input.check{
+    width: 18px;
+    height: 18px;
+}
 
 @media (min-width: 320px) {
     .news_det_img {
@@ -20,7 +28,9 @@ body {
         order: 2;
     }
 }
-
+.br-red{
+    border:1px solid #AF4B53;
+}
 @media (min-width: 576px) {
     .news_det_img {
         width: 100%;
@@ -777,8 +787,22 @@ p {
 .bg_color_e7e7e7{
     background-color: #e7e7e7;
 }
+.bg_color_blue_opac{
+   background-color: rgba(62, 120, 157, 0.4);
+}
 .line_height_2{
     line-height: 2;
+}
+.search_dropdown{
+    position: absolute;
+    /*left: 30%;*/
+    /*width: 50%;*/
+    z-index: 200;
+    top: 0;
+    background-color: white;
+}
+.cursor_inherit{
+    cursor: inherit;
 }
 
 .mch_btn{
@@ -838,8 +862,12 @@ p {
     background: none;
     /*line-height: 2;*/
 }
+.sid_focus{
+    background-color: rgba(62, 120, 157, 0.3);
+}
 .search_input_drop_el:hover{
-    cursor: pointer;
+    /*cursor: pointer;*/
+    background-color: rgba(62, 120, 157, 0.2);
 }
 .color_gray{
     color: #777777;
@@ -1053,7 +1081,7 @@ hr.line {
     padding: 0;
     padding-left: 15px ;
     font-size: 20px;
-    border: none;
+    /*border: none;*/
 }
 .register-form .form-control::-webkit-input-placeholder {
     color: #C4C4C4;
