@@ -144,8 +144,10 @@ function add_drop_item(list) {
     // div.innerHTML = ""
     let btn = document.createElement('button')
     btn.setAttribute('class', 'search_input_drop_el w-100 px-2 py-2')
-    btn.setAttribute('form', list[0])
-    btn.setAttribute('type', 'submit')
+    // btn.setAttribute('form', list[0])
+    btn.setAttribute('form', 'main_input_form_header')
+    // btn.setAttribute('type', 'submit')
+    btn.setAttribute('type', 'button')
 
     let row = document.createElement('div')
     row.setAttribute('class', 'row align-items-center')
@@ -207,16 +209,16 @@ function add_drop_item(list) {
     zak1.appendChild(zak_p1)
 
 
-    let form = document.createElement('form')
-
-    form.setAttribute('method', 'get')
-    form.setAttribute('action', '/dev/')
-    form.setAttribute('id', list[0])
-    let hidden_input = document.createElement('input')
-    hidden_input.setAttribute('type', 'hidden')
-    hidden_input.setAttribute('value', list[0])
-    hidden_input.setAttribute('name', 'id')
-    form.appendChild(hidden_input)
+    // let form = document.createElement('form')
+    //
+    // form.setAttribute('method', 'get')
+    // form.setAttribute('action', '/dev/')
+    // form.setAttribute('id', list[0])
+    // let hidden_input = document.createElement('input')
+    // hidden_input.setAttribute('type', 'hidden')
+    // hidden_input.setAttribute('value', list[0])
+    // hidden_input.setAttribute('name', 'id')
+    // form.appendChild(hidden_input)
 
     row.appendChild(cat)
     row.appendChild(isp)
@@ -226,11 +228,18 @@ function add_drop_item(list) {
     row.appendChild(zak1)
     btn.appendChild(row)
 
-    div.appendChild(form)
+    // div.appendChild(form)
     div.appendChild(btn)
 
     div.setAttribute('style', 'display:block')
 }
+
+$('#res_list_header').on( 'click', 'button ', function( event ) {
+
+    document.getElementById('main_input_header').value=this.childNodes[0].childNodes[0].childNodes[0].textContent;
+    $('#btn_head_submit').click()
+
+});
 
 document.onclick = function (e) {
     // alert(e.target.id);
