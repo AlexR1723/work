@@ -178,11 +178,9 @@ def Registrate(request):
         user.first_name = name
         user.last_name=surname
         user.save()
-        print('1')
-        new_user=Users(auth_user=user.id, phone=tel,uuid=key)
-        print('2')
+        auth_user = AuthUser.objects.filter(id=user.id)[0]
+        new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
         new_user.save()
-        print('3')
     except:
         print('error')
     return HttpResponse(json.dumps({'data': 'ok'}))
