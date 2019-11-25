@@ -1306,6 +1306,86 @@ hr.category-line {
     height: 1px;
     width: 100%;
 }
+.profile-settings_name {
+    font-size: 1.8rem;
+}
+.profile-name_icon {
+    width: 5%;
+}
+.profile-settings_text {
+    font-size: 1rem;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.profile-settings_text a {
+    text-decoration: underline;
+    color: rgb(62, 120, 157);
+}
+.settings-rew_span {
+    line-height: 80px;
+    color: #AF4B53;
+}
+.settings-rew_label {
+    font-size: 1rem;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.85);
+}
+.settings-rew_blk::before {
+    position: absolute;
+    content: "";
+    left: 0;
+    height: 80%;
+    width: 1px;
+    background-color: #AAAAAA;
+}
+.nav-tabs {
+    font-size: 18px;
+    line-height: 33px;
+    border-bottom: 1px solid #AAAAAA;
+    color: #000000;
+}
+.nav-tabs a {
+    color: #000000;
+}
+.nav-link {
+    padding: .5rem 1.5rem;
+}
+.nav-tabs .nav-link {
+    margin-right: 5px;
+    border: 1px solid rgba(170,170,170,.5);
+    background-color: rgba(170,170,170,.3);
+}
+.nav-tabs .nav-link:hover {
+    color: #000000;
+    border: 1px solid rgba(170,170,170,.5);
+    border-bottom: 1px solid transparent;
+    background: #FFFFFF;
+    transition: .3s;
+}
+.nav-tabs .nav-link.active {
+    color: #000000;
+    background-color: #fff;
+    border-top: 3px solid #AF4B53;
+    background-color: #ffffff;
+}
+.form-group label {
+    font-size: 16px;
+    color: #000000;
+}
+.change-password button {
+    border: 1px solid transparent;
+    height: 40px;
+    background: #AF4B53;
+    color: #FFFFFF;
+}
+.change-password button:hover {
+    background-color: #FFFFFF;
+    color: #AF4B53;
+    border: 1px solid #AF4B53;
+    transition: .3s;
+}
+
+
 
 @media (min-width: 320px) and (max-width: 992px) {
     .rules_blk_inside_list li {

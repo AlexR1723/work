@@ -141,6 +141,9 @@ def Question_category(request):
 def Category_item(request):
     return render(request, 'Main/Category_item.html', locals())
 
+def Profile_settings(request):
+    return render(request, 'Main/Profile_settings.html', locals())
+
 def Help(request):
     contact = layout_contact()
     link = layout_link()
