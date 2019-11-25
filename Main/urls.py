@@ -35,7 +35,7 @@ urlpatterns = [
     url(r'^question_category/$', views.Question_category, name="Question_category"),
     # url(r'^category_item/$', views.Category_item, name="Category_item"),
 
-    url(r'^(?P<name>[А-Яа-я]+\s[А-Яа-я]+)/$', views.Category_item, name="Category_item"),
+    url(r'^category_item/(?P<name>[А-Яа-я\s0-9]+)/$', views.Category_item, name="Category_item"),
 
 
     # url(r'^test/$', views.Test, name="Test"),
