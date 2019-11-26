@@ -1375,11 +1375,9 @@ hr.category-line {
 .nav-tabs a {
     color: #000000;
 }
-.nav-link {
-    padding: .5rem 1.5rem;
-}
 .nav-tabs .nav-link {
     margin-right: 5px;
+    padding: .5rem 1.5rem;
     border: 1px solid rgba(170,170,170,.5);
     background-color: rgba(170,170,170,.3);
 }
@@ -1414,6 +1412,20 @@ hr.category-line {
 }
 
 
+@media (min-width: 768px) and (max-width: 992px) {
+    .nav-tabs {
+        font-size: 16px;
+    }
+    .nav-tabs .nav-link {
+         padding: .5rem 2.5rem;
+    }
+    .form-group label {
+        font-size: 14px;
+    }
+    .profile-settings_text {
+        font-size: .9rem;
+    }
+}
 
 @media (min-width: 320px) and (max-width: 992px) {
     .rules_blk_inside_list li {
@@ -1431,5 +1443,23 @@ hr.category-line {
     .search-res-blk h3,
     .category-quest-blk h3 {
         font-size: 1.5rem;
+    }
+    .settings-rew_span {
+        line-height: 45px;
+    }
+    .settings-rew_blk::before {
+        left: -20px;
+        top: -5px;
+    }
+}
+@media (min-width: 320px) and (max-width: 576px) {
+    .settings-rew_blk::before {
+        height: 90%;
+    }
+    .nav-tabs .nav-link {
+         padding: .5rem 1rem;
+    }
+    .settings-rew_blk::before {
+        left: -10px;
     }
 }
