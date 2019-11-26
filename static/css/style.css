@@ -1410,6 +1410,28 @@ hr.category-line {
     border: 1px solid #AF4B53;
     transition: .3s;
 }
+.tooltip {
+    line-height: 15px;
+}
+.tooltip-inner {
+    text-align: left;
+}
+input[type=checkbox] {
+	display: none;
+}
+.custom-checkbox  label::before {
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+}
+input[type=checkbox]:checked + label::after {
+	content: "";
+    background: #3E789D;
+    border: 1px solid #3E789D;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+}
 
 
 @media (min-width: 768px) and (max-width: 992px) {

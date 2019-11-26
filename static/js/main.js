@@ -708,3 +708,7 @@ $(document).ready(function () {
             }
     })
 });
+
+$(".settings-blk").ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
