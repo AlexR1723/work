@@ -664,17 +664,24 @@ $(document).ready(function () {
                             pass1: pass1
                         },
                         success: function (data) {
-                            if(data=='ok') {
+                            if(data.data=='ok') {
                                 $("#alert-success").show('slow');
                                 setTimeout(function () {
                                     $("#alert-success").hide('slow');
                                 }, 5000);
                             }
-                            else
+                            if(data.data=='error')
                             {
                                 $("#alert-error").show('slow');
                                 setTimeout(function () {
                                     $("#alert-error").hide('slow');
+                                }, 5000);
+                            }
+                            if(data.data=='email')
+                            {
+                                $("#alert-email").show('slow');
+                                setTimeout(function () {
+                                    $("#alert-email").hide('slow');
                                 }, 5000);
                             }
                         },

@@ -173,19 +173,24 @@ def Registrate(request):
     list = [1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
     try:
-        key = ''
-        while (len(key) < 50):
-            i = random.randint(0, len(list) - 1)
-            key += str(list[i])
-        with transaction.atomic():
-            user = User.objects.create_user(email, email, password)
-            user.first_name = name
-            user.last_name=surname
-            user.save()
-            auth_user = AuthUser.objects.filter(id=user.id)[0]
-            new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
-            new_user.save()
-        return HttpResponse(json.dumps({'data': 'ok'}))
+        us=AuthUser.objects.all().filter(email=email)
+        if(us==[]):
+            key = ''
+            while (len(key) < 50):
+                i = random.randint(0, len(list) - 1)
+                key += str(list[i])
+            with transaction.atomic():
+                user = User.objects.create_user(email, email, password)
+                user.first_name = name
+                user.last_name=surname
+                user.save()
+                auth_user = AuthUser.objects.filter(id=user.id)[0]
+                print(auth_user)
+                new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
+                new_user.save()
+            return HttpResponse(json.dumps({'data': 'ok'}))
+        else:
+            return HttpResponse(json.dumps({'data': 'email'}))
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
 
