@@ -664,10 +664,19 @@ $(document).ready(function () {
                             pass1: pass1
                         },
                         success: function (data) {
-                            $("#alert-success").show('slow');
-                            setTimeout(function () {
-                                $("#alert-success").hide('slow');
-                            }, 5000);
+                            if(data=='ok') {
+                                $("#alert-success").show('slow');
+                                setTimeout(function () {
+                                    $("#alert-success").hide('slow');
+                                }, 5000);
+                            }
+                            else
+                            {
+                                $("#alert-error").show('slow');
+                                setTimeout(function () {
+                                    $("#alert-error").hide('slow');
+                                }, 5000);
+                            }
                         },
                         error: function (data) {
                             $("#alert-error").show('slow');

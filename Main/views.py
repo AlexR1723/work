@@ -6,6 +6,7 @@ import random
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.db import transaction
 
 def layout_contact():
     contact=ContactType.objects.all()
@@ -161,6 +162,8 @@ def Register(request):
     # print(key)
     return render(request, 'Main/Register.html', locals())
 
+
+@transaction.atomic
 def Registrate(request):
     name = request.GET.get("name")
     surname = request.GET.get("surname")
@@ -174,16 +177,17 @@ def Registrate(request):
         while (len(key) < 50):
             i = random.randint(0, len(list) - 1)
             key += str(list[i])
-        user = User.objects.create_user(email, email, password)
-        user.first_name = name
-        user.last_name=surname
-        user.save()
-        auth_user = AuthUser.objects.filter(id=user.id)[0]
-        new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
-        new_user.save()
+        with transaction.atomic():
+            user = User.objects.create_user(email, email, password)
+            user.first_name = name
+            user.last_name=surname
+            user.save()
+            auth_user = AuthUser.objects.filter(id=user.id)[0]
+            new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
+            new_user.save()
+        return HttpResponse(json.dumps({'data': 'ok'}))
     except:
-        print('error')
-    return HttpResponse(json.dumps({'data': 'ok'}))
+        return HttpResponse(json.dumps({'data': 'error'}))
 
     # user=models.User(name=name,login=email,password=password)
 
