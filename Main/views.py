@@ -288,6 +288,9 @@ def Privacy_rules(request):
     return render(request, 'Main/Privacy_rules.html', locals())
 
 
+
+
+
 def Profile_settings(request):
     return render(request, 'Main/Profile_settings.html', locals())
 
