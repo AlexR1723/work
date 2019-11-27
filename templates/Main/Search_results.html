@@ -6,42 +6,52 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
             <div class="row justify-content-start">
-                <h3 class="search-res_header w-100 mb-0">По Вашему запросу:<span class="ml-3 search-res_span">текст запроса</span></h3>
-                <span class="search-res_num mb-2 mt-1">Найдено 4 результата</span>
+                <h3 class="search-res_header w-100 mb-0">По Вашему запросу:<span class="ml-3 search-res_span">{{results.name}}</span></h3>
+                <span class="search-res_num mb-2 mt-1">Найдено {{count}} результата</span>
 
                 <ul class="p-0 mb-3 w-100">
-                    <li class="search-res_li mt-4">
+                    {% for i in subs %}
+                        <li class="search-res_li mt-4">
                         <a class="search-res_a w-100" href="">
                             <div class="w-100 d-flex align-items-start">
                                 <i class="fas help_i fa-question-circle mt-1 mr-2"></i>
-                                <p class="search-res_p m-0">Как поменять фото профиля?</p>
+                                <p class="search-res_p m-0">{{i.text}}</p>
                             </div>
                         </a>
                     </li>
-                    <li class="search-res_li mt-2">
-                        <a class="search-res_a w-100" href="">
-                            <div class="w-100 d-flex align-items-start">
-                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>
-                                <p class="search-res_p m-0">Как поменять общую информацию о себе?</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="search-res_li mt-2">
-                        <a class="search-res_a w-100" href="">
-                            <div class="w-100 d-flex align-items-start">
-                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>
-                                <p class="search-res_p m-0">Как поменять пароль для входа в профиль?</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="search-res_li mt-2">
-                        <a class="search-res_a w-100" href="">
-                            <div class="w-100 d-flex align-items-start">
-                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>
-                                <p class="search-res_p m-0">Как изменить номер телефона или эл. почту в профиле?</p>
-                            </div>
-                        </a>
-                    </li>
+                    {% endfor %}
+{#                    <li class="search-res_li mt-4">#}
+{#                        <a class="search-res_a w-100" href="">#}
+{#                            <div class="w-100 d-flex align-items-start">#}
+{#                                <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+{#                                <p class="search-res_p m-0">Как поменять фото профиля?</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="search-res_li mt-2">#}
+{#                        <a class="search-res_a w-100" href="">#}
+{#                            <div class="w-100 d-flex align-items-start">#}
+{#                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>#}
+{#                                <p class="search-res_p m-0">Как поменять общую информацию о себе?</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="search-res_li mt-2">#}
+{#                        <a class="search-res_a w-100" href="">#}
+{#                            <div class="w-100 d-flex align-items-start">#}
+{#                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>#}
+{#                                <p class="search-res_p m-0">Как поменять пароль для входа в профиль?</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li class="search-res_li mt-2">#}
+{#                        <a class="search-res_a w-100" href="">#}
+{#                            <div class="w-100 d-flex align-items-start">#}
+{#                                <i class="fas search-res_i fa-question-circle mt-1 mr-2"></i>#}
+{#                                <p class="search-res_p m-0">Как изменить номер телефона или эл. почту в профиле?</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </li>#}
                 </ul>
             </div>
             <div class="row m-0 justify-content-center pt-5">

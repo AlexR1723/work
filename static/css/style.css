@@ -756,10 +756,24 @@ p {
 #div_executor{
     display: none;
 }
+.link_cities{
+    /*text-decoration: underline!important;*/
+    color: black;
+}
+.link_cities:hover{
+    color: black;
+}
 
 .bg_color_FAF9F7{
     /*background-color: #FAF9F7;*/
     background-color: rgba(216,216,216,.5);
+}
+.color_black{
+    color: black;
+}
+
+.color_black:hover{
+    color: black;
 }
 .fw_700{
     font-weight: 700;
@@ -1375,11 +1389,9 @@ hr.category-line {
 .nav-tabs a {
     color: #000000;
 }
-.nav-link {
-    padding: .5rem 1.5rem;
-}
 .nav-tabs .nav-link {
     margin-right: 5px;
+    padding: .5rem 1.5rem;
     border: 1px solid rgba(170,170,170,.5);
     background-color: rgba(170,170,170,.3);
 }
@@ -1412,8 +1424,44 @@ hr.category-line {
     border: 1px solid #AF4B53;
     transition: .3s;
 }
+.tooltip {
+    line-height: 15px;
+}
+.tooltip-inner {
+    text-align: left;
+}
+input[type=checkbox] {
+	display: none;
+}
+.custom-checkbox  label::before {
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+}
+input[type=checkbox]:checked + label::after {
+	content: "";
+    background: #3E789D;
+    border: 1px solid #3E789D;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+}
 
 
+@media (min-width: 768px) and (max-width: 992px) {
+    .nav-tabs {
+        font-size: 16px;
+    }
+    .nav-tabs .nav-link {
+         padding: .5rem 2.5rem;
+    }
+    .form-group label {
+        font-size: 14px;
+    }
+    .profile-settings_text {
+        font-size: .9rem;
+    }
+}
 
 @media (min-width: 320px) and (max-width: 992px) {
     .rules_blk_inside_list li {
@@ -1431,5 +1479,23 @@ hr.category-line {
     .search-res-blk h3,
     .category-quest-blk h3 {
         font-size: 1.5rem;
+    }
+    .settings-rew_span {
+        line-height: 45px;
+    }
+    .settings-rew_blk::before {
+        left: -20px;
+        top: -5px;
+    }
+}
+@media (min-width: 320px) and (max-width: 576px) {
+    .settings-rew_blk::before {
+        height: 90%;
+    }
+    .nav-tabs .nav-link {
+         padding: .5rem 1rem;
+    }
+    .settings-rew_blk::before {
+        left: -10px;
     }
 }

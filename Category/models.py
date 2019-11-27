@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование категории")
     image = models.ImageField(upload_to='uploads/category/', blank=True, null=True, verbose_name="Иконка")
+    text = models.TextField(blank=True, null=True, verbose_name="Описание")
 
     class Meta:
         managed = False

@@ -241,6 +241,36 @@ $('#res_list_header').on( 'click', 'button ', function( event ) {
 
 });
 
+$('#accordion_cities').on( 'click', 'a.link_cities ', function( event ) {
+
+    // alert(this.innerHTML)
+    // sessionStorage.setItem('myCat', 'Tom');
+    // sessionStorage.setItem('city',this.innerHTML)
+    // alert(sessionStorage.getItem('city'))
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            city: this.innerHTML,
+            reg:this.dataset.region
+        },
+        url: '/Main/set_session_city/',
+        success: function (data) {
+            // alert(data)
+            if(data='good'){
+                location.reload()
+            }
+        },
+        error: function (data) {
+            alert('Error');
+        }
+    })
+
+
+});
+
 document.onclick = function (e) {
     // alert(e.target.id);
     let closest_head = (e.target).closest('div#res_list_header')
@@ -707,4 +737,8 @@ $(document).ready(function () {
                 }, 5000);
             }
     })
+});
+
+$(".settings-blk").ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
 });
