@@ -6,6 +6,12 @@ import random
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.db import transaction
+from django.conf import settings
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives, EmailMessage
+from django.template.loader import render_to_string
+from django.urls import reverse
 
 def layout_contact():
     contact=ContactType.objects.all()
@@ -175,14 +181,10 @@ def Login(request):
     return render(request, 'Main/Login.html', locals())
 
 def Register(request):
-    # list = [1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-    # key=''
-    # while (len(key)<50):
-    #     i=random.randint(0,len(list)-1)
-    #     key+=str(list[i])
-    # print(key)
     return render(request, 'Main/Register.html', locals())
 
+
+@transaction.atomic
 def Registrate(request):
     name = request.GET.get("name")
     surname = request.GET.get("surname")
@@ -192,22 +194,36 @@ def Registrate(request):
     list = [1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
     try:
-        key = ''
-        while (len(key) < 50):
-            i = random.randint(0, len(list) - 1)
-            key += str(list[i])
-        user = User.objects.create_user(email, email, password)
-        user.first_name = name
-        user.last_name=surname
-        user.save()
-        print('1')
-        new_user=Users(auth_user=user.id, phone=tel,uuid=key)
-        print('2')
-        new_user.save()
-        print('3')
+        us=AuthUser.objects.all().filter(email=email)
+        print(us)
+        if (len(us) == 0):
+            key = ''
+            while (len(key) < 50):
+                i = random.randint(0, len(list) - 1)
+                key += str(list[i])
+            # with transaction.atomic():
+            #     user = User.objects.create_user(email, email, password)
+            #     user.first_name = name
+            #     user.last_name=surname
+            #     user.save()
+            #     auth_user = AuthUser.objects.filter(id=user.id)[0]
+            #     print(auth_user)
+            #     new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
+            #     new_user.save()
+            subject, from_email, to = 'hello', 'romanenko.anastasiya1998@yandex.ua', 'romanenko.anastasiya1998@yandex.ua'
+            text_content = 'This is an important message.'
+            # m='123'
+            m='http://127.0.0.1:8000/verify/'+key
+            print(m)
+            html_content="<a href='%s'>перейти</a>" % m
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            return HttpResponse(json.dumps({'data': 'ok'}))
+        else:
+            return HttpResponse(json.dumps({'data': 'email'}))
     except:
-        print('error')
-    return HttpResponse(json.dumps({'data': 'ok'}))
+        return HttpResponse(json.dumps({'data': 'error'}))
 
     # user=models.User(name=name,login=email,password=password)
 
@@ -304,6 +320,9 @@ def Category_item(request,name):
     #     i.text="Описание категории "+i.name+" vehicula ipsum a arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas maecenas"
     #     i.save()
     return render(request, 'Main/Category_item.html', locals())
+
+def Profile_settings(request):
+    return render(request, 'Main/Profile_settings.html', locals())
 
 def Help(request):
     contact = layout_contact()

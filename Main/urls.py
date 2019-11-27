@@ -36,6 +36,8 @@ urlpatterns = [
     # url(r'^category_item/$', views.Category_item, name="Category_item"),
 
     url(r'^category_item/(?P<name>[А-Яа-я\s0-9]+)/$', views.Category_item, name="Category_item"),
+    #url(r'category_item/$', views.Category_item, name="Category_item"),
+    url(r'profile_settings/$', views.Profile_settings, name="Profile_settings"),
     url(r'^search_results/(?P<name>[А-Яа-я\s0-9]+)/$', views.Search_results, name="Search_results"),
 
 
