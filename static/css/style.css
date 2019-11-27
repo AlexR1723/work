@@ -756,12 +756,23 @@ p {
 #div_executor{
     display: none;
 }
+.link_cities{
+    /*text-decoration: underline!important;*/
+    color: black;
+}
+.link_cities:hover{
+    color: black;
+}
 
 .bg_color_FAF9F7{
     /*background-color: #FAF9F7;*/
     background-color: rgba(216,216,216,.5);
 }
 .color_black{
+    color: black;
+}
+
+.color_black:hover{
     color: black;
 }
 .fw_700{

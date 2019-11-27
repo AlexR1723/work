@@ -36,11 +36,13 @@ urlpatterns = [
     # url(r'^category_item/$', views.Category_item, name="Category_item"),
 
     url(r'^category_item/(?P<name>[А-Яа-я\s0-9]+)/$', views.Category_item, name="Category_item"),
+    url(r'^search_results/(?P<name>[А-Яа-я\s0-9]+)/$', views.Search_results, name="Search_results"),
 
 
     # url(r'^test/$', views.Test, name="Test"),
 
     url(r'/search_input/', views.search_input, name='search_input'),
+    url(r'/set_session_city/', views.set_session_city, name='set_session_city'),
 
     url(r'^dev/$', views.Dev, name="Dev"),
 ]

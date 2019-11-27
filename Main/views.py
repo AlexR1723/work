@@ -15,10 +15,15 @@ def layout_link():
     link=Link.objects.all()
     return link
 
-def layout_regions():
-    regions = Region.objects.all()
-    return regions
+# def layout_regions():
+#     regions = Region.objects.all()
+#     return regions
 
+def layout_regions_cities(request):
+    city = request.session.get('city', 0)
+    reg = request.session.get('reg', 0)
+    regions = Region.objects.all()
+    return city, reg,regions
 # def layout_cities():
 #     cities = City.objects.all()
 #     return cities
@@ -41,10 +46,11 @@ def layout_regions():
 def Main(request):
     contact=layout_contact()
     link=layout_link()
-    city_dnr = City.objects.filter(region_id=(Region.objects.filter(name='ДНР')[0].id)).order_by('name')
-    city_lnr = City.objects.filter(region_id=(Region.objects.filter(name='ЛНР')[0].id)).order_by('name')
-    city_rus = City.objects.filter(region_id=(Region.objects.filter(name='Россия')[0].id)).order_by('name')
-    city_ukr = City.objects.filter(region_id=(Region.objects.filter(name='Украина')[0].id)).order_by('name')
+    city,regs,regions=layout_regions_cities(request)
+    # city_dnr = City.objects.filter(region_id=(Region.objects.filter(name='ДНР')[0].id)).order_by('name')
+    # city_lnr = City.objects.filter(region_id=(Region.objects.filter(name='ЛНР')[0].id)).order_by('name')
+    # city_rus = City.objects.filter(region_id=(Region.objects.filter(name='Россия')[0].id)).order_by('name')
+    # city_ukr = City.objects.filter(region_id=(Region.objects.filter(name='Украина')[0].id)).order_by('name')
 
     fslide=FirstSlider.objects.all()[0]
     slide=FirstSlider.objects.all()[1:]
@@ -75,12 +81,19 @@ def How_it_work(request):
     contact = layout_contact()
     link = layout_link()
     seo=OrderService.objects.all()
+    city, regs, regions = layout_regions_cities(request)
+
+    # city = request.session.get('city', 0)
+    # reg = request.session.get('reg', 0)
+    # print(city)
+    # print(reg)
+
     return render(request, 'Main/How_it_works.html', locals())
 
 def Secure_transaction(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
 
     what = WhatSafe.objects.all()
     benefits = BenefitsSafe.objects.all()
@@ -89,20 +102,27 @@ def Secure_transaction(request):
 def Safety(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
     return render(request, 'Main/Safety.html', locals())
 
 def Rabota(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
 
     whyme = WhyWe.objects.all().order_by('id')
     seo = BecomePerformer.objects.all()
 
     category=Category.objects.all().order_by('name')
+    # cat=category
     sub=SubCategory.objects.values('category_id')
-
+    # sub=SubCategory.objects.all().order_by('name')
+    # print(sub[0].category_id)
+    # for i in sub:
+    #     # print(i.category_id)
+    #     i.category_id=cat.get(id=i.category_id)
+    # print(sub[0].category_id)
+    #
     list=[]
     for i in category:
         list1=[]
@@ -118,7 +138,7 @@ def Rabota(request):
 def For_business(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
 
     category = Category.objects.all().order_by('name')
     sub = SubCategory.objects.values('category_id')
@@ -138,7 +158,7 @@ def For_business(request):
 def Top_performers(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
     return render(request, 'Main/Top_performers.html', locals())
 
 def Dev(request):
@@ -196,7 +216,7 @@ def Registrate(request):
 def Public_offer(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
 
     po = PublicOffer.objects.all().order_by('number')
     public_offer = []
@@ -214,7 +234,7 @@ def Public_offer(request):
 def Rules(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city, regs, regions = layout_regions_cities(request)
 
     rl = ProjectRules.objects.all().order_by('number')
     rules = []
@@ -232,7 +252,7 @@ def Rules(request):
 def Privacy_rules(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
 
     pr=PrivacyRules.objects.all().order_by('number')
     privacy_rules=[]
@@ -247,23 +267,31 @@ def Privacy_rules(request):
         privacy_rules.append(pr1)
     return render(request, 'Main/Privacy_rules.html', locals())
 
-def Search_results(request):
+def Search_results(request,name):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
+
+    name = str(name).lower()
+    results = HelpCategory.objects.get(name__icontains=name)
+    # id=category_item.id
+
+    subs = HelpSubcategory.objects.filter(help_category=results.id)
+    count =subs.count()
+
     return render(request, 'Main/Search_results.html', locals())
 
 def Question_category(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city, regs, regions = layout_regions_cities(request)
     return render(request, 'Main/Question_category.html', locals())
 
 
 def Category_item(request,name):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city,regs,regions=layout_regions_cities(request)
 
     name=str(name).lower()
     category_item=Category.objects.get(name__icontains=name)
@@ -280,7 +308,7 @@ def Category_item(request,name):
 def Help(request):
     contact = layout_contact()
     link = layout_link()
-    regions = layout_regions()
+    city, regs, regions = layout_regions_cities(request)
     # quest=HelpCategory.objects.a
     category = HelpCategory.objects.all()
     return render(request, 'Main/Help.html', locals())
@@ -346,3 +374,20 @@ def search_input(request):
     list.append(subcat)
 
     return HttpResponse(json.dumps(list))
+
+def set_session_city(request):
+    choosen_city = str(request.GET.get("city")).lower()
+    choosen_reg = str(request.GET.get("reg")).lower()
+    print(choosen_reg)
+    print(choosen_city)
+    try:
+        exist_reg=Region.objects.get(name__icontains=choosen_reg)
+        exist_city = City.objects.get(name__icontains=choosen_city,region=exist_reg.id)
+    # if exist_reg and exist_city:
+        request.session['reg'] = exist_reg.name
+        request.session['city'] = exist_city.name
+        request.session.modified = True
+        return HttpResponse(json.dumps('good'))
+    # else:
+    except:
+        return HttpResponse(json.dumps('bad'))

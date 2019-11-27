@@ -2,256 +2,278 @@
 {% load staticfiles %}
 {% block content %}
 
-<div class="row justify-content-center">
-    <div class=" w-100" style="
+    <div class="row justify-content-center">
+        <div class=" w-100" style="
     height: auto;
     min-height: 30vh;
     background: url(/static/image/rabota_bg.jpg) 50% 55% no-repeat;
     background-size: cover;
 ">
-        <div class="page_head_img_fon row justify-content-center align-items-center">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                <p class="m-0 fz_3rem line_height_1 text-center">Как стать исполнителем</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-10 col-sm-5 col-md-4 col-lg-4 col-xl-3 p-0 mt-5">
-        <a href="{% url 'Dev' %}">
-        <button class="hiw_btn w-100">Зарегистрироваться</button>
-        </a>
-    </div>
-</div>
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row justify-content-around py-5">
-            <div class="col-12">
-                <p class="hiw_headers">Как у нас заработать?</p>
-            </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/registration.png" alt=""></div>
-                    <h6 class="hiw_header fz_12rem">1. Зарегистрируйтесь</h6>
-                    <p class="hiw_text">Подтвердите персональные данные и станьте проверенным специалистом</p>
-                </a>
-            </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/menu.png" alt=""></div>
-                    <p class="hiw_header fz_12rem">2. Выберите заказ</p>
-                    <p class="hiw_text">Если вас устраивают условия заказа, нажмите кнопку "Выполнить"</p>
-                </a>
-            </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/time.png" alt=""></div>
-                    <p class="hiw_header fz_12rem">3. Выполните работу</p>
-                    <p class="hiw_text">Если заказчик выбрал вас для выполнения заказа, приступайте к работе</p>
-                </a>
-            </div>
-            <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
-                <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/payment.png" alt=""></div>
-                    <p class="hiw_header fz_12rem">4. Получите деньги</p>
-                    <p class="hiw_text">После выполнения работы попросите заказчика оставить отзыв и получите оплату</p>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <hr class="block_hr">
-    </div>
-</div><!--hr-->
-
-<div class="row justify-content-center bg_color_FAF9F7">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row justify-content-around py-5">
-            <div class="col-12">
-                <p class="hiw_headers">Почему мы?</p>
-            </div>
-            <div class="col-12">
-                {% for i in whyme%}
-                <div class="row py-3">
-                    {% if i.left %}
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
-<!--                        <img src="/static/image/nik-macmillan-YXemfQiPR_E-unsplash.jpg" class="w-100" alt="">-->
-                        <img src="{{MEDIA.URL}}{{i.image.url}}" class="w-100" alt="">
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
-                        <p class="news_header">{{i.header}}</p>
-                        <p class="news_text mt-2">{{i.text}}
-                        </p>
-                    </div>
-                    {% else %}
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
-                        <p class="news_header">{{i.header}}</p>
-                        <p class="news_text mt-2">{{i.text}}
-                        </p>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
-<!--                        <img src="/static/image/nik-macmillan-YXemfQiPR_E-unsplash.jpg" class="w-100" alt="">-->
-                        <img src="{{MEDIA.URL}}{{i.image.url}}" class="w-100" alt="">
-                    </div>
-                    {% endif %}
+            <div class="page_head_img_fon row justify-content-center align-items-center">
+                <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                    <p class="m-0 fz_3rem line_height_1 text-center">Как стать исполнителем</p>
                 </div>
+            </div>
+        </div>
+        <div class="col-10 col-sm-5 col-md-4 col-lg-4 col-xl-3 p-0 mt-5">
+            <a href="{% url 'Dev' %}">
+                <button class="hiw_btn w-100">Зарегистрироваться</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-around py-5">
+                <div class="col-12">
+                    <p class="hiw_headers">Как у нас заработать?</p>
+                </div>
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
+                    <a href="{% url 'Dev' %}" class="no-style-a">
+                        <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/registration.png"
+                                                                 alt=""></div>
+                        <h6 class="hiw_header fz_12rem">1. Зарегистрируйтесь</h6>
+                        <p class="hiw_text">Подтвердите персональные данные и станьте проверенным специалистом</p>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
+                    <a href="{% url 'Dev' %}" class="no-style-a">
+                        <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/menu.png" alt=""></div>
+                        <p class="hiw_header fz_12rem">2. Выберите заказ</p>
+                        <p class="hiw_text">Если вас устраивают условия заказа, нажмите кнопку "Выполнить"</p>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
+                    <a href="{% url 'Dev' %}" class="no-style-a">
+                        <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/time.png" alt=""></div>
+                        <p class="hiw_header fz_12rem">3. Выполните работу</p>
+                        <p class="hiw_text">Если заказчик выбрал вас для выполнения заказа, приступайте к работе</p>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-5 col-lg-3 col-xl-3">
+                    <a href="{% url 'Dev' %}" class="no-style-a">
+                        <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/payment.png" alt="">
+                        </div>
+                        <p class="hiw_header fz_12rem">4. Получите деньги</p>
+                        <p class="hiw_text">После выполнения работы попросите заказчика оставить отзыв и получите
+                            оплату</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <hr class="block_hr">
+        </div>
+    </div><!--hr-->
+
+    <div class="row justify-content-center bg_color_FAF9F7">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-around py-5">
+                <div class="col-12">
+                    <p class="hiw_headers">Почему мы?</p>
+                </div>
+                <div class="col-12">
+                    {% for i in whyme %}
+                        <div class="row py-3">
+                            {% if i.left %}
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
+                                    <!--                        <img src="/static/image/nik-macmillan-YXemfQiPR_E-unsplash.jpg" class="w-100" alt="">-->
+                                    <img src="{{ MEDIA.URL }}{{ i.image.url }}" class="w-100" alt="">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
+                                    <p class="news_header">{{ i.header }}</p>
+                                    <p class="news_text mt-2">{{ i.text }}
+                                    </p>
+                                </div>
+                            {% else %}
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-8 p-3">
+                                    <p class="news_header">{{ i.header }}</p>
+                                    <p class="news_text mt-2">{{ i.text }}
+                                    </p>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 p-3">
+                                    <!--                        <img src="/static/image/nik-macmillan-YXemfQiPR_E-unsplash.jpg" class="w-100" alt="">-->
+                                    <img src="{{ MEDIA.URL }}{{ i.image.url }}" class="w-100" alt="">
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <hr class="block_hr">
+        </div>
+    </div><!--hr-->
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-around py-5">
+                <div class="col-12">
+                    <p class="hiw_headers pb-3">Наши достижения в цифрах</p>
+
+
+                    <div class="row justify-content-around">
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count4">
+                            <div class="row justify-content-center bg-img-white py-5" id="div_counter1">
+                                <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗА СЕГОДНЯ <br> СОЗДАНО
+                                </p>
+                                <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>
+                                <p class="m-0 colorDarkGrey text-center w-100">ЗАДАНИЙ</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count1">
+                            <div class="row justify-content-center bg-img-white py-5" id="div_counter2">
+                                <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">КОЛИЧЕСТВО <br>
+                                    ИСПОЛНИТЕЛЕЙ</p>
+                                <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>
+                                <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count5">
+                            <div class="row justify-content-center bg-img-white py-5" id="div_counter3">
+                                <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ВСЕГО <br> ВЫПОЛНЕНО
+                                </p>
+                                <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>
+                                <p class="m-0 colorDarkGrey text-center w-100">ЗАДАНИЙ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <hr class="block_hr">
+        </div>
+    </div><!--hr-->
+
+    <!--Какую работу у нас можно выполнять?-->
+
+    <div class="row justify-content-center bg_color_FAF9F7">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-around py-5">
+                <div class="col-12">
+                    <p class="hiw_headers">Отзывы</p>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                    <a href="{% url 'Dev' %}" class="no-style-a">
+                        <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv1.jpg"
+                                                                 alt="">
+                        </div>
+                        <p class="hiw_header">МАРЬЯНА, КЛИНЕР</p>
+                        <p class="hiw_text">На Кабанчике мне нравится то, что я могу сама планировать свое личное время
+                            и
+                            финансы. Здорово, что нет никаких начальников и я сама отвечаю за качество своей работы.
+                            Отличным
+                            бонусом также есть то, что я могу подстроить свою работу так, чтобы больше времени проводить
+                            со
+                            своим ребенком.</p>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                    <a href="{% url 'Dev' %}" class="no-style-a">
+                        <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv2.jpg"
+                                                                 alt="">
+                        </div>
+                        <p class="hiw_header">ВАСИЛИЙ, ДОМАШНИЙ МАСТЕР</p>
+                        <p class="hiw_text">Кабанчик мне нравится тем, что этот сервис сделан для людей, здесь очень
+                            человеческие условия для работы. Он отлично помогает тем, кому нужен дополнительный
+                            заработок или
+                            даже основная работа. Я чувствую здесь перспективы и развитие — это мотивирует работать.</p>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                    <a href="{% url 'Dev' %}" class="no-style-a">
+                        <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv3.jpg"
+                                                                 alt="">
+                        </div>
+                        <p class="hiw_header">ДИАНА, ДИЗАЙНЕР</p>
+                        <p class="hiw_text">С Кабанчиком дружу давно:) Всегда есть работа для специалиста. Помимо того,
+                            что это
+                            неплохая подработка, мне нравится, что на Кабанчике можно выбирать и фильтровать заказы. Еще
+                            огромный плюс в том, что здесь собрано мое полное портфолио с галереей работ, услугами,
+                            прайсом и
+                            отзывами заказчиков. Это очень удобно.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <hr class="block_hr">
+        </div>
+    </div><!--hr-->
+
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-around py-2">
+                <div class="col-12 mb-5">
+                    <p class="hiw_headers">Какую работу у нас можно выполнять?</p>
+                </div>
+
+                {% for i in list %}
+{#                {% for i in category %}#}
+                    <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3 rectW">
+                                        <a href="{% url 'Category_item' i.pop %}" class="no-style-a">
+                                            <div class="w-100 my-3 text-center"><img class="w-50" src="{{MEDIA.URL}}{{i.pop.url}}" alt=""></div>
+                                            <p class="hiw_header fz_12rem m-0">{{i.pop}}</p>
+                                            <p class="hiw_text">{{i.pop}} подкатегорий</p>
+                                        </a>
+{#                        <a href="{% url 'Category_item' i.name %}" class="no-style-a">#}
+{#                            <div class="w-100 my-3 text-center"><img class="w-50" src="{{ MEDIA.URL }}{{ i.image.url }}"#}
+{#                                                                     alt=""></div>#}
+{#                            <p class="hiw_header fz_12rem m-0">{{ i.name }}</p>#}
+{#                            <p class="hiw_text">{{ sub.filter(id=i.id).count() }} подкатегорий</p>#}
+{#                        </a>#}
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <hr class="block_hr">
+        </div>
+    </div><!--hr-->
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-center py-5">
+                <div class="col-12 pb-3">
+                    <p class="hiw_headers">Зарегистрируйтесь и начните зарабатывать прямо сейчас</p>
+                </div>
+                <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-3">
+                    <a href="{% url 'Dev' %}">
+                        <button class="hiw_btn-red w-100">Создать задание</button>
+                    </a>
+                </div>
+                <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-3">
+                    <a href="{% url 'Dev' %}">
+                        <button class="hiw_btn w-100">Регистрация</button>
+                    </a>
+                </div>
+            </div>
+            <div class="row justify-content-around pt-2 pb-5">
+                {% for i in seo %}
+                    <p class="m-0">{{ i.text }}</p>
                 {% endfor %}
             </div>
         </div>
     </div>
-</div>
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <hr class="block_hr">
-    </div>
-</div><!--hr-->
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row justify-content-around py-5">
-            <div class="col-12">
-                <p class="hiw_headers pb-3">Наши достижения в цифрах</p>
-
-
-                <div class="row justify-content-around">
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count4">
-                        <div class="row justify-content-center bg-img-white py-5" id="div_counter1">
-                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗА СЕГОДНЯ <br> СОЗДАНО</p>
-                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>
-                            <p class="m-0 colorDarkGrey text-center w-100">ЗАДАНИЙ</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count1">
-                        <div class="row justify-content-center bg-img-white py-5"  id="div_counter2">
-                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">КОЛИЧЕСТВО <br> ИСПОЛНИТЕЛЕЙ</p>
-                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>
-                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count5">
-                        <div class="row justify-content-center bg-img-white py-5" id="div_counter3">
-                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ВСЕГО <br> ВЫПОЛНЕНО</p>
-                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>
-                            <p class="m-0 colorDarkGrey text-center w-100">ЗАДАНИЙ</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <hr class="block_hr">
-    </div>
-</div><!--hr-->
-
-<!--Какую работу у нас можно выполнять?-->
-
-<div class="row justify-content-center bg_color_FAF9F7">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row justify-content-around py-5">
-            <div class="col-12">
-                <p class="hiw_headers">Отзывы</p>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv1.jpg" alt="">
-                    </div>
-                    <p class="hiw_header">МАРЬЯНА, КЛИНЕР</p>
-                    <p class="hiw_text">На Кабанчике мне нравится то, что я могу сама планировать свое личное время и
-                    финансы. Здорово, что нет никаких начальников и я сама отвечаю за качество своей работы. Отличным
-                    бонусом также есть то, что я могу подстроить свою работу так, чтобы больше времени проводить со
-                    своим ребенком.</p>
-                </a>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv2.jpg" alt="">
-                    </div>
-                    <p class="hiw_header">ВАСИЛИЙ, ДОМАШНИЙ МАСТЕР</p>
-                    <p class="hiw_text">Кабанчик мне нравится тем, что этот сервис сделан для людей, здесь очень
-                        человеческие условия для работы. Он отлично помогает тем, кому нужен дополнительный заработок или
-                        даже основная работа. Я чувствую здесь перспективы и развитие — это мотивирует работать.</p>
-                </a>
-            </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50 img_circle" src="/static/image/otziv3.jpg" alt="">
-                    </div>
-                    <p class="hiw_header">ДИАНА, ДИЗАЙНЕР</p>
-                    <p class="hiw_text">С Кабанчиком дружу давно:) Всегда есть работа для специалиста. Помимо того, что это
-                        неплохая подработка, мне нравится, что на Кабанчике можно выбирать и фильтровать заказы. Еще
-                        огромный плюс в том, что здесь собрано мое полное портфолио с галереей работ, услугами, прайсом и
-                        отзывами заказчиков. Это очень удобно.</p>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <hr class="block_hr">
-    </div>
-</div><!--hr-->
-
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row justify-content-around py-2">
-            <div class="col-12 mb-5">
-                <p class="hiw_headers">Какую работу у нас можно выполнять?</p>
-            </div>
-
-            {% for i in list %}
-            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3 rectW">
-                <a href="{% url 'Category_item' i.pop %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="{{MEDIA.URL}}{{i.pop.url}}" alt=""></div>
-                    <p class="hiw_header fz_12rem m-0">{{i.pop}}</p>
-                    <p class="hiw_text">{{i.pop}} подкатегорий</p>
-                </a>
-            </div>
-            {% endfor %}
-
-
-        </div>
-    </div>
-</div>
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <hr class="block_hr">
-    </div>
-</div><!--hr-->
-
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row justify-content-center py-5">
-            <div class="col-12 pb-3">
-                <p class="hiw_headers">Зарегистрируйтесь и начните зарабатывать прямо сейчас</p>
-            </div>
-            <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-3">
-                <a href="{% url 'Dev' %}">
-                    <button class="hiw_btn-red w-100">Создать задание</button>
-                </a>
-            </div>
-            <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-3">
-                <a href="{% url 'Dev' %}">
-                    <button class="hiw_btn w-100">Регистрация</button>
-                </a>
-            </div>
-        </div>
-        <div class="row justify-content-around pt-2 pb-5">
-            {% for i in seo %}
-            <p class="m-0">{{i.text}}</p>
-            {% endfor %}
-        </div>
-    </div>
-</div>
 
 {% endblock %}
