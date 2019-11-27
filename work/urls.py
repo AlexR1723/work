@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'', include('Main.urls')),
     url(r'about/', include('About.urls')),
-    url(r'category', include('Category.urls')),
+    url(r'category/', include('Category.urls')),
     url(r'contact/', include('Contact.urls')),
     url(r'news/', include('News.urls')),
     url(r'profile/', include('Profile.urls')),

@@ -18,4 +18,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.All_category, name="All_category"),
+    url(r'^(?P<name>[А-Яа-я\s0-9]+)/$', views.Category_item, name="Category_item"),
 ]
