@@ -179,15 +179,16 @@ def Registrate(request):
             while (len(key) < 50):
                 i = random.randint(0, len(list) - 1)
                 key += str(list[i])
-            # with transaction.atomic():
-            #     user = User.objects.create_user(email, email, password)
-            #     user.first_name = name
-            #     user.last_name=surname
-            #     user.save()
-            #     auth_user = AuthUser.objects.filter(id=user.id)[0]
-            #     print(auth_user)
-            #     new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
-            #     new_user.save()
+            with transaction.atomic():
+                user = User.objects.create_user(email, email, password)
+                user.first_name = name
+                user.last_name=surname
+                user.is_active=False
+                user.save()
+                auth_user = AuthUser.objects.filter(id=user.id)[0]
+                print(auth_user)
+                new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
+                new_user.save()
             subject, from_email, to = 'hello', 'romanenko.anastasiya1998@yandex.ua', 'romanenko.anastasiya1998@yandex.ua'
             text_content = 'This is an important message.'
             # m='123'
@@ -205,7 +206,10 @@ def Registrate(request):
 
     # user=models.User(name=name,login=email,password=password)
 
-
+def Verify(requirements, key):
+    user = Users.objects.all().filter(uuid=key)
+    if(len(user)>0):
+        us = AuthUser.objects.all().filter(id=user[0].auth_user)
 
 def Public_offer(request):
     contact = layout_contact()

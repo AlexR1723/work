@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^login/$', views.Login, name="Login"),
     url(r'^register/$', views.Register, name="Register"),
     url(r'registrate/', views.Registrate),
+    url(r'^verify/(?P<key>[a-z0-9]+)/$', views.Verify, name="Verify"),
     url(r'^help/$', views.Help, name="Help"),
     url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
     url(r'^rules/$', views.Rules, name="Rules"),
