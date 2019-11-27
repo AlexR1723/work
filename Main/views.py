@@ -218,12 +218,13 @@ def Registrate(request):
                 print(auth_user)
                 new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
                 new_user.save()
-            subject, from_email, to = 'hello', 'romanenko.anastasiya1998@yandex.ua', 'romanenko.anastasiya1998@yandex.ua'
-            text_content = 'This is an important message.'
-            # m='123'
-            m='http://127.0.0.1:8000/verify/'+key
+            subject, from_email, to = 'Верификация', 'romanenko.anastasiya1998@yandex.ua', email
+            text_content = 'Перейдите по ссылке для автивации учетной записи.'
+            m='https://work-proj.herokuapp.com/verify/'+key
             print(m)
-            html_content="<a href='%s'>перейти</a>" % m
+            html_content=render_to_string('test.html', {"key" : key})
+            print(html_content)
+            # html_content="<a href='%s'>Активировать</a>" % m
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
@@ -235,10 +236,16 @@ def Registrate(request):
 
     # user=models.User(name=name,login=email,password=password)
 
-def Verify(requirements, key):
+
+def Verify(request, key):
     user = Users.objects.all().filter(uuid=key)
+    print(user[0].auth_user)
     if(len(user)>0):
-        us = AuthUser.objects.all().filter(id=user[0].auth_user)
+        us = AuthUser.objects.all().filter(id=user[0].auth_user.id)[0]
+        us.is_active=True
+        us.save()
+    return render(request, 'Main/Login.html', locals())
+
 
 def Public_offer(request):
     contact = layout_contact()
