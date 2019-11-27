@@ -287,39 +287,11 @@ def Privacy_rules(request):
         privacy_rules.append(pr1)
     return render(request, 'Main/Privacy_rules.html', locals())
 
-def Search_results(request,name):
-    contact = layout_contact()
-    link = layout_link()
-    city,regs,regions=layout_regions_cities(request)
-
-    name = str(name).lower()
-    results = HelpCategory.objects.get(name__icontains=name)
-    # id=category_item.id
-
-    subs = HelpSubcategory.objects.filter(help_category=results.id)
-    count =subs.count()
-
-    return render(request, 'Main/Search_results.html', locals())
-
-def Question_category(request):
-    contact = layout_contact()
-    link = layout_link()
-    city, regs, regions = layout_regions_cities(request)
-    return render(request, 'Main/Question_category.html', locals())
-
-
-
 
 def Profile_settings(request):
     return render(request, 'Main/Profile_settings.html', locals())
 
-def Help(request):
-    contact = layout_contact()
-    link = layout_link()
-    city, regs, regions = layout_regions_cities(request)
-    # quest=HelpCategory.objects.a
-    category = HelpCategory.objects.all()
-    return render(request, 'Main/Help.html', locals())
+
 
 def search_input(request):
     # word = request.GET.get("word")

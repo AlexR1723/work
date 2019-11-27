@@ -30,18 +30,16 @@ urlpatterns = [
     url(r'registrate/', views.Registrate),
     url(r'^verify/(?P<key>[a-z0-9]+)/$', views.Verify, name="Verify"),
 
-    url(r'^help/$', views.Help, name="Help"),
     url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
     url(r'^rules/$', views.Rules, name="Rules"),
     url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
     url(r'^search_results/$', views.Search_results, name="Search_results"),
-    url(r'^question_category/$', views.Question_category, name="Question_category"),
+
     # url(r'^category_item/$', views.Category_item, name="Category_item"),
 
 
     #url(r'category_item/$', views.Category_item, name="Category_item"),
     url(r'profile_settings/$', views.Profile_settings, name="Profile_settings"),
-    url(r'^search_results/(?P<name>[А-Яа-я\s0-9]+)/$', views.Search_results, name="Search_results"),
 
 
     # url(r'^test/$', views.Test, name="Test"),
