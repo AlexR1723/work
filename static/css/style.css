@@ -1,3 +1,6 @@
+html{
+    scroll-behavior:smooth;
+}
 body {
     background-color: #fff;
     font-family: 'Source Sans Pro', sans-serif;

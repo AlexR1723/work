@@ -93,8 +93,8 @@ def How_it_work(request):
     # reg = request.session.get('reg', 0)
     # print(city)
     # print(reg)
-
     return render(request, 'Main/How_it_works.html', locals())
+
 
 def Secure_transaction(request):
     contact = layout_contact()
@@ -105,11 +105,13 @@ def Secure_transaction(request):
     benefits = BenefitsSafe.objects.all()
     return render(request, 'Main/Secure_transaction.html', locals())
 
+
 def Safety(request):
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
     return render(request, 'Main/Safety.html', locals())
+
 
 def Rabota(request):
     contact = layout_contact()
@@ -141,6 +143,7 @@ def Rabota(request):
 
     return render(request, 'Main/Rabota.html', locals())
 
+
 def For_business(request):
     contact = layout_contact()
     link = layout_link()
@@ -158,14 +161,15 @@ def For_business(request):
         list1.append(sub.filter(category_id=i.id).count())
         list1.reverse()
         list.append(list1)
-
     return render(request, 'Main/For_business.html', locals())
+
 
 def Top_performers(request):
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
     return render(request, 'Main/Top_performers.html', locals())
+
 
 def Dev(request):
     id = request.GET.get('id')
@@ -174,11 +178,14 @@ def Dev(request):
 
     return render(request, 'Main/Dev.html', locals())
 
+
 def Test(request):
     return render(request, 'Test.html', locals())
 
+
 def Login(request):
     return render(request, 'Main/Login.html', locals())
+
 
 def Register(request):
     return render(request, 'Main/Register.html', locals())
