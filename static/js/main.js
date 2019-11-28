@@ -1,35 +1,3 @@
-// var time = 2, cc = 1;
-// $(window).scroll(function () {
-// //     $('#counter-main').each(function () {
-// //         var
-// //             cPos = $(this).offset().top,
-// //             topWindow = $(window).scrollTop();
-// //         if (cPos < topWindow + 1000) {
-// //
-// //             if (cc < 2) {
-// //                 $(".number").addClass("viz")
-// //                 $('div').each(function () {
-// //                     var
-// //                         i = 1,
-// //                         num = $(this).data('num'),
-// //                         step = 1000 * time / num,
-// //                         that = $(this),
-// //                         int = setInterval(function () {
-// //                             if (i <= num) {
-// //                                 that.html(i);
-// //                             } else {
-// //                                 cc = cc + 2;
-// //                                 clearInterval(int);
-// //
-// //                             }
-// //                             i++;
-// //                         }, step);
-// //                 });
-// //             }
-// //         }
-// //     });
-// // });
-
 function counter(counts) {
     let blockStatus = true;
     let inc = 0
@@ -39,21 +7,9 @@ function counter(counts) {
     $(window).scroll(function () {
         for (let i = 0; i < target_blocks.length; i++) {
             let pos = $(window).scrollTop()
-            // let block =target_blocks[i].position().top
             let height = $(window).height()
             let block = document.getElementById(target_blocks[i]).getBoundingClientRect().top
-            // console.log(pos+' > '+height+'-'+block+'='+(height-block)+'  |  '+block2)
-            // console.log('niz:'+(pos+height)+' block_pos:'+(pos - block)+' pos:'+pos+' height:'+height+' block:'+block)
-            // let block1=target_blocks[i].getBoundingClientRect()
-            // let block2=document.getElementById('counter1').getBoundingClientRect()
-            // let pos1=$('#counter1').scrollTop()
-            // let res = pos - block - (height*0.8)
-            // let res = pos - block
             let res = height - block - (height * 0.3)
-            // if(pos>res){
-            //
-            // }
-            // var scrollEvent = ($(window).scrollTop() > (target_blocks[i].position().top -$(window).height()));
             if (res > 0 && blockStatus) {
                 let start_val = document.getElementById(target_blocks[i]).textContent
                 // start_val=start_val/2
@@ -76,10 +32,8 @@ function counter(counts) {
     });
 }
 
-// var list_categories;
-var list_subcategories;
-
-function load_categories() {
+var list_subhelp;
+function load_help() {
     const start = new Date().getTime();
     console.log("start " + start)
     $.ajax({
@@ -89,7 +43,42 @@ function load_categories() {
         // data: {
         //     word: str,
         // },
-        url: '/Main/search_input/',
+        url: '/Main/load_input_help/',
+        success: function (data) {
+            list_subhelp = data[1];
+            var list_id = []
+            for (let i = 0; i < data[0].length; i++) {
+                list_id.push(data[0][i][0])
+            }
+            for (let i = 0; i < list_subhelp.length; i++) {
+                let id = list_subhelp[i][2]
+                let text = data[0][list_id.indexOf(id)][1]
+                list_subhelp[i][2] = text;
+            }
+        },
+        error: function (data) {
+            alert('Error');
+        }
+    })
+    const end = new Date().getTime();
+    console.log("end " + end)
+    console.log('time: ' + (end - start) + ' ms');
+}
+
+// var list_categories;
+var list_subcategories;
+
+function load_categories() {
+    // const start = new Date().getTime();
+    // console.log("start " + start)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        // data: {
+        //     word: str,
+        // },
+        url: '/Main/search_input_category/',
         success: function (data) {
             // list_categories = data;
             // list_categories = data[0];
@@ -108,37 +97,11 @@ function load_categories() {
             alert('Error');
         }
     })
-    const end = new Date().getTime();
-    console.log("end " + end)
-    console.log('time: ' + (end - start) + ' ms');
-    // console.log('lenght ' + data[0].length)
+    // const end = new Date().getTime();
+    // console.log("end " + end)
+    // console.log('time: ' + (end - start) + ' ms');
 }
 
-// var region = cities_dnr
-
-// function region_cities(reg) {
-//     ['cities_dnr', 'cities_lnr', 'cities_rus', 'cities_ukr'].forEach((item) => {
-//         if (item != reg) {
-//             document.getElementById(item).style.display = 'none'
-//         }
-//         else {
-//              document.getElementById(item).style.display = 'flex'
-//         }
-//     })
-// }
-
-// $("#btn_city_dnr").click(function () {
-//     region_cities('cities_dnr')
-// });
-// $("#btn_city_lnr").click(function () {
-//     region_cities('cities_lnr')
-// });
-// $("#btn_city_rus").click(function () {
-//     region_cities('cities_rus')
-// });
-// $("#btn_city_ukr").click(function () {
-//     region_cities('cities_ukr')
-// });
 function add_drop_item(list) {
     // div = document.getElementById('res_list')
     // div.innerHTML = ""
@@ -234,32 +197,24 @@ function add_drop_item(list) {
     div.setAttribute('style', 'display:block')
 }
 
-$('#res_list_header').on( 'click', 'button ', function( event ) {
-
-    document.getElementById('main_input_header').value=this.childNodes[0].childNodes[0].childNodes[0].textContent;
+$('#res_list_header').on('click', 'button ', function (event) {
+    document.getElementById('main_input_header').value = this.childNodes[0].childNodes[0].childNodes[0].textContent;
     $('#btn_head_submit').click()
 
 });
 
-$('#accordion_cities').on( 'click', 'a.link_cities ', function( event ) {
-
-    // alert(this.innerHTML)
-    // sessionStorage.setItem('myCat', 'Tom');
-    // sessionStorage.setItem('city',this.innerHTML)
-    // alert(sessionStorage.getItem('city'))
-
+$('#accordion_cities').on('click', 'a.link_cities ', function (event) {
     $.ajax({
         type: "GET",
         dataType: "json",
         async: false,
         data: {
             city: this.innerHTML,
-            reg:this.dataset.region
+            reg: this.dataset.region
         },
         url: '/Main/set_session_city/',
         success: function (data) {
-            // alert(data)
-            if(data='good'){
+            if (data = 'good') {
                 location.reload()
             }
         },
@@ -267,9 +222,7 @@ $('#accordion_cities').on( 'click', 'a.link_cities ', function( event ) {
             alert('Error');
         }
     })
-
-
-});
+});//выбор города
 
 document.onclick = function (e) {
     // alert(e.target.id);
@@ -385,63 +338,12 @@ function show_item(val, code, list, el) {
     }
 }
 
-// $("#main_input").keyup(function (event) {
-//     if (event.keyCode == 13) {
-//         event.preventDefault();
-//
-//     }
-// });
 $("#main_input").keyup(function (event) {
     if (event.keyCode == 13) {
         event.preventDefault();
     } else {
         show_item(this.value, event.keyCode, 'res_list', 'main_input');
     }
-    // switch (event.keyCode) {
-    //     case 40:
-    //         up_down_item('down')
-    //         break;
-    //     case 38:
-    //         up_down_item('up')
-    //         break;
-    //     case 13:
-    //         $(".sid_focus").click();
-    //
-    //         break;
-    //     default:
-    //         div = document.getElementById('res_list')
-    //         let str = this.value.trim().toLowerCase();
-    //         let arr = str.split(' ')
-    //         let list_res = []
-    //         if (str.length > 1) {
-    //             for (let i = 0; i < list_subcategories.length; i++) {
-    //                 if (list_res.length >= 7) {
-    //                     break;
-    //                 } else {
-    //                     let str_sub = list_subcategories[i][1].toLowerCase()
-    //                     let cnt = 0;
-    //                     for (let j = 0; j < arr.length; j++) {
-    //                         var str1 = arr[j];
-    //                         var have = str_sub.indexOf(str1);
-    //                         if (have != -1) {
-    //                             cnt++;
-    //                         }
-    //                     }
-    //                     if (cnt == arr.length) {
-    //                         list_res.push(list_subcategories[i])
-    //                     }
-    //                 }
-    //             }
-    //             div.innerHTML = ""
-    //             el_num = undefined
-    //             for (let i = 0; i < list_res.length; i++) {
-    //                 add_drop_item(list_res[i])
-    //             }
-    //         } else {
-    //             div.setAttribute('style', 'display:none')
-    //             div.innerHTML = ""
-    //         }
-    // }
 })
 
 $("#main_input_header").keyup(function (event) {
@@ -502,6 +404,9 @@ window.onload = function () {
     // let reg='cities_dnr'
     // region_cities(reg)
     load_categories();
+    if(window.location.href.indexOf('help_category')!=-1){
+        load_help()
+    }
 
     try {
         // let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3")]
@@ -510,7 +415,7 @@ window.onload = function () {
         let check2 = document.getElementById('counter2')
         let check3 = document.getElementById('counter3')
         // if (target_blocks[0].length != 0 && target_blocks[1].length != 0 && target_blocks[2].length != 0) {
-        if (check1 != null && check2 != null && check3 != null) {
+        if (check1 != null && check2 != null && check3 != null && window.location.href.indexOf('register')==-1) {
             counter([10000, 10, 70000])
         }
 
@@ -675,70 +580,66 @@ $(document).ready(function () {
         if (tel == "") $('#RegisterInputPhone').addClass('br-red');
         if (pass1 == "") $('#RegisterInputPassword1').addClass('br-red');
         if (pass2 == "") $('#RegisterInputPassword2').addClass('br-red');
-        if (check==false)
+        if (check == false)
             $("#alert-check").show('slow');
-            setTimeout(function () {
-                $("#alert-check").hide('slow');
-            }, 5000);
-            if (name != "" && surname != "" && email != "" && tel != "" && pass1 != "" && pass2 != "" && check == true) {
-                if(pass1==pass2) {
-                    $.ajax({
-                        type: "GET",
-                        dataType: "json",
-                        url: 'registrate/',
-                        data: {
-                            name: name,
-                            surname: surname,
-                            email: email,
-                            tel: tel,
-                            pass1: pass1
-                        },
-                        success: function (data) {
-                            if(data.data=='ok') {
-                                $("#alert-success").show('slow');
-                                setTimeout(function () {
-                                    $("#alert-success").hide('slow');
-                                }, 5000);
-                            }
-                            if(data.data=='error')
-                            {
-                                $("#alert-error").show('slow');
-                                setTimeout(function () {
-                                    $("#alert-error").hide('slow');
-                                }, 5000);
-                            }
-                            if(data.data=='email')
-                            {
-                                $("#alert-email").show('slow');
-                                setTimeout(function () {
-                                    $("#alert-email").hide('slow');
-                                }, 5000);
-                            }
-                        },
-                        error: function (data) {
+        setTimeout(function () {
+            $("#alert-check").hide('slow');
+        }, 5000);
+        if (name != "" && surname != "" && email != "" && tel != "" && pass1 != "" && pass2 != "" && check == true) {
+            if (pass1 == pass2) {
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: 'registrate/',
+                    data: {
+                        name: name,
+                        surname: surname,
+                        email: email,
+                        tel: tel,
+                        pass1: pass1
+                    },
+                    success: function (data) {
+                        if (data.data == 'ok') {
+                            $("#alert-success").show('slow');
+                            setTimeout(function () {
+                                $("#alert-success").hide('slow');
+                            }, 5000);
+                        }
+                        if (data.data == 'error') {
                             $("#alert-error").show('slow');
                             setTimeout(function () {
                                 $("#alert-error").hide('slow');
                             }, 5000);
                         }
-                    })
-                }
-                else
-                {
-                    $("#alert-pass").show('slow');
-                    setTimeout(function () {
-                        $("#alert-pass").hide('slow');
-                    }, 5000);
-                }
+                        if (data.data == 'email') {
+                            $("#alert-email").show('slow');
+                            setTimeout(function () {
+                                $("#alert-email").hide('slow');
+                            }, 5000);
+                        }
+                    },
+                    error: function (data) {
+                        $("#alert-error").show('slow');
+                        setTimeout(function () {
+                            $("#alert-error").hide('slow');
+                        }, 5000);
+                    }
+                })
             } else {
-                $("#alert-danger").show('slow');
+                $("#alert-pass").show('slow');
                 setTimeout(function () {
-                    $("#alert-danger").hide('slow');
+                    $("#alert-pass").hide('slow');
                 }, 5000);
             }
+        } else {
+            $("#alert-danger").show('slow');
+            setTimeout(function () {
+                $("#alert-danger").hide('slow');
+            }, 5000);
+        }
     })
 });
 
-$(".settings-blk").ready(function(){
+$(".settings-blk").ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
