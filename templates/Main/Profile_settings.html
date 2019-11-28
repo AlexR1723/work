@@ -49,11 +49,11 @@
                             <span class="d-none d-sm-none d-md-none d-lg-block">Общая информация</span>
                             <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30" alt="">
                         </a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                        <a class="nav-item nav-link active" id="nav-portfolio-tab" data-toggle="tab" href="#nav-portfolio" role="tab" aria-controls="nav-portfolio" aria-selected="false">
                             <span class="d-none d-sm-none d-md-none d-lg-block">Портфолио</span>
                             <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30" alt="">
                         </a>
-                        <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab" href="#nav-notice" role="tab" aria-controls="nav-notice" aria-selected="false">
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-notice" role="tab" aria-controls="nav-notice" aria-selected="false">
                             <span class="d-none d-sm-none d-md-none d-lg-block">Настройка уведомлений</span>
                             <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30" alt="">
                         </a>
@@ -65,15 +65,58 @@
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
                       <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-                      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                      <div class="tab-pane fade show active" id="nav-notice" role="tabpanel" aria-labelledby="nav-notice-tab">
+                      <div class="tab-pane fade show active" id="nav-portfolio" role="tabpanel" aria-labelledby="nav-portfolio-tab">
+                          <div class="d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
+                              <div class="pr-3 bd-highlight">
+                                  <button type="button" class="btn btn-primary btn-sm bd-highlight btn-all">Все - 3</button>
+                              </div>
+                              <div class="pr-3 bd-highlight">
+                                  <button type="button" class="btn btn-primary btn-sm bd-highlight btn-delivery">Доставка - 1</button>
+                              </div>
+                              <div class="pr-3 bd-highlight">
+                                  <button type="button" class="btn btn-primary btn-sm bd-highlight btn-add-folder">Добавить папку</button>
+                              </div>
+                              <div class="bd-highlight add-folder_input d-none">
+                                  <div class="input-group-sm d-flex">
+                                      <div class="input-group-prepend">
+                                          <button class="btn btn-outline-secondary btn-v" type="button" id="button-addon1"></button>
+                                      </div>
+                                      <input type="text" class="form-control add-folder_name" aria-label="Sizing example input" placeholder="Название папки" aria-describedby="inputGroup-sizing-sm">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary btn-x" type="button" id="button-addon2"></button>
+                                        </div>
+                                  </div>
+                              </div>
+                              <div class="ml-0 ml-sm-auto bd-highlight">
+                                  <button type="button" class="btn btn-primary btn-sm bd-highlight btn-add-photo">Добавить фото</button>
+                              </div>
+                            </div>
+                          <div class="row portfolio-photos_blk">
+                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 img_wrapper">
+                                  <img src="/static/image/3eabf99674833ed66719c.jpg" class="img-fluid center-block" alt="...">
+                              </div>
+                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 img_wrapper">
+                                  <img src="/static/image/123.jpeg" class="img-fluid center-block" alt="...">
+                              </div>
+                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 img_wrapper">
+                                  <img src="/static/image/cio-c.jpg" class="img-fluid center-block" alt="...">
+                              </div>
+                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 img_wrapper">
+                                  <img src="/static/image/contract.jpg" class="img-fluid center-block" alt="...">
+                              </div>
+                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 img_wrapper">
+                                  <img src="/static/image/security.jpg" class="img-fluid center-block" alt="...">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="nav-notice" role="tabpanel" aria-labelledby="nav-notice-tab">
                           <div class="custom-control custom-checkbox my-2 mr-sm-2 pt-2">
                               <input type="checkbox" class="custom-control-input" id="email-notice_input">
-                              <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input">Email уведомения об изменениях статусов заказов</label>
+                              <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input" data-toggle="tooltip" data-placement="bottom" title="Lorem ipsum dolor sit amet.">Email уведомения об изменениях статусов заказов</label>
                           </div>
                           <div class="custom-control custom-checkbox my-2 mr-sm-2">
                               <input type="checkbox" class="custom-control-input" id="email-dispatch_input">
-                              <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input">Email рассылка новых заказов</label>
+                              <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input" data-toggle="tooltip" data-placement="bottom" title="Lorem ipsum dolor sit amet.">Email рассылка новых заказов</label>
                           </div>
                       </div>
                       <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">

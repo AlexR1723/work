@@ -739,6 +739,18 @@ $(document).ready(function () {
     })
 });
 
+$(".btn-all").click(function () {
+        $('.btn-delivery').removeClass('active');
+        $('.btn-all').toggleClass('active');
+});
+$(".btn-delivery").click(function () {
+        $('.btn-all').removeClass('active');
+        $('.btn-delivery').toggleClass('active');
+});
+$(".btn-add-folder").click(function () {
+        $('.add-folder_input').removeClass('d-none');
+        $('.add-folder_input').addClass('d-flex');
+});
 $(".settings-blk").ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
