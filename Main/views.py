@@ -161,6 +161,7 @@ def For_business(request):
         list1.append(sub.filter(category_id=i.id).count())
         list1.reverse()
         list.append(list1)
+
     return render(request, 'Main/For_business.html', locals())
 
 
@@ -301,6 +302,39 @@ def Privacy_rules(request):
         privacy_rules.append(pr1)
     return render(request, 'Main/Privacy_rules.html', locals())
 
+def Search_results_help(request,name):
+    contact = layout_contact()
+    link = layout_link()
+    city,regs,regions=layout_regions_cities(request)
+
+    name = str(name).lower()
+    results = HelpCategory.objects.get(name__icontains=name)
+    # id=category_item.id
+
+    subs = HelpSubcategory.objects.filter(help_category=results.id)
+    count =subs.count()
+
+    return render(request, 'Main/Search_results.html', locals())
+
+def Help_category(request,name):
+    contact = layout_contact()
+    link = layout_link()
+    city,regs,regions=layout_regions_cities(request)
+
+    name = str(name).lower()
+    results = HelpCategory.objects.get(name__icontains=name)
+    # id=category_item.id
+
+    subs = HelpSubcategory.objects.filter(help_category=results.id)
+    count =subs.count()
+
+    return render(request, 'Main/Question_category.html', locals())
+
+def Question_category(request):
+    contact = layout_contact()
+    link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
+    return render(request, 'Main/Question_category.html', locals())
 
 
 
@@ -310,7 +344,7 @@ def Profile_settings(request):
 
 
 
-def search_input(request):
+def search_input_category(request):
     # word = request.GET.get("word")
     # word = str(word).strip()
     # print(word)
@@ -355,12 +389,6 @@ def search_input(request):
         subcat1.append(i.category_id)
         subcat.append(subcat1)
 
-    # data = serializers.serialize('json', res,fields=('name'))
-    # struct = json.loads(data)
-    # data = json.dumps(struct[0])
-    # return HttpResponse(data, mimetype='application/json')
-    # return HttpResponse(word)
-    # obj=to_js(res)
     count1=SubCategory.objects.count()
     count1=SubCategory.objects.count()
     count1=SubCategory.objects.count()
@@ -371,6 +399,38 @@ def search_input(request):
     list.append(subcat)
 
     return HttpResponse(json.dumps(list))
+
+def load_input_help(request):
+    help = []
+    res_help = HelpCategory.objects.all()
+    for i in res_help:
+        help1 = []
+        help1.append(i.id)
+        help1.append(i.name)
+        help.append(help1)
+
+    subhelp=[]
+    res_subcat = HelpSubcategory.objects.all()
+    for i in res_subcat:
+        subhelp1=[]
+        subhelp1.append(i.id)
+        subhelp1.append(i.text)
+        subhelp1.append(i.help_category_id)
+        subhelp.append(subhelp1)
+
+    list=[]
+    list.append(help)
+    list.append(subhelp)
+
+    return HttpResponse(json.dumps(list))
+
+def Search_results_help(request,name):
+    in_name=name
+    name=str(name).lower()
+    subs=HelpSubcategory.objects.filter(text__icontains=name).values('id','text')
+    count=subs.count()
+    # return HttpResponse(json.dumps(subs))
+    return render(request, 'Main/Search_results.html', locals())
 
 def set_session_city(request):
     choosen_city = str(request.GET.get("city")).lower()
