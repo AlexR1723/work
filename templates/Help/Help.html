@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-5">
+            <div class="row justify-content-center align-items-center mt-2">
+                <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
+                    <input type="text" class="form-control search-input" placeholder="С чем нужна помощь?">
+                </div>
+                <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">
+                    <button type="button"
+                            class="form-control btn chColorFull search-bttn d-flex s-sm-none d-md-none d-lg-none d-xl-none p-0">
+                        <i class="fas fa-search w-100"></i></button>
+                    <button type="button"
+                            class="form-control btn chColorFull search-bttn d-none s-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center">
+                        НАЙТИ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-around">
+                {% for i in category %}
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 py-5">
+                        <a href="{% url 'Question_category' i.name %} " class='color_black'>
+                        <div class="row align-items-center pb-3">
+                            <div class="col-2 p-0">
+                                <img class="w-100" src="{{MEDIA.URL}}{{ i.image.url }}" alt="">
+                            </div>
+                            <div class="col-10">
+                                <h3>{{ i.name }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                        <ul class="p-0 m-0">
+                            {% for j in i.questions %}
+                                <li class="help_li mt-1">
+                                <i class="fas help_i fa-question-circle mt-1 mr-2"></i>
+                                    <a class="help_a w-100" href="">
+                                                {{ j.text }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+
+                        </ul>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -17,6 +17,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.All_category, name="All_category"),
-    url(r'^(?P<name>[А-Яа-я\s0-9]+)/$', views.Category_item, name="Category_item"),
+    url(r'^$', views.Help, name="Help"),
+    url(r'^(?P<name>[А-Яа-я\s0-9]+)/$', views.Question_category, name="Question_category"),
+    url(r'^search_results/(?P<name>[А-Яа-я\s0-9]+)/$', views.Search_results, name="Search_results"),
 ]

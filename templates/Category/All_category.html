@@ -20,7 +20,9 @@
                             </div>
                             <div class="col-10">
                                 <span class="fontCategory">
-                                    {{c.name}}
+                                    <a class="color_black" href="{% url 'Category_item' c.name %}">
+                                            {{ c.name }}
+                                    </a>
                                 </span>
                             </div>
 
@@ -28,7 +30,7 @@
                         {% for s in c.first_five %}
                         <div class="row ml-5 mt-2">
                             <div class="col-md-12 ">
-{#                                <a class="fontCategorySmall colorDarkGrey" href="{% url 'Category_item' s.name %}">{{s.name}}</a>#}
+                                <a class="fontCategorySmall colorDarkGrey" href="#">{{ s.name }}</a>
                                 <small class="ml-2 colorLightGrey">1145</small>
                             </div>
                         </div>

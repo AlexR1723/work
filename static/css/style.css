@@ -1,14 +1,18 @@
+html{
+    scroll-behavior:smooth;
+}
 body {
     background-color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
 }
-.check{
+label.check, input.check{
      font-size: 18px;
     vertical-align: middle;
 }
-input.check{
+input[type=checkbox].check{
     width: 18px;
     height: 18px;
+    display: inline-block;
 }
 
 @media (min-width: 320px) {

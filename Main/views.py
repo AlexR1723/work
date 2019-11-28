@@ -93,8 +93,8 @@ def How_it_work(request):
     # reg = request.session.get('reg', 0)
     # print(city)
     # print(reg)
-
     return render(request, 'Main/How_it_works.html', locals())
+
 
 def Secure_transaction(request):
     contact = layout_contact()
@@ -105,11 +105,13 @@ def Secure_transaction(request):
     benefits = BenefitsSafe.objects.all()
     return render(request, 'Main/Secure_transaction.html', locals())
 
+
 def Safety(request):
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
     return render(request, 'Main/Safety.html', locals())
+
 
 def Rabota(request):
     contact = layout_contact()
@@ -141,6 +143,7 @@ def Rabota(request):
 
     return render(request, 'Main/Rabota.html', locals())
 
+
 def For_business(request):
     contact = layout_contact()
     link = layout_link()
@@ -161,11 +164,13 @@ def For_business(request):
 
     return render(request, 'Main/For_business.html', locals())
 
+
 def Top_performers(request):
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
     return render(request, 'Main/Top_performers.html', locals())
+
 
 def Dev(request):
     id = request.GET.get('id')
@@ -174,11 +179,14 @@ def Dev(request):
 
     return render(request, 'Main/Dev.html', locals())
 
+
 def Test(request):
     return render(request, 'Test.html', locals())
 
+
 def Login(request):
     return render(request, 'Main/Login.html', locals())
+
 
 def Register(request):
     return render(request, 'Main/Register.html', locals())
@@ -201,21 +209,23 @@ def Registrate(request):
             while (len(key) < 50):
                 i = random.randint(0, len(list) - 1)
                 key += str(list[i])
-            # with transaction.atomic():
-            #     user = User.objects.create_user(email, email, password)
-            #     user.first_name = name
-            #     user.last_name=surname
-            #     user.save()
-            #     auth_user = AuthUser.objects.filter(id=user.id)[0]
-            #     print(auth_user)
-            #     new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
-            #     new_user.save()
-            subject, from_email, to = 'hello', 'romanenko.anastasiya1998@yandex.ua', 'romanenko.anastasiya1998@yandex.ua'
-            text_content = 'This is an important message.'
-            # m='123'
-            m='http://127.0.0.1:8000/verify/'+key
+            with transaction.atomic():
+                user = User.objects.create_user(email, email, password)
+                user.first_name = name
+                user.last_name=surname
+                user.is_active=False
+                user.save()
+                auth_user = AuthUser.objects.filter(id=user.id)[0]
+                print(auth_user)
+                new_user=Users(auth_user=auth_user,phone=tel,uuid=key)
+                new_user.save()
+            subject, from_email, to = 'Верификация', 'romanenko.anastasiya1998@yandex.ua', email
+            text_content = 'Перейдите по ссылке для автивации учетной записи.'
+            m='https://work-proj.herokuapp.com/verify/'+key
             print(m)
-            html_content="<a href='%s'>перейти</a>" % m
+            html_content=render_to_string('test.html', {"key" : key})
+            print(html_content)
+            # html_content="<a href='%s'>Активировать</a>" % m
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
@@ -227,6 +237,15 @@ def Registrate(request):
 
     # user=models.User(name=name,login=email,password=password)
 
+
+def Verify(request, key):
+    user = Users.objects.all().filter(uuid=key)
+    print(user[0].auth_user)
+    if(len(user)>0):
+        us = AuthUser.objects.all().filter(id=user[0].auth_user.id)[0]
+        us.is_active=True
+        us.save()
+    return render(request, 'Main/Login.html', locals())
 
 
 def Public_offer(request):
@@ -318,33 +337,12 @@ def Question_category(request):
     return render(request, 'Main/Question_category.html', locals())
 
 
-def Category_item(request,name):
-    contact = layout_contact()
-    link = layout_link()
-    city,regs,regions=layout_regions_cities(request)
 
-    name=str(name).lower()
-    category_item=Category.objects.get(name__icontains=name)
-    # id=category_item.id
-    subs=SubCategory.objects.filter(category_id=category_item.id)
-
-
-    # all_cat=Category.objects.all()
-    # for i in all_cat:
-    #     i.text="Описание категории "+i.name+" vehicula ipsum a arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas maecenas"
-    #     i.save()
-    return render(request, 'Main/Category_item.html', locals())
 
 def Profile_settings(request):
     return render(request, 'Main/Profile_settings.html', locals())
 
-def Help(request):
-    contact = layout_contact()
-    link = layout_link()
-    city, regs, regions = layout_regions_cities(request)
-    # quest=HelpCategory.objects.a
-    category = HelpCategory.objects.all()
-    return render(request, 'Main/Help.html', locals())
+
 
 def search_input_category(request):
     # word = request.GET.get("word")
