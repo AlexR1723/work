@@ -316,25 +316,25 @@ def Search_results_help(request,name):
 
     return render(request, 'Main/Search_results.html', locals())
 
-def Help_category(request,name):
-    contact = layout_contact()
-    link = layout_link()
-    city,regs,regions=layout_regions_cities(request)
+# def Help_category(request,name):
+#     contact = layout_contact()
+#     link = layout_link()
+#     city,regs,regions=layout_regions_cities(request)
+#
+#     name = str(name).lower()
+#     results = HelpCategory.objects.get(name__icontains=name)
+#     # id=category_item.id
+#
+#     subs = HelpSubcategory.objects.filter(help_category=results.id)
+#     count =subs.count()
+#
+#     return render(request, 'Main/Question_category.html', locals())
 
-    name = str(name).lower()
-    results = HelpCategory.objects.get(name__icontains=name)
-    # id=category_item.id
-
-    subs = HelpSubcategory.objects.filter(help_category=results.id)
-    count =subs.count()
-
-    return render(request, 'Main/Question_category.html', locals())
-
-def Question_category(request):
-    contact = layout_contact()
-    link = layout_link()
-    city, regs, regions = layout_regions_cities(request)
-    return render(request, 'Main/Question_category.html', locals())
+# def Question_category(request):
+#     contact = layout_contact()
+#     link = layout_link()
+#     city, regs, regions = layout_regions_cities(request)
+#     return render(request, 'Main/Question_category.html', locals())
 
 
 
@@ -342,7 +342,15 @@ def Question_category(request):
 def Profile_settings(request):
     return render(request, 'Main/Profile_settings.html', locals())
 
+def Find_category(request, text):
+    contact = layout_contact()
+    link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
 
+    # print(text)
+    id=text
+
+    return render(request, 'Main/Dev.html', locals())
 
 def search_input_category(request):
     # word = request.GET.get("word")
@@ -382,7 +390,7 @@ def search_input_category(request):
     res_subcat = SubCategory.objects.all()
     for i in res_subcat:
         subcat1=[]
-        subcat1.append(i.id)
+        # subcat1.append(i.id)
         subcat1.append(i.name)
         # list1.append(Category.objects.get(id=i.category_id).name)
         # subcat1.append(res_cat.get(id=i.category_id).name)
@@ -397,30 +405,6 @@ def search_input_category(request):
     list=[]
     list.append(cat)
     list.append(subcat)
-
-    return HttpResponse(json.dumps(list))
-
-def load_input_help(request):
-    help = []
-    res_help = HelpCategory.objects.all()
-    for i in res_help:
-        help1 = []
-        help1.append(i.id)
-        help1.append(i.name)
-        help.append(help1)
-
-    subhelp=[]
-    res_subcat = HelpSubcategory.objects.all()
-    for i in res_subcat:
-        subhelp1=[]
-        subhelp1.append(i.id)
-        subhelp1.append(i.text)
-        subhelp1.append(i.help_category_id)
-        subhelp.append(subhelp1)
-
-    list=[]
-    list.append(help)
-    list.append(subhelp)
 
     return HttpResponse(json.dumps(list))
 
