@@ -26,12 +26,14 @@
             <div class="row justify-content-around">
                 {% for i in category %}
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 py-5">
-                        <a href="{% url 'Question_category' i.name %} " class='color_black'>
+                        <a href="{% url 'Question_category' i.name %}" class='color_black'>
                         <div class="row align-items-center pb-3">
                             <div class="col-2 p-0">
+                                {#                                <img class="w-100" src="{% static 'image/cd9fd5f1-fbc9-4be3-9fe3-0648d3167753.png' %}"#}
                                 <img class="w-100" src="{{MEDIA.URL}}{{ i.image.url }}" alt="">
                             </div>
                             <div class="col-10">
+                                {#                                <h3>Настройки профиля</h3>#}
                                 <h3>{{ i.name }}</h3>
                             </div>
                         </div>
@@ -41,16 +43,239 @@
                                 <li class="help_li mt-1">
                                 <i class="fas help_i fa-question-circle mt-1 mr-2"></i>
                                     <a class="help_a w-100" href="">
+{#                                        <div class="w-100 d-flex align-items-start">#}
+{#                                            <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+{#                                            <p class="m-0">#}
                                                 {{ j.text }}
+{#                                            </p>#}
+{#                                        </div>#}
                                     </a>
                                 </li>
                             {% endfor %}
 
-
+                            {#                            <li class="help_li mt-1">#}
+                            {#                                <a class="help_a w-100" href="">#}
+                            {#                                    <div class="w-100 d-flex align-items-start">#}
+                            {#                                        <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                            {#                                        <p class="m-0">Как поменять фото профиля?</p>#}
+                            {#                                    </div>#}
+                            {#                                </a>#}
+                            {#                            </li>#}
+                            {#                            <li class="help_li mt-1">#}
+                            {#                                <a class="help_a w-100" href="">#}
+                            {#                                    <div class="w-100 d-flex align-items-start">#}
+                            {#                                        <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                            {#                                        <p class="m-0">Как поменять общую информацию о#}
+                            {#                                            себе?</p>#}
+                            {#                                    </div>#}
+                            {#                                </a>#}
+                            {#                            </li>#}
+                            {#                            <li class="help_li mt-1">#}
+                            {#                                <a class="help_a w-100" href="">#}
+                            {#                                    <div class="w-100 d-flex align-items-start">#}
+                            {#                                        <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                            {#                                        <p class="m-0">Как поменять пароль для входа в профиль?</p>#}
+                            {#                                    </div>#}
+                            {#                                </a>#}
+                            {#                            </li>#}
                         </ul>
                     </div>
                 {% endfor %}
-
+                {#                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 py-5">#}
+                {##}
+                {#                    <div class="row align-items-center pb-3">#}
+                {#                        <div class="col-2 p-0">#}
+                {#                            <img class="w-100" src="{% static 'image/cd9fd5f1-fbc9-4be3-9fe3-0648d3167753.png' %}"#}
+                {#                                 alt="">#}
+                {#                        </div>#}
+                {#                        <div class="col-10">#}
+                {#                            <h3>Настройки профиля</h3>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                    <ul class="p-0 m-0">#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять фото профиля?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять общую информацию о#}
+                {#                            себе?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять пароль для входа в профиль?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                {#                </div>#}
+                {#                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 py-5">#}
+                {##}
+                {#                    <div class="row align-items-center pb-3">#}
+                {#                        <div class="col-2 p-0">#}
+                {#                            <img class="w-100" src="{% static 'image/cd9fd5f1-fbc9-4be3-9fe3-0648d3167753.png' %}"#}
+                {#                                 alt="">#}
+                {#                        </div>#}
+                {#                        <div class="col-10">#}
+                {#                            <h3>Настройки профиля</h3>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                    <ul class="p-0 m-0">#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять фото профиля?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять общую информацию о#}
+                {#                            себе?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять пароль для входа в профиль?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                {#                </div>#}
+                {#                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 py-5">#}
+                {##}
+                {#                    <div class="row align-items-center pb-3">#}
+                {#                        <div class="col-2 p-0">#}
+                {#                            <img class="w-100" src="{% static 'image/cd9fd5f1-fbc9-4be3-9fe3-0648d3167753.png' %}"#}
+                {#                                 alt="">#}
+                {#                        </div>#}
+                {#                        <div class="col-10">#}
+                {#                            <h3>Настройки профиля</h3>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                    <ul class="p-0 m-0">#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять фото профиля?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять общую информацию о#}
+                {#                            себе?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять пароль для входа в профиль?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                {#                </div>#}
+                {#                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 py-5">#}
+                {##}
+                {#                    <div class="row align-items-center pb-3">#}
+                {#                        <div class="col-2 p-0">#}
+                {#                            <img class="w-100" src="{% static 'image/cd9fd5f1-fbc9-4be3-9fe3-0648d3167753.png' %}"#}
+                {#                                 alt="">#}
+                {#                        </div>#}
+                {#                        <div class="col-10">#}
+                {#                            <h3>Настройки профиля</h3>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                    <ul class="p-0 m-0">#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять фото профиля?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять общую информацию о#}
+                {#                            себе?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять пароль для входа в профиль?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                {#                </div>#}
+                {#                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 py-5">#}
+                {##}
+                {#                    <div class="row align-items-center pb-3">#}
+                {#                        <div class="col-2 p-0">#}
+                {#                            <img class="w-100" src="{% static 'image/cd9fd5f1-fbc9-4be3-9fe3-0648d3167753.png' %}"#}
+                {#                                 alt="">#}
+                {#                        </div>#}
+                {#                        <div class="col-10">#}
+                {#                            <h3>Настройки профиля</h3>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                    <ul class="p-0 m-0">#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять фото профиля?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять общую информацию о#}
+                {#                            себе?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="help_li mt-1">#}
+                {#                            <a class="help_a w-100" href="">#}
+                {#                                <div class="w-100 d-flex align-items-start">#}
+                {#                                    <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
+                {#                                    <p class="m-0">Как поменять пароль для входа в профиль?</p>#}
+                {#                                </div>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                {#                </div>#}
 
             </div>
         </div>

@@ -35,9 +35,9 @@
                             <a data-toggle="modal" data-target="#modal_city" href=""
                                class="d-none d-sm-none d-md-flex d-lg-flex d-xl-flex">
                                 {% if city != 0 %}
-                                {{ city }}
+                                    {{ city }}
                                 {% else %}
-                                Выберите город
+                                    Выберите город
                                 {% endif %}
                             </a>
                         </div>
@@ -50,22 +50,30 @@
                         <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
                             {#                            <input type="text" class="form-control search-input" placeholder="">#}
 
-                            <form action="/dev/" method="get" id="main_input_form_header">
-                                <input type="text" id="main_input_header"
-                                       class="form-control search-input"
-                                       placeholder="Напишите, чем вам помочь"
-                                       name="id">
-                            </form>
+                            {#                            <form action="/dev/" method="get" id="main_input_form_header">#}
+                            <input type="text" id="main_input_header"
+                                   class="form-control search-input"
+                                   placeholder="Напишите, чем вам помочь"
+                                   name="id"
+                            >
+                            {#                            </form>#}
 
                         </div>
                         <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">
-                            <button type="submit" type="submit" form="main_input_form_header" id="btn_head_submit"
+                            {#                            <button type="submit" form="main_input_form_header" id="btn_head_submit"#}
+{#                            <a href=""#}
+{#                               id="header_search_link">#}
+                                <button type="button"
+                                        {#                                    form="main_input_form_header" #}
+                                                                            id="btn_head_submit"
 
-                                    class="form-control btn chColorFull search-bttn  p-0">
-                                <i class="fas fa-search w-100 d-inline s-sm-none d-md-none d-lg-none d-xl-none"></i>
-                                <p class="p-0 w-100 text-center d-none s-sm-inline d-md-inline d-lg-inline d-xl-inline">
-                                    Найти </p>
-                            </button>
+                                        class="form-control btn chColorFull search-bttn  p-0">
+                                    {#                                    class="w-100 btn question-btn fz_12rem px-sm-4 px-md-5">#}
+                                    <i class="fas fa-search w-100 d-inline s-sm-none d-md-none d-lg-none d-xl-none"></i>
+                                    <p class="p-0 w-100 text-center d-none s-sm-inline d-md-inline d-lg-inline d-xl-inline">
+                                        Найти </p>
+                                </button>
+{#                            </a>#}
                         </div>
                     </div>
                     <div class="row justify-content-center align-items-center position-relative bg_color_white">
