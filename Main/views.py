@@ -179,6 +179,14 @@ def Dev(request):
 
     return render(request, 'Main/Dev.html', locals())
 
+def Dev(request,text):
+    # id = request.GET.get('id')
+    print(text)
+    id=text
+    # if id:
+
+    return render(request, 'Main/Dev.html', locals())
+
 
 def Test(request):
     return render(request, 'Test.html', locals())
@@ -302,21 +310,7 @@ def Privacy_rules(request):
         privacy_rules.append(pr1)
     return render(request, 'Main/Privacy_rules.html', locals())
 
-def Search_results_help(request,name):
-    contact = layout_contact()
-    link = layout_link()
-    city,regs,regions=layout_regions_cities(request)
-
-    name = str(name).lower()
-    results = HelpCategory.objects.get(name__icontains=name)
-    # id=category_item.id
-
-    subs = HelpSubcategory.objects.filter(help_category=results.id)
-    count =subs.count()
-
-    return render(request, 'Main/Search_results.html', locals())
-
-# def Help_category(request,name):
+# def Search_results_help(request,name):
 #     contact = layout_contact()
 #     link = layout_link()
 #     city,regs,regions=layout_regions_cities(request)
@@ -328,16 +322,7 @@ def Search_results_help(request,name):
 #     subs = HelpSubcategory.objects.filter(help_category=results.id)
 #     count =subs.count()
 #
-#     return render(request, 'Main/Question_category.html', locals())
-
-# def Question_category(request):
-#     contact = layout_contact()
-#     link = layout_link()
-#     city, regs, regions = layout_regions_cities(request)
-#     return render(request, 'Main/Question_category.html', locals())
-
-
-
+#     return render(request, 'Main/Search_results.html', locals())
 
 def Profile_settings(request):
     return render(request, 'Main/Profile_settings.html', locals())
@@ -353,55 +338,21 @@ def Find_category(request, text):
     return render(request, 'Main/Dev.html', locals())
 
 def search_input_category(request):
-    # word = request.GET.get("word")
-    # word = str(word).strip()
-    # print(word)
-    # arr=word.split(' ')
-    # res=SubCategory.objects.filter(name__icontains=word)[:6]
-    # if arr.count()>1:
-    #     list = res=SubCategory.objects.filter(name__icontains=arr[0])
-    #     for i in range(arr.count() - 1):
-    #         if(list[])
-    #
-    # else:
-    #     res=SubCategory.objects.filter(name__icontains=arr[0])[:10]
-
-
-    # list = models.Products.objects.all()
-    # list1 = []
-    # for i in list:
-    #     list2 = []
-    #     list2.append(i.id)
-    #     list2.append(i.name.lower())
-    #     list1.append(list2)
-    # return HttpResponse(json.dumps({'data': res}))
-    #     obj = MyModel.objects.get(pk=id)
     cat = []
     res_cat = Category.objects.all()
     for i in res_cat:
         cat1 = []
         cat1.append(i.id)
         cat1.append(i.name)
-        # list1.append(Category.objects.get(id=i.category_id).name)
-        # subcat1.append(i.category_id)
         cat.append(cat1)
 
     subcat=[]
     res_subcat = SubCategory.objects.all()
     for i in res_subcat:
         subcat1=[]
-        # subcat1.append(i.id)
         subcat1.append(i.name)
-        # list1.append(Category.objects.get(id=i.category_id).name)
-        # subcat1.append(res_cat.get(id=i.category_id).name)
         subcat1.append(i.category_id)
         subcat.append(subcat1)
-
-    count1=SubCategory.objects.count()
-    count1=SubCategory.objects.count()
-    count1=SubCategory.objects.count()
-    count1=SubCategory.objects.count()
-
     list=[]
     list.append(cat)
     list.append(subcat)

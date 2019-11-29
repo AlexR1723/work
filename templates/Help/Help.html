@@ -2,24 +2,51 @@
 {% load staticfiles %}
 {% block content %}
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-5">
-            <div class="row justify-content-center align-items-center mt-2">
-                <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
-                    <input type="text" class="form-control search-input" placeholder="С чем нужна помощь?">
+{#    <div class="row justify-content-center">#}
+{#        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-5">#}
+{#            <div class="row justify-content-center align-items-center mt-2">#}
+{#                <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">#}
+{#                    <input type="text" class="form-control search-input" placeholder="С чем нужна помощь?">#}
+{#                </div>#}
+{#                <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">#}
+{#                    <button type="button"#}
+{#                            class="form-control btn chColorFull search-bttn d-flex s-sm-none d-md-none d-lg-none d-xl-none p-0">#}
+{#                        <i class="fas fa-search w-100"></i></button>#}
+{#                    <button type="button"#}
+{#                            class="form-control btn chColorFull search-bttn d-none s-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center">#}
+{#                        НАЙТИ#}
+{#                    </button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="row justify-content-center align-items-center ">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+                <div class="row justify-content-center">
+                    <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
+                        <input type="text" id="help_input"
+                               class="form-control search-input"
+                               placeholder="Напишите, чем вам помочь?"
+                        >
+                    </div>
+                    <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">
+                        <button type="button"
+                                id="btn_help_submit"
+                                class="form-control btn chColorFull search-bttn  p-0">
+                            <i class="fas fa-search w-100 d-inline s-sm-none d-md-none d-lg-none d-xl-none"></i>
+                            <p class="p-0 w-100 text-center d-none s-sm-inline d-md-inline d-lg-inline d-xl-inline">
+                                Найти </p>
+                        </button>
+                    </div>
                 </div>
-                <div class="col-2 col-sm-2 col-md-3 col-lg-3 col-xl-3 p-0">
-                    <button type="button"
-                            class="form-control btn chColorFull search-bttn d-flex s-sm-none d-md-none d-lg-none d-xl-none p-0">
-                        <i class="fas fa-search w-100"></i></button>
-                    <button type="button"
-                            class="form-control btn chColorFull search-bttn d-none s-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-center">
-                        НАЙТИ
-                    </button>
+                <div class="row justify-content-center align-items-center position-relative bg_color_white">
+                    <div class="col-12 p-0 search_dropdown">
+                        <div class="col-12 search_input_drop p-0" id="res_list_input" style="display: none"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <div class="row justify-content-center">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
