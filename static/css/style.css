@@ -1679,6 +1679,7 @@ input[type=checkbox]:checked + label::after {
 .input-group-sm>.custom-select, .input-group-sm>.form-control:not(textarea) {
     height: calc(1.7em + .5rem + 2px);
 }
+.adverts-add_photos .img_wrapper,
 .portfolio-photos_blk .img_wrapper {
     height: 230px;
     overflow: hidden;
@@ -1686,6 +1687,7 @@ input[type=checkbox]:checked + label::after {
     padding-left: 0;
     padding-bottom: 0;
 }
+.adverts-add_photos .img_wrapper img,
 .portfolio-photos_blk .img_wrapper img {
     min-height: 100%;
     min-width: 100%;
@@ -1739,11 +1741,59 @@ input[type=checkbox]:checked + label::after {
     width: 50%;
 }
 
+.hdr-adv {
+    font-size: 1.5em;
+    line-height: 33px;
+    color: #000000;
+}
+.adverts-add_blk p,
+.adverts-add_blk label {
+    font-size: 1.1em;
+    line-height: 28px;
+    color: #000000;
+}
+.adverts-add_blk span {
+    font-size: 1em;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.adverts-add_blk .adverts_input {
+    border: 1px solid #AAAAAA;
+}
+.adverts-add_blk textarea {
+    resize: none;
+    height: 150px;
+    border: 1px solid #AAAAAA;
+}
+.adverts-add_blk .btn-save {
+    background: rgb(175, 75, 83);
+    border: 1px solid #AF4B53;
+    color: #FFFFFF;
+}
+.adverts-add_blk .btn-save:hover {
+    background: #FFFFFF;
+    color: #AF4B53;
+    border: 1px solid #AF4B53;
+    transition: .3s;
+}
+.adverts-add_blk .btn-adv-photo {
+    background: transparent;
+    color: #333333;
+    border: 1px solid rgb(62, 120, 157);
+}
+.adverts-add_blk .btn-adv-photo:hover {
+    background: rgb(62, 120, 157);
+    color: #FFFFFF;
+    border: 1px solid rgb(62, 120, 157);
+    transition: .3s;
+}
+
 
 @media (min-width: 1200px) {
     .input-group-sm>.custom-select, .input-group-sm>.form-control:not(textarea) {
         height: calc(1.8em + .5rem + 2px);
     }
+    .adverts-add_photos .img_wrapper,
     .portfolio-photos_blk .img_wrapper {
         padding: .5rem .5rem 0 0;
     }
@@ -1847,10 +1897,12 @@ input[type=checkbox]:checked + label::after {
         display: inline-flex;
         margin-bottom: 2%;
     }
+    .adverts-add_photos .img_wrapper:nth-child(2n+2),
     .portfolio-photos_blk .img_wrapper:nth-child(2n+2) {
         padding-left: .2rem;
         padding-right: 0;
     }
+     .adverts-add_photos .img_wrapper,
      .portfolio-photos_blk .img_wrapper {
         height: 150px;
         padding: .4rem .2rem 0 0;

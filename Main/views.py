@@ -199,6 +199,12 @@ def Login(request):
 def Register(request):
     return render(request, 'Main/Register.html', locals())
 
+def Choose_city(request):
+    return render(request, 'Main/Choose_city.html', locals())
+
+def Adverts_add(request):
+    return render(request, 'Main/Adverts_add.html', locals())
+
 
 @transaction.atomic
 def Registrate(request):
