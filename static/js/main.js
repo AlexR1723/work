@@ -181,7 +181,7 @@ $('#res_list_header').on('click', 'button ', function (event) {
 $('#res_list_input').on('click', 'button ', function (event) {
     let text = this.childNodes[0].childNodes[0].childNodes[0].textContent;
     document.getElementById('help_input').value = text
-    window.location.href = "/find_help/" + text.trim().toLowerCase();
+    window.location.href = "/help/find_help/" + text.trim().toLowerCase();
 });
 
 $("#btn_head_submit").click(function (event) {
@@ -194,7 +194,7 @@ $("#btn_head_submit").click(function (event) {
 $("#btn_help_submit").click(function (event) {
     let text = document.getElementById('help_input').value
     if (text != '') {
-        window.location.href = "/find_help/" + text.trim().toLowerCase();
+        window.location.href = "/help/find_help/" + text.trim().toLowerCase();
     }
 });
 
@@ -313,7 +313,7 @@ function show_item(val, code, list, el) {
             if (el != 'help_input') {
                 window.location.href = "/find/" + val.trim().toLowerCase();
             } else {
-                window.location.href = "/find_help/" + val.trim().toLowerCase();
+                window.location.href = "/help/find_help/" + val.trim().toLowerCase();
             }
 
             break;

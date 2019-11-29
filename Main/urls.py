@@ -52,4 +52,5 @@ urlpatterns = [
     url(r'/set_session_city/', views.set_session_city, name='set_session_city'),
 
     url(r'^dev/$', views.Dev, name="Dev"),
+    url(r'^dev/(?P<text>[А-Яа-я\s0-9]+)/$', views.Dev, name="Dev"),
 ]
