@@ -1526,11 +1526,67 @@ input[type=checkbox]:checked + label::after {
     min-width: 100%;
     object-fit: cover;
 }
+.item-inf_blk {
+    position: relative;
+}
+.edit-icon_blk {
+    position: absolute;
+    left: 93%;
+    display: none;
+}
+.item-inf_blk:hover .edit-icon_blk {
+    display: block;
+}
+.item-inf_blk p {
+    font-size: 1rem;
+    line-height: 23px;
+    color: #000000;
+}
+.item-inf_blk span {
+    font-size: 1rem;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+.item-inf_blk h5 {
+    font-size: 1.1rem;
+    line-height: 30px;
+    color: #000000;
+}
+.item-inf_blk .badge {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0 2% 3% 0;
+    padding: .2em 1.2em;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.item-inf_blk:hover {
+    background: rgba(229,229,229,.4);
+    transition: .3s;
+}
+.item-icon {
+    width: 70%;
+}
+.edit-icon {
+    width: 50%;
+}
 
 
 @media (min-width: 1200px) {
     .input-group-sm>.custom-select, .input-group-sm>.form-control:not(textarea) {
         height: calc(1.8em + .5rem + 2px);
+    }
+    .portfolio-photos_blk .img_wrapper {
+        padding: .5rem .5rem 0 0;
+    }
+    .item-icon {
+        width: 60%;
+    }
+    .edit-icon {
+        width: 45%;
     }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -1551,6 +1607,12 @@ input[type=checkbox]:checked + label::after {
     }
     .input-group-sm>.custom-select, .input-group-sm>.form-control:not(textarea) {
         height: calc(1.5em + .5rem + 2px);
+    }
+    .item-icon {
+        width: 70%;
+    }
+    .edit-icon {
+        width: 50%;
     }
 }
 
@@ -1607,5 +1669,17 @@ input[type=checkbox]:checked + label::after {
      .portfolio-photos_blk .img_wrapper {
         height: 150px;
         padding: .4rem .2rem 0 0;
+    }
+     .item-icon {
+        width: 90%;
+    }
+     .edit-icon_blk {
+        left: 90%;
+    }
+    .edit-icon {
+        width: 60%;
+    }
+    .item-inf_blk span.badge {
+         white-space: pre-wrap;
     }
 }
