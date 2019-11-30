@@ -1968,5 +1968,6 @@ input[type=checkbox]:checked + label::after {
     }
     .panel-collapse .custom-control-label {
         font-size: .9rem;
+        line-height: 23px;
     }
 }

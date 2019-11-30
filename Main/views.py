@@ -205,6 +205,9 @@ def Choose_city(request):
 def Adverts_add(request):
     return render(request, 'Main/Adverts_add.html', locals())
 
+def Choose_categ(request):
+    return render(request, 'Main/Choose_categ.html', locals())
+
 
 @transaction.atomic
 def Registrate(request):
