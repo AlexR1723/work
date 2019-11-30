@@ -5,7 +5,7 @@
 <div class="row justify-content-center">
     <div class=" w-100 " style="
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/austin-distel-wD1LRb9OeEo-unsplash.jpg) 50% 55% no-repeat;
     background-size: cover;
 ">
@@ -32,7 +32,10 @@
         <div class="row justify-content-around py-5">
             <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4">
                 <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/registration%20(1).png" alt="">
+                    <div class="row justify-content-center">
+                        <div class="col-6 p-0">
+                            <img src="{% static 'image/registration.png' %}" alt="" class="img-fluid">
+                        </div>
                     </div>
                     <h5 class="hiw_header fz_15rem">Зарегистрируйтесь</h5>
                     <h6 class="hiw_text">Подтвердите регистрационные данные и получите статус "Проверенной компании"</h6>
@@ -40,14 +43,21 @@
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4">
                 <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/lecture.png" alt=""></div>
+                    <div class="row justify-content-center">
+                        <div class="col-6 p-0">
+                            <img src="{% static 'image/megaphone.png' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
                     <h5 class="hiw_header fz_15rem">Расскажите о себе</h5>
                     <h6 class="hiw_text">Бесплатно добавьте объявления, прайсы, а также свое портфолио</h6>
                 </a>
             </div>
             <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4">
                 <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/payment%20(1).png" alt="">
+                    <div class="row justify-content-center">
+                        <div class="col-6 p-0">
+                            <img src="{% static 'image/payment_2.png' %}" alt="" class="img-fluid">
+                        </div>
                     </div>
                     <h5 class="hiw_header fz_15rem">Зарабатывайте</h5>
                     <h6 class="hiw_text">Выполняйте интересные для вас заказы и получайте оплату</h6>
@@ -170,56 +180,6 @@
             </div>
             {% endfor %}
 
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
-            <!--            <div class="col-11 col-sm-5 col-md-3 col-lg-3 col-xl-2 mx-1 my-3">-->
-            <!--                <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/11.png" alt=""></div>-->
-            <!--                <p class="hiw_header m-0">Домашний мастер</p>-->
-            <!--                <p class="hiw_text">7 подкатегорий</p>-->
-            <!--            </div>-->
 
 
         </div>
