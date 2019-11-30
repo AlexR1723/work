@@ -243,7 +243,7 @@ document.onclick = function (e) {
     }
 
     let closest_input = (e.target).closest('div#res_list_input')
-    if (document.getElementById('res_list_input').style.display == 'block' && closest_input == null) {
+    if  ( document.getElementById('res_list_input') != null && document.getElementById('res_list_input').style.display == 'block' && closest_input == null) {
         // alert(e.target.tagName);
         // console.log(closest_input)
         document.getElementById('res_list_input').innerHTML = ""
@@ -399,6 +399,32 @@ window.onload = function () {
 
     }
 };
+
+$("#btn_profile_change_pass").click(function () {
+    let pass = document.getElementsByClassName('passwords')
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            old: pass[0].value,
+            new1:pass[1].value,
+            new2:pass[2].value,
+        },
+        url: 'search_input_category',
+        success: function (data) {
+            let jo = data
+        },
+        error: function (data) {
+            alert('Error');
+        }
+    })
+});
+
+
+
+
 
 $("#safety_btn_customer").click(function () {
     let cus = document.getElementById('safety_btn_customer')
