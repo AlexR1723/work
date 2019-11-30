@@ -1770,7 +1770,6 @@ input[type=checkbox]:checked + label::after {
     border: 1px solid #AAAAAA;
 }
 .adverts-add_blk textarea {
-    resize: none;
     height: 150px;
     border: 1px solid #AAAAAA;
 }
