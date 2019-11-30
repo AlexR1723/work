@@ -48,7 +48,7 @@ urlpatterns = [
 
 
     # url(r'^test/$', views.Test, name="Test"),
-
+    url(r'login_user', views.login_user, name='login_user'),
     url(r'search_input_category', views.search_input_category, name='search_input_category'),
     url(r'/set_session_city/', views.set_session_city, name='set_session_city'),
 

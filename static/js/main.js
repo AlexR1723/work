@@ -243,7 +243,7 @@ document.onclick = function (e) {
     }
 
     let closest_input = (e.target).closest('div#res_list_input')
-    if  ( document.getElementById('res_list_input') != null && document.getElementById('res_list_input').style.display == 'block' && closest_input == null) {
+    if (document.getElementById('res_list_input') != null && document.getElementById('res_list_input').style.display == 'block' && closest_input == null) {
         // alert(e.target.tagName);
         // console.log(closest_input)
         document.getElementById('res_list_input').innerHTML = ""
@@ -409,12 +409,12 @@ $("#btn_profile_change_pass").click(function () {
         async: false,
         data: {
             old: pass[0].value,
-            new1:pass[1].value,
-            new2:pass[2].value,
+            new1: pass[1].value,
+            new2: pass[2].value,
         },
-        url: 'search_input_category',
+        url: 'change_password',
         success: function (data) {
-            let jo = data
+            alert(data)
         },
         error: function (data) {
             alert('Error');
@@ -422,8 +422,43 @@ $("#btn_profile_change_pass").click(function () {
     })
 });
 
-
-
+$("#btn_login").click(function () {
+    let email = document.getElementById('login_email')
+    let pass = document.getElementById('login_pass')
+    document.getElementById('login_email').setAttribute('class', 'form-control')
+    document.getElementById('login_pass').setAttribute('class', 'form-control')
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            email: email.value,
+            pass: pass.value
+        },
+        url: 'login_user',
+        success: function (data) {
+            if (data == true) {
+                // window.location.href='path_to_page'
+                alert('login succesful')
+            } else {
+                if (data == false) {
+                    data='Заполните поля!'
+                    document.getElementById('login_email').setAttribute('class', 'form-control br-red')
+                    document.getElementById('login_pass').setAttribute('class', 'form-control br-red')
+                }
+                document.getElementById('alert-danger').innerHTML = data
+                $("#alert-danger").show('slow');
+                setTimeout(function () {
+                    $("#alert-danger").hide('slow');
+                }, 5000);
+            }
+        },
+        error: function (data) {
+            alert('Error');
+        }
+    })
+})
+;
 
 
 $("#safety_btn_customer").click(function () {
@@ -616,23 +651,23 @@ $(document).ready(function () {
 });
 
 $(".btn-all").click(function () {
-        $('.btn-delivery').removeClass('active');
-        $('.btn-all').toggleClass('active');
+    $('.btn-delivery').removeClass('active');
+    $('.btn-all').toggleClass('active');
 });
 $(".btn-delivery").click(function () {
-        $('.btn-all').removeClass('active');
-        $('.btn-delivery').toggleClass('active');
+    $('.btn-all').removeClass('active');
+    $('.btn-delivery').toggleClass('active');
 });
 $(".btn-add-folder").click(function () {
-        $('.add-folder_input').removeClass('d-none');
-        $('.add-folder_input').addClass('d-flex');
+    $('.add-folder_input').removeClass('d-none');
+    $('.add-folder_input').addClass('d-flex');
 });
 $(".settings-blk").ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
- $(".choose_blk").ready(function () {
-     $('.panel-heading').click(function () {
-         $(this).toggleClass('in').next().slideToggle();
-         $('.panel-heading').not(this).removeClass('in').next().slideUp();
-     });
- });
+$(".choose_blk").ready(function () {
+    $('.panel-heading').click(function () {
+        $(this).toggleClass('in').next().slideToggle();
+        $('.panel-heading').not(this).removeClass('in').next().slideUp();
+    });
+});

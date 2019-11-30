@@ -7,6 +7,7 @@ from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db import transaction
+from django.core.validators import validate_email
 from django.conf import settings
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives, EmailMessage
@@ -178,7 +179,33 @@ def Login(request):
 def Register(request):
     return render(request, 'Main/Register.html', locals())
 
+def login_user(request):
+    email = request.GET.get("email")
+    password = request.GET.get("pass")
 
+    # if len(password)<8:
+    #     return HttpResponse(json.dumps('Пароль не менее 8 символов'))
+    if len(password)==0 or len(email)==0:
+        # return HttpResponse(json.dumps('Заполните поля!'))
+        return HttpResponse(json.dumps(False))
+
+    try:
+        check_email=validate_email(email)
+    # if validate_email(email) == False or len(password) < 8:
+
+    except:
+        return HttpResponse(json.dumps('Поля заполнены неверно!'))
+
+
+    user = authenticate(username=email, password=password)
+
+    if user is None :
+        return HttpResponse(json.dumps('Логин или пароль введены неверно!'))
+    else:
+        login(request, user)
+        request.session['username'] = AuthUser.objects.get(id=user.id).username
+        request.session.modified = True
+        return HttpResponse(json.dumps(True))
 
 @transaction.atomic
 def Registrate(request):
