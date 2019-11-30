@@ -199,14 +199,6 @@ def Login(request):
 def Register(request):
     return render(request, 'Main/Register.html', locals())
 
-def Choose_city(request):
-    return render(request, 'Main/Choose_city.html', locals())
-
-def Adverts_add(request):
-    return render(request, 'Main/Adverts_add.html', locals())
-
-def Choose_categ(request):
-    return render(request, 'Main/Choose_categ.html', locals())
 
 
 @transaction.atomic
@@ -333,8 +325,7 @@ def Privacy_rules(request):
 #
 #     return render(request, 'Main/Search_results.html', locals())
 
-def Profile_settings(request):
-    return render(request, 'Main/Profile_settings.html', locals())
+
 
 def Find_category(request, text):
     contact = layout_contact()
