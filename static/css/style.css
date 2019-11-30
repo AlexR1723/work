@@ -1975,3 +1975,4 @@ input[type=checkbox]:checked + label::after {
         line-height: 23px;
     }
 }
+
