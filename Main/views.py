@@ -178,6 +178,9 @@ def Login(request):
 def Register(request):
     return render(request, 'Main/Register.html', locals())
 
+def Question_details(request):
+    return render(request, 'Main/Question_details.html', locals())
+
 
 
 @transaction.atomic

@@ -1312,11 +1312,18 @@ hr.line {
     background: url(/static/image/privacy_banner.jpg) 60% 20% no-repeat;
     background-size: cover;
 }
+.quest_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/ProblemsLogo.jpg) 60% 20% no-repeat;
+    background-size: cover;
+}
 
 .offer_hdr_bg_layout,
 .rules_hdr_bg_layout,
 .privacy_hdr_bg_layout,
-.category_hdr_bg_layout {
+.category_hdr_bg_layout,
+.ques_hdr_bg_layout {
     height: 100%;
     width: 100%;
     background: rgba(0, 0, 0, .5);
@@ -1833,6 +1840,21 @@ input[type=checkbox]:checked + label::after {
     border-color: #3E789D;
     background-color: #3E789D;
 }
+.quest-details_blk p {
+    text-indent: 20px;
+    font-size: 1.125rem;
+    line-height: 25px;
+    color: #000000;
+}
+.quest-details_blk .carousel-item img {
+    height: 450px;
+}
+.quest-details_blk span {
+    font-size: 16px;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
 @media (min-width: 1200px) {
     .input-group-sm>.custom-select, .input-group-sm>.form-control:not(textarea) {
         height: calc(1.8em + .5rem + 2px);
@@ -1973,6 +1995,9 @@ input[type=checkbox]:checked + label::after {
     .panel-collapse .custom-control-label {
         font-size: 1rem;
         line-height: 23px;
+    }
+    .quest-details_blk .carousel-item img {
+        height: 200px;
     }
 }
 

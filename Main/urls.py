@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
     url(r'^rules/$', views.Rules, name="Rules"),
     url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
+    url(r'^question_details/$', views.Question_details, name="Question_details"),
 
     # url(r'^search_results/$', views.search_input_help, name="search_input_help"),
     # url(r'^question_category/$', views.Question_category, name="Question_category"),
