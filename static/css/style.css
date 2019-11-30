@@ -1968,8 +1968,13 @@ input[type=checkbox]:checked + label::after {
     .panel-heading a::before {
         left: 4%;
     }
+    .main-accordion_blk .inner-accordion_blk {
+        font-size: 1.2rem;
+        line-height: 33px;
+    }
     .panel-collapse .custom-control-label {
-        font-size: .9rem;
+        font-size: 1rem;
         line-height: 23px;
     }
 }
+
