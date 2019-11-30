@@ -30,33 +30,12 @@ def layout_regions_cities(request):
     reg = request.session.get('reg', 0)
     regions = Region.objects.all()
     return city, reg,regions
-# def layout_cities():
-#     cities = City.objects.all()
-#     return cities
-
-
-# def region_city():
-    # city=City.objects.all()
-    # region=Region.objects.all()
-    # city_dnr=City.objects.filter(region_id=(Region.filter(name='ДНР')[0].id)).order_by('name')
-    # city_lnr=City.objects.filter(region_id=(Region.filter(name='ЛНР')[0].id)).order_by('name')
-    # city_rus=City.objects.filter(region_id=(Region.filter(name='Россия')[0].id)).order_by('name')
-    # city_urk=City.objects.filter(region_id=(Region.filter(name='Украина')[0].id)).order_by('name')
-    # print(city_dnr)
-    # city1=[]
-    # city1.append(city_dnr)
-    # city1.append(city_dnr1)
-    # return city_dnr
 
 # Create your views here.
 def Main(request):
     contact=layout_contact()
     link=layout_link()
     city,regs,regions=layout_regions_cities(request)
-    # city_dnr = City.objects.filter(region_id=(Region.objects.filter(name='ДНР')[0].id)).order_by('name')
-    # city_lnr = City.objects.filter(region_id=(Region.objects.filter(name='ЛНР')[0].id)).order_by('name')
-    # city_rus = City.objects.filter(region_id=(Region.objects.filter(name='Россия')[0].id)).order_by('name')
-    # city_ukr = City.objects.filter(region_id=(Region.objects.filter(name='Украина')[0].id)).order_by('name')
 
     fslide=FirstSlider.objects.all()[0]
     slide=FirstSlider.objects.all()[1:]
