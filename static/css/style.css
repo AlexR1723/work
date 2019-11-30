@@ -630,7 +630,7 @@ p {
     background-color: rgba(128, 128, 128, .4);
     color: white;
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
 }
 
 .line_height_1 {
@@ -1022,7 +1022,7 @@ hr.line {
 .category-head-img {
     background: url("../image/bg-cat.jpg") no-repeat center center;
     background-size: cover;
-    height: 30vh;
+    height: 20vh;
 }
 
 .category-head-fon {
@@ -1301,14 +1301,14 @@ hr.line {
 /*---Оферта и Правила конфиденц---*/
 .offer_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/3eabf99674833ed66719c.jpg) 70% 70% no-repeat;
     background-size: cover;
 }
 
 .privacy_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/privacy_banner.jpg) 60% 20% no-repeat;
     background-size: cover;
 }
@@ -1360,7 +1360,7 @@ hr.line {
 /*---------Правила-------*/
 .rules_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/documents.jpg) 30% 30% no-repeat;
     background-size: cover;
 }
@@ -1442,7 +1442,7 @@ hr.line {
 
 .category_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/klining-odincovo-uborka-kvartir-asssfggaa.jpg) 70% 70% no-repeat;
     background-size: cover;
 }
@@ -1582,14 +1582,16 @@ hr.category-line {
     color: #000000;
 }
 
-.change-password button {
+/*.change-password button {*/
+#btn_profile_change_pass {
     border: 1px solid transparent;
     height: 40px;
     background: #AF4B53;
     color: #FFFFFF;
 }
 
-.change-password button:hover {
+/*.change-password button:hover {*/
+#btn_profile_change_pass:hover {
     background-color: #FFFFFF;
     color: #AF4B53;
     border: 1px solid #AF4B53;
@@ -2001,3 +2003,17 @@ input[type=checkbox]:checked + label::after {
     }
 }
 
+.btn-outline-danger2{
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    border-radius: 5px;
+    transition: .3s;
+}
+.btn-outline-danger2:hover{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    border-radius: 5px;
+    color: white;
+    transition: .3s;
+}

@@ -111,8 +111,7 @@
                                 {% for s in c.rest %}
                                     <div class="row mt-2">
                                         <div class="col-md-12 ">
-                                            <a class="fontCategorySmall colorDarkGrey" href="#">{{ s.name }}</a>
-{#                                            <a class="fontCategorySmall colorDarkGrey" href="{% url 'Dev' s.name|lower %}">{{ s.name }}</a>#}
+                                            <a class="fontCategorySmall colorDarkGrey" href="{% url 'Dev' s.name|lower %}">{{ s.name }}</a>
                                             <small class="ml-2 colorLightGrey">1145</small>
                                         </div>
                                     </div>
@@ -143,8 +142,7 @@
                                 {% for s in c.first_five %}
                                     <div class="row mt-2">
                                         <div class="col-md-12 ">
-                                            <a class="fontCategorySmall colorDarkGrey" href="#">{{ s.name }}</a>
-{#                                            <a class="fontCategorySmall colorDarkGrey" href="{% url 'Dev' s.name|lower %}">{{ s.name }}</a>#}
+                                            <a class="fontCategorySmall colorDarkGrey" href="{% url 'Dev' s.name|lower %}">{{ s.name }}</a>
                                             <small class="ml-2 colorLightGrey">1145</small>
                                         </div>
                                     </div>
@@ -154,8 +152,7 @@
                                     {% for s in c.rest %}
                                         <div class="row mt-2">
                                             <div class="col-md-12 ">
-                                                <a class="fontCategorySmall colorDarkGrey" href="#">{{ s.name }}</a>
-{#                                                <a class="fontCategorySmall colorDarkGrey" href="{% url 'Dev' s.name|lower %}">{{ s.name }}</a>#}
+                                                <a class="fontCategorySmall colorDarkGrey" href="{% url 'Dev' s.name|lower %}">{{ s.name }}</a>
                                                 <small class="ml-2 colorLightGrey">1145</small>
                                             </div>
                                         </div>
@@ -177,11 +174,11 @@
         </div>
         <div class="row justify-content-center pt-1 pb-4">
             <div class="col-md-12 text-center">
-                <button type="button" id="more_category" class="btn btn-outline-danger mr-2 mt-2 mb-2"
+                <button type="button" id="more_category" class="btn btn-outline-danger2 mr-2 mt-2 mb-2"
                         data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
                         aria-controls="collapseExample">Больше категорий
                 </button>
-                <a class="btn btn-outline-danger mt-2 mb-2" href="{% url 'All_category' %}">Все категории</a>
+                <a class="btn btn-outline-danger2 mt-2 mb-2" href="{% url 'All_category' %}">Все категории</a>
                  <a href="#!" name="search"></a>
             </div>
         </div>
@@ -227,21 +224,33 @@
                 <div class="row text-center">
                     <div class="col-md-4">
                         <a href="{% url 'Dev' %}" class="no-style-a">
-                            <img src="{% static 'image/222.png' %}" alt="" class="img-fluid">
+                            <div class="row justify-content-center">
+                                <div class="col-6 p-0">
+                                    <img src="{% static 'image/task_add.png' %}" alt="" class="img-fluid">
+                                </div>
+                            </div>
                             <h4 class="fontCategoryDemi mt-3">Создавайте задание</h4>
                             <h5>Подробно опишите задание</h5>
                         </a>
                     </div>
                     <div class="col-md-4">
                         <a href="{% url 'Dev' %}" class="no-style-a">
-                            <img src="{% static 'image/333.png' %}" alt="" class="img-fluid">
+                            <div class="row justify-content-center">
+                                <div class="col-6 p-0">
+                                    <img src="{% static 'image/team.png' %}" alt="" class="img-fluid">
+                                </div>
+                            </div>
                             <h4 class="fontCategoryDemi mt-3">Выбирайте исполнителей</h4>
                             <h5>Выберите компетентного специалиста</h5>
                         </a>
                     </div>
                     <div class="col-md-4">
                         <a href="{% url 'Dev' %}" class="no-style-a">
-                            <img src="{% static 'image/111.png' %}" alt="" class="img-fluid">
+                            <div class="row justify-content-center">
+                                <div class="col-6 p-0">
+                                    <img src="{% static 'image/task_ok.png' %}" alt="" class="img-fluid">
+                                </div>
+                            </div>
                             <h4 class="fontCategoryDemi mt-3">Закройте задание</h4>
                             <h5>Оставьте отзыв об исполнителе</h5>
                         </a>

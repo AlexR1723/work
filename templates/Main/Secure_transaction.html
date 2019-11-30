@@ -4,7 +4,7 @@
 <div class="row justify-content-center">
     <div class=" w-100" style="
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/contract.jpg) 50% 75% no-repeat;
     background-size: cover;
 ">
@@ -38,21 +38,33 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                 <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/notepad.svg" alt=""></div>
+                    <div class="row justify-content-center">
+                        <div class="col-6 p-0">
+                            <img src="{% static 'image/task_add.png' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
                     <p class="hiw_header fz_15rem">Создается заказ</p>
                     <p class="hiw_text">Заказчик публикует заказ на сервисе и выбирает специалиста из предложений</p>
                 </a>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                 <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/cash_1.svg" alt=""></div>
+                    <div class="row justify-content-center">
+                        <div class="col-6 p-0">
+                            <img src="{% static 'image/cash_1.svg' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
                     <p class="hiw_header fz_15rem">Резервируется оплата</p>
                     <p class="hiw_text">Бюджет списывается с карты заказчика и резервируется в банке до закрытия заказа</p>
                 </a>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                 <a href="{% url 'Dev' %}" class="no-style-a">
-                    <div class="w-100 my-3 text-center"><img class="w-50" src="/static/image/pay-per-click.svg" alt=""></div>
+                    <div class="row justify-content-center">
+                        <div class="col-6 p-0">
+                            <img src="{% static 'image/pay-per-click.png' %}" alt="" class="img-fluid">
+                        </div>
+                    </div>
                     <p class="hiw_header fz_15rem">Заказ оплачивается/возвращаются средства</p>
                     <p class="hiw_text">Если заказ был успешно выполнен, то деньги поступают специалисту, иначе —
                         возвращаются заказчику.</p>

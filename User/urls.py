@@ -18,4 +18,5 @@ from . import views
 
 urlpatterns = [
 
+    # url(r'change_password', views.change_password, name='change_password'),
 ]
