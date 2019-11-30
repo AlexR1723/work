@@ -630,7 +630,7 @@ p {
     background-color: rgba(128, 128, 128, .4);
     color: white;
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
 }
 
 .line_height_1 {
@@ -1022,7 +1022,7 @@ hr.line {
 .category-head-img {
     background: url("../image/bg-cat.jpg") no-repeat center center;
     background-size: cover;
-    height: 30vh;
+    height: 20vh;
 }
 
 .category-head-fon {
@@ -1301,22 +1301,29 @@ hr.line {
 /*---Оферта и Правила конфиденц---*/
 .offer_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/3eabf99674833ed66719c.jpg) 70% 70% no-repeat;
     background-size: cover;
 }
 
 .privacy_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/privacy_banner.jpg) 60% 20% no-repeat;
+    background-size: cover;
+}
+.quest_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/ProblemsLogo.jpg) 60% 20% no-repeat;
     background-size: cover;
 }
 
 .offer_hdr_bg_layout,
 .rules_hdr_bg_layout,
 .privacy_hdr_bg_layout,
-.category_hdr_bg_layout {
+.category_hdr_bg_layout,
+.ques_hdr_bg_layout {
     height: 100%;
     width: 100%;
     background: rgba(0, 0, 0, .5);
@@ -1353,7 +1360,7 @@ hr.line {
 /*---------Правила-------*/
 .rules_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/documents.jpg) 30% 30% no-repeat;
     background-size: cover;
 }
@@ -1435,7 +1442,7 @@ hr.line {
 
 .category_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/klining-odincovo-uborka-kvartir-asssfggaa.jpg) 70% 70% no-repeat;
     background-size: cover;
 }
@@ -1763,7 +1770,6 @@ input[type=checkbox]:checked + label::after {
     border: 1px solid #AAAAAA;
 }
 .adverts-add_blk textarea {
-    resize: none;
     height: 150px;
     border: 1px solid #AAAAAA;
 }
@@ -1835,6 +1841,21 @@ input[type=checkbox]:checked + label::after {
     border-color: #3E789D;
     background-color: #3E789D;
 }
+.quest-details_blk p {
+    text-indent: 20px;
+    font-size: 1.125rem;
+    line-height: 25px;
+    color: #000000;
+}
+.quest-details_blk .carousel-item img {
+    height: 450px;
+}
+.quest-details_blk span {
+    font-size: 16px;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
 @media (min-width: 1200px) {
     .input-group-sm>.custom-select, .input-group-sm>.form-control:not(textarea) {
         height: calc(1.8em + .5rem + 2px);
@@ -1976,5 +1997,22 @@ input[type=checkbox]:checked + label::after {
         font-size: 1rem;
         line-height: 23px;
     }
+    .quest-details_blk .carousel-item img {
+        height: 200px;
+    }
 }
 
+.btn-outline-danger2{
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    border-radius: 5px;
+    transition: .3s;
+}
+.btn-outline-danger2:hover{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    border-radius: 5px;
+    color: white;
+    transition: .3s;
+}

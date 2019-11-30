@@ -185,6 +185,9 @@ def Register(request):
     city, regs, regions = layout_regions_cities(request)
     return render(request, 'Main/Register.html', locals())
 
+def Question_details(request):
+    return render(request, 'Main/Question_details.html', locals())
+
 def login_user(request):
     email = request.GET.get("email")
     password = request.GET.get("pass")
