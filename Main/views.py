@@ -211,6 +211,7 @@ def Registrate(request):
     list = [1,2,3,4,5,6,7,8,9,0,'a','b','c','d','e','f','g','h','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
     try:
+        key = ''
         us=AuthUser.objects.all().filter(email=email)
         print(us)
         if (len(us) == 0):
@@ -232,7 +233,7 @@ def Registrate(request):
             text_content = 'Перейдите по ссылке для автивации учетной записи.'
             m='https://work-proj.herokuapp.com/verify/'+key
             print(m)
-            html_content=render_to_string('test.html', {"key" : key})
+            html_content=render_to_string('letter.html', {"key" : key})
             print(html_content)
             # html_content="<a href='%s'>Активировать</a>" % m
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
