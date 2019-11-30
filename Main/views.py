@@ -179,6 +179,7 @@ def Register(request):
     return render(request, 'Main/Register.html', locals())
 
 
+
 @transaction.atomic
 def Registrate(request):
     name = request.GET.get("name")
@@ -303,8 +304,7 @@ def Privacy_rules(request):
 #
 #     return render(request, 'Main/Search_results.html', locals())
 
-def Profile_settings(request):
-    return render(request, 'Main/Profile_settings.html', locals())
+
 
 def Find_category(request, text):
     contact = layout_contact()

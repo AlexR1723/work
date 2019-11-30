@@ -35,13 +35,14 @@ urlpatterns = [
     url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
     url(r'^rules/$', views.Rules, name="Rules"),
     url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
+
     # url(r'^search_results/$', views.search_input_help, name="search_input_help"),
     # url(r'^question_category/$', views.Question_category, name="Question_category"),
     # url(r'^category_item/$', views.Category_item, name="Category_item"),
 
 
     #url(r'category_item/$', views.Category_item, name="Category_item"),
-    url(r'profile_settings/$', views.Profile_settings, name="Profile_settings"),
+
     # url(r'^help_results/(?P<name>[А-Яа-я\s0-9]+)/$', views.Search_results_help, name="Search_results_help"),
     # url(r'^help_category/(?P<name>[А-Яа-я\s0-9]+)/$', views.Help_category, name="Help_category"),
 
