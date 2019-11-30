@@ -604,3 +604,9 @@ $(".btn-add-folder").click(function () {
 $(".settings-blk").ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
+ $(".choose-city_blk").ready(function () {
+     $('.panel-heading').click(function () {
+         $(this).toggleClass('in').next().slideToggle();
+         $('.panel-heading').not(this).removeClass('in').next().slideUp();
+     });
+ });

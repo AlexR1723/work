@@ -2,6 +2,156 @@
 {% load staticfiles %}
 {% block content %}
 
+<div class="container-fluid p-0">
+    <div class="row justify-content-center choose-city_blk">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8">
+            <div class="row pb-5 pt-4">
+                <div class="col-12 d-flex justify-content-center main-accordion_blk">
+                        <div class="inner-accordion_blk">
+                            <div class="panel">
+                                <div class="panel-heading mb-1">
+                                    <a href="#">ЛНР</a>
+                                </div>
+                                <div class="panel-collapse">
+                                        <div id="collapseOne" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                          <div class="col-6 px-1 px-sm-5 pb-3 pt-2 card-body">
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-1">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-1" data-toggle="tooltip" data-placement="bottom" title="">Луганск</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-2">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-2" data-toggle="tooltip" data-placement="bottom" title="">Алчевск</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-3">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-3" data-toggle="tooltip" data-placement="bottom" title="">Лисичанск</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-4">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-4" data-toggle="tooltip" data-placement="bottom" title="">Рубежное</label>
+                                             </div>
+                                          </div>
+                                            <div class="col-5 px-0 px-sm-5 pb-3 pt-2 card-body">
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-5">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-5" data-toggle="tooltip" data-placement="bottom" title="">Первомайск</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-6">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-6" data-toggle="tooltip" data-placement="bottom" title="">Северодонецк</label>
+                                             </div>
+                                          </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-heading mb-1">
+                                    <a href="#">ДНР</a>
+                                </div>
+                                <div class="panel-collapse">
+                                    <div id="collapseTwo" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                          <div class="col-6 px-1 px-sm-5 pb-3 pt-2 card-body">
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-7">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-7" data-toggle="tooltip" data-placement="bottom" title="">Донецк</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-8">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-8" data-toggle="tooltip" data-placement="bottom" title="">Харцызск</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-9">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-9" data-toggle="tooltip" data-placement="bottom" title="">Шахтерск</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-10">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-10" data-toggle="tooltip" data-placement="bottom" title="">Старобешево</label>
+                                             </div>
+                                          </div>
+                                            <div class="col-5 px-0 px-sm-5 pb-3 pt-2 card-body">
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-11">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-11" data-toggle="tooltip" data-placement="bottom" title="">Макеевка</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-12">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-12" data-toggle="tooltip" data-placement="bottom" title="">Ясиноватая</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="check-city_input-13">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check-city_input-13" data-toggle="tooltip" data-placement="bottom" title="">Снежное</label>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-heading mb-1">
+                                    <a href="#">Россия</a>
+                                </div>
+                                <div class="panel-collapse">
+                                    <div id="collapseThree" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                          <div class="col-6 px-1 px-sm-5 pb-3 pt-2 card-body">
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="rus_input-1">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="rus_input-1" data-toggle="tooltip" data-placement="bottom" title="">Москва</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="rus_input-2">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="rus_input-2" data-toggle="tooltip" data-placement="bottom" title="">Воронеж</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="rus_input-3">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="rus_input-3" data-toggle="tooltip" data-placement="bottom" title="">Санкт-Петербург</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="rus_input-4">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="rus_input-4" data-toggle="tooltip" data-placement="bottom" title="">Ярославль</label>
+                                             </div>
+                                          </div>
+                                            <div class="col-5 px-0 px-sm-5 pb-3 pt-2 card-body">
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="rus_input-5">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="rus_input-5" data-toggle="tooltip" data-placement="bottom" title="">Екатеринбург</label>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <a href="#">Украина</a>
+                                </div>
+                                <div class="panel-collapse">
+                                    <div id="collapseFour" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                          <div class="col-6 px-1 px-sm-5 pb-3 pt-2 card-body">
+                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="uk_input-1">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="uk_input-1" data-toggle="tooltip" data-placement="bottom" title="">Киев</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="uk_input-2">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="uk_input-2" data-toggle="tooltip" data-placement="bottom" title="">Львов</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="uk_input-3">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="uk_input-3" data-toggle="tooltip" data-placement="bottom" title="">Харьков</label>
+                                             </div>
+                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                  <input type="checkbox" class="custom-control-input" id="uk_input-4">
+                                                  <label class="custom-control-label pl-1 pl-sm-3" for="uk_input-4" data-toggle="tooltip" data-placement="bottom" title="">Днепр</label>
+                                             </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
