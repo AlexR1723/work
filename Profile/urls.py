@@ -21,4 +21,7 @@ urlpatterns = [
     url(r'^choose_city/$', views.Choose_city, name="Choose_city"),
     url(r'^choose_categ/$', views.Choose_categ, name="Choose_categ"),
     url(r'^adverts_add/$', views.Adverts_add, name="Adverts_add"),
+
+
+    url(r'change_password', views.change_password, name='change_password'),
 ]

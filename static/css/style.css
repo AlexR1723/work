@@ -1575,14 +1575,16 @@ hr.category-line {
     color: #000000;
 }
 
-.change-password button {
+/*.change-password button {*/
+#btn_profile_change_pass {
     border: 1px solid transparent;
     height: 40px;
     background: #AF4B53;
     color: #FFFFFF;
 }
 
-.change-password button:hover {
+/*.change-password button:hover {*/
+#btn_profile_change_pass:hover {
     background-color: #FFFFFF;
     color: #AF4B53;
     border: 1px solid #AF4B53;
