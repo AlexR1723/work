@@ -10,9 +10,12 @@ def layout_contact():
 def layout_link():
     link=Link.objects.all()
     return link
-def layout_regions():
+def layout_regions_cities(request):
+    city = request.session.get('city', 0)
+    reg = request.session.get('reg', 0)
     regions = Region.objects.all()
-    return regions
+    return city, reg,regions
+
 
 list_page = []
 news_count = 0
@@ -21,7 +24,7 @@ news_count = 0
 def New(request):
     contact=layout_contact()
     link=layout_link()
-    regions=layout_regions()
+    city,regs,regions=layout_regions_cities(request)
     filter = 0
 
     news_type=NewsType.objects.all()
@@ -50,7 +53,7 @@ def New(request):
 def News_page(request,page):
     contact = layout_contact()
     link = layout_link()
-    regions=layout_regions()
+    city,regs,regions=layout_regions_cities(request)
     filter=0
 
     news_type = NewsType.objects.all()
@@ -95,10 +98,12 @@ def News_page(request,page):
 
 # def News_detail(request, id):
 def News_detail(request, slug):
-    print(slug)
-    id=slug.split('-')[0]
     contact = layout_contact()
     link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
+    print(slug)
+    id=slug.split('-')[0]
+
 
     news=News.objects.get(id=id)
     header=news.text
@@ -112,6 +117,7 @@ def News_detail(request, slug):
 def News_filter(request, filter):
     contact = layout_contact()
     link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
     filter=str(filter)
 
     news_type = NewsType.objects.all()
@@ -141,6 +147,7 @@ def News_filter(request, filter):
 def News_filter_page(request, filter,page):
     contact = layout_contact()
     link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
     filter = str(filter)
 
     news_type = NewsType.objects.all()

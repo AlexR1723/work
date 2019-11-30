@@ -414,7 +414,24 @@ $("#btn_profile_change_pass").click(function () {
         },
         url: 'change_password',
         success: function (data) {
-            alert(data)
+            // alert(data)
+            if (data == true) {
+                pass[0].value = ''
+                pass[1].value = ''
+                pass[2].value = ''
+
+                document.getElementById('alert-success_pass').innerHTML = 'Пароль успешно изменён'
+                $("#alert-success_pass").show('slow');
+                setTimeout(function () {
+                    $("#alert-success_pass").hide('slow');
+                }, 5000);
+            } else {
+                document.getElementById('alert-danger_pass').innerHTML = data
+                $("#alert-danger_pass").show('slow');
+                setTimeout(function () {
+                    $("#alert-danger_pass").hide('slow');
+                }, 5000);
+            }
         },
         error: function (data) {
             alert('Error');
@@ -442,7 +459,7 @@ $("#btn_login").click(function () {
                 alert('login succesful')
             } else {
                 if (data == false) {
-                    data='Заполните поля!'
+                    data = 'Заполните поля!'
                     document.getElementById('login_email').setAttribute('class', 'form-control br-red')
                     document.getElementById('login_pass').setAttribute('class', 'form-control br-red')
                 }
@@ -458,7 +475,105 @@ $("#btn_login").click(function () {
         }
     })
 })
-;
+
+// Отметить checkbox
+$('#checkbox').prop('checked', true);
+
+// Снять checkbox
+$('#checkbox').prop('checked', false);
+
+$('#nav-contact-tab').click(function () {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: 'get_status',
+        success: function (data) {
+            if (data != false) {
+                $('#email-notice_input').prop('checked', data[0]);
+                $('#email-dispatch_input').prop('checked', data[1]);
+            } else {
+                document.getElementById('alert-danger_notice').innerHTML = data
+                $("#alert-danger_notice").show('slow');
+                setTimeout(function () {
+                    $("#alert-danger_notice").hide('slow');
+                }, 5000);
+            }
+
+        },
+        error: function (data) {
+            document.getElementById('alert-danger_notice').innerHTML = 'Ошибка, попробуйте позже'
+            $("#alert-danger_notice").show('slow');
+            setTimeout(function () {
+                $("#alert-danger_notice").hide('slow');
+            }, 5000);
+        }
+    })
+});
+
+$('#email-notice_input').click(function () {
+    let status
+    if ($(this).is(':checked')) {
+        status = true
+    } else {
+        status = false
+    }
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            status: status
+        },
+        url: 'get_notice_status',
+        success: function (data) {
+            document.getElementById('alert-success_notice').innerHTML = data
+            $("#alert-success_notice").show('slow');
+            setTimeout(function () {
+                $("#alert-success_notice").hide('slow');
+            }, 5000);
+        },
+        error: function (data) {
+            document.getElementById('alert-danger_notice').innerHTML = data
+            $("#alert-danger_notice").show('slow');
+            setTimeout(function () {
+                $("#alert-danger_notice").hide('slow');
+            }, 5000);
+        }
+    })
+});
+
+$('#email-dispatch_input').click(function () {
+    let status;
+    if ($(this).is(':checked')) {
+        status = true
+    } else {
+        status = false
+    }
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            status: status
+        },
+        url: 'get_new_order',
+        success: function (data) {
+            document.getElementById('alert-success_notice').innerHTML = data
+            $("#alert-success_notice").show('slow');
+            setTimeout(function () {
+                $("#alert-success_notice").hide('slow');
+            }, 5000);
+        },
+        error: function (data) {
+            document.getElementById('alert-danger_notice').innerHTML = data
+            $("#alert-danger_notice").show('slow');
+            setTimeout(function () {
+                $("#alert-danger_notice").hide('slow');
+            }, 5000);
+        }
+    })
+});
 
 
 $("#safety_btn_customer").click(function () {

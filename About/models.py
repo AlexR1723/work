@@ -61,3 +61,24 @@ class ContactType(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Region(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'region'
+        verbose_name = _("Регион")
+        verbose_name_plural = _("Регионы")
+
+
+class City(models.Model):
+    region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True, verbose_name="Регион")
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'city'
+        verbose_name = _("Город")
+        verbose_name_plural = _("Города")

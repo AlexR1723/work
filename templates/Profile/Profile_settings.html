@@ -2,275 +2,351 @@
 {% load staticfiles %}
 {% block content %}
 
-<div class="container-fluid p-0">
-    <div class="row justify-content-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 settings-blk">
-            <div class="row m-0 justify-content-center">
-                <div class="col-12 col-sm-11 col-md-11 col-lg-10 col-xl-10 p-0 pt-5 pb-3">
-                    <div class="row m-0 justify-content-start">
-                        <div class="col-12 p-0">
-                            <div class="row">
-                                <div class="col-9 col-sm-2 col-md-2 p-2 mx-auto">
-                                    <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                                </div>
-                                <div class="col-12 col-sm-5 col-md-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-md-0 mt-lg-4">
-                                        <label class="profile-settings_name m-0">Имя Фамилия <a href="#"><img src="/static/image/pen.png" class="profile-name_icon ml-2 mb-md-0 mb-lg-2"></img></a></label>
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 settings-blk">
+                <div class="row m-0 justify-content-center">
+                    <div class="col-12 col-sm-11 col-md-11 col-lg-10 col-xl-10 p-0 pt-5 pb-3">
+                        <div class="row m-0 justify-content-start">
+                            <div class="col-12 p-0">
+                                <div class="row">
+                                    <div class="col-9 col-sm-2 col-md-2 p-2 mx-auto">
+                                        <img src="/static/image/user.png" class="w-100 user-img" alt="">
                                     </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 profile-settings_text">Посмотреть, как выглядит профиль для
-                                            <a href="#">всех</a>
-                                        </p>
+                                    <div class="col-12 col-sm-5 col-md-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
+                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-md-0 mt-lg-4">
+                                            <label class="profile-settings_name m-0">Имя Фамилия <a href="#"><img
+                                                    src="/static/image/pen.png"
+                                                    class="profile-name_icon ml-2 mb-md-0 mb-lg-2"></img></a></label>
+                                        </div>
+                                        <div class="row justify-content-start align-items-center pt-2">
+                                            <p class="mb-0 pr-0 profile-settings_text">Посмотреть, как выглядит профиль
+                                                для
+                                                <a href="#">всех</a>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
-                                    <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2" data-toggle="tooltip" data-placement="bottom" title="Lorem ipsum dolor sit amet.">
-                                        <span class="col-12 text-center settings-rew_span fz_3rem">10</span>
-                                        <label class="settings-rew_label mb-2">отзывов</label>
+                                    <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
+                                        <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2"
+                                             data-toggle="tooltip" data-placement="bottom"
+                                             title="Lorem ipsum dolor sit amet.">
+                                            <span class="col-12 text-center settings-rew_span fz_3rem">10</span>
+                                            <label class="settings-rew_label mb-2">отзывов</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
-                                    <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2 pl-md-0 pl-lg-3 settings-rew_blk" data-toggle="tooltip" data-placement="bottom" title="Рейтинг складывается из средних оценок по трем критериям: качество работы: вежливость и пунктуальность. Положительной считается только оценка 5 из 5-ти">
-                                        <span class="col-12 text-center settings-rew_span fz_3rem">98%</span>
-                                        <label class="settings-rew_label mb-2">положительных</label>
+                                    <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
+                                        <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2 pl-md-0 pl-lg-3 settings-rew_blk"
+                                             data-toggle="tooltip" data-placement="bottom"
+                                             title="Рейтинг складывается из средних оценок по трем критериям: качество работы: вежливость и пунктуальность. Положительной считается только оценка 5 из 5-ти">
+                                            <span class="col-12 text-center settings-rew_span fz_3rem">98%</span>
+                                            <label class="settings-rew_label mb-2">положительных</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row m-0 justify-content-center">
-                <div class="col-12 col-sm-11 col-md-11 col-lg-10 col-xl-10 p-0 pt-4 pb-5">
-                    <nav class="mb-4">
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
-                            <span class="d-none d-sm-none d-md-none d-lg-block">Общая информация</span>
-                            <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30" alt="">
-                        </a>
-                        <a class="nav-item nav-link" id="nav-portfolio-tab" data-toggle="tab" href="#nav-portfolio" role="tab" aria-controls="nav-portfolio" aria-selected="false">
-                            <span class="d-none d-sm-none d-md-none d-lg-block">Портфолио</span>
-                            <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30" alt="">
-                        </a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-notice" role="tab" aria-controls="nav-notice" aria-selected="false">
-                            <span class="d-none d-sm-none d-md-none d-lg-block">Настройка уведомлений</span>
-                            <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30" alt="">
-                        </a>
-                        <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false">
-                           <span class="d-none d-sm-none d-md-none d-lg-block">Изменить пароль</span>
-                            <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30" alt="">
-                        </a>
-                      </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                          <div class="row m-0 justify-content-start information_blk">
-                              <div class="col-12 p-3 item-inf_blk user-inf_blk">
-                                  <div class="row">
-                                      <div class="col-1 px-0 px-lg-3">
-                                          <img src="/static/image/user-icon.png" class="item-icon" alt="user-icon">
-                                      </div>
-                                      <div class="col-10">
-                                          <p class="mb-1"><span class="pr-3">Дата рождения:</span>12.07.1979</p>
-                                          <p class="mb-1"><span class="pr-3">Пол:</span>мужской</p>
-                                          <div class="row">
-                                              <div class="col-12 col-sm-1 p-0">
-                                                  <span>О себе: </span>
-                                              </div>
-                                              <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
-                                                 <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                          <a href="#">
-                                            <img src="/static/image/pen.png" class="edit-icon" alt="user-icon">
-                                          </a>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-12 p-3 item-inf_blk email-inf_blk">
-                                  <div class="row">
-                                      <div class="col-1 px-0 px-lg-3">
-                                          <img src="/static/image/email.png" class="item-icon" alt="user-icon">
-                                      </div>
-                                      <div class="col-10">
-                                          <p class="pt-1 m-0"><span class="pr-3">Email: </span>user1@gmail.com</p>
-                                      </div>
-                                      <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                          <a href="#">
-                                            <img src="/static/image/pen.png" class="edit-icon" alt="user-icon">
-                                          </a>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-12 p-3 item-inf_blk phone-inf_blk">
-                                  <div class="row">
-                                      <div class="col-1 px-0 px-lg-3">
-                                          <img src="/static/image/phone.png" class="item-icon" alt="phone-icon">
-                                      </div>
-                                      <div class="col-10">
-                                          <p class="pt-1 m-0"><span class="pr-3">Телефон: </span>0712345678</p>
-                                      </div>
-                                      <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                          <a href="#">
-                                            <img src="/static/image/pen.png" class="edit-icon" alt="edit-icon">
-                                          </a>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-12 p-3 item-inf_blk cat-inf_blk">
-                                  <div class="row">
-                                      <div class="col-1 px-0 px-lg-3">
-                                          <img src="/static/image/work.png" class="item-icon" alt="phone-icon">
-                                      </div>
-                                      <div class="col-10">
-                                          <h5 class="mb-3">Категории работ</h5>
-                                          <span class="badge">Курьерская доставка</span>
-                                          <span class="badge">Доставка документов</span>
-                                          <span class="badge">Доставка лекарств</span>
-                                          <span class="badge">Доставка продуктов и готовой еды</span>
-                                          <span class="badge">Забрать и отправить почтой</span>
-                                          <span class="badge">Столяр</span>
-                                      </div>
-                                      <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                          <a href="#">
-                                            <img src="/static/image/pen.png" class="edit-icon" alt="edit-icon">
-                                          </a>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-12 p-3 item-inf_blk ad-inf_blk">
-                                  <div class="row">
-                                      <div class="col-1 px-0 px-lg-3">
-                                          <img src="/static/image/flier.png" class="item-icon" alt="phone-icon">
-                                      </div>
-                                      <div class="col-10">
-                                          <h5 class="mb-3">Мои объявления</h5>
-                                          <span class="badge badge-secondary">Курьерская доставка 5/10</span>
-                                          <span class="badge badge-secondary">Доставка документов 0/10</span>
-                                          <span class="badge badge-secondary">Доставка лекарств 3/10</span>
-                                          <span class="badge badge-secondary">Доставка продуктов и готовой еды 1/10</span>
-                                          <span class="badge badge-secondary">Забрать и отправить почтой 0/10</span>
-                                          <span class="badge badge-secondary">Столяр 4/10</span>
-                                      </div>
-                                      <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                          <a href="#">
-                                            <img src="/static/image/pen.png" class="edit-icon" alt="edit-icon">
-                                          </a>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-12 p-3 item-inf_blk city-inf_blk">
-                                  <div class="row">
-                                      <div class="col-1 px-0 px-lg-3">
-                                          <img src="/static/image/map.png" class="item-icon" alt="phone-icon">
-                                      </div>
-                                      <div class="col-10">
-                                          <h5 class="mb-3">Города для работы</h5>
-                                          <span class="badge badge-secondary">Донецк</span>
-                                      </div>
-                                      <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                          <a href="#">
-                                            <img src="/static/image/pen.png" class="edit-icon" alt="edit-icon">
-                                          </a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="tab-pane fade" id="nav-portfolio" role="tabpanel" aria-labelledby="nav-portfolio-tab">
-                          <div class="d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
-                              <div class="pr-3 bd-highlight">
-                                  <button type="button" class="btn btn-primary btn-sm bd-highlight btn-all">Все - 3</button>
-                              </div>
-                              <div class="pr-3 bd-highlight">
-                                  <button type="button" class="btn btn-primary btn-sm bd-highlight btn-delivery">Доставка - 1</button>
-                              </div>
-                              <div class="pr-3 bd-highlight">
-                                  <button type="button" class="btn btn-primary btn-sm bd-highlight btn-add-folder">Добавить папку</button>
-                              </div>
-                              <div class="bd-highlight add-folder_input d-none">
-                                  <div class="input-group-sm d-flex">
-                                      <div class="input-group-prepend">
-                                          <button class="btn btn-outline-secondary btn-v" type="button" id="button-addon1"></button>
-                                      </div>
-                                      <input type="text" class="form-control add-folder_name" aria-label="Sizing example input" placeholder="Название папки" aria-describedby="inputGroup-sizing-sm">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary btn-x" type="button" id="button-addon2"></button>
-                                        </div>
-                                  </div>
-                              </div>
-                              <div class="ml-0 ml-sm-auto bd-highlight">
-                                  <button type="button" class="btn btn-primary btn-sm bd-highlight btn-add-photo">Добавить фото</button>
-                              </div>
+                <div class="row m-0 justify-content-center">
+                    <div class="col-12 col-sm-11 col-md-11 col-lg-10 col-xl-10 p-0 pt-4 pb-5">
+                        <nav class="mb-4">
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                                   role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <span class="d-none d-sm-none d-md-none d-lg-block">Общая информация</span>
+                                    <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
+                                         alt="">
+                                </a>
+                                <a class="nav-item nav-link" id="nav-portfolio-tab" data-toggle="tab"
+                                   href="#nav-portfolio" role="tab" aria-controls="nav-portfolio" aria-selected="false">
+                                    <span class="d-none d-sm-none d-md-none d-lg-block">Портфолио</span>
+                                    <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
+                                         alt="">
+                                </a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-notice"
+                                   role="tab" aria-controls="nav-notice" aria-selected="false">
+                                    <span class="d-none d-sm-none d-md-none d-lg-block">Настройка уведомлений</span>
+                                    <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
+                                         alt="">
+                                </a>
+                                <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab"
+                                   href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false">
+                                    <span class="d-none d-sm-none d-md-none d-lg-block">Изменить пароль</span>
+                                    <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
+                                         alt="">
+                                </a>
                             </div>
-                          <div class="row portfolio-photos_blk">
-                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                  <img src="/static/image/3eabf99674833ed66719c.jpg" class="img-fluid center-block" alt="...">
-                              </div>
-                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                  <img src="/static/image/123.jpeg" class="img-fluid center-block" alt="...">
-                              </div>
-                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                  <img src="/static/image/cio-c.jpg" class="img-fluid center-block" alt="...">
-                              </div>
-                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                  <img src="/static/image/contract.jpg" class="img-fluid center-block" alt="...">
-                              </div>
-                              <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                  <img src="/static/image/security.jpg" class="img-fluid center-block" alt="...">
-                              </div>
-                          </div>
-                      </div>
-                      <div class="tab-pane fade" id="nav-notice" role="tabpanel" aria-labelledby="nav-notice-tab">
-                          <div class="custom-control custom-checkbox my-2 mr-sm-2 pt-2">
-                              <input type="checkbox" class="custom-control-input" id="email-notice_input">
-                              <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input" data-toggle="tooltip" data-placement="bottom" title="Lorem ipsum dolor sit amet.">Email уведомения об изменениях статусов заказов</label>
-                          </div>
-                          <div class="custom-control custom-checkbox my-2 mr-sm-2">
-                              <input type="checkbox" class="custom-control-input" id="email-dispatch_input">
-                              <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input" data-toggle="tooltip" data-placement="bottom" title="Lorem ipsum dolor sit amet.">Email рассылка новых заказов</label>
-                          </div>
-                      </div>
-                      <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
-{#                          <form action="" class="change-password">#}
-                              <div class="form-group row">
-                                <label for="input_Password" class="col-sm-3 col-form-label px-0">Текущий пароль</label>
-                                <div class="col-sm-10 col-md-5 px-0 pl-md-3 pl-lg-0">
-                                  <input type="password" class="form-control passwords" id="input_Password" placeholder="">
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                 aria-labelledby="nav-home-tab">
+                                <div class="row m-0 justify-content-start information_blk">
+                                    <div class="col-12 p-3 item-inf_blk user-inf_blk">
+                                        <div class="row">
+                                            <div class="col-1 px-0 px-lg-3">
+                                                <img src="/static/image/user-icon.png" class="item-icon"
+                                                     alt="user-icon">
+                                            </div>
+                                            <div class="col-10">
+                                                <p class="mb-1"><span class="pr-3">Дата рождения:</span>12.07.1979</p>
+                                                <p class="mb-1"><span class="pr-3">Пол:</span>мужской</p>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-1 p-0">
+                                                        <span>О себе: </span>
+                                                    </div>
+                                                    <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
+                                                        <p class="mb-1">Lorem ipsum dolor sit amet, consectetur
+                                                            adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                                            et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
+                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                                            Excepteur sint occaecat cupidatat non proident, sunt in
+                                                            culpa qui officia deserunt mollit anim id est laborum.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                                <a href="#">
+                                                    <img src="/static/image/pen.png" class="edit-icon" alt="user-icon">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 p-3 item-inf_blk email-inf_blk">
+                                        <div class="row">
+                                            <div class="col-1 px-0 px-lg-3">
+                                                <img src="/static/image/email.png" class="item-icon" alt="user-icon">
+                                            </div>
+                                            <div class="col-10">
+                                                <p class="pt-1 m-0"><span class="pr-3">Email: </span>user1@gmail.com</p>
+                                            </div>
+                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                                <a href="#">
+                                                    <img src="/static/image/pen.png" class="edit-icon" alt="user-icon">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 p-3 item-inf_blk phone-inf_blk">
+                                        <div class="row">
+                                            <div class="col-1 px-0 px-lg-3">
+                                                <img src="/static/image/phone.png" class="item-icon" alt="phone-icon">
+                                            </div>
+                                            <div class="col-10">
+                                                <p class="pt-1 m-0"><span class="pr-3">Телефон: </span>0712345678</p>
+                                            </div>
+                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                                <a href="#">
+                                                    <img src="/static/image/pen.png" class="edit-icon" alt="edit-icon">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 p-3 item-inf_blk cat-inf_blk">
+                                        <div class="row">
+                                            <div class="col-1 px-0 px-lg-3">
+                                                <img src="/static/image/work.png" class="item-icon" alt="phone-icon">
+                                            </div>
+                                            <div class="col-10">
+                                                <h5 class="mb-3">Категории работ</h5>
+                                                <span class="badge">Курьерская доставка</span>
+                                                <span class="badge">Доставка документов</span>
+                                                <span class="badge">Доставка лекарств</span>
+                                                <span class="badge">Доставка продуктов и готовой еды</span>
+                                                <span class="badge">Забрать и отправить почтой</span>
+                                                <span class="badge">Столяр</span>
+                                            </div>
+                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                                <a href="#">
+                                                    <img src="/static/image/pen.png" class="edit-icon" alt="edit-icon">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 p-3 item-inf_blk ad-inf_blk">
+                                        <div class="row">
+                                            <div class="col-1 px-0 px-lg-3">
+                                                <img src="/static/image/flier.png" class="item-icon" alt="phone-icon">
+                                            </div>
+                                            <div class="col-10">
+                                                <h5 class="mb-3">Мои объявления</h5>
+                                                <span class="badge badge-secondary">Курьерская доставка 5/10</span>
+                                                <span class="badge badge-secondary">Доставка документов 0/10</span>
+                                                <span class="badge badge-secondary">Доставка лекарств 3/10</span>
+                                                <span class="badge badge-secondary">Доставка продуктов и готовой еды 1/10</span>
+                                                <span class="badge badge-secondary">Забрать и отправить почтой 0/10</span>
+                                                <span class="badge badge-secondary">Столяр 4/10</span>
+                                            </div>
+                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                                <a href="#">
+                                                    <img src="/static/image/pen.png" class="edit-icon" alt="edit-icon">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 p-3 item-inf_blk city-inf_blk">
+                                        <div class="row">
+                                            <div class="col-1 px-0 px-lg-3">
+                                                <img src="/static/image/map.png" class="item-icon" alt="phone-icon">
+                                            </div>
+                                            <div class="col-10">
+                                                <h5 class="mb-3">Города для работы</h5>
+                                                <span class="badge badge-secondary">Донецк</span>
+                                            </div>
+                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                                <a href="#">
+                                                    <img src="/static/image/pen.png" class="edit-icon" alt="edit-icon">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="input-new_Password" class="col-sm-3 col-form-label px-0">Новый пароль</label>
-                                <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
-                                  <input type="password" class="form-control passwords" id="input-new_Password" placeholder="">
+                            </div>
+                            <div class="tab-pane fade" id="nav-portfolio" role="tabpanel"
+                                 aria-labelledby="nav-portfolio-tab">
+                                <div class="d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
+                                    <div class="pr-3 bd-highlight">
+                                        <button type="button" class="btn btn-primary btn-sm bd-highlight btn-all">Все -
+                                            3
+                                        </button>
+                                    </div>
+                                    <div class="pr-3 bd-highlight">
+                                        <button type="button" class="btn btn-primary btn-sm bd-highlight btn-delivery">
+                                            Доставка - 1
+                                        </button>
+                                    </div>
+                                    <div class="pr-3 bd-highlight">
+                                        <button type="button"
+                                                class="btn btn-primary btn-sm bd-highlight btn-add-folder">Добавить
+                                            папку
+                                        </button>
+                                    </div>
+                                    <div class="bd-highlight add-folder_input d-none">
+                                        <div class="input-group-sm d-flex">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-secondary btn-v" type="button"
+                                                        id="button-addon1"></button>
+                                            </div>
+                                            <input type="text" class="form-control add-folder_name"
+                                                   aria-label="Sizing example input" placeholder="Название папки"
+                                                   aria-describedby="inputGroup-sizing-sm">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary btn-x" type="button"
+                                                        id="button-addon2"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ml-0 ml-sm-auto bd-highlight">
+                                        <button type="button" class="btn btn-primary btn-sm bd-highlight btn-add-photo">
+                                            Добавить фото
+                                        </button>
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="input-repeat_Password" class="col-sm-3 col-form-label px-0">Повторите новый пароль</label>
-                                <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
-                                  <input type="password" class="form-control passwords" id="input-repeat_Password" placeholder="">
+                                <div class="row portfolio-photos_blk">
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                        <img src="/static/image/3eabf99674833ed66719c.jpg"
+                                             class="img-fluid center-block" alt="...">
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                        <img src="/static/image/123.jpeg" class="img-fluid center-block" alt="...">
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                        <img src="/static/image/cio-c.jpg" class="img-fluid center-block" alt="...">
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                        <img src="/static/image/contract.jpg" class="img-fluid center-block" alt="...">
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                        <img src="/static/image/security.jpg" class="img-fluid center-block" alt="...">
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="form-group row">
-                                <div class="col-sm-11 col-md-12 col-lg-11 px-0">
-                                    <a href="#">
-                                        <button type="submit" id="btn_profile_change_pass" class="btn btn-primary px-5 col-12 col-sm-3 col-md-3">Сохранить</button>
-                                    </a>
+                            </div>
+
+
+                            <div class="tab-pane fade" id="nav-notice" role="tabpanel" aria-labelledby="nav-notice-tab">
+                                <div class="custom-control custom-checkbox my-2 mr-sm-2 pt-2">
+                                    <input type="checkbox" class="custom-control-input" id="email-notice_input">
+                                    <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input"
+                                           data-toggle="tooltip" data-placement="bottom"
+                                           title="Lorem ipsum dolor sit amet.">Email уведомления об изменениях статусов
+                                        заказов</label>
                                 </div>
-                              </div>
-{#                            </form>#}
-                      </div>
+                                <div class="custom-control custom-checkbox my-2 mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="email-dispatch_input">
+                                    <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input"
+                                           data-toggle="tooltip" data-placement="bottom"
+                                           title="Lorem ipsum dolor sit amet.">Email рассылка новых заказов</label>
+                                </div>
+
+                                <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
+                                     style="display: none" id="alert-danger_notice">
+
+                                </div>
+                                <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
+                                     style="display: none" id="alert-success_notice">
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="tab-pane fade" id="nav-password" role="tabpanel"
+                                 aria-labelledby="nav-password-tab">
+                                {#                          <form action="" class="change-password">#}
+                                <div class="form-group row">
+                                    <label for="input_Password" class="col-sm-3 col-form-label px-0">Текущий
+                                        пароль</label>
+                                    <div class="col-sm-10 col-md-5 px-0 pl-md-3 pl-lg-0">
+                                        <input type="password" class="form-control passwords" id="input_Password"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="input-new_Password" class="col-sm-3 col-form-label px-0">Новый
+                                        пароль</label>
+                                    <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
+                                        <input type="password" class="form-control passwords" id="input-new_Password"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="input-repeat_Password" class="col-sm-3 col-form-label px-0">Повторите
+                                        новый пароль</label>
+                                    <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
+                                        <input type="password" class="form-control passwords" id="input-repeat_Password"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
+                                         style="display: none" id="alert-danger_pass">
+
+                                    </div>
+
+                                    <div class="col-sm-11 col-md-12 col-lg-11 px-0">
+                                        {#                                    <a href="#">#}
+                                        <button type="submit" id="btn_profile_change_pass"
+                                                class="btn btn-primary px-5 col-12 col-sm-3 col-md-3">Сохранить
+                                        </button>
+                                        {#                                    </a>#}
+                                    </div>
+                                    <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
+                                         style="display: none" id="alert-success_pass">
+
+                                    </div>
+                                </div>
+                                {#                            </form>#}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
-
-
-
     </div>
-</div>
 
 {% endblock %}

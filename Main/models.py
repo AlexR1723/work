@@ -282,6 +282,8 @@ class Users(models.Model):
     gender = models.ForeignKey(Gender, models.DO_NOTHING, blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
     about_me = models.CharField(max_length=5000, blank=True, null=True)
+    get_new_order = models.BooleanField(blank=True, null=True)
+    get_notice_status = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False

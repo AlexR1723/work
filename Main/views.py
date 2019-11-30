@@ -173,10 +173,16 @@ def Test(request):
 
 
 def Login(request):
+    contact = layout_contact()
+    link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
     return render(request, 'Main/Login.html', locals())
 
 
 def Register(request):
+    contact = layout_contact()
+    link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
     return render(request, 'Main/Register.html', locals())
 
 def login_user(request):
@@ -199,7 +205,7 @@ def login_user(request):
 
     user = authenticate(username=email, password=password)
 
-    if user is None :
+    if user is None:
         return HttpResponse(json.dumps('Логин или пароль введены неверно!'))
     else:
         login(request, user)

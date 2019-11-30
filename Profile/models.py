@@ -16,4 +16,58 @@ class AuthUser(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_user'
-# Create your models here.
+
+
+class Gender(models.Model):
+    name = models.CharField(max_length=10, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gender'
+
+
+class Region(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'region'
+        verbose_name = _("Регион")
+        verbose_name_plural = _("Регионы")
+
+
+class City(models.Model):
+    region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True, verbose_name="Регион")
+    name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'city'
+        verbose_name = _("Город")
+        verbose_name_plural = _("Города")
+
+
+class Users(models.Model):
+    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    phone = models.CharField(max_length=13, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    type = models.ForeignKey('UserType', models.DO_NOTHING, blank=True, null=True)
+    uuid = models.CharField(max_length=50, blank=True, null=True)
+    gender = models.ForeignKey(Gender, models.DO_NOTHING, blank=True, null=True)
+    birthday = models.DateField(blank=True, null=True)
+    about_me = models.CharField(max_length=5000, blank=True, null=True)
+    get_new_order = models.BooleanField(blank=True, null=True)
+    get_notice_status = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'users'
+
+
+class UserType(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_type'
+
