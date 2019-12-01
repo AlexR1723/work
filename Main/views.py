@@ -172,6 +172,10 @@ def Question_details(request):
     layout, username = layout_name(request)
     return render(request, 'Main/Question_details.html', locals())
 
+def Sub_category(request):
+    layout, username = layout_name(request)
+    return render(request, 'Main/Sub_category.html', locals())
+
 def login_user(request):
     email = request.GET.get("email")
     password = request.GET.get("pass")
