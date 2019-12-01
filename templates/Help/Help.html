@@ -4,7 +4,7 @@
 
 
 
-    <div class="row justify-content-center align-items-center ">
+    <div class="row justify-content-center align-items-center py-5">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
                 <div class="row justify-content-center">
                     <div class="col-10 col-sm-10 col-md-9 col-lg-9 col-xl-9 p-0 ">
@@ -52,7 +52,7 @@
                             {% for j in i.questions %}
                                 <li class="help_li mt-1">
                                 <i class="fas help_i fa-question-circle mt-1 mr-2"></i>
-                                    <a class="help_a w-100" href="">
+                                    <a class="help_a w-100" href="{% url 'questions' j.text %}">
 {#                                        <div class="w-100 d-flex align-items-start">#}
 {#                                            <i class="fas help_i fa-question-circle mt-1 mr-2"></i>#}
 {#                                            <p class="m-0">#}

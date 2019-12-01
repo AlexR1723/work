@@ -222,7 +222,7 @@ $('#accordion_cities').on('click', 'a.link_cities ', function (event) {
 document.onclick = function (e) {
     // alert(e.target.id);
     let closest_head = (e.target).closest('div#res_list_header')
-    if (document.getElementById('res_list_header').style.display == 'block' && closest_head == null) {
+    if (document.getElementById('res_list_header') != null &&document.getElementById('res_list_header').style.display == 'block' && closest_head == null) {
         // alert(e.target.tagName);
         // console.log(closest_head)
         document.getElementById('res_list_header').innerHTML = ""

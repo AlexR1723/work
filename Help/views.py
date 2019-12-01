@@ -85,7 +85,26 @@ def Find_help(request, text):
 
     print(text)
 
-    return render(request, 'Main/Dev.html', locals())
+    subs=HelpSubcategory.objects.filter(text__icontains=text)
+    count=subs.count()
+    name=text
+
+    return render(request, 'Help/Search_results.html', locals())
+
+def questions(request, text):
+    layout, username = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
+
+    print(text)
+
+    # subs=HelpSubcategory.objects.filter(text__icontains=text)
+    # count=subs.count()
+    # name=text
+
+    return render(request, 'Help/Search_results.html', locals())
+
 
 def load_input_help(request):
     # return HttpResponse(json.dumps(subhelp))

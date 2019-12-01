@@ -82,7 +82,8 @@ class HelpCategory(models.Model):
 
 class HelpSubcategory(models.Model):
     help_category = models.ForeignKey(HelpCategory, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")
-    text = models.CharField(max_length=500, blank=True, null=True, verbose_name="Текст вопроса")
+    text = models.CharField(max_length=500, blank=True, null=True, verbose_name="Заголовок вопроса")
+    description = models.TextField(blank=True, null=True, verbose_name="Описание вопроса")
 
     class Meta:
         managed = False
