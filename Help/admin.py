@@ -21,3 +21,14 @@ class HelpCategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(HelpCategory, HelpCategoryAdmin)
+
+
+
+class HelpImagesAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in HelpImages._meta.fields]
+
+    class Meta:
+        model = HelpImages
+
+
+admin.site.register(HelpImages, HelpImagesAdmin)

@@ -181,7 +181,8 @@ $('#res_list_header').on('click', 'button ', function (event) {
 $('#res_list_input').on('click', 'button ', function (event) {
     let text = this.childNodes[0].childNodes[0].childNodes[0].textContent;
     document.getElementById('help_input').value = text
-    window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+    // window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+    window.location.href = "/help/questions/" + text.trim().toLowerCase();
 });
 
 $("#btn_head_submit").click(function (event) {
@@ -193,9 +194,18 @@ $("#btn_head_submit").click(function (event) {
 
 $("#btn_help_submit").click(function (event) {
     let text = document.getElementById('help_input').value
-    if (text != '') {
-        window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+    if (text.trim() != '') {
+        // window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+        // window.location.href = "/help/questions/" + text.trim().toLowerCase();
+        let btn_text = document.getElementsByClassName('sid_focus')[0]
+        if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == text.trim()) {
+            window.location.href = "/help/questions/" + text.trim().toLowerCase();
+        } else {
+            window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+        }
     }
+
+
 });
 
 $('#accordion_cities').on('click', 'a.link_cities ', function (event) {
@@ -222,7 +232,7 @@ $('#accordion_cities').on('click', 'a.link_cities ', function (event) {
 document.onclick = function (e) {
     // alert(e.target.id);
     let closest_head = (e.target).closest('div#res_list_header')
-    if (document.getElementById('res_list_header') != null &&document.getElementById('res_list_header').style.display == 'block' && closest_head == null) {
+    if (document.getElementById('res_list_header') != null && document.getElementById('res_list_header').style.display == 'block' && closest_head == null) {
         // alert(e.target.tagName);
         // console.log(closest_head)
         document.getElementById('res_list_header').innerHTML = ""
@@ -313,7 +323,27 @@ function show_item(val, code, list, el) {
             if (el != 'help_input') {
                 window.location.href = "/find/" + val.trim().toLowerCase();
             } else {
-                window.location.href = "/help/find_help/" + val.trim().toLowerCase();
+
+                let text = document.getElementById('help_input').value
+                if (text.trim() != '') {
+                    // window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+                    // window.location.href = "/help/questions/" + text.trim().toLowerCase();
+                    let btn_text = document.getElementsByClassName('sid_focus')[0]
+                    if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == val.trim()) {
+                        window.location.href = "/help/questions/" + val.trim().toLowerCase();
+                    } else {
+                        window.location.href = "/help/find_help/" + val.trim().toLowerCase();
+                    }
+                }
+
+
+                // let btn_text = document.getElementsByClassName('sid_focus')[0];
+                // if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == val.trim()) {
+                //     window.location.href = "/help/questions/" + val.trim().toLowerCase();
+                // } else {
+                //     window.location.href = "/help/find_help/" + val.trim().toLowerCase();
+                // }
+
             }
 
             break;
@@ -455,7 +485,7 @@ $("#btn_login").click(function () {
         url: 'login_user',
         success: function (data) {
             if (data == true) {
-                window.location.href='/'
+                window.location.href = '/'
             } else {
                 if (data == false) {
                     data = 'Заполните поля!'
@@ -647,6 +677,37 @@ $('#email-dispatch_input').click(function () {
             }, 5000);
         }
     })
+});
+
+
+$('#profile_list_categories').on('click', 'input', function (event) {
+    let id = this.id
+    let status;
+    if ($(this).is(':checked')) {
+        status = true
+    } else {
+        status = false
+    }
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            id: id,
+            status: status
+        },
+        url: 'profile_set_subcategories',
+        success: function (data) {
+            $(id).prop('checked', status);
+            console.log('good')
+        },
+        error: function (data) {
+            $(id).prop('checked', !status);
+            console.log('bad')
+        }
+    })
+    // document.getElementById('main_input_header').value = text
+    // window.location.href = "/find/" + text.trim().toLowerCase();
 });
 
 
@@ -861,3 +922,44 @@ $(".choose_blk").ready(function () {
         $('.panel-heading').not(this).removeClass('in').next().slideUp();
     });
 });
+$("#about_me_edit").click(function () {
+    var btn=document.getElementById('about_ok');
+    btn.classList.remove('d-none');
+    var pen=document.getElementById('about_me_edit');
+    pen.classList.add('d-none');
+    var birtday=document.getElementById('birthday');
+    birtday.removeAttribute('readonly');
+    var gender=document.getElementById('gender');
+    gender.removeAttribute('readonly');
+    var about=document.getElementById('about');
+    about.removeAttribute('readonly');
+});
+$("#phone_edit").click(function () {
+    var btn=document.getElementById('phone_ok');
+    btn.classList.remove('d-none');
+    var pen=document.getElementById('phone_edit');
+    pen.classList.add('d-none');
+    var phone=document.getElementById('phone');
+    phone.removeAttribute('readonly');
+});
+// $(".btn-profile-save").click(function () {
+//     var fileData = $('#files').prop('files')[0];
+//     var formData = new FormData();
+//     formData.append('files', fileData);
+//
+//
+//     $.ajax({
+//         type: "POST",
+//         cache: false,
+//         contentType: false,
+//         processData: false,
+//         url: 'profile/save/',
+//         data:formData,
+//         success: function (data) {
+//             alert('ok');
+//             },
+//         error: function (data) {
+//             alert('er');
+//         }
+//     })
+// });

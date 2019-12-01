@@ -1759,6 +1759,7 @@ input[type=checkbox]:checked + label::after {
 }
 .edit-icon {
     width: 50%;
+
 }
 
 .hdr-adv {
@@ -2215,4 +2216,11 @@ input[type=checkbox]:checked + label::after {
 .prof-item:hover a{
     cursor: pointer;
     text-decoration: underline;
+}
+.prof-input{
+    width: auto !important;
+    display: inline-block !important;
+}
+.edit-icon:hover{
+    cursor: pointer;
 }

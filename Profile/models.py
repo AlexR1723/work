@@ -106,3 +106,50 @@ class UserType(models.Model):
         managed = False
         db_table = 'user_type'
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование категории")
+    image = models.ImageField(upload_to='uploads/category/', blank=True, null=True, verbose_name="Иконка")
+    text = models.TextField(blank=True, null=True, verbose_name="Описание")
+
+    class Meta:
+        managed = False
+        db_table = 'category'
+        verbose_name = _("Категория")
+        verbose_name_plural = _("Категории")
+
+    def __str__(self):
+        return self.name
+
+    def first_sub(self):
+        count=SubCategory.objects.filter(category=self).count()/2
+        # print(count)
+        sub=SubCategory.objects.filter(category=self).order_by('name')[:count]
+        return sub
+
+    def second_sub(self):
+        count = SubCategory.objects.filter(category=self).count() / 2
+        # print(count)
+        sub = SubCategory.objects.filter(category=self).order_by('name')[count:]
+        return sub
+
+
+class SubCategory(models.Model):
+    category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")
+    name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование")
+
+    class Meta:
+        managed = False
+        db_table = 'sub_category'
+        verbose_name = _("Подкатегория")
+        verbose_name_plural = _("Подкатегории")
+
+
+class UserSubcategories(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING)
+    subcategories = models.ForeignKey('SubCategory', models.DO_NOTHING)
+
+    class Meta:
+            managed = False
+            db_table = 'user_subcategories'
+

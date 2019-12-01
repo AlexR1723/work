@@ -97,13 +97,14 @@ def questions(request, text):
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
 
-    print(text)
+    quest=HelpSubcategory.objects.get(text__icontains=text)
+    desc=quest.description.split('\r\n')
+    desc.remove('')
+    name=quest.text
 
-    # subs=HelpSubcategory.objects.filter(text__icontains=text)
-    # count=subs.count()
-    # name=text
+    images=HelpImages.objects.filter(question=quest.id)
 
-    return render(request, 'Help/Search_results.html', locals())
+    return render(request, 'Help/Question_details.html', locals())
 
 
 def load_input_help(request):
@@ -115,10 +116,10 @@ def load_input_help(request):
     #     help1.append(i.id)
     #     help1.append(i.name)
     #     help.append(help1)
-    print('start')
+    # print('start')
     subhelp=[]
     res_subcat = HelpSubcategory.objects.all()
-    print(res_subcat)
+    # print(res_subcat)
     for i in res_subcat:
     #     subhelp1=[]
         subhelp.append(i.text)

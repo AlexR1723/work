@@ -39,19 +39,54 @@ def Profile_settings(request):
     if(username != ''):
         email = request.session.get('username', 'no')
         user=Users.objects.all().filter(auth_user__email=email)[0]
+        day=user.birthday.day
+        if(day<10):
+            day = '0' + str(user.birthday.day)
+        month = user.birthday.month
+        if(month<10):
+            month='0'+str(user.birthday.month)
+        year=user.birthday.year
+        print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")
 
 
-def Profile_edit(request):
-    layout, username = layout_name(request)
-    if (username != ''):
+# def Profile_edit(request):
+#     layout, username = layout_name(request)
+#     if (username != ''):
+#         email = request.session.get('username', 'no')
+#         user = Users.objects.all().filter(auth_user__email=email)[0]
+#         return render(request, 'Profile/Profile_edit.html', locals())
+#     else:
+#         return HttpResponseRedirect("/login")
+
+
+def Save(request):
+    if request.method == 'POST':
+        # doc = request.FILES
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
-        return render(request, 'Profile/Profile_edit.html', locals())
-    else:
-        return HttpResponseRedirect("/login")
+        gender=''
+        if(request.POST.get('gender')==1):
+            gender=Gender.objects.all().filter(name="Мужской")[0]
+        else:
+            gender = Gender.objects.all().filter(name="Женский")[0]
+        user.birthday=request.POST.get('birthday')
+        user.gender_id=gender
+        user.about_me=request.POST.get('about')
+        user.save()
+
+    return HttpResponseRedirect("/profile/settings")
+
+def Save_phone(request):
+    if request.method == 'POST':
+        email = request.session.get('username', 'no')
+        user = Users.objects.all().filter(auth_user__email=email)[0]
+        user.phone=request.POST.get('phone')
+        user.save()
+
+    return HttpResponseRedirect("/profile/settings")
 
 
 def Choose_city(request):
@@ -72,6 +107,21 @@ def Adverts_add(request):
 
 def Choose_categ(request):
     layout, username = layout_name(request)
+
+    category=Category.objects.all().order_by('name')
+    user = request.session.get('username', 0)
+    if user == 0:
+        return HttpResponseRedirect("/login")
+    user_id = AuthUser.objects.get(username=user).id
+    user_cat=UserSubcategories.objects.filter(user_id=user_id)
+    cats=[]
+    for i in user_cat:
+        cats.append(i.subcategories_id)
+    # user_cat=UserSubcategories.objects.filter(user_id=user_id)
+    print(user_cat)
+    print(cats)
+    # subs=SubCategory.objects.all()
+
     if (username != ''):
         return render(request, 'Profile/Choose_categ.html', locals())
     else:
@@ -178,6 +228,25 @@ def get_status(request):
 
 def load_photos(request):
     files=request.GET.get('files')
+    files=request.FILES['newsslide']
     print(files)
 
+    return HttpResponse(json.dumps('good'))
+
+def profile_set_subcategories(request):
+    id=request.GET.get('id')
+    status=bool(strtobool(request.GET.get('status')))
+    id=str(id).split('_')[2]
+
+    # print(sub.name)
+    user = request.session.get('username', 0)
+    print(user)
+    if user != 0:
+        us=AuthUser.objects.get(username=user).id
+        sub=SubCategory.objects.get(id=id).id
+        # return HttpResponse(json.dumps('Ошибка, попробуйте позже'))
+        if status==True:
+            UserSubcategories.objects.create(user_id=us,subcategories_id=sub)
+        else:
+            UserSubcategories.objects.get(user_id=us, subcategories_id=sub).delete()
     return HttpResponse(json.dumps('good'))
