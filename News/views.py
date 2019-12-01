@@ -16,12 +16,25 @@ def layout_regions_cities(request):
     regions = Region.objects.all()
     return city, reg,regions
 
+def layout_name(request):
+    layout = 'layout.html'
+    username=''
+    user = request.session.get('username', 'no')
+    if (user != 'no'):
+        username=AuthUser.objects.all().filter(email=user)[0].first_name
+        user = Users.objects.all().filter(auth_user__email=user)[0]
+        if (user.type.name == "Заказчик"):
+            layout = 'layout_customer.html'
+        else:
+            layout = 'layout_executor.html'
+    return layout,username
 
 list_page = []
 news_count = 0
 
 
 def New(request):
+    layout, username = layout_name(request)
     contact=layout_contact()
     link=layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -51,6 +64,7 @@ def New(request):
     return render(request, 'News/News.html', locals())
 
 def News_page(request,page):
+    layout, username = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -98,6 +112,7 @@ def News_page(request,page):
 
 # def News_detail(request, id):
 def News_detail(request, slug):
+    layout, username = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -115,6 +130,7 @@ def News_detail(request, slug):
     return render(request, 'News/News_detail.html', locals())
 
 def News_filter(request, filter):
+    layout, username = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -145,6 +161,7 @@ def News_filter(request, filter):
     return render(request, 'News/News.html', locals())
 
 def News_filter_page(request, filter,page):
+    layout, username = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)

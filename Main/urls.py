@@ -37,22 +37,10 @@ urlpatterns = [
     url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
     url(r'^question_details/$', views.Question_details, name="Question_details"),
 
-    # url(r'^search_results/$', views.search_input_help, name="search_input_help"),
-    # url(r'^question_category/$', views.Question_category, name="Question_category"),
-    # url(r'^category_item/$', views.Category_item, name="Category_item"),
-
-
-    #url(r'category_item/$', views.Category_item, name="Category_item"),
-
-    # url(r'^help_results/(?P<name>[А-Яа-я\s0-9]+)/$', views.Search_results_help, name="Search_results_help"),
-    # url(r'^help_category/(?P<name>[А-Яа-я\s0-9]+)/$', views.Help_category, name="Help_category"),
-
-
-    # url(r'^test/$', views.Test, name="Test"),
     url(r'login_user', views.login_user, name='login_user'),
     url(r'search_input_category', views.search_input_category, name='search_input_category'),
     url(r'/set_session_city/', views.set_session_city, name='set_session_city'),
 
     url(r'^dev/$', views.Dev, name="Dev"),
-    url(r'^dev/(?P<text>[А-Яа-я\s0-9-()/a-z,]+)/$', views.Dev, name="Dev"),
+    url(r'^dev/(?P<text>[А-Яа-я\s0-9-()/a-z,]+)/$', views.Dev1, name="Dev1"),
 ]
