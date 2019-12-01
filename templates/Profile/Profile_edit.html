@@ -1,0 +1,37 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row justify-content-center choose_blk">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8 pt-4">
+            <div class="row align-items-center">
+                <div class="col-9 col-sm-2 col-md-2 p-2 mx-auto">
+                    <img src="{{MEDIA_URL}}{{user.photo.url}}" class="w-100 user-img" alt="">
+                </div>
+                <div class="col adverts-add_blk">
+                    <button type="button" class="btn  btn-sm bd-highlight btn-adv-photo">Добавить фото</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0">Имя</label>
+                    <div class="col-sm-10 col-md-5 px-0 pl-md-3 pl-lg-0">
+                        <input type="text" class="form-control" placeholder="Имя">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0">Фамилия</label>
+                    <div class="col-sm-10 col-md-5 px-0 pl-md-3 pl-lg-0">
+                        <input type="text" class="form-control" placeholder="Фамилия">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <hr class="line mb-1">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

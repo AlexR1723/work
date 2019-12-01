@@ -36,22 +36,46 @@ def layout_name(request):
 # Create your views here.
 def Profile_settings(request):
     layout, username = layout_name(request)
-    return render(request, 'Profile/Profile_settings.html', locals())
+    if(username != ''):
+        email = request.session.get('username', 'no')
+        user=Users.objects.all().filter(auth_user__email=email)[0]
+        return render(request, 'Profile/Profile_settings.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+
+def Profile_edit(request):
+    layout, username = layout_name(request)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        user = Users.objects.all().filter(auth_user__email=email)[0]
+        return render(request, 'Profile/Profile_edit.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
 
 
 def Choose_city(request):
     layout, username = layout_name(request)
-    return render(request, 'Profile/Choose_city.html', locals())
+    if (username != ''):
+        return render(request, 'Profile/Choose_city.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
 
 
 def Adverts_add(request):
     layout, username = layout_name(request)
-    return render(request, 'Profile/Adverts_add.html', locals())
+    if (username != ''):
+        return render(request, 'Profile/Adverts_add.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
 
 
 def Choose_categ(request):
     layout, username = layout_name(request)
-    return render(request, 'Profile/Choose_categ.html', locals())
+    if (username != ''):
+        return render(request, 'Profile/Choose_categ.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
 
 
 def change_password(request):

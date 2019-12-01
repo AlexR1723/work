@@ -119,6 +119,7 @@ class Users(models.Model):
     about_me = models.CharField(max_length=5000, blank=True, null=True)
     get_new_order = models.BooleanField(blank=True, null=True)
     get_notice_status = models.BooleanField(blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/users/', max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
