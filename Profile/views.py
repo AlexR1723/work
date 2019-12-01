@@ -39,19 +39,54 @@ def Profile_settings(request):
     if(username != ''):
         email = request.session.get('username', 'no')
         user=Users.objects.all().filter(auth_user__email=email)[0]
+        day=user.birthday.day
+        if(day<10):
+            day = '0' + str(user.birthday.day)
+        month = user.birthday.month
+        if(month<10):
+            month='0'+str(user.birthday.month)
+        year=user.birthday.year
+        print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")
 
 
-def Profile_edit(request):
-    layout, username = layout_name(request)
-    if (username != ''):
+# def Profile_edit(request):
+#     layout, username = layout_name(request)
+#     if (username != ''):
+#         email = request.session.get('username', 'no')
+#         user = Users.objects.all().filter(auth_user__email=email)[0]
+#         return render(request, 'Profile/Profile_edit.html', locals())
+#     else:
+#         return HttpResponseRedirect("/login")
+
+
+def Save(request):
+    if request.method == 'POST':
+        # doc = request.FILES
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
-        return render(request, 'Profile/Profile_edit.html', locals())
-    else:
-        return HttpResponseRedirect("/login")
+        gender=''
+        if(request.POST.get('gender')==1):
+            gender=Gender.objects.all().filter(name="Мужской")[0]
+        else:
+            gender = Gender.objects.all().filter(name="Женский")[0]
+        user.birthday=request.POST.get('birthday')
+        user.gender_id=gender
+        user.about_me=request.POST.get('about')
+        user.save()
+
+    return HttpResponseRedirect("/profile/settings")
+
+def Save_phone(request):
+    if request.method == 'POST':
+        email = request.session.get('username', 'no')
+        user = Users.objects.all().filter(auth_user__email=email)[0]
+        user.phone=request.POST.get('phone')
+        user.save()
+
+    return HttpResponseRedirect("/profile/settings")
 
 
 def Choose_city(request):

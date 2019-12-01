@@ -861,3 +861,44 @@ $(".choose_blk").ready(function () {
         $('.panel-heading').not(this).removeClass('in').next().slideUp();
     });
 });
+$("#about_me_edit").click(function () {
+    var btn=document.getElementById('about_ok');
+    btn.classList.remove('d-none');
+    var pen=document.getElementById('about_me_edit');
+    pen.classList.add('d-none');
+    var birtday=document.getElementById('birthday');
+    birtday.removeAttribute('readonly');
+    var gender=document.getElementById('gender');
+    gender.removeAttribute('readonly');
+    var about=document.getElementById('about');
+    about.removeAttribute('readonly');
+});
+$("#phone_edit").click(function () {
+    var btn=document.getElementById('phone_ok');
+    btn.classList.remove('d-none');
+    var pen=document.getElementById('phone_edit');
+    pen.classList.add('d-none');
+    var phone=document.getElementById('phone');
+    phone.removeAttribute('readonly');
+});
+// $(".btn-profile-save").click(function () {
+//     var fileData = $('#files').prop('files')[0];
+//     var formData = new FormData();
+//     formData.append('files', fileData);
+//
+//
+//     $.ajax({
+//         type: "POST",
+//         cache: false,
+//         contentType: false,
+//         processData: false,
+//         url: 'profile/save/',
+//         data:formData,
+//         success: function (data) {
+//             alert('ok');
+//             },
+//         error: function (data) {
+//             alert('er');
+//         }
+//     })
+// });
