@@ -107,6 +107,10 @@ def Adverts_add(request):
 
 def Choose_categ(request):
     layout, username = layout_name(request)
+
+    category=Category.objects.all().order_by('name')
+    # subs=SubCategory.objects.all()
+
     if (username != ''):
         return render(request, 'Profile/Choose_categ.html', locals())
     else:
@@ -213,6 +217,16 @@ def get_status(request):
 
 def load_photos(request):
     files=request.GET.get('files')
+    files=request.FILES['newsslide']
     print(files)
+
+    return HttpResponse(json.dumps('good'))
+
+def profile_set_subcategories(request):
+    id=request.GET.get('id')
+    status=bool(strtobool(request.GET.get('status')))
+    id=str(id).split('_')[2]
+    sub=SubCategory.objects.get(id=id)
+    print(sub.name)
 
     return HttpResponse(json.dumps('good'))
