@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^(?P<name>[А-Яа-я\s0-9-(),.?!/:;"#№$%*”+]+)/$', views.Question_category, name="Question_category"),
     # url(r'^search_results/(?P<name>[А-Яа-я\s0-9]+)/$', views.Search_results, name="Search_results"),
     url(r'find_help/(?P<text>[А-Яа-я\s0-9-(),.?!/:;"#№$%*”+]+)/$', views.Find_help, name="Find_help"),
+    url(r'questions/(?P<text>[А-Яа-я\s0-9-(),.?!/:;"#№$%*”+]+)/$', views.questions, name="questions"),
     # url(r'^help_results/(?P<name>[А-Яа-я\s0-9]+)/$', views.Search_results_help, name="Search_results_help"),
     # url(r'^help_category/(?P<name>[А-Яа-я\s0-9]+)/$', views.Help_category, name="Help_category"),
     # url(r'^question_category/(?P<name>[А-Яа-я\s0-9]+)/$', views.Question_category, name="Question_category"),
