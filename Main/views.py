@@ -144,7 +144,7 @@ def Dev(request):
 
     return render(request, 'Main/Dev.html', locals())
 
-def Dev1(request,text):
+def Dev(request,text):
     layout, username = layout_name(request)
     # id = request.GET.get('id')
     print(text)

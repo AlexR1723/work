@@ -1,4 +1,18 @@
 from django.shortcuts import render
+from django.shortcuts import render
+
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+
+import json
+import random
+from .models import *
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import check_password, make_password
+# from django.contrib.auth.hashers import *
+import re
+from django.contrib.auth import authenticate, login, logout
+
+from distutils.util import strtobool
 
 def layout_contact():
     contact=ContactType.objects.all()
@@ -18,20 +32,7 @@ def layout_name(request):
         else:
             layout = 'layout_executor.html'
     return layout,username
-from django.shortcuts import render
 
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-
-import json
-import random
-from .models import *
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.hashers import check_password, make_password
-# from django.contrib.auth.hashers import *
-import re
-from django.contrib.auth import authenticate, login, logout
-
-from distutils.util import strtobool
 # Create your views here.
 def Profile_settings(request):
     layout, username = layout_name(request)
