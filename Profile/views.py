@@ -151,3 +151,9 @@ def get_status(request):
     # response = HttpResponse({"error": "there was an error"})
     # response.status_code = 403  # To announce that the user isn't allowed to publish
     # return response
+
+def load_photos(request):
+    files=request.GET.get('files')
+    print(files)
+
+    return HttpResponse(json.dumps('good'))
