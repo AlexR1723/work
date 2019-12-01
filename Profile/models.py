@@ -143,3 +143,13 @@ class SubCategory(models.Model):
         db_table = 'sub_category'
         verbose_name = _("Подкатегория")
         verbose_name_plural = _("Подкатегории")
+
+
+class UserSubcategories(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING)
+    subcategories = models.ForeignKey('SubCategory', models.DO_NOTHING)
+
+    class Meta:
+            managed = False
+            db_table = 'user_subcategories'
+

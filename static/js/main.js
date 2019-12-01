@@ -323,12 +323,26 @@ function show_item(val, code, list, el) {
             if (el != 'help_input') {
                 window.location.href = "/find/" + val.trim().toLowerCase();
             } else {
-                let btn_text = document.getElementsByClassName('sid_focus')[0]
-                if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == val.trim()) {
-                    window.location.href = "/help/questions/" + val.trim().toLowerCase();
-                } else {
-                    window.location.href = "/help/find_help/" + val.trim().toLowerCase();
+
+                let text = document.getElementById('help_input').value
+                if (text.trim() != '') {
+                    // window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+                    // window.location.href = "/help/questions/" + text.trim().toLowerCase();
+                    let btn_text = document.getElementsByClassName('sid_focus')[0]
+                    if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == val.trim()) {
+                        window.location.href = "/help/questions/" + val.trim().toLowerCase();
+                    } else {
+                        window.location.href = "/help/find_help/" + val.trim().toLowerCase();
+                    }
                 }
+
+
+                // let btn_text = document.getElementsByClassName('sid_focus')[0];
+                // if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == val.trim()) {
+                //     window.location.href = "/help/questions/" + val.trim().toLowerCase();
+                // } else {
+                //     window.location.href = "/help/find_help/" + val.trim().toLowerCase();
+                // }
 
             }
 
@@ -679,21 +693,22 @@ $('#profile_list_categories').on('click', 'input', function (event) {
         dataType: "json",
         async: false,
         data: {
-            id:id,
+            id: id,
             status: status
         },
         url: 'profile_set_subcategories',
         success: function (data) {
-            $('#id').prop('checked', true);
+            $(id).prop('checked', status);
+            console.log('good')
         },
         error: function (data) {
-            $('#id').prop('checked', false);
+            $(id).prop('checked', !status);
+            console.log('bad')
         }
     })
     // document.getElementById('main_input_header').value = text
     // window.location.href = "/find/" + text.trim().toLowerCase();
 });
-
 
 
 $("#safety_btn_customer").click(function () {

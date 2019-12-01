@@ -74,6 +74,17 @@ def Choose_categ(request):
     layout, username = layout_name(request)
 
     category=Category.objects.all().order_by('name')
+    user = request.session.get('username', 0)
+    if user == 0:
+        return HttpResponseRedirect("/login")
+    user_id = AuthUser.objects.get(username=user).id
+    user_cat=UserSubcategories.objects.filter(user_id=user_id)
+    cats=[]
+    for i in user_cat:
+        cats.append(i.subcategories_id)
+    # user_cat=UserSubcategories.objects.filter(user_id=user_id)
+    print(user_cat)
+    print(cats)
     # subs=SubCategory.objects.all()
 
     if (username != ''):
@@ -191,7 +202,16 @@ def profile_set_subcategories(request):
     id=request.GET.get('id')
     status=bool(strtobool(request.GET.get('status')))
     id=str(id).split('_')[2]
-    sub=SubCategory.objects.get(id=id)
-    print(sub.name)
 
+    # print(sub.name)
+    user = request.session.get('username', 0)
+    print(user)
+    if user != 0:
+        us=AuthUser.objects.get(username=user).id
+        sub=SubCategory.objects.get(id=id).id
+        # return HttpResponse(json.dumps('Ошибка, попробуйте позже'))
+        if status==True:
+            UserSubcategories.objects.create(user_id=us,subcategories_id=sub)
+        else:
+            UserSubcategories.objects.get(user_id=us, subcategories_id=sub).delete()
     return HttpResponse(json.dumps('good'))

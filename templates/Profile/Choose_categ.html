@@ -22,6 +22,9 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                id="check_input_{{ j.id }}"
+                                                               {% if j.id in cats %}
+                                                                checked
+                                                                {% endif %}
 {#                                                               id="check_input_{{ j.category_id }}_{{ forloop.counter }}"#}
 {#                                                               data-name="{{ j.name }}"#}
                                                         >
@@ -40,6 +43,9 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                id="check_input_{{ j.id }}"
+                                                               {% if j.id in cats %}
+                                                                checked
+                                                                {% endif %}
 {#                                                               id="check_input_{{ j.category_id }}_{{ forloop.counter }}_"#}
 {#                                                               data-name="{{ j.name }}"#}
                                                         >
