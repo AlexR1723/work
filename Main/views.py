@@ -166,6 +166,7 @@ def Dev(request,text):
     # if id:
 
     return render(request, 'Main/Dev.html', locals())
+    # return render(request, 'Main/Dev.html', locals())
 
 
 def Test(request):
@@ -186,7 +187,7 @@ def Register(request):
     return render(request, 'Main/Register.html', locals())
 
 def Question_details(request):
-    return render(request, 'Main/Question_details.html', locals())
+    return render(request, 'Main/../templates/Help/Question_details.html', locals())
 
 def login_user(request):
     email = request.GET.get("email")

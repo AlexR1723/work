@@ -476,11 +476,86 @@ $("#btn_login").click(function () {
     })
 })
 
-// Отметить checkbox
-$('#checkbox').prop('checked', true);
+$("#btn_add_photo").click(function () {
+    let files = $('#img')[0].files
+    // var fd = new FormData();
+    // // fd.append("CustomField", "This is some extra data");
+    // for (let i = 0; i < files.length; i++) {
+    //     fd.append(i, files[i]);
+    // }
+    $.ajax({
+        url: "load_photos",
+        type: "GET",
+        data: {
+            files: files
+        },
+        processData: false,  // tell jQuery not to process the data
+        contentType: false,   // tell jQuery not to set contentType
+        success: function (data) {
+            alert(data);
+        },
+        error: function (data) {
+            alert('Error');
+        }
+    });
+})
 
-// Снять checkbox
-$('#checkbox').prop('checked', false);
+$('#form_add_img').on('submit', function (e) {
+    e.preventDefault();
+    // var data = new FormData($('#form_add_img').get(0));
+    // var data1 = new FormData($('#form_add_img'))
+    let files = $('#img')[0].files
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            files: files
+        },
+        url: 'login_user',
+        success: function (data) {
+
+        },
+        error: function (data) {
+            alert('Error');
+        }
+    })
+    // $.ajax({
+    //     url: :"/URL",
+    //     method: "POST",
+    //     data: data,
+    //     success: function(data){},
+    //     error: function(data){},
+    //     processData: false,
+    //     contentType: false,
+    // });
+});
+
+// $("#images_input").click(function () {
+//     let files=this.value
+
+// $.ajax({
+//     type: "GET",
+//     dataType: "json",
+//     async: false,
+//     data: {
+//         email: email.value,
+//         pass: pass.value
+//     },
+//     url: 'login_user',
+//     success: function (data) {
+//
+//     },
+//     error: function (data) {
+//         alert('Error');
+//     }
+// })
+// })
+// Отметить checkbox
+// $('#checkbox').prop('checked', true);
+//
+// // Снять checkbox
+// $('#checkbox').prop('checked', false);
 
 $('#nav-contact-tab').click(function () {
     $.ajax({

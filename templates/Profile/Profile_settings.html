@@ -204,42 +204,51 @@
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="tab-pane fade" id="nav-portfolio" role="tabpanel"
                                  aria-labelledby="nav-portfolio-tab">
                                 <div class="d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
-                                    <div class="pr-3 bd-highlight">
-                                        <button type="button" class="btn btn-primary btn-sm bd-highlight btn-all">Все -
-                                            3
-                                        </button>
-                                    </div>
-                                    <div class="pr-3 bd-highlight">
-                                        <button type="button" class="btn btn-primary btn-sm bd-highlight btn-delivery">
-                                            Доставка - 1
-                                        </button>
-                                    </div>
-                                    <div class="pr-3 bd-highlight">
-                                        <button type="button"
-                                                class="btn btn-primary btn-sm bd-highlight btn-add-folder">Добавить
-                                            папку
-                                        </button>
-                                    </div>
-                                    <div class="bd-highlight add-folder_input d-none">
-                                        <div class="input-group-sm d-flex">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-outline-secondary btn-v" type="button"
-                                                        id="button-addon1"></button>
-                                            </div>
-                                            <input type="text" class="form-control add-folder_name"
-                                                   aria-label="Sizing example input" placeholder="Название папки"
-                                                   aria-describedby="inputGroup-sizing-sm">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary btn-x" type="button"
-                                                        id="button-addon2"></button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {#                                    <div class="pr-3 bd-highlight">#}
+                                    {#                                        <button type="button" class="btn btn-primary btn-sm bd-highlight btn-all">Все -#}
+                                    {#                                            3#}
+                                    {#                                        </button>#}
+                                    {#                                    </div>#}
+                                    {#                                    <div class="pr-3 bd-highlight">#}
+                                    {#                                        <button type="button" class="btn btn-primary btn-sm bd-highlight btn-delivery">#}
+                                    {#                                            Доставка - 1#}
+                                    {#                                        </button>#}
+                                    {#                                    </div>#}
+                                    {#                                    <div class="pr-3 bd-highlight">#}
+                                    {#                                        <button type="button"#}
+                                    {#                                                class="btn btn-primary btn-sm bd-highlight btn-add-folder">Добавить#}
+                                    {#                                            папку#}
+                                    {#                                        </button>#}
+                                    {#                                    </div>#}
+                                    {#                                    <div class="bd-highlight add-folder_input d-none">#}
+                                    {#                                        <div class="input-group-sm d-flex">#}
+                                    {#                                            <div class="input-group-prepend">#}
+                                    {#                                                <button class="btn btn-outline-secondary btn-v" type="button"#}
+                                    {#                                                        id="button-addon1"></button>#}
+                                    {#                                            </div>#}
+                                    {#                                            <input type="text" class="form-control add-folder_name"#}
+                                    {#                                                   aria-label="Sizing example input" placeholder="Название папки"#}
+                                    {#                                                   aria-describedby="inputGroup-sizing-sm">#}
+                                    {#                                            <div class="input-group-append">#}
+                                    {#                                                <button class="btn btn-outline-secondary btn-x" type="button"#}
+                                    {#                                                        id="button-addon2"></button>#}
+                                    {#                                            </div>#}
+                                    {#                                        </div>#}
+                                    {#                                    </div>#}
                                     <div class="ml-0 ml-sm-auto bd-highlight">
-                                        <button type="button" class="btn btn-primary btn-sm bd-highlight btn-add-photo">
+                                        <form method="POST" name="form" id="form_add_img" enctype="multipart/form-data">
+                                            <input type="file" id="img" multiple/>
+                                            <input type="submit"/>
+                                        </form>
+{#                                        <input type="file" multiple name="images" id="images_input">#}
+                                        <button type="button"
+                                                class="btn btn-primary btn-sm bd-highlight btn-add-photo"
+                                                id="btn_add_photo">
                                             Добавить фото
                                         </button>
                                     </div>
@@ -290,7 +299,6 @@
                                 </div>
 
                             </div>
-
 
 
                             <div class="tab-pane fade" id="nav-password" role="tabpanel"
