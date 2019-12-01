@@ -387,6 +387,9 @@ div.row {
     /*color: #555555;*/
     color: black;
 }
+.colorDarkGrey2 {
+    color: #555555;
+}
 
 .colorDarkGrey:hover {
     /*color: #555555;*/
@@ -2017,4 +2020,143 @@ input[type=checkbox]:checked + label::after {
     border-radius: 5px;
     color: white;
     transition: .3s;
+}
+.btn-outline-danger3{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    color: white;
+    border-radius: 5px;
+    transition: .3s;
+}
+.btn-outline-danger3:hover{
+    background: none;
+    border: 1px solid #AF4B53;
+    border-radius: 5px;
+    color: #AF4B53;
+    transition: .3s;
+}
+.fa-tasks, .fa-bell, .fa-comments{
+    color: #AAAAAA;
+    font-size: 2rem;
+}
+.br-50{
+    border-radius: 50%;
+}
+.fa-caret-down{
+    color: #AAAAAA;
+    font-size: 1rem;
+}
+.profile-block{
+    transition: .3s;
+}
+.profile-block:hover{
+    cursor: pointer;
+    transition: .3s;
+}
+.profile-block:hover .fa-caret-down{
+    color: black;
+    transition: .3s;
+}
+/*#inp:hover +.profile-menu {*/
+/*      opacity: 1;*/
+/*    transition: .3s;*/
+/*    }*/
+
+/*.profile-col .profile-block:hover .profile-menu{*/
+/*    opacity: 1;*/
+/*    transition: .3s;*/
+/*}*/
+.profile-menu{
+    background: white;
+    /*width: 200px;*/
+    /*height: 300px;*/
+    /*position:absolute;*/
+    /*z-index: 170;*/
+    /*top:68px;*/
+    /*right: 0;*/
+    /*opacity: 0;*/
+    opacity: 1;
+    transition: .3s;
+}
+.executor .btn-customer{
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    border-radius: 0;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    transition: .3s;
+}
+.executor .btn-customer:hover {
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    /*border-radius: 5px;*/
+    color: white;
+    transition: .3s;
+}
+.executor .btn-executor{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    color: white;
+    border-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: .3s;
+}
+.executor .btn-executor:hover{
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+
+    transition: .3s;
+}
+
+.customer .btn-executor{
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    border-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: .3s;
+}
+.customer  .btn-executor:hover{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    /*border-radius: 5px;*/
+    color: white;
+    transition: .3s;
+}
+.customer .btn-customer{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    color: white;
+    border-radius: 0;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    transition: .3s;
+}
+.customer .btn-customer:hover{
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+
+    transition: .3s;
+}
+.dropdown-menu{
+    width: max-content !important;
+    /*right: 0 !important;*/
+    /*left: auto !important;*/
+}
+.prof-item{
+    transition: .3s;
+}
+.prof-item:hover{
+    border-left: 4px solid #3E789D;
+
+    transition: .3s;
+}
+.prof-item:hover a{
+    cursor: pointer;
+    text-decoration: underline;
 }

@@ -455,8 +455,7 @@ $("#btn_login").click(function () {
         url: 'login_user',
         success: function (data) {
             if (data == true) {
-                // window.location.href='path_to_page'
-                alert('login succesful')
+                window.location.href='/'
             } else {
                 if (data == false) {
                     data = 'Заполните поля!'
@@ -675,6 +674,7 @@ $("#safety_btn_executor").click(function () {
 });
 
 $(document).ready(function () {
+
     $(".more_sub").click(function () {
         var el = $(this);
         el.addClass('d-none');

@@ -1,23 +1,23 @@
 from django.shortcuts import render
 
-
-# Create your views here.
-def Profile_settings(request):
-    return render(request, 'Profile/Profile_settings.html', locals())
-
-
-def Choose_city(request):
-    return render(request, 'Profile/Choose_city.html', locals())
-
-
-def Adverts_add(request):
-    return render(request, 'Profile/Adverts_add.html', locals())
-
-
-def Choose_categ(request):
-    return render(request, 'Profile/Choose_categ.html', locals())
-
-
+def layout_contact():
+    contact=ContactType.objects.all()
+    return contact
+def layout_link():
+    link=Link.objects.all()
+    return link
+def layout_name(request):
+    layout = 'layout.html'
+    username=''
+    user = request.session.get('username', 'no')
+    if (user != 'no'):
+        username=AuthUser.objects.all().filter(email=user)[0].first_name
+        user = Users.objects.all().filter(auth_user__email=user)[0]
+        if (user.type.name == "Заказчик"):
+            layout = 'layout_customer.html'
+        else:
+            layout = 'layout_executor.html'
+    return layout,username
 from django.shortcuts import render
 
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
@@ -29,18 +29,28 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password, make_password
 # from django.contrib.auth.hashers import *
 import re
-from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 from distutils.util import strtobool
+# Create your views here.
+def Profile_settings(request):
+    layout, username = layout_name(request)
+    return render(request, 'Profile/Profile_settings.html', locals())
 
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.db import transaction
-from django.conf import settings
-from django.core.mail import send_mail
-from django.core.mail import EmailMultiAlternatives, EmailMessage
-from django.template.loader import render_to_string
-from django.urls import reverse
+
+def Choose_city(request):
+    layout, username = layout_name(request)
+    return render(request, 'Profile/Choose_city.html', locals())
+
+
+def Adverts_add(request):
+    layout, username = layout_name(request)
+    return render(request, 'Profile/Adverts_add.html', locals())
+
+
+def Choose_categ(request):
+    layout, username = layout_name(request)
+    return render(request, 'Profile/Choose_categ.html', locals())
 
 
 def change_password(request):
