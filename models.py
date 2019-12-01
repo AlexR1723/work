@@ -61,7 +61,7 @@ class AuthUser(models.Model):
     username = models.CharField(unique=True, max_length=150)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
+    email = models.CharField(unique=True, max_length=254)
     is_staff = models.BooleanField()
     is_active = models.BooleanField()
     date_joined = models.DateTimeField()
@@ -112,6 +112,7 @@ class BenefitsSafe(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     image = models.CharField(max_length=500, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -321,27 +322,30 @@ class SubCategory(models.Model):
         db_table = 'sub_category'
 
 
-class User(models.Model):
-    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
-    phone = models.CharField(max_length=13, blank=True, null=True)
-    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
-    type = models.ForeignKey('UserType', models.DO_NOTHING, blank=True, null=True)
-    uuid = models.CharField(max_length=50, blank=True, null=True)
-    gender = models.ForeignKey(Gender, models.DO_NOTHING, blank=True, null=True)
-    birthday = models.DateField(blank=True, null=True)
-    about_me = models.CharField(max_length=5000, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'user'
-
-
 class UserType(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'user_type'
+
+
+class Users(models.Model):
+    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    phone = models.CharField(max_length=13, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    type = models.ForeignKey(UserType, models.DO_NOTHING, blank=True, null=True)
+    uuid = models.CharField(max_length=50, blank=True, null=True)
+    gender = models.ForeignKey(Gender, models.DO_NOTHING, blank=True, null=True)
+    birthday = models.DateField(blank=True, null=True)
+    about_me = models.CharField(max_length=5000, blank=True, null=True)
+    get_new_order = models.BooleanField(blank=True, null=True)
+    get_notice_status = models.BooleanField(blank=True, null=True)
+    photo = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'users'
 
 
 class WhatSafe(models.Model):
