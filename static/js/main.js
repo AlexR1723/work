@@ -600,6 +600,16 @@ $("#safety_btn_executor").click(function () {
 });
 
 $(document).ready(function () {
+    // var prof_block = document.getElementById('profile-block');
+    //
+    // var prof_menu=document.getElementById('profile-menu');
+    // prof_block.onmouseover = function () {
+    //     prof_menu.style.opacity=1;
+    // };
+    // prof_block.onmouseout = function () {
+    //     prof_menu.style.opacity=0;
+    // };
+
     $(".more_sub").click(function () {
         var el = $(this);
         el.addClass('d-none');

@@ -34,6 +34,8 @@ def layout_regions_cities(request):
 
 # Create your views here.
 def Main(request):
+    # layout='layout_executor.html'
+    layout = 'layout.html'
     contact=layout_contact()
     link=layout_link()
     city,regs,regions=layout_regions_cities(request)
