@@ -2,210 +2,332 @@
 {% load staticfiles %}
 {% block content %}
 
-<div class="container-fluid p-0">
-    <div class="row justify-content-center choose_blk">
-        <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8">
-            <div class="row pb-5 pt-4">
-                <div class="col-12 d-flex justify-content-center main-accordion_blk">
-                        <div class="inner-accordion_blk">
-                            <div class="panel">
-                                <div class="panel-heading mb-1">
-                                    <a href="#">Домашний мастер</a>
-                                </div>
-                                <div class="panel-collapse">
-                                        <div id="collapseOne" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center choose_blk">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8">
+                <div class="row pb-5 pt-4">
+                    <div class="col-12 d-flex justify-content-center main-accordion_blk">
+                        <div class="inner-accordion_blk" id="profile_list_categories">
+                            {% for i in category %}
+                                <div class="panel">
+                                    <div class="panel-heading mb-1">
+                                        <a href="#">{{ i.name }}</a>
+                                    </div>
+                                    <div class="panel-collapse">
+                                        <div id="collapseOne" class="row collapse show" aria-labelledby="headingOne"
+                                             data-parent="#accordionExample">
                                             <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-1">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-1" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-2">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-2" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-3">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-3" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-4">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-4" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                          </div>
+                                                {% for j in i.first_sub %}
+                                                    <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                        <input type="checkbox"
+                                                               class="custom-control-input"
+                                                               id="check_input_{{ j.id }}"
+{#                                                               id="check_input_{{ j.category_id }}_{{ forloop.counter }}"#}
+{#                                                               data-name="{{ j.name }}"#}
+                                                        >
+                                                        <label class="custom-control-label pl-1 pl-sm-3"
+                                                               for="check_input_{{ j.id }}"
+{#                                                               for="check_input_{{ j.category_id }}_{{ forloop.counter }}"#}
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               title="">{{ j.name }}</label>
+                                                    </div>
+                                                {% endfor %}
+
+                                            </div>
                                             <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-5">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-5" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-6">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-6" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                          </div>
+                                                {% for j in i.second_sub %}
+                                                    <div class="custom-control custom-checkbox mr-sm-2 pt-2">
+                                                        <input type="checkbox"
+                                                               class="custom-control-input"
+                                                               id="check_input_{{ j.id }}"
+{#                                                               id="check_input_{{ j.category_id }}_{{ forloop.counter }}_"#}
+{#                                                               data-name="{{ j.name }}"#}
+                                                        >
+                                                        <label class="custom-control-label pl-1 pl-sm-3"
+                                                               for="check_input_{{ j.id }}"
+{#                                                               for="check_input_{{ j.category_id }}_{{ forloop.counter }}_"#}
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               title="">{{ j.name }}</label>
+                                                    </div>
+                                                {% endfor %}
+
+                                            </div>
+
                                         </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-heading mb-1">
-                                    <a href="#">Мебельные работы</a>
-                                </div>
-                                <div class="panel-collapse">
-                                    <div id="collapseTwo" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                          <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-7">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-7" data-toggle="tooltip" data-placement="bottom" title="">Изготовление мебели</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-8">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-8" data-toggle="tooltip" data-placement="bottom" title="">Швея магкой мебели</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-9">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-9" data-toggle="tooltip" data-placement="bottom" title="">Сборка мебели</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-10">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-10" data-toggle="tooltip" data-placement="bottom" title="">Другие мебельные работы</label>
-                                             </div>
-                                          </div>
-                                          <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-11">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-11" data-toggle="tooltip" data-placement="bottom" title="">Реставрация мебели</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-12">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-12" data-toggle="tooltip" data-placement="bottom" title="">Ремонт мебели</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="check_input-13">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="check_input-13" data-toggle="tooltip" data-placement="bottom" title="">Перетяжка мебели</label>
-                                            </div>
-                                          </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-heading mb-1">
-                                    <a href="#">Отделочные работы</a>
-                                </div>
-                                <div class="panel-collapse">
-                                    <div id="collapseThree" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                          <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="work_input-1">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="work_input-1" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="work_input-2">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="work_input-2" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="work_input-3">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="work_input-3" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="work_input-4">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="work_input-4" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                          </div>
-                                          <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="work_input-5">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="work_input-5" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                            </div>
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-heading mb-1">
-                                    <a href="#">Клининговые услуги</a>
-                                </div>
-                                <div class="panel-collapse">
-                                    <div id="collapseFour" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                          <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="clean-input-1">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="clean-input-1" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="clean-input-2">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="clean-input-2" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="clean-input-3">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="uk_input-3" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="clean-input-4">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="uk_input-4" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-heading mb-1">
-                                    <a href="#">Курьерские услуги</a>
-                                </div>
-                                <div class="panel-collapse">
-                                    <div id="collapseFive" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                          <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="del_input-1">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="del_input-1" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="del_input-2">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="del_input-2" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="del_input-3">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="del_input-3" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="del_input-4">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="del_input-4" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-heading mb-1">
-                                    <a href="#">Строительные работы</a>
-                                </div>
-                                <div class="panel-collapse">
-                                    <div id="collapseSix" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                          <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="build_input-1">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="build_input-1" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="build_input-2">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="build_input-2" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="build_input-3">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="build_input-3" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                              <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                  <input type="checkbox" class="custom-control-input" id="build_input-4">
-                                                  <label class="custom-control-label pl-1 pl-sm-3" for="build_input-4" data-toggle="tooltip" data-placement="bottom" title="">Lorem ipsum</label>
-                                             </div>
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                                {% for j in i.all_sub %}
+
+                                {% endfor %}
+
+                            {% endfor %}
+
+
+                            {#                            <div class="panel">#}
+                            {#                                <div class="panel-heading mb-1">#}
+                            {#                                    <a href="#">Домашний мастер</a>#}
+                            {#                                </div>#}
+                            {#                                <div class="panel-collapse">#}
+                            {#                                    <div id="collapseOne" class="row collapse show" aria-labelledby="headingOne"#}
+                            {#                                         data-parent="#accordionExample">#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-1">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-1"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-2">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-2"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-3">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-3"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-4">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-4"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-5">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-5"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-6">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-6"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                            <div class="panel">#}
+                            {#                                <div class="panel-heading mb-1">#}
+                            {#                                    <a href="#">Мебельные работы</a>#}
+                            {#                                </div>#}
+                            {#                                <div class="panel-collapse">#}
+                            {#                                    <div id="collapseTwo" class="row collapse show" aria-labelledby="headingOne"#}
+                            {#                                         data-parent="#accordionExample">#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-7">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-7"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Изготовление#}
+                            {#                                                    мебели</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-8">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-8"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Швея#}
+                            {#                                                    магкой мебели</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-9">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-9"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Сборка#}
+                            {#                                                    мебели</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-10">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-10"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Другие#}
+                            {#                                                    мебельные работы</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-11">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-11"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Реставрация#}
+                            {#                                                    мебели</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-12">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-12"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Ремонт#}
+                            {#                                                    мебели</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="check_input-13">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="check_input-13"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Перетяжка#}
+                            {#                                                    мебели</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                            <div class="panel">#}
+                            {#                                <div class="panel-heading mb-1">#}
+                            {#                                    <a href="#">Отделочные работы</a>#}
+                            {#                                </div>#}
+                            {#                                <div class="panel-collapse">#}
+                            {#                                    <div id="collapseThree" class="row collapse show" aria-labelledby="headingOne"#}
+                            {#                                         data-parent="#accordionExample">#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="work_input-1">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="work_input-1"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="work_input-2">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="work_input-2"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="work_input-3">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="work_input-3"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="work_input-4">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="work_input-4"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="work_input-5">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="work_input-5"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                            <div class="panel">#}
+                            {#                                <div class="panel-heading mb-1">#}
+                            {#                                    <a href="#">Клининговые услуги</a>#}
+                            {#                                </div>#}
+                            {#                                <div class="panel-collapse">#}
+                            {#                                    <div id="collapseFour" class="row collapse show" aria-labelledby="headingOne"#}
+                            {#                                         data-parent="#accordionExample">#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="clean-input-1">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="clean-input-1"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="clean-input-2">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="clean-input-2"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="clean-input-3">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="uk_input-3"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="clean-input-4">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="uk_input-4"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                            <div class="panel">#}
+                            {#                                <div class="panel-heading mb-1">#}
+                            {#                                    <a href="#">Курьерские услуги</a>#}
+                            {#                                </div>#}
+                            {#                                <div class="panel-collapse">#}
+                            {#                                    <div id="collapseFive" class="row collapse show" aria-labelledby="headingOne"#}
+                            {#                                         data-parent="#accordionExample">#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="del_input-1">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="del_input-1"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="del_input-2">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="del_input-2"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="del_input-3">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="del_input-3"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="del_input-4">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="del_input-4"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                            <div class="panel">#}
+                            {#                                <div class="panel-heading mb-1">#}
+                            {#                                    <a href="#">Строительные работы</a>#}
+                            {#                                </div>#}
+                            {#                                <div class="panel-collapse">#}
+                            {#                                    <div id="collapseSix" class="row collapse show" aria-labelledby="headingOne"#}
+                            {#                                         data-parent="#accordionExample">#}
+                            {#                                        <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="build_input-1">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="build_input-1"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="build_input-2">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="build_input-2"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="build_input-3">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="build_input-3"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                            <div class="custom-control custom-checkbox mr-sm-2 pt-2">#}
+                            {#                                                <input type="checkbox" class="custom-control-input" id="build_input-4">#}
+                            {#                                                <label class="custom-control-label pl-1 pl-sm-3" for="build_input-4"#}
+                            {#                                                       data-toggle="tooltip" data-placement="bottom" title="">Lorem#}
+                            {#                                                    ipsum</label>#}
+                            {#                                            </div>#}
+                            {#                                        </div>#}
+                            {#                                    </div>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 {% endblock %}

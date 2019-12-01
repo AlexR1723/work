@@ -91,10 +91,13 @@ class HelpSubcategory(models.Model):
         verbose_name = _("Вопрос")
         verbose_name_plural = _("Вопросы")
 
+    def __str__(self):
+        return self.text
+
 
 class HelpImages(models.Model):
     question = models.ForeignKey('HelpSubcategory', models.DO_NOTHING, verbose_name="Вопрос")
-    image_path = models.TextField(blank=True, null=True, verbose_name="Картинка")
+    image_path = models.ImageField(blank=True, null=True, verbose_name="Картинка")
 
     class Meta:
         managed = False
