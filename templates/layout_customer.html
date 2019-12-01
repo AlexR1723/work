@@ -18,7 +18,7 @@
 <div class="container-fluid p-0 fix-top">
     <div class="row rec_ser m-0 justify-content-center">
         <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-1 pb-1">
-            <div class="row justify-content-between align-items-center dropdown ">
+            <div class="row justify-content-between align-items-center">
 
                 <div class="col-8 col-sm-8 col-md-7 col-lg-6 col-xl-6 p-0">
                     <div class="row align-items-center">
@@ -30,16 +30,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 col-sm-4 col-md-5 col-xl-6 col-xl-6 p-0 profile-col" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="col-4 col-sm-4 col-md-5 col-xl-6 col-xl-6 p-0 profile-col">
                     <div class="row justify-content-end align-items-center">
                                   <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
-                                      <i class="fas fa-tasks" data-toggle="tooltip" data-placement="bottom" title="Мои задания"></i>
+                                      <a href="{% url 'Dev' %}">
+                                        <i class="fas fa-tasks" title="Мои задания"></i>
+                                      </a>
                                   </div>
                                   <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
-                                      <i class="far fa-bell" data-toggle="tooltip" data-placement="bottom" title="Уведомления"></i>
+                                      <a href="{% url 'Dev' %}">
+                                        <i class="far fa-bell" title="Уведомления"></i>
+                                      </a>
                                   </div>
                                   <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
-                                      <i class="far fa-comments" data-toggle="tooltip" data-placement="bottom" title="Личный сообщения"></i>
+                                      <a href="{% url 'Dev' %}">
+                                        <i class="far fa-comments"  title="Личный сообщения"></i>
+                                      </a>
                                   </div>
                                <ul class="col-auto navbar-nav">
                                   <li class="nav-item dropdown ml-3">
@@ -50,7 +56,7 @@
                                             </div>
                                             <div class="col-auto p-0 pl-2 d-none d-sm-none s-md-block d-lg-block d-xl-block">
                                                 <div class="row">
-                                                    <label class="fontCategorySmall colorDarkGrey mb-0">Иван</label>
+                                                    <label class="fontCategorySmall colorDarkGrey mb-0">{{username}}</label>
                                                 </div>
                                                 <div class="row">
                                                     <label class="fontCategorySmall colorDarkGrey2 mb-0">Заказчик</label>
@@ -68,7 +74,7 @@
                                     </div>
                                     <hr class="line mb-1">
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Профиль
+                                        <a href="{% url 'Profile_settings' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Профиль
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
