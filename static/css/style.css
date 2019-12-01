@@ -2108,6 +2108,39 @@ input[type=checkbox]:checked + label::after {
 
     transition: .3s;
 }
+
+.customer .btn-executor{
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+    border-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: .3s;
+}
+.customer  .btn-executor:hover{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    /*border-radius: 5px;*/
+    color: white;
+    transition: .3s;
+}
+.customer .btn-customer{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    color: white;
+    border-radius: 0;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    transition: .3s;
+}
+.customer .btn-customer:hover{
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #AF4B53;
+
+    transition: .3s;
+}
 .dropdown-menu{
     width: max-content !important;
     /*right: 0 !important;*/

@@ -2,9 +2,331 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Work</title>
+    {% load staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext"
+          rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!--    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">-->
+<!--    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
 <body>
+<div class="container-fluid p-0 fix-top">
+    <div class="row rec_ser m-0 justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-11 col-xl-11 p-0 pt-1 pb-1">
+            <div class="row justify-content-between align-items-center dropdown ">
+
+                <div class="col-8 col-sm-8 col-md-7 col-lg-6 col-xl-6 p-0">
+                    <div class="row align-items-center">
+                        <div>
+                            <img src="{% static 'image/logo.png' %}" class="w-75" alt="">
+                        </div>
+                        <div class="col-6 col-sm-7 col-md-6 col-lg-5 col-xl-4 p-0">
+                            <button type="button" class="btn btn-outline-danger3">Создать задание</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-sm-4 col-md-5 col-xl-6 col-xl-6 p-0 profile-col" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="row justify-content-end align-items-center">
+                                  <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
+                                      <i class="fas fa-tasks" data-toggle="tooltip" data-placement="bottom" title="Мои задания"></i>
+                                  </div>
+                                  <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
+                                      <i class="far fa-bell" data-toggle="tooltip" data-placement="bottom" title="Уведомления"></i>
+                                  </div>
+                                  <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
+                                      <i class="far fa-comments" data-toggle="tooltip" data-placement="bottom" title="Личный сообщения"></i>
+                                  </div>
+                               <ul class="col-auto navbar-nav">
+                                  <li class="nav-item dropdown ml-3">
+                                      <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          <div class="row align-items-center">
+                                            <div class="col-auto p-0">
+                                                <img src="{% static 'image/user.png' %}" alt="" width="50" class="br-50">
+                                            </div>
+                                            <div class="col-auto p-0 pl-2 d-none d-sm-none s-md-block d-lg-block d-xl-block">
+                                                <div class="row">
+                                                    <label class="fontCategorySmall colorDarkGrey mb-0">Иван</label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="fontCategorySmall colorDarkGrey2 mb-0">Заказчик</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto p-0 pl-2">
+                                                <i class="fas fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                      </a>
+                                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <div class="row pl-3 pr-3 customer pt-3 justify-content-center align-items-center">
+                                        <button type="button" class="btn btn-customer">Заказчик</button>
+                                        <button type="button" class="btn btn-executor">Исполнитель</button>
+                                    </div>
+                                    <hr class="line mb-1">
+                                    <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
+                                        <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Профиль
+                                        </a>
+                                    </div>
+                                    <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
+                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Мои задания
+                                         </a>
+                                    </div>
+                                    <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
+                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Уведомления
+                                         </a>
+                                    </div>
+                                    <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
+                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Личные сообщения
+                                         </a>
+                                    </div>
+                                    <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
+                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Вопрос/ответ
+                                         </a>
+                                    </div>
+                                    <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
+                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Баланс
+                                         </a>
+                                    </div>
+                                    <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
+                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Выход
+                                         </a>
+                                    </div>
+                                </div>
+                              </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block content %}
+
+{% endblock %}
+<div class="container-fluid p-0">
+    <!-- Footer -->
+    <footer class="page-footer font-small colorBlue pt-5">
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+            <!-- Grid row -->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-3 mx-auto">
+                    <!-- Links -->
+                    <h5 class="font-weight-bold mt-3 mb-4">Как мы работаем</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{% url 'How_it_work' %}">Как заказать услугу</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Rabota' %}">Как стать исполнителем</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'For_business' %}">Преимущества для компаний</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Safety' %}">Гарантии и безопасность</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Secure_transaction' %}">Безопасная сделка</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Top_performers' %}">Топ исполнителей</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'All_category' %}">Все категории услуг</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
+                <!-- Grid column -->
+                <div class="col-md-3 mx-auto">
+                    <!-- Links -->
+                    <h5 class="font-weight-bold mt-3 mb-4">Помощь</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{% url 'Help' %}">Вопрос / ответ</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Public_offer' %}">Публичная оферта</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Privacy_rules' %}">Правила конфиденциальности</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Rules' %}">Правила проекта</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Contact' %}">Служба поддержки</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-3 mx-auto">
+                    <!-- Links -->
+                    <h5 class="font-weight-bold mt-3 mb-4">О проекте</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="{% url 'About' %}">О нас</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Contact' %}">Контакты</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'New' %}">Новости</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
+                <!-- Grid column -->
+                <div class="col-9 col-sm-8 col-md-3 col-lg-4 col-xl-3 mt-4 sochial m-auto">
+
+                    <div class="row justify-content-between">
+
+                        {#                        div.#}
+
+                        {% for l in link %}
+                            <div class="col-2 col-sm-2 col-md-6 col-lg-3 col-xl-3 p-1  justify-content-center">
+                                <div class="circle">
+                                    <a href="{{ l.link }}">
+                                        {% autoescape off %}{{ l.icon }}{% endautoescape %}
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <ul class="list-unstyled mt-3">
+                        {% for ct in contact %}
+                            {% if ct.name == "email" %}
+                                {% for c in ct.contact_set.all %}
+                                    <li>
+                                        <a href="mailto:{{ c.name }}">{{ c.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                {% if ct.name == "телефон" %}
+                                    {% for c in ct.contact_set.all %}
+                                        <li>
+                                            <a href="tel:{{ c.name }}">{{ c.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for c in ct.contact_set.all %}
+                                        <li>
+                                            <a href="#!">{{ c.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- Grid row -->
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3 colorDarkBlue">© 2019 Copyright:
+            <a href="https://vk.com/webdevgroup">Web Dev Group</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+    {#    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="modal_city">Large modal</button>#}
+    <!--    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Large modal</button>-->
+
+    <div class="modal fade bd-example-modal-xl" id="modal_city" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" style="z-index: 200">
+
+            <div class="modal-content bg_color_e7e7e7">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Выберите город</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <div class="accordion md-accordion" id="accordion_cities" role="tablist"
+                         aria-multiselectable="true">
+
+                        {% for reg in regions %}
+
+                            <div class="card">
+                                <div class="card-header" id="cities_{{ reg.id }}">
+                                    <a class="collapsed"
+                                       data-toggle="collapse"
+                                            {#                                       data-parent="#accordion_cities"#}
+                                       href="#cities_collapse_{{ reg.id }}"
+                                       aria-expanded="false"
+                                       aria-controls="cities_collapse_{{ reg.id }}">
+                                        <h5 class="mb-0">
+                                            {{ reg.name }} <i class="fas fa-angle-down rotate-icon"></i>
+                                        </h5>
+                                    </a>
+
+                                </div>
+
+                                <div id="cities_collapse_{{ reg.id }}"
+                                     class="collapse"
+                                     aria-labelledby="cities_{{ reg.id }}"
+                                     data-parent="#accordion_cities">
+                                    <div class="card-body row p-2">
+                                        {% for i in reg.cities %}
+                                            <div class="col-9 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                                                {% if regs == reg.name and city == i.name %}
+                                                    <a class="link_cities" href=""
+                                                       data-region="{{ reg.name }}"><b>{{ i.name }}</b></a>
+                                                {% else %}
+                                                    <a class="link_cities" href=""
+                                                       data-region="{{ reg.name }}">{{ i.name }}</a>
+                                                {% endif %}
+
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://kit.fontawesome.com/2c9fd467ea.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<!--<script src="{% static 'js/bootstrap.js' %}"></script>-->
+<!--<script src="{% static 'js/bootstrap.min.js' %}"></script>-->
+
 
 </body>
 </html>
