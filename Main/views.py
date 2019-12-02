@@ -174,7 +174,7 @@ def Question_details(request):
 
 def Sub_category(request):
     layout, username = layout_name(request)
-    return render(request, 'Main/Sub_category.html', locals())
+    return render(request, 'Main/../templates/Category/Sub_category.html', locals())
 
 def Create_task(request):
     layout, username = layout_name(request)
