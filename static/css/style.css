@@ -989,10 +989,49 @@ hr.line {
     height: 1px;
     width: 100%;
 }
-
-.user-img {
-    border-radius: 50%;
+.user-img_blk {
+      width: 130px;
+      height: 140px;
+      margin: 0 auto;
+      overflow: hidden;
 }
+.user-img {
+    width: 100%;
+  height: 100%;
+  margin: 0 auto;
+    object-fit: cover;
+}
+@media (min-width: 320px) {
+    .user-img_blk {
+        height: 210px;
+    }
+}
+@media (min-width: 375px) {
+    .user-img_blk {
+        height: 240px;
+    }
+}
+@media (min-width: 425px) {
+    .user-img_blk {
+        height: 270px;
+    }
+}
+@media (min-width: 768px) {
+    .user-img_blk {
+        height: 160px;
+    }
+}
+@media (min-width: 1200px) {
+    .user-img_blk {
+        height: 150px;
+    }
+}
+
+
+.email-inf_blk p {
+    word-break: break-all;
+}
+
 
 .user-name {
     font-size: 1.6rem;
