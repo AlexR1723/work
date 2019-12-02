@@ -46,14 +46,14 @@ def Category_item(request,name):
     subs=SubCategory.objects.filter(category_id=category_item.id)
     return render(request, 'Category/Category_item.html', locals())
 
-def SubCategory(request,name):
+def sub_category(request,name):
     layout, username = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
 
     name=str(name).lower()
-    # sub=SubCategory().objects.get(name__icontains=name)
+    sub=SubCategory.objects.get(name__icontains=name)
     # subs=SubCategory.objects.filter(category_id=category_item.id)
     return render(request, 'Category/Sub_category.html', locals())
 
