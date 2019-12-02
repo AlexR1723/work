@@ -18,7 +18,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.All_category, name="All_category"),
+    url(r'^subcategory/(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.SubCategory, name="SubCategory"),
     url(r'^(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Category_item, name="Category_item"),
-    url(r'subcategory/(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.SubCategory, name="SubCategory"),
     # url(r'questions/(?P<text>[А-Яа-я\s0-9-(),.?!/:;"”#№$%*+]+)/$', views.questions, name="questions"),
 ]

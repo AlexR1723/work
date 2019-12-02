@@ -53,7 +53,7 @@ def SubCategory(request,name):
     city,regs,regions=layout_regions_cities(request)
 
     name=str(name).lower()
-    sub=SubCategory().objects.get(name__icontains=name)
+    # sub=SubCategory().objects.get(name__icontains=name)
     # subs=SubCategory.objects.filter(category_id=category_item.id)
     return render(request, 'Category/Sub_category.html', locals())
 
