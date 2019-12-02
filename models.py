@@ -225,9 +225,19 @@ class HelpCategory(models.Model):
         db_table = 'help_category'
 
 
+class HelpImages(models.Model):
+    question = models.ForeignKey('HelpSubcategory', models.DO_NOTHING)
+    image_path = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'help_images'
+
+
 class HelpSubcategory(models.Model):
     text = models.CharField(max_length=500, blank=True, null=True)
     help_category = models.ForeignKey(HelpCategory, models.DO_NOTHING, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -306,7 +316,7 @@ class PublicOffer(models.Model):
 
 
 class Region(models.Model):
-    name = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(unique=True, max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -315,11 +325,30 @@ class Region(models.Model):
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
-    name = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(unique=True, max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'sub_category'
+
+
+class UserCities(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_cities'
+
+
+class UserSubcategories(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    subcategories = models.ForeignKey(SubCategory, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'user_subcategories'
 
 
 class UserType(models.Model):

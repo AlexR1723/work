@@ -179,15 +179,12 @@
                                             </div>
                                             <div class="col-10">
                                                 <h5 class="mb-3">Категории работ</h5>
-                                                <span class="badge">Курьерская доставка</span>
-                                                <span class="badge">Доставка документов</span>
-                                                <span class="badge">Доставка лекарств</span>
-                                                <span class="badge">Доставка продуктов и готовой еды</span>
-                                                <span class="badge">Забрать и отправить почтой</span>
-                                                <span class="badge">Столяр</span>
+                                                {% for cat in subcategory %}
+                                                <span class="badge">{{cat.subcategories.name}}</span>
+                                                {% endfor %}
                                             </div>
                                             <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                                <a href="#">
+                                                <a href="{% url 'Choose_categ' %}">
                                                     <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">
                                                 </a>
                                             </div>
@@ -221,10 +218,12 @@
                                             </div>
                                             <div class="col-10">
                                                 <h5 class="mb-3">Города для работы</h5>
-                                                <span class="badge badge-secondary">Донецк</span>
+                                                {% for city in cities %}
+                                                <span class="badge badge-secondary">{{city.city.name}}</span>
+                                                {% endfor %}
                                             </div>
                                             <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                                <a href="#">
+                                                <a href="{% url 'Choose_city' %}">
                                                     <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">
                                                 </a>
                                             </div>

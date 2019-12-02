@@ -47,19 +47,12 @@ def Profile_settings(request):
             month='0'+str(user.birthday.month)
         year=user.birthday.year
         print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
+        subcategory=UserSubcategories.objects.all().filter(user__email=email)
+        cities = UserCities.objects.all().filter(user__email=email)
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")
 
-
-# def Profile_edit(request):
-#     layout, username = layout_name(request)
-#     if (username != ''):
-#         email = request.session.get('username', 'no')
-#         user = Users.objects.all().filter(auth_user__email=email)[0]
-#         return render(request, 'Profile/Profile_edit.html', locals())
-#     else:
-#         return HttpResponseRedirect("/login")
 
 
 def Save(request):
