@@ -336,7 +336,7 @@ class UserAdvert(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
     title = models.CharField(max_length=200, blank=True, null=True)
-    descriprion = models.CharField(max_length=5000, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -360,6 +360,15 @@ class UserCities(models.Model):
     class Meta:
         managed = False
         db_table = 'user_cities'
+
+
+class UserPortfolio(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    photo = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_portfolio'
 
 
 class UserSubcategories(models.Model):

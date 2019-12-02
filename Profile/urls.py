@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^adverts_add/(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_add, name="Advert_add"),
 
 
+    url(r'portfolio_save/', views.Portfolio_add, name='Portfolio_add'),
     url(r'save/', views.Save, name='Save'),
     url(r'save_phone/', views.Save_phone, name='Save_phone'),
     url(r'save_photo/', views.Save_photo, name='Save_photo'),
@@ -32,7 +33,7 @@ urlpatterns = [
     url(r'get_new_order', views.get_new_order, name='get_new_order'),
     url(r'get_notice_status', views.get_notice_status, name='get_notice_status'),
     url(r'get_status', views.get_status, name='get_status'),
-    url(r'load_photos', views.load_photos, name='load_photos'),
+    # url(r'load_photos', views.load_photos, name='load_photos'),
     url(r'profile_set_subcategories', views.profile_set_subcategories, name='profile_set_subcategories'),
     url(r'profile_set_cities', views.profile_set_cities, name='profile_set_cities'),
     url(r'logout_user', views.logout_user, name='logout_user'),

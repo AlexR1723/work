@@ -266,39 +266,23 @@
                                     {#                                        </div>#}
                                     {#                                    </div>#}
                                     <div class="ml-0 bd-highlight">
-                                        <form method="POST" name="form" id="form_add_img" enctype="multipart/form-data">
-                                            <input type="file" id="img" multiple/>
-                                            <button type="button"
-                                                class="btn btn-primary btn-sm bd-highlight btn-add-photo"
-                                                id="btn_add_photo">
+                                        <form class="w-100" action="{% url 'Portfolio_add' %}" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <input type="file" name="files" multiple/>
+                                            <button type="submit"
+                                                class="btn btn-primary btn-sm bd-highlight btn-add-photo">
                                             Добавить фото
                                         </button>
                                         </form>
-{#                                        <input type="file" multiple name="images" id="images_input">#}
-<!--                                        <button type="button"-->
-<!--                                                class="btn btn-primary btn-sm bd-highlight btn-add-photo"-->
-<!--                                                id="btn_add_photo">-->
-<!--                                            Добавить фото-->
-<!--                                        </button>-->
                                     </div>
                                 </div>
                                 <div class="row portfolio-photos_blk">
+                                    {% for p in portfolio %}
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                        <img src="/static/image/3eabf99674833ed66719c.jpg"
+                                        <img src="{{MEDIA_URL}}{{p.photo.url}}"
                                              class="img-fluid center-block" alt="...">
                                     </div>
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                        <img src="/static/image/123.jpeg" class="img-fluid center-block" alt="...">
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                        <img src="/static/image/cio-c.jpg" class="img-fluid center-block" alt="...">
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                        <img src="/static/image/contract.jpg" class="img-fluid center-block" alt="...">
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                        <img src="/static/image/security.jpg" class="img-fluid center-block" alt="...">
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
 
