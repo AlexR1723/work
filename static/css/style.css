@@ -1914,6 +1914,113 @@ input[type=checkbox]:checked + label::after {
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
 }
+.create-task_blk h2 {
+    font-size: 1.8rem;
+}
+.create-task_blk hr.line {
+    background: #AAAAAA;
+}
+.create-task_blk .form-control,
+.address-task_form .form-control {
+    color: rgba(0, 0, 0, 0.7);
+}
+.task-info_form .form-control {
+    color: rgba(0, 0, 0, 0.5);
+}
+.address-task_form .address-task_input {
+    color: rgba(0, 0, 0, 0.5);
+}
+#btn-add-file {
+    border: 1px solid transparent;
+    height: 40px;
+    background: rgba(62, 120, 157, .8);
+    color: #FFFFFF;
+}
+#btn-add-file:hover {
+    background: rgba(61, 120, 157, 1);
+    color: #FFFFFF;
+    border: 1px solid rgba(61, 120, 157, 1);
+    transition: .3s;
+}
+.del_select::after {
+    content: "\f107";
+    font-family: "FontAwesome";
+    font-size: 1.5rem;
+    color: #AAAAAA;
+    position: absolute;
+    left: 99%;
+    top: 0%;
+    transition: 0.3s;
+}
+.del_select::after {
+    transform: rotate(-90deg);
+}
+.date-select {
+    width: 70%;
+    border: 1px solid rgba(170, 170, 170, 0.3);
+}
+.calendar_blk ul {
+    list-style: none;
+}
+.carousel-control-next, .carousel-control-prev {
+    bottom: 65%;
+}
+.calendar_blk .month {
+    padding: 1% 2%;
+    width: 100%;
+    background: rgba(62, 120, 157, 0.5);
+    text-align: center;
+}
+.calendar_blk .month ul li {
+    font-weight: bold;
+    color: white;
+    font-size: 1.3rem;
+    line-height: 38px;
+}
+.calendar_blk .month ul li span {
+    font-weight: normal;
+}
+.calendar_blk .weekdays {
+    background: rgba(170, 170, 170, 0.3);
+}
+.calendar_blk .weekdays li {
+    display: inline-block;
+    font-size: 1.2rem;
+    width: 13.5%;
+    color: #000000;;
+    text-align: center;
+}
+.calendar_blk .days {
+    background: rgba(229, 229, 229, 0.5);
+}
+.calendar_blk .days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.5%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: .9rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+.calendar_blk .days span {
+    padding: 1% 13%;
+    cursor: pointer;
+}
+.calendar_blk .days li .active {
+    padding: 1% 13%;
+    background: #3E789D;
+    color: #ffffff;
+}
+@media screen and (max-width: 420px) {
+    .calendar_blk .weekdays li,
+    .calendar_blk .days li {
+        width: 13.1%;
+    }
+    .calendar_blk .days li .active {
+        padding: 2px;
+    }
+}
+
 
 @media (min-width: 1200px) {
     .input-group-sm>.custom-select, .input-group-sm>.form-control:not(textarea) {
@@ -2060,6 +2167,9 @@ input[type=checkbox]:checked + label::after {
         height: 200px;
     }
     .add-task_blk::after {
+        display: none;
+    }
+    .del_select::after {
         display: none;
     }
 }

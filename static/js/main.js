@@ -922,6 +922,19 @@ $(".choose_blk").ready(function () {
         $('.panel-heading').not(this).removeClass('in').next().slideUp();
     });
 });
+$(".days").ready(function () {
+    $('li>span').click(function () {
+        $(this).toggleClass('active');
+    });
+});
+$(".choose-type_radio").click(function () {
+    $('.date-select').removeClass('d-none');
+    $('.date-select').addClass('d-block');
+});
+$(".any-time_radio").click(function () {
+    $('.date-select').removeClass('d-block');
+    $('.date-select').addClass('d-none');
+});
 $("#about_me_edit").click(function () {
     var btn=document.getElementById('about_ok');
     btn.classList.remove('d-none');
