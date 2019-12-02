@@ -69,6 +69,23 @@ class Region(models.Model):
         verbose_name = _("Регион")
         verbose_name_plural = _("Регионы")
 
+    # def cities(self):
+    #     city=City.objects.filter(region=self)
+    #     return city
+
+    def first_reg(self):
+        count=City.objects.filter(region=self).count()/2
+        # print(count)
+        reg=City.objects.filter(region=self).order_by('name')[:count]
+        return reg
+
+    def second_reg(self):
+        count = City.objects.filter(region=self).count() / 2
+        # print(count)
+        reg = City.objects.filter(region=self).order_by('name')[count:]
+        return reg
+
+
 
 class City(models.Model):
     region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True, verbose_name="Регион")
