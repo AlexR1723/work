@@ -21,12 +21,13 @@ urlpatterns = [
     # url(r'^edit/$', views.Profile_edit, name="Profile_edit"),
     url(r'^choose_city/$', views.Choose_city, name="Choose_city"),
     url(r'^choose_categ/$', views.Choose_categ, name="Choose_categ"),
-    url(r'^adverts_add/$', views.Adverts_add, name="Adverts_add"),
+    url(r'^adverts_add/(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_add, name="Advert_add"),
 
 
     url(r'save/', views.Save, name='Save'),
     url(r'save_phone/', views.Save_phone, name='Save_phone'),
     url(r'save_photo/', views.Save_photo, name='Save_photo'),
+    url(r'advert_add/', views.Advert_save, name='Advert_save'),
     url(r'change_password', views.change_password, name='change_password'),
     url(r'get_new_order', views.get_new_order, name='get_new_order'),
     url(r'get_notice_status', views.get_notice_status, name='get_notice_status'),

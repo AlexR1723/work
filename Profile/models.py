@@ -153,12 +153,35 @@ class UserSubcategories(models.Model):
             managed = False
             db_table = 'user_subcategories'
 
+    def count(self):
+        count = UserAdvert.objects.filter(subcategory=self.subcategories).filter(user=self.user).count()
+        return count
+
 
 class UserCities(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
-    region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True)
+    # region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'user_cities'
+
+class UserAdvert(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=200, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert'
+
+class UserAdvertPhoto(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/advert/',max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert_photo'

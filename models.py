@@ -332,10 +332,30 @@ class SubCategory(models.Model):
         db_table = 'sub_category'
 
 
+class UserAdvert(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=200, blank=True, null=True)
+    descriprion = models.CharField(max_length=5000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert'
+
+
+class UserAdvertPhoto(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
+    photo = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert_photo'
+
+
 class UserCities(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
-    region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
