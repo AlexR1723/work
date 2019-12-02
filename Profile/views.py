@@ -49,14 +49,26 @@ def Profile_settings(request):
         print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
         subcategory=UserSubcategories.objects.all().filter(user__email=email)
         cities = UserCities.objects.all().filter(user__email=email)
+        portfolio=UserPortfolio.objects.all().filter(user__email=email)
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")
 
+def Portfolio_add(request):
+    print('portfolio_add')
+    if request.method == 'POST':
+        doc = request.FILES
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        if (doc):
+            for d in doc.getlist('files'):
+                user_portfolio=UserPortfolio(user=auth, photo=d)
+                user_portfolio.save()
+    return HttpResponseRedirect("/profile/settings")
 
 
 def Save(request):
-    print('1')
+    print('save')
     if request.method == 'POST':
         # doc = request.FILES
         email = request.session.get('username', 'no')
@@ -74,7 +86,7 @@ def Save(request):
     return HttpResponseRedirect("/profile/settings")
 
 def Save_phone(request):
-    print('1')
+    print('save_phone')
     if request.method == 'POST':
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
@@ -84,7 +96,7 @@ def Save_phone(request):
     return HttpResponseRedirect("/profile/settings")
 
 def Save_photo(request):
-    print('1')
+    print('save_photo')
     if request.method == 'POST':
         doc = request.FILES
         email = request.session.get('username', 'no')
@@ -121,7 +133,7 @@ def Choose_city(request):
 
 
 def Advert_add(request, name):
-    print('1')
+    print('advert')
     layout, username = layout_name(request)
     if (username != ''):
         subcategory=SubCategory.objects.all().filter(name=name)[0]
@@ -130,7 +142,7 @@ def Advert_add(request, name):
         return HttpResponseRedirect("/login")
 
 def Advert_save(request):
-    print('2')
+    print('advert_save')
     if request.method == 'POST':
         doc = request.FILES
         email = request.session.get('username', 'no')
@@ -146,6 +158,9 @@ def Advert_save(request):
                 user_advert_photo=UserAdvertPhoto(user=auth, advert=user_advert, photo=d)
                 user_advert_photo.save()
     return HttpResponseRedirect("/profile/settings")
+
+
+
 
 def Choose_categ(request):
     layout, username = layout_name(request)
@@ -264,12 +279,12 @@ def get_status(request):
     # response.status_code = 403  # To announce that the user isn't allowed to publish
     # return response
 
-def load_photos(request):
-    files=request.GET.get('files')
-    files=request.FILES['newsslide']
-    print(files)
-
-    return HttpResponse(json.dumps('good'))
+# def load_photos(request):
+#     files=request.GET.get('files')
+#     files=request.FILES['newsslide']
+#     print(files)
+#
+#     return HttpResponse(json.dumps('good'))
 
 def profile_set_subcategories(request):
     id=request.GET.get('id')
