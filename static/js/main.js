@@ -412,6 +412,19 @@ $("#main_input_header").keyup(function (event) {
 //     let link = "{% url 'Question_category' %}" + text
 //     this.href = link
 // });
+$("#login_email").keyup(function (event) {
+    // show_item(this.value, event.keyCode, 'res_list_input', 'help_input');
+    if (event.keyCode==13){
+        login()
+    }
+})
+$("#login_pass").keyup(function (event) {
+    if (event.keyCode==13){
+        login()
+    }
+})
+
+
 
 window.onload = function () {
     load_categories();
@@ -469,7 +482,7 @@ $("#btn_profile_change_pass").click(function () {
     })
 });
 
-$("#btn_login").click(function () {
+function login(){
     let email = document.getElementById('login_email')
     let pass = document.getElementById('login_pass')
     document.getElementById('login_email').setAttribute('class', 'form-control')
@@ -503,6 +516,10 @@ $("#btn_login").click(function () {
             alert('Error');
         }
     })
+}
+
+$("#btn_login").click(function () {
+    login()
 })
 
 $("#btn_add_photo").click(function () {
@@ -699,11 +716,9 @@ $('#profile_list_categories').on('click', 'input', function (event) {
         url: 'profile_set_subcategories',
         success: function (data) {
             $('#'+id).prop('checked', status);
-            // console.log('good')
         },
         error: function (data) {
             $('#'+id).prop('checked', !status);
-            // console.log('bad')
         }
     })
 });
@@ -727,11 +742,9 @@ $('#profile_list_cities').on('click', 'input', function (event) {
         url: 'profile_set_cities',
         success: function (data) {
             $('#'+id).prop('checked', status);
-            // console.log('good')
         },
         error: function (data) {
             $('#'+id).prop('checked', !status);
-            // console.log('bad')
         }
     })
 });

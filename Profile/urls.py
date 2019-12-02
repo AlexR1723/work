@@ -35,4 +35,5 @@ urlpatterns = [
     url(r'load_photos', views.load_photos, name='load_photos'),
     url(r'profile_set_subcategories', views.profile_set_subcategories, name='profile_set_subcategories'),
     url(r'profile_set_cities', views.profile_set_cities, name='profile_set_cities'),
+    url(r'logout_user', views.logout_user, name='logout_user'),
 ]

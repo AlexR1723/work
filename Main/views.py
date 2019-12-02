@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-from django.core import serializers
-import json
-import random
+import json,random
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -140,18 +138,8 @@ def Dev(request):
     layout, username = layout_name(request)
     id = request.GET.get('id')
     print(id)
-    # if id:
 
     return render(request, 'Main/Dev.html', locals())
-
-# def Dev(request,text):
-#     layout, username = layout_name(request)
-#     # id = request.GET.get('id')
-#     print(text)
-#     id=text
-#     # if id:
-#     return render(request, 'Main/Dev.html', locals())
-
 
 def Login(request):
     layout, username = layout_name(request)
@@ -168,13 +156,13 @@ def Register(request):
     city, regs, regions = layout_regions_cities(request)
     return render(request, 'Main/Register.html', locals())
 
-def Question_details(request):
-    layout, username = layout_name(request)
-    return render(request, 'Main/Question_details.html', locals())
-
-def Sub_category(request):
-    layout, username = layout_name(request)
-    return render(request, 'Main/../templates/Category/Sub_category.html', locals())
+# def Question_details(request):
+#     layout, username = layout_name(request)
+#     return render(request, 'Main/Question_details.html', locals())
+#
+# def Sub_category(request):
+#     layout, username = layout_name(request)
+#     return render(request, 'Main/../templates/Category/Sub_category.html', locals())
 
 def Create_task(request):
     layout, username = layout_name(request)
@@ -183,20 +171,13 @@ def Create_task(request):
 def login_user(request):
     email = request.GET.get("email")
     password = request.GET.get("pass")
-
-    # if len(password)<8:
-    #     return HttpResponse(json.dumps('Пароль не менее 8 символов'))
     if len(password)==0 or len(email)==0:
-        # return HttpResponse(json.dumps('Заполните поля!'))
         return HttpResponse(json.dumps(False))
 
     try:
         check_email=validate_email(email)
-    # if validate_email(email) == False or len(password) < 8:
-
     except:
         return HttpResponse(json.dumps('Поля заполнены неверно!'))
-
 
     user = authenticate(username=email, password=password)
 
@@ -356,28 +337,17 @@ def search_input_category(request):
 
     return HttpResponse(json.dumps(list))
 
-# def Search_results_help(request,name):
-#
-#     in_name=name
-#     name=str(name).lower()
-#     subs=HelpSubcategory.objects.filter(text__icontains=name).values('id','text')
-#     count=subs.count()
-#     # return HttpResponse(json.dumps(subs))
-#     return render(request, 'Main/Search_results.html', locals())
-
 def set_session_city(request):
     choosen_city = str(request.GET.get("city")).lower()
     choosen_reg = str(request.GET.get("reg")).lower()
-    print(choosen_reg)
-    print(choosen_city)
+    # print(choosen_reg)
+    # print(choosen_city)
     try:
         exist_reg=Region.objects.get(name__icontains=choosen_reg)
         exist_city = City.objects.get(name__icontains=choosen_city,region=exist_reg.id)
-    # if exist_reg and exist_city:
         request.session['reg'] = exist_reg.name
         request.session['city'] = exist_city.name
         request.session.modified = True
         return HttpResponse(json.dumps('good'))
-    # else:
     except:
         return HttpResponse(json.dumps('bad'))

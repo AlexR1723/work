@@ -54,6 +54,5 @@ def sub_category(request,name):
 
     name=str(name).lower()
     sub=SubCategory.objects.get(name__icontains=name)
-    # subs=SubCategory.objects.filter(category_id=category_item.id)
     return render(request, 'Category/Sub_category.html', locals())
 

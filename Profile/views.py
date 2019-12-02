@@ -1,18 +1,12 @@
 from django.shortcuts import render
-from django.shortcuts import render
-
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-
-import json
-import random
+import json,re
 from .models import *
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password, make_password
-# from django.contrib.auth.hashers import *
-import re
 from django.contrib.auth import authenticate, login, logout
-
 from distutils.util import strtobool
+
+
 
 def layout_contact():
     contact=ContactType.objects.all()
@@ -186,14 +180,9 @@ def change_password(request):
             if check_sym == True:
                 if check_password(new1, db_pass) == False:
                     new_pass = make_password(new1)
-                    # AuthUser.objects.filter(id=user_id).update(password=new_pass)
                     set_pass = AuthUser.objects.get(id=user_id)
                     set_pass.password = new_pass
                     set_pass.save()
-                    # user =AuthUser.objects.get(id=user_id)
-                    # user.set
-                    # AuthUser.save(self)
-                    # return HttpResponse(json.dumps('Пароли изменён!'))
                     return HttpResponse(json.dumps(True))
                 else:
                     return HttpResponse(json.dumps('Новый пароль должен отличаться от старого!'))
@@ -254,15 +243,7 @@ def get_status(request):
     list.append(get_status.get_new_order)
     print(list)
 
-    # time=request.session.get_expiry_age()
-    # print(time/60/60/24)
-    # date = request.session.get_expiry_date()
-    # print(date)
-
     return HttpResponse(json.dumps(list))
-    # response = HttpResponse({"error": "there was an error"})
-    # response.status_code = 403  # To announce that the user isn't allowed to publish
-    # return response
 
 def load_photos(request):
     files=request.GET.get('files')
@@ -299,8 +280,10 @@ def profile_set_cities(request):
         city=City.objects.get(id=id).id
         if status==True:
             UserCities.objects.create(user_id=us,city_id=city)
-            # UserCities.objects.create(user_id=us,cities_id=city)
         else:
             UserCities.objects.get(user_id=us, city_id=city).delete()
-            # UserCities.objects.get(user_id=us, cities_id=city).delete()
     return HttpResponse(json.dumps('good'))
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect("/")
