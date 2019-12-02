@@ -1,0 +1,345 @@
+﻿{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container-fluid p-0">
+    <div class="row justify-content-center create-task_blk">
+
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row my-3">
+                <h2 class="w-100 text-left fz_2rem">Категория</h2>
+            </div>
+            <div class="row m-0 my-2 justify-content-start">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-12 p-0 pb-0">
+
+                    <form>
+                        <div class="row">
+                            <div class="col-md-5 col-lg-4 pl-0 del_select">
+                                <select class="form-control" id="inputDel">
+                                    <option selected>Курьерские услуги</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5 col-lg-4 pl-0 pl-md-4 mt-3 mt-md-0">
+                                <select class="form-control" id="inputDel1">
+                                    <option selected>Доставка цветов</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row m-0 justify-content-start pt-3">
+                        <hr class="line">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <h2 class="w-100 text-left fz_2rem mb-3">Информация о задании</h2>
+            </div>
+            <form action="" class="task-info_form">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-md-4 col-lg-3 col-form-label px-0" for="input_text">Что сделать?</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-lg-0">
+                        <input class="form-control" id="input_text" placeholder="Например: доставка тюльпанов"
+                               type="text">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-md-9 col-lg-3 col-form-label px-0" for="detailsFormControlTextarea1">Опишите
+                        подробно детали</label>
+                    <textarea class="form-control col-sm-10 col-md-9 col-lg-9" id="detailsFormControlTextarea1" placeholder="Например: купить 7 красных тюльпанов и в 12:00 доставить по адресу"
+                              rows="4"></textarea>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label px-0"></div>
+                    <div class="col-sm-10 col-md-5 px-0 pl-lg-0">
+                        <button class="btn btn-primary px-4" id="btn-add-file" type="submit">Добавить файл
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="row m-0 justify-content-start pt-2">
+                <hr class="line">
+            </div>
+            <div class="row">
+                <h2 class="w-100 text-left fz_2rem mt-2 mb-3">Адрес для выполнения задания</h2>
+            </div>
+            <form action="" class="address-task_form">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0" for="city-task_input">Город</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-md-0 pl-lg-0">
+                        <select class="form-control" id="city-task_input">
+                            <option selected>Макеевка</option>
+                            <option>Донецк</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0" for="input_addr">Адрес</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-md-0 pl-lg-0">
+                        <input class="form-control address-task_input" id="input_addr" placeholder="Например: ул. Первомайская, 12"
+                               type="text">
+                    </div>
+                </div>
+            </form>
+            <div class="row m-0 justify-content-start">
+                <hr class="line">
+            </div>
+            <div class="row">
+                <h2 class="w-100 text-left fz_2rem mb-4">Дата выполнения задания</h2>
+            </div>
+
+            <div class="calendar_blk mb-3">
+                <div class="date-corousel carousel slide" data-interval="false" data-ride="false" id="myCarousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="month_dec">
+                                <div class="month">
+                                    <ul class="m-0 p-0">
+                                        <li>Декабрь<br>
+                                            <span>2019</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul class="weekdays m-0 py-1 px-0">
+                                    <li>Пн</li>
+                                    <li>Вт</li>
+                                    <li>Ср</li>
+                                    <li>Чт</li>
+                                    <li>Пт</li>
+                                    <li>Сб</li>
+                                    <li>Вс</li>
+                                </ul>
+                                <ul class="days m-0 py-2 px-0">
+                                    <li><span class="">1</span></li>
+                                    <li><span class="">2</span></li>
+                                    <li><span class="">3</span></li>
+                                    <li><span class="">4</span></li>
+                                    <li><span class="">5</span></li>
+                                    <li><span class="">6</span></li>
+                                    <li><span class="">7</span></li>
+                                    <li><span class="">8</span></li>
+                                    <li><span class="">9</span></li>
+                                    <li><span class="">10</span></li>
+                                    <li><span class="">11</span></li>
+                                    <li><span class="">12</span></li>
+                                    <li><span class="">13</span></li>
+                                    <li><span class="">14</span></li>
+                                    <li><span class="">15</span></li>
+                                    <li><span class="">16</span></li>
+                                    <li><span class="">17</span></li>
+                                    <li><span class="">18</span></li>
+                                    <li><span class="">19</span></li>
+                                    <li><span class="">20</span></li>
+                                    <li><span class="">21</span></li>
+                                    <li><span class="">22</span></li>
+                                    <li><span class="">23</span></li>
+                                    <li><span class="">24</span></li>
+                                    <li><span class="">25</span></li>
+                                    <li><span class="">26</span></li>
+                                    <li><span class="">27</span></li>
+                                    <li><span class="">28</span></li>
+                                    <li><span class="">29</span></li>
+                                    <li><span class="">30</span></li>
+                                    <li><span class="">31</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="month_dec">
+                                <div class="month">
+                                    <ul class="m-0 p-0">
+                                        <li>Январь<br>
+                                            <span>2020</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul class="weekdays m-0 py-1 px-0">
+                                    <li>Пн</li>
+                                    <li>Вт</li>
+                                    <li>Ср</li>
+                                    <li>Чт</li>
+                                    <li>Пт</li>
+                                    <li>Сб</li>
+                                    <li>Вс</li>
+                                </ul>
+                                <ul class="days m-0 py-2 px-0">
+                                    <li><span class="">1</span></li>
+                                    <li><span class="">2</span></li>
+                                    <li><span class="">3</span></li>
+                                    <li><span class="">4</span></li>
+                                    <li><span class="">5</span></li>
+                                    <li><span class="">6</span></li>
+                                    <li><span class="">7</span></li>
+                                    <li><span class="">8</span></li>
+                                    <li><span class="">9</span></li>
+                                    <li><span class="">10</span></li>
+                                    <li><span class="">11</span></li>
+                                    <li><span class="">12</span></li>
+                                    <li><span class="">13</span></li>
+                                    <li><span class="">14</span></li>
+                                    <li><span class="">15</span></li>
+                                    <li><span class="">16</span></li>
+                                    <li><span class="">17</span></li>
+                                    <li><span class="">18</span></li>
+                                    <li><span class="">19</span></li>
+                                    <li><span class="">20</span></li>
+                                    <li><span class="">21</span></li>
+                                    <li><span class="">22</span></li>
+                                    <li><span class="">23</span></li>
+                                    <li><span class="">24</span></li>
+                                    <li><span class="">25</span></li>
+                                    <li><span class="">26</span></li>
+                                    <li><span class="">27</span></li>
+                                    <li><span class="">28</span></li>
+                                    <li><span class="">29</span></li>
+                                    <li><span class="">30</span></li>
+                                    <li><span class="">31</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="month_dec">
+                                <div class="month">
+                                    <ul class="m-0 p-0">
+                                        <li>
+                                            Февраль<br>
+                                            <span>2020</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul class="weekdays m-0 py-1 px-0">
+                                    <li>Пн</li>
+                                    <li>Вт</li>
+                                    <li>Ср</li>
+                                    <li>Чт</li>
+                                    <li>Пт</li>
+                                    <li>Сб</li>
+                                    <li>Вс</li>
+                                </ul>
+                                <ul class="days m-0 py-2 px-0">
+                                    <li><span class="">1</span></li>
+                                    <li><span class="">2</span></li>
+                                    <li><span class="">3</span></li>
+                                    <li><span class="">4</span></li>
+                                    <li><span class="">5</span></li>
+                                    <li><span class="">6</span></li>
+                                    <li><span class="">7</span></li>
+                                    <li><span class="">8</span></li>
+                                    <li><span class="">9</span></li>
+                                    <li><span class="">10</span></li>
+                                    <li><span class="">11</span></li>
+                                    <li><span class="">12</span></li>
+                                    <li><span class="">13</span></li>
+                                    <li><span class="">14</span></li>
+                                    <li><span class="">15</span></li>
+                                    <li><span class="">16</span></li>
+                                    <li><span class="">17</span></li>
+                                    <li><span class="">18</span></li>
+                                    <li><span class="">19</span></li>
+                                    <li><span class="">20</span></li>
+                                    <li><span class="">21</span></li>
+                                    <li><span class="">22</span></li>
+                                    <li><span class="">23</span></li>
+                                    <li><span class="">24</span></li>
+                                    <li><span class="">25</span></li>
+                                    <li><span class="">26</span></li>
+                                    <li><span class="">27</span></li>
+                                    <li><span class="">28</span></li>
+                                    <li><span class="">29</span></li>
+                                    <li><span class="">30</span></li>
+                                    <li><span class="">31</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" data-slide="prev" href="#myCarousel" role="button">
+                        <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" data-slide="next" href="#myCarousel" role="button">
+                        <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+            <form action="" class="execute-time">
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0">Когда выполнить?</label>
+                    <div class="col-sm-10 col-md-4 py-2">
+                        <div class="form-check">
+                            <input checked class="form-check-input any-time_radio" id="gridRadios2"
+                                   name="gridRadios" type="radio" value="option1">
+                            <label class="form-check-label any-time_radio" for="gridRadios2">
+                                В любое время
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input choose-type_radio" id="gridRadios3" name="gridRadios"
+                                   type="radio" value="option2">
+                            <label class="form-check-label choose-type_radio" for="gridRadios3">
+                                Выбрать время
+                            </label>
+                        </div>
+                        <div class="date-select mt-2 p-3 d-none">
+                            <div class="form-group row mb-2">
+                                <label class="col-2 col-sm-2 col-form-label px-0" for="time_input1">С</label>
+                                <div class="col-9 col-sm-2 col-md-10 px-0 pl-md-3 pl-lg-0">
+                                    <input class="form-control" id="time_input1" type="time" value="12:00">
+                                </div>
+                            </div>
+                            <div class="form-group row m-0">
+                                <label class="col-2 col-sm-2 col-form-label px-0" for="time_input2">До</label>
+                                <div class="col-9 col-sm-2 col-md-10 px-0 pl-md-3 pl-lg-0">
+                                    <input class="form-control passwords" id="time_input2" type="time" value="13:00">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row m-0 justify-content-start">
+                <hr class="line mt-0">
+            </div>
+            <div class="row">
+                <h2 class="w-100 text-left fz_2rem mb-3">Оплата</h2>
+            </div>
+            <form action="" class="pay-type_form mb-5">
+                <div class="form-group row mb-5">
+                    <label class="col-sm-3 col-form-label px-0">Способ оплаты</label>
+                    <div class="col-sm-10 col-md-4 py-2">
+                        <div class="form-check">
+                            <input checked class="form-check-input" id="gridRadios4" name="gridRadios"
+                                   type="radio" value="option1">
+                            <label class="form-check-label" for="gridRadios4">
+                                Оплата наличными
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input checked class="form-check-input" id="gridRadios5" name="gridRadios"
+                                   type="radio" value="option1">
+                            <label class="form-check-label" for="gridRadios5">
+                                Безопасная сделка (оплата через сайт)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 col-md-5 px-0 pl-md-0 pl-lg-0">
+                        <button class="btn btn-primary px-5" id="btn_profile_change_pass"
+                                type="submit">Опубликовать
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
