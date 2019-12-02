@@ -26,6 +26,7 @@ urlpatterns = [
 
     url(r'save/', views.Save, name='Save'),
     url(r'save_phone/', views.Save_phone, name='Save_phone'),
+    url(r'save_photo/', views.Save_photo, name='Save_photo'),
     url(r'change_password', views.change_password, name='change_password'),
     url(r'get_new_order', views.get_new_order, name='get_new_order'),
     url(r'get_notice_status', views.get_notice_status, name='get_notice_status'),

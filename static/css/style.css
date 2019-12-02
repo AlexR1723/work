@@ -1521,6 +1521,9 @@ hr.category-line {
 .profile-name_icon {
     width: 5%;
 }
+.profile-name_icon:hover{
+    cursor: pointer;
+}
 
 .profile-settings_text {
     font-size: 1rem;
@@ -1816,18 +1819,18 @@ input[type=checkbox]:checked + label::after {
 .main-accordion_blk a {
     text-decoration: none;
 }
-.panel-heading a {
+.panel-heading p {
     background: rgba(229, 229, 229, .4);
     color: #000000;
     display: block;
     padding: 10px 15px 10px 50px;
     position: relative;
 }
-.panel-heading a:hover {
+.panel-heading p:hover {
     background: rgba(229, 229, 229, .7);
     transition: .3s;
 }
-.panel-heading a::before {
+.panel-heading p::before {
     content: "\f107";
     font-family: "FontAwesome";
     font-size: 1.7rem;
@@ -1837,10 +1840,10 @@ input[type=checkbox]:checked + label::after {
     top: 15%;
     transition: 0.3s;
 }
-.panel-heading.in a::before {
+.panel-heading.in p::before {
     transform: rotate(180deg);
 }
-.panel-heading.in a {
+.panel-heading.in p {
     background: rgba(229, 229, 229, .7);
 }
 .panel-collapse {
@@ -1963,7 +1966,7 @@ input[type=checkbox]:checked + label::after {
     list-style: none;
 }
 .carousel-control-next, .carousel-control-prev {
-    bottom: 65%;
+    /*bottom: 65%;*/
 }
 .calendar_blk .month {
     padding: 1% 2%;
@@ -2333,6 +2336,10 @@ input[type=checkbox]:checked + label::after {
 .prof-input{
     width: auto !important;
     display: inline-block !important;
+}
+.prof-file{
+    border:0;
+    padding-left: 0;
 }
 .edit-icon:hover{
     cursor: pointer;

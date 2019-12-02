@@ -955,6 +955,14 @@ $("#phone_edit").click(function () {
     var phone=document.getElementById('phone');
     phone.removeAttribute('readonly');
 });
+$("#photo_edit").click(function () {
+    var lbl=document.getElementById('file_label_edit');
+    lbl.classList.add('d-none');
+    var form=document.getElementById('file_ok');
+    form.classList.remove('d-none');
+    // var phone=document.getElementById('phone');
+    // phone.removeAttribute('readonly');
+});
 // $(".btn-profile-save").click(function () {
 //     var fileData = $('#files').prop('files')[0];
 //     var formData = new FormData();
