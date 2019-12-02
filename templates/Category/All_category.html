@@ -30,7 +30,7 @@
                         {% for s in c.first_five %}
                         <div class="row ml-5 mt-2">
                             <div class="col-md-12 ">
-                                <a class="fontCategorySmall colorDarkGrey" href="#">{{ s.name }}</a>
+                                <a class="fontCategorySmall colorDarkGrey" href="{% url 'sub_category' s.name|lower %}">{{ s.name }}</a>
                                 <small class="ml-2 colorLightGrey">1145</small>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             {% for s in c.rest %}
                             <div class="row mt-2">
                                 <div class="col-md-12 ">
-                                    <a class="fontCategorySmall colorDarkGrey" href="#">{{s.name}}</a>
+                                    <a class="fontCategorySmall colorDarkGrey" href="{% url 'sub_category' s.name|lower %}">{{s.name}}</a>
                                     <small class="ml-2 colorLightGrey">1145</small>
                                 </div>
                             </div>
