@@ -2105,6 +2105,9 @@ input[type=checkbox]:checked + label::after {
         left: -20px;
         top: -5px;
     }
+    .date-select {
+        width: 100%;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 576px) {
