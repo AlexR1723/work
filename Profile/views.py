@@ -91,6 +91,17 @@ def Save_phone(request):
 
 def Choose_city(request):
     layout, username = layout_name(request)
+
+    regions = Region.objects.all().order_by('name')
+    user = request.session.get('username', 0)
+    if user == 0:
+        return HttpResponseRedirect("/login")
+    user_id = AuthUser.objects.get(username=user).id
+    user_cities = UserCities.objects.filter(user_id=user_id)
+    list_cities = []
+    for i in user_cities:
+        list_cities.append(i.city_id)
+
     if (username != ''):
         return render(request, 'Profile/Choose_city.html', locals())
     else:
@@ -117,10 +128,6 @@ def Choose_categ(request):
     cats=[]
     for i in user_cat:
         cats.append(i.subcategories_id)
-    # user_cat=UserSubcategories.objects.filter(user_id=user_id)
-    print(user_cat)
-    print(cats)
-    # subs=SubCategory.objects.all()
 
     if (username != ''):
         return render(request, 'Profile/Choose_categ.html', locals())
@@ -238,15 +245,31 @@ def profile_set_subcategories(request):
     status=bool(strtobool(request.GET.get('status')))
     id=str(id).split('_')[2]
 
-    # print(sub.name)
     user = request.session.get('username', 0)
     print(user)
     if user != 0:
         us=AuthUser.objects.get(username=user).id
         sub=SubCategory.objects.get(id=id).id
-        # return HttpResponse(json.dumps('Ошибка, попробуйте позже'))
         if status==True:
             UserSubcategories.objects.create(user_id=us,subcategories_id=sub)
         else:
             UserSubcategories.objects.get(user_id=us, subcategories_id=sub).delete()
+    return HttpResponse(json.dumps('good'))
+
+def profile_set_cities(request):
+    id=request.GET.get('id')
+    status=bool(strtobool(request.GET.get('status')))
+    id=str(id).split('_')[2]
+
+    user = request.session.get('username', 0)
+    print(user)
+    if user != 0:
+        us=AuthUser.objects.get(username=user).id
+        city=City.objects.get(id=id).id
+        if status==True:
+            UserCities.objects.create(user_id=us,city_id=city)
+            # UserCities.objects.create(user_id=us,cities_id=city)
+        else:
+            UserCities.objects.get(user_id=us, city_id=city).delete()
+            # UserCities.objects.get(user_id=us, cities_id=city).delete()
     return HttpResponse(json.dumps('good'))

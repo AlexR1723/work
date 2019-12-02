@@ -212,11 +212,7 @@ class Region(models.Model):
 
     def cities(self):
         city=City.objects.filter(region=self)
-        # print(city[0].name)
         return city
-    # def reg(self):
-    #     region=Region.objects.all()
-    #     return region
 
 
 class HelpCategory(models.Model):

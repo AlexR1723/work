@@ -698,17 +698,44 @@ $('#profile_list_categories').on('click', 'input', function (event) {
         },
         url: 'profile_set_subcategories',
         success: function (data) {
-            $(id).prop('checked', status);
-            console.log('good')
+            $('#'+id).prop('checked', status);
+            // console.log('good')
         },
         error: function (data) {
-            $(id).prop('checked', !status);
-            console.log('bad')
+            $('#'+id).prop('checked', !status);
+            // console.log('bad')
         }
     })
-    // document.getElementById('main_input_header').value = text
-    // window.location.href = "/find/" + text.trim().toLowerCase();
 });
+
+$('#profile_list_cities').on('click', 'input', function (event) {
+    let id = this.id
+    let status;
+    if ($(this).is(':checked')) {
+        status = true
+    } else {
+        status = false
+    }
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            id: id,
+            status: status
+        },
+        url: 'profile_set_cities',
+        success: function (data) {
+            $('#'+id).prop('checked', status);
+            // console.log('good')
+        },
+        error: function (data) {
+            $('#'+id).prop('checked', !status);
+            // console.log('bad')
+        }
+    })
+});
+
 
 
 $("#safety_btn_customer").click(function () {

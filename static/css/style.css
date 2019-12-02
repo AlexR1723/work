@@ -1810,18 +1810,19 @@ input[type=checkbox]:checked + label::after {
 .main-accordion_blk a {
     text-decoration: none;
 }
-.panel-heading a {
+.panel-heading p {
     background: rgba(229, 229, 229, .4);
     color: #000000;
     display: block;
     padding: 10px 15px 10px 50px;
     position: relative;
+    margin: 0;
 }
-.panel-heading a:hover {
+.panel-heading p:hover {
     background: rgba(229, 229, 229, .7);
     transition: .3s;
 }
-.panel-heading a::before {
+.panel-heading p::before {
     content: "\f107";
     font-family: "FontAwesome";
     font-size: 1.7rem;
@@ -1831,10 +1832,10 @@ input[type=checkbox]:checked + label::after {
     top: 15%;
     transition: 0.3s;
 }
-.panel-heading.in a::before {
+.panel-heading.in p::before {
     transform: rotate(180deg);
 }
-.panel-heading.in a {
+.panel-heading.in p {
     background: rgba(229, 229, 229, .7);
 }
 .panel-collapse {
