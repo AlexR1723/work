@@ -1024,3 +1024,98 @@ $("#photo_edit").click(function () {
 //         }
 //     })
 // });
+
+// $ ( ' input [name = "date"] ' ). daterangepicker ();
+
+$(function(){
+ $('#date').daterangepicker({
+ singleDatePicker: true,
+ });
+});
+
+$("#task_category").change(function () {
+        var cat=$('#task_category option:selected').val();
+        if(cat!=0){
+             $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:'/profile/subcategory_find/',
+                data: {
+                    id:cat
+                },
+                success: function(data) {
+                    outputSubcategory( data);
+                    },
+                error: function (data) {
+                    alert('Error');
+                }
+            })
+        }
+        else{
+            $('#modelAvto').attr('disabled',true);
+        }
+    });
+function outputSubcategory(data) {
+    $('#task_subcategory').removeAttr('disabled');
+    var select=document.getElementById('task_subcategory');
+    while(select.length!=0) {
+            select.remove(0);
+     }
+     // var option = document.createElement("option");
+     //    option.value = 0;
+     //    option.text = '-Выберите модель-';
+     //    select.appendChild(option);
+    for (var i = 0; i < data.data.length;i=i+2) {
+        var option = document.createElement("option");
+        option.value = data.data[i];
+        option.text = data.data[i+1];
+        select.appendChild(option);
+    }
+}
+$("#customer").click(function () {
+
+             $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:'/profile/customer/',
+                success: function(data) {
+                    location.reload(true)
+                    },
+                error: function (data) {
+                    alert('Error');
+                }
+            })
+    });
+$("#executor").click(function () {
+
+             $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:'/profile/executor/',
+                success: function(data) {
+                    location.reload(true)
+                    },
+                error: function (data) {
+                    alert('Error');
+                }
+            })
+    });
+
+$(document).ready(function() {
+ 
+    $('input[type="file"]').change(function(){
+        if ($(this).val() != '') {
+            if($(this)[0].files.length==1)
+            {
+                $('.js-fileName').text($(this).val());
+            }
+            else {
+                $('.js-fileName').text('Выбрано файлов: ' + $(this)[0].files.length);
+            }
+        }
+        else {
+            $('.js-fileName').text('Выберите файлы');
+        }
+    });
+ 
+});

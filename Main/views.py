@@ -164,9 +164,7 @@ def Register(request):
 #     layout, username = layout_name(request)
 #     return render(request, 'Main/../templates/Category/Sub_category.html', locals())
 
-def Create_task(request):
-    layout, username = layout_name(request)
-    return render(request, 'Main/Create_task.html', locals())
+
 
 def login_user(request):
     email = request.GET.get("email")

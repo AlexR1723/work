@@ -17,19 +17,21 @@ def layout_link():
 def layout_name(request):
     layout = 'layout.html'
     username=''
+    photo=''
     user = request.session.get('username', 'no')
     if (user != 'no'):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
+        photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username
+    return layout,username,photo
 
 # Create your views here.
 def Profile_settings(request):
-    layout, username = layout_name(request)
+    layout, username,photo = layout_name(request)
     if(username != ''):
         email = request.session.get('username', 'no')
         user=Users.objects.all().filter(auth_user__email=email)[0]
@@ -108,7 +110,7 @@ def Save_photo(request):
 
 
 def Choose_city(request):
-    layout, username = layout_name(request)
+    layout, username,photo = layout_name(request)
 
     regions = Region.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -128,7 +130,7 @@ def Choose_city(request):
 
 def Advert_add(request, name):
     print('advert')
-    layout, username = layout_name(request)
+    layout, username,photo = layout_name(request)
     if (username != ''):
         subcategory=SubCategory.objects.all().filter(name=name)[0]
         return render(request, 'Profile/Adverts_add.html', locals())
@@ -157,7 +159,7 @@ def Advert_save(request):
 
 
 def Choose_categ(request):
-    layout, username = layout_name(request)
+    layout, username,photo = layout_name(request)
 
     category=Category.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -302,3 +304,80 @@ def profile_set_cities(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+def Create_task(request):
+    layout, username,photo = layout_name(request)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        if(Users.objects.all().filter(auth_user__email=email)[0].type.name=='Заказчик'):
+            category=Category.objects.all()
+            city=City.objects.all()
+            return render(request, 'Profile/Create_task.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+    else:
+        return HttpResponseRedirect("/login")
+
+def SubcategoryFind(request):
+    try:
+        cat = request.GET.get("id")
+        subcategory=SubCategory.objects.all().filter(category__id=cat)
+        subcategory_list = []
+        for s in subcategory:
+            subcategory_list.append(s.id)
+            subcategory_list.append(s.name)
+        return HttpResponse(json.dumps({'data': subcategory_list}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
+
+
+def Save_task(request):
+    print('task_save')
+    if request.method == 'POST':
+        doc = request.FILES
+        email = request.session.get('username', 'no')
+        sub=request.POST.get('subcategory')
+        title = request.POST.get('task_title')
+        description=request.POST.get('description')
+        city=request.POST.get('city')
+        address=request.POST.get('address')
+        date_=request.POST.get('date')
+        gridRadios=request.POST.get('gridRadios')
+        start_time=request.POST.get('start_time')
+        end_time=request.POST.get('end_time')
+        gridRadios2=request.POST.get('gridRadios2')
+        date_=date_.split('/')
+        date=date_[2]+'-'+date_[1]+'-'+date_[0]
+        pay=1
+
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        subcategory = SubCategory.objects.all().filter(id=sub)[0]
+        city=City.objects.all().filter(id=city)[0]
+        if(gridRadios2 == 'option1'):
+            pay=0
+        if(gridRadios=='option1'):
+            user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description, city=city,
+                                 address=address,date=date,pay=pay)
+        else:
+            user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description, city=city,
+                                 address=address, start_time=start_time,end_time=end_time, date=date, pay=pay)
+        user_task.save()
+        if (doc):
+            for d in doc.getlist('files'):
+                tast_photo = TaskPhoto(task=user_task, photo=d)
+                tast_photo.save()
+    return HttpResponseRedirect("/profile/settings")
+
+def Executor(request):
+    email = request.session.get('username', 'no')
+    user = Users.objects.all().filter(auth_user__email=email)[0]
+    user.type=UserType.objects.all().filter(name="Исполнитель")[0]
+    user.save()
+    return HttpResponse(json.dumps({'data': 'ok'}))
+
+def Customer(request):
+    email = request.session.get('username', 'no')
+    user = Users.objects.all().filter(auth_user__email=email)[0]
+    user.type=UserType.objects.all().filter(name="Заказчик")[0]
+    user.save()
+    return HttpResponse(json.dumps({'data': 'ok'}))

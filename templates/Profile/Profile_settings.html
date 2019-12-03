@@ -10,7 +10,7 @@
                         <div class="row m-0 justify-content-start">
                             <div class="col-12 p-0">
                                 <div class="row">
-                                    <div class="col-9 col-sm-2 col-md-2 p-2 mx-auto">
+                                    <div class="col-9 col-sm-2 col-md-2 p-2 mx-auto" >
                                         <img src="{{MEDIA_URL}}{{user.photo.url}}" class="w-100  user-img" alt="">
                                     </div>
                                     <div class="col-12 col-sm-5 col-md-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
@@ -23,7 +23,13 @@
                                             {% csrf_token %}
                                                 <div class="col-10">
                                                     <input type="text" class="mb-1 form-control prof-input" id="user_name" name="user_name" value="{{user.auth_user.first_name}} {{user.auth_user.last_name}}" />
-                                                    <input type="file" class="mb-1 form-control prof-file" name="files" >
+                                                    <div class="upload-file">
+                                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files">
+                                                        <label for="files" class="btn btn-tertiary js-labelFile">
+                                                          <i class="fas fa-upload"></i>
+                                                          <span class="js-fileName">Загрузить файл</span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                                 <div class="col-2">
                                                     <button type="submit"  style="padding: 0;border: 0;background: none;"><img
@@ -268,7 +274,14 @@
                                     <div class="ml-0 bd-highlight">
                                         <form class="w-100" action="{% url 'Portfolio_add' %}" method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
-                                            <input type="file" name="files" multiple/>
+<!--                                            <input type="file" name="files" multiple/>-->
+                                            <div class="upload-file">
+                                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="profile-files" multiple>
+                                                        <label for="profile-files" class="btn btn-tertiary js-labelFile">
+                                                          <i class="fas fa-upload"></i>
+                                                          <span class="js-fileName">Загрузить файлы</span>
+                                                        </label>
+                                                    </div>
                                             <button type="submit"
                                                 class="btn btn-primary btn-sm bd-highlight btn-add-photo">
                                             Добавить фото
