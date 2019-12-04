@@ -235,6 +235,7 @@ def Registrate(request):
 
 
 def Verify(request, key):
+    layout, username = layout_name(request)
     user = Users.objects.all().filter(uuid=key)
     print(user[0].auth_user)
     if(len(user)>0):
