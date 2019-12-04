@@ -20,9 +20,11 @@
                                     <label class="topCarucel-head mb-0 w-100">{{ fslide.text }}</label>
                                     <label class="topCarucel-text mb-0 w-100">{{ fslide.description }}</label>
                                     <div class="row justify-content-center pt-4">
+                                        <a href="{% url 'Login' %}">
                                         <button type="button" class=" btn btn-outline colorbtnCarusel">СОЗДАЙТЕ
                                             ЗАДАНИЕ
                                         </button>
+                                        </a>
                                     </div>
                                     <div class="row justify-content-center align-items-center title-l-r mt-2">
                                         <span>
@@ -49,9 +51,11 @@
                                         <label class="topCarucel-head mb-0 w-100">{{ s.text }}</label>
                                         <label class="topCarucel-text mb-0 w-100">{{ s.description }}</label>
                                         <div class="row justify-content-center pt-4">
+                                            <a href="{% url 'Login' %}">
                                             <button type="button" class=" btn btn-outline colorbtnCarusel">СОЗДАЙТЕ
                                                 ЗАДАНИЕ
                                             </button>
+                                            </a>
                                         </div>
                                         <div class="row justify-content-center align-items-center title-l-r mt-2">
                                         <span>
@@ -223,7 +227,7 @@
 
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <a href="{% url 'Dev' %}" class="no-style-a">
+                        <a href="{% url 'Login' %}" class="no-style-a">
                             <div class="row justify-content-center">
                                 <div class="col-6 p-0">
                                     <img src="{% static 'image/task_add.png' %}" alt="" class="img-fluid">
@@ -234,7 +238,7 @@
                         </a>
                     </div>
                     <div class="col-md-4">
-                        <a href="{% url 'Dev' %}" class="no-style-a">
+                        <a href="{% url 'Login' %}" class="no-style-a">
                             <div class="row justify-content-center">
                                 <div class="col-6 p-0">
                                     <img src="{% static 'image/team.png' %}" alt="" class="img-fluid">
@@ -245,7 +249,7 @@
                         </a>
                     </div>
                     <div class="col-md-4">
-                        <a href="{% url 'Dev' %}" class="no-style-a">
+                        <a href="{% url 'Login' %}" class="no-style-a">
                             <div class="row justify-content-center">
                                 <div class="col-6 p-0">
                                     <img src="{% static 'image/task_ok.png' %}" alt="" class="img-fluid">
@@ -269,9 +273,11 @@
                 <h5>или просто не хотите долго выбирать?</h5>
                 <h4 class="mt-4 ">Доверьте это нам! <br>
                     Через 10-15 минут мы найдем специалиста</h4>
+                <a href="{% url 'Login' %}">
                 <button type="button" class=" btn btn-outline colorbtnCarusel mt-3 mb-5 text-uppercase pl-4 pr-4">
                     Создать задание
                 </button>
+                </a>
             </div>
         </div>
     </div>

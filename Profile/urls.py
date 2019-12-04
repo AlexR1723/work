@@ -29,6 +29,11 @@ urlpatterns = [
     url(r'save_phone/', views.Save_phone, name='Save_phone'),
     url(r'save_photo/', views.Save_photo, name='Save_photo'),
     url(r'advert_add/', views.Advert_save, name='Advert_save'),
+    url(r'^create_task/$', views.Create_task, name="Create_task"),
+    url(r'subcategory_find/', views.SubcategoryFind),
+    url(r'save_task/', views.Save_task, name='Save_task'),
+    url(r'executor/', views.Executor),
+    url(r'customer/', views.Customer),
     url(r'change_password', views.change_password, name='change_password'),
     url(r'get_new_order', views.get_new_order, name='get_new_order'),
     url(r'get_notice_status', views.get_notice_status, name='get_notice_status'),
@@ -36,4 +41,5 @@ urlpatterns = [
     # url(r'load_photos', views.load_photos, name='load_photos'),
     url(r'profile_set_subcategories', views.profile_set_subcategories, name='profile_set_subcategories'),
     url(r'profile_set_cities', views.profile_set_cities, name='profile_set_cities'),
+    url(r'logout_user', views.logout_user, name='logout_user'),
 ]

@@ -2345,3 +2345,10 @@ input[type=checkbox]:checked + label::after {
 .edit-icon:hover{
     cursor: pointer;
 }
+
+.upload-file .btn-tertiary{color:#555;padding:0;line-height:40px;}
+.upload-file .btn-tertiary:hover,.example-2 .btn-tertiary:focus{color:#888; cursor: pointer;}
+.upload-file .input-file{width:.1px;height:.1px;opacity:0;overflow:hidden;position:absolute;z-index:-1}
+.upload-file .input-file + .js-labelFile{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 10px;cursor:pointer}
+/*.upload-file .input-file + .js-labelFile .icon:before{content:"\f093"}*/
+/*.upload-file .input-file + .js-labelFile.has-file .icon:before{content:"\f00c";color:#5AAC7B}*/

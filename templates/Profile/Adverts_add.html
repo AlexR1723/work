@@ -33,11 +33,17 @@
                      </div>
                      <div class="col-12">
                          <div class="d-flex flex-row bd-highlight my-2">
-                             <div class="pr-3 bd-highlight">
-                                 <label>Фото:</label>
-                             </div>
-                             <div class="ml-auto bd-highlight">
-                                 <input type="file" name="files" multiple>
+<!--                             <div class="pr-3 bd-highlight">-->
+<!--                                 <label>Фото:</label>-->
+<!--                             </div>-->
+                             <div class="bd-highlight">
+                                 <div class="upload-file">
+                                     <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files" multiple>
+                                     <label for="files" class="btn btn-tertiary js-labelFile">
+                                         <i class="fas fa-upload"></i>
+                                         <span class="js-fileName">Загрузить файлы</span>
+                                     </label>
+                                 </div>
     <!--                             <button type="button" class="btn btn-primary btn-sm bd-highlight btn-adv-photo">Добавить фото</button>-->
                              </div>
                          </div>
