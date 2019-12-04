@@ -35,13 +35,18 @@ def Profile_settings(request):
     if(username != ''):
         email = request.session.get('username', 'no')
         user=Users.objects.all().filter(auth_user__email=email)[0]
-        day=user.birthday.day
-        if(day<10):
-            day = '0' + str(user.birthday.day)
-        month = user.birthday.month
-        if(month<10):
-            month='0'+str(user.birthday.month)
-        year=user.birthday.year
+        if(user.birthday==None):
+            day = ""
+            month = ""
+            year = ""
+        else:
+            day=user.birthday.day
+            if(day<10):
+                day = '0' + str(user.birthday.day)
+            month = user.birthday.month
+            if(month<10):
+                month='0'+str(user.birthday.month)
+            year=user.birthday.year
         print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
         subcategory=UserSubcategories.objects.all().filter(user__email=email)
         cities = UserCities.objects.all().filter(user__email=email)
