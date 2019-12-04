@@ -47,7 +47,7 @@ def Profile_settings(request):
             if(month<10):
                 month='0'+str(user.birthday.month)
             year=user.birthday.year
-        print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
+        # print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
         subcategory=UserSubcategories.objects.all().filter(user__email=email)
         cities = UserCities.objects.all().filter(user__email=email)
         portfolio=UserPortfolio.objects.all().filter(user__email=email)
