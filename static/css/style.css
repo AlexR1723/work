@@ -1569,7 +1569,7 @@ hr.category-line {
 
 .nav-tabs .nav-link {
     margin-right: 5px;
-    padding: .5rem 1.5rem;
+    padding: .5rem 1rem;
     border: 1px solid rgba(170, 170, 170, .5);
     background-color: rgba(170, 170, 170, .3);
 }
@@ -2055,7 +2055,7 @@ input[type=checkbox]:checked + label::after {
     }
 
     .nav-tabs .nav-link {
-        padding: .5rem 2.5rem;
+        padding: .5rem 2rem;
     }
 
     .form-group label {

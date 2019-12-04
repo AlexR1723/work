@@ -39,12 +39,20 @@ def layout_name(request):
             layout = 'layout_executor.html'
     return layout,username
 
+def is_verify(request):
+    if (request.session.get('username', 'no') != 'no'):
+        verify = True
+    else:
+        verify = False
+    return verify
+
 # Create your views here.
 def Main(request):
     layout,username=layout_name(request)
     contact=layout_contact()
     link=layout_link()
     city,regs,regions=layout_regions_cities(request)
+    verify=is_verify(request)
 
     fslide=FirstSlider.objects.all()[0]
     slide=FirstSlider.objects.all()[1:]
