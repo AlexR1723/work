@@ -213,7 +213,7 @@ def Registrate(request):
                 user.save()
                 auth_user = AuthUser.objects.filter(id=user.id)[0]
                 print(auth_user)
-                new_user=Users(auth_user=auth_user,phone=tel,uuid=key, type=UserType.objects.all().filter(name="Исполнитель"))
+                new_user=Users(auth_user=auth_user,phone=tel,uuid=key, type=UserType.objects.all().filter(name="Исполнитель")[0])
                 new_user.save()
             subject, from_email, to = 'Верификация', 'romanenko.anastasiya1998@yandex.ua', email
             text_content = 'Перейдите по ссылке для автивации учетной записи.'
