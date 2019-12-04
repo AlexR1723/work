@@ -54,5 +54,7 @@ def sub_category(request,name):
 
     name=str(name).lower()
     sub=SubCategory.objects.get(name__icontains=name)
+    count_user=UserSubcategories.objects.all().filter(subcategories=sub).count()
+    advert=UserAdvert.objects.all().filter(subcategory=sub).order_by('-date')
     return render(request, 'Category/Sub_category.html', locals())
 

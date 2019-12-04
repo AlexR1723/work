@@ -149,3 +149,39 @@ class UserType(models.Model):
     class Meta:
         managed = False
         db_table = 'user_type'
+
+
+class UserSubcategories(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING)
+    subcategories = models.ForeignKey('SubCategory', models.DO_NOTHING)
+
+    class Meta:
+            managed = False
+            db_table = 'user_subcategories'
+
+    def count(self):
+        count = UserAdvert.objects.filter(subcategory=self.subcategories).filter(user=self.user).count()
+        return count
+
+
+class UserAdvert(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=200, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/advert/',max_length=500, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert'
+
+class UserAdvertPhoto(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/advert/',max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert_photo'
