@@ -412,6 +412,19 @@ $("#main_input_header").keyup(function (event) {
 //     let link = "{% url 'Question_category' %}" + text
 //     this.href = link
 // });
+$("#login_email").keyup(function (event) {
+    // show_item(this.value, event.keyCode, 'res_list_input', 'help_input');
+    if (event.keyCode==13){
+        login()
+    }
+})
+$("#login_pass").keyup(function (event) {
+    if (event.keyCode==13){
+        login()
+    }
+})
+
+
 
 window.onload = function () {
     load_categories();
@@ -469,7 +482,7 @@ $("#btn_profile_change_pass").click(function () {
     })
 });
 
-$("#btn_login").click(function () {
+function login(){
     let email = document.getElementById('login_email')
     let pass = document.getElementById('login_pass')
     document.getElementById('login_email').setAttribute('class', 'form-control')
@@ -503,6 +516,10 @@ $("#btn_login").click(function () {
             alert('Error');
         }
     })
+}
+
+$("#btn_login").click(function () {
+    login()
 })
 
 $("#btn_add_photo").click(function () {
@@ -698,17 +715,40 @@ $('#profile_list_categories').on('click', 'input', function (event) {
         },
         url: 'profile_set_subcategories',
         success: function (data) {
-            $(id).prop('checked', status);
-            console.log('good')
+            $('#'+id).prop('checked', status);
         },
         error: function (data) {
-            $(id).prop('checked', !status);
-            console.log('bad')
+            $('#'+id).prop('checked', !status);
         }
     })
-    // document.getElementById('main_input_header').value = text
-    // window.location.href = "/find/" + text.trim().toLowerCase();
 });
+
+$('#profile_list_cities').on('click', 'input', function (event) {
+    let id = this.id
+    let status;
+    if ($(this).is(':checked')) {
+        status = true
+    } else {
+        status = false
+    }
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        data: {
+            id: id,
+            status: status
+        },
+        url: 'profile_set_cities',
+        success: function (data) {
+            $('#'+id).prop('checked', status);
+        },
+        error: function (data) {
+            $('#'+id).prop('checked', !status);
+        }
+    })
+});
+
 
 
 $("#safety_btn_customer").click(function () {
@@ -955,6 +995,14 @@ $("#phone_edit").click(function () {
     var phone=document.getElementById('phone');
     phone.removeAttribute('readonly');
 });
+$("#photo_edit").click(function () {
+    var lbl=document.getElementById('file_label_edit');
+    lbl.classList.add('d-none');
+    var form=document.getElementById('file_ok');
+    form.classList.remove('d-none');
+    // var phone=document.getElementById('phone');
+    // phone.removeAttribute('readonly');
+});
 // $(".btn-profile-save").click(function () {
 //     var fileData = $('#files').prop('files')[0];
 //     var formData = new FormData();
@@ -976,3 +1024,98 @@ $("#phone_edit").click(function () {
 //         }
 //     })
 // });
+
+// $ ( ' input [name = "date"] ' ). daterangepicker ();
+
+$(function(){
+ $('#date').daterangepicker({
+ singleDatePicker: true,
+ });
+});
+
+$("#task_category").change(function () {
+        var cat=$('#task_category option:selected').val();
+        if(cat!=0){
+             $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:'/profile/subcategory_find/',
+                data: {
+                    id:cat
+                },
+                success: function(data) {
+                    outputSubcategory( data);
+                    },
+                error: function (data) {
+                    alert('Error');
+                }
+            })
+        }
+        else{
+            $('#modelAvto').attr('disabled',true);
+        }
+    });
+function outputSubcategory(data) {
+    $('#task_subcategory').removeAttr('disabled');
+    var select=document.getElementById('task_subcategory');
+    while(select.length!=0) {
+            select.remove(0);
+     }
+     // var option = document.createElement("option");
+     //    option.value = 0;
+     //    option.text = '-Выберите модель-';
+     //    select.appendChild(option);
+    for (var i = 0; i < data.data.length;i=i+2) {
+        var option = document.createElement("option");
+        option.value = data.data[i];
+        option.text = data.data[i+1];
+        select.appendChild(option);
+    }
+}
+$("#customer").click(function () {
+
+             $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:'/profile/customer/',
+                success: function(data) {
+                    location.reload(true)
+                    },
+                error: function (data) {
+                    alert('Error');
+                }
+            })
+    });
+$("#executor").click(function () {
+
+             $.ajax({
+                type:"GET",
+                dataType:"json",
+                url:'/profile/executor/',
+                success: function(data) {
+                    location.reload(true)
+                    },
+                error: function (data) {
+                    alert('Error');
+                }
+            })
+    });
+
+$(document).ready(function() {
+ 
+    $('input[type="file"]').change(function(){
+        if ($(this).val() != '') {
+            if($(this)[0].files.length==1)
+            {
+                $('.js-fileName').text($(this).val());
+            }
+            else {
+                $('.js-fileName').text('Выбрано файлов: ' + $(this)[0].files.length);
+            }
+        }
+        else {
+            $('.js-fileName').text('Выберите файлы');
+        }
+    });
+ 
+});

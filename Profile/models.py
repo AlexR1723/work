@@ -69,6 +69,23 @@ class Region(models.Model):
         verbose_name = _("Регион")
         verbose_name_plural = _("Регионы")
 
+    # def cities(self):
+    #     city=City.objects.filter(region=self)
+    #     return city
+
+    def first_reg(self):
+        count=City.objects.filter(region=self).count()/2
+        # print(count)
+        reg=City.objects.filter(region=self).order_by('name')[:count]
+        return reg
+
+    def second_reg(self):
+        count = City.objects.filter(region=self).count() / 2
+        # print(count)
+        reg = City.objects.filter(region=self).order_by('name')[count:]
+        return reg
+
+
 
 class City(models.Model):
     region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True, verbose_name="Регион")
@@ -153,3 +170,72 @@ class UserSubcategories(models.Model):
             managed = False
             db_table = 'user_subcategories'
 
+    def count(self):
+        count = UserAdvert.objects.filter(subcategory=self.subcategories).filter(user=self.user).count()
+        return count
+
+
+class UserCities(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    # region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_cities'
+
+class UserAdvert(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=200, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/advert/',max_length=500, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert'
+
+class UserAdvertPhoto(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/advert/',max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert_photo'
+
+class UserPortfolio(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/portfolio/',max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_portfolio'
+
+
+class UserTask(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=500, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    start_time = models.TimeField(blank=True, null=True)
+    end_time = models.TimeField(blank=True, null=True)
+    pay = models.TextField(blank=True, null=True)  # This field type is a guess.
+
+    class Meta:
+        managed = False
+        db_table = 'user_task'
+
+
+class TaskPhoto(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/task/',max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_photo'

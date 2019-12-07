@@ -225,9 +225,19 @@ class HelpCategory(models.Model):
         db_table = 'help_category'
 
 
+class HelpImages(models.Model):
+    question = models.ForeignKey('HelpSubcategory', models.DO_NOTHING)
+    image_path = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'help_images'
+
+
 class HelpSubcategory(models.Model):
     text = models.CharField(max_length=500, blank=True, null=True)
     help_category = models.ForeignKey(HelpCategory, models.DO_NOTHING, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -306,7 +316,7 @@ class PublicOffer(models.Model):
 
 
 class Region(models.Model):
-    name = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(unique=True, max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -315,11 +325,88 @@ class Region(models.Model):
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
-    name = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(unique=True, max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'sub_category'
+
+
+class TaskPhoto(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    photo = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_photo'
+
+
+class UserAdvert(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=200, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    photo_main = models.CharField(max_length=500, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert'
+
+
+class UserAdvertPhoto(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
+    photo = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert_photo'
+
+
+class UserCities(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_cities'
+
+
+class UserPortfolio(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    photo = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_portfolio'
+
+
+class UserSubcategories(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    subcategories = models.ForeignKey(SubCategory, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'user_subcategories'
+
+
+class UserTask(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=500, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    start_time = models.TimeField(blank=True, null=True)
+    end_time = models.TimeField(blank=True, null=True)
+    pay = models.TextField(blank=True, null=True)  # This field type is a guess.
+
+    class Meta:
+        managed = False
+        db_table = 'user_task'
 
 
 class UserType(models.Model):

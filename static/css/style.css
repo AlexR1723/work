@@ -1560,6 +1560,9 @@ hr.category-line {
 .profile-name_icon {
     width: 5%;
 }
+.profile-name_icon:hover{
+    cursor: pointer;
+}
 
 .profile-settings_text {
     font-size: 1rem;
@@ -1605,7 +1608,7 @@ hr.category-line {
 
 .nav-tabs .nav-link {
     margin-right: 5px;
-    padding: .5rem 1.5rem;
+    padding: .5rem 1rem;
     border: 1px solid rgba(170, 170, 170, .5);
     background-color: rgba(170, 170, 170, .3);
 }
@@ -1855,18 +1858,19 @@ input[type=checkbox]:checked + label::after {
 .main-accordion_blk a {
     text-decoration: none;
 }
-.panel-heading a {
+.panel-heading p {
     background: rgba(229, 229, 229, .4);
     color: #000000;
     display: block;
     padding: 10px 15px 10px 50px;
     position: relative;
+    margin: 0;
 }
-.panel-heading a:hover {
+.panel-heading p:hover {
     background: rgba(229, 229, 229, .7);
     transition: .3s;
 }
-.panel-heading a::before {
+.panel-heading p::before {
     content: "\f107";
     font-family: "FontAwesome";
     font-size: 1.7rem;
@@ -1876,10 +1880,10 @@ input[type=checkbox]:checked + label::after {
     top: 15%;
     transition: 0.3s;
 }
-.panel-heading.in a::before {
+.panel-heading.in p::before {
     transform: rotate(180deg);
 }
-.panel-heading.in a {
+.panel-heading.in p {
     background: rgba(229, 229, 229, .7);
 }
 .panel-collapse {
@@ -2002,7 +2006,7 @@ input[type=checkbox]:checked + label::after {
     list-style: none;
 }
 .carousel-control-next, .carousel-control-prev {
-    bottom: 65%;
+    /*bottom: 65%;*/
 }
 .calendar_blk .month {
     padding: 1% 2%;
@@ -2090,7 +2094,7 @@ input[type=checkbox]:checked + label::after {
     }
 
     .nav-tabs .nav-link {
-        padding: .5rem 2.5rem;
+        padding: .5rem 2rem;
     }
 
     .form-group label {
@@ -2373,6 +2377,17 @@ input[type=checkbox]:checked + label::after {
     width: auto !important;
     display: inline-block !important;
 }
+.prof-file{
+    border:0;
+    padding-left: 0;
+}
 .edit-icon:hover{
     cursor: pointer;
 }
+
+.upload-file .btn-tertiary{color:#555;padding:0;line-height:40px;}
+.upload-file .btn-tertiary:hover,.example-2 .btn-tertiary:focus{color:#888; cursor: pointer;}
+.upload-file .input-file{width:.1px;height:.1px;opacity:0;overflow:hidden;position:absolute;z-index:-1}
+.upload-file .input-file + .js-labelFile{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 10px;cursor:pointer}
+/*.upload-file .input-file + .js-labelFile .icon:before{content:"\f093"}*/
+/*.upload-file .input-file + .js-labelFile.has-file .icon:before{content:"\f00c";color:#5AAC7B}*/

@@ -11,57 +11,67 @@
     <div class="row justify-content-center adverts-add_blk">
          <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0">
              <div class="row pb-5 pt-4">
-                 <div class="col-12">
-                     <form action="" class="adverts-add">
-                         <div class="form-group row">
-                             <label for="input_adv_text" class="col-form-label px-0 mr-4">Наименование работы:</label>
-                             <div class="col-12 col-sm-4 px-0 pl-md-3 pl-lg-0">
-                                 <input type="text" class="form-control adverts_input" id="input_adv_text" placeholder="">
+                 <form class="w-100" action="{% url 'Advert_save' %}" method="post" enctype="multipart/form-data">
+                     {% csrf_token %}
+                     <div class="col-12">
+<!--                         <form action="" class="adverts-add">-->
+                             <div class="form-group row">
+                                 <label for="input_adv_text" class="col-form-label px-0 mr-4">Наименование работы:</label>
+                                 <div class="col-12 col-sm-4 px-0 pl-md-3 pl-lg-0">
+                                     <input type="text" class="form-control adverts_input" id="input_adv_text" placeholder="Например: укладка плитки" name="advert_title">
+                                 </div>
+                             </div>
+                            <div class="bd-highlight">
+                                 <div class="upload-file">
+                                     <input type="file" class="mb-1 form-control prof-file d-none" name="main_file" id="main_file">
+                                     <label for="main_file" class="btn btn-tertiary js-labelFile">
+                                         <i class="fas fa-upload"></i>
+                                         <span class="js-fileName">Загрузить обложку</span>
+                                     </label>
+                                 </div>
+
+                             </div>
+                            <div class="form-group row">
+                                 <label for="input_adv_price" class="col-form-label px-0 mr-4">Стоимость:</label>
+                                 <div class="col-12 col-sm-4 px-0 pl-md-3 pl-lg-0">
+                                     <input type="number" class="form-control adverts_input" id="input_adv_price" placeholder="600" name="advert_price">
+                                 </div>
+                             </div>
+                             <div class="form-group row">
+                                 <input type="hidden" name="advert_category" value="{{subcategory.name}}">
+                                 <p>Категория:<span class="ml-4" >{{subcategory.name}}</span></p>
+                             </div>
+                             <div class="form-group mt-4">
+                                 <label for="exampleFormControlTextarea1">Описание работы:</label>
+                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="advert_description" placeholder="Например: Качественная и быстрая укладка плитки любой сложности" ></textarea>
+                             </div>
+<!--                         </form>-->
+                     </div>
+                     <div class="col-12">
+                         <div class="d-flex flex-row bd-highlight my-2">
+<!--                             <div class="pr-3 bd-highlight">-->
+<!--                                 <label>Фото:</label>-->
+<!--                             </div>-->
+                             <div class="bd-highlight">
+                                 <div class="upload-file">
+                                     <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files" multiple>
+                                     <label for="files" class="btn btn-tertiary js-labelFile">
+                                         <i class="fas fa-upload"></i>
+                                         <span class="js-fileName">Загрузить файлы</span>
+                                     </label>
+                                 </div>
+
                              </div>
                          </div>
                          <div class="form-group row">
-                             <p>Категория:<span class="ml-4">Курьерская доставка</span></p>
-                         </div>
-                         <div class="form-group mt-4">
-                             <label for="exampleFormControlTextarea1">Описание работы:</label>
-                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-                         </div>
-                     </form>
-                 </div>
-                 <div class="col-12">
-                     <div class="d-flex flex-row bd-highlight my-2">
-                         <div class="pr-3 bd-highlight">
-                             <label>Фото:</label>
-                         </div>
-                         <div class="ml-auto bd-highlight">
-                             <button type="button" class="btn btn-primary btn-sm bd-highlight btn-adv-photo">Добавить фото</button>
+                             <div class="col-sm-11 col-md-12 col-lg-11 px-0">
+    <!--                             <a href="#">-->
+                                     <button type="submit" class="btn btn-save btn-primary px-3 col-12 col-sm-2 col-md-2">Сохранить</button>
+    <!--                             </a>-->
+                             </div>
                          </div>
                      </div>
-                     <div class="row adverts-add_photos mb-5">
-                         <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                             <img src="/static/image/3eabf99674833ed66719c.jpg" class="img-fluid center-block" alt="...">
-                         </div>
-                         <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                             <img src="/static/image/123.jpeg" class="img-fluid center-block" alt="...">
-                         </div>
-                         <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                             <img src="/static/image/cio-c.jpg" class="img-fluid center-block" alt="...">
-                         </div>
-                         <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                             <img src="/static/image/contract.jpg" class="img-fluid center-block" alt="...">
-                         </div>
-                         <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                             <img src="/static/image/security.jpg" class="img-fluid center-block" alt="...">
-                         </div>
-                     </div>
-                     <div class="form-group row">
-                         <div class="col-sm-11 col-md-12 col-lg-11 px-0">
-                             <a href="#">
-                                 <button type="submit" class="btn btn-save btn-primary px-3 col-12 col-sm-2 col-md-2">Сохранить</button>
-                             </a>
-                         </div>
-                     </div>
-                 </div>
+                 </form>
              </div>
          </div>
     </div>

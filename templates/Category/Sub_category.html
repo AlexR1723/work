@@ -7,7 +7,7 @@
         <div class=" w-100 subcat_hdr_bg">
             <div class="ques_hdr_bg_layout row justify-content-center align-items-center">
                 <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                    <p class="m-0 fz_2rem line_height_1 text-center">Укладка плитки</p>
+                    <p class="m-0 fz_2rem line_height_1 text-center">{{sub.name}} </p>
                 </div>
             </div>
         </div>
@@ -17,12 +17,12 @@
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
             <div class="row pt-5 pb-2">
                 <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end add-task_blk align-content-center align-items-center align-items-md-center">
-                    <a href="#">
+                    <a href="{% url 'Create_task' %}">
                         <button class="btn add-tsk_btn mr-0 mr-md-4">Добавить задание</button>
                     </a>
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start align-content-center align-items-center align-items-md-center executors_blk">
-                    <span class="ml-4 mr-4">3237</span>
+                    <span class="ml-4 mr-4">{{count_user}}</span>
                     <p class="m-0 text-center">исполнителей в<br> данной категории</p>
                 </div>
             </div>
@@ -37,145 +37,43 @@
             <div class="row my-3">
                 <h2 class="w-100 text-left fz_2rem">Последние объявления</h2>
             </div>
-        </div>
+
 
         <div class="row m-0 justify-content-center advert-cards_blk">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-3 pb-3 px-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-3 pb-3 px-3">
                 <div class="row m-0 justify-content-start">
+                    {% for a in advert %}
                     <div class="col-12 p-0">
                         <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
+                            <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-lg-2 col-xl-2 p-2 mx-auto">
+                                {% if a.photo_main != None %}
+                                <img src="{{MEDIA_URL}}{{a.photo_main.url}}" class="w-100 user-img" alt="">
+                                {% endif %}
                             </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                            <div class="col-12 col-sm-12 col-md-9 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
                                 <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
+                                    <label class="category-card_label m-0">{{a.title}}</label>
                                 </div>
                                 <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
+                                    <p class="mb-0 pr-0 advert-card_text pb-2">{{a.description}}</p>
+                                    <span>{{a.date}}</span>
                                 </div>
                             </div>
                             <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
                                 <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
+                                    {% if a.price != None %}
+                                    <label class="category-money_label p mb-2">{{a.price}} руб.</label>
+                                    {% endif %}
                                 </div>
                             </div>
                             <hr class="category-line m-0 my-4">
                         </div>
                     </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
+        </div>
         </div>
 
         <div class="row w-100">

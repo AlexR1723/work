@@ -43,12 +43,18 @@ def Category_item(request,name):
 
     name=str(name).lower()
     category_item=Category.objects.get(name__icontains=name)
-    # id=category_item.id
     subs=SubCategory.objects.filter(category_id=category_item.id)
-
-
-    # all_cat=Category.objects.all()
-    # for i in all_cat:
-    #     i.text="Описание категории "+i.name+" vehicula ipsum a arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas maecenas"
-    #     i.save()
     return render(request, 'Category/Category_item.html', locals())
+
+def sub_category(request,name):
+    layout, username = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
+    city,regs,regions=layout_regions_cities(request)
+
+    name=str(name).lower()
+    sub=SubCategory.objects.get(name__icontains=name)
+    count_user=UserSubcategories.objects.all().filter(subcategories=sub).count()
+    advert=UserAdvert.objects.all().filter(subcategory=sub).order_by('-date')
+    return render(request, 'Category/Sub_category.html', locals())
+
