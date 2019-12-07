@@ -173,6 +173,9 @@ def Register(request):
 # def Sub_category(request):
 #     layout, username = layout_name(request)
 #     return render(request, 'Main/../templates/Category/Sub_category.html', locals())
+def All_ads(request):
+    layout, username = layout_name(request)
+    return render(request, 'Main/All_ads.html', locals())
 
 
 

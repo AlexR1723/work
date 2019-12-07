@@ -10,10 +10,10 @@
                         <div class="row m-0 justify-content-start">
                             <div class="col-12 p-0">
                                 <div class="row">
-                                    <div class="col-9 col-sm-2 col-md-2 p-2 mx-auto" >
-                                        <img src="{{MEDIA_URL}}{{user.photo.url}}" class="w-100  user-img" alt="">
+                                    <div class="col-9 col-sm-2 col-md-3 col-lg-2 p-2 mx-auto user-img_blk">
+                                        <img alt="" class="img-fluid user-img circle" src="{{MEDIA_URL}}{{user.photo.url}}">
                                     </div>
-                                    <div class="col-12 col-sm-5 col-md-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
+                                    <div class="col-12 col-sm-5 col-md-4 col-lg-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
                                         <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-md-0 mt-lg-4">
                                             <label class="profile-settings_name m-0" id="file_label_edit">{{user.auth_user.first_name}} {{user.auth_user.last_name}}
                                                 <img
@@ -151,7 +151,7 @@
                                                 <img src="{% static 'image/email.png' %}" class="item-icon" alt="user-icon">
                                             </div>
                                             <div class="col-10">
-                                                <p class="pt-1 m-0"><span class="pr-3">Email: </span> <label>{{user.auth_user.email}}</label></p>
+                                                <p class="pt-1 m-0"><span class="pr-3 text-wrap">Email: </span> <label>{{user.auth_user.email}}</label></p>
                                             </div>
 <!--                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
 <!--                                                <a href="#">-->
@@ -168,7 +168,7 @@
                                                 <img src="{% static 'image/phone.png' %}" class="item-icon" alt="phone-icon">
                                             </div>
                                             <div class="col-10">
-                                                <p class="pt-1 m-0"><span class="pr-3">Телефон: </span><input type="text" class="mb-1 form-control prof-input" id="phone" name="phone" readonly value="{{user.phone}}" /></p>
+                                                <p class="pt-1 m-0"><span class="pr-3 text-wrap">Телефон: </span><input class="mb-1 form-control prof-input" id="phone" name="phone" readonly type="text" value="{{user.phone}}" /></p>
                                             </div>
                                             <div class="col-1 px-0 px-lg-3 edit-icon_blk">
                                                     <img src="{% static 'image/pen.png' %}" id="phone_edit" class="edit-icon" alt="edit-icon">
