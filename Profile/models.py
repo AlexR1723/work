@@ -154,6 +154,7 @@ class Category(models.Model):
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование")
+    image = models.ImageField(upload_to='uploads/subcategory/', blank=True, null=True, verbose_name="Картинка")
 
     class Meta:
         managed = False

@@ -4,7 +4,10 @@
 
 <div class="container-fluid p-0">
     <div class="row justify-content-center">
-        <div class=" w-100 subcat_hdr_bg">
+        <div class=" w-100"  style=" height: auto;min-height: 20vh;
+                            background: url({{MEDIA_URL}}{{sub.image.url}}) 50% 50% no-repeat;
+                            background-size: cover;
+                        ">
             <div class="ques_hdr_bg_layout row justify-content-center align-items-center">
                 <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
                     <p class="m-0 fz_2rem line_height_1 text-center">{{sub.name}} </p>
