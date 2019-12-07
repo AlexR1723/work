@@ -1001,6 +1001,16 @@ hr.line {
   margin: 0 auto;
     object-fit: cover;
 }
+.all-ads_blk h2 {
+    font-size: 1.9rem;
+}
+.all-ads_blk span {
+    color: rgba(0, 0, 0, 0.5);
+}
+.all-ads_blk a {
+    cursor: pointer;
+    text-decoration: none;
+}
 @media (min-width: 320px) {
     .user-img_blk {
         height: 210px;
@@ -1019,6 +1029,9 @@ hr.line {
 @media (min-width: 768px) {
     .user-img_blk {
         height: 160px;
+    }
+    .user-img {
+        height: auto;
     }
 }
 @media (min-width: 1200px) {
