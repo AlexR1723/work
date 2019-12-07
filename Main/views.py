@@ -29,15 +29,17 @@ def layout_regions_cities(request):
 def layout_name(request):
     layout = 'layout.html'
     username=''
+    photo=''
     user = request.session.get('username', 'no')
     if (user != 'no'):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
+        photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username
+    return layout,username,photo
 
 def is_verify(request):
     if (request.session.get('username', 'no') != 'no'):
@@ -48,7 +50,7 @@ def is_verify(request):
 
 # Create your views here.
 def Main(request):
-    layout,username=layout_name(request)
+    layout,username, photo=layout_name(request)
     contact=layout_contact()
     link=layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -61,7 +63,7 @@ def Main(request):
     return render(request, 'Main/Main.html', locals())
 
 def How_it_work(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     seo=OrderService.objects.all()
@@ -70,7 +72,7 @@ def How_it_work(request):
 
 
 def Secure_transaction(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -81,7 +83,7 @@ def Secure_transaction(request):
 
 
 def Safety(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -89,7 +91,7 @@ def Safety(request):
 
 
 def Rabota(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -113,7 +115,7 @@ def Rabota(request):
 
 
 def For_business(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -135,7 +137,7 @@ def For_business(request):
 
 
 def Top_performers(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -143,14 +145,14 @@ def Top_performers(request):
 
 
 def Dev(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     id = request.GET.get('id')
     print(id)
 
     return render(request, 'Main/Dev.html', locals())
 
 def Login(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -158,7 +160,7 @@ def Login(request):
 
 
 def Register(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -243,7 +245,7 @@ def Registrate(request):
 
 
 def Verify(request, key):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     user = Users.objects.all().filter(uuid=key)
     print(user[0].auth_user)
     if(len(user)>0):
@@ -254,7 +256,7 @@ def Verify(request, key):
 
 
 def Public_offer(request):
-    layout,username=layout_name(request)
+    layout,username, photo=layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -273,7 +275,7 @@ def Public_offer(request):
     return render(request, 'Main/Public_offer.html', locals())
 
 def Rules(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -292,7 +294,7 @@ def Rules(request):
     return render(request, 'Main/Rules.html', locals())
 
 def Privacy_rules(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -312,7 +314,7 @@ def Privacy_rules(request):
 
 
 def Find_category(request, text):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)

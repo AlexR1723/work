@@ -279,7 +279,8 @@ div.row {
 }
 
 .btn.DisableBorder:focus {
-    background-color: #FAF9F7;
+    background: none;
+    /*background-color: #FAF9F7;*/
     /*background-color: rgb(216,216,216);*/
     border: none;
     box-shadow: none;
@@ -341,7 +342,9 @@ div.row {
     background-color: #fff;
     color: #3E789D;
 }
-
+a.nav-link label:hover{
+    cursor: pointer;
+}
 /*Кнопка в карусели*/
 
 .fontCategoryDemi {
@@ -625,12 +628,12 @@ p {
 .page_head_img {
     height: auto;
     min-height: 20vh;
-    background: url(../image/news_bg.jpg) 100% 100% no-repeat;
+    background: url(../image/documents.jpg) 50% 50% no-repeat;
     background-size: cover;
 }
 
 .page_head_img_fon {
-    background-color: rgba(128, 128, 128, .4);
+    background-color: rgba(128, 128, 128, .5);
     color: white;
     height: auto;
     min-height: 20vh;
@@ -677,7 +680,7 @@ p {
 }
 
 .news_det_type {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #777;
     margin: 0px;
 }
@@ -1866,7 +1869,7 @@ input[type=checkbox]:checked + label::after {
 .quest-details_blk .carousel-item img {
     height: 450px;
 }
-.quest-details_blk span {
+.quest-details_blk span, .news_detail span {
     font-size: 16px;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
@@ -2211,7 +2214,7 @@ input[type=checkbox]:checked + label::after {
 }
 .fa-tasks, .fa-bell, .fa-comments{
     color: #AAAAAA;
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 .br-50{
     border-radius: 50%;
