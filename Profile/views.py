@@ -5,6 +5,7 @@ from .models import *
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
 from distutils.util import strtobool
+import datetime
 
 
 
@@ -35,14 +36,19 @@ def Profile_settings(request):
     if(username != ''):
         email = request.session.get('username', 'no')
         user=Users.objects.all().filter(auth_user__email=email)[0]
-        day=user.birthday.day
-        if(day<10):
-            day = '0' + str(user.birthday.day)
-        month = user.birthday.month
-        if(month<10):
-            month='0'+str(user.birthday.month)
-        year=user.birthday.year
-        print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
+        if(user.birthday==None):
+            day = ""
+            month = ""
+            year = ""
+        else:
+            day=user.birthday.day
+            if(day<10):
+                day = '0' + str(user.birthday.day)
+            month = user.birthday.month
+            if(month<10):
+                month='0'+str(user.birthday.month)
+            year=user.birthday.year
+        # print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
         subcategory=UserSubcategories.objects.all().filter(user__email=email)
         cities = UserCities.objects.all().filter(user__email=email)
         portfolio=UserPortfolio.objects.all().filter(user__email=email)
@@ -143,11 +149,16 @@ def Advert_save(request):
         doc = request.FILES
         email = request.session.get('username', 'no')
         title=request.POST.get('advert_title')
+        price=request.POST.get('advert_price')
+        date=datetime.datetime.now().date()
         sub=request.POST.get('advert_category')
         description=request.POST.get('advert_description')
         auth=AuthUser.objects.all().filter(email=email)[0]
         subcategory=SubCategory.objects.all().filter(name=sub)[0]
-        user_advert=UserAdvert(user=auth, subcategory=subcategory, title=title, description=description)
+        if (doc):
+            user_advert=UserAdvert(user=auth, subcategory=subcategory, title=title, description=description, photo_main=doc['main_file'], price=price, date=date)
+        else:
+            user_advert = UserAdvert(user=auth, subcategory=subcategory, title=title, description=description, price=price, date=date)
         user_advert.save()
         if (doc):
             for d in doc.getlist('files'):

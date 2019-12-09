@@ -23,11 +23,18 @@
 
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
         <p class="news_det_type my-3" title="{{category}}"> {{category}}</p>
-        <p class="news_det_type fz_15rem my-3"> {{date}}</p>
+<!--        <p class="news_det_type fz_15rem my-3"> {{date}}</p>-->
         <p class="news_det_text mb-5" title="{{meta_description}}">
             <img class="float-left news_det_img mr-3 my-3" src="{{MEDIA.URL}}{{image.url}}" alt="{{image_alt}}">{{text}}
         </p>
+
     </div>
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <hr class="line mt-4 mb-1">
+                    <div class="col-12 pl-0 pb-5 news_detail">
+                        <span>{{date}}</span>
+                    </div>
+                </div>
 </div>
 
 {% endblock %}
