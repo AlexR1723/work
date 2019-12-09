@@ -2424,3 +2424,7 @@ input[type=checkbox]:checked + label::after {
     font-weight: 700;
     font-size: 1.1rem;
 }
+#divDropdown-menu{
+     top:90% !important;
+    transform: none !important;
+}

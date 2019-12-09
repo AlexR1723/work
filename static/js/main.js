@@ -1119,3 +1119,25 @@ $(document).ready(function() {
     });
  
 });
+
+$(document).ready(function(){
+  $("#liDropdown").hover( ()=>{
+    if($("#liDropdown").hasClass("show")){
+      $("#liDropdown").removeClass("show")
+      $("#divDropdown-menu").removeClass("show")
+      document.getElementById("navbarDropdown").setAttribute("aria-expanded", "false")
+
+    }else{
+      if($("#liDropdown").hasClass("active")){
+        document.getElementById("liDropdown").setAttribute("class","nav-item dropdown show active")
+      }
+      else{
+        document.getElementById("liDropdown").setAttribute("class","nav-item dropdown show")
+      }
+      document.getElementById("navbarDropdown").setAttribute("aria-expanded", "true")
+      document.getElementById("divDropdown-menu").setAttribute("class","dropdown-menu show")
+    }
+
+  }
+)
+})
