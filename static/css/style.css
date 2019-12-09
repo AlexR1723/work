@@ -1298,7 +1298,7 @@ hr.line {
 .login-block,
 .register-block {
     height: auto;
-    margin: 60px 0;
+    margin: 30px 0;
     border-top: 2px solid rgba(216, 216, 216, 0.5);;
     border-bottom: 2px solid rgba(216, 216, 216, 0.5);;
 }
