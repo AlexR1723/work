@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel = "stylesheet" type = "text/css" href = "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"  />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -100,11 +101,11 @@
                                          </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Вопрос/ответ
+                                         <a href="{% url 'Help' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Вопрос/ответ
                                          </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Баланс
+                                         <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Баланс <span class="balance"> 0 руб</span>
                                          </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
