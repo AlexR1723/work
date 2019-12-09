@@ -1019,6 +1019,119 @@ hr.line {
     cursor: pointer;
     text-decoration: none;
 }
+.ads-details_blk .txtarea-name-cat,
+.ads-details_blk span {
+    color: #000000;
+    margin: 0 2% 2% 0;
+    padding: .2em 1.2em;
+    background: #FFFFFF;
+    border: 1px solid #AAAAAA;
+    border-radius: 5px;
+}
+.ads-details_blk .txtarea-name-cat {
+    padding: .5em .5em 0em .5em;
+    height: 3.2rem;
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #000000;
+    resize: none;
+    overflow: auto;
+}
+.ads-details_blk .txtarea-name-cat::placeholder {
+
+}
+.ads-details_blk .price-span {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: .3em .5em;
+}
+.cat-span {
+    color: #000000;
+    font-size: 1.2rem;
+    line-height: 28px;
+}
+.ads-breadcrumb {
+    padding: 0rem 1rem;
+    margin-bottom: 0;
+    background-color: transparent;
+    border-radius: 0;
+}
+.ads-breadcrumb a,
+.ads-breadcrumb li.active {
+    font-size: 1.2rem;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.ads-breadcrumb a {
+    text-decoration: none;
+}
+.breadcrumb-item+.breadcrumb-item::before {
+    padding: 0 .7rem;
+    font-size: 1.2rem;
+    color: #AAAAAA;
+    content: "\f105";
+    font-family: "FontAwesome";
+}
+.ads-details_blk .txtarea-describe {
+    font-size: 20px;
+    line-height: 25px;
+    text-indent: 20px;
+    color: #000000;
+}
+
+.ads-btns .btn-save {
+    background: #3E789D;
+    color: #ffffff;
+    border: 1px solid transparent;
+}
+.ads-btns .btn-save:hover {
+    color: #000000;
+    background: transparent;
+    border: 1px solid #3E789D;
+}
+.ads-btns .btn-del {
+    background: #AF4B53;
+    color: #ffffff;
+    border: 1px solid transparent;
+}
+.ads-btns .btn-del:hover {
+    color: #000000;
+    background: transparent;
+    border: 1px solid #AF4B53;
+}
+.ads-btns a:hover {
+    text-decoration: none;
+}
+.ads-span span {
+    color: rgba(0, 0, 0, 0.5);
+}
+@media (min-width: 520px) and (max-width: 768px) {
+    .adverts-add_photos .img_wrapper{
+        height: 200px!important;
+    }
+    .adverts-add_photos .img_wrapper:nth-child(3n+3) {
+        padding-right: 0;
+    }
+}
+@media (min-width: 320px) and (max-width: 768px) {
+    .adverts-add_photos .img_wrapper{
+        height: 150px!important;
+        padding: .3rem!important;
+    }
+    .ads-details_blk .txtarea-name-cat {
+        height: auto;
+        padding: .1em .7em;
+    }
+}
+@media (min-width: 320px) and (max-width: 520px) {
+    .breadcrumb-item + .breadcrumb-item::before {
+        display: none;
+    }
+    .ads-details_blk .price-span {
+        font-size: 1.5rem;
+    }
+}
+
 @media (min-width: 320px) {
     .user-img_blk {
         height: 210px;

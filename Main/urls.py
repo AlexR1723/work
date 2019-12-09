@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^rules/$', views.Rules, name="Rules"),
     url(r'^privacy_rules/$', views.Privacy_rules, name="Privacy_rules"),
     url(r'^all_ads/$', views.All_ads, name="All_ads"),
+    url(r'^ads_details/$', views.Ads_details, name="Ads_details"),
     # url(r'^question_details/$', views.Question_details, name="Question_details"),
     # url(r'^sub_category/$', views.Sub_category, name="Sub_category"),
 
