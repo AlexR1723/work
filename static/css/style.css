@@ -2545,8 +2545,23 @@ input[type=checkbox]:checked + label::after {
     position: absolute;
     bottom: 0;
 }
-.al-city{
-    padding: .5rem 1rem !important;
+.suc-city{
+    padding: .3rem .8rem !important;
     background: rgba(212,237,218,.5) !important;
     margin-bottom: .3rem !important;
+}
+.error-city{
+    padding: .3rem .8rem !important;
+    background: rgba(248,215,218,.5) !important;
+    margin-bottom: .3rem !important;
+}
+.back{
+    font-size: 1rem;
+    color: rgba(51,51,51,.8);
+    transition: .3s;
+}
+.back:hover{
+    /*background: #3E789D;*/
+    color: rgba(51,51,51,1);
+    transition: .3s;
 }

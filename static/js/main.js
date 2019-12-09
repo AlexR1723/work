@@ -722,7 +722,7 @@ $('#profile_list_categories').on('click', 'input', function (event) {
         }
     })
 });
-let index=0;
+let index_city=0;
 $('#profile_list_cities').on('click', 'input', function (event) {
     let id = this.id
     let status;
@@ -743,11 +743,13 @@ $('#profile_list_cities').on('click', 'input', function (event) {
         url: 'profile_set_cities',
         success: function (data) {
             $('#'+id).prop('checked', status);
-            add_alert(index);
-            index=index+1;
+            add_alert_suc(index_city);
+            index_city=index_city+1;
         },
         error: function (data) {
             $('#'+id).prop('checked', !status);
+            add_alert_error(index_city);
+            index_city=index_city+1;
         }
     })
 });
@@ -1104,13 +1106,13 @@ $("#executor").click(function () {
             })
     });
 
-function add_alert(index)
+function add_alert_suc(index)
 {
     var el=document.getElementById('alerts-block');
     var row=document.createElement('div');
     row.setAttribute('class','row justify-content-center');
     var al=document.createElement('div');
-    al.setAttribute('class','alert alert-success al-city');
+    al.setAttribute('class','alert alert-success suc-city');
     al.setAttribute('role','alert');
     al.setAttribute('id','alert_success'+index);
     al.setAttribute('style','display: none;');
@@ -1121,7 +1123,25 @@ function add_alert(index)
      setTimeout(function () {
          $("#alert_success"+index).hide('slow');
          }, 5000);
+}
 
+function add_alert_error(index)
+{
+    var el=document.getElementById('alerts-block');
+    var row=document.createElement('div');
+    row.setAttribute('class','row justify-content-center');
+    var al=document.createElement('div');
+    al.setAttribute('class','alert alert-danger error-city');
+    al.setAttribute('role','alert');
+    al.setAttribute('id','alert'+index);
+    al.setAttribute('style','display: none;');
+    al.textContent='Успешно';
+    row.insertAdjacentHTML('beforeend',al.outerHTML);
+    el.insertAdjacentHTML('beforeend',row.outerHTML);
+     $("#alert"+index).show('slow');
+     setTimeout(function () {
+         $("#alert"+index).hide('slow');
+         }, 5000);
 }
 
 $(document).ready(function() {
