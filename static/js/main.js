@@ -696,7 +696,7 @@ $('#email-dispatch_input').click(function () {
     })
 });
 
-
+let index_cat=0;
 $('#profile_list_categories').on('click', 'input', function (event) {
     let id = this.id
     let status;
@@ -716,9 +716,13 @@ $('#profile_list_categories').on('click', 'input', function (event) {
         url: 'profile_set_subcategories',
         success: function (data) {
             $('#'+id).prop('checked', status);
+            add_alert_suc(index_cat);
+            index_cat=index_cat+1;
         },
         error: function (data) {
             $('#'+id).prop('checked', !status);
+            add_alert_error(index_cat);
+            index_cat=index_cat+1;
         }
     })
 });
@@ -1116,7 +1120,7 @@ function add_alert_suc(index)
     al.setAttribute('role','alert');
     al.setAttribute('id','alert_success'+index);
     al.setAttribute('style','display: none;');
-    al.textContent='Успешно';
+    al.textContent='Сохранено!';
     row.insertAdjacentHTML('beforeend',al.outerHTML);
     el.insertAdjacentHTML('beforeend',row.outerHTML);
      $("#alert_success"+index).show('slow');
@@ -1135,7 +1139,7 @@ function add_alert_error(index)
     al.setAttribute('role','alert');
     al.setAttribute('id','alert'+index);
     al.setAttribute('style','display: none;');
-    al.textContent='Успешно';
+    al.textContent='Что-то пошлоне так, попробуйте позже!';
     row.insertAdjacentHTML('beforeend',al.outerHTML);
     el.insertAdjacentHTML('beforeend',row.outerHTML);
      $("#alert"+index).show('slow');
