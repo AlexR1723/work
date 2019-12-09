@@ -2541,3 +2541,12 @@ input[type=checkbox]:checked + label::after {
      top:90% !important;
     transform: none !important;
 }
+#alerts-block{
+    position: absolute;
+    bottom: 0;
+}
+.al-city{
+    padding: .5rem 1rem !important;
+    background: rgba(212,237,218,.5) !important;
+    margin-bottom: .3rem !important;
+}

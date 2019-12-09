@@ -722,7 +722,7 @@ $('#profile_list_categories').on('click', 'input', function (event) {
         }
     })
 });
-
+let index=0;
 $('#profile_list_cities').on('click', 'input', function (event) {
     let id = this.id
     let status;
@@ -731,6 +731,7 @@ $('#profile_list_cities').on('click', 'input', function (event) {
     } else {
         status = false
     }
+
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -742,6 +743,8 @@ $('#profile_list_cities').on('click', 'input', function (event) {
         url: 'profile_set_cities',
         success: function (data) {
             $('#'+id).prop('checked', status);
+            add_alert(index);
+            index=index+1;
         },
         error: function (data) {
             $('#'+id).prop('checked', !status);
@@ -1100,6 +1103,26 @@ $("#executor").click(function () {
                 }
             })
     });
+
+function add_alert(index)
+{
+    var el=document.getElementById('alerts-block');
+    var row=document.createElement('div');
+    row.setAttribute('class','row justify-content-center');
+    var al=document.createElement('div');
+    al.setAttribute('class','alert alert-success al-city');
+    al.setAttribute('role','alert');
+    al.setAttribute('id','alert_success'+index);
+    al.setAttribute('style','display: none;');
+    al.textContent='Успешно';
+    row.insertAdjacentHTML('beforeend',al.outerHTML);
+    el.insertAdjacentHTML('beforeend',row.outerHTML);
+     $("#alert_success"+index).show('slow');
+     setTimeout(function () {
+         $("#alert_success"+index).hide('slow');
+         }, 5000);
+
+}
 
 $(document).ready(function() {
  
