@@ -984,33 +984,63 @@ $(".any-time_radio").click(function () {
     $('.date-select').removeClass('d-block');
     $('.date-select').addClass('d-none');
 });
-$("#about_me_edit").click(function () {
-    var btn=document.getElementById('about_ok');
-    btn.classList.remove('d-none');
-    var pen=document.getElementById('about_me_edit');
-    pen.classList.add('d-none');
+// $("#about_me_edit").click(function () {
+//     var btn=document.getElementById('about_ok');
+//     btn.classList.remove('d-none');
+//     var pen=document.getElementById('about_me_edit');
+//     pen.classList.add('d-none');
+//     var birtday=document.getElementById('birthday');
+//     birtday.removeAttribute('readonly');
+//     var gender=document.getElementById('gender');
+//     gender.removeAttribute('readonly');
+//     var about=document.getElementById('about');
+//     about.removeAttribute('readonly');
+// });
+// $("#phone_edit").click(function () {
+//     var btn=document.getElementById('phone_ok');
+//     btn.classList.remove('d-none');
+//     var pen=document.getElementById('phone_edit');
+//     pen.classList.add('d-none');
+//     var phone=document.getElementById('phone');
+//     phone.removeAttribute('readonly');
+// });
+$("#photo_edit").click(function () {
+    var lbl=document.getElementById('file_label_edit');
+    lbl.classList.add('d-none');
+    var form=document.getElementById('file_ok');
+    form.classList.remove('d-none');
+    var phone=document.getElementById('phone');
+    phone.removeAttribute('readonly');
     var birtday=document.getElementById('birthday');
     birtday.removeAttribute('readonly');
     var gender=document.getElementById('gender');
     gender.removeAttribute('readonly');
     var about=document.getElementById('about');
     about.removeAttribute('readonly');
-});
-$("#phone_edit").click(function () {
-    var btn=document.getElementById('phone_ok');
-    btn.classList.remove('d-none');
-    var pen=document.getElementById('phone_edit');
-    pen.classList.add('d-none');
-    var phone=document.getElementById('phone');
-    phone.removeAttribute('readonly');
-});
-$("#photo_edit").click(function () {
-    var lbl=document.getElementById('file_label_edit');
-    lbl.classList.add('d-none');
-    var form=document.getElementById('file_ok');
-    form.classList.remove('d-none');
+    var info_block=document.getElementById('info-inf-blk');
+    info_block.classList.remove('d-none');
+    var btn_block=document.getElementById('btn-inf-blk');
+    btn_block.classList.remove('d-none');
     // var phone=document.getElementById('phone');
     // phone.removeAttribute('readonly');
+});
+$("#cancel_info_btn").click(function () {
+    var lbl=document.getElementById('file_label_edit');
+    lbl.classList.remove('d-none');
+    var form=document.getElementById('file_ok');
+    form.classList.add('d-none');
+    var phone=document.getElementById('phone');
+    phone.setAttribute('readonly','readonly');
+    var birtday=document.getElementById('birthday');
+    birtday.setAttribute('readonly','readonly');
+    var gender=document.getElementById('gender');
+    gender.setAttribute('readonly','readonly');
+    var about=document.getElementById('about');
+    about.setAttribute('readonly','readonly');
+    var info_block=document.getElementById('info-inf-blk');
+    info_block.classList.add('d-none');
+    var btn_block=document.getElementById('btn-inf-blk');
+    btn_block.classList.add('d-none');
 });
 // $(".btn-profile-save").click(function () {
 //     var fileData = $('#files').prop('files')[0];
