@@ -2,355 +2,350 @@
 {% load staticfiles %}
 {% block content %}
 
-    <div class="container-fluid p-0">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 settings-blk">
-                <div class="row m-0 justify-content-center">
-                    <div class="col-12 col-sm-11 col-md-11 col-lg-10 col-xl-10 p-0 pt-5 pb-3">
-                        <div class="row m-0 justify-content-start">
-                            <div class="col-12 p-0">
-                                <div class="row">
-                                    <div class="col-9 col-sm-2 col-md-3 col-lg-2 p-2 mx-auto user-img_blk">
-                                        <img alt="" class="img-fluid user-img circle" src="{{MEDIA_URL}}{{user.photo.url}}">
-                                    </div>
-                                    <div class="col-12 col-sm-5 col-md-4 col-lg-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
-                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-md-0 mt-lg-4">
-                                            <label class="profile-settings_name m-0" id="file_label_edit">{{user.auth_user.first_name}} {{user.auth_user.last_name}}
-                                                <img
-                                                    src="{% static 'image/pen.png' %}"
-                                                    class="profile-name_icon ml-2 mb-md-0 mb-lg-2" id="photo_edit"  data-toggle="tooltip" data-placement="bottom"
-                                             title="Редактировать имя, фамилию и загрузить фото"></img></label>
-                                            <form class="row d-none" id="file_ok" action="{% url 'Save_photo' %}" method="post" enctype="multipart/form-data">
-                                            {% csrf_token %}
-                                                <div class="col-10">
-                                                    <input type="text" class="mb-1 form-control prof-input" id="user_name" name="user_name" value="{{user.auth_user.first_name}} {{user.auth_user.last_name}}" />
-                                                    <div class="upload-file">
-                                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files">
-                                                        <label for="files" class="btn btn-tertiary js-labelFile">
-                                                          <i class="fas fa-upload"></i>
-                                                          <span class="js-fileName">Загрузить файл</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-2">
-                                                    <button type="submit"  style="padding: 0;border: 0;background: none;"><img
-                                                    src="{% static 'image/save.png' %}"
-                                                    class="profile-name_icon ml-2 mb-md-0 mb-lg-2 w-50"></img></button>
-                                                </div>
-
-
-                                            </form>
-                                        </div>
-                                        <div class="row justify-content-start align-items-center pt-2">
-                                            <p class="mb-0 pr-0 profile-settings_text">Посмотреть, как выглядит профиль
-                                                для
-                                                <a href="#">всех</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
-                                        <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2"
-                                             data-toggle="tooltip" data-placement="bottom"
-                                             title="Общее количество отзывов о пользователе.">
-                                            <span class="col-12 text-center settings-rew_span fz_3rem">10</span>
-                                            <label class="settings-rew_label mb-2">отзывов</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
-                                        <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2 pl-md-0 pl-lg-3 settings-rew_blk"
-                                             data-toggle="tooltip" data-placement="bottom"
-                                             title="Рейтинг складывается из средних оценок по трем критериям: качество работы, вежливость и пунктуальность. Положительной считается только оценка 5 из 5-ти">
-                                            <span class="col-12 text-center settings-rew_span fz_3rem">98%</span>
-                                            <label class="settings-rew_label mb-2">положительных</label>
-                                        </div>
-                                    </div>
+<div class="container-fluid p-0">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 settings-blk  pt-5 pb-3">
+            <div class="row justify-content-start">
+                <div class="col-9 col-sm-2 col-md-3 col-lg-2 p-2 mx-auto user-img_blk">
+                    <img alt="" class="img-fluid user-img circle" src="{{MEDIA_URL}}{{user.photo.url}}">
+                </div>
+                <div class="col-12 col-sm-5 col-md-4 col-lg-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
+                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-md-0 mt-lg-4">
+                        <label class="profile-settings_name m-0" id="file_label_edit">{{user.auth_user.first_name}} {{user.auth_user.last_name}}
+                            <img
+                                    src="{% static 'image/pen.png' %}"
+                                    class="profile-name_icon ml-2 mb-md-0 mb-lg-2" id="photo_edit"  data-toggle="tooltip" data-placement="bottom"
+                                    title="Редактировать информацию в профиле и загрузить фото"></img></label>
+                        <form class="row d-none" id="file_ok" action="{% url 'Save_photo' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-10">
+                                <input type="text" class="mb-1 form-control prof-input" id="user_name" name="user_name" value="{{user.auth_user.first_name}} {{user.auth_user.last_name}}" />
+                                <div class="upload-file">
+                                    <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files">
+                                    <label for="files" class="btn btn-tertiary js-labelFile">
+                                        <i class="fas fa-upload"></i>
+                                        <span class="js-fileName">Загрузить файл</span>
+                                    </label>
                                 </div>
                             </div>
-                        </div>
+<!--                            <div class="col-2">-->
+<!--                                <button type="submit"  style="padding: 0;border: 0;background: none;"><img-->
+<!--                                        src="{% static 'image/save.png' %}"-->
+<!--                                        class="profile-name_icon ml-2 mb-md-0 mb-lg-2 w-50"></img></button>-->
+                                <button type="submit" id="save_photo">Сохранить</button>
+<!--                            </div>-->
+
+
+                        </form>
+                    </div>
+                    <div class="row justify-content-start align-items-center pt-2">
+                        <p class="mb-0 pr-0 profile-settings_text">Посмотреть, как выглядит профиль
+                            для
+                            <a href="#">всех</a>
+                        </p>
                     </div>
                 </div>
-
-                <div class="row m-0 justify-content-center">
-                    <div class="col-12 col-sm-11 col-md-11 col-lg-10 col-xl-10 p-0 pt-4 pb-5">
-                        <nav class="mb-4">
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
-                                   role="tab" aria-controls="nav-home" aria-selected="true">
-                                    <span class="d-none d-sm-none d-md-none d-lg-block">Общая информация</span>
-                                    <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
-                                         alt="">
-                                </a>
-                                <a class="nav-item nav-link" id="nav-portfolio-tab" data-toggle="tab"
-                                   href="#nav-portfolio" role="tab" aria-controls="nav-portfolio" aria-selected="false">
-                                    <span class="d-none d-sm-none d-md-none d-lg-block">Портфолио</span>
-                                    <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
-                                         alt="">
-                                </a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-notice"
-                                   role="tab" aria-controls="nav-notice" aria-selected="false">
-                                    <span class="d-none d-sm-none d-md-none d-lg-block">Настройка уведомлений</span>
-                                    <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
-                                         alt="">
-                                </a>
-                                <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab"
-                                   href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false">
-                                    <span class="d-none d-sm-none d-md-none d-lg-block">Изменить пароль</span>
-                                    <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
-                                         alt="">
-                                </a>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                 aria-labelledby="nav-home-tab">
-                                <div class="row m-0 justify-content-start information_blk">
-                                    <div class="col-12 p-3 item-inf_blk user-inf_blk">
-                                        <form class="w-100" action="{% url 'Save' %}" method="post" enctype="multipart/form-data">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                            <div class="col-1 px-0 px-lg-3 d-inline-block">
-                                                <img src="{% static 'image/user-icon.png' %}" class="item-icon"
-                                                     alt="user-icon">
-                                            </div>
-                                            <div class="col-10 d-inline-block">
-                                                <p class="mb-1"><span class="pr-3">Дата рождения:</span><input type="date" class="mb-1 form-control prof-input" id="birthday" name="birthday" readonly value="{{year}}-{{month}}-{{day}}" /></p>
-                                                <p class="mb-1"><span class="pr-3">Пол:</span><select readonly class="form-control prof-input" id="gender" name="gender">
-                                                                                 {% if user.gender_id.name == "Мужской" %}
-                                                                                      <option selected value="1">Мужской</option>
-                                                                                      <option value="2">Женский</option>
-                                                                                 {% else %}
-                                                                                      <option value="1">Мужской</option>
-                                                                                      <option selected value="2">Женский</option>
-                                                                                 {% endif %}
-                                                </select></p>
-                                                <div class="row">
-                                                    <div class="col-12 col-sm-1 p-0">
-                                                        <span>О себе: </span>
-                                                    </div>
-                                                    <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
-                                                        <p class="mb-1"><textarea readonly class="w-100 form-control" name="about" id="about">{{user.about_me}}</textarea></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-
-                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" id="about_me_edit" alt="user-icon">
-
-<!--                                                <button id="about_ok" class="d-none" type="submit">ok</button>-->
-                                                <button type="submit" id="about_ok"  class="d-none " style="padding: 0;border: 0;background: none;">
-                                                    <img class="edit-icon"  src="{% static 'image/save.png' %}" alt="user-icon">
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-12 p-3 item-inf_blk email-inf_blk">
-                                        <div class="row">
-                                            <div class="col-1 px-0 px-lg-3">
-                                                <img src="{% static 'image/email.png' %}" class="item-icon" alt="user-icon">
-                                            </div>
-                                            <div class="col-10">
-                                                <p class="pt-1 m-0"><span class="pr-3 text-wrap">Email: </span> <label>{{user.auth_user.email}}</label></p>
-                                            </div>
-<!--                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
-<!--                                                <a href="#">-->
-<!--                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="user-icon">-->
-<!--                                                </a>-->
-<!--                                            </div>-->
-                                        </div>
-                                    </div>
-                                    <div class="col-12 p-3 item-inf_blk phone-inf_blk">
-                                        <form class="w-100" action="{% url 'Save_phone' %}" method="post" enctype="multipart/form-data">
-                                            {% csrf_token %}
-                                        <div class="row">
-                                            <div class="col-1 px-0 px-lg-3">
-                                                <img src="{% static 'image/phone.png' %}" class="item-icon" alt="phone-icon">
-                                            </div>
-                                            <div class="col-10">
-                                                <p class="pt-1 m-0"><span class="pr-3 text-wrap">Телефон: </span><input class="mb-1 form-control prof-input" id="phone" name="phone" readonly type="text" value="{{user.phone}}" /></p>
-                                            </div>
-                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                                    <img src="{% static 'image/pen.png' %}" id="phone_edit" class="edit-icon" alt="edit-icon">
-                                                <button type="submit" id="phone_ok"  class="d-none " style="padding: 0;border: 0;background: none;">
-                                                    <img class="edit-icon"  src="{% static 'image/save.png' %}" alt="user-icon">
-                                                </button>
-                                            </div>
-                                        </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-12 p-3 item-inf_blk cat-inf_blk" data-toggle="tooltip" data-placement="left"
-                                             title="Категории в которых Вы будете работать и брать задания.">
-                                        <div class="row">
-                                            <div class="col-1 px-0 px-lg-3">
-                                                <img src="{% static 'image/work.png' %}" class="item-icon" alt="phone-icon">
-                                            </div>
-                                            <div class="col-10">
-                                                <h5 class="mb-3">Категории работ</h5>
-                                                {% for cat in subcategory %}
-                                                <span class="badge">{{cat.subcategories.name}}</span>
-                                                {% endfor %}
-                                            </div>
-                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk"  >
-                                                <a href="{% url 'Choose_categ' %}">
-                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 p-3 item-inf_blk ad-inf_blk" data-toggle="tooltip" data-placement="left"
-                                             title="Добавление объявлений по каждой категории">
-                                        <div class="row">
-                                            <div class="col-1 px-0 px-lg-3">
-                                                <img src="{% static 'image/flier.png' %}" class="item-icon" alt="phone-icon">
-                                            </div>
-                                            <div class="col-10" >
-                                                <h5 class="mb-3">Мои объявления</h5>
-                                                {% for cat in subcategory %}
-
-                                                <a href="{% url 'Advert_add' cat.subcategories.name %}"><span class="badge badge-secondary">{{cat.subcategories.name}} - {{cat.count}}</span></a>
-                                                {% endfor %}
-                                            </div>
-<!--                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
-<!--                                                <a href="#">-->
-<!--                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">-->
-<!--                                                </a>-->
-<!--                                            </div>-->
-                                        </div>
-                                    </div>
-                                    <div class="col-12 p-3 item-inf_blk city-inf_blk">
-                                        <div class="row">
-                                            <div class="col-1 px-0 px-lg-3">
-                                                <img src="{% static 'image/map.png' %}" class="item-icon" alt="phone-icon">
-                                            </div>
-                                            <div class="col-10">
-                                                <h5 class="mb-3">Города для работы</h5>
-                                                {% for city in cities %}
-                                                <span class="badge badge-secondary">{{city.city.name}}</span>
-                                                {% endfor %}
-                                            </div>
-                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                                <a href="{% url 'Choose_city' %}">
-                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="tab-pane fade" id="nav-portfolio" role="tabpanel"
-                                 aria-labelledby="nav-portfolio-tab">
-                                <div class="d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
-                                    <div class="ml-0 bd-highlight">
-                                        <form class="w-100" action="{% url 'Portfolio_add' %}" method="post" enctype="multipart/form-data">
-                                            {% csrf_token %}
-<!--                                            <input type="file" name="files" multiple/>-->
-                                            <div class="upload-file">
-                                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="profile-files" multiple>
-                                                        <label for="profile-files" class="btn btn-tertiary js-labelFile">
-                                                          <i class="fas fa-upload"></i>
-                                                          <span class="js-fileName">Загрузить файлы</span>
-                                                        </label>
-                                                    </div>
-                                            <button type="submit"
-                                                class="btn btn-primary btn-sm bd-highlight btn-add-photo">
-                                            Добавить фото
-                                        </button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="row portfolio-photos_blk">
-                                    {% for p in portfolio %}
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                        <img src="{{MEDIA_URL}}{{p.photo.url}}"
-                                             class="img-fluid center-block" alt="...">
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-
-
-                            <div class="tab-pane fade" id="nav-notice" role="tabpanel" aria-labelledby="nav-notice-tab">
-                                <div class="custom-control custom-checkbox my-2 mr-sm-2 pt-2">
-                                    <input type="checkbox" class="custom-control-input" id="email-notice_input">
-                                    <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input"
-                                           data-toggle="tooltip" data-placement="bottom"
-                                           title="Lorem ipsum dolor sit amet.">Email уведомления об изменениях статусов
-                                        заказов</label>
-                                </div>
-                                <div class="custom-control custom-checkbox my-2 mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="email-dispatch_input">
-                                    <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input"
-                                           data-toggle="tooltip" data-placement="bottom"
-                                           title="Lorem ipsum dolor sit amet.">Email рассылка новых заказов</label>
-                                </div>
-
-                                <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
-                                     style="display: none" id="alert-danger_notice">
-
-                                </div>
-                                <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
-                                     style="display: none" id="alert-success_notice">
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="tab-pane fade" id="nav-password" role="tabpanel"
-                                 aria-labelledby="nav-password-tab">
-                                {#                          <form action="" class="change-password">#}
-                                <div class="form-group row">
-                                    <label for="input_Password" class="col-sm-3 col-form-label px-0">Текущий
-                                        пароль</label>
-                                    <div class="col-sm-10 col-md-5 px-0 pl-md-3 pl-lg-0">
-                                        <input type="password" class="form-control passwords" id="input_Password"
-                                               placeholder="Текущий пароль">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="input-new_Password" class="col-sm-3 col-form-label px-0">Новый
-                                        пароль</label>
-                                    <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
-                                        <input type="password" class="form-control passwords" id="input-new_Password"
-                                               placeholder="Новый пароль">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="input-repeat_Password" class="col-sm-3 col-form-label px-0">Повторите
-                                        новый пароль</label>
-                                    <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
-                                        <input type="password" class="form-control passwords" id="input-repeat_Password"
-                                               placeholder="Повторите новый пароль">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
-                                         style="display: none" id="alert-danger_pass">
-
-                                    </div>
-
-                                    <div class="col-sm-11 col-md-12 col-lg-11 px-0">
-                                        <button type="submit" id="btn_profile_change_pass"
-                                                class="btn btn-primary px-5">Сохранить
-                                        </button>
-                                    </div>
-                                    <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
-                                         style="display: none" id="alert-success_pass">
-
-                                    </div>
-                                </div>
-                                {#                            </form>#}
-                            </div>
-                        </div>
+                <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
+                    <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2"
+                         data-toggle="tooltip" data-placement="bottom"
+                         title="Общее количество отзывов о пользователе.">
+                        <span class="col-12 text-center settings-rew_span fz_3rem">10</span>
+                        <label class="settings-rew_label mb-2">отзывов</label>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
+                    <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2 pl-md-0 pl-lg-3 settings-rew_blk"
+                         data-toggle="tooltip" data-placement="bottom"
+                         title="Рейтинг складывается из средних оценок по трем критериям: качество работы, вежливость и пунктуальность. Положительной считается только оценка 5 из 5-ти">
+                        <span class="col-12 text-center settings-rew_span fz_3rem">98%</span>
+                        <label class="settings-rew_label mb-2">положительных</label>
                     </div>
                 </div>
             </div>
 
+            <div class="row m-0 justify-content-center">
+                <nav class="w-100 mb-4 pt-4 pb-3">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                           role="tab" aria-controls="nav-home" aria-selected="true">
+                            <span class="d-none d-sm-none d-md-none d-lg-block">Общая информация</span>
+                            <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
+                                 alt="">
+                        </a>
+                        <a class="nav-item nav-link" id="nav-portfolio-tab" data-toggle="tab"
+                           href="#nav-portfolio" role="tab" aria-controls="nav-portfolio" aria-selected="false">
+                            <span class="d-none d-sm-none d-md-none d-lg-block">Портфолио</span>
+                            <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
+                                 alt="">
+                        </a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-notice"
+                           role="tab" aria-controls="nav-notice" aria-selected="false">
+                            <span class="d-none d-sm-none d-md-none d-lg-block">Настройка уведомлений</span>
+                            <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
+                                 alt="">
+                        </a>
+                        <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab"
+                           href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false">
+                            <span class="d-none d-sm-none d-md-none d-lg-block">Изменить пароль</span>
+                            <img src="/static/image/user-icon.png" class="d-md-block d-lg-none" width="30"
+                                 alt="">
+                        </a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                         aria-labelledby="nav-home-tab">
+                        <form class="w-100" action="{% url 'Save' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="row m-0 justify-content-start information_blk">
+                            <div class="col-12 p-3 item-inf_blk user-inf_blk">
+<!--                                <form class="w-100" action="{% url 'Save' %}" method="post" enctype="multipart/form-data">-->
+<!--                                    {% csrf_token %}-->
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3 d-inline-block">
+                                            <img src="{% static 'image/user-icon.png' %}" class="item-icon"
+                                                 alt="user-icon">
+                                        </div>
+                                        <div class="col-11 d-inline-block">
+                                            <p class="mb-1"><span class="pr-3">Дата рождения:</span><input type="date" class="mb-1 form-control prof-input" id="birthday" name="birthday" readonly value="{{year}}-{{month}}-{{day}}" /></p>
+                                            <p class="mb-1"><span class="pr-3">Пол:</span><select readonly class="form-control prof-input" id="gender" name="gender">
+                                                {% if user.gender_id.name == "Мужской" %}
+                                                <option selected value="1">Мужской</option>
+                                                <option value="2">Женский</option>
+                                                {% else %}
+                                                <option value="1">Мужской</option>
+                                                <option selected value="2">Женский</option>
+                                                {% endif %}
+                                            </select></p>
+                                            <div class="row">
+                                                <div class="col-12 col-sm-1 p-0">
+                                                    <span>О себе: </span>
+                                                </div>
+                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
+                                                    <p class="mb-1"><textarea readonly class="w-100 form-control" name="about" id="about">{{user.about_me}}</textarea></p>
+                                                </div>
+                                            </div>
+                                        </div>
+<!--                                        <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
 
+<!--                                            <img src="{% static 'image/pen.png' %}" class="edit-icon" id="about_me_edit" alt="user-icon">-->
+
+<!--                                            &lt;!&ndash;                                                <button id="about_ok" class="d-none" type="submit">ok</button>&ndash;&gt;-->
+<!--                                            <button type="submit" id="about_ok"  class="d-none " style="padding: 0;border: 0;background: none;">-->
+<!--                                                <img class="edit-icon"  src="{% static 'image/save.png' %}" alt="user-icon">-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+
+                                    </div>
+<!--                                </form>-->
+                            </div>
+                            <div class="col-12 p-3 item-inf_blk email-inf_blk">
+                                <div class="row">
+                                    <div class="col-1 px-0 px-lg-3">
+                                        <img src="{% static 'image/email.png' %}" class="item-icon" alt="user-icon">
+                                    </div>
+                                    <div class="col-11">
+                                        <p class="pt-1 m-0"><span class="pr-3 text-wrap">Email: </span> <label>{{user.auth_user.email}}</label></p>
+                                    </div>
+                                    <!--                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
+                                    <!--                                                <a href="#">-->
+                                    <!--                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="user-icon">-->
+                                    <!--                                                </a>-->
+                                    <!--                                            </div>-->
+                                </div>
+                            </div>
+                            <div class="col-12 p-3 item-inf_blk phone-inf_blk">
+<!--                                <form class="w-100" action="{% url 'Save_phone' %}" method="post" enctype="multipart/form-data">-->
+<!--                                    {% csrf_token %}-->
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3">
+                                            <img src="{% static 'image/phone.png' %}" class="item-icon" alt="phone-icon">
+                                        </div>
+                                        <div class="col-11">
+                                            <p class="pt-1 m-0"><span class="pr-3 text-wrap">Телефон: </span><input class="mb-1 form-control prof-input" id="phone" name="phone" readonly type="text" value="{{user.phone}}" /></p>
+                                        </div>
+<!--                                        <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
+<!--                                            <img src="{% static 'image/pen.png' %}" id="phone_edit" class="edit-icon" alt="edit-icon">-->
+<!--                                            <button type="submit" id="phone_ok"  class="d-none " style="padding: 0;border: 0;background: none;">-->
+<!--                                                <img class="edit-icon"  src="{% static 'image/save.png' %}" alt="user-icon">-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+                                    </div>
+<!--                                </form>-->
+                            </div>
+                            <div class="col-12 p-3 item-inf_blk cat-inf_blk" data-toggle="tooltip" data-placement="left"
+                                 title="Категории в которых Вы будете работать и брать задания.">
+                                <div class="row">
+                                    <div class="col-1 px-0 px-lg-3">
+                                        <img src="{% static 'image/work.png' %}" class="item-icon" alt="phone-icon">
+                                    </div>
+                                    <div class="col-10">
+                                        <h5 class="mb-3">Категории работ</h5>
+                                        {% for cat in subcategory %}
+                                        <span class="badge">{{cat.subcategories.name}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-1 px-0 px-lg-3 edit-icon_blk"  >
+                                        <a href="{% url 'Choose_categ' %}">
+                                            <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 p-3 item-inf_blk ad-inf_blk" data-toggle="tooltip" data-placement="left"
+                                 title="Добавление объявлений по каждой категории">
+                                <div class="row">
+                                    <div class="col-1 px-0 px-lg-3">
+                                        <img src="{% static 'image/flier.png' %}" class="item-icon" alt="phone-icon">
+                                    </div>
+                                    <div class="col-11" >
+                                        <h5 class="mb-3">Мои объявления</h5>
+                                        {% for cat in subcategory %}
+
+                                        <a href="{% url 'Advert_add' cat.subcategories.name %}"><span class="badge badge-secondary">{{cat.subcategories.name}} - {{cat.count}}</span></a>
+                                        {% endfor %}
+                                    </div>
+                                    <!--                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
+                                    <!--                                                <a href="#">-->
+                                    <!--                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">-->
+                                    <!--                                                </a>-->
+                                    <!--                                            </div>-->
+                                </div>
+                            </div>
+                            <div class="col-12 p-3 item-inf_blk city-inf_blk">
+                                <div class="row">
+                                    <div class="col-1 px-0 px-lg-3">
+                                        <img src="{% static 'image/map.png' %}" class="item-icon" alt="phone-icon">
+                                    </div>
+                                    <div class="col-10">
+                                        <h5 class="mb-3">Города для работы</h5>
+                                        {% for city in cities %}
+                                        <span class="badge badge-secondary">{{city.city.name}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                        <a href="{% url 'Choose_city' %}">
+                                            <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <button type="submit" id="save_profile">Сохранить</button>
+                        </form>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="nav-portfolio" role="tabpanel"
+                         aria-labelledby="nav-portfolio-tab">
+                        <div class="d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
+                            <div class="ml-0 bd-highlight">
+                                <form class="w-100" action="{% url 'Portfolio_add' %}" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <!--                                            <input type="file" name="files" multiple/>-->
+                                    <div class="upload-file">
+                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="profile-files" multiple>
+                                        <label for="profile-files" class="btn btn-tertiary js-labelFile">
+                                            <i class="fas fa-upload"></i>
+                                            <span class="js-fileName">Загрузить файлы</span>
+                                        </label>
+                                    </div>
+                                    <button type="submit"
+                                            class="btn btn-primary btn-sm bd-highlight btn-add-photo">
+                                        Добавить фото
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row portfolio-photos_blk">
+                            {% for p in portfolio %}
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                <img src="{{MEDIA_URL}}{{p.photo.url}}"
+                                     class="img-fluid center-block" alt="...">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="nav-notice" role="tabpanel" aria-labelledby="nav-notice-tab">
+                        <div class="custom-control custom-checkbox my-2 mr-sm-2 pt-2">
+                            <input type="checkbox" class="custom-control-input" id="email-notice_input">
+                            <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input"
+                                   data-toggle="tooltip" data-placement="bottom"
+                                   title="Lorem ipsum dolor sit amet.">Email уведомления об изменениях статусов
+                                заказов</label>
+                        </div>
+                        <div class="custom-control custom-checkbox my-2 mr-sm-2">
+                            <input type="checkbox" class="custom-control-input" id="email-dispatch_input">
+                            <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input"
+                                   data-toggle="tooltip" data-placement="bottom"
+                                   title="Lorem ipsum dolor sit amet.">Email рассылка новых заказов</label>
+                        </div>
+
+                        <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
+                             style="display: none" id="alert-danger_notice">
+
+                        </div>
+                        <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
+                             style="display: none" id="alert-success_notice">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tab-pane fade" id="nav-password" role="tabpanel"
+                         aria-labelledby="nav-password-tab">
+                        {#                          <form action="" class="change-password">#}
+                        <div class="form-group row">
+                            <label for="input_Password" class="col-sm-3 col-form-label px-0">Текущий
+                                пароль</label>
+                            <div class="col-sm-10 col-md-5 px-0 pl-md-3 pl-lg-0">
+                                <input type="password" class="form-control passwords" id="input_Password"
+                                       placeholder="Текущий пароль">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="input-new_Password" class="col-sm-3 col-form-label px-0">Новый
+                                пароль</label>
+                            <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
+                                <input type="password" class="form-control passwords" id="input-new_Password"
+                                       placeholder="Новый пароль">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="input-repeat_Password" class="col-sm-3 col-form-label px-0">Повторите
+                                новый пароль</label>
+                            <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
+                                <input type="password" class="form-control passwords" id="input-repeat_Password"
+                                       placeholder="Повторите новый пароль">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
+                                 style="display: none" id="alert-danger_pass">
+
+                            </div>
+
+                            <div class="col-sm-11 col-md-12 col-lg-11 px-0">
+                                <button type="submit" id="btn_profile_change_pass"
+                                        class="btn btn-primary px-5">Сохранить
+                                </button>
+                            </div>
+                            <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
+                                 style="display: none" id="alert-success_pass">
+
+                            </div>
+                        </div>
+                        {#                            </form>#}
+                    </div>
+                </div>
+            </div>
         </div>
+
+
     </div>
+</div>
 
 {% endblock %}

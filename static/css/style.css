@@ -2540,6 +2540,8 @@ input[type=checkbox]:checked + label::after {
 #divDropdown-menu{
      top:90% !important;
     transform: none !important;
+    left:inherit !important;
+    right: 0 !important;
 }
 #alerts-block{
     position: absolute;
