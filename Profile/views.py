@@ -72,10 +72,6 @@ def Portfolio_add(request):
 def Save(request):
     print('save')
     if request.method == 'POST':
-        print(request.POST.get('birthday'))
-        print(request.POST.get('gender'))
-        print(request.POST.get('about'))
-        print(request.POST.get('phone'))
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
         gender=''
@@ -90,16 +86,6 @@ def Save(request):
         user.save()
 
     return HttpResponseRedirect("/profile/settings")
-
-# def Save_phone(request):
-#     print('save_phone')
-#     if request.method == 'POST':
-#         email = request.session.get('username', 'no')
-#         user = Users.objects.all().filter(auth_user__email=email)[0]
-#         user.phone=request.POST.get('phone')
-#         user.save()
-#
-#     return HttpResponseRedirect("/profile/settings")
 
 def Save_photo(request):
     print('save_photo')
