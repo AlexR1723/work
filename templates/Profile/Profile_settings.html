@@ -15,7 +15,7 @@
                             <img
                                     src="{% static 'image/pen.png' %}"
                                     class="profile-name_icon ml-2 mb-md-0 mb-lg-2" id="photo_edit"  data-toggle="tooltip" data-placement="bottom"
-                                    title="Редактировать информацию в профиле и загрузить фото"></img></label>
+                                    title="Редактировать имя и загрузить фото"></img></label>
                         <form class="row d-none" id="file_ok" action="{% url 'Save_photo' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="col-10">
@@ -95,7 +95,8 @@
                          aria-labelledby="nav-home-tab">
                         <div class="row justify-content-end">
                             <div class="col-1 px-0 px-lg-3 a-right">
-                                <img src="/static/image/pen.png" class="edit-icon" id="profile_edit" alt="edit-icon">
+                                <img src="/static/image/pen.png" class="edit-icon" id="profile_edit" alt="edit-icon"  data-toggle="tooltip" data-placement="left"
+                                    title="Редактировать информацию в профиле">
                             </div>
                         </div>
                         <form class="w-100" action="{% url 'Save' %}" method="post" enctype="multipart/form-data">
@@ -110,7 +111,7 @@
                                         <div class="col-11 d-inline-block">
                                             <p class="mb-1">
                                                 <span class="pr-3">Дата рождения:</span>
-                                                <label id="birthday-label">{{year}}-{{month}}-{{day}}</label>
+                                                <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>
                                                 <input type="date" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />
                                             </p>
                                             <p class="mb-1">
@@ -165,23 +166,39 @@
                                     </div>
                             </div>
                             <div class="col-12 pt-3 pb-3 pl-5 pr-5 collapse" id="info-inf-blk">
-                                <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                    Ваш профиль - это ваша визитная карточка. Опишите свои умения, навыки и таланты.
-                                </label>
-                                <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                    Например:
-                                </label>
-                                <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                    - основные услуги, которые вы можете предоставлять;
-                                </label>
-                                <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                    -...
-                                </label>
-                                <div class="alert alert-danger w-100" style="display: none" role="alert" id="alert-danger">
-                                    Заполнены не все поля!
+                                <div class="w-100 pl-5 pr-5 pb-3">
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        Ваш профиль - это ваша визитная карточка. Опишите свои умения, навыки и таланты.
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        Например:
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        - основные услуги, которые вы можете предоставлять;
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        - наличие профессионального инструмента;
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        - программа, языки и тд, с которыми вы работаете;
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        - наличие автомобиля, фиплома и тд, указывайте как можно больше специфической информации по вашей специальности;
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        - укажите свои сильные качества, которые могут помочь в работе;
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        - укажите свои хобби - это разнообразит вашу анкету.
+                                    </label>
+                                    <div class="alert alert-danger w-100" style="display: none" role="alert" id="alert-danger">
+                                        Заполнены не все поля!
+                                    </div>
                                 </div>
-                                <button type="button" id="save_info_btn">Сохранить изменения</button>
-                                <button type="button" id="cancel_info_btn">Отменить</button>
+                                <div class="w-100 pl-5 pr-5">
+                                    <button type="button" id="save_info_btn">Сохранить изменения</button>
+                                    <button type="button" id="cancel_info_btn">Отменить</button>
+                                </div>
                             </div>
                             <div class="col-12 p-3 item-inf_blk cat-inf_blk" data-toggle="tooltip" data-placement="left"
                                  title="Категории в которых Вы будете работать и брать задания.">
@@ -241,7 +258,7 @@
                                 </div>
                             </div>
                         </div>
-                            <button type="submit" id="save_profile">Сохранить</button>
+                            <button type="submit" id="save_profile" class="d-none">Сохранить</button>
                         </form>
                     </div>
 

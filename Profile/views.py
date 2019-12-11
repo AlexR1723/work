@@ -91,15 +91,15 @@ def Save(request):
 
     return HttpResponseRedirect("/profile/settings")
 
-def Save_phone(request):
-    print('save_phone')
-    if request.method == 'POST':
-        email = request.session.get('username', 'no')
-        user = Users.objects.all().filter(auth_user__email=email)[0]
-        user.phone=request.POST.get('phone')
-        user.save()
-
-    return HttpResponseRedirect("/profile/settings")
+# def Save_phone(request):
+#     print('save_phone')
+#     if request.method == 'POST':
+#         email = request.session.get('username', 'no')
+#         user = Users.objects.all().filter(auth_user__email=email)[0]
+#         user.phone=request.POST.get('phone')
+#         user.save()
+#
+#     return HttpResponseRedirect("/profile/settings")
 
 def Save_photo(request):
     print('save_photo')
