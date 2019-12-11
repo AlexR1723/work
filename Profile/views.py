@@ -72,17 +72,21 @@ def Portfolio_add(request):
 def Save(request):
     print('save')
     if request.method == 'POST':
-        # doc = request.FILES
+        print(request.POST.get('birthday'))
+        print(request.POST.get('gender'))
+        print(request.POST.get('about'))
+        print(request.POST.get('phone'))
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
         gender=''
-        if(request.POST.get('gender')==1):
+        if(request.POST.get('gender') == '1'):
             gender=Gender.objects.all().filter(name="Мужской")[0]
         else:
             gender = Gender.objects.all().filter(name="Женский")[0]
         user.birthday=request.POST.get('birthday')
         user.gender_id=gender
         user.about_me=request.POST.get('about')
+        user.phone = request.POST.get('phone')
         user.save()
 
     return HttpResponseRedirect("/profile/settings")
