@@ -60,6 +60,11 @@ def Main(request):
     slide=FirstSlider.objects.all()[1:]
     category=Category.objects.all().order_by('id')[:3]
     all_category=Category.objects.all().order_by('id')[3:]
+
+    count_executor=Users.objects.all().filter(type__name="Исполнитель").count()
+    count_customer=Users.objects.all().filter(type__name="Заказчик").count()
+    count_task=UserTask.objects.all()
+
     return render(request, 'Main/Main.html', locals())
 
 def How_it_work(request):
@@ -173,13 +178,7 @@ def Register(request):
 # def Sub_category(request):
 #     layout, username = layout_name(request)
 #     return render(request, 'Main/../templates/Category/Sub_category.html', locals())
-def All_ads(request):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Main/All_ads.html', locals())
 
-def Ads_details(request):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Main/Ads_details.html', locals())
 
 
 

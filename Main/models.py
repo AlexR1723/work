@@ -288,6 +288,24 @@ class Users(models.Model):
         db_table = 'users'
 
 
+class UserTask(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=500, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    start_time = models.TimeField(blank=True, null=True)
+    end_time = models.TimeField(blank=True, null=True)
+    pay = models.TextField(blank=True, null=True)  # This field type is a guess.
+
+    class Meta:
+        managed = False
+        db_table = 'user_task'
+
+
+
 class UserType(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
 

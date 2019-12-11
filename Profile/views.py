@@ -382,3 +382,11 @@ def Customer(request):
     user.type=UserType.objects.all().filter(name="Заказчик")[0]
     user.save()
     return HttpResponse(json.dumps({'data': 'ok'}))
+
+def All_ads(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/All_ads.html', locals())
+
+def Ads_details(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/Ads_details.html', locals())
