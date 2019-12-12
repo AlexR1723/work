@@ -2600,6 +2600,7 @@ input[type=checkbox]:checked + label::after {
 }
 .photo a {
     display: block;
+    transition: .3s;
 }
 .photo a:after {
     content: '';
@@ -2617,5 +2618,18 @@ input[type=checkbox]:checked + label::after {
 }
 .photo a:hover:after{
     visibility: visible;
+    transition: .3s;
+}
+.fa-trash-alt{
+    font-size: 2rem;
+    color: #AF4B53;
+    opacity: .5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: .3s;
+}
+.fa-trash-alt:hover{
+    opacity: 1;
     transition: .3s;
 }
