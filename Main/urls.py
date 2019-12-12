@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'registrate/', views.Registrate),
     url(r'^verify/(?P<key>[a-z0-9]+)/$', views.Verify, name="Verify"),
 
-    url(r'find/(?P<text>[А-Яа-я\s0-9]+)/$', views.Find_category, name="Find_category"),
+    # url(r'find/(?P<text>[А-Яа-я\s0-9]+)/$', views.Find_category, name="Find_category"),
 
     url(r'^public_offer/$', views.Public_offer, name="Public_offer"),
     url(r'^rules/$', views.Rules, name="Rules"),
