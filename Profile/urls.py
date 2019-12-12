@@ -25,6 +25,7 @@ urlpatterns = [
 
 
     url(r'portfolio_save/', views.Portfolio_add, name='Portfolio_add'),
+    url(r'delete_portfolio/', views.Delete_portfolio, name='Delete_portfolio'),
     url(r'save/', views.Save, name='Save'),
     # url(r'save_phone/', views.Save_phone, name='Save_phone'),
     url(r'save_photo/', views.Save_photo, name='Save_photo'),

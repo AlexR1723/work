@@ -1254,4 +1254,60 @@ $(document).ready(function(){
 
   }
 )
-})
+});
+$("#portfolio_edit").click(function () {
+    var el=document.getElementsByClassName('trash_portfolio');
+    for (i=0;i<el.length;i++)
+    {
+        el[i].classList.remove('d-none');
+    }
+    $("#portfolio_del_block").removeClass('d-none');
+});
+$("#cencel_portfolio_del_btn").click(function () {
+    var el=document.getElementsByClassName('trash_portfolio');
+    for (i=0;i<el.length;i++)
+    {
+        el[i].classList.add('d-none');
+    }
+    $("#portfolio_del_block").addClass('d-none');
+});
+$(".trash_portfolio").click(function () {
+    // var el=$(this);
+    if(this.classList.contains('far'))
+    {
+        this.classList.remove(('far'));
+        this.classList.add('fas');
+    }
+    else
+    {
+        this.classList.remove(('fas'));
+        this.classList.add('far');
+    }
+});
+$("#portfolio_del_btn").click(function () {
+    $('#myModal').modal('show')
+    var list=""
+    var el=document.getElementsByClassName('trash_portfolio');
+    var form=document.getElementById('delete_portfolio_icon');
+    for (i=0;i<el.length;i++)
+    {
+        if(el[i].classList.contains('fas'))
+        {
+            // list=list+
+            var id=el[i].previousElementSibling;
+            list=list+id.value+",";
+        }
+    }
+    var inp=document.createElement('input');
+    inp.setAttribute('type','hidden');
+    inp.setAttribute('name',"delete_id");
+    inp.setAttribute('value',list);
+            // form.insertAdjacentHTML('beforeend',inp.outerHTML);
+    form.insertAdjacentHTML('beforeend',inp.outerHTML);
+
+});
+// $(".trash_portfolio").click(function () {
+//     var id=$(this).prev().val();
+//     $('#delete_id').val(id);
+//     $('#myModal').modal('show')
+// });

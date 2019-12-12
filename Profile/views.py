@@ -69,6 +69,17 @@ def Portfolio_add(request):
     return HttpResponseRedirect("/profile/settings")
 
 
+def Delete_portfolio(request):
+    if request.method == 'POST':
+        id=request.POST.get('delete_id')
+        id=id.split(',')
+        print(id)
+        for el in id:
+            if(el != ""):
+                user_portfolio=UserPortfolio.objects.get(id=el)
+                user_portfolio.delete()
+    return HttpResponseRedirect("/profile/settings")
+
 def Save(request):
     print('save')
     if request.method == 'POST':

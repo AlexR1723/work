@@ -283,6 +283,10 @@
                                     </button>
                                 </form>
                             </div>
+                             <div class="col-1 ml-auto px-lg-3 a-right">
+                                <img src="/static/image/pen.png" class="edit-icon" id="portfolio_edit" alt="edit-icon"  data-toggle="tooltip" data-placement="left"
+                                    title="Удалить фото из портфолио">
+                            </div>
                         </div>
                         <div class="row portfolio-photos_blk" id="gallery">
                             {% for p in portfolio %}
@@ -293,9 +297,9 @@
                                      </a>
                                      </div>
 
-                                     <a href="">
-                                         <input type="hidden" value="{{p.id}}">
-                                         <i class="far fa-trash-alt"></i>
+                                     <a href="#!">
+                                         <input type="hidden" value="{{p.id}}" name="delete_id">
+                                         <i class="far fa-trash-alt trash_portfolio d-none"></i>
                                      </a>
 
                                 </div>
@@ -308,6 +312,10 @@
 
 
 
+                        </div>
+                        <div class="row d-none" id="portfolio_del_block">
+                            <button type="button" id="portfolio_del_btn">Удалить</button>
+                            <button type="button" id="cencel_portfolio_del_btn" class="ml-2">Отменить</button>
                         </div>
                     </div>
 
@@ -392,4 +400,25 @@
     </div>
 </div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Подтвержение удаления</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <label>Вы действительно хотите удалить выбранные изображения?</label>
+          <form class="" action="{% url 'Delete_portfolio' %}" method="post" enctype="multipart/form-data" id="delete_portfolio_icon">
+                            {% csrf_token %}
+<!--              <input type="hidden" name="delete_id" id="delete_id">-->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button type="submit" class="btn btn-primary">Удалить</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

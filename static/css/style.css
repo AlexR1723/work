@@ -2568,30 +2568,30 @@ input[type=checkbox]:checked + label::after {
     color: rgba(51,51,51,1);
     transition: .3s;
 }
-#save_info_btn{
+#save_info_btn, #portfolio_del_btn{
     padding: .5rem 1rem;
-    color: white;
-    background: #AF4B53;
-    border: 1px solid #AF4B53;
+    color: white !important;
+    background: #AF4B53 !important;
+    border: 1px solid #AF4B53 !important;
     border-radius: 5px;
     transition: .3s;
 }
-#save_info_btn:hover{
-    color: #AF4B53;
-    background: none;
+#save_info_btn:hover, #portfolio_del_btn:hover{
+    color: #AF4B53 !important;
+    background: none !important;
     transition: .3s;
 }
-#cancel_info_btn{
+#cancel_info_btn, #cencel_portfolio_del_btn{
     padding: .5rem 1rem;
-    color:#3E789D;
-    background: none;
-    border:1px solid #3E789D;
+    color:#3E789D !important;
+    background: none !important;
+    border:1px solid #3E789D !important;
     border-radius: 5px;
     transition: .3s;
 }
-#cancel_info_btn:hover{
-    color: white;
-    background: #3E789D;
+#cancel_info_btn:hover, #cencel_portfolio_del_btn:hover{
+    color: white !important;
+    background: #3E789D !important;
     transition: .3s;
 }
 .photo a:hover {
@@ -2622,14 +2622,15 @@ input[type=checkbox]:checked + label::after {
 }
 .fa-trash-alt{
     font-size: 2rem;
-    color: #AF4B53;
-    opacity: .5;
+    color: red;
+    /*opacity: .8;*/
     position: absolute;
     top: 0;
     right: 0;
     transition: .3s;
 }
 .fa-trash-alt:hover{
-    opacity: 1;
+    /*opacity: 1;*/
+    color: red;
     transition: .3s;
 }
