@@ -43,6 +43,9 @@ urlpatterns = [
     url(r'profile_set_subcategories', views.profile_set_subcategories, name='profile_set_subcategories'),
     url(r'profile_set_cities', views.profile_set_cities, name='profile_set_cities'),
     url(r'logout_user', views.logout_user, name='logout_user'),
-    url(r'^advert/$', views.All_ads, name="All_ads"),
-    url(r'^ads_details/$', views.Ads_details, name="Ads_details"),
+    url(r'^adverts/$', views.All_ads, name="All_ads"),
+    url(r'^adverts/(?P<page>[0-9]+)/$', views.All_ads_page, name="All_ads_page"),
+    url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_filter, name="Advert_filter"),
+    url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Advert_filter_page, name="Advert_filter_page"),
+    url(r'^advert_detail/(?P<id>[0-9]+)/$', views.Ads_details, name="Ads_details"),
 ]

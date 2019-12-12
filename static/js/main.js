@@ -803,6 +803,13 @@ $(document).ready(function () {
         else
             window.location.href = '/news/' + value;
     });
+    $('#all_ads_filter_select').change(function () {
+        var value = $('#all_ads_filter_select option:selected').val();
+        if (value == 0)
+            window.location.href = '/profile/adverts/';
+        else
+            window.location.href = '/profile/adverts/' + value;
+    });
     $("#name").click(function () {
         $('#name').removeClass('br-red');
     });

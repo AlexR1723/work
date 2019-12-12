@@ -8,7 +8,8 @@ from distutils.util import strtobool
 import datetime
 
 
-
+list_page = []
+ads_count = 0
 def layout_contact():
     contact=ContactType.objects.all()
     return contact
@@ -401,10 +402,162 @@ def All_ads(request):
         auth = AuthUser.objects.all().filter(email=email)[0]
         filter=0
         ads_categ=UserSubcategories.objects.all().filter(user=auth)
-        print(ads_categ)
-        ads=UserAdvert.objects.all().filter(user=auth).order_by('-date')
-    return render(request, 'Profile/All_ads.html', locals())
+        ads_count = UserAdvert.objects.filter(user=auth).order_by('-date').count()
+        if(ads_count<10):
+            ads=UserAdvert.objects.all().filter(user=auth).order_by('-date')[0:]
+        else:
+            ads = UserAdvert.objects.all().filter(user=auth).order_by('-date')[0:10]
+        k = 0
+        while (ads_count > 0):
+            k = k + 1
+            ads_count = ads_count - 10
+        list_page = []
+        page = 1
+        if (k > 6):
+            for i in range(1, 4):
+                list_page.append(i)
+            list_page.append('...')
+            for i in range(k - 2, k + 1):
+                list_page.append(i)
+        else:
+            for i in range(1, k + 1):
+                list_page.append(i)
+        pre = 1
+        next = page + 1
+        return render(request, 'Profile/All_ads.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
 
-def Ads_details(request):
+def All_ads_page(request,page):
+    layout, username, photo = layout_name(request)
+    if (username != ''):
+        filter = 0
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        filter = 0
+        ads_categ = UserSubcategories.objects.all().filter(user=auth)
+        ads_count = UserAdvert.objects.filter(user=auth).order_by('-date').count()
+        page = int(page)
+        start = page * 10 - 10
+        end = page * 10
+        ads=UserAdvert.objects.all().filter(user=auth).order_by('-date')[start:end]
+        k = 0
+        while (ads_count > 0):
+            k = k + 1
+            ads_count = ads_count - 10
+        Page = []
+        if k > 6:
+            # записать первые 3
+            for i in range(1, 4):
+                Page.append(i)
+            # записать середину
+            if page >= 3 and page <= (k - 2):
+                for i in range(page - 1, page + 2):
+                    Page.append(i)
+            # записать последние 3
+            for i in range(k - 2, k + 1):
+                Page.append(i)
+        else:
+            for i in range(1, k + 1):
+                Page.append(i)
+        # убрать повторения
+        Page = list(set(Page))
+        print(Page)
+        list_page = []
+        # добавить '...'
+        for i in range(len(Page) - 1):
+            list_page.append(Page[i])
+            if Page[i + 1] - Page[i] > 1:
+                list_page.append('...')
+        list_page.append(Page[len(Page) - 1])
+        pre = page - 1
+        next = page + 1
+        return render(request, 'Profile/All_ads.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+
+def Advert_filter(request, filter):
+    layout, username, photo = layout_name(request)
+    filter = str(filter)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        ads_categ=UserSubcategories.objects.all().filter(user=auth)
+        ads_count = UserAdvert.objects.filter(user=auth).filter(subcategory__name=filter).order_by('-date').count()
+        if (ads_count < 10):
+            ads=UserAdvert.objects.all().filter(user=auth).filter(subcategory__name=filter).order_by('-date')[0:]
+        else:
+            ads=UserAdvert.objects.all().filter(user=auth).filter(subcategory__name=filter).order_by('-date')[0:10]
+        k = 0
+        while (ads_count > 0):
+            k = k + 1
+            ads_count = ads_count - 10
+        list_page = []
+        page = 1
+        if (k > 6):
+            for i in range(1, 4):
+                list_page.append(i)
+            list_page.append('...')
+            for i in range(k - 2, k + 1):
+                list_page.append(i)
+        else:
+            for i in range(1, k + 1):
+                list_page.append(i)
+        pre = 1
+        next = page + 1
+        return render(request, 'Profile/All_ads.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+def Advert_filter_page(request, filter, page):
+    layout, username, photo = layout_name(request)
+    filter = str(filter)
+    if (username != ''):
+        filter = 0
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        ads_categ = UserSubcategories.objects.all().filter(user=auth)
+        ads_count = UserAdvert.objects.filter(user=auth).filter(subcategory__name=filter).order_by('-date').count()
+        page = int(page)
+        start = page * 10 - 10
+        end = page * 10
+        ads = UserAdvert.objects.all().filter(user=auth).filter(subcategory__name=filter).order_by('-date')[start:end]
+        k = 0
+        while (ads_count > 0):
+            k = k + 1
+            ads_count = ads_count - 10
+        Page = []
+        if k > 6:
+            # записать первые 3
+            for i in range(1, 4):
+                Page.append(i)
+            # записать середину
+            if page >= 3 and page <= (k - 2):
+                for i in range(page - 1, page + 2):
+                    Page.append(i)
+            # записать последние 3
+            for i in range(k - 2, k + 1):
+                Page.append(i)
+        else:
+            for i in range(1, k + 1):
+                Page.append(i)
+        # убрать повторения
+        Page = list(set(Page))
+        print(Page)
+        list_page = []
+        # добавить '...'
+        for i in range(len(Page) - 1):
+            list_page.append(Page[i])
+            if Page[i + 1] - Page[i] > 1:
+                list_page.append('...')
+        list_page.append(Page[len(Page) - 1])
+        pre = page - 1
+        next = page + 1
+        return render(request, 'Profile/All_ads.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+def Ads_details(request,id):
     layout, username, photo = layout_name(request)
     return render(request, 'Profile/Ads_details.html', locals())
