@@ -1029,7 +1029,7 @@ hr.line {
     text-decoration: none;
 }
 .ads-details_blk .txtarea-name-cat,
-.ads-details_blk span {
+.ads-details_blk span, .input-price{
     color: #000000;
     margin: 0 2% 2% 0;
     padding: .2em 1.2em;
@@ -1037,7 +1037,7 @@ hr.line {
     border: 1px solid #AAAAAA;
     border-radius: 5px;
 }
-.ads-details_blk .txtarea-name-cat {
+.ads-details_blk .txtarea-name-cat, .input-price {
     padding: .5em .5em 0em .5em;
     height: 3.2rem;
     font-size: 1.4rem;
@@ -1081,11 +1081,12 @@ hr.line {
     content: "\f105";
     font-family: "FontAwesome";
 }
-.ads-details_blk .txtarea-describe {
-    font-size: 20px;
+.txtarea-describe {
+    font-size: 1rem;
     line-height: 25px;
     text-indent: 20px;
     color: #000000;
+    border-radius: 5px;
 }
 
 .ads-btns .btn-save {
