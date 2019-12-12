@@ -396,6 +396,13 @@ def Customer(request):
 
 def All_ads(request):
     layout, username, photo = layout_name(request)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        filter=0
+        ads_categ=UserSubcategories.objects.all().filter(user=auth)
+        print(ads_categ)
+        ads=UserAdvert.objects.all().filter(user=auth).order_by('-date')
     return render(request, 'Profile/All_ads.html', locals())
 
 def Ads_details(request):
