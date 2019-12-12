@@ -1,0 +1,179 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container-fluid p-0">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 settings-blk  pt-5 pb-3">
+            <div class="row pl-2 pr-2 m-0 justify-content-center">
+                <nav class="w-100 mb-4 pt-4 pb-3">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-work"
+                           role="tab" aria-controls="nav-home" aria-selected="true">
+                            <span class="d-none d-sm-none d-md-none d-lg-block">В работе</span>
+                            <img src="{% static 'image/user_info.png' %}" class="d-md-block d-lg-none" width="30"
+                                 alt="">
+                        </a>
+                        <a class="nav-item nav-link" id="nav-portfolio-tab" data-toggle="tab"
+                           href="#nav-fav-executor" role="tab" aria-controls="nav-portfolio" aria-selected="false">
+                            <span class="d-none d-sm-none d-md-none d-lg-block">Избранные исполнители</span>
+                            <img src="{% static 'image/portfolio.png' %}" class="d-md-block d-lg-none" width="30"
+                                 alt="">
+                        </a>
+
+                    </div>
+                </nav>
+                <div class="tab-content w-100" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-work" role="tabpanel"
+                         aria-labelledby="nav-home-tab">
+                        <div class="row">
+                            <div class="col-auto p-0">
+                                <select class="custom-select all_ads_filter_select" id="all_ads_filter_select">
+                                    {% if filter == 0 %}
+                                    <option selected value="0">Все типы</option>
+                                    {% else %}
+                                    <option value="0">Все типы</option>
+                                    {% endif %}
+                                    {% for ads in ads_categ %}
+                                    {% if filter == ads.subcategories.name %}
+                                    <option selected value="{{ads.subcategories.name}}">{{ads.subcategories.name}}</option>
+                                    {% else %}}
+                                    <option value="{{ads.subcategories.name}}">{{ads.subcategories.name}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row m-0 justify-content-start">
+                            {% for a in ads %}
+                            <div class="col-12 p-0">
+                                <div class="row">
+                                    <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
+                                        {% if a.photo_main != None %}
+                                        <img alt="" class="w-100 user-advert-img" src="{{MEDIA_URL}}{{a.photo_main.url}}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                            <a href="{% url 'Ads_details' a.id %}">
+                                                <h3 class="category-card_label m-0">{{a.title}}</h3>
+                                            </a>
+                                        </div>
+                                        <div class="row justify-content-start align-items-center pt-2">
+                                            <p class="w-100 mb-0 pr-0 advert-card_text mb-2 textrowcount">{{a.description}}</p>
+                                            <span>{{a.date}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
+                                        <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
+                                            <label class="category-money_label p mb-2">{{a.price}} руб.</label>
+                                        </div>
+                                    </div>
+                                    <hr class="category-line m-0 my-4">
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-fav-executor" role="tabpanel"
+                         aria-labelledby="nav-portfolio-tab">
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-2 p-3">
+                                    <img src="{% static 'image/user.png' %}" class="w-100 user-img" alt="">
+                                </div>
+                                <div class="col-10 p-3">
+                                    <div class="row justify-content-between align-items-center">
+                                        <label class="user-name">Иван</label>
+                                        <button class="user-work-bttn">Предложить работу</button>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center">
+                                        <label class="rating-com mb-0 a-center pr-2">45 </label>
+                                        <label class="news_type mb-0 a-center">отзывов</label>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center">
+                                        <label class="rating-com mb-0 a-center pr-2">83% </label>
+                                        <label class="news_type mb-0 a-center">положительных</label>
+                                    </div>
+                                </div>
+                                <hr class="line" />
+                            </div>
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-2 p-3">
+                                    <img src="{% static 'image/user.png' %}" class="w-100 user-img" alt="">
+                                </div>
+                                <div class="col-10 p-3">
+                                    <div class="row justify-content-between align-items-center">
+                                        <label class="user-name">Иван</label>
+                                        <button class="user-work-bttn">Предложить работу</button>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center">
+                                        <label class="rating-com mb-0 a-center pr-2">45 </label>
+                                        <label class="news_type mb-0 a-center">отзывов</label>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center">
+                                        <label class="rating-com mb-0 a-center pr-2">83% </label>
+                                        <label class="news_type mb-0 a-center">положительных</label>
+                                    </div>
+                                </div>
+                                <hr class="line" />
+                            </div>
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-2 p-3">
+                                    <img src="{% static 'image/user.png' %}" class="w-100 user-img" alt="">
+                                </div>
+                                <div class="col-10 p-3">
+                                    <div class="row justify-content-between align-items-center">
+                                        <label class="user-name">Иван</label>
+                                        <button class="user-work-bttn">Предложить работу</button>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center">
+                                        <label class="rating-com mb-0 a-center pr-2">45 </label>
+                                        <label class="news_type mb-0 a-center">отзывов</label>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center">
+                                        <label class="rating-com mb-0 a-center pr-2">83% </label>
+                                        <label class="news_type mb-0 a-center">положительных</label>
+                                    </div>
+                                </div>
+                                <hr class="line" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Подтвержение удаления</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Вы действительно хотите удалить выбранные изображения?</label>
+                <form class="" action="{% url 'Delete_portfolio' %}" method="post" enctype="multipart/form-data" id="delete_portfolio_icon">
+                    {% csrf_token %}
+                    <!--              <input type="hidden" name="delete_id" id="delete_id">-->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Удалить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -48,4 +48,5 @@ urlpatterns = [
     url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_filter, name="Advert_filter"),
     url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Advert_filter_page, name="Advert_filter_page"),
     url(r'^advert_detail/(?P<id>[0-9]+)/$', views.Ads_details, name="Ads_details"),
+    url(r'^my_tasks/$', views.My_tasks_customer, name="My_tasks_customer"),
 ]
