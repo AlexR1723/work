@@ -226,7 +226,8 @@ class UserTask(models.Model):
     date = models.DateField(blank=True, null=True)
     start_time = models.TimeField(blank=True, null=True)
     end_time = models.TimeField(blank=True, null=True)
-    pay = models.TextField(blank=True, null=True)  # This field type is a guess.
+    pay = models.TextField(blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/task/',max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False

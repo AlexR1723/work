@@ -2644,3 +2644,12 @@ input[type=checkbox]:checked + label::after {
     color: red;
     transition: .3s;
 }
+a .user-name{
+    color: black;
+    transition: .3s;
+}
+a .user-name:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    transition: .3s;
+}
