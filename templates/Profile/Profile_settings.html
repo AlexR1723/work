@@ -284,13 +284,25 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="row portfolio-photos_blk">
+                        <div class="row portfolio-photos_blk" id="gallery">
+<!--                             <div>-->
                             {% for p in portfolio %}
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                <img src="{{MEDIA_URL}}{{p.photo.url}}"
-                                     class="img-fluid center-block" alt="...">
-                            </div>
+                                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 img_wrapper photo d-inline-block p-2">
+
+                                         <a href="{{MEDIA_URL}}{{p.photo.url}}" data-lightbox="roadtrip"><img class="w-100" src="{{MEDIA_URL}}{{p.photo.url}}" alt="Eagle" /></a>
+                                     <div class="w-100">
+                                     </div>
+                                </div>
                             {% endfor %}
+
+<!--                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">-->
+<!--                                <img src="{{MEDIA_URL}}{{p.photo.url}}"-->
+<!--                                     class="img-fluid center-block" alt="...">-->
+<!--                            </div>-->
+
+
+<!--                            </div>-->
+
                         </div>
                     </div>
 

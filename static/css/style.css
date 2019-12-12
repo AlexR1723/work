@@ -2594,3 +2594,28 @@ input[type=checkbox]:checked + label::after {
     background: #3E789D;
     transition: .3s;
 }
+.photo a:hover {
+    opacity: 0.5;
+    transition: .3s;
+}
+.photo a {
+    display: block;
+}
+.photo a:after {
+    content: '';
+    background: transparent url(../image/eye-icon.png) no-repeat center;
+    width: 52px;
+    height: 35px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+.photo a:hover:after{
+    visibility: visible;
+    transition: .3s;
+}
