@@ -5,6 +5,9 @@
     <div class="container-fluid p-0">
         <div class="row justify-content-center choose_blk">
             <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8">
+                <div class="row pt-4">
+                    <a href="{% url 'Profile_settings' %}" class="back"><i class="fas fa-arrow-left"></i> Назад в профиль</a>
+                </div>
                 <div class="row pb-5 pt-4">
                     <div class="col-12 d-flex justify-content-center main-accordion_blk">
                         <div class="inner-accordion_blk" id="profile_list_categories">
@@ -330,10 +333,17 @@
                             {#                            </div>#}
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-
+<div class="col-12" id="alerts-block">
+<!--                    <div class="row justify-content-center">-->
+<!--                        <div class="alert alert-danger error-city" role="alert" id="alert-success">-->
+<!--                            Успешно.-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
 
 {% endblock %}

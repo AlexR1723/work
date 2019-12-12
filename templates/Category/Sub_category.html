@@ -4,7 +4,10 @@
 
 <div class="container-fluid p-0">
     <div class="row justify-content-center">
-        <div class=" w-100 subcat_hdr_bg">
+        <div class=" w-100"  style=" height: auto;min-height: 20vh;
+                            background: url({{MEDIA_URL}}{{sub.image.url}}) 50% 50% no-repeat;
+                            background-size: cover;
+                        ">
             <div class="ques_hdr_bg_layout row justify-content-center align-items-center">
                 <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
                     <p class="m-0 fz_2rem line_height_1 text-center">{{sub.name}} </p>
@@ -17,12 +20,12 @@
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
             <div class="row pt-5 pb-2">
                 <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end add-task_blk align-content-center align-items-center align-items-md-center">
-                    <a href="#">
+                    <a href="{% url 'Create_task' %}">
                         <button class="btn add-tsk_btn mr-0 mr-md-4">Добавить задание</button>
                     </a>
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start align-content-center align-items-center align-items-md-center executors_blk">
-                    <span class="ml-4 mr-4">3237</span>
+                    <span class="ml-4 mr-4">{{count_user}}</span>
                     <p class="m-0 text-center">исполнителей в<br> данной категории</p>
                 </div>
             </div>
@@ -37,179 +40,101 @@
             <div class="row my-3">
                 <h2 class="w-100 text-left fz_2rem">Последние объявления</h2>
             </div>
-        </div>
+
 
         <div class="row m-0 justify-content-center advert-cards_blk">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-3 pb-3 px-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-3 pb-3">
                 <div class="row m-0 justify-content-start">
-                    <div class="col-12 p-0">
+                    {% for a in advert %}
+                    <div class="col-12 p-0 px-3">
                         <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
+                            <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-lg-2 col-xl-2 p-2 mx-auto">
+                                {% if a.photo_main != None %}
+                                <img src="{{MEDIA_URL}}{{a.photo_main.url}}" class="w-100 user-img" alt="">
+                                {% endif %}
                             </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
+                            <div class="col-12 col-sm-12 col-md-9 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                <div class="row align-items-center mb-2">
+                                    <label class="category-card_label m-0">{{a.title}}</label>
                                 </div>
                                 <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
+                                    <p class="mb-0 pr-0 advert-card_text pb-2">{{a.description}}</p>
+                                    <span>{{a.date}}</span>
                                 </div>
                             </div>
                             <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
+                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center">
+                                    {% if a.price != None %}
+                                    <label class="category-money_label p mb-2">{{a.price}} руб.</label>
+                                    {% endif %}
                                 </div>
                             </div>
-                            <hr class="category-line m-0 my-4">
                         </div>
                     </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
                             <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <label class="category-card_label m-0">Качественно выполню плиточные работы</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 advert-card_text pb-2">Качественно выполню плиточные работы. В основном специализируюсь на облицовке с/у. Опыт работы свыше 10 лет. В наличии весь необходимый п...</p>
-                                    <span>Сегодня</span>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">600 руб.</label>
-                                </div>
-                            </div>
-                            <hr class="category-line m-0 my-4">
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
+        </div>
 
-        <div class="row w-100">
-            <div class="col-md-12">
-                <nav aria-label="...">
-                    <ul class="pagination justify-content-center">
-
+        {% if k > 1 %}
+    <div class="row w-100">
+        <div class="col-md-12">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                    {% if page == 1 %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class = "page-link" href="{% url 'Page_subcategory' pre %}"><span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span></a>
+                    </li>
+                    {% endif %}
+                    {% for i in list_page %}
+                        {% if i != '...' %}
+                            {% if page == i %}
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        {{i}}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class = "page-link" href="{% url 'Page_subcategory' i %}">{{i}}</a>
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">{{i}}</span>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page == k %}
                         <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">«</span>
-                                <span class="sr-only">Previous</span>
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
                             </a>
                         </li>
-
-                        <li class="page-item active">
-                            <span class="page-link">
-                                1
-                                <span class="sr-only">(current)</span>
-                            </span>
-                        </li>
-
+                    {% else %}
                         <li class="page-item">
-                            <a class="page-link" href="">2</a>
+                            <a class = "page-link" href="{% url 'Page_subcategory' next %}"><span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span></a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href=""><span aria-hidden="true">»</span>
-                                <span class="sr-only">Next</span></a>
-                        </li>
-
-                        </ul>
-                    </nav>
-
-                </div>
+                    {% endif %}
+                    </ul>
+                </nav>
+            </div>
         </div>
+    {% endif %}
     </div>
 </div>
 

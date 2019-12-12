@@ -25,10 +25,16 @@ urlpatterns = [
 
 
     url(r'portfolio_save/', views.Portfolio_add, name='Portfolio_add'),
+    url(r'delete_portfolio/', views.Delete_portfolio, name='Delete_portfolio'),
     url(r'save/', views.Save, name='Save'),
-    url(r'save_phone/', views.Save_phone, name='Save_phone'),
+    # url(r'save_phone/', views.Save_phone, name='Save_phone'),
     url(r'save_photo/', views.Save_photo, name='Save_photo'),
     url(r'advert_add/', views.Advert_save, name='Advert_save'),
+    url(r'^create_task/$', views.Create_task, name="Create_task"),
+    url(r'subcategory_find/', views.SubcategoryFind),
+    url(r'save_task/', views.Save_task, name='Save_task'),
+    url(r'executor/', views.Executor),
+    url(r'customer/', views.Customer),
     url(r'change_password', views.change_password, name='change_password'),
     url(r'get_new_order', views.get_new_order, name='get_new_order'),
     url(r'get_notice_status', views.get_notice_status, name='get_notice_status'),
@@ -37,4 +43,12 @@ urlpatterns = [
     url(r'profile_set_subcategories', views.profile_set_subcategories, name='profile_set_subcategories'),
     url(r'profile_set_cities', views.profile_set_cities, name='profile_set_cities'),
     url(r'logout_user', views.logout_user, name='logout_user'),
+    url(r'^adverts/$', views.All_ads, name="All_ads"),
+    url(r'^adverts/(?P<page>[0-9]+)/$', views.All_ads_page, name="All_ads_page"),
+    url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_filter, name="Advert_filter"),
+    url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Advert_filter_page, name="Advert_filter_page"),
+    url(r'^advert_detail/(?P<id>[0-9]+)/$', views.Ads_details, name="Ads_details"),
+    url(r'^my_tasks/$', views.My_tasks_customer, name="My_tasks_customer"),
+
+    
 ]

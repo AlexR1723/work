@@ -23,18 +23,20 @@ def layout_regions_cities(request):
 def layout_name(request):
     layout = 'layout.html'
     username=''
+    photo=''
     user = request.session.get('username', 'no')
     if (user != 'no'):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
+        photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username
+    return layout,username,photo
 
 def Help(request):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -43,7 +45,7 @@ def Help(request):
 
 
 def Question_category(request, name):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -55,7 +57,7 @@ def Question_category(request, name):
     return render(request, 'Help/Question_category.html', locals())
 
 def Find_help(request, text):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -67,7 +69,7 @@ def Find_help(request, text):
     return render(request, 'Help/Search_results.html', locals())
 
 def questions(request, text):
-    layout, username = layout_name(request)
+    layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)

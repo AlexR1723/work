@@ -19,6 +19,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.All_category, name="All_category"),
     url(r'^sub_category/(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.sub_category, name="sub_category"),
+    url(r'^sub_category/(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Page_subcategory, name="Page_subcategory"),
     url(r'^(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Category_item, name="Category_item"),
     # url(r'questions/(?P<text>[А-Яа-я\s0-9-(),.?!/:;"”#№$%*+]+)/$', views.questions, name="questions"),
 ]

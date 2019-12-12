@@ -5,9 +5,11 @@ from .models import *
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
 from distutils.util import strtobool
+import datetime
 
 
-
+list_page = []
+ads_count = 0
 def layout_contact():
     contact=ContactType.objects.all()
     return contact
@@ -17,30 +19,37 @@ def layout_link():
 def layout_name(request):
     layout = 'layout.html'
     username=''
+    photo=''
     user = request.session.get('username', 'no')
     if (user != 'no'):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
+        photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username
+    return layout,username,photo
 
 # Create your views here.
 def Profile_settings(request):
-    layout, username = layout_name(request)
+    layout, username,photo = layout_name(request)
     if(username != ''):
         email = request.session.get('username', 'no')
         user=Users.objects.all().filter(auth_user__email=email)[0]
-        day=user.birthday.day
-        if(day<10):
-            day = '0' + str(user.birthday.day)
-        month = user.birthday.month
-        if(month<10):
-            month='0'+str(user.birthday.month)
-        year=user.birthday.year
-        print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
+        if(user.birthday==None):
+            day = ""
+            month = ""
+            year = ""
+        else:
+            day=user.birthday.day
+            if(day<10):
+                day = '0' + str(user.birthday.day)
+            month = user.birthday.month
+            if(month<10):
+                month='0'+str(user.birthday.month)
+            year=user.birthday.year
+        # print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
         subcategory=UserSubcategories.objects.all().filter(user__email=email)
         cities = UserCities.objects.all().filter(user__email=email)
         portfolio=UserPortfolio.objects.all().filter(user__email=email)
@@ -61,30 +70,31 @@ def Portfolio_add(request):
     return HttpResponseRedirect("/profile/settings")
 
 
+def Delete_portfolio(request):
+    if request.method == 'POST':
+        id=request.POST.get('delete_id')
+        id=id.split(',')
+        print(id)
+        for el in id:
+            if(el != ""):
+                user_portfolio=UserPortfolio.objects.get(id=el)
+                user_portfolio.delete()
+    return HttpResponseRedirect("/profile/settings")
+
 def Save(request):
     print('save')
     if request.method == 'POST':
-        # doc = request.FILES
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
         gender=''
-        if(request.POST.get('gender')==1):
+        if(request.POST.get('gender') == '1'):
             gender=Gender.objects.all().filter(name="Мужской")[0]
         else:
             gender = Gender.objects.all().filter(name="Женский")[0]
         user.birthday=request.POST.get('birthday')
         user.gender_id=gender
         user.about_me=request.POST.get('about')
-        user.save()
-
-    return HttpResponseRedirect("/profile/settings")
-
-def Save_phone(request):
-    print('save_phone')
-    if request.method == 'POST':
-        email = request.session.get('username', 'no')
-        user = Users.objects.all().filter(auth_user__email=email)[0]
-        user.phone=request.POST.get('phone')
+        user.phone = request.POST.get('phone')
         user.save()
 
     return HttpResponseRedirect("/profile/settings")
@@ -108,7 +118,7 @@ def Save_photo(request):
 
 
 def Choose_city(request):
-    layout, username = layout_name(request)
+    layout, username,photo = layout_name(request)
 
     regions = Region.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -128,7 +138,7 @@ def Choose_city(request):
 
 def Advert_add(request, name):
     print('advert')
-    layout, username = layout_name(request)
+    layout, username,photo = layout_name(request)
     if (username != ''):
         subcategory=SubCategory.objects.all().filter(name=name)[0]
         return render(request, 'Profile/Adverts_add.html', locals())
@@ -141,11 +151,16 @@ def Advert_save(request):
         doc = request.FILES
         email = request.session.get('username', 'no')
         title=request.POST.get('advert_title')
+        price=request.POST.get('advert_price')
+        date=datetime.datetime.now().date()
         sub=request.POST.get('advert_category')
         description=request.POST.get('advert_description')
         auth=AuthUser.objects.all().filter(email=email)[0]
         subcategory=SubCategory.objects.all().filter(name=sub)[0]
-        user_advert=UserAdvert(user=auth, subcategory=subcategory, title=title, description=description)
+        if (doc):
+            user_advert=UserAdvert(user=auth, subcategory=subcategory, title=title, description=description, photo_main=doc['main_file'], price=price, date=date)
+        else:
+            user_advert = UserAdvert(user=auth, subcategory=subcategory, title=title, description=description, price=price, date=date)
         user_advert.save()
         if (doc):
             for d in doc.getlist('files'):
@@ -157,7 +172,7 @@ def Advert_save(request):
 
 
 def Choose_categ(request):
-    layout, username = layout_name(request)
+    layout, username,photo = layout_name(request)
 
     category=Category.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -302,3 +317,251 @@ def profile_set_cities(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+def Create_task(request):
+    layout, username,photo = layout_name(request)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        if(Users.objects.all().filter(auth_user__email=email)[0].type.name=='Заказчик'):
+            category=Category.objects.all()
+            city=City.objects.all()
+            return render(request, 'Profile/Create_task.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+    else:
+        return HttpResponseRedirect("/login")
+
+def SubcategoryFind(request):
+    try:
+        cat = request.GET.get("id")
+        subcategory=SubCategory.objects.all().filter(category__id=cat)
+        subcategory_list = []
+        for s in subcategory:
+            subcategory_list.append(s.id)
+            subcategory_list.append(s.name)
+        return HttpResponse(json.dumps({'data': subcategory_list}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
+
+
+def Save_task(request):
+    print('task_save')
+    if request.method == 'POST':
+        doc = request.FILES
+        email = request.session.get('username', 'no')
+        sub=request.POST.get('subcategory')
+        title = request.POST.get('task_title')
+        description=request.POST.get('description')
+        city=request.POST.get('city')
+        address=request.POST.get('address')
+        date_=request.POST.get('date')
+        gridRadios=request.POST.get('gridRadios')
+        start_time=request.POST.get('start_time')
+        end_time=request.POST.get('end_time')
+        gridRadios2=request.POST.get('gridRadios2')
+        date_=date_.split('/')
+        date=date_[2]+'-'+date_[1]+'-'+date_[0]
+        pay=1
+
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        subcategory = SubCategory.objects.all().filter(id=sub)[0]
+        city=City.objects.all().filter(id=city)[0]
+        if(gridRadios2 == 'option1'):
+            pay=0
+        if(gridRadios=='option1'):
+            user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description, city=city,
+                                 address=address,date=date,pay=pay)
+        else:
+            user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description, city=city,
+                                 address=address, start_time=start_time,end_time=end_time, date=date, pay=pay)
+        user_task.save()
+        if (doc):
+            for d in doc.getlist('files'):
+                tast_photo = TaskPhoto(task=user_task, photo=d)
+                tast_photo.save()
+    return HttpResponseRedirect("/profile/settings")
+
+def Executor(request):
+    email = request.session.get('username', 'no')
+    user = Users.objects.all().filter(auth_user__email=email)[0]
+    user.type=UserType.objects.all().filter(name="Исполнитель")[0]
+    user.save()
+    return HttpResponse(json.dumps({'data': 'ok'}))
+
+def Customer(request):
+    email = request.session.get('username', 'no')
+    user = Users.objects.all().filter(auth_user__email=email)[0]
+    user.type=UserType.objects.all().filter(name="Заказчик")[0]
+    user.save()
+    return HttpResponse(json.dumps({'data': 'ok'}))
+
+def All_ads(request):
+    layout, username, photo = layout_name(request)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        filter=0
+        ads_categ=UserSubcategories.objects.all().filter(user=auth)
+        ads_count = UserAdvert.objects.filter(user=auth).order_by('-date').count()
+        if(ads_count<10):
+            ads=UserAdvert.objects.all().filter(user=auth).order_by('-date')[0:]
+        else:
+            ads = UserAdvert.objects.all().filter(user=auth).order_by('-date')[0:10]
+        k = 0
+        while (ads_count > 0):
+            k = k + 1
+            ads_count = ads_count - 10
+        list_page = []
+        page = 1
+        if (k > 6):
+            for i in range(1, 4):
+                list_page.append(i)
+            list_page.append('...')
+            for i in range(k - 2, k + 1):
+                list_page.append(i)
+        else:
+            for i in range(1, k + 1):
+                list_page.append(i)
+        pre = 1
+        next = page + 1
+        return render(request, 'Profile/All_ads.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+def All_ads_page(request,page):
+    layout, username, photo = layout_name(request)
+    if (username != ''):
+        filter = 0
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        filter = 0
+        ads_categ = UserSubcategories.objects.all().filter(user=auth)
+        ads_count = UserAdvert.objects.filter(user=auth).order_by('-date').count()
+        page = int(page)
+        start = page * 10 - 10
+        end = page * 10
+        ads=UserAdvert.objects.all().filter(user=auth).order_by('-date')[start:end]
+        k = 0
+        while (ads_count > 0):
+            k = k + 1
+            ads_count = ads_count - 10
+        Page = []
+        if k > 6:
+            # записать первые 3
+            for i in range(1, 4):
+                Page.append(i)
+            # записать середину
+            if page >= 3 and page <= (k - 2):
+                for i in range(page - 1, page + 2):
+                    Page.append(i)
+            # записать последние 3
+            for i in range(k - 2, k + 1):
+                Page.append(i)
+        else:
+            for i in range(1, k + 1):
+                Page.append(i)
+        # убрать повторения
+        Page = list(set(Page))
+        print(Page)
+        list_page = []
+        # добавить '...'
+        for i in range(len(Page) - 1):
+            list_page.append(Page[i])
+            if Page[i + 1] - Page[i] > 1:
+                list_page.append('...')
+        list_page.append(Page[len(Page) - 1])
+        pre = page - 1
+        next = page + 1
+        return render(request, 'Profile/All_ads.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+
+def Advert_filter(request, filter):
+    layout, username, photo = layout_name(request)
+    filter = str(filter)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        ads_categ=UserSubcategories.objects.all().filter(user=auth)
+        ads_count = UserAdvert.objects.filter(user=auth).filter(subcategory__name=filter).order_by('-date').count()
+        if (ads_count < 10):
+            ads=UserAdvert.objects.all().filter(user=auth).filter(subcategory__name=filter).order_by('-date')[0:]
+        else:
+            ads=UserAdvert.objects.all().filter(user=auth).filter(subcategory__name=filter).order_by('-date')[0:10]
+        k = 0
+        while (ads_count > 0):
+            k = k + 1
+            ads_count = ads_count - 10
+        list_page = []
+        page = 1
+        if (k > 6):
+            for i in range(1, 4):
+                list_page.append(i)
+            list_page.append('...')
+            for i in range(k - 2, k + 1):
+                list_page.append(i)
+        else:
+            for i in range(1, k + 1):
+                list_page.append(i)
+        pre = 1
+        next = page + 1
+        return render(request, 'Profile/All_ads.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+def Advert_filter_page(request, filter, page):
+    layout, username, photo = layout_name(request)
+    filter = str(filter)
+    if (username != ''):
+        filter = 0
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        ads_categ = UserSubcategories.objects.all().filter(user=auth)
+        ads_count = UserAdvert.objects.filter(user=auth).filter(subcategory__name=filter).order_by('-date').count()
+        page = int(page)
+        start = page * 10 - 10
+        end = page * 10
+        ads = UserAdvert.objects.all().filter(user=auth).filter(subcategory__name=filter).order_by('-date')[start:end]
+        k = 0
+        while (ads_count > 0):
+            k = k + 1
+            ads_count = ads_count - 10
+        Page = []
+        if k > 6:
+            # записать первые 3
+            for i in range(1, 4):
+                Page.append(i)
+            # записать середину
+            if page >= 3 and page <= (k - 2):
+                for i in range(page - 1, page + 2):
+                    Page.append(i)
+            # записать последние 3
+            for i in range(k - 2, k + 1):
+                Page.append(i)
+        else:
+            for i in range(1, k + 1):
+                Page.append(i)
+        # убрать повторения
+        Page = list(set(Page))
+        print(Page)
+        list_page = []
+        # добавить '...'
+        for i in range(len(Page) - 1):
+            list_page.append(Page[i])
+            if Page[i + 1] - Page[i] > 1:
+                list_page.append('...')
+        list_page.append(Page[len(Page) - 1])
+        pre = page - 1
+        next = page + 1
+        return render(request, 'Profile/All_ads.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+def Ads_details(request,id):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/Ads_details.html', locals())
+
+def My_tasks_customer(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/My_tasks_customer.html', locals())
