@@ -1655,7 +1655,8 @@ hr.line {
 }
 
 .category-card_label,
-.perform-category_label {
+.perform-category_label,
+.propose-category_label {
     font-size: 24px;
     line-height: 30px;
     color: #000000;
@@ -1669,14 +1670,16 @@ hr.line {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.category-money_label {
+.category-money_label,
+.propose-money_label {
     font-weight: bold;
     font-size: 2rem;
     line-height: 45px;
     color: #000000;
 }
 
-.category-apply_btn {
+.category-apply_btn,
+.propose-accept_btn {
     font-size: 1.3rem;
     font-weight: 400;
     background: #AF4B53;
@@ -1686,14 +1689,19 @@ hr.line {
     border-radius: 5px;
     transition: .3s;
 }
-
+.propose-accept_btn:hover {
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #000000;
+}
 .category-apply_btn:hover {
     border: 1px solid #AF4B53;
     color: #AF4B53;
     background: transparent;
 }
 
-.category-apply_btn:focus {
+.category-apply_btn:focus,
+.propose-accept_btn:focus {
     outline: #AF4B53;
 }
 
@@ -2109,7 +2117,8 @@ input[type=checkbox]:checked + label::after {
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
 }
-.perform-date_span {
+.perform-date_span,
+.propose-date_span {
     font-size: 1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
