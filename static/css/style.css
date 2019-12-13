@@ -1656,7 +1656,8 @@ hr.line {
 
 .category-card_label,
 .perform-category_label,
-.propose-category_label {
+.propose-category_label,
+.search-category_label {
     font-size: 24px;
     line-height: 30px;
     color: #000000;
@@ -1679,7 +1680,8 @@ hr.line {
 }
 
 .category-apply_btn,
-.propose-accept_btn {
+.propose-accept_btn,
+.search-task_btn {
     font-size: 1.3rem;
     font-weight: 400;
     background: #AF4B53;
@@ -1689,7 +1691,8 @@ hr.line {
     border-radius: 5px;
     transition: .3s;
 }
-.propose-accept_btn:hover {
+.propose-accept_btn:hover,
+.search-task_btn:hover {
     background: none;
     border: 1px solid #AF4B53;
     color: #000000;
@@ -2112,13 +2115,16 @@ input[type=checkbox]:checked + label::after {
     color: rgba(0, 0, 0, 0.5);
 }
 .advert-card_text,
-.perform-card_text {
+.perform-card_text,
+.search-card_text {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
 }
 .perform-date_span,
-.propose-date_span {
+.propose-date_span,
+.search-date_span,
+.count-users_span {
     font-size: 1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
