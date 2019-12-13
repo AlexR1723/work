@@ -51,5 +51,5 @@ urlpatterns = [
     url(r'^advert_detail/(?P<id>[0-9]+)/$', views.Ads_details, name="Ads_details"),
     url(r'^my_tasks/$', views.My_tasks_customer, name="My_tasks_customer"),
 
-    
+
 ]

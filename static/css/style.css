@@ -1012,6 +1012,9 @@ hr.line {
     object-fit: cover;
     border-radius: 50%;
 }
+.perfomer-tasks-blk .user-img {
+    height: auto;
+}
 .user-advert-img {
     width: 100%;
   height: 100%;
@@ -1651,26 +1654,34 @@ hr.line {
     color: #000000;
 }
 
-.category-card_label {
+.category-card_label,
+.perform-category_label,
+.propose-category_label,
+.search-category_label {
     font-size: 24px;
     line-height: 30px;
     color: #000000;
 }
-
+.perfomer-tasks-blk a:hover {
+    text-decoration: none;
+}
 .category-card_text {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
 }
 
-.category-money_label {
+.category-money_label,
+.propose-money_label {
     font-weight: bold;
     font-size: 2rem;
     line-height: 45px;
     color: #000000;
 }
 
-.category-apply_btn {
+.category-apply_btn,
+.propose-accept_btn,
+.search-task_btn {
     font-size: 1.3rem;
     font-weight: 400;
     background: #AF4B53;
@@ -1680,14 +1691,30 @@ hr.line {
     border-radius: 5px;
     transition: .3s;
 }
-
+.status-doing_span {
+    color: #FFCC00;
+    font-size: 1rem;
+    line-height: 23px;
+}
+.status-done_span {
+    color: #04C000;
+    font-size: 1rem;
+    line-height: 23px;
+}
+.propose-accept_btn:hover,
+.search-task_btn:hover {
+    background: none;
+    border: 1px solid #AF4B53;
+    color: #000000;
+}
 .category-apply_btn:hover {
     border: 1px solid #AF4B53;
     color: #AF4B53;
     background: transparent;
 }
 
-.category-apply_btn:focus {
+.category-apply_btn:focus,
+.propose-accept_btn:focus {
     outline: #AF4B53;
 }
 
@@ -2097,10 +2124,21 @@ input[type=checkbox]:checked + label::after {
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
 }
-.advert-card_text {
+.advert-card_text,
+.perform-card_text,
+.search-card_text {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
+}
+.perform-date_span,
+.propose-date_span,
+.search-date_span,
+.count-users_span {
+    font-size: 1rem;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.5);
+
 }
 .create-task_blk h2 {
     font-size: 1.8rem;
