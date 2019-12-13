@@ -318,13 +318,16 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect("/")
 
-def Create_task(request):
+def Create_task(request,text):
+    print('start')
     layout, username,photo = layout_name(request)
     if (username != ''):
         email = request.session.get('username', 'no')
         if(Users.objects.all().filter(auth_user__email=email)[0].type.name=='Заказчик'):
             category=Category.objects.all()
             city=City.objects.all()
+            head=text
+            print(head)
             return render(request, 'Profile/Create_task.html', locals())
         else:
             return HttpResponseRedirect("/profile/settings")
@@ -564,4 +567,29 @@ def Ads_details(request,id):
 
 def My_tasks_customer(request):
     layout, username, photo = layout_name(request)
+    if username=='':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Заказчик'):
+            us = request.session.get('username')
+            user=AuthUser.objects.get(username=us).id
+            subs=UserSubcategories.objects.filter(user_id=user)
+            cats=[]
+            for i in subs:
+                el=SubCategory.objects.get(id=i.subcategories_id).name
+                if el not in cats:
+                    cats.append(el)
+            # print(cats)
+            tasks=UserTask.objects.filter(user_id=user).filter(task_status=UserTaskStatus.objects.get(name='В работе').id)
+            # print(tasks[0].title)
+            # print(tasks[1].title)
+            # print(subs[0].id)
+            fav_exec=UserFavoritesExecutor.objects.filter(user_id=user).order_by('-id')
+
+        else:
+            return HttpResponseRedirect("/profile/settings")
+
+
+
     return render(request, 'Profile/My_tasks_customer.html', locals())

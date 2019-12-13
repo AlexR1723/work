@@ -187,8 +187,27 @@ $('#res_list_input').on('click', 'button ', function (event) {
 
 $("#btn_head_submit").click(function (event) {
     let text = document.getElementById('main_input_header').value
-    if (text != '') {
-        window.location.href = "/find/" + text.trim().toLowerCase();
+    if (text.trim() != '') {
+        let btn_text = document.getElementsByClassName('sid_focus')[0]
+        if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == text.trim()) {
+            window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
+        }
+        // else {
+        //     window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+        // }
+    }
+});
+
+$("#btn_main_submit").click(function (event) {
+    let text = document.getElementById('main_input').value
+    if (text.trim() != '') {
+        let btn_text = document.getElementsByClassName('sid_focus')[0]
+        if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == text.trim()) {
+            window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
+        }
+        // else {
+        //     window.location.href = "/help/find_help/" + text.trim().toLowerCase();
+        // }
     }
 });
 
@@ -290,23 +309,10 @@ function up_down_item(nav, el) {
     }
     for (let i = 0; i < elems.length; i++) {
         if (i != el_num) {
-            // elems[i].setAttribute('class', 'search_input_drop_el w-100 px-2 py-2')
             elems[i].setAttribute('class', 'w-100 align-items-center px-2 py-1 search_input_drop_el')
         } else {
-            // elems[i].setAttribute('class', 'search_input_drop_el w-100 px-2 py-2 sid_focus')
             elems[i].setAttribute('class', 'w-100 align-items-center px-2 py-1 search_input_drop_el sid_focus')
-            // let text = elems[i].childNodes[0].childNodes[0].childNodes[0].textContent;
-            // let text = elems[i].childNodes[0].childNodes[0].childNodes[0].textContent;
-            // document.getElementById(el).value = text
             document.getElementById(el).value = elems[i].childNodes[0].childNodes[0].childNodes[0].textContent;
-
-            // if (el != 'help_input') {
-            //     document.getElementById('header_search_link').setAttribute('href', "/find/" + text)
-            // } else {
-            //     document.getElementById('a_search_input').setAttribute('href', "/find/" + text)
-            // }
-
-            // $('#header_search_link').href=elems[i].parentElement.href
         }
     }
 }
@@ -320,14 +326,15 @@ function show_item(val, code, list, el) {
             up_down_item('up', el)
             break;
         case 13:
+            let text= document.getElementById(el).value
             if (el != 'help_input') {
-                window.location.href = "/find/" + val.trim().toLowerCase();
+                 if (text.trim() != ''){
+                      window.location.href = "/category/sub_category/" + val.trim().toLowerCase();
+                 }
             } else {
 
-                let text = document.getElementById('help_input').value
+                // let text = document.getElementById('help_input').value
                 if (text.trim() != '') {
-                    // window.location.href = "/help/find_help/" + text.trim().toLowerCase();
-                    // window.location.href = "/help/questions/" + text.trim().toLowerCase();
                     let btn_text = document.getElementsByClassName('sid_focus')[0]
                     if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == val.trim()) {
                         window.location.href = "/help/questions/" + val.trim().toLowerCase();
@@ -335,17 +342,7 @@ function show_item(val, code, list, el) {
                         window.location.href = "/help/find_help/" + val.trim().toLowerCase();
                     }
                 }
-
-
-                // let btn_text = document.getElementsByClassName('sid_focus')[0];
-                // if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == val.trim()) {
-                //     window.location.href = "/help/questions/" + val.trim().toLowerCase();
-                // } else {
-                //     window.location.href = "/help/find_help/" + val.trim().toLowerCase();
-                // }
-
             }
-
             break;
         default:
             var res;
@@ -406,6 +403,10 @@ $("#main_input").keyup(function (event) {
 $("#main_input_header").keyup(function (event) {
     show_item(this.value, event.keyCode, 'res_list_header', 'main_input_header');
 })
+
+// $("#main_input_body").keyup(function (event) {
+//     show_item(this.value, event.keyCode, 'res_list_main', 'main_input_body');
+// })
 // $("#a_search_input").click(function (event) {
 //     event.preventDefault();
 //     let text = document.getElementById('main_input_header').value

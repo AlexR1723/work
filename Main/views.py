@@ -319,16 +319,21 @@ def Privacy_rules(request):
     return render(request, 'Main/Privacy_rules.html', locals())
 
 
-def Find_category(request, text):
-    layout, username, photo = layout_name(request)
-    contact = layout_contact()
-    link = layout_link()
-    city, regs, regions = layout_regions_cities(request)
-
-    # print(text)
-    id=text
-
-    return render(request, 'Main/Dev.html', locals())
+# def Find_category(request, text):
+#     layout, username, photo = layout_name(request)
+#     contact = layout_contact()
+#     link = layout_link()
+#     city, regs, regions = layout_regions_cities(request)
+#
+#     if username!='':
+#         sub = SubCategory.objects.get(name__icontains=text)
+#         # return render(request, 'Main/Dev.html', locals())
+#         # return render(request, 'Main/Dev.html', locals())
+#         return render(request, 'Category/Sub_category.html', locals())
+#     # print(text)
+#     # id=text
+#
+#     return render(request, 'Main/Dev.html', locals())
 
 def search_input_category(request):
     cat = []

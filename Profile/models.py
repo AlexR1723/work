@@ -216,6 +216,15 @@ class UserPortfolio(models.Model):
         db_table = 'user_portfolio'
 
 
+class UserTaskStatus(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_status'
+
+
+
 class UserTask(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
@@ -228,6 +237,7 @@ class UserTask(models.Model):
     end_time = models.TimeField(blank=True, null=True)
     pay = models.TextField(blank=True, null=True)
     photo_main = models.ImageField(upload_to='uploads/task/',max_length=500, blank=True, null=True)
+    task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
 
     class Meta:
         managed = False
@@ -241,3 +251,12 @@ class TaskPhoto(models.Model):
     class Meta:
         managed = False
         db_table = 'task_photo'
+
+
+class UserFavoritesExecutor(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True, related_name='user_id')
+    exec = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True, related_name='executor_id')
+
+    class Meta:
+        managed = False
+        db_table = 'user_favorites_executor'
