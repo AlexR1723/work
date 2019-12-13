@@ -1691,6 +1691,16 @@ hr.line {
     border-radius: 5px;
     transition: .3s;
 }
+.status-doing_span {
+    color: #FFCC00;
+    font-size: 1rem;
+    line-height: 23px;
+}
+.status-done_span {
+    color: #04C000;
+    font-size: 1rem;
+    line-height: 23px;
+}
 .propose-accept_btn:hover,
 .search-task_btn:hover {
     background: none;
