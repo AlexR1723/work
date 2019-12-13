@@ -1012,6 +1012,9 @@ hr.line {
     object-fit: cover;
     border-radius: 50%;
 }
+.perfomer-tasks-blk .user-img {
+    height: auto;
+}
 .user-advert-img {
     width: 100%;
   height: 100%;
@@ -1651,12 +1654,15 @@ hr.line {
     color: #000000;
 }
 
-.category-card_label {
+.category-card_label,
+.perform-category_label {
     font-size: 24px;
     line-height: 30px;
     color: #000000;
 }
-
+.perfomer-tasks-blk a:hover {
+    text-decoration: none;
+}
 .category-card_text {
     font-size: 1.1rem;
     line-height: 25px;
@@ -2097,10 +2103,17 @@ input[type=checkbox]:checked + label::after {
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
 }
-.advert-card_text {
+.advert-card_text,
+.perform-card_text {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
+}
+.perform-date_span {
+    font-size: 1rem;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.5);
+
 }
 .create-task_blk h2 {
     font-size: 1.8rem;
