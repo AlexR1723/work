@@ -1,10 +1,11 @@
-function counter(counts) {
+function counter(counts,is_scroll) {
     let blockStatus = true;
     let inc = 0
     let target_blocks = ['div_counter1', 'div_counter2', 'div_counter3']
     let target_blocks1 = [$("#counter1"), $("#counter2"), $("#counter3")]
     // let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3"),]
-    $(window).scroll(function () {
+    if (is_scroll==true){
+        $(window).scroll(function () {
         for (let i = 0; i < target_blocks.length; i++) {
             let pos = $(window).scrollTop()
             let height = $(window).height()
@@ -30,6 +31,33 @@ function counter(counts) {
         }
 
     });
+    }
+    else {
+        for (let i = 0; i < target_blocks.length; i++) {
+            // let pos = $(window).scrollTop()
+            // let height = $(window).height()
+            // let block = document.getElementById(target_blocks[i]).getBoundingClientRect().top
+            // let res = height - block - (height * 0.3)
+            // if (res > 0 && blockStatus) {
+                let start_val = document.getElementById(target_blocks[i]).textContent
+                // start_val=start_val/2
+                $({numberValue: start_val}).animate({numberValue: counts[i]}, {
+                    duration: 5000, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
+                    easing: "linear",
+                    step: function (val) {
+                        // $("#counter").html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                        target_blocks1[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                    }
+                });
+                // console.log('added? inc=' + inc)
+                // inc++
+            // }
+        }
+        // if (inc > 1) {
+        //     blockStatus = false; // Запрещаем повторное выполнение функции до следующей перезагрузки страницы.
+        // }
+    }
+
 }
 
 var list_subhelp;
@@ -326,11 +354,11 @@ function show_item(val, code, list, el) {
             up_down_item('up', el)
             break;
         case 13:
-            let text= document.getElementById(el).value
+            let text = document.getElementById(el).value
             if (el != 'help_input') {
-                 if (text.trim() != ''){
-                      window.location.href = "/category/sub_category/" + val.trim().toLowerCase();
-                 }
+                if (text.trim() != '') {
+                    window.location.href = "/category/sub_category/" + val.trim().toLowerCase();
+                }
             } else {
 
                 // let text = document.getElementById('help_input').value
@@ -415,16 +443,44 @@ $("#main_input_header").keyup(function (event) {
 // });
 $("#login_email").keyup(function (event) {
     // show_item(this.value, event.keyCode, 'res_list_input', 'help_input');
-    if (event.keyCode==13){
+    if (event.keyCode == 13) {
         login()
     }
 })
 $("#login_pass").keyup(function (event) {
-    if (event.keyCode==13){
+    if (event.keyCode == 13) {
         login()
     }
 })
 
+$('#task_filter_select').change(function () {
+    var value = $('#task_filter_select option:selected').val();
+    if (value == 0)
+        window.location.href = '/profile/my_tasks/';
+    else
+        window.location.href = '/profile/my_tasks/' + value;
+});
+// let double = function(num)
+// function send_ajax(url,values){
+let send_ajax = function (url, values) {
+    let result
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: url,
+        data: {
+            values: values
+        },
+        success: function (data) {
+            result = data
+        },
+        error: function (data) {
+            result = 'error'
+        }
+    })
+    return result
+}
 
 
 window.onload = function () {
@@ -436,8 +492,13 @@ window.onload = function () {
         let check1 = document.getElementById('counter1')
         let check2 = document.getElementById('counter2')
         let check3 = document.getElementById('counter3')
-        if (check1 != null && check2 != null && check3 != null && window.location.href.indexOf('register') == -1) {
-            counter([10000, 10, 70000])
+        // if (check1 != null && check2 != null && check3 != null && window.location.href.indexOf('register') == -1) {
+        if (check1 != null && check2 != null && check3 != null) {
+            // counter([10000, 10, 70000])
+            if (window.location.href.indexOf('register') != -1) {
+                let vals = send_ajax('get_counter_values', 'register_exec,count_tasks,register_perf')
+                counter([vals[0], vals[1], vals[2]],false)
+            }
         }
     } catch (e) {
 
@@ -483,7 +544,7 @@ $("#btn_profile_change_pass").click(function () {
     })
 });
 
-function login(){
+function login() {
     let email = document.getElementById('login_email')
     let pass = document.getElementById('login_pass')
     document.getElementById('login_email').setAttribute('class', 'form-control')
@@ -697,7 +758,7 @@ $('#email-dispatch_input').click(function () {
     })
 });
 
-let index_cat=0;
+let index_cat = 0;
 $('#profile_list_categories').on('click', 'input', function (event) {
     let id = this.id
     let status;
@@ -716,18 +777,18 @@ $('#profile_list_categories').on('click', 'input', function (event) {
         },
         url: 'profile_set_subcategories',
         success: function (data) {
-            $('#'+id).prop('checked', status);
+            $('#' + id).prop('checked', status);
             add_alert_suc(index_cat);
-            index_cat=index_cat+1;
+            index_cat = index_cat + 1;
         },
         error: function (data) {
-            $('#'+id).prop('checked', !status);
+            $('#' + id).prop('checked', !status);
             add_alert_error(index_cat);
-            index_cat=index_cat+1;
+            index_cat = index_cat + 1;
         }
     })
 });
-let index_city=0;
+let index_city = 0;
 $('#profile_list_cities').on('click', 'input', function (event) {
     let id = this.id
     let status;
@@ -747,18 +808,17 @@ $('#profile_list_cities').on('click', 'input', function (event) {
         },
         url: 'profile_set_cities',
         success: function (data) {
-            $('#'+id).prop('checked', status);
+            $('#' + id).prop('checked', status);
             add_alert_suc(index_city);
-            index_city=index_city+1;
+            index_city = index_city + 1;
         },
         error: function (data) {
-            $('#'+id).prop('checked', !status);
+            $('#' + id).prop('checked', !status);
             add_alert_error(index_city);
-            index_city=index_city+1;
+            index_city = index_city + 1;
         }
     })
 });
-
 
 
 $("#safety_btn_customer").click(function () {
@@ -1013,33 +1073,33 @@ $(".any-time_radio").click(function () {
 //     phone.removeAttribute('readonly');
 // });
 $("#photo_edit").click(function () {
-    var lbl=document.getElementById('file_label_edit');
+    var lbl = document.getElementById('file_label_edit');
     lbl.classList.add('d-none');
-    var form=document.getElementById('file_ok');
+    var form = document.getElementById('file_ok');
     form.classList.remove('d-none');
 
 });
 $("#profile_edit").click(function () {
-    var lbl=document.getElementById('profile_edit');
+    var lbl = document.getElementById('profile_edit');
     lbl.classList.add('d-none');
-    var birtday_l=document.getElementById('birthday-label');
+    var birtday_l = document.getElementById('birthday-label');
     birtday_l.classList.add('d-none');
-    var birtday=document.getElementById('birthday-input');
+    var birtday = document.getElementById('birthday-input');
     birtday.classList.remove('d-none');
     birtday.classList.add('d-inline-block');
-    var gender_l=document.getElementById('gender-label');
+    var gender_l = document.getElementById('gender-label');
     gender_l.classList.add('d-none');
-    var gender=document.getElementById('gender-input');
+    var gender = document.getElementById('gender-input');
     gender.classList.remove('d-none');
     gender.classList.add('d-inline-block');
-    var about_l=document.getElementById('about-label');
+    var about_l = document.getElementById('about-label');
     about_l.classList.add('d-none');
-    var about=document.getElementById('about-input');
+    var about = document.getElementById('about-input');
     about.classList.remove('d-none');
     about.classList.add('d-inline-block');
-    var phone_l=document.getElementById('phone-label');
+    var phone_l = document.getElementById('phone-label');
     phone_l.classList.add('d-none');
-    var phone=document.getElementById('phone-input');
+    var phone = document.getElementById('phone-input');
     phone.classList.remove('d-none');
     phone.classList.add('d-inline-block');
     // var info_block=document.getElementById('info-inf-blk');
@@ -1047,28 +1107,28 @@ $("#profile_edit").click(function () {
     $('.collapse').collapse('show');
 });
 $("#cancel_info_btn").click(function () {
-    var lbl=document.getElementById('profile_edit');
+    var lbl = document.getElementById('profile_edit');
     lbl.classList.remove('d-none');
     // var form=document.getElementById('file_ok');
     // form.classList.add('d-none');
-     var birtday_l=document.getElementById('birthday-label');
+    var birtday_l = document.getElementById('birthday-label');
     birtday_l.classList.remove('d-none');
-    var birtday=document.getElementById('birthday-input');
+    var birtday = document.getElementById('birthday-input');
     birtday.classList.add('d-none');
     birtday.classList.remove('d-inline-block');
-    var gender_l=document.getElementById('gender-label');
+    var gender_l = document.getElementById('gender-label');
     gender_l.classList.remove('d-none');
-    var gender=document.getElementById('gender-input');
+    var gender = document.getElementById('gender-input');
     gender.classList.add('d-none');
     gender.classList.remove('d-inline-block');
-    var about_l=document.getElementById('about-label');
+    var about_l = document.getElementById('about-label');
     about_l.classList.remove('d-none');
-    var about=document.getElementById('about-input');
+    var about = document.getElementById('about-input');
     about.classList.add('d-none');
     about.classList.remove('d-inline-block');
-    var phone_l=document.getElementById('phone-label');
+    var phone_l = document.getElementById('phone-label');
     phone_l.classList.remove('d-none');
-    var phone=document.getElementById('phone-input');
+    var phone = document.getElementById('phone-input');
     phone.classList.add('d-none');
     phone.classList.remove('d-inline-block');
     // var info_block=document.getElementById('info-inf-blk');
@@ -1077,19 +1137,16 @@ $("#cancel_info_btn").click(function () {
 });
 $("#save_info_btn").click(function () {
     var date = $("#birthday-input").val();
-    var gender=$('#gender-input option:selected').val();
+    var gender = $('#gender-input option:selected').val();
     var about = $("#about-input").val();
     var phone = $("#phone-input").val();
-    if(date!="" && gender!="" && about!="" && phone!="")
-    {
+    if (date != "" && gender != "" && about != "" && phone != "") {
         $("#save_profile").click();
-    }
-    else
-    {
+    } else {
         $("#alert-danger").show('slow');
-            setTimeout(function () {
-                $("#alert-danger").hide('slow');
-            }, 5000);
+        setTimeout(function () {
+            $("#alert-danger").hide('slow');
+        }, 5000);
     }
 
 
@@ -1111,207 +1168,195 @@ $("#save_info_btn").click(function () {
 
 // $ ( ' input [name = "date"] ' ). daterangepicker ();
 
-$(function(){
- $('#date').daterangepicker({
- singleDatePicker: true,
- });
+$(function () {
+    $('#date').daterangepicker({
+        singleDatePicker: true,
+    });
 });
 
 $("#task_category").change(function () {
-        var cat=$('#task_category option:selected').val();
-        if(cat!=0){
-             $.ajax({
-                type:"GET",
-                dataType:"json",
-                url:'/profile/subcategory_find/',
-                data: {
-                    id:cat
-                },
-                success: function(data) {
-                    outputSubcategory( data);
-                    },
-                error: function (data) {
-                    alert('Error');
-                }
-            })
-        }
-        else{
-            $('#modelAvto').attr('disabled',true);
-        }
-    });
+    var cat = $('#task_category option:selected').val();
+    if (cat != 0) {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/profile/subcategory_find/',
+            data: {
+                id: cat
+            },
+            success: function (data) {
+                outputSubcategory(data);
+            },
+            error: function (data) {
+                alert('Error');
+            }
+        })
+    } else {
+        $('#modelAvto').attr('disabled', true);
+    }
+});
+
 function outputSubcategory(data) {
     $('#task_subcategory').removeAttr('disabled');
-    var select=document.getElementById('task_subcategory');
-    while(select.length!=0) {
-            select.remove(0);
-     }
-     // var option = document.createElement("option");
-     //    option.value = 0;
-     //    option.text = '-Выберите модель-';
-     //    select.appendChild(option);
-    for (var i = 0; i < data.data.length;i=i+2) {
+    var select = document.getElementById('task_subcategory');
+    while (select.length != 0) {
+        select.remove(0);
+    }
+    // var option = document.createElement("option");
+    //    option.value = 0;
+    //    option.text = '-Выберите модель-';
+    //    select.appendChild(option);
+    for (var i = 0; i < data.data.length; i = i + 2) {
         var option = document.createElement("option");
         option.value = data.data[i];
-        option.text = data.data[i+1];
+        option.text = data.data[i + 1];
         select.appendChild(option);
     }
 }
+
 $("#customer").click(function () {
 
-             $.ajax({
-                type:"GET",
-                dataType:"json",
-                url:'/profile/customer/',
-                success: function(data) {
-                    location.reload(true)
-                    },
-                error: function (data) {
-                    alert('Error');
-                }
-            })
-    });
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: '/profile/customer/',
+        success: function (data) {
+            location.reload(true)
+        },
+        error: function (data) {
+            alert('Error');
+        }
+    })
+});
 $("#executor").click(function () {
 
-             $.ajax({
-                type:"GET",
-                dataType:"json",
-                url:'/profile/executor/',
-                success: function(data) {
-                    location.reload(true)
-                    },
-                error: function (data) {
-                    alert('Error');
-                }
-            })
-    });
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: '/profile/executor/',
+        success: function (data) {
+            location.reload(true)
+        },
+        error: function (data) {
+            alert('Error');
+        }
+    })
+});
 
-function add_alert_suc(index)
-{
-    var el=document.getElementById('alerts-block');
-    var row=document.createElement('div');
-    row.setAttribute('class','row justify-content-center');
-    var al=document.createElement('div');
-    al.setAttribute('class','alert alert-success suc-city');
-    al.setAttribute('role','alert');
-    al.setAttribute('id','alert_success'+index);
-    al.setAttribute('style','display: none;');
-    al.textContent='Сохранено!';
-    row.insertAdjacentHTML('beforeend',al.outerHTML);
-    el.insertAdjacentHTML('beforeend',row.outerHTML);
-     $("#alert_success"+index).show('slow');
-     setTimeout(function () {
-         $("#alert_success"+index).hide('slow');
-         }, 5000);
+function add_alert_suc(index) {
+    var el = document.getElementById('alerts-block');
+    var row = document.createElement('div');
+    row.setAttribute('class', 'row justify-content-center');
+    var al = document.createElement('div');
+    al.setAttribute('class', 'alert alert-success suc-city');
+    al.setAttribute('role', 'alert');
+    al.setAttribute('id', 'alert_success' + index);
+    al.setAttribute('style', 'display: none;');
+    al.textContent = 'Сохранено!';
+    row.insertAdjacentHTML('beforeend', al.outerHTML);
+    el.insertAdjacentHTML('beforeend', row.outerHTML);
+    $("#alert_success" + index).show('slow');
+    setTimeout(function () {
+        $("#alert_success" + index).hide('slow');
+    }, 5000);
 }
 
-function add_alert_error(index)
-{
-    var el=document.getElementById('alerts-block');
-    var row=document.createElement('div');
-    row.setAttribute('class','row justify-content-center');
-    var al=document.createElement('div');
-    al.setAttribute('class','alert alert-danger error-city');
-    al.setAttribute('role','alert');
-    al.setAttribute('id','alert'+index);
-    al.setAttribute('style','display: none;');
-    al.textContent='Что-то пошлоне так, попробуйте позже!';
-    row.insertAdjacentHTML('beforeend',al.outerHTML);
-    el.insertAdjacentHTML('beforeend',row.outerHTML);
-     $("#alert"+index).show('slow');
-     setTimeout(function () {
-         $("#alert"+index).hide('slow');
-         }, 5000);
+function add_alert_error(index) {
+    var el = document.getElementById('alerts-block');
+    var row = document.createElement('div');
+    row.setAttribute('class', 'row justify-content-center');
+    var al = document.createElement('div');
+    al.setAttribute('class', 'alert alert-danger error-city');
+    al.setAttribute('role', 'alert');
+    al.setAttribute('id', 'alert' + index);
+    al.setAttribute('style', 'display: none;');
+    al.textContent = 'Что-то пошлоне так, попробуйте позже!';
+    row.insertAdjacentHTML('beforeend', al.outerHTML);
+    el.insertAdjacentHTML('beforeend', row.outerHTML);
+    $("#alert" + index).show('slow');
+    setTimeout(function () {
+        $("#alert" + index).hide('slow');
+    }, 5000);
 }
 
-$(document).ready(function() {
- 
-    $('input[type="file"]').change(function(){
+$(document).ready(function () {
+
+    $('input[type="file"]').change(function () {
         if ($(this).val() != '') {
-            if($(this)[0].files.length==1)
-            {
+            if ($(this)[0].files.length == 1) {
                 $('.js-fileName').text($(this).val());
-            }
-            else {
+            } else {
                 $('.js-fileName').text('Выбрано файлов: ' + $(this)[0].files.length);
             }
-        }
-        else {
+        } else {
             $('.js-fileName').text('Выберите файлы');
         }
-    });
- 
+    });
+
 });
 
-$(document).ready(function(){
-  $("#liDropdown").hover( ()=>{
-    if($("#liDropdown").hasClass("show")){
-      $("#liDropdown").removeClass("show")
-      $("#divDropdown-menu").removeClass("show")
-      document.getElementById("navbarDropdown").setAttribute("aria-expanded", "false")
+$(document).ready(function () {
+    $("#liDropdown").hover(() => {
+            if ($("#liDropdown").hasClass("show")) {
+                $("#liDropdown").removeClass("show")
+                $("#divDropdown-menu").removeClass("show")
+                document.getElementById("navbarDropdown").setAttribute("aria-expanded", "false")
 
-    }else{
-      if($("#liDropdown").hasClass("active")){
-        document.getElementById("liDropdown").setAttribute("class","nav-item dropdown show active")
-      }
-      else{
-        document.getElementById("liDropdown").setAttribute("class","nav-item dropdown show")
-      }
-      document.getElementById("navbarDropdown").setAttribute("aria-expanded", "true")
-      document.getElementById("divDropdown-menu").setAttribute("class","dropdown-menu show")
-    }
+            } else {
+                if ($("#liDropdown").hasClass("active")) {
+                    document.getElementById("liDropdown").setAttribute("class", "nav-item dropdown show active")
+                } else {
+                    document.getElementById("liDropdown").setAttribute("class", "nav-item dropdown show")
+                }
+                document.getElementById("navbarDropdown").setAttribute("aria-expanded", "true")
+                document.getElementById("divDropdown-menu").setAttribute("class", "dropdown-menu show")
+            }
 
-  }
-)
+        }
+    )
 });
 $("#portfolio_edit").click(function () {
-    var el=document.getElementsByClassName('trash_portfolio');
-    for (i=0;i<el.length;i++)
-    {
+    var el = document.getElementsByClassName('trash_portfolio');
+    for (i = 0; i < el.length; i++) {
         el[i].classList.remove('d-none');
     }
     $("#portfolio_del_block").removeClass('d-none');
 });
 $("#cencel_portfolio_del_btn").click(function () {
-    var el=document.getElementsByClassName('trash_portfolio');
-    for (i=0;i<el.length;i++)
-    {
+    var el = document.getElementsByClassName('trash_portfolio');
+    for (i = 0; i < el.length; i++) {
         el[i].classList.add('d-none');
     }
     $("#portfolio_del_block").addClass('d-none');
 });
 $(".trash_portfolio").click(function () {
     // var el=$(this);
-    if(this.classList.contains('far'))
-    {
+    if (this.classList.contains('far')) {
         this.classList.remove(('far'));
         this.classList.add('fas');
-    }
-    else
-    {
+    } else {
         this.classList.remove(('fas'));
         this.classList.add('far');
     }
 });
 $("#portfolio_del_btn").click(function () {
     $('#myModal').modal('show')
-    var list=""
-    var el=document.getElementsByClassName('trash_portfolio');
-    var form=document.getElementById('delete_portfolio_icon');
-    for (i=0;i<el.length;i++)
-    {
-        if(el[i].classList.contains('fas'))
-        {
+    var list = ""
+    var el = document.getElementsByClassName('trash_portfolio');
+    var form = document.getElementById('delete_portfolio_icon');
+    for (i = 0; i < el.length; i++) {
+        if (el[i].classList.contains('fas')) {
             // list=list+
-            var id=el[i].previousElementSibling;
-            list=list+id.value+",";
+            var id = el[i].previousElementSibling;
+            list = list + id.value + ",";
         }
     }
-    var inp=document.createElement('input');
-    inp.setAttribute('type','hidden');
-    inp.setAttribute('name',"delete_id");
-    inp.setAttribute('value',list);
-            // form.insertAdjacentHTML('beforeend',inp.outerHTML);
-    form.insertAdjacentHTML('beforeend',inp.outerHTML);
+    var inp = document.createElement('input');
+    inp.setAttribute('type', 'hidden');
+    inp.setAttribute('name', "delete_id");
+    inp.setAttribute('value', list);
+    // form.insertAdjacentHTML('beforeend',inp.outerHTML);
+    form.insertAdjacentHTML('beforeend', inp.outerHTML);
 
 });
 // $(".trash_portfolio").click(function () {

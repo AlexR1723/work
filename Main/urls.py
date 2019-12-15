@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'login_user', views.login_user, name='login_user'),
     url(r'search_input_category', views.search_input_category, name='search_input_category'),
     url(r'/set_session_city/', views.set_session_city, name='set_session_city'),
+    url(r'get_counter_values', views.get_counter_values, name='get_counter_values'),
 
     url(r'^dev/$', views.Dev, name="Dev"),
     # url(r'^dev/(?P<text>[А-Яа-я\s0-9-()/a-z,]+)/$', views.Dev, name="Dev"),

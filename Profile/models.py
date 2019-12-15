@@ -254,8 +254,8 @@ class TaskPhoto(models.Model):
 
 
 class UserFavoritesExecutor(models.Model):
-    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True, related_name='user_id')
-    exec = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True, related_name='executor_id')
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    exec = models.ForeignKey('Users', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False

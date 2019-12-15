@@ -574,22 +574,41 @@ def My_tasks_customer(request):
         if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Заказчик'):
             us = request.session.get('username')
             user=AuthUser.objects.get(username=us).id
-            subs=UserSubcategories.objects.filter(user_id=user)
-            cats=[]
-            for i in subs:
-                el=SubCategory.objects.get(id=i.subcategories_id).name
+            task=UserTask.objects.filter(user_id=user).filter(task_status=UserTaskStatus.objects.get(name='В работе').id).order_by('-date')
+            cats = []
+            for i in task:
+                el = SubCategory.objects.get(id=i.subcategory_id).name
                 if el not in cats:
                     cats.append(el)
-            # print(cats)
-            tasks=UserTask.objects.filter(user_id=user).filter(task_status=UserTaskStatus.objects.get(name='В работе').id)
-            # print(tasks[0].title)
-            # print(tasks[1].title)
-            # print(subs[0].id)
+            cats.sort()
+            filter=0
             fav_exec=UserFavoritesExecutor.objects.filter(user_id=user).order_by('-id')
 
         else:
             return HttpResponseRedirect("/profile/settings")
+    return render(request, 'Profile/My_tasks_customer.html', locals())
 
+def My_tasks_customer_filter(request,filter):
+    layout, username, photo = layout_name(request)
+    if username=='':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Заказчик'):
+            us = request.session.get('username')
+            user=AuthUser.objects.get(username=us).id
+            filter=str(filter)
+            cat=SubCategory.objects.get(name__icontains=filter).id
+            subs_task=UserTask.objects.filter(user_id=user).filter(task_status=UserTaskStatus.objects.get(name='В работе').id).order_by('-date')
+            task=subs_task.filter(subcategory_id=cat)
+            cats = []
+            for i in subs_task:
+                el = SubCategory.objects.get(id=i.subcategory_id).name
+                if el not in cats:
+                    cats.append(el)
+            cats.sort()
+            fav_exec=UserFavoritesExecutor.objects.filter(user_id=user).order_by('-id')
 
-
+        else:
+            return HttpResponseRedirect("/profile/settings")
     return render(request, 'Profile/My_tasks_customer.html', locals())
