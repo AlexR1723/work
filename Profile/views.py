@@ -612,3 +612,19 @@ def My_tasks_customer_filter(request,filter):
         else:
             return HttpResponseRedirect("/profile/settings")
     return render(request, 'Profile/My_tasks_customer.html', locals())
+
+
+def My_tasks_executor(request):
+    layout, username, photo = layout_name(request)
+    id = request.GET.get('id')
+    print(id)
+
+    return render(request, 'Profile/My_tasks_executor.html', locals())
+
+def Fav_executor(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/Fav_executor.html', locals())
+
+def Offer(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/Offers.html', locals())
