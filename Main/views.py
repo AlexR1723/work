@@ -180,12 +180,6 @@ def Register(request):
     return render(request, 'Main/Register.html', locals())
 
 
-def My_tasks_performer(request):
-    layout, username, photo = layout_name(request)
-    id = request.GET.get('id')
-    print(id)
-
-    return render(request, 'Main/My_tasks_performer.html', locals())
 
 
 # def Question_details(request):

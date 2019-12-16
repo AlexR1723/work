@@ -565,7 +565,7 @@ def Ads_details(request,id):
     layout, username, photo = layout_name(request)
     return render(request, 'Profile/Ads_details.html', locals())
 
-def My_tasks_customer(request):
+def Customer_my_tasks(request):
     layout, username, photo = layout_name(request)
     if username=='':
         return HttpResponseRedirect("/login")
@@ -612,3 +612,18 @@ def My_tasks_customer_filter(request,filter):
         else:
             return HttpResponseRedirect("/profile/settings")
     return render(request, 'Profile/My_tasks_customer.html', locals())
+
+
+def Executor_my_tasks(request):
+    layout, username, photo = layout_name(request)
+
+
+    return render(request, 'Profile/My_tasks_executor.html', locals())
+
+def Fav_executor(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/Fav_executor.html', locals())
+
+def Offer(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/Offers.html', locals())
