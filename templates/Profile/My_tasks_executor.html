@@ -6,1069 +6,295 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 perfomer-tasks-blk py-3">
             <div class="row pl-2 pr-2 m-0 justify-content-center">
-                <nav class="w-100 mb-4 pt-4 pb-3">
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a aria-controls="nav-work" aria-selected="true" class="nav-item nav-link active" data-toggle="tab"
-                           href="#nav-work" id="nav-work-tab" role="tab">
-                            <span class="d-none d-sm-none d-md-none d-lg-block">В работе</span>
-                            <img alt="" class="d-md-block d-lg-none" src="/static/image/work.png"
-                                 width="30">
-                        </a>
-                        <a aria-controls="nav-propose" aria-selected="false" class="nav-item nav-link "
-                           data-toggle="tab" href="#nav-propose" id="nav-propose-tab" role="tab">
-                            <span class="d-none d-sm-none d-md-none d-lg-block">Предложения</span>
-                            <img alt="" class="d-md-block d-lg-none" src="/static/image/work.png"
-                                 width="30">
-                        </a>
-                        <a aria-controls="nav-search" aria-selected="false" class="nav-item nav-link" data-toggle="tab"
-                           href="#nav-search" id="nav-search-tab" role="tab">
-                            <span class="d-none d-sm-none d-md-none d-lg-block">Поиск заданий</span>
-                            <img alt="" class="d-md-block d-lg-none" src="/static/image/work.png"
-                                 width="30">
-                        </a>
-                        <a aria-controls="nav-password" aria-selected="false" class="nav-item nav-link"
-                           data-toggle="tab" href="#nav-all-tasks" id="nav-all-tasks-tab" role="tab">
-                            <span class="d-none d-sm-none d-md-none d-lg-block">Все задания</span>
-                            <img alt="" class="d-md-block d-lg-none" src="/static/image/work.png"
-                                 width="30">
-                        </a>
-                    </div>
-                </nav>
 
-                <div class="tab-content w-100" id="nav-tabContent">
-                    <div aria-labelledby="nav-work-tab" class="tab-pane show active" id="nav-work" role="tabpanel">
-                        <div class="col-md-5 col-lg-4 px-0 cat_select">
-                            <select class="form-control" id="task_category" name="task_category">
+                <div class="col-md-12 col-lg-12 px-0 pb-5">
+                    <div class="row">
+                        <div class="col-12 col-md-4 p-0 mb-3 mb-md-0 mr-md-5 cat_select">
+                            <select class="form-control" id="all-tasks" name="task_search">
                                 <option selected value="0">Все категории</option>
                                 <option value="1">Домашний мастер</option>
                                 <option value="1">Мебельные работы</option>
                                 <option value="1">Клининговые услуги</option>
                             </select>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="perform-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="perform-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="category-money_label mb-2">600 руб.</label>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="perform-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="perform-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="category-money_label mb-2">600 руб.</label>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="perform-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="perform-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="category-money_label mb-2">600 руб.</label>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="perform-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="perform-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="category-money_label mb-2">600 руб.</label>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="perform-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="perform-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
-                                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="category-money_label mb-2">600 руб.</label>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row w-100">
-                            <div class="col-md-12 mb-5">
-                                <nav aria-label="...">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a aria-label="Previous" class="page-link" href="#">
-                                                <span aria-hidden="true">«</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                            <span class="page-link">1<span class="sr-only">(current)</span>
-                            </span>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href=""><span aria-hidden="true">»</span>
-                                                <span class="sr-only">Next</span></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div aria-labelledby="nav-propose-tab" class="tab-pane fade" id="nav-propose" role="tabpanel">
-                        <div class="col-md-5 col-lg-4 px-0 cat_select">
-                            <select class="form-control" id="task_propose" name="task_propose">
-                                <option selected value="0">Все категории</option>
-                                <option value="1">Домашний мастер</option>
-                                <option value="1">Мебельные работы</option>
-                                <option value="1">Клининговые услуги</option>
+                        <div class="col-12 col-md-4 p-0">
+                            <select class="form-control" id="all-status" name="task_search">
+                                <option selected value="0">Все статусы</option>
+                                <option value="1">В работе</option>
+                                <option value="1">Выполнено</option>
                             </select>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="propose-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="propose-accept_btn mt-md-4">Принять</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="propose-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="propose-accept_btn mt-md-4">Принять</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="propose-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="propose-accept_btn mt-md-4">Принять</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="propose-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="propose-accept_btn mt-md-4">Принять</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="propose-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="propose-accept_btn mt-md-4">Принять</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="propose-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="propose-accept_btn mt-md-4">Принять</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="propose-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="propose-accept_btn mt-md-4">Принять</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row w-100">
-                            <div class="col-md-12 mb-5">
-                                <nav aria-label="...">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a aria-label="Previous" class="page-link" href="#">
-                                                <span aria-hidden="true">«</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                            <span class="page-link">1<span class="sr-only">(current)</span>
-                            </span>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href=""><span aria-hidden="true">»</span>
-                                                <span class="sr-only">Next</span></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
                     </div>
-                    <div aria-labelledby="nav-search-tab" class="tab-pane fade" id="nav-search" role="tabpanel">
-                        <div class="col-md-5 col-lg-4 px-0 cat_select">
-                            <select class="form-control" id="task_search" name="task_search">
-                                <option selected value="0">Все категории</option>
-                                <option value="1">Домашний мастер</option>
-                                <option value="1">Мебельные работы</option>
-                                <option value="1">Клининговые услуги</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <div class="col-6 p-0"><span class="search-date_span">06.12.2019</span></div>
-                                                <div class="col-6 p-0 text-center text-md-left"><img alt="" class="img-fluid mb-1 mr-2" src="/static/image/user-icon.png" width="15"><span class="count-users_span">20</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <a href="#">
-                                                    <button class="search-task_btn mt-md-4">Откликнуться</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row w-100">
-                            <div class="col-md-12 mb-5">
-                                <nav aria-label="...">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a aria-label="Previous" class="page-link" href="#">
-                                                <span aria-hidden="true">«</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                            <span class="page-link">1<span class="sr-only">(current)</span>
-                            </span>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href=""><span aria-hidden="true">»</span>
-                                                <span class="sr-only">Next</span></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div aria-labelledby="nav-all-tasks-tab" class="tab-pane fade" id="nav-all-tasks" role="tabpanel">
-                        <div class="col-md-12 col-lg-12 px-0">
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-12 p-0">
                             <div class="row">
-                                <div class="col-12 col-md-4 p-0 mb-3 mb-md-0 mr-md-5 cat_select">
-                                    <select class="form-control" id="all-tasks" name="task_search">
-                                        <option selected value="0">Все категории</option>
-                                        <option value="1">Домашний мастер</option>
-                                        <option value="1">Мебельные работы</option>
-                                        <option value="1">Клининговые услуги</option>
-                                    </select>
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
                                 </div>
-                                <div class="col-12 col-md-4 p-0">
-                                    <select class="form-control" id="all-status" name="task_search">
-                                        <option selected value="0">Все статусы</option>
-                                        <option value="1">В работе</option>
-                                        <option value="1">Выполнено</option>
-                                    </select>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="#">
+                                            <h3 class="search-category_label m-0">Доставить цветы</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+                                        <span class="search-date_span">06.12.2019</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">600 руб.</label>
+                                        <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                    </div>
+                                </div>
 
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="search-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="search-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <p class="status-done_span m-0 mt-md-4 px-3">Выполнено</p>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="search-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="search-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <p class="status-done_span m-0 mt-md-4 px-3">Выполнено</p>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="search-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="search-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <p class="status-done_span m-0 mt-md-4 px-3">Выполнено</p>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="search-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-5 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                            <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                                <a href="#">
-                                                    <h3 class="search-category_label m-0">Доставить цветы</h3>
-                                                </a>
-                                            </div>
-                                            <div class="row justify-content-start align-items-center pt-2">
-                                                <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                                <span class="search-date_span">06.12.2019</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                                <label class="propose-money_label mb-2">600 руб.</label>
-                                                <p class="status-done_span m-0 mt-md-4 px-3">Выполнено</p>
-                                            </div>
-                                        </div>
-                                        <hr class="category-line m-0 my-4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row w-100">
-                            <div class="col-md-12 mb-5">
-                                <nav aria-label="...">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a aria-label="Previous" class="page-link" href="#">
-                                                <span aria-hidden="true">«</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                            <span class="page-link">1<span class="sr-only">(current)</span>
-                            </span>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href=""><span aria-hidden="true">»</span>
-                                                <span class="sr-only">Next</span></a>
-                                        </li>
-                                    </ul>
-                                </nav>
                             </div>
                         </div>
                     </div>
                 </div>
+                <hr class="category-line m-0 my-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="#">
+                                            <h3 class="search-category_label m-0">Доставить цветы</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+                                        <span class="search-date_span">06.12.2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">600 руб.</label>
+                                        <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <hr class="category-line m-0 my-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="#">
+                                            <h3 class="search-category_label m-0">Доставить цветы</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+                                        <span class="search-date_span">06.12.2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">600 руб.</label>
+                                        <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="category-line m-0 my-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="#">
+                                            <h3 class="search-category_label m-0">Доставить цветы</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+                                        <span class="search-date_span">06.12.2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">600 руб.</label>
+                                        <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="category-line m-0 my-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="#">
+                                            <h3 class="search-category_label m-0">Доставить цветы</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+                                        <span class="search-date_span">06.12.2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">600 руб.</label>
+                                        <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="category-line m-0 my-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="#">
+                                            <h3 class="search-category_label m-0">Доставить цветы</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+                                        <span class="search-date_span">06.12.2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">600 руб.</label>
+                                        <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="category-line m-0 my-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="#">
+                                            <h3 class="search-category_label m-0">Доставить цветы</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+                                        <span class="search-date_span">06.12.2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">600 руб.</label>
+                                        <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="category-line m-0 my-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="#">
+                                            <h3 class="search-category_label m-0">Доставить цветы</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+                                        <span class="search-date_span">06.12.2019</span>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">600 руб.</label>
+                                        <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="category-line m-0 my-4">
+
+
+                <div class="row w-100">
+                    <div class="col-md-12 mb-5">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a aria-label="Previous" class="page-link" href="#">
+                                        <span aria-hidden="true">«</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active">
+                            <span class="page-link">1<span class="sr-only">(current)</span>
+                            </span>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href=""><span aria-hidden="true">»</span>
+                                        <span class="sr-only">Next</span></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

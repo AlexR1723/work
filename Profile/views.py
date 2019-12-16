@@ -565,7 +565,7 @@ def Ads_details(request,id):
     layout, username, photo = layout_name(request)
     return render(request, 'Profile/Ads_details.html', locals())
 
-def My_tasks_customer(request):
+def Customer_my_tasks(request):
     layout, username, photo = layout_name(request)
     if username=='':
         return HttpResponseRedirect("/login")
@@ -614,10 +614,9 @@ def My_tasks_customer_filter(request,filter):
     return render(request, 'Profile/My_tasks_customer.html', locals())
 
 
-def My_tasks_executor(request):
+def Executor_my_tasks(request):
     layout, username, photo = layout_name(request)
-    id = request.GET.get('id')
-    print(id)
+
 
     return render(request, 'Profile/My_tasks_executor.html', locals())
 
