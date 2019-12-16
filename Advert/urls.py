@@ -18,4 +18,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Advert, name="Advert"),
+    url(r'^(?P<page>[0-9]+)/$', views.Advert_page, name="Advert_page"),
+    url(r'^(?P<id>[0-9]+)/$', views.Advert_detail, name="Advert_detail"),
 ]

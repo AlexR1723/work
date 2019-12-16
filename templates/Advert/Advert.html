@@ -1,10 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
 
-</body>
-</html>
+<div class="container-fluid p-0">
+    <div class="row justify-content-center all-ads_blk">
+        <div class=" w-100"  style="
+    height: auto;
+    min-height: 20vh;
+    background: url(/static/image/advert_bg.jpg) 50% 75% no-repeat;
+    background-size: cover;
+">
+                <div class="page_head_img_fon row justify-content-center align-items-center">
+                    <p class="fz_3rem line_height_1 text-center mb-0">Все объявления</p>
+                </div>
+                <!--             style="background: url(/static/image/news_bg.jpg) 100% 100% no-repeat">-->
+
+            </div>
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 mt-5">
+
+
+            <div class="row m-0 justify-content-center all-ads_card">
+                <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-12 p-0 pt-3 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        {% for a in advert %}
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
+                                    {% if a.photo_main != None %}
+                                    <img alt="" class="w-100 user-advert-img" src="{{MEDIA_URL}}{{a.photo_main.url}}">
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="{% url 'Advert_detail' a.id %}">
+                                            <h3 class="category-card_label m-0">{{a.title}}</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="w-100 mb-0 pr-0 advert-card_text mb-2 textrowcount">{{a.description}}</p>
+                                        <span>{{a.date}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
+                                    <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
+                                        <label class="category-money_label p mb-2">{{a.price}} руб.</label>
+                                    </div>
+<!--                                    <div class="row justify-content-around align-items-center pt-4">-->
+<!--                                        <a href="{% url 'Dev' %}"><button class="btn view-ads">Просмотреть</button></a>-->
+<!--                                        <a href="{% url 'Dev' %}"><button class="btn edit-ads">Редактировать</button></a>-->
+<!--                                    </div>-->
+                                </div>
+                                <hr class="category-line m-0 my-4">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            {% if k > 1 %}
+            <div class="row w-100">
+                <div class="col-md-12">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-center">
+                            {% if page == 1 %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class = "page-link" href="{% url 'Advert_page' pre %}"><span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span></a>
+                            </li>
+                            {% endif %}
+                            {% for i in list_page %}
+                            {% if i != '...' %}
+                            {% if page == i %}
+                            <li class="page-item active">
+                                    <span class="page-link">
+                                        {{i}}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class = "page-link" href="{% url 'Advert_page' i %}">{{i}}</a>
+                            </li>
+                            {% endif %}
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">{{i}}</span>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if page == k %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class = "page-link" href="{% url 'Advert_page' next %}"><span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span></a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

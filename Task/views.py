@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-def Advert(request):
+def Task(request):
     return render(request, 'Task/Task.html', locals())
