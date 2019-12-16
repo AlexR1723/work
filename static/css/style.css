@@ -2691,3 +2691,30 @@ a .user-name:hover{
     cursor: pointer;
     transition: .3s;
 }
+button.view-ads{
+    background: #AF4B53;
+    border: 1px solid #AF4B53;
+    border-radius: 5px;
+    padding: 7px 20px;
+    color: white;
+    transition: .3s;
+}
+button.view-ads:hover{
+    background: none;
+    color: #AF4B53;
+    transition: .3s;
+}
+
+button.edit-ads{
+    background: #3E789D;
+    border: 1px solid #3E789D;
+    border-radius: 5px;
+    padding: 7px 20px;
+    color: white;
+    transition: .3s;
+}
+button.edit-ads:hover{
+    background: none;
+    color: #3E789D;
+    transition: .3s;
+}

@@ -61,7 +61,8 @@ def sub_category(request,name):
     # name=str(name).lower()
     # print('start')
     sub = SubCategory.objects.filter(name__icontains=name)
-    if sub.count()>1:
+    print(sub[0].image)
+    if sub.count() > 1:
         if username=='':
             return HttpResponseRedirect("/login")
         else:
