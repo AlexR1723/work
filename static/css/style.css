@@ -682,7 +682,7 @@ p {
 /*}*/
 
 .news_det_text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 0px
 }
 
@@ -2717,4 +2717,9 @@ button.edit-ads:hover{
     background: none;
     color: #3E789D;
     transition: .3s;
+}
+label.ads-price{
+    color: rgba(51,51,51,1);
+    font-size: 1.6rem;
+
 }

@@ -107,5 +107,14 @@ def Advert_page(request,page):
     next = page + 1
     return render(request, 'Advert/Advert.html', locals())
 
-def Advert_detail(request,id):
+def Adverts_detail(request,id):
+    layout, username, photo = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
+    id=int(id)
+    advert = (UserAdvert.objects.all().filter(id=id))[0]
+    advert_photo=UserAdvertPhoto.objects.all().filter(advert_id=id)
+    sub = SubCategory.objects.filter(name__icontains = advert.subcategory.name)
+    print(sub)
     return render(request, 'Advert/Advert_detail.html', locals())

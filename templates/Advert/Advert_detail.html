@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
 
-</body>
-</html>
+<div class="container-fluid p-0">
+    <div class="row justify-content-center all-ads_blk">
+        <div class=" w-100"  style="
+    height: auto;
+    min-height: 20vh;
+    background: url({{MEDIA_URL}}{{sub.0.image.url}}) 50% 55% no-repeat;
+    background-size: cover;
+">
+                <div class="page_head_img_fon row justify-content-center align-items-center">
+                    <p class="fz_3rem line_height_1 text-center mb-0">{{advert.title}}</p>
+                </div>
+
+            </div>
+
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 mt-3">
+            <div class="row justify-content-end align-items-center">
+                <div class="col-auto pl-0">
+                    <label class="ads-price mb-0">{{advert.price}} руб</label>
+                </div>
+                <div class="col-auto a-right pr-0">
+                    <a href="{% url 'Dev' %}"><button class="btn view-ads">Предложить работу</button></a>
+                </div>
+            </div>
+            <div class="row mt-3">
+
+
+                <p class="news_det_text mb-5">
+                    {% if advert.photo_main != None %}
+                    <img class="float-left news_det_img mr-3 my-3" src="{{MEDIA.URL}}{{advert.photo_main.url}}" alt="img">
+                    {% endif %}
+                    {{advert.description}}
+                </p>
+            </div>
+
+            <div class="row portfolio-photos_blk" id="gallery">
+                            {% for p in advert_photo %}
+                                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 img_wrapper  d-inline-block p-2">
+                                     <div class="photo">
+                                         <a href="{{MEDIA_URL}}{{p.photo.url}}" data-lightbox="roadtrip">
+                                             <img class="w-100" src="{{MEDIA_URL}}{{p.photo.url}}" alt="Eagle" />
+                                         </a>
+                                     </div>
+                                     <a href="#!">
+                                         <input type="hidden" value="{{p.id}}" name="delete_id">
+                                         <i class="far fa-trash-alt trash_portfolio d-none"></i>
+                                     </a>
+
+                                </div>
+                            {% endfor %}
+            </div>
+            <div class="row m-0 justify-content-center">
+                                <hr class="line my-1">
+                                    <div class="col-12 pl-0 pb-4 ads-span">
+                                        <span>{{advert.date}}</span>
+                                    </div>
+                            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

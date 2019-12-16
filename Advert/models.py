@@ -109,7 +109,7 @@ class Gender(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
-    image = models.CharField(max_length=500, blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/category/', blank=True, null=True, verbose_name="Иконка")
     text = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -120,6 +120,7 @@ class Category(models.Model):
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(unique=True, max_length=100, blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/subcategory/', blank=True, null=True, verbose_name="Картинка")
 
     class Meta:
         managed = False
