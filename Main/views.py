@@ -397,7 +397,7 @@ def set_session_city(request):
 def get_counter_values(request):
     values = request.GET.get('values')
     values = str(values).split(',')
-    print('start')
+    # print('start')
     counters = {
         'register_exec': AuthUser.objects.count(),
         'register_perf': AuthUser.objects.count(),
