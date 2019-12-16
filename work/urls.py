@@ -28,4 +28,6 @@ urlpatterns = [
     url(r'contact/', include('Contact.urls')),
     url(r'news/', include('News.urls')),
     url(r'profile/', include('Profile.urls')),
+    url(r'adverts/', include('Advert.urls')),
+    url(r'tasks/', include('Task.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

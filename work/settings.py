@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'News',
     'Help',
     'Profile',
-    'User',
+    'Advert',
+    'Task',
 ]
 
 MIDDLEWARE = [
