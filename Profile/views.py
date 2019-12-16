@@ -563,7 +563,7 @@ def Advert_filter_page(request, filter, page):
 
 def Ads_details(request,id):
     layout, username, photo = layout_name(request)
-    return render(request, 'Profile/Ads_details.html', locals())
+    return render(request, 'Profile/../templates/Advert/Ads_details.html', locals())
 
 def Customer_my_tasks(request):
     layout, username, photo = layout_name(request)

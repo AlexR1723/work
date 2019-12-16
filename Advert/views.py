@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 
 def layout_contact():
     contact=ContactType.objects.all()
@@ -113,8 +114,57 @@ def Adverts_detail(request,id):
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
     id=int(id)
-    advert = (UserAdvert.objects.all().filter(id=id))[0]
-    advert_photo=UserAdvertPhoto.objects.all().filter(advert_id=id)
+    advert = UserAdvert.objects.filter(id=id)[0]
+    advert_photo=UserAdvertPhoto.objects.filter(advert_id=id)
     sub = SubCategory.objects.filter(name__icontains = advert.subcategory.name)
-    print(sub)
+
+    # if username=='':
+    #     return HttpResponseRedirect("/login")
+    # else:
+    #     email = request.session.get('username', 'no')
+    #     if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Заказчик'):
+    #         us = request.session.get('username')
+    #         user=AuthUser.objects.get(username=us).id
+    #         task=UserTask.objects.filter(user_id=user).filter(task_status=UserTaskStatus.objects.get(name='В работе').id).order_by('-date')
+    #         cats = []
+    #         for i in task:
+    #             el = SubCategory.objects.get(id=i.subcategory_id).name
+    #             if el not in cats:
+    #                 cats.append(el)
+    #         cats.sort()
+    #         filter=0
+    #         fav_exec=UserFavoritesExecutor.objects.filter(user_id=user).order_by('-id')
+    #
+    #     else:
+    #         return HttpResponseRedirect("/profile/settings")
+    # return render(request, 'Profile/My_tasks_customer.html', locals())
+
+
+    # print(sub)
     return render(request, 'Advert/Advert_detail.html', locals())
+
+def check_user(request,type_user):
+    #заказчик - true, исполнитель - false 'Заказчик'
+    user = request.session.get('username', 0)
+    if user==0:
+        return HttpResponseRedirect("/login")
+    if Users.objects.get(auth_user__email=user).type.name != type_user:
+        return HttpResponseRedirect("/profile/settings")
+    return AuthUser.objects.get(username=user).id
+
+
+
+
+def Adverts_change(request,id):
+    layout, username, photo = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
+    id=int(id)
+    advert = UserAdvert.objects.filter(id=id)[0]
+    advert_photo=UserAdvertPhoto.objects.filter(advert_id=id)
+    sub = SubCategory.objects.filter(name__icontains = advert.subcategory.name)
+    print('start')
+    print(check_user(request,'Заказчик'))
+    # print(sub)
+    return render(request, 'Advert/Ads_details.html', locals())

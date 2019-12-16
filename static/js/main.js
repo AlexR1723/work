@@ -495,10 +495,32 @@ window.onload = function () {
         // if (check1 != null && check2 != null && check3 != null && window.location.href.indexOf('register') == -1) {
         if (check1 != null && check2 != null && check3 != null) {
             // counter([10000, 10, 70000])
+            let is_not_main=false
             if (window.location.href.indexOf('register') != -1) {
                 let vals = send_ajax('get_counter_values', 'register_exec,count_tasks,register_perf')
                 counter([vals[0], vals[1], vals[2]],false)
+                is_not_main=true
             }
+            if (window.location.href.indexOf('rabota') != -1) {
+                let vals = send_ajax('get_counter_values', 'today_create_tasks,register_exec,complete_tasks')
+                counter([vals[0], vals[1], vals[2]],true)
+                is_not_main=true
+            }
+            if (window.location.href.indexOf('for_business') != -1) {
+                let vals = send_ajax('get_counter_values', 'today_create_tasks,register_exec,complete_tasks')
+                counter([vals[0], vals[1], vals[2]],true)
+                is_not_main=true
+            }
+            if (window.location.href.indexOf('about') != -1) {
+                let vals = send_ajax('get_counter_values', 'count_users,avialable_tasks,avialable_tasks')
+                counter([vals[0], vals[1], vals[2]],true)
+                is_not_main=true
+            }
+            if (is_not_main==false){
+                let vals = send_ajax('get_counter_values', 'register_exec,count_tasks,register_perf')
+                counter([vals[0], vals[1], vals[2]],true)
+            }
+
         }
     } catch (e) {
 

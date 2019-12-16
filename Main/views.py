@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-import json, random
+import json, random,datetime
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -396,6 +396,11 @@ def get_counter_values(request):
         'register_exec': AuthUser.objects.count(),
         'register_perf': AuthUser.objects.count(),
         'count_tasks': UserTask.objects.count(),
+        'today_create_tasks': UserTask.objects.filter(date=datetime.datetime.now().date()).count(),
+        'complete_tasks': UserTask.objects.filter(task_status=UserTaskStatus.objects.get(name='Выполнено').id).count(),
+        'count_users': Users.objects.count(),
+        'avialable_tasks': UserTask.objects.filter(task_status=UserTaskStatus.objects.get(name='В поиске').id).count(),
+
     }
     results = []
     for i in values:
@@ -404,5 +409,7 @@ def get_counter_values(request):
         except:
             res = 0
         results.append(res)
-
+    # print(datetime.date)
+    # print(datetime.datetime.now().date())
+    # print(UserTask.objects.filter(task_status=UserTaskStatus.objects.get(name='Выполнено'))[0].date)
     return HttpResponse(json.dumps(results))

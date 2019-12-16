@@ -288,6 +288,14 @@ class Users(models.Model):
         db_table = 'users'
 
 
+class UserTaskStatus(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_status'
+
+
 class UserTask(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
@@ -298,7 +306,10 @@ class UserTask(models.Model):
     date = models.DateField(blank=True, null=True)
     start_time = models.TimeField(blank=True, null=True)
     end_time = models.TimeField(blank=True, null=True)
-    pay = models.TextField(blank=True, null=True)  # This field type is a guess.
+    pay = models.TextField(blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/task/', max_length=500, blank=True, null=True)
+    task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
