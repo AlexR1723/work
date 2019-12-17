@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-import json, random
+import json, random,datetime
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -180,12 +180,6 @@ def Register(request):
     return render(request, 'Main/Register.html', locals())
 
 
-def My_tasks_performer(request):
-    layout, username, photo = layout_name(request)
-    id = request.GET.get('id')
-    print(id)
-
-    return render(request, 'Main/My_tasks_performer.html', locals())
 
 
 # def Question_details(request):
@@ -397,11 +391,16 @@ def set_session_city(request):
 def get_counter_values(request):
     values = request.GET.get('values')
     values = str(values).split(',')
-    print('start')
+    # print('start')
     counters = {
         'register_exec': AuthUser.objects.count(),
         'register_perf': AuthUser.objects.count(),
         'count_tasks': UserTask.objects.count(),
+        'today_create_tasks': UserTask.objects.filter(date=datetime.datetime.now().date()).count(),
+        'complete_tasks': UserTask.objects.filter(task_status=UserTaskStatus.objects.get(name='Выполнено').id).count(),
+        'count_users': Users.objects.count(),
+        'avialable_tasks': UserTask.objects.filter(task_status=UserTaskStatus.objects.get(name='В поиске').id).count(),
+
     }
     results = []
     for i in values:
@@ -410,5 +409,7 @@ def get_counter_values(request):
         except:
             res = 0
         results.append(res)
-
+    # print(datetime.date)
+    # print(datetime.datetime.now().date())
+    # print(UserTask.objects.filter(task_status=UserTaskStatus.objects.get(name='Выполнено'))[0].date)
     return HttpResponse(json.dumps(results))

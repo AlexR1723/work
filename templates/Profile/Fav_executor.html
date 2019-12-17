@@ -1,0 +1,45 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container-fluid p-0">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 settings-blk  pt-5 pb-3">
+            <div class="row pl-2 pr-2 m-0 justify-content-center">
+                {% for i in fav_exec %}
+                <div class="col-12 p-0">
+                    <div class="row">
+                        <div class="col-2 p-3">
+
+                            <img src="{{MEDIA_URL}}{{ i.exec.photo.url }}" class="w-100 user-img" alt="">
+                        </div>
+                        <div class="col-10 p-3">
+                            <div class="row justify-content-between align-items-center">
+                                <a href="#!">
+                                    <label class="user-name">{{ i.exec.auth_user.first_name}}</label>
+                                </a>
+                                <button class="user-work-bttn">Предложить работу</button>
+                            </div>
+                            <div class="row justify-content-start align-items-center">
+                                <label class="rating-com mb-0 a-center pr-2">45 </label>
+                                <label class="news_type mb-0 a-center">отзывов</label>
+                            </div>
+                            <div class="row justify-content-start align-items-center">
+                                <label class="rating-com mb-0 a-center pr-2">83% </label>
+                                <label class="news_type mb-0 a-center">положительных</label>
+                            </div>
+                        </div>
+                        <hr class="line"/>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

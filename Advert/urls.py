@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^$', views.Advert, name="Advert"),
     url(r'^(?P<page>[0-9]+)/$', views.Advert_page, name="Advert_page"),
     url(r'^detail/(?P<id>[0-9]+)/$', views.Adverts_detail, name="Adverts_detail"),
+    url(r'^advert_change/(?P<id>[0-9]+)/$', views.Adverts_change, name="Adverts_change"),
 ]

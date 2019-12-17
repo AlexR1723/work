@@ -48,9 +48,11 @@ urlpatterns = [
     url(r'^adverts/(?P<page>[0-9]+)/$', views.All_ads_page, name="All_ads_page"),
     url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_filter, name="Advert_filter"),
     url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Advert_filter_page, name="Advert_filter_page"),
-    url(r'^advert_detail/(?P<id>[0-9]+)/$', views.Ads_details, name="Ads_details"),
-    url(r'^my_tasks/$', views.My_tasks_customer, name="My_tasks_customer"),
-    url(r'^my_tasks/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.My_tasks_customer_filter, name="My_tasks_customer_filter"),
-
+    # url(r'^advert_detail/(?P<id>[0-9]+)/$', views.Ads_details, name="Ads_details"),
+    url(r'^customer_tasks/$', views.Customer_my_tasks, name="Customer_my_tasks"),
+    url(r'^customer_tasks/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.My_tasks_customer_filter, name="My_tasks_customer_filter"),
+    url(r'^favorite_executors/$', views.Fav_executor, name="Fav_executor"),
+    url(r'^executor_tasks/$', views.Executor_my_tasks, name="Executor_my_tasks"),
+    url(r'^offers/$', views.Offer, name="Offer"),
 
 ]

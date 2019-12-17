@@ -89,13 +89,17 @@
                                            class="fontCategorySmall colorDarkGrey mb-0 ">Профиль
                                         </a>
                                     </div>
+<!--                                    <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">-->
+<!--                                        <a href="{% url 'All_ads' %}"-->
+<!--                                           class="fontCategorySmall colorDarkGrey mb-0 ">Объявления-->
+<!--                                        </a>-->
+<!--                                    </div>-->
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="{% url 'All_ads' %}"
-                                           class="fontCategorySmall colorDarkGrey mb-0 ">Объявления
+                                        <a href="{% url 'Customer_my_tasks' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Мои задания
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Мои задания
+                                        <a href="{% url 'Fav_executor' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Избранные исполнители
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
@@ -341,20 +345,16 @@
     </div>
 
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/2c9fd467ea.js"></script>
+
+<script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"-->
-<!--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"-->
-<!--        crossorigin="anonymous"></script>-->
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <script src="{% static 'js/main.js' %}"></script>
-<!--    <script type = "text/javascript" src = "https://cdn.jsdelivr.net/jquery/latest/jquery.min.js" > </script>-->
 <script type = "text/javascript" src = "https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"> </script>
 <script type = "text/javascript" src = "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" > </script>
 

@@ -1,137 +1,162 @@
 {% extends layout %}
 {% load staticfiles %}
 {% block content %}
-<div class="row justify-content-center">
-    <div class=" w-100" style="
+    <div class="row justify-content-center">
+        <div class=" w-100" style="
     height: auto;
     min-height: 20vh;
     background: url(/static/image/123.jpeg) 50% 50% no-repeat;
     background-size: cover;
 ">
-        <div class="page_head_img_fon row justify-content-center align-items-center">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                <p class="m-0 fz_3rem line_height_1 text-center">О проекте</p>
+            <div class="page_head_img_fon row justify-content-center align-items-center">
+                <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                    <p class="m-0 fz_3rem line_height_1 text-center">О проекте</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row pl-5 pr-5 pt-5 col-12">
-            <p class="fz_2rem mb-3 w-100">Кто мы и что делаем?</p>
-            {% for w in who %}
-            <p>{{w.text}}</p>
-            {% endfor %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row pl-5 pr-5 pt-5 col-12">
+                <p class="fz_2rem mb-3 w-100">Кто мы и что делаем?</p>
+                {% for w in who %}
+                    <p>{{ w.text }}</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row pl-5 pr-5 pt-3 col-12">
-            <p class="fz_2rem mb-3 w-100">Наша миссия</p>
-            {% for m in mission %}
-            <p>{{m.text}}</p>
-            {% endfor %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row pl-5 pr-5 pt-3 col-12">
+                <p class="fz_2rem mb-3 w-100">Наша миссия</p>
+                {% for m in mission %}
+                    <p>{{ m.text }}</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <hr class="block_hr">
-    </div>
-</div>
-<div class="row justify-content-center bg_color_FAF9F7 pt-4 pb-5">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row m-0 justify-content-center pb-3">
-                    <h1>Наша работа в цифрах</h1>
-                </div>
-        <div class="row justify-content-around align-items-center">
-                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0 mt-2 mb-4 rectW bg-img-count1">
-                        <div class="row justify-content-center bg-img-white py-5">
-                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ИСПОЛНИТЕЛЕЙ</p>
-                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>
-                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
-                        </div>
-                    </div>
-            <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count3">
-                        <div class="row justify-content-center bg-img-white py-5">
-                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ЗАКАЗЧИКОВ</p>
-                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>
-                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
-                        </div>
-                    </div>
-
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <hr class="block_hr">
         </div>
-        <div class="row justify-content-around align-items-center">
-                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count2">
-                        <div class="row justify-content-center bg-img-white py-5">
-                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ДОСТУПНО <br> ЗАДАНИЙ</p>
-                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>
-                            <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>
-                        </div>
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count6">
-                        <div class="row justify-content-center bg-img-white py-5">
-                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">КОЛИЧЕСТВО<br> ОТЗЫВОВ</p>
-                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter4">0</p>
-                            <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>
-                        </div>
+    </div>
+    <div class="row justify-content-center bg_color_FAF9F7 pt-4 pb-5">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row m-0 justify-content-center pb-3">
+                <h1>Наша работа в цифрах</h1>
+            </div>
+            <div class="row justify-content-around">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count4">
+                    <div class="row justify-content-center bg-img-white py-5" id="div_counter1">
+                        <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">КОЛИЧЕСТВО<br> ПОЛЬЗОВАТЕЛЕЙ
+                        </p>
+                        <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>
+                        <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>
                     </div>
                 </div>
-    </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <hr class="block_hr">
-    </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row pl-5 pr-5 pt-5 col-12">
-            <p class="fz_2rem mb-3 w-100">История проекта</p>
-            {% for s in story %}
-            <p>{{s.text}}</p>
-            {% endfor %}
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count1">
+                    <div class="row justify-content-center bg-img-white py-5" id="div_counter2">
+                        <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ДОСТУПНО <br> ЗАДАНИЙ</p>
+                        <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>
+                        <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3 p-0 rectW bg-img-count5">
+                    <div class="row justify-content-center bg-img-white py-5" id="div_counter3">
+                        <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">КОЛИЧЕСТВО<br> ОТЗЫВОВ
+                        </p>
+                        <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>
+                        <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>
+                    </div>
+                </div>
+            </div>
+            {#        <div class="row justify-content-around align-items-center">#}
+            {#                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0 mt-2 mb-4 rectW bg-img-count1">#}
+            {#                        <div class="row justify-content-center bg-img-white py-5">#}
+            {#                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ИСПОЛНИТЕЛЕЙ</p>#}
+            {#                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter1">0</p>#}
+            {#                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#            <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count3">#}
+            {#                        <div class="row justify-content-center bg-img-white py-5">#}
+            {#                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ЗАРЕГИСТРИРОВАНО ЗАКАЗЧИКОВ</p>#}
+            {#                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter3">0</p>#}
+            {#                            <p class="m-0 colorDarkGrey text-center w-100">ЧЕЛОВЕК</p>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {##}
+            {#        </div>#}
+            {#        <div class="row justify-content-around align-items-center">#}
+            {#                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count2">#}
+            {#                        <div class="row justify-content-center bg-img-white py-5">#}
+            {#                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">ДОСТУПНО <br> ЗАДАНИЙ</p>#}
+            {#                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter2">0</p>#}
+            {#                            <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                    <div class="col-8 col-sm-8 col-md-4 col-lg-4 col-xl-3 p-0  mt-2 mb-4 rectW bg-img-count6">#}
+            {#                        <div class="row justify-content-center bg-img-white py-5">#}
+            {#                            <p class="m-0 text-center fontCategorySmall colorDarkGrey w-100">КОЛИЧЕСТВО<br> ОТЗЫВОВ</p>#}
+            {#                            <p class="fz_2rem fw_700 m-0 text-center w-100" id="counter4">0</p>#}
+            {#                            <p class="m-0 colorDarkGrey text-center w-100">ШТУК</p>#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                </div>#}
         </div>
     </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row pl-5 pr-5 pt-3 col-12">
-            <p class="fz_2rem mb-3 w-100">Команда</p>
-            {% for t in team %}
-            <p>{{t.text}}</p>
-            {% endfor %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <hr class="block_hr">
         </div>
     </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-        <div class="row justify-content-center py-5">
-            {% if verify == True %}
-            <div class="col-auto my-3">
-                <a href="{% url 'Profile_settings' %}">
-                    <button class="hiw_btn-red w-100">Найти исполнителя</button>
-                </a>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row pl-5 pr-5 pt-5 col-12">
+                <p class="fz_2rem mb-3 w-100">История проекта</p>
+                {% for s in story %}
+                    <p>{{ s.text }}</p>
+                {% endfor %}
             </div>
-            <div class="col-auto my-3">
-                <a href="{% url 'Profile_settings' %}">
-                    <button class="hiw_btn w-100">Стать исполнителем</button>
-                </a>
-            </div>
-            {% else %}
-            <div class="col-auto my-3">
-                <a href="{% url 'Dev' %}">
-                    <button class="hiw_btn-red w-100">Найти исполнителя</button>
-                </a>
-            </div>
-            <div class="col-auto my-3">
-                <a href="{% url 'Dev' %}">
-                    <button class="hiw_btn w-100">Стать исполнителем</button>
-                </a>
-            </div>
-            {% endif %}
         </div>
     </div>
-</div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row pl-5 pr-5 pt-3 col-12">
+                <p class="fz_2rem mb-3 w-100">Команда</p>
+                {% for t in team %}
+                    <p>{{ t.text }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row justify-content-center py-5">
+                {% if verify == True %}
+                    <div class="col-auto my-3">
+                        <a href="{% url 'Profile_settings' %}">
+                            <button class="hiw_btn-red w-100">Найти исполнителя</button>
+                        </a>
+                    </div>
+                    <div class="col-auto my-3">
+                        <a href="{% url 'Profile_settings' %}">
+                            <button class="hiw_btn w-100">Стать исполнителем</button>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="col-auto my-3">
+                        <a href="{% url 'Dev' %}">
+                            <button class="hiw_btn-red w-100">Найти исполнителя</button>
+                        </a>
+                    </div>
+                    <div class="col-auto my-3">
+                        <a href="{% url 'Dev' %}">
+                            <button class="hiw_btn w-100">Стать исполнителем</button>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
