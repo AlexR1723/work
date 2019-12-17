@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
                         <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                            <a href="{% url 'Ads_details' a.id %}">
+                            <a href="{% url 'Adverts_change' a.id %}">
                                 <h3 class="category-card_label m-0">{{a.title}}</h3>
                             </a>
                         </div>
@@ -53,8 +53,8 @@
                             <label class="category-money_label p mb-2">{{a.price}} руб.</label>
                         </div>
                         <div class="row justify-content-around align-items-center pt-4">
-                            <a href="{% url 'Dev' %}"><button class="btn view-ads">Просмотреть</button></a>
-                            <a href="{% url 'Dev' %}"><button class="btn edit-ads">Редактировать</button></a>
+                            <a href="{% url 'Adverts_detail' a.id %}"><button class="btn view-ads">Просмотреть</button></a>
+                            <a href="{% url 'Adverts_change' a.id %}"><button class="btn edit-ads">Редактировать</button></a>
                         </div>
                     </div>
                     <hr class="category-line m-0 my-4">

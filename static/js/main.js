@@ -233,9 +233,6 @@ $("#btn_main_submit").click(function (event) {
         if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == text.trim()) {
             window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
         }
-        // else {
-        //     window.location.href = "/help/find_help/" + text.trim().toLowerCase();
-        // }
     }
 });
 
@@ -482,6 +479,33 @@ let send_ajax = function (url, values) {
     return result
 }
 
+$("#btn_del_ads").click(function (event) {
+    let id = this.dataset.id
+    console.log(id)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: 'user_delete_ads',
+        data: {
+            id: id
+        },
+        success: function (data) {
+            // alert(data)
+            if (data==true){
+                // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
+                // setTimeout(5000)
+                window.location.href= '/profile/adverts/';
+            }
+            else {
+                window.location.href= '/login';
+            }
+        },
+        error: function (data) {
+           alert('error')
+        }
+    })
+});
 
 window.onload = function () {
     load_categories();

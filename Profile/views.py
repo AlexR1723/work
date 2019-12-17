@@ -563,7 +563,7 @@ def Advert_filter_page(request, filter, page):
 
 def Ads_details(request,id):
     layout, username, photo = layout_name(request)
-    return render(request, 'Profile/../templates/Advert/Ads_details.html', locals())
+    return render(request, 'Profile/../templates/Advert/Advert_change.html', locals())
 
 def Customer_my_tasks(request):
     layout, username, photo = layout_name(request)
@@ -627,3 +627,76 @@ def Fav_executor(request):
 def Offer(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Profile/Offers.html', locals())
+
+# def check_user(request,type_user):
+#     #заказчик - true, исполнитель - false 'Заказчик'
+#     user = request.session.get('username', 0)
+#     if user==0:
+#         return HttpResponseRedirect("/login")
+#     # if Users.objects.get(auth_user__email=user).type.name != type_user:
+#     #     return HttpResponseRedirect("/profile/settings")
+#     return AuthUser.objects.get(username=user).id
+
+def Adverts_detail(request,id):
+    layout, username, photo = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
+
+    user = request.session.get('username', 0)
+    if user == 0:
+        return HttpResponseRedirect("/login")
+    else:
+        user_id=AuthUser.objects.get(username=user).id
+        user_type=Users.objects.get(auth_user=user_id).type.name
+
+    # city, regs, regions = layout_regions_cities(request)
+    id=int(id)
+    # advert = UserAdvert.objects.filter(id=id)[0]
+    advert = UserAdvert.objects.get(id=id)
+    advert_photo=UserAdvertPhoto.objects.filter(advert_id=id)
+    sub = SubCategory.objects.filter(name__icontains = advert.subcategory.name)
+    # print(sub)
+    return render(request, 'Profile/Advert_detail.html', locals())
+
+
+
+def Adverts_change(request,id):
+    layout, username, photo = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
+
+    user = request.session.get('username', 0)
+    if user == 0:
+        return HttpResponseRedirect("/login")
+    else:
+        user_id = AuthUser.objects.get(username=user).id
+        user_type = Users.objects.get(auth_user=user_id).type.name
+
+    # check_user(request, 'Заказчик')
+    # city, regs, regions = layout_regions_cities(request)
+    id=int(id)
+    advert = UserAdvert.objects.filter(id=id)[0]
+    advert_photo=UserAdvertPhoto.objects.filter(advert_id=id)
+    sub = SubCategory.objects.filter(name__icontains = advert.subcategory.name)
+    # print('start')
+    # print(check_user(request,'Заказчик'))
+    # print(sub)
+    return render(request, 'Profile/Advert_change.html', locals())
+
+
+def user_delete_ads(request):
+    id = int(request.GET.get('id'))
+
+    user = request.session.get('username', 0)
+    if user == 0:
+        return HttpResponse(json.dumps(False))
+    else:
+        user_id = AuthUser.objects.get(username=user).id
+    advert=UserAdvert.objects.get(id=id)
+
+    if advert.user_id ==user_id:
+        photos=UserAdvertPhoto.objects.filter(id=advert.id)
+        for i in photos:
+            i.delete()
+        advert.delete()
+    return HttpResponse(json.dumps(True))
