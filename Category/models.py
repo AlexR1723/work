@@ -40,6 +40,10 @@ class SubCategory(models.Model):
         verbose_name = _("Подкатегория")
         verbose_name_plural = _("Подкатегории")
 
+    def task_count(self):
+        count=UserTask.objects.all().filter(subcategory=self).count()
+        return count
+
 
 
 class Link(models.Model):
@@ -186,3 +190,30 @@ class UserAdvertPhoto(models.Model):
     class Meta:
         managed = False
         db_table = 'user_advert_photo'
+
+class UserTaskStatus(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_status'
+
+
+class UserTask(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=500, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    start_time = models.TimeField(blank=True, null=True)
+    end_time = models.TimeField(blank=True, null=True)
+    pay = models.TextField(blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/task/', max_length=500, blank=True, null=True)
+    task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task'
