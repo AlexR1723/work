@@ -20,7 +20,7 @@
                     {% for i in subs %}
                         <div class="row ml-5 mt-1">
                             <div class="col-md-12 ">
-                                <a class="fontCategorySmall colorDarkGrey" href="#">{{ i.name }}</a>
+                                <a class="fontCategorySmall colorDarkGrey" href="{% url 'sub_category' i.name|lower %}">{{ i.name }}</a>
                                 <small class="ml-2 colorLightGrey">{{i.task_count}}</small>
                             </div>
                         </div>
@@ -40,63 +40,44 @@
             </div>
         </div>
 
-        <div class="row m-0 justify-content-center">
+<!--        <div class="row m-0 justify-content-center">-->
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-3 pb-5">
                 <div class="row m-0 justify-content-start">
-
+                    {% for a in advert %}
                     <div class="col-12 p-0">
                         <div class="row">
                             <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
+                                {% if a.photo_main != None %}
+                                <img src="{{MEDIA_URL}}{{a.photo_main.url}}" class="w-100 user-img" alt="">
+                                {% endif %}
                             </div>
                             <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
                                 <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-3">
-                                    <label class="category-card_label m-0">Уборка квартиры</label>
+                                    <label class="category-card_label m-0">{{a.title}}</label>
                                 </div>
                                 <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 category-card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ... </p>
+                                    <p class="mb-0 pr-0 category-card_text textrowcount w-100">{{a.description}}</p>
+                                    <span>{{a.date}}</span>
                                 </div>
                             </div>
                             <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
                                 <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label mb-2">2000 руб.</label>
+                                    <label class="category-money_label mb-2">{{a.price}} руб.</label>
                                     <a href="{% url 'Dev' %}">
                                         <button class="category-apply_btn">Откликнуться</button>
                                     </a>
                                 </div>
                             </div>
-                            <hr class="category-line m-4">
                         </div>
                     </div>
+                    <hr class="category-line mt-4 mb-3">
+                    {% endfor %}
 
 
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-9 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                <img src="/static/image/user.png" class="w-100 user-img" alt="">
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-3">
-                                    <label class="category-card_label m-0">Уборка квартиры</label>
-                                </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 category-card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ... </p>
-                                </div>
-                            </div>
-                            <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
-                                    <label class="category-money_label p mb-2">2000 руб.</label>
-                                    <a href="#">
-                                        <button class="category-apply_btn">Откликнуться</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
-        </div>
+<!--        </div>-->
 
     </div>
 

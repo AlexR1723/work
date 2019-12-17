@@ -55,7 +55,9 @@ urlpatterns = [
     url(r'user_delete_ads', views.user_delete_ads, name="user_delete_ads"),
 
     url(r'^customer_tasks/$', views.Customer_my_tasks, name="Customer_my_tasks"),
+    url(r'^customer_tasks/(?P<page>[0-9]+)/$', views.Customer_tasks_page, name="Customer_tasks_page"),
     url(r'^customer_tasks/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.My_tasks_customer_filter, name="My_tasks_customer_filter"),
+    url(r'^customer_tasks/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.My_tasks_customer_page_filter, name="My_tasks_customer_page_filter"),
     url(r'^favorite_executors/$', views.Fav_executor, name="Fav_executor"),
     url(r'^executor_tasks/$', views.Executor_my_tasks, name="Executor_my_tasks"),
     url(r'^offers/$', views.Offer, name="Offer"),

@@ -1691,8 +1691,13 @@ hr.line {
     border-radius: 5px;
     transition: .3s;
 }
+.status-wait_span {
+    color: #3E789D;
+    font-size: 1rem;
+    line-height: 23px;
+}
 .status-doing_span {
-    color: #FFCC00;
+    color: #FEB100;
     font-size: 1rem;
     line-height: 23px;
 }
