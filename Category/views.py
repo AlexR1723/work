@@ -61,39 +61,38 @@ def sub_category(request,name):
     # name=str(name).lower()
     # print('start')
     sub = SubCategory.objects.filter(name__icontains=name)
-    print(sub[0].image)
-    if sub.count() > 1:
-        if username=='':
-            return HttpResponseRedirect("/login")
-        else:
-            return HttpResponseRedirect("/profile/create_task/"+name)
+    # if sub.count() > 1:
+    #     if username=='':
+    #         return HttpResponseRedirect("/login")
+    #     else:
+    #         return HttpResponseRedirect("/profile/create_task/"+name)
+    # else:
+
+    advert_count = UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date').count()
+    count_user=UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
+    if(advert_count<10):
+        advert=UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date')[0:]
     else:
+        advert=UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date')[0:10]
 
-        advert_count = UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date').count()
-        count_user=UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
-        if(advert_count<10):
-            advert=UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date')[0:]
-        else:
-            advert=UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date')[0:10]
-
-        k = 0
-        while (advert_count > 0):
-            k = k + 1
-            advert_count = advert_count - 10
-        list_page = []
-        page = 1
-        if (k > 6):
-            for i in range(1, 4):
-                list_page.append(i)
-            list_page.append('...')
-            for i in range(k - 2, k + 1):
-                list_page.append(i)
-        else:
-            for i in range(1, k + 1):
-                list_page.append(i)
-        pre = 1
-        next = page + 1
-        return render(request, 'Category/Sub_category.html', locals())
+    k = 0
+    while (advert_count > 0):
+        k = k + 1
+        advert_count = advert_count - 10
+    list_page = []
+    page = 1
+    if (k > 6):
+        for i in range(1, 4):
+            list_page.append(i)
+        list_page.append('...')
+        for i in range(k - 2, k + 1):
+            list_page.append(i)
+    else:
+        for i in range(1, k + 1):
+            list_page.append(i)
+    pre = 1
+    next = page + 1
+    return render(request, 'Category/Sub_category.html', locals())
 
 def Page_subcategory(request,name,page):
     layout, username, photo = layout_name(request)

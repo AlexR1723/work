@@ -12,8 +12,7 @@
                 </ol>
 
                 <div class="carousel-inner h60">
-                    <div class="carousel-item h60 active" style="background: url(
-                            {{ MEDIA_URL }}{{ fslide.image.url }}) no-repeat center center; background-size: cover;">
+                    <div class="carousel-item h60 active" style="background: url({{MEDIA_URL}}{{fslide.image.url}}) no-repeat center center; background-size: cover;">
                         <div class="row w-100 h-100 justify-content-center align-items-center">
                             <div class="row col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9 justify-content-center">
                                 <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6 p-4 topCarusel-caption">
@@ -51,8 +50,7 @@
                         </div>
                     </div>
                     {% for s in slide %}
-                        <div class="carousel-item h60" style="background: url(
-                                {{ MEDIA_URL }}{{ s.image.url }}) no-repeat center center; background-size: cover;">
+                        <div class="carousel-item h60" style="background: url({{MEDIA_URL}}{{s.image.url}}) no-repeat center center; background-size: cover;">
                             <div class="row w-100 h-100 justify-content-center align-items-center">
                                 <div class="row col-11 col-sm-11 col-md-11 col-lg-10 col-xl-9 justify-content-center">
                                     <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6 p-4 topCarusel-caption">
@@ -125,7 +123,7 @@
                                     <div class="col-md-12 ">
                                         <a class="fontCategorySmall colorDarkGrey"
                                            href="{% url 'sub_category' s.name|lower %}">{{ s.name }}</a>
-                                        <small class="ml-2 colorLightGrey">1145</small>
+                                        <small class="ml-2 colorLightGrey">{{s.task_count}}</small>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -136,7 +134,7 @@
                                         <div class="col-md-12 ">
                                             <a class="fontCategorySmall colorDarkGrey"
                                                href="{% url 'sub_category' s.name|lower %}">{{ s.name }}</a>
-                                            <small class="ml-2 colorLightGrey">1145</small>
+                                            <small class="ml-2 colorLightGrey">{{s.task_count}}</small>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -168,7 +166,7 @@
                                         <div class="col-md-12 ">
                                             <a class="fontCategorySmall colorDarkGrey"
                                                href="{% url 'sub_category' s.name|lower %}">{{ s.name }}</a>
-                                            <small class="ml-2 colorLightGrey">1145</small>
+                                            <small class="ml-2 colorLightGrey">{{s.task_count}}</small>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -179,7 +177,7 @@
                                             <div class="col-md-12 ">
                                                 <a class="fontCategorySmall colorDarkGrey"
                                                    href="{% url 'sub_category' s.name|lower %}">{{ s.name }}</a>
-                                                <small class="ml-2 colorLightGrey">1145</small>
+                                                <small class="ml-2 colorLightGrey">{{s.task_count}}</small>
                                             </div>
                                         </div>
                                     {% endfor %}

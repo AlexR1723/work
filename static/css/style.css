@@ -2723,3 +2723,15 @@ label.ads-price{
     font-size: 1.6rem;
 
 }
+label.user-name-label, label.user-name-label a, i.fa-user-tie, i.fa-calendar-alt{
+    color: rgba(51,51,51,.7);
+    font-size: 1.1rem;
+}
+label.user-name-label a:hover, label.categ-label a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+label.categ-label, label.categ-label a, i.fa-chevron-right{
+    color: rgba(51,51,51,.9);
+    font-size: 1.1rem;
+}

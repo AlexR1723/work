@@ -50,6 +50,11 @@ class SubCategory(models.Model):
         verbose_name = _("Подкатегория")
         verbose_name_plural = _("Подкатегории")
 
+    def task_count(self):
+        count=UserTask.objects.all().filter(subcategory=self).count()
+        return count
+
+
 class Comments(models.Model):
     user_id = models.IntegerField(blank=True, null=True, verbose_name="Пользователь")
     text = models.CharField(max_length=1000, blank=True, null=True, verbose_name="Текст отзыва")
