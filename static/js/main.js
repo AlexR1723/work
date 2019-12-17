@@ -456,9 +456,9 @@ $("#login_pass").keyup(function (event) {
 $('#task_filter_select').change(function () {
     var value = $('#task_filter_select option:selected').val();
     if (value == 0)
-        window.location.href = '/profile/my_tasks/';
+        window.location.href = '/profile/customer_tasks/';
     else
-        window.location.href = '/profile/my_tasks/' + value;
+        window.location.href = '/profile/customer_tasks/' + value;
 });
 // let double = function(num)
 // function send_ajax(url,values){
