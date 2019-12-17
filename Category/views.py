@@ -47,6 +47,13 @@ def Category_item(request,name):
     name=str(name).lower()
     category_item=Category.objects.get(name__icontains=name)
     subs=SubCategory.objects.filter(category_id=category_item.id)
+
+    advert_count=UserTask.objects.all().filter(subcategory__category=category_item).order_by('-date').count()
+    print(advert_count)
+    if(advert_count<10):
+        advert=UserTask.objects.all().filter(subcategory__category=category_item).order_by('-date')[0:]
+    else:
+        advert = UserTask.objects.all().filter(subcategory__category=category_item).order_by('-date')[0:10]
     return render(request, 'Category/Category_item.html', locals())
 
 list_page = []
