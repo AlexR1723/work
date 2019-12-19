@@ -52,6 +52,7 @@ urlpatterns = [
     url(r'^adverts/(?P<filter>[А-Яа-я\s()-/a-z,:]+)/(?P<page>[0-9]+)/$', views.Advert_filter_page, name="Advert_filter_page"),
     # url(r'^advert_detail/(?P<id>[0-9]+)/$', views.Ads_details, name="Ads_details"),
     url(r'^advert/edit/(?P<id>[0-9]+)/$', views.Adverts_change, name="Adverts_change"),
+    url(r'edit_advert' , views.Edit_advert_save,name="Edit_advert_save"),
     url(r'user_delete_ads', views.user_delete_ads, name="user_delete_ads"),
 
     url(r'^customer_tasks/$', views.Customer_my_tasks, name="Customer_my_tasks"),

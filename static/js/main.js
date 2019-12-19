@@ -1405,8 +1405,34 @@ $("#portfolio_del_btn").click(function () {
     form.insertAdjacentHTML('beforeend', inp.outerHTML);
 
 });
-// $(".trash_portfolio").click(function () {
-//     var id=$(this).prev().val();
-//     $('#delete_id').val(id);
-//     $('#myModal').modal('show')
-// });
+$(".trash_advert_photo").click(function () {
+    // var el=$(this);
+    if (this.classList.contains('far')) {
+        this.classList.remove(('far'));
+        this.classList.add('fas');
+    } else {
+        this.classList.remove(('fas'));
+        this.classList.add('far');
+    }
+});
+$('#check_edit_advert').click(function () {
+    var list = ""
+    var el = document.getElementsByClassName('trash_advert_photo');
+    for (i = 0; i < el.length; i++) {
+        if (el[i].classList.contains('fas')) {
+            // list=list+
+            var id = el[i].previousElementSibling;
+            list = list + id.value + ",";
+        }
+    }
+    var inp =document.getElementById('del_list');
+    inp.setAttribute('value',list);
+
+    var title=$('#title').val();
+    if(title==""){
+        $('#title').addClass('br-red');
+    }
+    else{
+        $('#save_edit_advert').click();
+    }
+});
