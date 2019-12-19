@@ -561,9 +561,9 @@ def Advert_filter_page(request, filter, page):
     else:
         return HttpResponseRedirect("/login")
 
-def Ads_details(request,id):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Profile/../templates/Advert/Advert_change.html', locals())
+# def Ads_details(request,id):
+#     layout, username, photo = layout_name(request)
+#     return render(request, 'Profile/Advert_change.html', locals())
 
 def Customer_my_tasks(request):
     layout, username, photo = layout_name(request)
@@ -798,7 +798,7 @@ def Offer(request):
 #     #     return HttpResponseRedirect("/profile/settings")
 #     return AuthUser.objects.get(username=user).id
 
-def Adverts_detail(request,id):
+def Advert_detail(request,id):
     layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()

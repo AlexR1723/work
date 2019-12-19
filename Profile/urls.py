@@ -46,12 +46,12 @@ urlpatterns = [
     url(r'logout_user', views.logout_user, name='logout_user'),
 
     url(r'^adverts/$', views.All_ads, name="All_ads"),
+    url(r'^adverts/detail/(?P<id>[0-9]+)/$', views.Advert_detail, name="Advert_detail"),
     url(r'^adverts/(?P<page>[0-9]+)/$', views.All_ads_page, name="All_ads_page"),
-    url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_filter, name="Advert_filter"),
-    url(r'^adverts/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Advert_filter_page, name="Advert_filter_page"),
+    url(r'^adverts/(?P<filter>[А-Яа-я\s()-/a-z,:]+)/$', views.Advert_filter, name="Advert_filter"),
+    url(r'^adverts/(?P<filter>[А-Яа-я\s()-/a-z,:]+)/(?P<page>[0-9]+)/$', views.Advert_filter_page, name="Advert_filter_page"),
     # url(r'^advert_detail/(?P<id>[0-9]+)/$', views.Ads_details, name="Ads_details"),
-    url(r'^detail/(?P<id>[0-9]+)/$', views.Adverts_detail, name="Adverts_detail"),
-    url(r'^advert_change/(?P<id>[0-9]+)/$', views.Adverts_change, name="Adverts_change"),
+    url(r'^advert/edit/(?P<id>[0-9]+)/$', views.Adverts_change, name="Adverts_change"),
     url(r'user_delete_ads', views.user_delete_ads, name="user_delete_ads"),
 
     url(r'^customer_tasks/$', views.Customer_my_tasks, name="Customer_my_tasks"),

@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'profile/', include('Profile.urls')),
     url(r'adverts/', include('Advert.urls')),
     url(r'tasks/', include('Task.urls')),
+    url(r'service/', include('Services.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
