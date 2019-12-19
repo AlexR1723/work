@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'Profile',
     'Advert',
     'Task',
+    'Services',
 ]
 
 MIDDLEWARE = [

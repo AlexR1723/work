@@ -323,9 +323,21 @@ class Region(models.Model):
         db_table = 'region'
 
 
+class Services(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    description = models.CharField(max_length=1000, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'services'
+
+
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(unique=True, max_length=100, blank=True, null=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -374,6 +386,25 @@ class UserCities(models.Model):
         db_table = 'user_cities'
 
 
+class UserFavoritesExecutor(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    exec = models.ForeignKey('Users', models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_favorites_executor'
+
+
+class UserOffer(models.Model):
+    user_id_customer = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
+    advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
+    is_accept = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_offer'
+
+
 class UserPortfolio(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     photo = models.CharField(max_length=500, blank=True, null=True)
@@ -403,10 +434,21 @@ class UserTask(models.Model):
     start_time = models.TimeField(blank=True, null=True)
     end_time = models.TimeField(blank=True, null=True)
     pay = models.TextField(blank=True, null=True)  # This field type is a guess.
+    photo_main = models.CharField(max_length=500, blank=True, null=True)
+    task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'user_task'
+
+
+class UserTaskStatus(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_status'
 
 
 class UserType(models.Model):
