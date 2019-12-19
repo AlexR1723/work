@@ -457,6 +457,38 @@ $('#task_filter_select').change(function () {
     else
         window.location.href = '/profile/customer_tasks/' + value;
 });
+$('#task_filter_select_exec_cat').change(function () {
+    var cat = $('#task_filter_select_exec_cat option:selected').val();
+    var stat = $('#task_filter_select_exec_stat option:selected').val();
+    if (cat==0 && stat==0){
+         window.location.href = '/profile/executor_tasks/';
+    }
+    if (cat!=0 && stat==0){
+         window.location.href = '/profile/executor_tasks/category='+cat;
+    }
+    if (cat==0 && stat!=0){
+         window.location.href = '/profile/executor_tasks/stat='+stat;
+    }
+    if (cat!=0 && stat!=0){
+         window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+    }
+})
+$('#task_filter_select_exec_stat').change(function () {
+    var cat = $('#task_filter_select_exec_cat option:selected').val();
+    var stat = $('#task_filter_select_exec_stat option:selected').val();
+    if (cat==0 && stat==0){
+         window.location.href = '/profile/executor_tasks/';
+    }
+    if (cat!=0 && stat==0){
+         window.location.href = '/profile/executor_tasks/category='+cat;
+    }
+    if (cat==0 && stat!=0){
+         window.location.href = '/profile/executor_tasks/stat='+stat;
+    }
+    if (cat!=0 && stat!=0){
+         window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+    }
+});
 // let double = function(num)
 // function send_ajax(url,values){
 let send_ajax = function (url, values) {

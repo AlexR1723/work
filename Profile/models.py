@@ -226,7 +226,7 @@ class UserTaskStatus(models.Model):
 
 
 class UserTask(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='user_id')
     subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
     title = models.CharField(max_length=500, blank=True, null=True)
     description = models.CharField(max_length=5000, blank=True, null=True)
@@ -239,6 +239,7 @@ class UserTask(models.Model):
     photo_main = models.ImageField(upload_to='uploads/task/',max_length=500, blank=True, null=True)
     task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='exec_id')
 
     class Meta:
         managed = False

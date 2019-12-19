@@ -58,8 +58,15 @@ urlpatterns = [
     url(r'^customer_tasks/(?P<page>[0-9]+)/$', views.Customer_tasks_page, name="Customer_tasks_page"),
     url(r'^customer_tasks/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.My_tasks_customer_filter, name="My_tasks_customer_filter"),
     url(r'^customer_tasks/(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.My_tasks_customer_page_filter, name="My_tasks_customer_page_filter"),
-    url(r'^favorite_executors/$', views.Fav_executor, name="Fav_executor"),
+
     url(r'^executor_tasks/$', views.Executor_my_tasks, name="Executor_my_tasks"),
+    url(r'^executor_tasks/category=(?P<filter_cat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_cat, name="Executor_my_tasks_filter_cat"),
+    url(r'^executor_tasks/stat=(?P<filter_stat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_stat, name="Executor_my_tasks_filter_stat"),
+    url(r'^executor_tasks/category=(?P<filter_cat>[А-Яа-я\s0-9-()/a-z,:]+)/stat=(?P<filter_stat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_cat_stat, name="Executor_my_tasks_filter_cat_stat"),
+
+
+    url(r'^favorite_executors/$', views.Fav_executor, name="Fav_executor"),
+    # url(r'^executor_tasks/$', views.Executor_my_tasks, name="Executor_my_tasks"),
     url(r'^offers/$', views.Offer, name="Offer"),
 
 ]
