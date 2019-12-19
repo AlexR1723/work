@@ -5,16 +5,23 @@
     <div class="container-fluid p-0">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 mt-5">
+                <div class="row pt-4">
+                    <a href="{% url 'All_ads' %}" class="back"><i class="fas fa-arrow-left"></i> Назад к объявлениям</a>
+                </div>
                 <div class="row m-0 justify-content-center">
                     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-12 p-0 pt-3 pb-3 px-3 px-mb-0 px-lg-0">
+                        <form class="w-100" action="{% url 'Edit_advert_save' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="adv_id" value="{{advert.id}}">
                         <div class="row m-0 justify-content-md-between justify-content-lg-between ads-details_blk">
                             <div class="col-12 col-sm-9 col-md-6 p-0">
-                                <h2><textarea class="w-100 txtarea-name-cat" name=""
+                                <h2><textarea id="title" class="w-100 txtarea-name-cat" name="adv_title"
                                               placeholder="Заголовок объявления">{{ advert.title }}</textarea></h2>
                             </div>
-                            <div class="col-auto p-0">
-                                <input class="input-price pt-0" placeholder="Стоимость в рублях"
-                                       value="{{ advert.price }} руб."/>
+                            <div class="col-12 col-sm-3 col-md-6 p-0 a-right">
+                                <input id="price" name="adv_price" class="input-price pt-0" placeholder="Стоимость в рублях"
+                                       value="{{ advert.price }}"/>
+                                <label>руб.</label>
                             </div>
                         </div>
 
@@ -30,7 +37,7 @@
                         </div>
 
                         <div class="row mt-4 justify-content-start">
-                            <textarea class="txtarea-describe w-100 p-4" id="" name=""
+                            <textarea class="txtarea-describe w-100 p-4" id="" name="adv_desription"
                                       placeholder="Опишите своё объявление"
                                       rows="20">{{ advert.description }}</textarea>
                         </div>
@@ -43,41 +50,11 @@
                                             <img alt="..." class="img-fluid center-block"
                                                  src="{{ MEDIA_URL }}{{ i.photo.url }}">
                                             <a href="#!">
-                                                <input type="hidden" value="{{ i.id }}" name="delete_id">
-                                                <i class="far fa-trash-alt trash_portfolio"></i>
+                                                <input type="hidden" value="{{ i.id }}" name="delete_advert_id">
+                                                <i class="far fa-trash-alt trash_advert_photo"></i>
                                             </a>
                                         </div>
                                     {% endfor %}
-
-
-                                    {#                             <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper p-3">#}
-                                    {#                                 <img alt="..." class="img-fluid center-block" src="/static/image/3eabf99674833ed66719c.jpg">#}
-                                    {#                                 <a href="#!">#}
-                                    {#                                     <input type="hidden" value="{{p.id}}" name="delete_id">#}
-                                    {#                                     <i class="far fa-trash-alt trash_portfolio"></i>#}
-                                    {#                                 </a>#}
-                                    {#                             </div>#}
-                                    {#                             <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper p-3">#}
-                                    {#                                 <img alt="..." class="img-fluid center-block" src="/static/image/3eabf99674833ed66719c.jpg">#}
-                                    {#                                 <a href="#!">#}
-                                    {#                                     <input type="hidden" value="{{p.id}}" name="delete_id">#}
-                                    {#                                     <i class="far fa-trash-alt trash_portfolio"></i>#}
-                                    {#                                 </a>#}
-                                    {#                             </div>#}
-                                    {#                             <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper p-3">#}
-                                    {#                                 <img alt="..." class="img-fluid center-block" src="/static/image/3eabf99674833ed66719c.jpg">#}
-                                    {#                                 <a href="#!">#}
-                                    {#                                     <input type="hidden" value="{{p.id}}" name="delete_id">#}
-                                    {#                                     <i class="far fa-trash-alt trash_portfolio"></i>#}
-                                    {#                                 </a>#}
-                                    {#                             </div>#}
-                                    {#                             <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper p-3">#}
-                                    {#                                 <img alt="..." class="img-fluid center-block" src="/static/image/3eabf99674833ed66719c.jpg">#}
-                                    {#                                 <a href="#!">#}
-                                    {#                                     <input type="hidden" value="{{p.id}}" name="delete_id">#}
-                                    {#                                     <i class="far fa-trash-alt trash_portfolio"></i>#}
-                                    {#                                 </a>#}
-                                    {#                             </div>#}
                                 </div>
                                 <div class="d-flex flex-row bd-highlight my-2">
                                     <div class="bd-highlight">
@@ -94,32 +71,33 @@
                                 <div class="row m-0 justify-content-center">
                                     <hr class="line my-1">
                                     <div class="col-12 pl-0 pb-4 ads-span">
-                                        {#                                        <span>06.12.2019</span>#}
                                         <span>{{ advert.date }}</span>
                                     </div>
                                 </div>
                                 <div class="form-group row ads-btns">
                                     <div class="col-sm-11 col-md-12 col-lg-11 px-0">
-                                        <a href="#">
-                                            <button class="btn btn-save px-2 px-lg-3 mr-3 mb-2 col-12 col-sm-3 col-md-2"
-                                                    type="submit">Сохранить
+<!--                                        <a href="#">-->
+                                            <button class="btn btn-save px-2 px-lg-3 mr-3 mb-2 col-12 col-sm-3 col-md-2" id="check_edit_advert"
+                                                    type="button">Сохранить
                                             </button>
-                                        </a>
-                                        <a href="#">
-{#                                            <form action=""></form>#}
+                                            <input type="text" name="del_list" id="del_list">
+                                            <button type="submit" id="save_edit_advert">Сохранить</button>
+<!--                                        </a>-->
+<!--                                        <a href="#">-->
                                             <button class="btn btn-del btn-primary mr-3 mb-2 px-3 col-12 col-sm-3 col-md-2"
                                                     type="button" data-toggle="modal" data-target="#modal_delete">Удалить
                                             </button>
-                                        </a>
-                                        <a href="{% url 'All_ads' %}">
-                                            <button class="btn btn-del btn-primary mb-2 px-3 col-12 col-sm-3 col-md-2"
-                                                    type="submit">Отмена
-                                            </button>
-                                        </a>
+<!--                                        </a>-->
+<!--                                        <a href="{% url 'All_ads' %}">-->
+<!--                                            <button class="btn btn-del btn-primary mb-2 px-3 col-12 col-sm-3 col-md-2"-->
+<!--                                                    type="submit">Отмена-->
+<!--                                            </button>-->
+<!--                                        </a>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -999,3 +999,31 @@ def user_delete_ads(request):
             i.delete()
         advert.delete()
     return HttpResponse(json.dumps(True))
+
+def Edit_advert_save(request):
+    print('edit_advert_save')
+    if request.method == 'POST':
+        id=request.POST.get('adv_id')
+        id_photo=request.POST.get('del_list')
+        id_photo=id_photo.split(',')
+        print(id_photo)
+        for el in id_photo:
+            if(el != ""):
+                user_advert_photo = UserAdvertPhoto.objects.get(id=el)
+                user_advert_photo.delete()
+        email = request.session.get('username', 'no')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        user_advert=UserAdvert.objects.get(id=id)
+        title=request.POST.get('adv_title')
+        price=request.POST.get('adv_price')
+        description=request.POST.get('adv_desription')
+        user_advert.title=title
+        user_advert.price=price
+        user_advert.description=description
+        user_advert.save()
+        doc = request.FILES
+        if (doc):
+            for d in doc.getlist('files'):
+                user_advert_photo = UserAdvertPhoto(advert=user_advert, user=auth, photo=d)
+                user_advert_photo.save()
+    return HttpResponseRedirect("/profile/settings")
