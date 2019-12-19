@@ -681,9 +681,11 @@ def My_tasks_customer_filter(request,filter):
             # subs_task=UserTask.objects.filter(user_id=user).filter(task_status=UserTaskStatus.objects.get(name='В работе').id).order_by('-date')
             task_count = UserTask.objects.filter(user_id=user).filter(subcategory__id=cat).order_by('-date').count()
             if (task_count < 10):
-                task = UserTask.objects.filter(user_id=user).filter(subcategory__id=cat).order_by('-date')[0:]
+                # task = UserTask.objects.filter(user_id=user).filter(subcategory__id=cat).order_by('-date')[0:]
+                task = UserTask.objects.filter(user_id=user).order_by('-date')[0:]
             else:
-                task = UserTask.objects.filter(user_id=user).filter(subcategory__id=cat).order_by('-date')[0:10]
+                # task = UserTask.objects.filter(user_id=user).filter(subcategory__id=cat).order_by('-date')[0:10]
+                task = UserTask.objects.filter(user_id=user).order_by('-date')[0:10]
             cats = []
             for i in task:
                 el = SubCategory.objects.get(id=i.subcategory_id).name
