@@ -35,7 +35,23 @@
                                 </ol>
                             </nav>
                         </div>
-
+                            {% if advert.photo_main != None %}
+                            <div class="row mt-4 justify-content-start">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 p-0">
+                                    <img src="{{MEDIA_URL}}{{advert.photo_main.url}}" class="w-100" alt="">
+                                </div>
+                                <div class="col-auto pl-3 pr-0">
+                                    <div class="upload-file">
+                                    <input class="mb-1 form-control prof-file d-none" id="files_main" multiple
+                                                   name="files_main" type="file">
+                                    <label class="btn btn-tertiary js-labelFile" for="files_main">
+                                        <i class="fas fa-upload"></i>
+                                        <span class="js-fileName">Добавить обложку</span>
+                                    </label>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
                         <div class="row mt-4 justify-content-start">
                             <textarea class="txtarea-describe w-100 p-4" id="" name="adv_desription"
                                       placeholder="Опишите своё объявление"
@@ -80,8 +96,8 @@
                                             <button class="btn btn-save px-2 px-lg-3 mr-3 mb-2 col-12 col-sm-3 col-md-2" id="check_edit_advert"
                                                     type="button">Сохранить
                                             </button>
-                                            <input type="text" name="del_list" id="del_list">
-                                            <button type="submit" id="save_edit_advert">Сохранить</button>
+                                            <input type="text" name="del_list" id="del_list" class="d-none">
+                                            <button type="submit" id="save_edit_advert" class="d-none">Сохранить</button>
 <!--                                        </a>-->
 <!--                                        <a href="#">-->
                                             <button class="btn btn-del btn-primary mr-3 mb-2 px-3 col-12 col-sm-3 col-md-2"
