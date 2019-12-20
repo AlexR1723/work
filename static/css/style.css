@@ -1514,7 +1514,12 @@ hr.line {
     background: url(/static/image/ProblemsLogo.jpg) 60% 20% no-repeat;
     background-size: cover;
 }
-
+.serv_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/work-hardening.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
 .offer_hdr_bg_layout,
 .rules_hdr_bg_layout,
 .privacy_hdr_bg_layout,
@@ -1657,10 +1662,14 @@ hr.line {
 .category-card_label,
 .perform-category_label,
 .propose-category_label,
-.search-category_label {
+.search-category_label,
+.service-link h3 {
     font-size: 24px;
     line-height: 30px;
     color: #000000;
+}
+.service-link a:hover {
+    text-decoration: none;
 }
 .perfomer-tasks-blk a:hover {
     text-decoration: none;
@@ -1672,7 +1681,8 @@ hr.line {
 }
 
 .category-money_label,
-.propose-money_label {
+.propose-money_label,
+.service-money_label {
     font-weight: bold;
     font-size: 2rem;
     line-height: 45px;
@@ -2131,7 +2141,8 @@ input[type=checkbox]:checked + label::after {
 }
 .advert-card_text,
 .perform-card_text,
-.search-card_text {
+.search-card_text,
+service-card_text {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
@@ -2543,6 +2554,9 @@ input[type=checkbox]:checked + label::after {
     color: #AF4B53;
 
     transition: .3s;
+}
+.service-hdr {
+
 }
 .dropdown-menu{
     width: max-content !important;

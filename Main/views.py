@@ -190,6 +190,10 @@ def Register(request):
 #     layout, username = layout_name(request)
 #     return render(request, 'Main/../templates/Category/Sub_category.html', locals())
 
+def Services(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Services.html', locals())
+
 
 def login_user(request):
     email = request.GET.get("email")
