@@ -1671,6 +1671,9 @@ hr.line {
 .service-link a:hover {
     text-decoration: none;
 }
+.users_rates h2 {
+    font-size: 1.5rem;
+}
 .perfomer-tasks-blk a:hover {
     text-decoration: none;
 }
@@ -2172,7 +2175,7 @@ service-card_text {
 .address-task_form .address-task_input {
     color: rgba(0, 0, 0, 0.5);
 }
-#btn-add-file {
+#btn-add-file{
     border: 1px solid transparent;
     height: 40px;
     background: rgba(62, 120, 157, .8);
@@ -2183,6 +2186,42 @@ service-card_text {
     color: #FFFFFF;
     border: 1px solid rgba(61, 120, 157, 1);
     transition: .3s;
+}
+.users_rates .choose-user_btn {
+    background: #3E789D;
+    color: #FFFFFF;
+    border: 1px solid #3E789D;
+    border-radius: 5px;
+    font-size: 1rem;
+    line-height: 24px;
+}
+.users_rates .choose-user_btn:hover {
+    background: #FFFFFF;
+    color: #3E789D;
+    border: 1px solid rgba(61, 120, 157, 1);
+    transition: .3s;
+}
+.users_rates .rate_span {
+    font-size: 1.2rem;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.users_rates .rate_b {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #000000;
+}
+.task-details span {
+    font-size: 1rem;
+    line-height: 23px;
+    color: #727272;
+}
+.task-details .price-span {
+    font-size: 2rem;
+    color: #000000;
+}
+.task-details .task-details_txt {
+    color: #000000;
 }
 .del_select::after {
     content: "\f107";

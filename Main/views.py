@@ -194,6 +194,10 @@ def Services(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Main/Services.html', locals())
 
+def Task_details(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Task_details.html', locals())
+
 
 def login_user(request):
     email = request.GET.get("email")
