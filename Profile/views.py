@@ -1020,10 +1020,13 @@ def Edit_advert_save(request):
         user_advert.title=title
         user_advert.price=price
         user_advert.description=description
+        main_photo = request.FILES
+        if (main_photo):
+            user_advert.photo_main = main_photo['files_main']
         user_advert.save()
         doc = request.FILES
         if (doc):
             for d in doc.getlist('files'):
                 user_advert_photo = UserAdvertPhoto(advert=user_advert, user=auth, photo=d)
                 user_advert_photo.save()
-    return HttpResponseRedirect("/profile/settings")
+    return HttpResponseRedirect("/profile/adverts")
