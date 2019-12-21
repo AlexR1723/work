@@ -1826,7 +1826,9 @@ hr.category-line {
     background-color: blue;
 }
 /*.change-password button {*/
-#btn_profile_change_pass {
+#btn_profile_change_pass,
+.rate-perform_btn,
+.rate-modal .modal-footer .btn {
     border: 1px solid transparent;
     height: 40px;
     background: #AF4B53;
@@ -1834,13 +1836,22 @@ hr.category-line {
 }
 
 /*.change-password button:hover {*/
-#btn_profile_change_pass:hover {
+#btn_profile_change_pass:hover,
+.rate-perform_btn:hover,
+.rate-modal .modal-footer .btn:hover {
     background-color: #FFFFFF;
     color: #AF4B53;
     border: 1px solid #AF4B53;
     transition: .3s;
 }
-
+.rate-perform_btn {
+    border-radius: 5px;
+}
+.rate-modal .modal-footer {
+    border-top: none;
+    padding-top: 0;
+    justify-content: center;
+}
 .tooltip {
     line-height: 15px;
 }

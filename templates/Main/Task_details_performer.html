@@ -3,7 +3,6 @@
 {% block content %}
 
 <div class="container-fluid p-0">
-
     <div class="row justify-content-center">
         <div class=" w-100 rules_hdr_bg">
             <div class="ques_hdr_bg_layout row justify-content-center align-items-center">
@@ -17,33 +16,32 @@
     <div class="row m-0 justify-content-center mt-3 task-details">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
             <div class="row justify-content-start">
-                    <div class="col-12 p-0">
-                        <div class="row mt-4 justify-content-start">
-                            <div class="col-7 col-md-2 p-0">
-                                <a href=""><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">Анастасия</span></a>
-                            </div>
-                            <div class="col-7 col-md-3 p-0">
-                                <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_2.png">19 декабря 2019 г.</span>
-                            </div>
-                            <div class="col-6 col-md-2 p-0">
-                                <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">4 ставки</span>
-                            </div>
-                            <div class="col-12 col-md-5 p-0 text-left text-md-right pt-3 pt-md-0">
-                                <span class="price-span">1000 руб.</span>
-                            </div>
+                <div class="col-12 p-0">
+                    <div class="row mt-4 justify-content-start">
+                        <div class="col-7 col-md-2 p-0">
+                            <a href=""><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">Анастасия</span></a>
                         </div>
-                    </div>
+                        <div class="col-7 col-md-3 p-0">
+                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_2.png">19 декабря 2019 г.</span>
+                        </div>
+                        <div class="col-6 col-md-2 p-0">
+                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">4 ставки</span>
+                        </div>
+                        <div class="col-12 col-md-5 p-0 text-left text-md-right pt-3 pt-md-0">
+                            <span class="price-span">1000 руб.</span>
+                        </div></div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="row m-0 justify-content-center task-details">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-2 px-3 px-mb-0 px-lg-0">
-            <div class="row mt-4 justify-content-start">
+            <div class="row mt-4 justify-content-start d-none d-sm-none d-md-block">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb ads-breadcrumb p-0">
-                        <li class="breadcrumb-item d-none d-sm-none d-md-block"><a href="#">Курьерские услуги</a></li>
-                        <li aria-current="page" class="breadcrumb-item active p-0">Доставка цветов</li>
+                        <li class="breadcrumb-item"><a href="#">Курьерские услуги</a></li>
+                        <li aria-current="page" class="breadcrumb-item active">Доставка цветов</li>
                     </ol>
                 </nav>
             </div>
@@ -82,19 +80,51 @@
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
             <div class="row justify-content-start">
                 <hr class="category-line m-0 mb-3 mt-2">
-                <div class="col-12 p-0">
-                    <div class="row adverts-add_photos mb-3">
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                            <img alt="..." class="img-fluid center-block" src="/static/image/3eabf99674833ed66719c.jpg">
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                            <img alt="..." class="img-fluid center-block" src="/static/image/123.jpeg">
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                            <img alt="..." class="img-fluid center-block" src="/static/image/cio-c.jpg">
+                    <div class="col-12 p-0">
+                        <div class="row adverts-add_photos mb-3">
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                <img alt="..." class="img-fluid center-block" src="/static/image/3eabf99674833ed66719c.jpg">
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                <img alt="..." class="img-fluid center-block" src="/static/image/123.jpeg">
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
+                                <img alt="..." class="img-fluid center-block" src="/static/image/cio-c.jpg">
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-12 p-0">
+                        <div class="row mb-3">
+                            <a href="#">
+                                <button class="rate-perform_btn mt-md-4 py-1 px-4" data-target="#exampleModalCenter" data-toggle="modal">Сделать ставку</button>
+                            </a>
+                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="rate-modal modal fade" id="exampleModalCenter" role="dialog" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center" id="exampleModalLabel">Сделать ставку</h5>
+                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <textarea class="form-control" id="message-text" placeholder="Введите описание"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="sum-name" placeholder="Введите сумму" type="number">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" type="button">Доставить ставку</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -117,15 +147,12 @@
                             </div>
                             <div class="row justify-content-start align-items-center pt-2">
                                 <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                <span class="propose-date_span">19.12.2019</span>
+                                <span class="propose-date_span">20.12.2019</span>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
                             <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
                                 <label class="propose-money_label mb-2">600 руб.</label>
-                                <a href="#">
-                                    <button class="choose-user_btn mt-md-4 py-1 px-4">Выбрать <br> исполнителем</button>
-                                </a>
                             </div>
                         </div>
                         <hr class="category-line m-0 my-4">
@@ -144,15 +171,12 @@
                             </div>
                             <div class="row justify-content-start align-items-center pt-2">
                                 <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                <span class="propose-date_span">19.12.2019</span>
+                                <span class="propose-date_span">20.12.2019</span>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
                             <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
                                 <label class="propose-money_label mb-2">600 руб.</label>
-                                <a href="#">
-                                    <button class="choose-user_btn mt-md-4 py-1 px-4">Выбрать <br> исполнителем</button>
-                                </a>
                             </div>
                         </div>
                         <hr class="category-line m-0 my-4">
