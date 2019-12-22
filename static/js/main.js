@@ -453,24 +453,30 @@ $("#login_pass").keyup(function (event) {
 $('#task_filter_select').change(function () {
     var value = $('#task_filter_select option:selected').val();
     if (value == 0)
-        window.location.href = '/profile/customer_tasks/';
+        // window.location.href = '/profile/customer_tasks/';
+        window.location.href = '/profile/task/';
     else
-        window.location.href = '/profile/customer_tasks/' + value;
+        // window.location.href = '/profile/customer_tasks/' + value;
+        window.location.href = '/profile/task/' + value;
 });
 $('#task_filter_select_exec_cat').change(function () {
     var cat = $('#task_filter_select_exec_cat option:selected').val();
     var stat = $('#task_filter_select_exec_stat option:selected').val();
     if (cat==0 && stat==0){
-         window.location.href = '/profile/executor_tasks/';
+         // window.location.href = '/profile/executor_tasks/';
+         window.location.href = '/profile/task/';
     }
     if (cat!=0 && stat==0){
-         window.location.href = '/profile/executor_tasks/category='+cat;
+         // window.location.href = '/profile/executor_tasks/category='+cat;
+         window.location.href = '/profile/task/category='+cat;
     }
     if (cat==0 && stat!=0){
-         window.location.href = '/profile/executor_tasks/stat='+stat;
+         // window.location.href = '/profile/executor_tasks/stat='+stat;
+         window.location.href = '/profile/task/stat='+stat;
     }
     if (cat!=0 && stat!=0){
-         window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+         // window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+         window.location.href = '/profile/task/category='+cat+'/stat='+stat;
     }
 })
 $('#task_filter_select_exec_stat').change(function () {
@@ -527,7 +533,7 @@ $("#btn_del_ads").click(function (event) {
             if (data==true){
                 // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
                 // setTimeout(5000)
-                window.location.href= '/profile/adverts/';
+                window.location.href= '/profile/advert/';
             }
             else {
                 window.location.href= '/login';
@@ -945,9 +951,9 @@ $(document).ready(function () {
     $('#all_ads_filter_select').change(function () {
         var value = $('#all_ads_filter_select option:selected').val();
         if (value == 0)
-            window.location.href = '/profile/adverts/';
+            window.location.href = '/profile/advert/';
         else
-            window.location.href = '/profile/adverts/' + value;
+            window.location.href = '/profile/advert/' + value;
     });
     $("#name").click(function () {
         $('#name').removeClass('br-red');
