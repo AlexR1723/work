@@ -18,4 +18,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Task, name="Task"),
+    url(r'detal/(?P<id>[0-9]+)/', views.Tasks_detail, name="Tasks_detail")
 ]

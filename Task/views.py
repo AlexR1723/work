@@ -38,3 +38,10 @@ def Task(request):
     city, regs, regions = layout_regions_cities(request)
     category = Category.objects.all().order_by('name')
     return render(request, 'Task/Task.html', locals())
+
+def Tasks_detail(request, id):
+    layout, username, photo = layout_name(request)
+    id=int(id)
+    task=UserTask.objects.get(id=id)
+    sub=task.subcategory
+    return render(request, 'Task/Task_detail.html', locals())

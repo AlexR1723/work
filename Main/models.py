@@ -51,7 +51,7 @@ class SubCategory(models.Model):
         verbose_name_plural = _("Подкатегории")
 
     def task_count(self):
-        count=UserTask.objects.all().filter(subcategory=self).count()
+        count=UserTask.objects.all().filter(subcategory=self).filter(task_status__name='В поиске').count()
         return count
 
 

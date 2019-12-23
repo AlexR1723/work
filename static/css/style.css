@@ -1668,6 +1668,9 @@ hr.line {
     line-height: 30px;
     color: #000000;
 }
+a.category-card_label:hover{
+    color: #000000;
+}
 .service-link a:hover {
     text-decoration: none;
 }
@@ -1944,7 +1947,7 @@ input[type=checkbox]:checked + label::after {
 }
 .adverts-add_photos .img_wrapper,
 .portfolio-photos_blk .img_wrapper {
-    height: 230px;
+    /*height: 230px;*/
     overflow: hidden;
     padding: 1rem;
     padding-left: 0;
