@@ -99,6 +99,10 @@ class AuthUser(models.Model):
         managed = False
         db_table = 'auth_user'
 
+    def get_image(self):
+        image=Users.objects.get(id=self.id)
+        return image
+
 
 class Gender(models.Model):
     name = models.CharField(max_length=10, blank=True, null=True)

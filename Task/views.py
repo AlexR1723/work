@@ -28,6 +28,15 @@ def layout_name(request):
             layout = 'layout_executor.html'
     return layout,username,photo
 
+
+def is_verify(request):
+    if (request.session.get('username', 'no') != 'no'):
+        verify = True
+    else:
+        verify = False
+    return verify
+
+
 list_page = []
 advert_count = 0
 
@@ -37,6 +46,7 @@ def Task(request):
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
     category = Category.objects.all().order_by('name')
+
     return render(request, 'Task/Task.html', locals())
 
 def Tasks_detail(request, id):
@@ -44,4 +54,6 @@ def Tasks_detail(request, id):
     id=int(id)
     task=UserTask.objects.get(id=id)
     sub=task.subcategory
+    verify = is_verify(request)
+    task_bet=UserTaskBet.objects.filter(task=task).order_by('-date')
     return render(request, 'Task/Task_detail.html', locals())

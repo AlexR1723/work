@@ -43,12 +43,23 @@
 <!--        <div class="row m-0 justify-content-center">-->
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-3 pb-5">
                 <div class="row m-0 justify-content-start">
+                    {% if task|length == 0 %}
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-auto">
+                    <label class="fontCategorySmall colorDarkGrey">В данной категории пока нет заданий!</label>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
                     {% for a in task %}
                     <div class="col-12 p-0">
                         <div class="row">
                             <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
                                 {% if a.photo_main != None %}
                                 <img src="{{MEDIA_URL}}{{a.photo_main.url}}" class="w-100 user-img" alt="">
+                                {% else %}
+                                <img src="{% static 'image/clipboard.png' %}" class="w-100 user-img" alt="">
                                 {% endif %}
                             </div>
                             <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
@@ -72,6 +83,7 @@
                     </div>
                     <hr class="category-line mt-4 mb-3">
                     {% endfor %}
+                    {% endif %}
 
 
 
