@@ -346,7 +346,7 @@ class SubCategory(models.Model):
 
 class TaskPhoto(models.Model):
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
-    photo = models.CharField(max_length=500, blank=True, null=True)
+    photo = models.FileField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
