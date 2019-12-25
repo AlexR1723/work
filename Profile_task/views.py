@@ -276,3 +276,66 @@ def Create_task(request,text):
             return HttpResponseRedirect("/profile/settings")
     else:
         return HttpResponseRedirect("/login")
+
+def SubcategoryFind(request):
+    try:
+        cat = request.GET.get("id")
+        subcategory=SubCategory.objects.all().filter(category__id=cat)
+        subcategory_list = []
+        for s in subcategory:
+            subcategory_list.append(s.id)
+            subcategory_list.append(s.name)
+        return HttpResponse(json.dumps({'data': subcategory_list}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
+
+def Save_task(request):
+    print('task_save')
+    if request.method == 'POST':
+        email = request.session.get('username', 'no')
+        sub=request.POST.get('subcategory')
+        title = request.POST.get('task_title')
+        description=request.POST.get('description')
+        city=request.POST.get('city')
+        address=request.POST.get('address')
+        date_=request.POST.get('date')
+        gridRadios=request.POST.get('gridRadios')
+        start_time=request.POST.get('start_time')
+        end_time=request.POST.get('end_time')
+        gridRadios2=request.POST.get('gridRadios2')
+        price=request.POST.get('input_price')
+        print(date_)
+        date_=date_.split('/')
+        date=date_[2]+'-'+date_[0]+'-'+date_[1]
+        print(date)
+        pay=1
+
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        subcategory = SubCategory.objects.all().filter(id=sub)[0]
+        doc = request.FILES
+        city=City.objects.all().filter(id=city)[0]
+        if(gridRadios2 == 'option1'):
+            pay=0
+        if(gridRadios=='option1'):
+            if (doc):
+                user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
+                                     city=city,address=address,date=date,pay=pay, price=price, photo_main=doc['file_main'])
+            else:
+                user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
+                                     city=city,address=address, date=date, pay=pay, price=price, photo_main=doc)
+        else:
+            if (doc):
+                user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
+                                     city=city,address=address, start_time=start_time,end_time=end_time, date=date,
+                                     pay=pay, price=price,  photo_main=doc['file_main'])
+            else:
+                user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
+                                     city=city, address=address, start_time=start_time, end_time=end_time, date=date,
+                                     pay=pay, price=price)
+        user_task.save()
+        docs = request.FILES
+        if (docs):
+            for d in docs.getlist('files'):
+                tast_photo = TaskPhoto(task=user_task, photo=d)
+                tast_photo.save()
+    return HttpResponseRedirect("/profile/settings")

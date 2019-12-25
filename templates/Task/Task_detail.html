@@ -133,9 +133,9 @@
                                         </div>
                                         <div class="modal-footer">
                                             {% if verify == True %}
-                                            <button class="btn btn-primary" type="button">Сделать ставку</button>
+                                                <button class="btn btn-primary" type="button">Сделать ставку</button>
                                             {% else %}
-                                            <a class="btn btn-primary" href="{% url 'Login' %}">Сделать ставку</a>
+                                                <a class="btn btn-primary" target="_blank" href="{% url 'Login' %}">Сделать ставку</a>
                                             {% endif %}
                                         </div>
                                     </div>

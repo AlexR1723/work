@@ -20,8 +20,8 @@ urlpatterns = [
 
 
     url(r'^create/(?P<text>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Create_task, name="Create_task"),
-    # url(r'subcategory_find/', views.SubcategoryFind),
-    # url(r'save_task/', views.Save_task, name='Save_task'),
+    url(r'subcategory_find/', views.SubcategoryFind),
+    url(r'save_task/', views.Save_task, name='Save_task'),
     #
     # url(r'get_new_order', views.get_new_order, name='get_new_order'),
     #

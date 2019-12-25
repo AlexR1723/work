@@ -69,6 +69,16 @@
                                  </div>
                     </div>
                 </div>
+               <div class="form-group row">
+                    <label class="col-sm-2 col-md-9 col-lg-3 col-form-label px-0" for="detailsFormControlTextarea1">Добавить обложку для задания</label>
+                    <div class="upload-file">
+                                     <input type="file" class="mb-1 form-control prof-file d-none" name="file_main" id="file_main" multiple>
+                                     <label for="file_main" class="btn btn-tertiary js-labelFile">
+                                         <i class="fas fa-upload"></i>
+                                         <span class="js-fileNameMain">Загрузить файл</span>
+                                     </label>
+                                 </div>
+                </div>
 <!--            </form>-->
             <div class="row m-0 justify-content-start pt-2">
                 <hr class="line">
@@ -152,6 +162,13 @@
                 <h2 class="w-100 text-left fz_2rem mb-3">Оплата</h2>
             </div>
 <!--            <form action="" class="pay-type_form mb-5">-->
+               <div class="form-group row mb-5">
+                    <label class="col-sm-3 col-form-label px-0">Стоимость</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-md-0 pl-lg-0">
+                        <input class="form-control address-task_input" name="input_price" id="input_price" placeholder="1000"
+                               type="number">
+                    </div>
+                </div>
                 <div class="form-group row mb-5">
                     <label class="col-sm-3 col-form-label px-0">Способ оплаты</label>
                     <div class="col-sm-10 col-md-4 py-2">
@@ -173,7 +190,8 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10 col-md-5 px-0 pl-md-0 pl-lg-0">
-                        <button class="btn btn-primary px-5" id="btn_profile_change_pass"
+                        <button type="button" class="btn btn-primary px-5" id="btn_task_check">Опубликовать</button>
+                        <button class="btn btn-primary px-5" id="btn_task_submit"
                                 type="submit">Опубликовать
                         </button>
                     </div>
@@ -181,8 +199,8 @@
 
 <!--            </form>-->
 
-        </div>
             </form>
+        </div>
     </div>
 </div>
 

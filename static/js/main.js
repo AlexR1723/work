@@ -1264,7 +1264,7 @@ $("#task_category").change(function () {
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/profile/subcategory_find/',
+            url: '/profile/task/subcategory_find/',
             data: {
                 id: cat
             },
@@ -1365,7 +1365,7 @@ function add_alert_error(index) {
 
 $(document).ready(function () {
 
-    $('input[type="file"]').change(function () {
+    $('input[type="file"]#files').change(function () {
         if ($(this).val() != '') {
             if ($(this)[0].files.length == 1) {
                 $('.js-fileName').text($(this).val());
@@ -1374,6 +1374,18 @@ $(document).ready(function () {
             }
         } else {
             $('.js-fileName').text('Выберите файлы');
+        }
+    });
+
+    $('input[type="file"]#file_main').change(function () {
+        if ($(this).val() != '') {
+            if ($(this)[0].files.length == 1) {
+                $('.js-fileNameMain').text($(this).val());
+            } else {
+                $('.js-fileNameMain').text('Выбрано файлов: ' + $(this)[0].files.length);
+            }
+        } else {
+            $('.js-fileNameMain').text('Выберите файлы');
         }
     });
 
@@ -1472,5 +1484,49 @@ $('#check_edit_advert').click(function () {
     }
     else{
         $('#save_edit_advert').click();
+    }
+});
+
+$("#task_category").click(function () {
+    $('#task_category').removeClass('br-red');
+});
+$("#task_subcategory").click(function () {
+    $('#task_subcategory').removeClass('br-red');
+});
+$("#input_text").click(function () {
+    $('#input_text').removeClass('br-red');
+});
+$("#description").click(function () {
+    $('#description').removeClass('br-red');
+});
+$("#input_addr").click(function () {
+    $('#input_addr').removeClass('br-red');
+});
+$("#input_price").click(function () {
+    $('#input_price').removeClass('br-red');
+});
+$('#btn_task_check').click(function () {
+     var categ = $("#task_category option:selected").val();
+     var subcateg=$("#task_subcategory option:selected").val();
+     var title=$("#input_text").val();
+     var description=$("#description").val();
+     var address=$("#input_addr").val();
+     var price=$("#input_price").val();
+
+    if (categ == 0) $('#task_category').addClass('br-red');
+    if (subcateg == 0) $('#task_subcategory').addClass('br-red');
+    if (title == "") $('#input_text').addClass('br-red');
+    if (description == "") $('#description').addClass('br-red');
+    if (address == "") $('#input_addr').addClass('br-red');
+    if (price == "") $('#input_price').addClass('br-red');
+    if(categ != 0 && subcateg != 0 && title != "" && description != "" && address != "" && price != ""){
+        $('#btn_task_submit').click();
+    }
+    else
+    {
+        $("#alert-danger").show('slow');
+            setTimeout(function () {
+                $("#alert-danger").hide('slow');
+            }, 5000);
     }
 });
