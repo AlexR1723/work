@@ -312,6 +312,7 @@ def Save_task(request):
 
         auth = AuthUser.objects.all().filter(email=email)[0]
         subcategory = SubCategory.objects.all().filter(id=sub)[0]
+        status=UserTaskStatus.objects.get(name='В поиске')
         doc = request.FILES
         city=City.objects.all().filter(id=city)[0]
         if(gridRadios2 == 'option1'):
@@ -319,19 +320,22 @@ def Save_task(request):
         if(gridRadios=='option1'):
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
-                                     city=city,address=address,date=date,pay=pay, price=price, photo_main=doc['file_main'])
+                                     city=city,address=address,date=date,pay=pay, price=price,
+                                     photo_main=doc['file_main'], task_status=status, date_add=datetime.datetime.now())
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
-                                     city=city,address=address, date=date, pay=pay, price=price, photo_main=doc)
+                                     city=city,address=address, date=date, pay=pay, price=price, task_status=status,
+                                     date_add=datetime.datetime.now())
         else:
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city,address=address, start_time=start_time,end_time=end_time, date=date,
-                                     pay=pay, price=price,  photo_main=doc['file_main'])
+                                     pay=pay, price=price,  photo_main=doc['file_main'], task_status=status,
+                                     date_add=datetime.datetime.now())
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
-                                     pay=pay, price=price)
+                                     pay=pay, price=price, task_status=status, date_add=datetime.datetime.now())
         user_task.save()
         docs = request.FILES
         if (docs):
