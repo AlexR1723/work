@@ -48,14 +48,18 @@
                     {% for a in task %}
                     <div class="col-12 p-0 px-3">
                         <div class="row">
-                            <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-lg-2 col-xl-2 p-2 mx-auto">
+                            <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block col-lg-2 col-xl-2 p-0 pr-2 mx-auto">
                                 {% if a.photo_main != None and a.photo_main != "" %}
                                 <img src="{{MEDIA_URL}}{{a.photo_main.url}}" class="w-100 user-img" alt="">
+                                {% else %}
+                                    <div class="row justify-content-center align-items-center bg-gray">
+                                        <span class="alt-text">Без фото</span>
+                                    </div>
                                 {% endif %}
                             </div>
                             <div class="col-12 col-sm-12 col-md-9 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
                                 <div class="row align-items-center mb-2">
-                                    <label class="category-card_label m-0">{{a.title}}</label>
+                                    <label class="category-card_label m-0"><a class="category-card_label" href="{% url 'Tasks_detail' a.id %}">{{a.title}}</a></label>
                                 </div>
                                 <div class="row justify-content-start align-items-center pt-2">
                                     <p class="w-100 mb-0 pr-0 advert-card_text mb-2 textrowcount">{{a.description}}</p>
