@@ -1530,3 +1530,54 @@ $('#btn_task_check').click(function () {
             }, 5000);
     }
 });
+$("#message-text").click(function () {
+    $('#message-text').removeClass('br-red');
+});
+$("#sum-name").click(function () {
+    $('#sum-name').removeClass('br-red');
+});
+$('#task-bet-save').click(function () {
+    var id=$("#task-id").val();
+    var description = $("#message-text").val();
+    var sum=$("#sum-name").val();
+    if(description == "") $('#message-text').addClass('br-red');
+    if(sum == "") $('#sum-name').addClass('br-red');
+    if(description != "" && sum != "")
+    {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/profile/task/save_bet/',
+            data: {
+                id: id,
+                description:description,
+                sum:sum
+            },
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (data) {
+                alert('Error');
+            }
+        })
+    }
+});
+$(".select-user-bet").click(function () {
+    var id=$("#task_id").val();
+    var user_id=$(this).prev().val();
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: '/profile/task/set_exec/',
+        data: {
+            id: id,
+            user_id:user_id
+        },
+        success: function (data) {
+            window.location='/profile/task/';
+            },
+        error: function (data) {
+            alert('Error');
+        }
+    })
+});

@@ -354,3 +354,40 @@ def Profile_task_detail(request,id):
         task=UserTask.objects.get(id=id)
         task_bet = UserTaskBet.objects.filter(task=task).order_by('-date')
         return render(request, 'Profile/Task_details.html', locals())
+
+def Bet_save(request):
+    layout, username, photo = layout_name(request)
+    id=int(request.GET.get('id'))
+    description=request.GET.get('description')
+    sum=int(request.GET.get('sum'))
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        print(email)
+        auth=AuthUser.objects.get(email=email)
+        print(auth)
+        task=UserTask.objects.get(id=id)
+        task_bet=UserTaskBet(user=auth, task=task, description=description, price=sum, date=datetime.datetime.now())
+        task_bet.save()
+        return HttpResponse(json.dumps({'data': 'ok'}))
+
+
+def Set_exec(request):
+    layout, username, photo = layout_name(request)
+    id = int(request.GET.get('id'))
+    user_id = int(request.GET.get('user_id'))
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        auth=AuthUser.objects.get(email=email)
+        user=AuthUser.objects.get(id=user_id)
+        task=UserTask.objects.get(id=id)
+        bet=UserTaskBet.objects.filter(task=task).filter(user=user)[0]
+        task.task_status=UserTaskStatus.objects.get(name='В работе')
+        task.exec=user
+        task.price=bet.price
+        print(task)
+        task.save()
+        return HttpResponse(json.dumps({'data': 'ok'}))
