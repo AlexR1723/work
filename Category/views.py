@@ -75,17 +75,17 @@ def sub_category(request,name):
     #         return HttpResponseRedirect("/profile/create_task/"+name)
     # else:
 
-    advert_count = UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date').count()
+    task_count = UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date').count()
     count_user=UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
-    if(advert_count<10):
-        advert=UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date')[0:]
+    if(task_count<10):
+        task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date')[0:]
     else:
-        advert=UserAdvert.objects.all().filter(subcategory=sub[0]).order_by('-date')[0:10]
+        task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date')[0:10]
 
     k = 0
-    while (advert_count > 0):
+    while (task_count > 0):
         k = k + 1
-        advert_count = advert_count - 10
+        task_count = task_count - 10
     list_page = []
     page = 1
     if (k > 6):
@@ -113,15 +113,15 @@ def Page_subcategory(request,name,page):
     start=page*10-10
     end=page*10
     sub=SubCategory.objects.get(name__icontains=name)
-    advert = UserAdvert.objects.all().filter(subcategory=sub).order_by('-date')[start:end]
+    task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date')[start:end]
     count_user = UserSubcategories.objects.all().filter(subcategories=sub).count()
 
-    advert_count = UserAdvert.objects.all().filter(subcategory=sub).order_by('-date').count()
+    task_count = task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date').count()
 
     k =0
-    while (advert_count > 0):
+    while (task_count > 0):
         k = k + 1
-        advert_count = advert_count - 10
+        task_count = task_count - 10
     Page = []
     if k>6:
         # записать первые 3
