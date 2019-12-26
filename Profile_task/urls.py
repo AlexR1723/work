@@ -26,6 +26,7 @@ urlpatterns = [
     # url(r'get_new_order', views.get_new_order, name='get_new_order'),
     #
     url(r'^$', views.Profile_tasks, name="Profile_tasks"),
+    url(r'^detail/(?P<id>[0-9]+)/$', views.Profile_task_detail, name="Profile_task_detail"),
     url(r'^(?P<page>[0-9]+)/$', views.Profile_task_page, name="Profile_task_page"),
     url(r'^(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Profile_task_filter, name="Profile_task_filter"),
     url(r'^(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Profile_task_filter_page, name="Profile_task_filter_filter"),

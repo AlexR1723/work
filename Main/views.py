@@ -194,10 +194,10 @@ def Task_details_performer(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Main/Task_details_performer.html', locals())
 
-
-def Task_details(request):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Main/Task_details.html', locals())
+#
+# def Task_details(request):
+#     layout, username, photo = layout_name(request)
+#     return render(request, 'Main/Task_details.html', locals())
 
 
 def login_user(request):

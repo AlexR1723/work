@@ -3,11 +3,12 @@
 {% block content %}
 
 <div class="container-fluid p-0">
+
     <div class="row justify-content-center">
         <div class=" w-100" style="
     height: auto;
     min-height: 20vh;
-    background: url({{MEDIA_URL}}{{sub.image.url}}) 50% 55% no-repeat;
+    background: url({{MEDIA_URL}}{{task.subcategory.image.url}}) 50% 55% no-repeat;
     background-size: cover;
 ">
             <div class="ques_hdr_bg_layout row justify-content-center align-items-center">
@@ -21,15 +22,15 @@
     <div class="row m-0 justify-content-center mt-3 task-details">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
             <div class="row justify-content-start">
-                <div class="col-12 p-0">
-                    <div class="row mt-4 justify-content-start">
-                        <div class="col-7 col-md-2 p-0">
-                            <a href=""><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">{{task.user.first_name}}</span></a>
-                        </div>
-                        <div class="col-7 col-md-3 p-0">
-                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_2.png">{{task.date_add}}</span>
-                        </div>
-                        <div class="col-6 col-md-2 p-0">
+                    <div class="col-12 p-0">
+                        <div class="row mt-4 justify-content-start">
+                            <div class="col-7 col-md-2 p-0">
+                                <a href=""><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">{{task.user.first_name}}</span></a>
+                            </div>
+                            <div class="col-7 col-md-3 p-0">
+                                <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_2.png">{{task.date_add}}</span>
+                            </div>
+                            <div class="col-6 col-md-2 p-0">
                             {% if task.bet_count == 0 or task.bet_count >= 5 %}
                             <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставок</span>
                             {% else %}
@@ -39,22 +40,36 @@
                                     <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставки</span>
                                 {% endif %}
                             {% endif %}
+                            </div>
+                            <div class="col-12 col-md-5 p-0 text-left text-md-right pt-3 pt-md-0">
+                                <div class="row align-items-center justify-content-end">
+                                    <div class="col-12">
+                                        <span class="price-span">{{task.price}} руб.</span>
+                                    </div>
+                                    {% if task_bet|length == 0 %}
+                                    <div class="col-12">
+                                        <a href="#">
+                                            <button class="rate-perform_btn mt-2 py-1 px-4 mb-0">Редактировать</button>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="col-12 col-md-5 p-0 text-left text-md-right pt-3 pt-md-0">
-                            <span class="price-span">{{task.price}} руб.</span>
-                        </div></div>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
     <div class="row m-0 justify-content-center task-details">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-2 px-3 px-mb-0 px-lg-0">
-            <div class="row mt-4 justify-content-start d-none d-sm-none d-md-block">
+            <div class="row mt-4 justify-content-start">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb ads-breadcrumb p-0">
-                        <li class="breadcrumb-item"><a href="#">{{task.subcategory.category.name}}</a></li>
-                        <li aria-current="page" class="breadcrumb-item active">{{task.subcategory.name}}</li>
+                        <li class="breadcrumb-item d-none d-sm-none d-md-block"><a href="#">{{task.subcategory.category.name}}</a></li>
+                        <li aria-current="page" class="breadcrumb-item active p-0">{{task.subcategory.name}}</li>
                     </ol>
                 </nav>
             </div>
@@ -101,68 +116,33 @@
             </div>
         </div>
     </div>
-
+    {% if  task.all_photo|length != 0 %}
     <div class="row m-0 justify-content-center users_rates">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
             <div class="row justify-content-start">
                 <hr class="category-line m-0 mb-3 mt-2">
-                    <div class="col-12 p-0">
-                        <div class="row adverts-add_photos">
-                            {% for p in task.all_photo %}
+                <div class="col-12 p-0">
+                    <div class="row adverts-add_photos mb-3">
+                        {% for p in task.all_photo %}
                             <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 img_wrapper mb-3">
                                 <a href="{{MEDIA_URL}}{{p.photo.url}}">
                                     <img alt="{{p.get_type}}" class="img-fluid center-block" src="{% static p.get_type %}">
                                 </a>
                             </div>
                             {% endfor %}
-                        </div>
                     </div>
-                    <div class="col-12 p-0">
-                        <div class="row mb-3">
-                            <a href="#">
-                                <button class="rate-perform_btn mt-md-4 py-1 px-4" data-target="#exampleModalCenter" data-toggle="modal">Сделать ставку</button>
-                            </a>
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="rate-modal modal fade" id="exampleModalCenter" role="dialog" tabindex="-1">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center" id="exampleModalLabel">Сделать ставку</h5>
-                                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <div class="form-group">
-                                                    <textarea class="form-control" id="message-text" placeholder="Введите описание"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input class="form-control" id="sum-name" placeholder="Введите сумму" type="number">
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            {% if verify == True %}
-                                                <button class="btn btn-primary" type="button">Сделать ставку</button>
-                                            {% else %}
-                                                <a class="btn btn-primary" target="_blank" href="{% url 'Login' %}">Сделать ставку</a>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
+    {% endif %}
 
     <div class="row m-0 justify-content-center users_rates">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">
             <hr class="category-line m-0 my-4">
-            <h2 class="m-0 line_height_1 text-left mb-5">Ставки других пользователей</h2>
+            <h2 class="m-0 line_height_1 text-left mb-5">Ставки исполнителей</h2>
             <div class="row m-0 justify-content-start">
-                {% if verify == True %}
+                {% if task_bet|length != 0 %}
                 {% for t in task_bet %}
                 <div class="col-12 p-0">
                     <div class="row">
@@ -183,6 +163,9 @@
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
                             <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
                                 <label class="propose-money_label mb-2">{{t.price}} руб.</label>
+                                <a href="#">
+                                    <button class="choose-user_btn mt-md-4 py-1 px-4">Выбрать <br> исполнителем</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -190,11 +173,8 @@
                 <hr class="category-line m-0 my-4">
                 {% endfor %}
                 {% else %}
-                <label class="fontCategorySmall colorDarkGrey">Вы сможете видеть ставки других пользвоателей, только после
-                    <a href="{% url 'Login' %}">авторизации</a>!</label>
+                <label class="fontCategorySmall colorDarkGrey">В данном задании пока нет ни одной ставки</label>
                 {% endif %}
-
-
             </div>
         </div>
     </div>

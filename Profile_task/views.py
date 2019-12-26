@@ -343,3 +343,14 @@ def Save_task(request):
                 tast_photo = TaskPhoto(task=user_task, photo=d)
                 tast_photo.save()
     return HttpResponseRedirect("/profile/settings")
+
+def Profile_task_detail(request,id):
+    layout, username, photo = layout_name(request)
+    id=int(id)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        task=UserTask.objects.get(id=id)
+        task_bet = UserTaskBet.objects.filter(task=task).order_by('-date')
+        return render(request, 'Profile/Task_details.html', locals())
