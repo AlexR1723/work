@@ -787,7 +787,7 @@ def Executor_my_tasks(request):
         if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
             us = request.session.get('username')
             user = AuthUser.objects.get(username=us).id
-            user_tasks = UserTask.objects.filter(exec_id=user)
+            user_tasks = UserTask.objects.filter(exec_id=user).order_by('-date')
             list_cat=[]
             for i in user_tasks:
                 sub=i.subcategory.name
@@ -812,7 +812,7 @@ def Executor_my_tasks_filter_cat(request,filter_cat):
             us = request.session.get('username')
             user = AuthUser.objects.get(username=us).id
             filter_cat=str(filter_cat)
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id)
+            user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')
 
             user_task = UserTask.objects.filter(exec_id=user)
             list_cat = []
@@ -848,7 +848,7 @@ def Executor_my_tasks_filter_stat(request,filter_stat):
             us = request.session.get('username')
             user = AuthUser.objects.get(username=us).id
             filter_stat=str(filter_stat)
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
+            user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')
 
             user_task = UserTask.objects.filter(exec_id=user)
             list_cat = []
@@ -885,9 +885,7 @@ def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
             user = AuthUser.objects.get(username=us).id
             filter_stat=str(filter_stat)
             filter_cat=str(filter_cat)
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
-
-            # user_task_no_filter=UserTask.objects.filter(exec_id=user)
+            user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')
 
             user_task = UserTask.objects.filter(exec_id=user)
             list_cat = []
@@ -899,21 +897,6 @@ def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
                     list_cat.append(cat)
                 if stat not in list_stat:
                     list_stat.append(stat)
-
-
-            # list_cat=[]
-            # # user_cat=UserTask.objects.filter(exec_id=user)
-            # for i in user_cat:
-            #     sub=i.subcategory.name
-            #     if sub not in list_cat:
-            #         list_cat.append(sub)
-            #
-            # list_stat = []
-            # user_stat = UserTask.objects.filter(exec_id=user)
-            # for i in user_stat:
-            #     sub = i.task_status.name
-            #     if sub not in list_stat:
-            #         list_stat.append(sub)
             list_cat.sort()
             list_stat.sort()
     return render(request, 'Profile/My_tasks_executor.html', locals())
@@ -925,7 +908,34 @@ def Fav_executor(request):
 
 def Offer(request):
     layout, username, photo = layout_name(request)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+    offers=UserOffer.objects.filter(advert__user_id=user).filter(is_accept=False)
+    print(offers)
+
     return render(request, 'Profile/Offers.html', locals())
+
+def accept_offer(request):
+    email = request.session.get('username', 'no')
+    if (email!='no' and Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+        # us = request.session.get('username')
+        user = AuthUser.objects.get(username=email).id
+        id=int(request.GET.get('id'))
+        offer=UserOffer.objects.filter(advert_id=id).filter(advert__user_id=user)
+        print(offer)
+        print(offer[0].id)
+        if len(offer)==0:
+            return HttpResponse(json.dumps(False))
+        else:
+            offer[0].is_accept=True
+            offer[0].save()
+            return HttpResponse(json.dumps(True))
+
 
 # def check_user(request,type_user):
 #     #заказчик - true, исполнитель - false 'Заказчик'

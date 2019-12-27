@@ -69,5 +69,6 @@ urlpatterns = [
     url(r'^favorite_executors/$', views.Fav_executor, name="Fav_executor"),
     # url(r'^executor_tasks/$', views.Executor_my_tasks, name="Executor_my_tasks"),
     url(r'^offers/$', views.Offer, name="Offer"),
+    url(r'accept_offer', views.accept_offer, name="accept_offer"),
 
 ]
