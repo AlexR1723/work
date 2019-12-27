@@ -33,9 +33,14 @@ urlpatterns = [
     url(r'^(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Profile_task_filter, name="Profile_task_filter"),
     url(r'^(?P<filter>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Profile_task_filter_page, name="Profile_task_filter_filter"),
     #
-    # url(r'^executor_tasks/category=(?P<filter_cat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_cat, name="Executor_my_tasks_filter_cat"),
-    # url(r'^executor_tasks/stat=(?P<filter_stat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_stat, name="Executor_my_tasks_filter_stat"),
-    # url(r'^executor_tasks/category=(?P<filter_cat>[А-Яа-я\s0-9-()/a-z,:]+)/stat=(?P<filter_stat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_cat_stat, name="Executor_my_tasks_filter_cat_stat"),
+    url(r'^category=(?P<filter_cat>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Executor_my_tasks_filter_cat_page, name="Executor_my_tasks_filter_cat_page"),
+    url(r'^category=(?P<filter_cat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_cat, name="Executor_my_tasks_filter_cat"),
+
+    url(r'^stat=(?P<filter_stat>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Executor_my_tasks_filter_stat_page, name="Executor_my_tasks_filter_stat_page"),
+    url(r'^stat=(?P<filter_stat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_stat, name="Executor_my_tasks_filter_stat"),
+
+    url(r'^category=(?P<filter_cat>[А-Яа-я\s0-9-()/a-z,:]+)/stat=(?P<filter_stat>[А-Яа-я\s0-9-()/a-z,:]+)/(?P<page>[0-9]+)/$', views.Executor_my_tasks_filter_cat_stat_page, name="Executor_my_tasks_filter_cat_stat_page"),
+    url(r'^category=(?P<filter_cat>[А-Яа-я\s0-9-()/a-z,:]+)/stat=(?P<filter_stat>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Executor_my_tasks_filter_cat_stat, name="Executor_my_tasks_filter_cat_stat"),
 
 
 ]

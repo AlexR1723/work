@@ -483,16 +483,16 @@ $('#task_filter_select_exec_stat').change(function () {
     var cat = $('#task_filter_select_exec_cat option:selected').val();
     var stat = $('#task_filter_select_exec_stat option:selected').val();
     if (cat==0 && stat==0){
-         window.location.href = '/profile/executor_tasks/';
+         window.location.href = '/profile/task/';
     }
     if (cat!=0 && stat==0){
-         window.location.href = '/profile/executor_tasks/category='+cat;
+         window.location.href = '/profile/task/category='+cat;
     }
     if (cat==0 && stat!=0){
-         window.location.href = '/profile/executor_tasks/stat='+stat;
+         window.location.href = '/profile/task/stat='+stat;
     }
     if (cat!=0 && stat!=0){
-         window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+         window.location.href = '/profile/task/category='+cat+'/stat='+stat;
     }
 });
 // let double = function(num)

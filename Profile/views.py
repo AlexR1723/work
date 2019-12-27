@@ -333,56 +333,56 @@ def logout_user(request):
 #             return HttpResponseRedirect("/profile/settings")
 #     else:
 #         return HttpResponseRedirect("/login")
+#
+# def SubcategoryFind(request):
+#     try:
+#         cat = request.GET.get("id")
+#         subcategory=SubCategory.objects.all().filter(category__id=cat)
+#         subcategory_list = []
+#         for s in subcategory:
+#             subcategory_list.append(s.id)
+#             subcategory_list.append(s.name)
+#         return HttpResponse(json.dumps({'data': subcategory_list}))
+#     except:
+#         return HttpResponse(json.dumps({'data': 'error'}))
 
-def SubcategoryFind(request):
-    try:
-        cat = request.GET.get("id")
-        subcategory=SubCategory.objects.all().filter(category__id=cat)
-        subcategory_list = []
-        for s in subcategory:
-            subcategory_list.append(s.id)
-            subcategory_list.append(s.name)
-        return HttpResponse(json.dumps({'data': subcategory_list}))
-    except:
-        return HttpResponse(json.dumps({'data': 'error'}))
 
-
-def Save_task(request):
-    print('task_save')
-    if request.method == 'POST':
-        doc = request.FILES
-        email = request.session.get('username', 'no')
-        sub=request.POST.get('subcategory')
-        title = request.POST.get('task_title')
-        description=request.POST.get('description')
-        city=request.POST.get('city')
-        address=request.POST.get('address')
-        date_=request.POST.get('date')
-        gridRadios=request.POST.get('gridRadios')
-        start_time=request.POST.get('start_time')
-        end_time=request.POST.get('end_time')
-        gridRadios2=request.POST.get('gridRadios2')
-        date_=date_.split('/')
-        date=date_[2]+'-'+date_[1]+'-'+date_[0]
-        pay=1
-
-        auth = AuthUser.objects.all().filter(email=email)[0]
-        subcategory = SubCategory.objects.all().filter(id=sub)[0]
-        city=City.objects.all().filter(id=city)[0]
-        if(gridRadios2 == 'option1'):
-            pay=0
-        if(gridRadios=='option1'):
-            user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description, city=city,
-                                 address=address,date=date,pay=pay)
-        else:
-            user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description, city=city,
-                                 address=address, start_time=start_time,end_time=end_time, date=date, pay=pay)
-        user_task.save()
-        if (doc):
-            for d in doc.getlist('files'):
-                tast_photo = TaskPhoto(task=user_task, photo=d)
-                tast_photo.save()
-    return HttpResponseRedirect("/profile/settings")
+# def Save_task(request):
+#     print('task_save')
+#     if request.method == 'POST':
+#         doc = request.FILES
+#         email = request.session.get('username', 'no')
+#         sub=request.POST.get('subcategory')
+#         title = request.POST.get('task_title')
+#         description=request.POST.get('description')
+#         city=request.POST.get('city')
+#         address=request.POST.get('address')
+#         date_=request.POST.get('date')
+#         gridRadios=request.POST.get('gridRadios')
+#         start_time=request.POST.get('start_time')
+#         end_time=request.POST.get('end_time')
+#         gridRadios2=request.POST.get('gridRadios2')
+#         date_=date_.split('/')
+#         date=date_[2]+'-'+date_[1]+'-'+date_[0]
+#         pay=1
+#
+#         auth = AuthUser.objects.all().filter(email=email)[0]
+#         subcategory = SubCategory.objects.all().filter(id=sub)[0]
+#         city=City.objects.all().filter(id=city)[0]
+#         if(gridRadios2 == 'option1'):
+#             pay=0
+#         if(gridRadios=='option1'):
+#             user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description, city=city,
+#                                  address=address,date=date,pay=pay)
+#         else:
+#             user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description, city=city,
+#                                  address=address, start_time=start_time,end_time=end_time, date=date, pay=pay)
+#         user_task.save()
+#         if (doc):
+#             for d in doc.getlist('files'):
+#                 tast_photo = TaskPhoto(task=user_task, photo=d)
+#                 tast_photo.save()
+#     return HttpResponseRedirect("/profile/settings")
 
 def Executor(request):
     email = request.session.get('username', 'no')
@@ -802,121 +802,121 @@ def Customer(request):
 #             list_stat.sort()
 #     return render(request, 'Profile/My_tasks_executor.html', locals())
 
-def Executor_my_tasks_filter_cat(request,filter_cat):
-    layout, username, photo = layout_name(request)
-    if username == '':
-        return HttpResponseRedirect("/login")
-    else:
-        email = request.session.get('username', 'no')
-        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
-            us = request.session.get('username')
-            user = AuthUser.objects.get(username=us).id
-            filter_cat=str(filter_cat)
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id)
-
-            user_task = UserTask.objects.filter(exec_id=user)
-            list_cat = []
-            list_stat = []
-            for i in user_task:
-                cat = i.subcategory.name
-                stat = i.task_status.name
-                if cat not in list_cat:
-                    list_cat.append(cat)
-                if stat not in list_stat:
-                    list_stat.append(stat)
-            # list_cat=[]
-            # for i in user_tasks:
-            #     sub=i.subcategory.name
-            #     if sub not in list_cat:
-            #         list_cat.append(sub)
-            # list_stat = []
-            # for i in user_tasks:
-            #     sub = i.task_status.name
-            #     if sub not in list_stat:
-            #         list_stat.append(sub)
-            list_cat.sort()
-            list_stat.sort()
-    return render(request, 'Profile/My_tasks_executor.html', locals())
-
-def Executor_my_tasks_filter_stat(request,filter_stat):
-    layout, username, photo = layout_name(request)
-    if username == '':
-        return HttpResponseRedirect("/login")
-    else:
-        email = request.session.get('username', 'no')
-        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
-            us = request.session.get('username')
-            user = AuthUser.objects.get(username=us).id
-            filter_stat=str(filter_stat)
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
-
-            user_task = UserTask.objects.filter(exec_id=user)
-            list_cat = []
-            list_stat = []
-            for i in user_task:
-                cat = i.subcategory.name
-                stat = i.task_status.name
-                if cat not in list_cat:
-                    list_cat.append(cat)
-                if stat not in list_stat:
-                    list_stat.append(stat)
-            # list_cat=[]
-            # for i in user_tasks:
-            #     sub=i.subcategory.name
-            #     if sub not in list_cat:
-            #         list_cat.append(sub)
-            # list_stat = []
-            # for i in user_tasks:
-            #     sub = i.task_status.name
-            #     if sub not in list_stat:
-            #         list_stat.append(sub)
-            list_cat.sort()
-            list_stat.sort()
-    return render(request, 'Profile/My_tasks_executor.html', locals())
-
-def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
-    layout, username, photo = layout_name(request)
-    if username == '':
-        return HttpResponseRedirect("/login")
-    else:
-        email = request.session.get('username', 'no')
-        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
-            us = request.session.get('username')
-            user = AuthUser.objects.get(username=us).id
-            filter_stat=str(filter_stat)
-            filter_cat=str(filter_cat)
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
-
-            # user_task_no_filter=UserTask.objects.filter(exec_id=user)
-
-            user_task = UserTask.objects.filter(exec_id=user)
-            list_cat = []
-            list_stat = []
-            for i in user_task:
-                cat=i.subcategory.name
-                stat=i.task_status.name
-                if cat not in list_cat:
-                    list_cat.append(cat)
-                if stat not in list_stat:
-                    list_stat.append(stat)
-
-
-            # list_cat=[]
-            # # user_cat=UserTask.objects.filter(exec_id=user)
-            # for i in user_cat:
-            #     sub=i.subcategory.name
-            #     if sub not in list_cat:
-            #         list_cat.append(sub)
-            #
-            # list_stat = []
-            # user_stat = UserTask.objects.filter(exec_id=user)
-            # for i in user_stat:
-            #     sub = i.task_status.name
-            #     if sub not in list_stat:
-            #         list_stat.append(sub)
-            list_cat.sort()
-            list_stat.sort()
-    return render(request, 'Profile/My_tasks_executor.html', locals())
+# def Executor_my_tasks_filter_cat(request,filter_cat):
+#     layout, username, photo = layout_name(request)
+#     if username == '':
+#         return HttpResponseRedirect("/login")
+#     else:
+#         email = request.session.get('username', 'no')
+#         if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+#             us = request.session.get('username')
+#             user = AuthUser.objects.get(username=us).id
+#             filter_cat=str(filter_cat)
+#             user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id)
+#
+#             user_task = UserTask.objects.filter(exec_id=user)
+#             list_cat = []
+#             list_stat = []
+#             for i in user_task:
+#                 cat = i.subcategory.name
+#                 stat = i.task_status.name
+#                 if cat not in list_cat:
+#                     list_cat.append(cat)
+#                 if stat not in list_stat:
+#                     list_stat.append(stat)
+#             # list_cat=[]
+#             # for i in user_tasks:
+#             #     sub=i.subcategory.name
+#             #     if sub not in list_cat:
+#             #         list_cat.append(sub)
+#             # list_stat = []
+#             # for i in user_tasks:
+#             #     sub = i.task_status.name
+#             #     if sub not in list_stat:
+#             #         list_stat.append(sub)
+#             list_cat.sort()
+#             list_stat.sort()
+#     return render(request, 'Profile/My_tasks_executor.html', locals())
+#
+# def Executor_my_tasks_filter_stat(request,filter_stat):
+#     layout, username, photo = layout_name(request)
+#     if username == '':
+#         return HttpResponseRedirect("/login")
+#     else:
+#         email = request.session.get('username', 'no')
+#         if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+#             us = request.session.get('username')
+#             user = AuthUser.objects.get(username=us).id
+#             filter_stat=str(filter_stat)
+#             user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
+#
+#             user_task = UserTask.objects.filter(exec_id=user)
+#             list_cat = []
+#             list_stat = []
+#             for i in user_task:
+#                 cat = i.subcategory.name
+#                 stat = i.task_status.name
+#                 if cat not in list_cat:
+#                     list_cat.append(cat)
+#                 if stat not in list_stat:
+#                     list_stat.append(stat)
+#             # list_cat=[]
+#             # for i in user_tasks:
+#             #     sub=i.subcategory.name
+#             #     if sub not in list_cat:
+#             #         list_cat.append(sub)
+#             # list_stat = []
+#             # for i in user_tasks:
+#             #     sub = i.task_status.name
+#             #     if sub not in list_stat:
+#             #         list_stat.append(sub)
+#             list_cat.sort()
+#             list_stat.sort()
+#     return render(request, 'Profile/My_tasks_executor.html', locals())
+#
+# def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
+#     layout, username, photo = layout_name(request)
+#     if username == '':
+#         return HttpResponseRedirect("/login")
+#     else:
+#         email = request.session.get('username', 'no')
+#         if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+#             us = request.session.get('username')
+#             user = AuthUser.objects.get(username=us).id
+#             filter_stat=str(filter_stat)
+#             filter_cat=str(filter_cat)
+#             user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
+#
+#             # user_task_no_filter=UserTask.objects.filter(exec_id=user)
+#
+#             user_task = UserTask.objects.filter(exec_id=user)
+#             list_cat = []
+#             list_stat = []
+#             for i in user_task:
+#                 cat=i.subcategory.name
+#                 stat=i.task_status.name
+#                 if cat not in list_cat:
+#                     list_cat.append(cat)
+#                 if stat not in list_stat:
+#                     list_stat.append(stat)
+#
+#
+#             # list_cat=[]
+#             # # user_cat=UserTask.objects.filter(exec_id=user)
+#             # for i in user_cat:
+#             #     sub=i.subcategory.name
+#             #     if sub not in list_cat:
+#             #         list_cat.append(sub)
+#             #
+#             # list_stat = []
+#             # user_stat = UserTask.objects.filter(exec_id=user)
+#             # for i in user_stat:
+#             #     sub = i.task_status.name
+#             #     if sub not in list_stat:
+#             #         list_stat.append(sub)
+#             list_cat.sort()
+#             list_stat.sort()
+#     return render(request, 'Profile/My_tasks_executor.html', locals())
 
 
 def Fav_executor(request):

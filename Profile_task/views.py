@@ -79,18 +79,38 @@ def Profile_tasks(request):
             us = request.session.get('username')
             user = AuthUser.objects.get(username=us).id
             user_tasks = UserTask.objects.filter(exec_id=user)
+            filter_cat=0
+            filter_stat=0
             list_cat = []
             for i in user_tasks:
                 sub = i.subcategory.name
                 if sub not in list_cat:
                     list_cat.append(sub)
-            list_stat = []
-            for i in user_tasks:
-                sub = i.task_status.name
-                if sub not in list_stat:
-                    list_stat.append(sub)
+            list_stat = UserTaskStatus.objects.all()
             list_cat.sort()
-            list_stat.sort()
+            task_count = UserTask.objects.filter(exec_id=user).order_by('-date').count()
+            if (task_count < 10):
+                task = UserTask.objects.filter(exec_id=user).order_by('-date')[0:]
+            else:
+                task = UserTask.objects.filter(exec_id=user).order_by('-date')[0:10]
+            cats = []
+            k = 0
+            while (task_count > 0):
+                k = k + 1
+                task_count = task_count - 10
+            list_page = []
+            page = 1
+            if (k > 6):
+                for i in range(1, 4):
+                    list_page.append(i)
+                list_page.append('...')
+                for i in range(k - 2, k + 1):
+                    list_page.append(i)
+            else:
+                for i in range(1, k + 1):
+                    list_page.append(i)
+            pre = 1
+            next = page + 1
             return render(request, 'Profile/My_tasks_executor.html', locals())
 
 
@@ -148,10 +168,63 @@ def Profile_task_page(request,page):
             pre = page - 1
             next = page + 1
             # fav_exec=UserFavoritesExecutor.objects.filter(user_id=user).order_by('-id')
-
+            return render(request, 'Profile/My_tasks_customer.html', locals())
         else:
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+            user_tasks = UserTask.objects.filter(exec_id=user)
+            filter_cat = 0
+            filter_stat = 0
+            list_cat = []
+            for i in user_tasks:
+                sub = i.subcategory.name
+                if sub not in list_cat:
+                    list_cat.append(sub)
+            list_stat = UserTaskStatus.objects.all()
+            list_cat.sort()
+            page = int(page)
+            start = page * 10 - 10
+            end = page * 10
+            task = UserTask.objects.filter(exec_id=user).order_by('-date')[start:end]
+            task_count = UserTask.objects.filter(exec_id=user).order_by('-date').count()
+            cats = []
+            for i in task:
+                el = SubCategory.objects.get(id=i.subcategory_id).name
+                if el not in cats:
+                    cats.append(el)
+            cats.sort()
+            k = 0
+            while (task_count > 0):
+                k = k + 1
+                task_count = task_count - 10
+            Page = []
+            if k > 6:
+                # записать первые 3
+                for i in range(1, 4):
+                    Page.append(i)
+                # записать середину
+                if page >= 3 and page <= (k - 2):
+                    for i in range(page - 1, page + 2):
+                        Page.append(i)
+                # записать последние 3
+                for i in range(k - 2, k + 1):
+                    Page.append(i)
+            else:
+                for i in range(1, k + 1):
+                    Page.append(i)
+            # убрать повторения
+            Page = list(set(Page))
+            print(Page)
+            list_page = []
+            # добавить '...'
+            for i in range(len(Page) - 1):
+                list_page.append(Page[i])
+                if Page[i + 1] - Page[i] > 1:
+                    list_page.append('...')
+            list_page.append(Page[len(Page) - 1])
+            pre = page - 1
+            next = page + 1
             return HttpResponseRedirect("/profile/settings")
-    return render(request, 'Profile/My_tasks_customer.html', locals())
 
 def Profile_task_filter(request,filter):
     layout, username, photo = layout_name(request)
@@ -391,3 +464,319 @@ def Set_exec(request):
         print(task)
         task.save()
         return HttpResponse(json.dumps({'data': 'ok'}))
+
+
+def Executor_my_tasks_filter_cat(request,filter_cat):
+    layout, username, photo = layout_name(request)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+            filter_cat=str(filter_cat)
+
+            user_task = UserTask.objects.filter(exec_id=user)
+            list_cat = []
+            list_stat = UserTaskStatus.objects.all()
+            for i in user_task:
+                cat = i.subcategory.name
+                if cat not in list_cat:
+                    list_cat.append(cat)
+            list_cat.sort()
+            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).count()
+            if (user_tasks_count < 10):
+                user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[0:]
+            else:
+                user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[0:10]
+            k = 0
+            while (user_tasks_count > 0):
+                k = k + 1
+                user_tasks_count = user_tasks_count - 10
+            list_page = []
+            page = 1
+            if (k > 6):
+                for i in range(1, 4):
+                    list_page.append(i)
+                list_page.append('...')
+                for i in range(k - 2, k + 1):
+                    list_page.append(i)
+            else:
+                for i in range(1, k + 1):
+                    list_page.append(i)
+            pre = 1
+            next = page + 1
+            return render(request, 'Profile/My_tasks_executor.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+
+def Executor_my_tasks_filter_cat_page(request,filter_cat,page):
+    layout, username, photo = layout_name(request)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+            filter_cat=str(filter_cat)
+
+            user_task = UserTask.objects.filter(exec_id=user)
+            list_cat = []
+            list_stat = UserTaskStatus.objects.all()
+            for i in user_task:
+                cat = i.subcategory.name
+                if cat not in list_cat:
+                    list_cat.append(cat)
+            list_cat.sort()
+            page = int(page)
+            start = page * 10 - 10
+            end = page * 10
+            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).count()
+            user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[start:end]
+            k = 0
+            while (user_tasks_count > 0):
+                k = k + 1
+                user_tasks_count = user_tasks_count - 10
+            Page = []
+            if k > 6:
+                # записать первые 3
+                for i in range(1, 4):
+                    Page.append(i)
+                # записать середину
+                if page >= 3 and page <= (k - 2):
+                    for i in range(page - 1, page + 2):
+                        Page.append(i)
+                # записать последние 3
+                for i in range(k - 2, k + 1):
+                    Page.append(i)
+            else:
+                for i in range(1, k + 1):
+                    Page.append(i)
+            # убрать повторения
+            Page = list(set(Page))
+            print(Page)
+            list_page = []
+            # добавить '...'
+            for i in range(len(Page) - 1):
+                list_page.append(Page[i])
+                if Page[i + 1] - Page[i] > 1:
+                    list_page.append('...')
+            list_page.append(Page[len(Page) - 1])
+            pre = page - 1
+            next = page + 1
+            return render(request, 'Profile/My_tasks_executor.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+
+
+def Executor_my_tasks_filter_stat(request,filter_stat):
+    layout, username, photo = layout_name(request)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+            filter_stat=str(filter_stat)
+            user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
+
+            user_task = UserTask.objects.filter(exec_id=user)
+            list_cat = []
+            list_stat = UserTaskStatus.objects.all()
+            for i in user_task:
+                cat = i.subcategory.name
+                if cat not in list_cat:
+                    list_cat.append(cat)
+            list_cat.sort()
+            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
+            if (user_tasks_count < 10):
+                user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:]
+            else:
+                user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:10]
+            k = 0
+            while (user_tasks_count > 0):
+                k = k + 1
+                user_tasks_count = user_tasks_count - 10
+            list_page = []
+            page = 1
+            if (k > 6):
+                for i in range(1, 4):
+                    list_page.append(i)
+                list_page.append('...')
+                for i in range(k - 2, k + 1):
+                    list_page.append(i)
+            else:
+                for i in range(1, k + 1):
+                    list_page.append(i)
+            pre = 1
+            next = page + 1
+            return render(request, 'Profile/My_tasks_executor.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+
+def Executor_my_tasks_filter_stat_page(request,filter_stat,page):
+    layout, username, photo = layout_name(request)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+            filter_stat = str(filter_stat)
+
+            user_task = UserTask.objects.filter(exec_id=user)
+            list_cat = []
+            list_stat = UserTaskStatus.objects.all()
+            for i in user_task:
+                cat = i.subcategory.name
+                if cat not in list_cat:
+                    list_cat.append(cat)
+            list_cat.sort()
+            page = int(page)
+            start = page * 10 - 10
+            end = page * 10
+            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
+            user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[start:end]
+            k = 0
+            while (user_tasks_count > 0):
+                k = k + 1
+                user_tasks_count = user_tasks_count - 10
+            Page = []
+            if k > 6:
+                # записать первые 3
+                for i in range(1, 4):
+                    Page.append(i)
+                # записать середину
+                if page >= 3 and page <= (k - 2):
+                    for i in range(page - 1, page + 2):
+                        Page.append(i)
+                # записать последние 3
+                for i in range(k - 2, k + 1):
+                    Page.append(i)
+            else:
+                for i in range(1, k + 1):
+                    Page.append(i)
+            # убрать повторения
+            Page = list(set(Page))
+            print(Page)
+            list_page = []
+            # добавить '...'
+            for i in range(len(Page) - 1):
+                list_page.append(Page[i])
+                if Page[i + 1] - Page[i] > 1:
+                    list_page.append('...')
+            list_page.append(Page[len(Page) - 1])
+            pre = page - 1
+            next = page + 1
+            return render(request, 'Profile/My_tasks_executor.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+
+def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
+    layout, username, photo = layout_name(request)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+            filter_stat=str(filter_stat)
+            filter_cat=str(filter_cat)
+            user_task = UserTask.objects.filter(exec_id=user)
+            list_cat = []
+            list_stat = UserTaskStatus.objects.all()
+            for i in user_task:
+                cat=i.subcategory.name
+                if cat not in list_cat:
+                    list_cat.append(cat)
+            list_cat.sort()
+            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
+            if (user_tasks_count < 10):
+                user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:]
+            else:
+                user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:10]
+            k = 0
+            while (user_tasks_count > 0):
+                k = k + 1
+                user_tasks_count = user_tasks_count - 10
+            list_page = []
+            page = 1
+            if (k > 6):
+                for i in range(1, 4):
+                    list_page.append(i)
+                list_page.append('...')
+                for i in range(k - 2, k + 1):
+                    list_page.append(i)
+            else:
+                for i in range(1, k + 1):
+                    list_page.append(i)
+            pre = 1
+            next = page + 1
+            return render(request, 'Profile/My_tasks_executor.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+
+def Executor_my_tasks_filter_cat_stat_page(request,filter_cat,filter_stat,page):
+    layout, username, photo = layout_name(request)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+            filter_stat = str(filter_stat)
+            filter_cat = str(filter_cat)
+
+            user_task = UserTask.objects.filter(exec_id=user)
+            list_cat = []
+            list_stat = UserTaskStatus.objects.all()
+            for i in user_task:
+                cat = i.subcategory.name
+                if cat not in list_cat:
+                    list_cat.append(cat)
+            list_cat.sort()
+            page = int(page)
+            start = page * 10 - 10
+            end = page * 10
+            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
+            user_tasks = UserTask.objects.filter(exec_id=user).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[start:end]
+            k = 0
+            while (user_tasks_count > 0):
+                k = k + 1
+                user_tasks_count = user_tasks_count - 10
+            Page = []
+            if k > 6:
+                # записать первые 3
+                for i in range(1, 4):
+                    Page.append(i)
+                # записать середину
+                if page >= 3 and page <= (k - 2):
+                    for i in range(page - 1, page + 2):
+                        Page.append(i)
+                # записать последние 3
+                for i in range(k - 2, k + 1):
+                    Page.append(i)
+            else:
+                for i in range(1, k + 1):
+                    Page.append(i)
+            # убрать повторения
+            Page = list(set(Page))
+            print(Page)
+            list_page = []
+            # добавить '...'
+            for i in range(len(Page) - 1):
+                list_page.append(Page[i])
+                if Page[i + 1] - Page[i] > 1:
+                    list_page.append('...')
+            list_page.append(Page[len(Page) - 1])
+            pre = page - 1
+            next = page + 1
+            return render(request, 'Profile/My_tasks_executor.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
