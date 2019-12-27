@@ -6,6 +6,11 @@ body {
     background-color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
 }
+.bg-gray{
+    background: #f9f9f9;
+    width: 100%;
+    height: 100%;
+}
 .textrowcount {
     overflow : hidden;
     text-overflow: ellipsis;
@@ -1514,7 +1519,12 @@ hr.line {
     background: url(/static/image/ProblemsLogo.jpg) 60% 20% no-repeat;
     background-size: cover;
 }
-
+.serv_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/work-hardening.jpg) 50% 50% no-repeat;
+    background-size: cover;
+}
 .offer_hdr_bg_layout,
 .rules_hdr_bg_layout,
 .privacy_hdr_bg_layout,
@@ -1657,10 +1667,20 @@ hr.line {
 .category-card_label,
 .perform-category_label,
 .propose-category_label,
-.search-category_label {
+.search-category_label,
+.service-link h3 {
     font-size: 24px;
     line-height: 30px;
     color: #000000;
+}
+a.category-card_label:hover{
+    color: #000000;
+}
+.service-link a:hover {
+    text-decoration: none;
+}
+.users_rates h2 {
+    font-size: 1.5rem;
 }
 .perfomer-tasks-blk a:hover {
     text-decoration: none;
@@ -1672,7 +1692,8 @@ hr.line {
 }
 
 .category-money_label,
-.propose-money_label {
+.propose-money_label,
+.service-money_label {
     font-weight: bold;
     font-size: 2rem;
     line-height: 45px;
@@ -1813,7 +1834,9 @@ hr.category-line {
     background-color: blue;
 }
 /*.change-password button {*/
-#btn_profile_change_pass {
+#btn_profile_change_pass,
+.rate-perform_btn,
+.rate-modal .modal-footer .btn,#btn_task_check {
     border: 1px solid transparent;
     height: 40px;
     background: #AF4B53;
@@ -1821,13 +1844,22 @@ hr.category-line {
 }
 
 /*.change-password button:hover {*/
-#btn_profile_change_pass:hover {
+#btn_profile_change_pass:hover,
+.rate-perform_btn:hover,
+.rate-modal .modal-footer .btn:hover,#btn_task_check:hover {
     background-color: #FFFFFF;
     color: #AF4B53;
     border: 1px solid #AF4B53;
     transition: .3s;
 }
-
+.rate-perform_btn {
+    border-radius: 5px;
+}
+.rate-modal .modal-footer {
+    border-top: none;
+    padding-top: 0;
+    justify-content: center;
+}
 .tooltip {
     line-height: 15px;
 }
@@ -1920,7 +1952,7 @@ input[type=checkbox]:checked + label::after {
 }
 .adverts-add_photos .img_wrapper,
 .portfolio-photos_blk .img_wrapper {
-    height: 230px;
+    /*height: 230px;*/
     overflow: hidden;
     padding: 1rem;
     padding-left: 0;
@@ -2131,7 +2163,8 @@ input[type=checkbox]:checked + label::after {
 }
 .advert-card_text,
 .perform-card_text,
-.search-card_text {
+.search-card_text,
+service-card_text {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
@@ -2161,7 +2194,7 @@ input[type=checkbox]:checked + label::after {
 .address-task_form .address-task_input {
     color: rgba(0, 0, 0, 0.5);
 }
-#btn-add-file {
+#btn-add-file{
     border: 1px solid transparent;
     height: 40px;
     background: rgba(62, 120, 157, .8);
@@ -2172,6 +2205,42 @@ input[type=checkbox]:checked + label::after {
     color: #FFFFFF;
     border: 1px solid rgba(61, 120, 157, 1);
     transition: .3s;
+}
+.users_rates .choose-user_btn {
+    background: #3E789D;
+    color: #FFFFFF;
+    border: 1px solid #3E789D;
+    border-radius: 5px;
+    font-size: 1rem;
+    line-height: 24px;
+}
+.users_rates .choose-user_btn:hover {
+    background: #FFFFFF;
+    color: #3E789D;
+    border: 1px solid rgba(61, 120, 157, 1);
+    transition: .3s;
+}
+.users_rates .rate_span {
+    font-size: 1.2rem;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.users_rates .rate_b {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #000000;
+}
+.task-details span {
+    font-size: 1rem;
+    line-height: 23px;
+    color: #727272;
+}
+.task-details .price-span {
+    font-size: 2rem;
+    color: #000000;
+}
+.task-details .task-details_txt {
+    color: #000000;
 }
 .del_select::after {
     content: "\f107";
@@ -2543,6 +2612,9 @@ input[type=checkbox]:checked + label::after {
     color: #AF4B53;
 
     transition: .3s;
+}
+.service-hdr {
+
 }
 .dropdown-menu{
     width: max-content !important;

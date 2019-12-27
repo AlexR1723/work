@@ -4,17 +4,13 @@
 
     <div class="container-fluid p-0">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 perfomer-tasks-blk py-3">
-                <div class="row pl-2 pr-2 m-0 justify-content-center">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 perfomer-tasks-blk py-3 mt-5">
+                <div class="row p-0 m-0 justify-content-center">
 
                     <div class="col-md-12 col-lg-12 px-0 pb-5">
                         <div class="row">
                             <div class="col-12 col-md-4 p-0 mb-3 mb-md-0 mr-md-5 cat_select">
                                 <select class="form-control" id="task_filter_select_exec_cat" name="task_search">
-                                    {#                                <option selected value="0">Все категории</option>#}
-                                    {#                                <option value="1">Домашний мастер</option>#}
-                                    {#                                <option value="1">Мебельные работы</option>#}
-                                    {#                                <option value="1">Клининговые услуги</option>#}
                                     {% if filter_cat == 0 %}
                                         <option selected value="0">Все категории</option>
                                     {% else %}
@@ -32,13 +28,10 @@
                             </div>
                             <div class="col-12 col-md-4 p-0">
                                 <select class="form-control" id="task_filter_select_exec_stat" name="task_search">
-                                    {#                                    <option selected value="0">Все статусы</option>#}
-                                    {#                                    <option value="1">В работе</option>#}
-                                    {#                                    <option value="1">Выполнено</option>#}
                                     {% if filter_stat == 0 %}
-                                        <option selected value="0">Все категории</option>
+                                        <option selected value="0">Все статусы</option>
                                     {% else %}
-                                        <option value="0">Все категории</option>
+                                        <option value="0">Все статусы</option>
                                     {% endif %}
                                     {% for i in list_stat %}
                                         {% if filter_stat|lower == i|lower %}

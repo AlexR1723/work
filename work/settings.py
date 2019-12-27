@@ -46,10 +46,16 @@ INSTALLED_APPS = [
     'Main',
     'News',
     'Help',
-    'Profile',
     'Advert',
     'Task',
     'Services',
+    'Profile',
+    'Profile_advert',
+    'Profile_balance',
+    'Profile_message',
+    'Profile_notice',
+    'Profile_offer',
+    'Profile_task',
 ]
 
 MIDDLEWARE = [

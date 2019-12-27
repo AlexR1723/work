@@ -31,19 +31,20 @@
                     <div class="col-12 p-0">
                         <div class="row align-items-center">
                             <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                {% if t.photo_main != None %}
+                                {% if t.photo_main != None and t.photo_main != "" %}
                                 <img alt="" class="w-100 user-advert-img"
                                      src="{{ MEDIA_URL }}{{ t.photo_main.url }}">
+
                                 {% endif %}
                             </div>
                             <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
                                 <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <a href="#!">
+                                    <a href="{% url 'Profile_task_detail' t.id %}">
                                         <h3 class="category-card_label m-0">{{ t.title }}</h3>
                                     </a>
                                 </div>
                                 <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="w-100 mb-0 pr-0 advert-card_text mb-2 textrowcount">{{ t.description }}</p>
+                                    <p class="w-100 mb-0 pr-0 advert-card_text mb-2 textrowcount w-100">{{ t.description }}</p>
                                     <span>{{ t.date }}</span>
                                 </div>
                             </div>

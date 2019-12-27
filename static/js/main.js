@@ -443,24 +443,30 @@ $("#login_pass").keyup(function (event) {
 $('#task_filter_select').change(function () {
     var value = $('#task_filter_select option:selected').val();
     if (value == 0)
-        window.location.href = '/profile/customer_tasks/';
+        // window.location.href = '/profile/customer_tasks/';
+        window.location.href = '/profile/task/';
     else
-        window.location.href = '/profile/customer_tasks/' + value;
+        // window.location.href = '/profile/customer_tasks/' + value;
+        window.location.href = '/profile/task/' + value;
 });
 $('#task_filter_select_exec_cat').change(function () {
     var cat = $('#task_filter_select_exec_cat option:selected').val();
     var stat = $('#task_filter_select_exec_stat option:selected').val();
     if (cat==0 && stat==0){
-         window.location.href = '/profile/executor_tasks/';
+         // window.location.href = '/profile/executor_tasks/';
+         window.location.href = '/profile/task/';
     }
     if (cat!=0 && stat==0){
-         window.location.href = '/profile/executor_tasks/category='+cat;
+         // window.location.href = '/profile/executor_tasks/category='+cat;
+         window.location.href = '/profile/task/category='+cat;
     }
     if (cat==0 && stat!=0){
-         window.location.href = '/profile/executor_tasks/stat='+stat;
+         // window.location.href = '/profile/executor_tasks/stat='+stat;
+         window.location.href = '/profile/task/stat='+stat;
     }
     if (cat!=0 && stat!=0){
-         window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+         // window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+         window.location.href = '/profile/task/category='+cat+'/stat='+stat;
     }
 })
 $('#task_filter_select_exec_stat').change(function () {
@@ -546,7 +552,7 @@ $("#btn_del_ads").click(function (event) {
             if (data==true){
                 // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
                 // setTimeout(5000)
-                window.location.href= '/profile/adverts/';
+                window.location.href= '/profile/advert/';
             }
             else {
                 window.location.href= '/login';
@@ -964,9 +970,9 @@ $(document).ready(function () {
     $('#all_ads_filter_select').change(function () {
         var value = $('#all_ads_filter_select option:selected').val();
         if (value == 0)
-            window.location.href = '/profile/adverts/';
+            window.location.href = '/profile/advert/';
         else
-            window.location.href = '/profile/adverts/' + value;
+            window.location.href = '/profile/advert/' + value;
     });
     $("#name").click(function () {
         $('#name').removeClass('br-red');
@@ -1277,7 +1283,7 @@ $("#task_category").change(function () {
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/profile/subcategory_find/',
+            url: '/profile/task/subcategory_find/',
             data: {
                 id: cat
             },
@@ -1378,7 +1384,7 @@ function add_alert_error(index) {
 
 $(document).ready(function () {
 
-    $('input[type="file"]').change(function () {
+    $('input[type="file"]#files').change(function () {
         if ($(this).val() != '') {
             if ($(this)[0].files.length == 1) {
                 $('.js-fileName').text($(this).val());
@@ -1387,6 +1393,18 @@ $(document).ready(function () {
             }
         } else {
             $('.js-fileName').text('Выберите файлы');
+        }
+    });
+
+    $('input[type="file"]#file_main').change(function () {
+        if ($(this).val() != '') {
+            if ($(this)[0].files.length == 1) {
+                $('.js-fileNameMain').text($(this).val());
+            } else {
+                $('.js-fileNameMain').text('Выбрано файлов: ' + $(this)[0].files.length);
+            }
+        } else {
+            $('.js-fileNameMain').text('Выберите файлы');
         }
     });
 
@@ -1486,4 +1504,99 @@ $('#check_edit_advert').click(function () {
     else{
         $('#save_edit_advert').click();
     }
+});
+
+$("#task_category").click(function () {
+    $('#task_category').removeClass('br-red');
+});
+$("#task_subcategory").click(function () {
+    $('#task_subcategory').removeClass('br-red');
+});
+$("#input_text").click(function () {
+    $('#input_text').removeClass('br-red');
+});
+$("#description").click(function () {
+    $('#description').removeClass('br-red');
+});
+$("#input_addr").click(function () {
+    $('#input_addr').removeClass('br-red');
+});
+$("#input_price").click(function () {
+    $('#input_price').removeClass('br-red');
+});
+$('#btn_task_check').click(function () {
+     var categ = $("#task_category option:selected").val();
+     var subcateg=$("#task_subcategory option:selected").val();
+     var title=$("#input_text").val();
+     var description=$("#description").val();
+     var address=$("#input_addr").val();
+     var price=$("#input_price").val();
+
+    if (categ == 0) $('#task_category').addClass('br-red');
+    if (subcateg == 0) $('#task_subcategory').addClass('br-red');
+    if (title == "") $('#input_text').addClass('br-red');
+    if (description == "") $('#description').addClass('br-red');
+    if (address == "") $('#input_addr').addClass('br-red');
+    if (price == "") $('#input_price').addClass('br-red');
+    if(categ != 0 && subcateg != 0 && title != "" && description != "" && address != "" && price != ""){
+        $('#btn_task_submit').click();
+    }
+    else
+    {
+        $("#alert-danger").show('slow');
+            setTimeout(function () {
+                $("#alert-danger").hide('slow');
+            }, 5000);
+    }
+});
+$("#message-text").click(function () {
+    $('#message-text').removeClass('br-red');
+});
+$("#sum-name").click(function () {
+    $('#sum-name').removeClass('br-red');
+});
+$('#task-bet-save').click(function () {
+    var id=$("#task-id").val();
+    var description = $("#message-text").val();
+    var sum=$("#sum-name").val();
+    if(description == "") $('#message-text').addClass('br-red');
+    if(sum == "") $('#sum-name').addClass('br-red');
+    if(description != "" && sum != "")
+    {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/profile/task/save_bet/',
+            data: {
+                id: id,
+                description:description,
+                sum:sum
+            },
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (data) {
+                alert('Error');
+            }
+        })
+    }
+});
+$(".select-user-bet").click(function () {
+    var id=$("#task_id").val();
+    var user_id=$(this).prev().val();
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: '/profile/task/set_exec/',
+        data: {
+            id: id,
+            user_id:user_id
+        },
+        success: function (data) {
+            window.location='/profile/task/';
+            },
+        error: function (data) {
+            alert('Error');
+        }
+    })
 });

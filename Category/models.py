@@ -41,7 +41,7 @@ class SubCategory(models.Model):
         verbose_name_plural = _("Подкатегории")
 
     def task_count(self):
-        count=UserTask.objects.all().filter(subcategory=self).count()
+        count=UserTask.objects.all().filter(subcategory=self).filter(task_status__name='В поиске').count()
         return count
 
 
@@ -198,6 +198,26 @@ class UserTaskStatus(models.Model):
         managed = False
         db_table = 'user_task_status'
 
+class TaskPhoto(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    photo = models.FileField(upload_to='uploads/task/',max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_photo'
+
+    def get_type(self):
+        file_types=['avi','css','dll','doc','docx','gif','html','jpeg','jpg','js','mov','mp3','pdf','php','png','ppt','psd','rar','sql','svg','tif','txt','xls','xml','zip']
+        name=str(self.photo.url)
+        name=name.split('.')
+        count=len(name)-1
+        try:
+            if(file_types.index(name[count])):
+                full_name='image/file_type/'+name[count]+'.png'
+        except:
+            full_name = 'image/file_type/txt.png'
+        return full_name
+
 
 class UserTask(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
@@ -210,10 +230,32 @@ class UserTask(models.Model):
     start_time = models.TimeField(blank=True, null=True)
     end_time = models.TimeField(blank=True, null=True)
     pay = models.TextField(blank=True, null=True)
-    photo_main = models.ImageField(upload_to='uploads/task/', max_length=500, blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/task/',max_length=500, blank=True, null=True)
     task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='exec_id')
+    date_add = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'user_task'
+
+    def bet_count(self):
+        count=UserTaskBet.objects.filter(task=self).count()
+        return count
+
+    def all_photo(self):
+        photo=TaskPhoto.objects.filter(task=self)
+        return photo
+
+
+class UserTaskBet(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    task = models.ForeignKey(UserTask, models.DO_NOTHING, blank=True, null=True)
+    description = models.CharField(max_length=500, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_bet'

@@ -31,4 +31,5 @@ def layout_name(request):
 
 
 def Service(request):
+    layout, username, photo = layout_name(request)
     return render(request, 'Services/Services.html', locals())

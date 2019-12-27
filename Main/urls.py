@@ -39,6 +39,9 @@ urlpatterns = [
 
     # url(r'^question_details/$', views.Question_details, name="Question_details"),
     # url(r'^sub_category/$', views.Sub_category, name="Sub_category"),
+    # url(r'^services/$', views.Services, name="Services"),
+    # url(r'^task_details/$', views.Task_details, name="task_details"),
+    url(r'^task_details_performer/$', views.Task_details_performer, name="task_details_performer"),
 
 
     url(r'login_user', views.login_user, name='login_user'),

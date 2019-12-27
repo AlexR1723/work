@@ -346,7 +346,7 @@ class SubCategory(models.Model):
 
 class TaskPhoto(models.Model):
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
-    photo = models.CharField(max_length=500, blank=True, null=True)
+    photo = models.FileField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -437,11 +437,24 @@ class UserTask(models.Model):
     photo_main = models.CharField(max_length=500, blank=True, null=True)
     task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
-    ecex = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    date_add = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'user_task'
+
+
+class UserTaskBet(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    task = models.ForeignKey(UserTask, models.DO_NOTHING, blank=True, null=True)
+    description = models.CharField(max_length=500, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_bet'
 
 
 class UserTaskStatus(models.Model):

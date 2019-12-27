@@ -51,7 +51,7 @@ class SubCategory(models.Model):
         verbose_name_plural = _("Подкатегории")
 
     def task_count(self):
-        count=UserTask.objects.all().filter(subcategory=self).count()
+        count=UserTask.objects.all().filter(subcategory=self).filter(task_status__name='В поиске').count()
         return count
 
 
@@ -315,6 +315,8 @@ class UserTask(models.Model):
     photo_main = models.ImageField(upload_to='uploads/task/', max_length=500, blank=True, null=True)
     task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='exec_id')
+    date_add = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
