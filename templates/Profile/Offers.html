@@ -9,15 +9,17 @@
 
 
                 <div class="col-md-12 col-lg-12 px-0 pb-5">
-                        <div class="col-12 col-md-4 p-0 mb-3 mb-md-0 mr-md-5 cat_select">
-                            <select class="form-control" id="all-tasks" name="task_search">
-                                <option selected value="0">Все категории</option>
-                                <option value="1">Домашний мастер</option>
-                                <option value="1">Мебельные работы</option>
-                                <option value="1">Клининговые услуги</option>
-                            </select>
-                        </div>
+{#                        <div class="col-12 col-md-4 p-0 mb-3 mb-md-0 mr-md-5 cat_select">#}
+{#                            <select class="form-control" id="all-tasks" name="task_search">#}
+{#                                <option selected value="0">Все категории</option>#}
+{#                                <option value="1">Домашний мастер</option>#}
+{#                                <option value="1">Мебельные работы</option>#}
+{#                                <option value="1">Клининговые услуги</option>#}
+{#                            </select>#}
+{#                        </div>#}
                 </div>
+
+                {% for i in offers %}
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
                     <div class="row m-0 justify-content-start">
                         <div class="col-12 p-0">
@@ -28,20 +30,20 @@
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
                                     <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
                                         <a href="#">
-                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>
+                                            <h3 class="propose-category_label m-0">{{ i.advert.title }}</h3>
                                         </a>
                                     </div>
                                     <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                        <span class="propose-date_span">06.12.2019</span>
+                                        <p class="mb-0 pr-0 perform-card_text pb-2">{{ i.advert.description }}</p>
+                                        <span class="propose-date_span">{{ i.advert.date }}</span>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
                                     <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">600 руб.</label>
-                                        <a href="#">
-                                            <button class="propose-accept_btn mt-md-4">Принять</button>
-                                        </a>
+                                        <label class="propose-money_label mb-2">{{ i.advert.price }} руб.</label>
+{#                                        <a href="#">#}
+                                            <button class="propose-accept_btn mt-md-4" id="accept_advert" name="{{ i.advert.id }}">Принять</button>
+{#                                        </a>#}
                                     </div>
                                 </div>
 
@@ -50,230 +52,264 @@
                     </div>
                 </div>
                 <hr class="category-line m-0 my-4">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
-                    <div class="row m-0 justify-content-start">
-                        <div class="col-12 p-0">
-                            <div class="row">
-                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                        <a href="#">
-                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                        </a>
-                                    </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                        <span class="propose-date_span">06.12.2019</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">600 руб.</label>
-                                        <a href="#">
-                                            <button class="propose-accept_btn mt-md-4">Принять</button>
-                                        </a>
-                                    </div>
-                                </div>
+                {% endfor %}
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="category-line m-0 my-4">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
-                    <div class="row m-0 justify-content-start">
-                        <div class="col-12 p-0">
-                            <div class="row">
-                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                        <a href="#">
-                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                        </a>
-                                    </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                        <span class="propose-date_span">06.12.2019</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">600 руб.</label>
-                                        <a href="#">
-                                            <button class="propose-accept_btn mt-md-4">Принять</button>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="category-line m-0 my-4">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
-                    <div class="row m-0 justify-content-start">
-                        <div class="col-12 p-0">
-                            <div class="row">
-                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                        <a href="#">
-                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                        </a>
-                                    </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                        <span class="propose-date_span">06.12.2019</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">600 руб.</label>
-                                        <a href="#">
-                                            <button class="propose-accept_btn mt-md-4">Принять</button>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="category-line m-0 my-4">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
-                    <div class="row m-0 justify-content-start">
-                        <div class="col-12 p-0">
-                            <div class="row">
-                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                        <a href="#">
-                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                        </a>
-                                    </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                        <span class="propose-date_span">06.12.2019</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">600 руб.</label>
-                                        <a href="#">
-                                            <button class="propose-accept_btn mt-md-4">Принять</button>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="category-line m-0 my-4">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
-                    <div class="row m-0 justify-content-start">
-                        <div class="col-12 p-0">
-                            <div class="row">
-                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                        <a href="#">
-                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                        </a>
-                                    </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                        <span class="propose-date_span">06.12.2019</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">600 руб.</label>
-                                        <a href="#">
-                                            <button class="propose-accept_btn mt-md-4">Принять</button>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="category-line m-0 my-4">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
-                    <div class="row m-0 justify-content-start">
-                        <div class="col-12 p-0">
-                            <div class="row">
-                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                        <a href="#">
-                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                        </a>
-                                    </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                        <span class="propose-date_span">06.12.2019</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">600 руб.</label>
-                                        <a href="#">
-                                            <button class="propose-accept_btn mt-md-4">Принять</button>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="category-line m-0 my-4">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
-                    <div class="row m-0 justify-content-start">
-                        <div class="col-12 p-0">
-                            <div class="row">
-                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                        <a href="#">
-                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>
-                                        </a>
-                                    </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
-                                        <span class="propose-date_span">06.12.2019</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">600 руб.</label>
-                                        <a href="#">
-                                            <button class="propose-accept_btn mt-md-4">Принять</button>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="category-line m-0 my-4">
+{#                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
+{#                    <div class="row m-0 justify-content-start">#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
+{#                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                        <a href="#">#}
+{#                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center pt-2">#}
+{#                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
+{#                                        <span class="propose-date_span">06.12.2019</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
+{#                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
+{#                                        <label class="propose-money_label mb-2">600 руб.</label>#}
+{#                                        <a href="#">#}
+{#                                            <button class="propose-accept_btn mt-md-4">Принять</button>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <hr class="category-line m-0 my-4">#}
+{#                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
+{#                    <div class="row m-0 justify-content-start">#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
+{#                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                        <a href="#">#}
+{#                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center pt-2">#}
+{#                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
+{#                                        <span class="propose-date_span">06.12.2019</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
+{#                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
+{#                                        <label class="propose-money_label mb-2">600 руб.</label>#}
+{#                                        <a href="#">#}
+{#                                            <button class="propose-accept_btn mt-md-4">Принять</button>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <hr class="category-line m-0 my-4">#}
+{#                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
+{#                    <div class="row m-0 justify-content-start">#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
+{#                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                        <a href="#">#}
+{#                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center pt-2">#}
+{#                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
+{#                                        <span class="propose-date_span">06.12.2019</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
+{#                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
+{#                                        <label class="propose-money_label mb-2">600 руб.</label>#}
+{#                                        <a href="#">#}
+{#                                            <button class="propose-accept_btn mt-md-4">Принять</button>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <hr class="category-line m-0 my-4">#}
+{#                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
+{#                    <div class="row m-0 justify-content-start">#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
+{#                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                        <a href="#">#}
+{#                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center pt-2">#}
+{#                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
+{#                                        <span class="propose-date_span">06.12.2019</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
+{#                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
+{#                                        <label class="propose-money_label mb-2">600 руб.</label>#}
+{#                                        <a href="#">#}
+{#                                            <button class="propose-accept_btn mt-md-4">Принять</button>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <hr class="category-line m-0 my-4">#}
+{#                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
+{#                    <div class="row m-0 justify-content-start">#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
+{#                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                        <a href="#">#}
+{#                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center pt-2">#}
+{#                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
+{#                                        <span class="propose-date_span">06.12.2019</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
+{#                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
+{#                                        <label class="propose-money_label mb-2">600 руб.</label>#}
+{#                                        <a href="#">#}
+{#                                            <button class="propose-accept_btn mt-md-4">Принять</button>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <hr class="category-line m-0 my-4">#}
+{#                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
+{#                    <div class="row m-0 justify-content-start">#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
+{#                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                        <a href="#">#}
+{#                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center pt-2">#}
+{#                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
+{#                                        <span class="propose-date_span">06.12.2019</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
+{#                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
+{#                                        <label class="propose-money_label mb-2">600 руб.</label>#}
+{#                                        <a href="#">#}
+{#                                            <button class="propose-accept_btn mt-md-4">Принять</button>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <hr class="category-line m-0 my-4">#}
+{#                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
+{#                    <div class="row m-0 justify-content-start">#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
+{#                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                        <a href="#">#}
+{#                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center pt-2">#}
+{#                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
+{#                                        <span class="propose-date_span">06.12.2019</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
+{#                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
+{#                                        <label class="propose-money_label mb-2">600 руб.</label>#}
+{#                                        <a href="#">#}
+{#                                            <button class="propose-accept_btn mt-md-4">Принять</button>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <hr class="category-line m-0 my-4">#}
+{#                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
+{#                    <div class="row m-0 justify-content-start">#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
+{#                                    <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                        <a href="#">#}
+{#                                            <h3 class="propose-category_label m-0">Доставить цветы</h3>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center pt-2">#}
+{#                                        <p class="mb-0 pr-0 perform-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
+{#                                        <span class="propose-date_span">06.12.2019</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
+{#                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
+{#                                        <label class="propose-money_label mb-2">600 руб.</label>#}
+{#                                        <a href="#">#}
+{#                                            <button class="propose-accept_btn mt-md-4">Принять</button>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <hr class="category-line m-0 my-4">#}
 
             </div>
         </div>

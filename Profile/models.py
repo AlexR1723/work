@@ -263,3 +263,16 @@ class UserFavoritesExecutor(models.Model):
     class Meta:
         managed = False
         db_table = 'user_favorites_executor'
+
+
+class UserOffer(models.Model):
+    user_id_customer = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
+    advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
+    is_accept = models.BooleanField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_offer'
+

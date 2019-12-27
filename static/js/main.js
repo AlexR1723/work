@@ -429,17 +429,7 @@ $("#main_input_header").keyup(function (event) {
     show_item(this.value, event.keyCode, 'res_list_header', 'main_input_header');
 })
 
-// $("#main_input_body").keyup(function (event) {
-//     show_item(this.value, event.keyCode, 'res_list_main', 'main_input_body');
-// })
-// $("#a_search_input").click(function (event) {
-//     event.preventDefault();
-//     let text = document.getElementById('main_input_header').value
-//     let link = "{% url 'Question_category' %}" + text
-//     this.href = link
-// });
 $("#login_email").keyup(function (event) {
-    // show_item(this.value, event.keyCode, 'res_list_input', 'help_input');
     if (event.keyCode == 13) {
         login()
     }
@@ -516,6 +506,35 @@ let send_ajax = function (url, values) {
     })
     return result
 }
+
+
+$("#accept_advert").click(function (event) {
+    let id = this.name
+    console.log(id)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: 'accept_offer',
+        data: {
+            id: id
+        },
+        success: function (data) {
+            // alert(data)
+            if (data==true){
+                // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
+                // setTimeout(5000)
+                window.location.href= '/profile/offers/';
+            }
+            // else {
+            //     window.location.href= '/login';
+            // }
+        },
+        error: function (data) {
+           alert('error')
+        }
+    })
+});
 
 $("#btn_del_ads").click(function (event) {
     let id = this.dataset.id
