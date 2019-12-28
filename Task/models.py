@@ -185,6 +185,7 @@ class UserTask(models.Model):
     price = models.IntegerField(blank=True, null=True)
     exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='exec_id')
     date_add = models.DateField(blank=True, null=True)
+    rezult_text = models.CharField(max_length=5000, blank=True, null=True)
 
     class Meta:
         managed = False

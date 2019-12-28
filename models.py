@@ -346,7 +346,7 @@ class SubCategory(models.Model):
 
 class TaskPhoto(models.Model):
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
-    photo = models.FileField(max_length=500, blank=True, null=True)
+    photo = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -399,6 +399,8 @@ class UserOffer(models.Model):
     user_id_customer = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
     advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
     is_accept = models.BooleanField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -439,6 +441,7 @@ class UserTask(models.Model):
     price = models.IntegerField(blank=True, null=True)
     exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     date_add = models.DateField(blank=True, null=True)
+    rezult_text = models.CharField(max_length=5000, blank=True, null=True)
 
     class Meta:
         managed = False
