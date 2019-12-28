@@ -22,43 +22,43 @@
     <div class="row m-0 justify-content-center mt-3 task-details">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
             <div class="row justify-content-start">
-                    <div class="col-12 p-0">
-                        <div class="row mt-4 justify-content-start">
-                            <div class="col-7 col-md-2 p-0">
-                                <a href=""><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">{{task.user.first_name}}</span></a>
-                            </div>
-                            <div class="col-7 col-md-3 p-0">
-                                <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_2.png">{{task.date_add}}</span>
-                            </div>
-                            <div class="col-6 col-md-2 p-0">
+                <div class="col-12 p-0">
+                    <div class="row mt-4 justify-content-start">
+                        <div class="col-7 col-md-2 p-0">
+                            <a href=""><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">{{task.user.first_name}}</span></a>
+                        </div>
+                        <div class="col-7 col-md-3 p-0">
+                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_2.png">{{task.date_add}}</span>
+                        </div>
+                        <div class="col-6 col-md-2 p-0">
                             {% if task.bet_count == 0 or task.bet_count >= 5 %}
                             <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставок</span>
                             {% else %}
-                                {% if task.bet_count == 1 %}
-                                    <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставка</span>
-                                {% else %}
-                                    <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставки</span>
-                                {% endif %}
+                            {% if task.bet_count == 1 %}
+                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставка</span>
+                            {% else %}
+                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставки</span>
                             {% endif %}
-                            </div>
-                            <div class="col-12 col-md-5 p-0 text-left text-md-right pt-3 pt-md-0">
-                                <div class="row align-items-center justify-content-end">
-                                    <div class="col-12">
-                                        <span class="price-span">{{task.price}} руб.</span>
-                                    </div>
-                                    {% if task_bet|length == 0 %}
-                                    <div class="col-12">
-                                        <a href="#">
-                                            <button class="rate-perform_btn mt-2 py-1 px-4 mb-0">Редактировать</button>
-                                        </a>
-                                    </div>
-                                    {% endif %}
-
+                            {% endif %}
+                        </div>
+                        <div class="col-12 col-md-5 p-0 text-left text-md-right pt-3 pt-md-0">
+                            <div class="row align-items-center justify-content-end">
+                                <div class="col-12">
+                                    <span class="price-span">{{task.price}} руб.</span>
                                 </div>
+                                <!--                                    {% if task_bet|length == 0 %}-->
+                                <!--                                    <div class="col-12">-->
+                                <!--                                        <a href="#">-->
+                                <!--                                            <button class="rate-perform_btn mt-2 py-1 px-4 mb-0">Редактировать</button>-->
+                                <!--                                        </a>-->
+                                <!--                                    </div>-->
+                                <!--                                    {% endif %}-->
 
                             </div>
+
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -107,9 +107,9 @@
                         <div class="col-12 col-md-6 p-0">
                             <span class="rate_span mr-3">Время:</span>
                             {% if task.start_time == None and task.end_time == None %}
-                                <b class="rate_b">в любое время</b>
+                            <b class="rate_b">в любое время</b>
                             {% else %}
-                                <b class="rate_b">с {{task.start_time}} до {{task.end_time}}</b>
+                            <b class="rate_b">с {{task.start_time}} до {{task.end_time}}</b>
                             {% endif %}
                         </div>
                     </div>
@@ -125,12 +125,12 @@
                 <div class="col-12 p-0">
                     <div class="row adverts-add_photos mb-3">
                         {% for p in task.all_photo %}
-                            <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 img_wrapper mb-3">
-                                <a href="{{MEDIA_URL}}{{p.photo.url}}">
-                                    <img alt="{{p.get_type}}" class="img-fluid center-block" src="{% static p.get_type %}">
-                                </a>
-                            </div>
-                            {% endfor %}
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 img_wrapper mb-3">
+                            <a href="{{MEDIA_URL}}{{p.photo.url}}">
+                                <img alt="{{p.get_type}}" class="img-fluid center-block" src="{% static p.get_type %}">
+                            </a>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -141,45 +141,47 @@
     <div class="row m-0 justify-content-center users_rates">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">
             <hr class="category-line m-0 my-4">
-            <h2 class="m-0 line_height_1 text-left mb-5">Ставки исполнителей</h2>
-            <div class="row m-0 justify-content-start">
-                {% if task.task_status.name != 'В поиске' %}
-                    <label class="fontCategorySmall colorDarkGrey">Исполнитель <a href="{% url 'Dev' %}">{{task.exec.first_name}}</a></label>
-                {% else %}
-                {% if task_bet|length != 0 %}
-                {% for t in task_bet %}
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="col-8 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-2 mx-auto">
-                            <img alt="" class="w-100 img-fluid" src="{{MEDIA_URL}}{{t.user.get_image.photo.url}}">
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                <a href="#">
-                                    <h3 class="propose-category_label m-0">{{t.user.first_name}}</h3>
-                                </a>
-                            </div>
-                            <div class="row justify-content-start align-items-center pt-2">
-                                <p class="mb-0 pr-0 perform-card_text pb-2 w-100">{{t.description}}</p>
-                                <span class="propose-date_span">{{t.date}}</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                <label class="propose-money_label mb-2">{{t.price}} руб.</label>
-                                <input type="hidden" value="{{t.user.id}}">
-                                <button class="choose-user_btn mt-md-4 py-1 px-4 select-user-bet">Выбрать <br> исполнителем</button>
-
-                            </div>
-                        </div>
+            <h2 class="m-0 line_height_1 text-left mb-3">Вы назначены исполнителем</h2>
+            <label class="rate_span">Результаты выполнения:</label>
+            <div class="col-12 p-0">
+                <div class="row mb-3 ">
+                    <textarea class="rate_b mb-0 w-100 border-rad p-1">{{task.rezult_text}}</textarea>
+                </div>
+            </div>
+            <label class="rate_span">Прикрепленные файлы:</label>
+            <div class="col-12 p-0">
+                <div class="row mb-3 adverts-add_photos">
+                    {% for p in task.all_photo_rezult %}
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 img_wrapper mb-3">
+                        <a href="{{MEDIA_URL}}{{p.photo.url}}">
+                            <img alt="{{p.get_type}}" class="img-fluid center-block" src="{% static p.get_type %}">
+                        </a>
+<!--                        раскоментировать для удаления файлов-->
+<!--                        <a href="#!">-->
+<!--                            <input type="hidden" value="{{ p.id }}" name="delete_advert_id">-->
+<!--                            <i class="far fa-trash-alt trash_advert_photo"></i>-->
+<!--                        </a>-->
+                    </div>
+                    {% endfor %}
+                    <div class="upload-file">
+                        <input class="mb-1 form-control prof-file d-none" id="files" multiple
+                               name="files" type="file">
+                        <label class="btn btn-tertiary js-labelFile" for="files">
+                            <i class="fas fa-upload"></i>
+                            <span class="js-fileName">Прикрепить файлы</span>
+                        </label>
                     </div>
                 </div>
-                <hr class="category-line m-0 my-4">
-                {% endfor %}
-                {% else %}
-                <label class="fontCategorySmall colorDarkGrey">В данном задании пока нет ни одной ставки</label>
-                {% endif %}
-                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row m-0 justify-content-center users_rates">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">
+            <hr class="category-line m-0 my-4">
+            <div class="form-group row">
+                <div class="col-sm-10 col-md-5 px-0 pl-md-0 pl-lg-0">
+                    <button type="button" class="btn btn-primary px-5" id="btn_task_close">Завершить задание</button>
+                </div>
             </div>
         </div>
     </div>

@@ -426,7 +426,10 @@ def Profile_task_detail(request,id):
         email = request.session.get('username', 'no')
         task=UserTask.objects.get(id=id)
         task_bet = UserTaskBet.objects.filter(task=task).order_by('-date')
-        return render(request, 'Profile/Task_details.html', locals())
+        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Исполнитель' and task.task_status.name=="В работе"):
+            return render(request, 'Profile/Task_details_executor_work.html', locals())
+        else:
+            return render(request, 'Profile/Task_details.html', locals())
 
 def Bet_save(request):
     layout, username, photo = layout_name(request)

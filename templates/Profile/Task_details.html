@@ -142,7 +142,7 @@
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">
             <hr class="category-line m-0 my-4">
             {% if task.task_status.name != 'В поиске' %}
-            <h2 class="m-0 line_height_1 text-left mb-5">Исполнитель <a href="{% url 'Dev' %}">{{task.exec.first_name}}</a></h2>
+            <h2 class="m-0 line_height_1 text-left mb-3">Исполнитель <a href="{% url 'Dev' %}">{{task.exec.first_name}}</a></h2>
             <label class="rate_span">Результаты выполнения:</label>
             <div class="col-12 p-0">
                 <div class="row mb-3 ">
@@ -209,6 +209,7 @@
             </div>
         </div>
     </div>
+
     <div class="row m-0 justify-content-center users_rates">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">
             <hr class="category-line m-0 my-4">

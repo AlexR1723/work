@@ -442,6 +442,7 @@ class UserTask(models.Model):
     exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     date_add = models.DateField(blank=True, null=True)
     rezult_text = models.CharField(max_length=5000, blank=True, null=True)
+    exec_finish = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
