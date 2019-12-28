@@ -426,8 +426,11 @@ def Profile_task_detail(request,id):
         email = request.session.get('username', 'no')
         task=UserTask.objects.get(id=id)
         task_bet = UserTaskBet.objects.filter(task=task).order_by('-date')
-        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Исполнитель' and task.task_status.name=="В работе" and task.exec_finish == False):
-            return render(request, 'Profile/Task_details_executor_work.html', locals())
+        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            if (task.task_status.name=="В работе" and task.exec_finish == False):
+                return render(request, 'Profile/Task_details_executor_work.html', locals())
+            else:
+                return render(request, 'Profile/Task_details_executor_finish.html', locals())
         else:
             print(task.exec_finish)
             return render(request, 'Profile/Task_details.html', locals())
