@@ -141,37 +141,11 @@
     <div class="row m-0 justify-content-center users_rates">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">
             <hr class="category-line m-0 my-4">
-            {% if task.task_status.name != 'В поиске' %}
-            <h2 class="m-0 line_height_1 text-left mb-5">Исполнитель <a href="{% url 'Dev' %}">{{task.exec.first_name}}</a></h2>
-            <label class="rate_span">Результаты выполнения:</label>
-                <div class="col-12 p-0">
-                    <div class="row mb-3 ">
-                        {% if task.rezult_text != None and task.rezult_text != "" %}
-                        <p class="rate_b mb-0">{{task.rezult_text}}</p>
-                        {% else %}
-                        <p class="rate_b mb-0">Исполнитель пока не заполнил результаты!</p>
-                        {% endif %}
-                    </div>
-                </div>
-            <label class="rate_span">Прикрепленные файлы:</label>
-                <div class="col-12 p-0">
-                    <div class="row mb-3 adverts-add_photos">
-                        {% if  task.all_photo_rezult|length != 0 %}
-                            {% for p in task.all_photo_rezult %}
-                            <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 img_wrapper mb-3">
-                                <a href="{{MEDIA_URL}}{{p.photo.url}}">
-                                    <img alt="{{p.get_type}}" class="img-fluid center-block" src="{% static p.get_type %}">
-                                </a>
-                            </div>
-                            {% endfor %}
-                        {% else %}
-                        <p class="rate_b mb-0">Файлы отсутсвуют!</p>
-                        {% endif %}
-                    </div>
-                </div>
-            {% else %}
             <h2 class="m-0 line_height_1 text-left mb-5">Ставки исполнителей</h2>
             <div class="row m-0 justify-content-start">
+                {% if task.task_status.name != 'В поиске' %}
+                    <label class="fontCategorySmall colorDarkGrey">Исполнитель <a href="{% url 'Dev' %}">{{task.exec.first_name}}</a></label>
+                {% else %}
                 {% if task_bet|length != 0 %}
                 {% for t in task_bet %}
                 <div class="col-12 p-0">

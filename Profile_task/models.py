@@ -255,6 +255,10 @@ class UserTask(models.Model):
         photo=TaskPhoto.objects.filter(task=self)
         return photo
 
+    def all_photo_rezult(self):
+        photo=UserTaskRezultPhoto.objects.filter(task=self)
+        return photo
+
 
 class TaskPhoto(models.Model):
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
@@ -307,3 +311,15 @@ class UserTaskRezultPhoto(models.Model):
     class Meta:
         managed = False
         db_table = 'user_task_rezult_photo'
+
+    def get_type(self):
+        file_types=['avi','css','dll','doc','docx','gif','html','jpeg','jpg','js','mov','mp3','pdf','php','png','ppt','psd','rar','sql','svg','tif','txt','xls','xml','zip']
+        name=str(self.photo.url)
+        name=name.split('.')
+        count=len(name)-1
+        try:
+            if(file_types.index(name[count])):
+                full_name='image/file_type/'+name[count]+'.png'
+        except:
+            full_name = 'image/file_type/txt.png'
+        return full_name

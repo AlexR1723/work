@@ -2242,6 +2242,10 @@ service-card_text {
 .task-details .task-details_txt {
     color: #000000;
 }
+.task-rezult-block{
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+}
 .del_select::after {
     content: "\f107";
     font-family: "FontAwesome";
