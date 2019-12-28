@@ -296,3 +296,14 @@ class UserTaskBet(models.Model):
     class Meta:
         managed = False
         db_table = 'user_task_bet'
+
+
+
+
+class UserTaskRezultPhoto(models.Model):
+    task = models.ForeignKey(UserTask, models.DO_NOTHING, blank=True, null=True)
+    photo = models.FileField(upload_to='uploads/task_rezult/',max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_rezult_photo'

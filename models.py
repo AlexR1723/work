@@ -460,6 +460,15 @@ class UserTaskBet(models.Model):
         db_table = 'user_task_bet'
 
 
+class UserTaskRezultPhoto(models.Model):
+    task = models.ForeignKey(UserTask, models.DO_NOTHING, blank=True, null=True)
+    photo = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_rezult_photo'
+
+
 class UserTaskStatus(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
 
