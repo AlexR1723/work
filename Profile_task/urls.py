@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'save_task/', views.Save_task, name='Save_task'),
     url(r'save_bet', views.Bet_save, name='Bet_save'),
     url(r'set_exec', views.Set_exec, name='Set_exec'),
+    url(r'save_rezult', views.Rezult_task_save, name='Rezult_task_save'),
     #
     # url(r'get_new_order', views.get_new_order, name='get_new_order'),
     #

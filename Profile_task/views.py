@@ -415,7 +415,7 @@ def Save_task(request):
             for d in docs.getlist('files'):
                 tast_photo = TaskPhoto(task=user_task, photo=d)
                 tast_photo.save()
-    return HttpResponseRedirect("/profile/settings")
+    return HttpResponseRedirect("/profile/task")
 
 def Profile_task_detail(request,id):
     layout, username, photo = layout_name(request)
@@ -426,7 +426,7 @@ def Profile_task_detail(request,id):
         email = request.session.get('username', 'no')
         task=UserTask.objects.get(id=id)
         task_bet = UserTaskBet.objects.filter(task=task).order_by('-date')
-        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Исполнитель' and task.task_status.name=="В работе"):
+        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Исполнитель' and task.task_status.name=="В работе" and task.exec_finish == False):
             return render(request, 'Profile/Task_details_executor_work.html', locals())
         else:
             return render(request, 'Profile/Task_details.html', locals())
@@ -783,3 +783,20 @@ def Executor_my_tasks_filter_cat_stat_page(request,filter_cat,filter_stat,page):
             return render(request, 'Profile/My_tasks_executor.html', locals())
         else:
             return HttpResponseRedirect("/profile/settings")
+
+def Rezult_task_save(request):
+    if request.method == 'POST':
+        email = request.session.get('username', 'no')
+        id=request.POST.get('task_id')
+        text = request.POST.get('task_rezult_text')
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        task=UserTask.objects.get(id=id)
+        task.rezult_text=text
+        task.exec_finish=True
+        task.save()
+        docs = request.FILES
+        if (docs):
+            for d in docs.getlist('files'):
+                tast_rezult_photo = UserTaskRezultPhoto(task=task, photo=d)
+                tast_rezult_photo.save()
+    return HttpResponseRedirect("/profile/task")
