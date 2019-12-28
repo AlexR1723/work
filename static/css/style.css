@@ -1836,7 +1836,7 @@ hr.category-line {
 /*.change-password button {*/
 #btn_profile_change_pass,
 .rate-perform_btn,
-.rate-modal .modal-footer .btn,#btn_task_check {
+.rate-modal .modal-footer .btn,#btn_task_check, #btn_task_close {
     border: 1px solid transparent;
     height: 40px;
     background: #AF4B53;
@@ -1846,7 +1846,7 @@ hr.category-line {
 /*.change-password button:hover {*/
 #btn_profile_change_pass:hover,
 .rate-perform_btn:hover,
-.rate-modal .modal-footer .btn:hover,#btn_task_check:hover {
+.rate-modal .modal-footer .btn:hover,#btn_task_check:hover, #btn_task_close:hover {
     background-color: #FFFFFF;
     color: #AF4B53;
     border: 1px solid #AF4B53;
