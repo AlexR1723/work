@@ -125,7 +125,7 @@
                 <div class="col-12 p-0">
                     <div class="row adverts-add_photos mb-3">
                         {% for p in task.all_photo %}
-                        <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 img_wrapper mb-3">
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-1 img_wrapper mb-3">
                             <a href="{{MEDIA_URL}}{{p.photo.url}}">
                                 <img alt="{{p.get_type}}" class="img-fluid center-block" src="{% static p.get_type %}">
                             </a>
@@ -156,7 +156,7 @@
 
                     <div class="row adverts-add_photos">
                         {% for p in task.all_photo_rezult %}
-                        <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-2 img_wrapper mb-3">
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-1 img_wrapper mb-3">
                             <a href="{{MEDIA_URL}}{{p.photo.url}}">
                                 <img alt="{{p.get_type}}" class="img-fluid center-block" src="{% static p.get_type %}">
                             </a>

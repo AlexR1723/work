@@ -429,6 +429,7 @@ def Profile_task_detail(request,id):
         if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Исполнитель' and task.task_status.name=="В работе" and task.exec_finish == False):
             return render(request, 'Profile/Task_details_executor_work.html', locals())
         else:
+            print(task.exec_finish)
             return render(request, 'Profile/Task_details.html', locals())
 
 def Bet_save(request):
@@ -800,3 +801,19 @@ def Rezult_task_save(request):
                 tast_rezult_photo = UserTaskRezultPhoto(task=task, photo=d)
                 tast_rezult_photo.save()
     return HttpResponseRedirect("/profile/task")
+
+
+def Close_task(request, id):
+    layout, username, photo = layout_name(request)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        id=int(id)
+        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Заказчик'):
+            task=UserTask.objects.get(id=id)
+            task.task_status=UserTaskStatus.objects.get(name='Выполнено')
+            task.save()
+            return HttpResponseRedirect("/profile/task")
+        else:
+            return HttpResponseRedirect("/profile/task")
+    else:
+        return HttpResponseRedirect("/login")
