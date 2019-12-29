@@ -32,7 +32,32 @@ def layout_name(request):
     return layout,username,photo
 
 
-
 def Offer(request):
     layout, username, photo = layout_name(request)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us).id
+    offers=UserOffer.objects.filter(advert__user_id=user).filter(is_accept=False)
+    print(offers)
+
     return render(request, 'Profile/Offers.html', locals())
+
+def accept_offer(request):
+    email = request.session.get('username', 'no')
+    if (email!='no' and Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+        # us = request.session.get('username')
+        user = AuthUser.objects.get(username=email).id
+        id=int(request.GET.get('id'))
+        offer=UserOffer.objects.filter(advert_id=id).filter(advert__user_id=user)
+        print(offer)
+        print(offer[0].id)
+        if len(offer)==0:
+            return HttpResponse(json.dumps(False))
+        else:
+            offer[0].is_accept=True
+            offer[0].save()
+            return HttpResponse(json.dumps(True))

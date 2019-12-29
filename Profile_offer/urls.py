@@ -18,5 +18,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Offer, name="Offer"),
+    url(r'accept_offer', views.accept_offer, name="accept_offer"),
 
 ]
