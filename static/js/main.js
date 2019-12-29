@@ -524,7 +524,7 @@ $("#accept_advert").click(function (event) {
             if (data==true){
                 // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
                 // setTimeout(5000)
-                window.location.href= '/profile/offers/';
+                window.location.href= '/profile/offer/';
             }
             // else {
             //     window.location.href= '/login';

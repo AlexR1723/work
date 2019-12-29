@@ -25,7 +25,7 @@
                             </div>
                         </div>
 
-                        <div class="row m-0 justify-content-start">
+                        <div class="row m-0 justify-content-start align-items-center">
                             <span class="cat-span pr-3">Категория:</span>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb ads-breadcrumb">
@@ -35,23 +35,24 @@
                                 </ol>
                             </nav>
                         </div>
-                            {% if advert.photo_main != None %}
+
                             <div class="row mt-4 justify-content-start">
+                                {% if advert.photo_main != None and advert.photo_main != "" %}
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 p-0">
                                     <img src="{{MEDIA_URL}}{{advert.photo_main.url}}" class="w-100" alt="">
                                 </div>
+                            {% endif %}
                                 <div class="col-auto pl-3 pr-0">
                                     <div class="upload-file">
-                                    <input class="mb-1 form-control prof-file d-none" id="files_main" multiple
+                                    <input class="mb-1 form-control prof-file d-none" id="file_main" multiple
                                                    name="files_main" type="file">
-                                    <label class="btn btn-tertiary js-labelFile" for="files_main">
+                                    <label class="btn btn-tertiary js-labelFile" for="file_main">
                                         <i class="fas fa-upload"></i>
-                                        <span class="js-fileName">Добавить обложку</span>
+                                        <span class="js-fileNameMain">Добавить обложку</span>
                                     </label>
                                     </div>
                                 </div>
                             </div>
-                            {% endif %}
                         <div class="row mt-4 justify-content-start">
                             <textarea class="txtarea-describe w-100 p-4" id="" name="adv_desription"
                                       placeholder="Опишите своё объявление"

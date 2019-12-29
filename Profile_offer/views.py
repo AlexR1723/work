@@ -40,11 +40,13 @@ def Offer(request):
         email = request.session.get('username', 'no')
         if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
             us = request.session.get('username')
-            user = AuthUser.objects.get(username=us).id
-    offers=UserOffer.objects.filter(advert__user_id=user).filter(is_accept=False)
-    print(offers)
-
-    return render(request, 'Profile/Offers.html', locals())
+            user = AuthUser.objects.get(username=us)
+            # offers=UserOffer.objects.filter(advert__user_id=user).filter(is_accept=False)
+            offers=UserTask.objects.filter(offer__advert__user=user).filter(offer__is_accept=False)
+            print(offers)
+            return render(request, 'Profile/Offers.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
 
 def accept_offer(request):
     email = request.session.get('username', 'no')
@@ -52,12 +54,14 @@ def accept_offer(request):
         # us = request.session.get('username')
         user = AuthUser.objects.get(username=email).id
         id=int(request.GET.get('id'))
-        offer=UserOffer.objects.filter(advert_id=id).filter(advert__user_id=user)
-        print(offer)
-        print(offer[0].id)
-        if len(offer)==0:
+        task=UserTask.objects.filter(id=id).filter(offer__advert__user_id=user)
+        print(task)
+        print(task[0].id)
+        if len(task)==0:
             return HttpResponse(json.dumps(False))
         else:
-            offer[0].is_accept=True
-            offer[0].save()
+            task[0].offer.is_accept=True
+            task[0].offer.save()
+            task[0].task_status=UserTaskStatus.objects.get(name="В работе")
+            task[0].save()
             return HttpResponse(json.dumps(True))

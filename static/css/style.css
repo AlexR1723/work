@@ -557,7 +557,7 @@ section#titleText {
     width: 2.7rem;
     height: 2.7rem;
     background: white;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     /*color:#3E789D;*/
 
     align-items: center;
@@ -659,7 +659,7 @@ p {
 }
 
 .img_circle {
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 
 .head_icon_color {
@@ -1018,7 +1018,7 @@ hr.line {
   height: 100%;
   margin: 0 auto;
     object-fit: cover;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 .perfomer-tasks-blk .user-img {
     height: auto;
@@ -1027,7 +1027,7 @@ hr.line {
     width: 100%;
   height: 100%;
   margin: 0 auto;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 .all-ads_blk h2 {
     font-size: 1.9rem;
@@ -2517,7 +2517,7 @@ service-card_text {
     font-size: 1.6rem;
 }
 .br-50{
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 .fa-caret-down{
     color: #AAAAAA;

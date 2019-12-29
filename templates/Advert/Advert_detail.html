@@ -63,7 +63,7 @@
 
 
                 <p class="news_det_text mb-5">
-                    {% if advert.photo_main != None %}
+                    {% if advert.photo_main != None and advert.photo_main != "" %}
                     <img class="float-left news_det_img mr-3 my-3" src="{{MEDIA.URL}}{{advert.photo_main.url}}" alt="img">
                     {% endif %}
                     {{advert.description}}

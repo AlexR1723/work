@@ -21,8 +21,8 @@
                             <div class="col-10">
                                 <input type="text" class="mb-1 form-control prof-input" id="user_name" name="user_name" value="{{user.auth_user.first_name}} {{user.auth_user.last_name}}" />
                                 <div class="upload-file">
-                                    <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files">
-                                    <label for="files" class="btn btn-tertiary js-labelFile">
+                                    <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="file_main">
+                                    <label for="file_main" class="btn btn-tertiary js-labelFile">
                                         <i class="fas fa-upload"></i>
                                         <span class="js-fileName">Загрузить файл</span>
                                     </label>
@@ -265,14 +265,23 @@
 
                     <div class="tab-pane fade" id="nav-portfolio" role="tabpanel"
                          aria-labelledby="nav-portfolio-tab">
-                        <div class="d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
+                        <div class="row d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
+                            <div class="col-12 p-0">
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        Фото играют важную роль и визуализируют качество работы.
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                           Качественные изображения больше привлекают потенциальных заказчиков!
+                                    </label>
+                            </div>
                             <div class="ml-0 bd-highlight">
+
                                 <form class="w-100" action="{% url 'Portfolio_add' %}" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <!--                                            <input type="file" name="files" multiple/>-->
                                     <div class="upload-file">
-                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="profile-files" multiple>
-                                        <label for="profile-files" class="btn btn-tertiary js-labelFile">
+                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files" multiple>
+                                        <label for="files" class="btn btn-tertiary js-labelFile">
                                             <i class="fas fa-upload"></i>
                                             <span class="js-fileName">Загрузить файлы</span>
                                         </label>
@@ -298,7 +307,8 @@
                                      </div>
                                      <a href="#!">
                                          <input type="hidden" value="{{p.id}}" name="delete_id">
-                                         <i class="far fa-trash-alt trash_portfolio d-none"></i>
+                                         <i class="far fa-trash-alt trash_portfolio d-none" data-toggle="tooltip" data-placement="bottom"
+                                     title="Удалить это фото"></i>
                                      </a>
 
                                 </div>
@@ -324,14 +334,14 @@
                             <input type="checkbox" class="custom-control-input" id="email-notice_input">
                             <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input"
                                    data-toggle="tooltip" data-placement="bottom"
-                                   title="Lorem ipsum dolor sit amet.">Email уведомления об изменениях статусов
+                                   title="Уведомления об изменении статусов Ваших заданий будут приходить на зарегистрированный e-mail">Email уведомления об изменениях статусов
                                 заказов</label>
                         </div>
                         <div class="custom-control custom-checkbox my-2 mr-sm-2">
                             <input type="checkbox" class="custom-control-input" id="email-dispatch_input">
                             <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input"
                                    data-toggle="tooltip" data-placement="bottom"
-                                   title="Lorem ipsum dolor sit amet.">Email рассылка новых заказов</label>
+                                   title="Уведомлениях о новых заданиях в Ваших категориях будут приходить на зарегистрированный e-mail">Email рассылка новых заданий</label>
                         </div>
 
                         <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
@@ -381,7 +391,8 @@
 
                             <div class="col-sm-11 col-md-12 col-lg-11 px-0">
                                 <button type="submit" id="btn_profile_change_pass"
-                                        class="btn btn-primary px-5">Сохранить
+                                        class="btn btn-primary px-5"data-toggle="tooltip" data-placement="right"
+                                   title="Пароль будет изменен">Сохранить
                                 </button>
                             </div>
                             <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"

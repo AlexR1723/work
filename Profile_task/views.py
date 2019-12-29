@@ -44,12 +44,12 @@ def Profile_tasks(request):
             us = request.session.get('username')
             user=AuthUser.objects.get(username=us).id
             filter=0
-            all_user_task = task = UserTask.objects.filter(user_id=user).filter(offer=None)
-            task_count = UserTask.objects.filter(user_id=user).filter(offer=None).order_by('-date').count()
+            all_user_task = task = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True)
+            task_count = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).order_by('-date').count()
             if (task_count < 10):
-                task=UserTask.objects.filter(user_id=user).filter(offer=None).order_by('-date')[0:]
+                task=UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).order_by('-date')[0:]
             else:
-                task=UserTask.objects.filter(user_id=user).filter(offer=None).order_by('-date')[0:10]
+                task=UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).order_by('-date')[0:10]
             cats = []
             for i in all_user_task:
                 el = SubCategory.objects.get(id=i.subcategory_id).name
@@ -76,9 +76,10 @@ def Profile_tasks(request):
             # fav_exec=UserFavoritesExecutor.objects.filter(user_id=user).order_by('-id')
             return render(request, 'Profile/My_tasks_customer.html', locals())
         else:
+
             us = request.session.get('username')
             user = AuthUser.objects.get(username=us).id
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None)
+            user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False)
             filter_cat=0
             filter_stat=0
             list_cat = []
@@ -88,12 +89,13 @@ def Profile_tasks(request):
                     list_cat.append(sub)
             list_stat = UserTaskStatus.objects.all()
             list_cat.sort()
-            task_count = UserTask.objects.filter(exec_id=user).filter(offer=None).order_by('-date').count()
+            task_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).order_by('-date').count()
             if (task_count < 10):
-                task = UserTask.objects.filter(exec_id=user).filter(offer=None).order_by('-date')[0:]
+                task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).order_by('-date')[0:]
             else:
-                task = UserTask.objects.filter(exec_id=user).filter(offer=None).order_by('-date')[0:10]
+                task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).order_by('-date')[0:10]
             cats = []
+            print(task)
             k = 0
             while (task_count > 0):
                 k = k + 1
@@ -128,9 +130,9 @@ def Profile_task_page(request,page):
             page = int(page)
             start = page * 10 - 10
             end = page * 10
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None)
-            task = UserTask.objects.filter(user_id=user).filter(offer=None).order_by('-date')[start:end]
-            task_count = UserTask.objects.filter(user_id=user).filter(offer=None).order_by('-date').count()
+            user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer=None, offer__is_accept=True)
+            task = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).order_by('-date')[start:end]
+            task_count = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).order_by('-date').count()
             cats = []
             for i in user_tasks:
                 el = SubCategory.objects.get(id=i.subcategory_id).name
@@ -173,7 +175,7 @@ def Profile_task_page(request,page):
         else:
             us = request.session.get('username')
             user = AuthUser.objects.get(username=us).id
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None)
+            user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False)
             filter_cat = 0
             filter_stat = 0
             list_cat = []
@@ -186,8 +188,8 @@ def Profile_task_page(request,page):
             page = int(page)
             start = page * 10 - 10
             end = page * 10
-            task = UserTask.objects.filter(exec_id=user).filter(offer=None).order_by('-date')[start:end]
-            task_count = UserTask.objects.filter(exec_id=user).filter(offer=None).order_by('-date').count()
+            task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).order_by('-date')[start:end]
+            task_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).order_by('-date').count()
             cats = []
             for i in user_task:
                 el = SubCategory.objects.get(id=i.subcategory_id).name
@@ -239,12 +241,12 @@ def Profile_task_filter(request,filter):
             filter=str(filter)
             cat=SubCategory.objects.get(name__icontains=filter).id
             # subs_task=UserTask.objects.filter(user_id=user).filter(task_status=UserTaskStatus.objects.get(name='В работе').id).order_by('-date')
-            all_user_task=task = UserTask.objects.filter(user_id=user).filter(offer=None)
-            task_count = UserTask.objects.filter(user_id=user).filter(offer=None).filter(subcategory__id=cat).order_by('-date').count()
+            all_user_task=task = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True)
+            task_count = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).filter(subcategory__id=cat).order_by('-date').count()
             if (task_count < 10):
-                task = UserTask.objects.filter(user_id=user).filter(offer=None).filter(subcategory__id=cat).order_by('-date')[0:]
+                task = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).filter(subcategory__id=cat).order_by('-date')[0:]
             else:
-                task = UserTask.objects.filter(user_id=user).filter(offer=None).filter(subcategory__id=cat).order_by('-date')[0:10]
+                task = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).filter(subcategory__id=cat).order_by('-date')[0:10]
             cats = []
             for i in all_user_task:
                 el = SubCategory.objects.get(id=i.subcategory_id).name
@@ -289,9 +291,9 @@ def Profile_task_filter_page(request,filter,page):
             page = int(page)
             start = page * 10 - 10
             end = page * 10
-            all_user_task = task = UserTask.objects.filter(user_id=user).filter(offer=None)
-            task = UserTask.objects.filter(user_id=user).filter(offer=None).filter(subcategory__id=cat).order_by('-date')[start:end]
-            task_count = UserTask.objects.filter(user_id=user).filter(offer=None).filter(subcategory__id=cat).order_by('-date').count()
+            all_user_task = task = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True)
+            task = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).filter(subcategory__id=cat).order_by('-date')[start:end]
+            task_count = UserTask.objects.filter(user_id=user).exclude(offer=None, offer__is_accept=True).filter(subcategory__id=cat).order_by('-date').count()
             cats = []
             for i in all_user_task:
                 el = SubCategory.objects.get(id=i.subcategory_id).name
@@ -413,21 +415,23 @@ def Save_task(request):
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, date=date, pay=pay, price=price,
-                                     photo_main=doc['file_main'], task_status=status, date_add=datetime.datetime.now())
+                                     photo_main=doc['file_main'], task_status=status, date_add=datetime.datetime.now(),
+                                     rezult_text="")
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, date=date, pay=pay, price=price, task_status=status,
-                                     date_add=datetime.datetime.now())
+                                     date_add=datetime.datetime.now(), rezult_text="")
         else:
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
                                      pay=pay, price=price, photo_main=doc['file_main'], task_status=status,
-                                     date_add=datetime.datetime.now())
+                                     date_add=datetime.datetime.now(), rezult_text="")
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
-                                     pay=pay, price=price, task_status=status, date_add=datetime.datetime.now())
+                                     pay=pay, price=price, task_status=status, date_add=datetime.datetime.now(),
+                                     rezult_text="")
         user_task.save()
         docs = request.FILES
         if (docs):
@@ -477,22 +481,22 @@ def Save_offer(request):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, date=date, pay=pay, price=price,
                                      photo_main=doc['file_main'], date_add=datetime.datetime.now(),
-                                     offer=offer, exec=exec)
+                                     offer=offer, exec=exec, rezult_text="")
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, date=date, pay=pay, price=price,
-                                     date_add=datetime.datetime.now(), offer=offer, exec=exec)
+                                     date_add=datetime.datetime.now(), offer=offer, exec=exec, rezult_text="")
         else:
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
                                      pay=pay, price=price, photo_main=doc['file_main'],
-                                     date_add=datetime.datetime.now(), offer=offer, exec=exec)
+                                     date_add=datetime.datetime.now(), offer=offer, exec=exec, rezult_text="")
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
                                      pay=pay, price=price, date_add=datetime.datetime.now(),
-                                     offer=offer, exec=exec)
+                                     offer=offer, exec=exec, rezult_text="")
         user_task.save()
         docs = request.FILES
         if (docs):
@@ -514,7 +518,8 @@ def Profile_task_detail(request,id):
         task=UserTask.objects.get(id=id)
         task_bet = UserTaskBet.objects.filter(task=task).order_by('-date')
         if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
-            if (task.task_status.name=="В работе" and task.exec_finish == False):
+            print('исполнитель')
+            if (task.task_status.name=="В работе" and task.exec_finish != True):
                 return render(request, 'Profile/Task_details_executor_work.html', locals())
             else:
                 return render(request, 'Profile/Task_details_executor_finish.html', locals())
@@ -571,7 +576,7 @@ def Executor_my_tasks_filter_cat(request,filter_cat):
             user = AuthUser.objects.get(username=us).id
             filter_cat=str(filter_cat)
 
-            user_task = UserTask.objects.filter(exec_id=user).filter(offer=None)
+            user_task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False)
             list_cat = []
             list_stat = UserTaskStatus.objects.all()
             for i in user_task:
@@ -579,11 +584,11 @@ def Executor_my_tasks_filter_cat(request,filter_cat):
                 if cat not in list_cat:
                     list_cat.append(cat)
             list_cat.sort()
-            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).count()
+            user_tasks_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).count()
             if (user_tasks_count < 10):
-                user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[0:]
+                user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[0:]
             else:
-                user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[0:10]
+                user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[0:10]
             k = 0
             while (user_tasks_count > 0):
                 k = k + 1
@@ -616,7 +621,7 @@ def Executor_my_tasks_filter_cat_page(request,filter_cat,page):
             user = AuthUser.objects.get(username=us).id
             filter_cat=str(filter_cat)
 
-            user_task = UserTask.objects.filter(exec_id=user).filter(offer=None)
+            user_task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False)
             list_cat = []
             list_stat = UserTaskStatus.objects.all()
             for i in user_task:
@@ -627,8 +632,8 @@ def Executor_my_tasks_filter_cat_page(request,filter_cat,page):
             page = int(page)
             start = page * 10 - 10
             end = page * 10
-            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).count()
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[start:end]
+            user_tasks_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).count()
+            user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).order_by('-date')[start:end]
             k = 0
             while (user_tasks_count > 0):
                 k = k + 1
@@ -675,9 +680,9 @@ def Executor_my_tasks_filter_stat(request,filter_stat):
             us = request.session.get('username')
             user = AuthUser.objects.get(username=us).id
             filter_stat=str(filter_stat)
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
+            user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id)
 
-            user_task = UserTask.objects.filter(exec_id=user).filter(offer=None)
+            user_task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False)
             list_cat = []
             list_stat = UserTaskStatus.objects.all()
             for i in user_task:
@@ -685,11 +690,11 @@ def Executor_my_tasks_filter_stat(request,filter_stat):
                 if cat not in list_cat:
                     list_cat.append(cat)
             list_cat.sort()
-            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
+            user_tasks_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
             if (user_tasks_count < 10):
-                user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:]
+                user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:]
             else:
-                user_tasks = UserTask.objects.filter(exec_id=user).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:10]
+                user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:10]
             k = 0
             while (user_tasks_count > 0):
                 k = k + 1
@@ -722,7 +727,7 @@ def Executor_my_tasks_filter_stat_page(request,filter_stat,page):
             user = AuthUser.objects.get(username=us).id
             filter_stat = str(filter_stat)
 
-            user_task = UserTask.objects.filter(exec_id=user).filter(offer=None)
+            user_task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False)
             list_cat = []
             list_stat = UserTaskStatus.objects.all()
             for i in user_task:
@@ -733,8 +738,8 @@ def Executor_my_tasks_filter_stat_page(request,filter_stat,page):
             page = int(page)
             start = page * 10 - 10
             end = page * 10
-            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[start:end]
+            user_tasks_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
+            user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[start:end]
             k = 0
             while (user_tasks_count > 0):
                 k = k + 1
@@ -781,7 +786,7 @@ def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
             user = AuthUser.objects.get(username=us).id
             filter_stat=str(filter_stat)
             filter_cat=str(filter_cat)
-            user_task = UserTask.objects.filter(exec_id=user).filter(offer=None)
+            user_task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False)
             list_cat = []
             list_stat = UserTaskStatus.objects.all()
             for i in user_task:
@@ -789,11 +794,11 @@ def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
                 if cat not in list_cat:
                     list_cat.append(cat)
             list_cat.sort()
-            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
+            user_tasks_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
             if (user_tasks_count < 10):
-                user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:]
+                user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:]
             else:
-                user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:10]
+                user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[0:10]
             k = 0
             while (user_tasks_count > 0):
                 k = k + 1
@@ -827,7 +832,7 @@ def Executor_my_tasks_filter_cat_stat_page(request,filter_cat,filter_stat,page):
             filter_stat = str(filter_stat)
             filter_cat = str(filter_cat)
 
-            user_task = UserTask.objects.filter(exec_id=user).filter(offer=None)
+            user_task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False)
             list_cat = []
             list_stat = UserTaskStatus.objects.all()
             for i in user_task:
@@ -838,8 +843,8 @@ def Executor_my_tasks_filter_cat_stat_page(request,filter_cat,filter_stat,page):
             page = int(page)
             start = page * 10 - 10
             end = page * 10
-            user_tasks_count = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
-            user_tasks = UserTask.objects.filter(exec_id=user).filter(offer=None).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[start:end]
+            user_tasks_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).count()
+            user_tasks = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).filter(subcategory_id=SubCategory.objects.get(name__icontains=filter_cat).id).filter(task_status=UserTaskStatus.objects.get(name__icontains=filter_stat).id).order_by('-date')[start:end]
             k = 0
             while (user_tasks_count > 0):
                 k = k + 1
@@ -883,7 +888,7 @@ def Rezult_task_save(request):
         auth = AuthUser.objects.all().filter(email=email)[0]
         task=UserTask.objects.get(id=id)
         task.rezult_text=text
-        task.exec_finish=True
+        task.task_status=UserTaskStatus.objects.get(name="Завешено исполнителем")
         task.save()
         docs = request.FILES
         if (docs):

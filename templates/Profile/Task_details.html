@@ -46,7 +46,7 @@
                                 <div class="col-12">
                                     <span class="price-span">{{task.price}} руб.</span>
                                 </div>
-                                {% if task_bet|length == 0 %}
+                                {% if task_bet|length == 0 and task.exec_id == None or task.exec_id == "" %}
                                 <div class="col-12">
                                     <a href="#">
                                         <button class="rate-perform_btn mt-2 py-1 px-4 mb-0">Редактировать</button>
@@ -170,7 +170,7 @@
                 </div>
             </div>
             <hr class="category-line m-0 my-4">
-            {% if task.exec_finish == False %}
+            {% if task.task_status.name == 'Завешено исполнителем' %}
             <div class="form-group row">
                 <div class="col-sm-10 col-md-5 px-0 pl-md-0 pl-lg-0">
                     <a href="{% url 'Close_task' task.id %}">

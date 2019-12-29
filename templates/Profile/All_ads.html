@@ -4,6 +4,18 @@
 
 <div class="container-fluid p-0">
     <div class="row justify-content-center all-ads_blk">
+        <div class=" w-100"  style="
+    height: auto;
+    min-height: 20vh;
+    background: url(/static/image/advert_bg.jpg) 50% 75% no-repeat;
+    background-size: cover;
+">
+                <div class="page_head_img_fon row justify-content-center align-items-center">
+                    <p class="fz_3rem line_height_1 text-center mb-0">Мои объявления</p>
+                </div>
+                <!--             style="background: url(/static/image/news_bg.jpg) 100% 100% no-repeat">-->
+
+            </div>
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 mt-5">
             <div class="row my-3">
 <!--                <h2 class="w-100 text-center text-md-left">Последние объявления</h2>-->
@@ -29,12 +41,27 @@
 <div class="row m-0 justify-content-center all-ads_card">
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-12 p-0 pt-3 pb-3 px-3 px-mb-0 px-lg-0">
         <div class="row m-0 justify-content-start">
+            {% if ads|length == 0 %}
+                 <div class="col-12">
+                        <div class="row">
+                            <div class="col-auto">
+                    <label class="fontCategorySmall colorDarkGrey w-100">В данной категории объявлений!</label>
+                                <label class="fontCategorySmall colorDarkGrey w-100">Вы можете добавить их у себя в <a
+                                        href="{% url 'Profile_settings' %}">профиле</a></label>
+                            </div>
+                        </div>
+                    </div>
+            {% else %}
             {% for a in ads %}
             <div class="col-12 p-0">
                 <div class="row">
                     <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                        {% if a.photo_main != None %}
+                        {% if a.photo_main != None and a.photo_main != "" %}
                         <img alt="" class="w-100 user-advert-img" src="{{MEDIA_URL}}{{a.photo_main.url}}">
+                        {% else %}
+                        <div class="row justify-content-center align-items-center bg-gray">
+                                        <span class="alt-text">Без фото</span>
+                                    </div>
                         {% endif %}
                     </div>
                     <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
@@ -52,15 +79,16 @@
                         <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
                             <label class="category-money_label p mb-2">{{a.price}} руб.</label>
                         </div>
-                        <div class="row justify-content-around align-items-center pt-4">
-                            <a href="{% url 'Advert_detail' a.id %}"><button class="btn view-ads">Просмотреть</button></a>
-                            <a href="{% url 'Adverts_change' a.id %}"><button class="btn edit-ads">Редактировать</button></a>
+                        <div class="row justify-content-around align-items-center">
+                            <a href="{% url 'Advert_detail' a.id %}" class="pt-2"><button class="btn view-ads">Просмотреть</button></a>
+                            <a href="{% url 'Adverts_change' a.id %}" class="pt-2"><button class="btn edit-ads">Редактировать</button></a>
                         </div>
                     </div>
                     <hr class="category-line m-0 my-4">
                 </div>
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

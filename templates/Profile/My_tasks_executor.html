@@ -4,6 +4,18 @@
 
 <div class="container-fluid p-0">
     <div class="row justify-content-center">
+        <div class=" w-100"  style="
+    height: auto;
+    min-height: 20vh;
+    background: url(/static/image/task.jpg) 50% 75% no-repeat;
+    background-size: cover;
+">
+                <div class="page_head_img_fon row justify-content-center align-items-center">
+                    <p class="fz_3rem line_height_1 text-center mb-0">Мои задания</p>
+                </div>
+                <!--             style="background: url(/static/image/news_bg.jpg) 100% 100% no-repeat">-->
+
+            </div>
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 perfomer-tasks-blk py-3 mt-5">
             <div class="row p-0 m-0 justify-content-center">
 
@@ -45,13 +57,26 @@
                         </div>
                     </div>
                 </div>
-
-                {% for i in user_tasks %}
+                {% if user_tasks|length == 0 %}
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-auto">
+                    <label class="fontCategorySmall colorDarkGrey w-100">У Вас пока нет ни одного задания!</label>
+                                <label class="fontCategorySmall colorDarkGrey w-100">Ищите подходящие <a href="{% url 'Dev' %}">задания</a>, делайте ставки и получайте задания!</label>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                {% for i in task %}
                 <div class="col-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
                     <div class="row m-0 justify-content-start">
                         <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
                             {% if i.photo_main != Nont and i.photo_main != "" %}
                             <img alt="" class="w-100 user-img" src="{{ MEDIA_URL }}{{ i.photo_main.url }}">
+                            {% else %}
+                            <div class="row justify-content-center align-items-center bg-gray">
+                                        <span class="alt-text">Без фото</span>
+                                    </div>
                             {% endif %}
                         </div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
@@ -74,6 +99,9 @@
                                 {% if i.task_status.name == "В работе" %}
                                 <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
                                 {% endif %}
+                                {% if i.task_status.name == "Завешено исполнителем" %}
+                                <p class="status-doing_span m-0 mt-md-4 px-3">Завешено исполнителем</p>
+                                {% endif %}
                                 {% if i.task_status.name == "Выполнено" %}
                                 <p class="status-done_span m-0 mt-md-4 px-3">Выполнено</p>
                                 {% endif %}
@@ -83,6 +111,8 @@
                 </div>
                 <hr class="category-line m-0 my-4">
                 {% endfor %}
+                {% endif %}
+
                 {% if filter_cat == 0 and filter_stat == 0 %}
                 {% if k > 1 %}
                 <div class="row w-100">
