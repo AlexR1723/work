@@ -137,6 +137,7 @@ class UserAdvert(models.Model):
     photo_main = models.ImageField(upload_to='uploads/advert/',max_length=500, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    count_offer = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

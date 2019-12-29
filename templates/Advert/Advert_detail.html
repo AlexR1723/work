@@ -44,7 +44,11 @@
                             <label class="ads-price mb-0">{{advert.price}} руб</label>
                         </div>
                         <div class="col-auto a-right pr-0">
-                            <a href="{% url 'Dev' %}"><button class="btn view-ads">Предложить работу</button></a>
+                            {% if verify == True %}
+                            <a href="{% url 'Offer_create' advert.id %}"><button class="btn view-ads">Предложить работу</button></a>
+                            {% else %}
+                            <a href="{% url 'Login' %}"><button class="btn view-ads">Предложить работу</button></a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

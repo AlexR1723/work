@@ -1549,6 +1549,30 @@ $('#btn_task_check').click(function () {
             }, 5000);
     }
 });
+
+
+$('#btn_offer_check').click(function () {
+     var title=$("#input_text").val();
+     var description=$("#description").val();
+     var address=$("#input_addr").val();
+
+    if (title == "") $('#input_text').addClass('br-red');
+    if (description == "") $('#description').addClass('br-red');
+    if (address == "") $('#input_addr').addClass('br-red');
+    if(title != "" && description != "" && address != ""){
+        $('#btn_offer_submit').click();
+    }
+    else
+    {
+        $("#alert-danger").show('slow');
+            setTimeout(function () {
+                $("#alert-danger").hide('slow');
+            }, 5000);
+    }
+});
+
+
+
 $("#message-text").click(function () {
     $('#message-text').removeClass('br-red');
 });

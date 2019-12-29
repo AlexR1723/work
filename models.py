@@ -361,6 +361,7 @@ class UserAdvert(models.Model):
     photo_main = models.CharField(max_length=500, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    count_offer = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -443,6 +444,7 @@ class UserTask(models.Model):
     date_add = models.DateField(blank=True, null=True)
     rezult_text = models.CharField(max_length=5000, blank=True, null=True)
     exec_finish = models.BooleanField(blank=True, null=True)
+    offer = models.ForeignKey(UserOffer, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False

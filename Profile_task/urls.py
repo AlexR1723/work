@@ -18,10 +18,11 @@ from . import views
 
 urlpatterns = [
 
-
+    url(r'^create/(?P<id_advert>[0-9]+)/$', views.Offer_create, name="Offer_create"),
     url(r'^create/(?P<text>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Create_task, name="Create_task"),
     url(r'subcategory_find/', views.SubcategoryFind),
     url(r'save_task/', views.Save_task, name='Save_task'),
+    url(r'save_offer/', views.Save_offer, name='Save_offer'),
     url(r'save_bet', views.Bet_save, name='Bet_save'),
     url(r'set_exec', views.Set_exec, name='Set_exec'),
     url(r'save_rezult', views.Rezult_task_save, name='Rezult_task_save'),

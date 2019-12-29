@@ -1,0 +1,185 @@
+﻿{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container-fluid p-0">
+    <div class="row justify-content-center create-task_blk">
+
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+           <form  class="w-100" action="{% url 'Save_offer' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row my-3">
+                <h2 class="w-100 text-left fz_2rem">Категория</h2>
+            </div>
+            <div class="row m-0 my-2 justify-content-start">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-12 p-0 pb-0">
+
+                        <div class="row align-items-center">
+                              <label class="mb-0 categ-label"><a href="{% url 'Category_item' advert.subcategory.category.name %}">{{advert.subcategory.category.name}}</a></label>
+                                <i class="fas fa-chevron-right pl-2 pr-2"></i>
+                                <label class="mb-0 categ-label"><a href="{% url 'sub_category' advert.subcategory.name|lower %}">{{advert.subcategory.name}}</a></label>
+                        </div>
+                    <div class="row m-0 justify-content-start pt-3">
+                        <hr class="line">
+                    </div>
+                </div>
+            </div>
+               <input type="hidden" name="subcategory" value="{{advert.subcategory.id}}">
+               <input type="hidden" name="advert_id" value="{{advert.id}}">
+            <div class="row">
+                <h2 class="w-100 text-left fz_2rem mb-3">Информация о задании</h2>
+            </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-md-4 col-lg-3 col-form-label px-0" for="input_text">Что сделать?</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-lg-0">
+                        <input class="form-control" name="task_title" id="input_text" placeholder="Например: доставка тюльпанов"
+                               type="text">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-md-9 col-lg-3 col-form-label px-0" for="detailsFormControlTextarea1">Опишите
+                        подробно детали</label>
+                    <textarea class="form-control col-sm-10 col-md-9 col-lg-9" name="description" id="detailsFormControlTextarea1" placeholder="Например: купить 7 красных тюльпанов и в 12:00 доставить по адресу"
+                              rows="4"></textarea>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3 col-form-label px-0"></div>
+                    <div class="col-sm-10 col-md-5 px-0 pl-lg-0">
+                        <div class="upload-file">
+                                     <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files" multiple>
+                                     <label for="files" class="btn btn-tertiary js-labelFile">
+                                         <i class="fas fa-upload"></i>
+                                         <span class="js-fileName">Загрузить файлы</span>
+                                     </label>
+                                 </div>
+                    </div>
+                </div>
+               <div class="form-group row">
+                    <label class="col-sm-2 col-md-9 col-lg-3 col-form-label px-0" for="detailsFormControlTextarea1">Добавить обложку для задания</label>
+                    <div class="upload-file">
+                                     <input type="file" class="mb-1 form-control prof-file d-none" name="file_main" id="file_main" multiple>
+                                     <label for="file_main" class="btn btn-tertiary js-labelFile">
+                                         <i class="fas fa-upload"></i>
+                                         <span class="js-fileNameMain">Загрузить файл</span>
+                                     </label>
+                                 </div>
+                </div>
+            <div class="row m-0 justify-content-start pt-2">
+                <hr class="line">
+            </div>
+            <div class="row">
+                <h2 class="w-100 text-left fz_2rem mt-2 mb-3">Адрес для выполнения задания</h2>
+            </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0" for="city-task_input">Город</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-md-0 pl-lg-0">
+                        <select class="form-control" id="city-task_input" name="city">
+                            {% for c in city %}
+                                <option value="{{c.id}}">{{c.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0" for="input_addr">Адрес</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-md-0 pl-lg-0">
+                        <input class="form-control address-task_input" name="address" id="input_addr" placeholder="Например: ул. Первомайская, 12"
+                               type="text">
+                    </div>
+                </div>
+            <div class="row m-0 justify-content-start">
+                <hr class="line">
+            </div>
+            <div class="row">
+                <h2 class="w-100 text-left fz_2rem mb-4">Дата выполнения задания</h2>
+            </div>
+            <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0" for="input_addr">Дата</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-md-0 pl-lg-0">
+                        <input type="text" class="form-control" id="date" name="date" placeholder="Дата" required>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label px-0">Когда выполнить?</label>
+                    <div class="col-sm-10 col-md-4 py-2">
+                        <div class="form-check">
+                            <input checked class="form-check-input any-time_radio" id="gridRadios2"
+                                   name="gridRadios" type="radio" value="option1">
+                            <label class="form-check-label any-time_radio" for="gridRadios2">
+                                В любое время
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input choose-type_radio" id="gridRadios3" name="gridRadios"
+                                   type="radio" value="option2">
+                            <label class="form-check-label choose-type_radio" for="gridRadios3">
+                                Выбрать время
+                            </label>
+                        </div>
+                        <div class="date-select mt-2 p-3 d-none">
+                            <div class="form-group row mb-2">
+                                <label class="col-2 col-sm-2 col-form-label px-0" for="time_input1">С</label>
+                                <div class="col-9 col-sm-2 col-md-10 px-0 pl-md-3 pl-lg-0">
+                                    <input class="form-control" id="time_input1" type="time" name="start_time" value="12:00">
+                                </div>
+                            </div>
+                            <div class="form-group row m-0">
+                                <label class="col-2 col-sm-2 col-form-label px-0" for="time_input2">До</label>
+                                <div class="col-9 col-sm-2 col-md-10 px-0 pl-md-3 pl-lg-0">
+                                    <input class="form-control passwords" id="time_input2" type="time" name="end_time" value="13:00">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="row m-0 justify-content-start">
+                <hr class="line mt-0">
+            </div>
+            <div class="row">
+                <h2 class="w-100 text-left fz_2rem mb-3">Оплата</h2>
+            </div>
+               <div class="form-group row mb-5">
+                    <label class="col-sm-3 col-form-label px-0">Стоимость</label>
+                    <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-md-0 pl-lg-0">
+                        <input class="form-control address-task_input" name="input_price" id="input_price" placeholder="1000"
+                               type="number" value="{{advert.price}}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row mb-5">
+                    <label class="col-sm-3 col-form-label px-0">Способ оплаты</label>
+                    <div class="col-sm-10 col-md-4 py-2">
+                        <div class="form-check">
+                            <input checked class="form-check-input" id="gridRadios4" name="gridRadios2"
+                                   type="radio" value="option1">
+                            <label class="form-check-label" for="gridRadios4">
+                                Оплата наличными
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input checked class="form-check-input" id="gridRadios5" name="gridRadios2"
+                                   type="radio" value="option1">
+                            <label class="form-check-label" for="gridRadios5">
+                                Безопасная сделка (оплата через сайт)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 col-md-5 px-0 pl-md-0 pl-lg-0">
+                        <button type="button" class="btn btn-primary px-5" id="btn_offer_check">Предложить</button>
+                        <button class="btn btn-primary px-5 d-none" id="btn_offer_submit"
+                                type="submit">Преложить
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

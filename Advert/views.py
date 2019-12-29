@@ -29,6 +29,12 @@ def layout_name(request):
             layout = 'layout_executor.html'
     return layout,username,photo
 
+def is_verify(request):
+    if (request.session.get('username', 'no') != 'no'):
+        verify = True
+    else:
+        verify = False
+    return verify
 list_page = []
 advert_count = 0
 
@@ -112,6 +118,7 @@ def Adverts_detail(request,id):
     layout, username, photo = layout_name(request)
     contact = layout_contact()
     link = layout_link()
+    verify = is_verify(request)
     city, regs, regions = layout_regions_cities(request)
     id=int(id)
     advert = UserAdvert.objects.filter(id=id)[0]

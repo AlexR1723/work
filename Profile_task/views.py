@@ -335,7 +335,6 @@ def Profile_task_filter_page(request,filter,page):
     return render(request, 'Profile/My_tasks_customer.html', locals())
 
 def Create_task(request,text):
-    print('start')
     layout, username,photo = layout_name(request)
     if (username != ''):
         email = request.session.get('username', 'no')
@@ -349,6 +348,25 @@ def Create_task(request,text):
             return HttpResponseRedirect("/profile/settings")
     else:
         return HttpResponseRedirect("/login")
+
+
+def Offer_create(request, id_advert):
+    print('offer')
+    layout, username, photo = layout_name(request)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Заказчик'):
+            category = Category.objects.all()
+            city = City.objects.all()
+            id_advert=int(id_advert)
+            advert=UserAdvert.objects.get(id=id_advert)
+            print(advert)
+            return render(request, 'Profile/Create_offer.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+    else:
+        return HttpResponseRedirect("/login")
+
 
 def SubcategoryFind(request):
     try:
@@ -366,44 +384,44 @@ def Save_task(request):
     print('task_save')
     if request.method == 'POST':
         email = request.session.get('username', 'no')
-        sub=request.POST.get('subcategory')
+        sub = request.POST.get('subcategory')
         title = request.POST.get('task_title')
-        description=request.POST.get('description')
-        city=request.POST.get('city')
-        address=request.POST.get('address')
-        date_=request.POST.get('date')
-        gridRadios=request.POST.get('gridRadios')
-        start_time=request.POST.get('start_time')
-        end_time=request.POST.get('end_time')
-        gridRadios2=request.POST.get('gridRadios2')
-        price=request.POST.get('input_price')
+        description = request.POST.get('description')
+        city = request.POST.get('city')
+        address = request.POST.get('address')
+        date_ = request.POST.get('date')
+        gridRadios = request.POST.get('gridRadios')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        gridRadios2 = request.POST.get('gridRadios2')
+        price = request.POST.get('input_price')
         print(date_)
-        date_=date_.split('/')
-        date=date_[2]+'-'+date_[0]+'-'+date_[1]
+        date_ = date_.split('/')
+        date = date_[2] + '-' + date_[0] + '-' + date_[1]
         print(date)
-        pay=1
+        pay = 1
 
         auth = AuthUser.objects.all().filter(email=email)[0]
         subcategory = SubCategory.objects.all().filter(id=sub)[0]
-        status=UserTaskStatus.objects.get(name='В поиске')
+        status = UserTaskStatus.objects.get(name='В поиске')
         doc = request.FILES
-        city=City.objects.all().filter(id=city)[0]
-        if(gridRadios2 == 'option1'):
-            pay=0
-        if(gridRadios=='option1'):
+        city = City.objects.all().filter(id=city)[0]
+        if (gridRadios2 == 'option1'):
+            pay = 0
+        if (gridRadios == 'option1'):
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
-                                     city=city,address=address,date=date,pay=pay, price=price,
+                                     city=city, address=address, date=date, pay=pay, price=price,
                                      photo_main=doc['file_main'], task_status=status, date_add=datetime.datetime.now())
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
-                                     city=city,address=address, date=date, pay=pay, price=price, task_status=status,
+                                     city=city, address=address, date=date, pay=pay, price=price, task_status=status,
                                      date_add=datetime.datetime.now())
         else:
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
-                                     city=city,address=address, start_time=start_time,end_time=end_time, date=date,
-                                     pay=pay, price=price,  photo_main=doc['file_main'], task_status=status,
+                                     city=city, address=address, start_time=start_time, end_time=end_time, date=date,
+                                     pay=pay, price=price, photo_main=doc['file_main'], task_status=status,
                                      date_add=datetime.datetime.now())
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
@@ -416,6 +434,72 @@ def Save_task(request):
                 tast_photo = TaskPhoto(task=user_task, photo=d)
                 tast_photo.save()
     return HttpResponseRedirect("/profile/task")
+
+
+def Save_offer(request):
+    print('offer_save')
+    if request.method == 'POST':
+        email = request.session.get('username', 'no')
+        sub = request.POST.get('subcategory')
+        print(sub)
+        title = request.POST.get('task_title')
+        description = request.POST.get('description')
+        city = request.POST.get('city')
+        address = request.POST.get('address')
+        date_ = request.POST.get('date')
+        gridRadios = request.POST.get('gridRadios')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        gridRadios2 = request.POST.get('gridRadios2')
+        price = request.POST.get('input_price')
+        advert_id = request.POST.get('advert_id')
+        print(date_)
+        date_ = date_.split('/')
+        date = date_[2] + '-' + date_[0] + '-' + date_[1]
+        print(date)
+        pay = 1
+
+        auth = AuthUser.objects.all().filter(email=email)[0]
+        advert = UserAdvert.objects.get(id=advert_id)
+        offer = UserOffer(user_id_customer=auth, advert=advert, is_accept=False, date=datetime.datetime.now())
+        offer.save()
+        subcategory = SubCategory.objects.all().filter(id=sub)[0]
+        print(subcategory)
+        # status = UserTaskStatus.objects.get(name='В поиске')
+        exec=AuthUser.objects.get(id=advert.user.id)
+        doc = request.FILES
+        city = City.objects.all().filter(id=city)[0]
+        if (gridRadios2 == 'option1'):
+            pay = 0
+        if (gridRadios == 'option1'):
+            if (doc):
+                user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
+                                     city=city, address=address, date=date, pay=pay, price=price,
+                                     photo_main=doc['file_main'], date_add=datetime.datetime.now(),
+                                     offer=offer, exec=exec)
+            else:
+                user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
+                                     city=city, address=address, date=date, pay=pay, price=price,
+                                     date_add=datetime.datetime.now(), offer=offer, exec=exec)
+        else:
+            if (doc):
+                user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
+                                     city=city, address=address, start_time=start_time, end_time=end_time, date=date,
+                                     pay=pay, price=price, photo_main=doc['file_main'],
+                                     date_add=datetime.datetime.now(), offer=offer, exec=exec)
+            else:
+                user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
+                                     city=city, address=address, start_time=start_time, end_time=end_time, date=date,
+                                     pay=pay, price=price, date_add=datetime.datetime.now(),
+                                     offer=offer, exec=exec)
+        user_task.save()
+        docs = request.FILES
+        if (docs):
+            for d in docs.getlist('files'):
+                tast_photo = TaskPhoto(task=user_task, photo=d)
+                tast_photo.save()
+    return HttpResponseRedirect("/profile/task")
+
 
 def Profile_task_detail(request,id):
     layout, username, photo = layout_name(request)
