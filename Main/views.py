@@ -36,13 +36,16 @@ def layout_name(request):
     photo = ''
     user = request.session.get('username', 'no')
     if (user != 'no'):
-        username = AuthUser.objects.all().filter(email=user)[0].first_name
-        photo = Users.objects.all().filter(auth_user__email=user)[0].photo
-        user = Users.objects.all().filter(auth_user__email=user)[0]
-        if (user.type.name == "Заказчик"):
-            layout = 'layout_customer.html'
+        if(AuthUser.objects.all().filter(email=user).count() >= 1):
+            username = AuthUser.objects.all().filter(email=user)[0].first_name
+            photo = Users.objects.all().filter(auth_user__email=user)[0].photo
+            user = Users.objects.all().filter(auth_user__email=user)[0]
+            if (user.type.name == "Заказчик"):
+                layout = 'layout_customer.html'
+            else:
+                layout = 'layout_executor.html'
         else:
-            layout = 'layout_executor.html'
+            logout(request)
     return layout, username, photo
 
 
@@ -245,24 +248,31 @@ def Registrate(request):
                 user = User.objects.create_user(email, email, password)
                 user.first_name = name
                 user.last_name = surname
-                user.is_active = False
+                user.is_active=True
+                # user.is_active = False
                 user.save()
                 auth_user = AuthUser.objects.filter(id=user.id)[0]
                 print(auth_user)
                 new_user = Users(auth_user=auth_user, photo="uploads/users/user.png", phone=tel, uuid=key,
                                  type=UserType.objects.all().filter(name="Исполнитель")[0])
                 new_user.save()
-            subject, from_email, to = 'Верификация', 'romanenko.anastasiya1998@yandex.ua', email
+            subject, from_email, to = 'Успешная регистрация', 'romanenko.anastasiya1998@yandex.ua', email
             text_content = 'Перейдите по ссылке для автивации учетной записи.'
             m = 'https://work-proj.herokuapp.com/verify/' + key
             print(m)
-            html_content = render_to_string('letter.html', {"key": key})
+            html_content = render_to_string('letter.html', {"key": key, "email":email,"pass":password})
             print(html_content)
             # html_content="<a href='%s'>Активировать</a>" % m
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
-            return HttpResponse(json.dumps({'data': 'ok'}))
+
+
+            user_auth = authenticate(username=email, password=password)
+            login(request, user_auth)
+            request.session['username'] = AuthUser.objects.get(id=user_auth.id).username
+            request.session.modified = True
+            return HttpResponse(json.dumps(True))
         else:
             return HttpResponse(json.dumps({'data': 'email'}))
     except:
