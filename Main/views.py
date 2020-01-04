@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 import json, random,datetime
 from .models import *
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, hashers
 from django.contrib.auth.models import User
 from django.db import transaction
 from django.core.validators import validate_email
@@ -279,6 +279,50 @@ def Registrate(request):
         return HttpResponse(json.dumps({'data': 'error'}))
 
     # user=models.User(name=name,login=email,password=password)
+
+
+def Forgot(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Forgot.html', locals())
+
+
+def send_new_pass(request):
+    email = request.GET.get("email")
+    print(email)
+    list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+            'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+    try:
+        key = ''
+        us = AuthUser.objects.all().filter(email=email)
+        print(len(us))
+        if (len(us) > 0):
+            key=''
+            print(key)
+            while (len(key) < 8):
+                i = random.randint(0, len(list) - 1)
+                key += str(list[i])
+            print(key)
+            u = User.objects.get(username__exact=email)
+            print(u)
+            u.set_password(key)
+            u.save()
+            print(u)
+            subject, from_email, to = 'Новый пароль', 'romanenko.anastasiya1998@yandex.ua', email
+            text_content = 'Перейдите по ссылке для автивации учетной записи.'
+            m = 'https://work-proj.herokuapp.com/verify/' + key
+            print(m)
+            html_content = render_to_string('forgot.html', {"email": email, "pass": key})
+            print(html_content)
+            # html_content="<a href='%s'>Активировать</a>" % m
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            return HttpResponse(json.dumps(True))
+        else:
+            return HttpResponse(json.dumps({'data': 'email'}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
 
 
 def Verify(request, key):

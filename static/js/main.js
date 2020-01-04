@@ -105,7 +105,7 @@ function load_categories() {
             }
         },
         error: function (data) {
-            alert('Error');
+            // alert('Error');
         }
     })
     // const end = new Date().getTime();
@@ -1624,6 +1624,29 @@ $(".select-user-bet").click(function () {
             },
         error: function (data) {
             alert('Error');
+        }
+    })
+});
+
+$('#btn_forgot').click(function () {
+    var email=$('#login_email').val();
+    // const start = new Date().getTime();
+    // console.log("start " + start)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        data:{
+            email:email
+        },
+        url: '/send_new_pass/',
+        success: function (data) {
+            window.location='/login/'
+        },
+        error: function (data) {
+            $("#alert-danger").show('slow');
+            setTimeout(function () {
+                    $("#alert-danger").hide('slow');
+                }, 5000);
         }
     })
 });

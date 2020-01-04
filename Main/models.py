@@ -283,7 +283,7 @@ class Users(models.Model):
     uuid = models.CharField(max_length=50, blank=True, null=True)
     gender = models.ForeignKey(Gender, models.DO_NOTHING, blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
-    about_me = models.CharField(max_length=5000, blank=True, null=True)
+    about_me = models.CharField(max_length=5000, blank=True, null=True, default=" ")
     get_new_order = models.BooleanField(blank=True, null=True)
     get_notice_status = models.BooleanField(blank=True, null=True)
     photo = models.ImageField(upload_to='uploads/users/', max_length=100, blank=True, null=True)

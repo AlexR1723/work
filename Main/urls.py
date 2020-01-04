@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^login/$', views.Login, name="Login"),
     url(r'^register/$', views.Register, name="Register"),
     url(r'registrate/', views.Registrate),
+    url(r'^forgot/', views.Forgot, name="Forgot"),
+    url(r'send_new_pass/', views.send_new_pass),
     url(r'^verify/(?P<key>[a-z0-9]+)/$', views.Verify, name="Verify"),
 
     # url(r'find/(?P<text>[А-Яа-я\s0-9]+)/$', views.Find_category, name="Find_category"),
