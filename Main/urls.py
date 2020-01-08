@@ -52,5 +52,6 @@ urlpatterns = [
     url(r'get_counter_values', views.get_counter_values, name='get_counter_values'),
 
     url(r'^dev/$', views.Dev, name="Dev"),
+    url(r'^page/$', views.Page, name="Page"),
     # url(r'^dev/(?P<text>[А-Яа-я\s0-9-()/a-z,]+)/$', views.Dev, name="Dev"),
 ]

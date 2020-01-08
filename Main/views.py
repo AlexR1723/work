@@ -286,6 +286,12 @@ def Forgot(request):
     return render(request, 'Main/Forgot.html', locals())
 
 
+
+def Page(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Page.html', locals())
+
+
 def send_new_pass(request):
     email = request.GET.get("email")
     print(email)

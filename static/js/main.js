@@ -1640,7 +1640,7 @@ $('#btn_forgot').click(function () {
         },
         url: '/send_new_pass/',
         success: function (data) {
-            window.location='/login/'
+            window.location='/page/'
         },
         error: function (data) {
             $("#alert-danger").show('slow');
