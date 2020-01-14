@@ -91,7 +91,9 @@ def Save(request):
             gender=Gender.objects.all().filter(name="Мужской")[0]
         else:
             gender = Gender.objects.all().filter(name="Женский")[0]
-        user.birthday=request.POST.get('birthday')
+        birthday=request.POST.get('birthday')
+        birthday=birthday.split('/')
+        user.birthday=birthday[2] + '-' + birthday[0] + '-' + birthday[1]
         user.gender_id=gender
         user.about_me=request.POST.get('about')
         user.phone = request.POST.get('phone')
