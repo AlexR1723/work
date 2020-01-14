@@ -564,7 +564,10 @@ $("#btn_del_ads").click(function (event) {
     })
 });
 
+$('#birthday-input').mask('99/99/9999');
+
 window.onload = function () {
+
     load_categories();
     if (window.location.href.indexOf('help_category') != -1 || window.location.href.indexOf('help') != -1) {
         load_help();
@@ -1276,6 +1279,9 @@ $("#save_info_btn").click(function () {
 
 $(function () {
     $('#date').daterangepicker({
+        singleDatePicker: true,
+    });
+    $('#birthday-input').daterangepicker({
         singleDatePicker: true,
     });
 });

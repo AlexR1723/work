@@ -112,7 +112,8 @@
                                             <p class="mb-1">
                                                 <span class="pr-3">Дата рождения:</span>
                                                 <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>
-                                                <input type="date" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />
+                                                <input type="text" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" placeholder="Дата" value="{{month}}/{{day}}/{{year}}" required>
+<!--                                                <input type="date" placeholder="дд.мм.гггг" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
                                             </p>
                                             <p class="mb-1">
                                                 <span class="pr-3">Пол:</span>
@@ -127,17 +128,17 @@
                                                 {% endif %}
                                                 </select>
                                             </p>
-                                            <div class="row">
-                                                <div class="col-12 col-sm-1 p-0">
-                                                    <span>О себе: </span>
-                                                </div>
-                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
-                                                    <p class="mb-1">
-                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>
-                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>
-                                                    </p>
-                                                </div>
-                                            </div>
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-12 col-sm-1 p-0">-->
+<!--                                                    <span>О себе: </span>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">-->
+<!--                                                    <p class="mb-1">-->
+<!--                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>-->
+<!--                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>-->
+<!--                                                    </p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                         </div>
                                     </div>
                             </div>
@@ -162,6 +163,45 @@
                                                 <label id="phone-label">{{user.phone}}</label>
                                                 <input class="mb-1 form-control prof-input d-none" id="phone-input" name="phone" type="text" value="{{user.phone}}" />
                                             </p>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-12 p-3 item-inf_blk user-inf_blk">
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3 d-inline-block">
+<!--                                            <img src="{% static 'image/user-icon.png' %}" class="item-icon"-->
+<!--                                                 alt="user-icon">-->
+                                        </div>
+                                        <div class="col-11 d-inline-block">
+<!--                                            <p class="mb-1">-->
+<!--                                                <span class="pr-3">Дата рождения:</span>-->
+<!--                                                <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>-->
+<!--                                                <input type="date" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
+<!--                                            </p>-->
+<!--                                            <p class="mb-1">-->
+<!--                                                <span class="pr-3">Пол:</span>-->
+<!--                                                <label id="gender-label">{{user.gender.name}}</label>-->
+<!--                                                <select class="form-control prof-input d-none" id="gender-input" name="gender">-->
+<!--                                                {% if user.gender.name == "Мужской" %}-->
+<!--                                                <option selected value="1">Мужской</option>-->
+<!--                                                <option value="2">Женский</option>-->
+<!--                                                {% else %}-->
+<!--                                                <option value="1">Мужской</option>-->
+<!--                                                <option selected value="2">Женский</option>-->
+<!--                                                {% endif %}-->
+<!--                                                </select>-->
+<!--                                            </p>-->
+                                            <div class="row">
+                                                <div class="col-12 col-sm-1 p-0">
+                                                    <span>О себе: </span>
+                                                </div>
+                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
+                                                    <p class="mb-1">
+                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>
+                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                             </div>
