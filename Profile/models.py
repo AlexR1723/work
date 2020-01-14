@@ -72,18 +72,20 @@ class Region(models.Model):
     # def cities(self):
     #     city=City.objects.filter(region=self)
     #     return city
-
-    def first_reg(self):
-        count=City.objects.filter(region=self).count()/2
-        # print(count)
-        reg=City.objects.filter(region=self).order_by('name')[:count]
+    def all_reg(self):
+        reg=City.objects.filter(region=self).order_by('name')
         return reg
-
-    def second_reg(self):
-        count = City.objects.filter(region=self).count() / 2
-        # print(count)
-        reg = City.objects.filter(region=self).order_by('name')[count:]
-        return reg
+    # def first_reg(self):
+    #     count=City.objects.filter(region=self).count()/2
+    #     # print(count)
+    #     reg=City.objects.filter(region=self).order_by('name')[:count]
+    #     return reg
+    #
+    # def second_reg(self):
+    #     count = City.objects.filter(region=self).count() / 2
+    #     # print(count)
+    #     reg = City.objects.filter(region=self).order_by('name')[count:]
+    #     return reg
 
 
 

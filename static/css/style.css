@@ -2070,10 +2070,14 @@ input[type=checkbox]:checked + label::after {
 .main-accordion_blk a {
     text-decoration: none;
 }
-.panel-heading p {
+.panel-heading {
     background: rgba(229, 229, 229, .4);
+}
+.panel-heading p {
+    /*background: rgba(229, 229, 229, .4);*/
     color: #000000;
-    display: block;
+    display: inline-block;
+    /*display: block;*/
     padding: 10px 15px 10px 50px;
     position: relative;
     margin: 0;
@@ -2088,7 +2092,7 @@ input[type=checkbox]:checked + label::after {
     font-size: 1.7rem;
     color: #3E789D;
     position: absolute;
-    left: 2%;
+    left: 15%;
     top: 15%;
     transition: 0.3s;
 }
