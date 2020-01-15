@@ -2681,7 +2681,8 @@ service-card_text {
     right: 0 !important;
 }
 #alerts-block{
-    position: absolute;
+    /*position: absolute;*/
+    position: fixed;
     bottom: 0;
 }
 .suc-city{

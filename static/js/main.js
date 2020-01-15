@@ -876,7 +876,7 @@ $('#profile_list_categories').on('click', 'input', function (event) {
     $.ajax({
         type: "GET",
         dataType: "json",
-        async: false,
+        async: true,
         data: {
             id: id,
             status: status

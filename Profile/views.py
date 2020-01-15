@@ -198,6 +198,16 @@ def Choose_categ(request):
     for i in user_cat:
         cats.append(i.subcategories_id)
 
+    list_category = []
+    for i in category:
+        user_sub_cater = UserSubcategories.objects.filter(user_id=user_id).filter(subcategories__category=i)
+        sub_categ = SubCategory.objects.filter(category=i)
+        for j in user_cat:
+            if j.subcategories in sub_categ:
+                list_category.append(i.id)
+                break
+    print(list_category)
+
     if (username != ''):
         return render(request, 'Profile/Choose_categ.html', locals())
     else:

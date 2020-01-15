@@ -139,18 +139,20 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-    def first_sub(self):
-        count=SubCategory.objects.filter(category=self).count()/2
-        # print(count)
-        sub=SubCategory.objects.filter(category=self).order_by('name')[:count]
+    def all_sub(self):
+        sub=SubCategory.objects.filter(category=self).order_by('name')
         return sub
-
-    def second_sub(self):
-        count = SubCategory.objects.filter(category=self).count() / 2
-        # print(count)
-        sub = SubCategory.objects.filter(category=self).order_by('name')[count:]
-        return sub
+    # def first_sub(self):
+    #     count=SubCategory.objects.filter(category=self).count()/2
+    #     # print(count)
+    #     sub=SubCategory.objects.filter(category=self).order_by('name')[:count]
+    #     return sub
+    #
+    # def second_sub(self):
+    #     count = SubCategory.objects.filter(category=self).count() / 2
+    #     # print(count)
+    #     sub = SubCategory.objects.filter(category=self).order_by('name')[count:]
+    #     return sub
 
 
 class SubCategory(models.Model):
