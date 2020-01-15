@@ -132,6 +132,18 @@ def Choose_city(request):
     for i in user_cities:
         list_cities.append(i.city_id)
 
+    user_regions=UserCities.objects.filter(user_id=user_id)
+    list_regions = []
+    for i in regions:
+        user_cities_reg = UserCities.objects.filter(user_id=user_id).filter(city__region=i)
+        cities_reg=City.objects.filter(region=i)
+        cities_count=cities_reg.count()
+        for j in user_cities:
+            if j.city in cities_reg:
+                list_regions.append(i.id)
+                break
+    print(list_regions)
+
     if (username != ''):
         return render(request, 'Profile/Choose_city.html', locals())
     else:
@@ -304,6 +316,7 @@ def profile_set_cities(request):
     id=request.GET.get('id')
     status=bool(strtobool(request.GET.get('status')))
     id=str(id).split('_')[2]
+    print(id)
 
     user = request.session.get('username', 0)
     print(user)
@@ -311,7 +324,7 @@ def profile_set_cities(request):
         us=AuthUser.objects.get(username=user).id
         city=City.objects.get(id=id).id
         if status==True:
-            UserCities.objects.create(user_id=us,city_id=city)
+            UserCities.objects.create(user_id=us, city_id=city)
         else:
             UserCities.objects.get(user_id=us, city_id=city).delete()
     return HttpResponse(json.dumps('good'))

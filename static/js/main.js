@@ -907,7 +907,7 @@ $('#profile_list_cities').on('click', 'input', function (event) {
     $.ajax({
         type: "GET",
         dataType: "json",
-        async: false,
+        async: true,
         data: {
             id: id,
             status: status
@@ -951,6 +951,17 @@ $("#safety_btn_executor").click(function () {
 });
 
 $(document).ready(function () {
+
+    $('.check_region').click(function () {
+        var id=this.id;
+        var list=$(this).parent().next().children()
+        for(var i=0; i < list.length;i++)
+        {
+            var inp_list=$(list[i]).children().children('.custom-control-input');
+            inp_list.click();
+            var p=0;
+        }
+    });
 
     $(".more_sub").click(function () {
         var el = $(this);
