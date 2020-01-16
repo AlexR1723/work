@@ -5,11 +5,13 @@ from .models import *
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
 from distutils.util import strtobool
+import os
 import datetime
 
 
 list_page = []
 ads_count = 0
+message=0
 def layout_contact():
     contact=ContactType.objects.all()
     return contact
@@ -53,6 +55,9 @@ def Profile_settings(request):
         subcategory=UserSubcategories.objects.all().filter(user__email=email)
         cities = UserCities.objects.all().filter(user__email=email)
         portfolio=UserPortfolio.objects.all().filter(user__email=email)
+        global message
+        alert=message
+        print(message)
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")
@@ -65,8 +70,14 @@ def Portfolio_add(request):
         auth = AuthUser.objects.all().filter(email=email)[0]
         if (doc):
             for d in doc.getlist('files'):
-                user_portfolio=UserPortfolio(user=auth, photo=d)
-                user_portfolio.save()
+                portfolio=UserPortfolio.objects.filter(user=auth)
+                if (portfolio.count()<10):
+                    if (d.size <= 31457280):
+                        user_portfolio=UserPortfolio(user=auth, photo=d)
+                        user_portfolio.save()
+                    else:
+                        global message
+                        message=1
     return HttpResponseRedirect("/profile/settings")
 
 
