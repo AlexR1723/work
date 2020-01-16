@@ -949,6 +949,26 @@ $("#safety_btn_executor").click(function () {
     document.getElementById('div_customer').style.display = "none"
     document.getElementById('div_executor').style.display = "block"
 });
+$(document).ready(function () {
+    var al=$('#view-message').val();
+    if(al == 1) {
+        var el = document.getElementById('alerts-block');
+        var row = document.createElement('div');
+        row.setAttribute('class', 'row justify-content-center');
+        var al = document.createElement('div');
+        al.setAttribute('class', 'alert alert-danger error-city');
+        al.setAttribute('role', 'alert');
+        al.setAttribute('id', 'alert');
+        al.setAttribute('style', 'display: none;');
+        al.textContent = 'Загружаемый файл превышает 30МБ!';
+        row.insertAdjacentHTML('beforeend', al.outerHTML);
+        el.insertAdjacentHTML('beforeend', row.outerHTML);
+        $("#alert").show('slow');
+        setTimeout(function () {
+            $("#alert").hide('slow');
+        }, 5000);
+    }
+})
 
 $(document).ready(function () {
 

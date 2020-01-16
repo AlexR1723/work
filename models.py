@@ -338,6 +338,7 @@ class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(unique=True, max_length=100, blank=True, null=True)
     image = models.CharField(max_length=500, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

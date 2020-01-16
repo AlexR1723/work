@@ -2683,7 +2683,7 @@ service-card_text {
 #alerts-block{
     /*position: absolute;*/
     position: fixed;
-    bottom: 0;
+    bottom: 2rem;
 }
 .suc-city{
     padding: .3rem .8rem !important;
