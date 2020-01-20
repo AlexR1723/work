@@ -2827,3 +2827,7 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
 .check_region:hover{
     cursor: pointer;
 }
+#input_price{
+    display: inline-block;
+    width: auto;
+}
