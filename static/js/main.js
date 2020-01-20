@@ -1339,6 +1339,27 @@ $("#task_category").change(function () {
     }
 });
 
+$("#task_subcategory").change(function () {
+     var sub = $('#task_subcategory option:selected').val();
+     if (sub != 0) {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/profile/task/price_find/',
+            data: {
+                id: sub
+            },
+            success: function (data) {
+                $("#input_price").val(data.data);
+                // outputSubcategory(data);
+            },
+            error: function (data) {
+                alert('Error');
+            }
+        })
+    }
+});
+
 function outputSubcategory(data) {
     $('#task_subcategory').removeAttr('disabled');
     var select = document.getElementById('task_subcategory');
@@ -1355,7 +1376,9 @@ function outputSubcategory(data) {
         option.text = data.data[i + 1];
         select.appendChild(option);
     }
+    $("#input_price").val(data.price);
 }
+
 
 $("#customer").click(function () {
 

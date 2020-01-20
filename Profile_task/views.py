@@ -379,9 +379,25 @@ def SubcategoryFind(request):
         for s in subcategory:
             subcategory_list.append(s.id)
             subcategory_list.append(s.name)
-        return HttpResponse(json.dumps({'data': subcategory_list}))
+        price=subcategory[0].price
+        return HttpResponse(json.dumps({'data': subcategory_list,'price':price}))
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
+
+
+def PriceFind(request):
+    try:
+        sub = request.GET.get("id")
+        subcategory=SubCategory.objects.all().get(id=sub)
+        # subcategory_list = []
+        # for s in subcategory:
+        #     subcategory_list.append(s.id)
+        #     subcategory_list.append(s.name)
+        price=subcategory.price
+        return HttpResponse(json.dumps({'data': price}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
+
 
 def Save_task(request):
     print('task_save')
