@@ -204,7 +204,7 @@ $('#res_list_header').on('click', 'button ', function (event) {
     let text = this.childNodes[0].childNodes[0].childNodes[0].textContent;
     document.getElementById('main_input_header').value = text
     // window.location.href = "/find/" + text.trim().toLowerCase();
-    window.location.href = "/sub_category/" + text.trim().toLowerCase();
+    window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
 });
 
 $('#res_list_input').on('click', 'button ', function (event) {
