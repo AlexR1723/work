@@ -32,7 +32,36 @@ def layout_name(request):
     return layout,username,photo
 
 
-
 def Offer(request):
     layout, username, photo = layout_name(request)
-    return render(request, 'Profile/Offers.html', locals())
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            us = request.session.get('username')
+            user = AuthUser.objects.get(username=us)
+            # offers=UserOffer.objects.filter(advert__user_id=user).filter(is_accept=False)
+            offers=UserTask.objects.filter(offer__advert__user=user).filter(offer__is_accept=False)
+            print(offers)
+            return render(request, 'Profile/Offers.html', locals())
+        else:
+            return HttpResponseRedirect("/profile/settings")
+
+def accept_offer(request):
+    email = request.session.get('username', 'no')
+    if (email!='no' and Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+        # us = request.session.get('username')
+        user = AuthUser.objects.get(username=email).id
+        id=int(request.GET.get('id'))
+        task=UserTask.objects.filter(id=id).filter(offer__advert__user_id=user)
+        print(task)
+        print(task[0].id)
+        if len(task)==0:
+            return HttpResponse(json.dumps(False))
+        else:
+            task[0].offer.is_accept=True
+            task[0].offer.save()
+            task[0].task_status=UserTaskStatus.objects.get(name="В работе")
+            task[0].save()
+            return HttpResponse(json.dumps(True))

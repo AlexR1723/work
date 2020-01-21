@@ -105,7 +105,7 @@ function load_categories() {
             }
         },
         error: function (data) {
-            alert('Error');
+            // alert('Error');
         }
     })
     // const end = new Date().getTime();
@@ -474,16 +474,16 @@ $('#task_filter_select_exec_stat').change(function () {
     var cat = $('#task_filter_select_exec_cat option:selected').val();
     var stat = $('#task_filter_select_exec_stat option:selected').val();
     if (cat==0 && stat==0){
-         window.location.href = '/profile/executor_tasks/';
+         window.location.href = '/profile/task/';
     }
     if (cat!=0 && stat==0){
-         window.location.href = '/profile/executor_tasks/category='+cat;
+         window.location.href = '/profile/task/category='+cat;
     }
     if (cat==0 && stat!=0){
-         window.location.href = '/profile/executor_tasks/stat='+stat;
+         window.location.href = '/profile/task/stat='+stat;
     }
     if (cat!=0 && stat!=0){
-         window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+         window.location.href = '/profile/task/category='+cat+'/stat='+stat;
     }
 });
 // let double = function(num)
@@ -525,7 +525,7 @@ $("#accept_advert").click(function (event) {
             if (data==true){
                 // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
                 // setTimeout(5000)
-                window.location.href= '/profile/offers/';
+                window.location.href= '/profile/offer/';
             }
             // else {
             //     window.location.href= '/login';
@@ -565,7 +565,10 @@ $("#btn_del_ads").click(function (event) {
     })
 });
 
+$('#birthday-input').mask('99/99/9999');
+
 window.onload = function () {
+
     load_categories();
     if (window.location.href.indexOf('help_category') != -1 || window.location.href.indexOf('help') != -1) {
         load_help();
@@ -874,7 +877,7 @@ $('#profile_list_categories').on('click', 'input', function (event) {
     $.ajax({
         type: "GET",
         dataType: "json",
-        async: false,
+        async: true,
         data: {
             id: id,
             status: status
@@ -905,7 +908,7 @@ $('#profile_list_cities').on('click', 'input', function (event) {
     $.ajax({
         type: "GET",
         dataType: "json",
-        async: false,
+        async: true,
         data: {
             id: id,
             status: status
@@ -947,8 +950,39 @@ $("#safety_btn_executor").click(function () {
     document.getElementById('div_customer').style.display = "none"
     document.getElementById('div_executor').style.display = "block"
 });
+$(document).ready(function () {
+    var al=$('#view-message').val();
+    if(al == 1) {
+        var el = document.getElementById('alerts-block');
+        var row = document.createElement('div');
+        row.setAttribute('class', 'row justify-content-center');
+        var al = document.createElement('div');
+        al.setAttribute('class', 'alert alert-danger error-city');
+        al.setAttribute('role', 'alert');
+        al.setAttribute('id', 'alert');
+        al.setAttribute('style', 'display: none;');
+        al.textContent = 'Загружаемый файл превышает 30МБ!';
+        row.insertAdjacentHTML('beforeend', al.outerHTML);
+        el.insertAdjacentHTML('beforeend', row.outerHTML);
+        $("#alert").show('slow');
+        setTimeout(function () {
+            $("#alert").hide('slow');
+        }, 5000);
+    }
+})
 
 $(document).ready(function () {
+
+    $('.check_region').click(function () {
+        var id=this.id;
+        var list=$(this).parent().next().children()
+        for(var i=0; i < list.length;i++)
+        {
+            var inp_list=$(list[i]).children().children('.custom-control-input');
+            inp_list.click();
+            var p=0;
+        }
+    });
 
     $(".more_sub").click(function () {
         var el = $(this);
@@ -1081,24 +1115,27 @@ $(document).ready(function () {
                         pass1: pass1
                     },
                     success: function (data) {
-                        if (data.data == 'ok') {
-                            $("#alert-success").show('slow');
-                            setTimeout(function () {
-                                $("#alert-success").hide('slow');
-                            }, 5000);
+                        if (data == true) {
+                            window.location.href = '/profile/settings/'
                         }
-                        if (data.data == 'error') {
-                            $("#alert-error").show('slow');
-                            setTimeout(function () {
-                                $("#alert-error").hide('slow');
-                            }, 5000);
-                        }
-                        if (data.data == 'email') {
-                            $("#alert-email").show('slow');
-                            setTimeout(function () {
-                                $("#alert-email").hide('slow');
-                            }, 5000);
-                        }
+                        // if (data.data == 'ok') {
+                        //     $("#alert-success").show('slow');
+                        //     setTimeout(function () {
+                        //         $("#alert-success").hide('slow');
+                        //     }, 5000);
+                        // }
+                        // if (data.data == 'error') {
+                        //     $("#alert-error").show('slow');
+                        //     setTimeout(function () {
+                        //         $("#alert-error").hide('slow');
+                        //     }, 5000);
+                        // }
+                        // if (data.data == 'email') {
+                        //     $("#alert-email").show('slow');
+                        //     setTimeout(function () {
+                        //         $("#alert-email").hide('slow');
+                        //     }, 5000);
+                        // }
                     },
                     error: function (data) {
                         $("#alert-error").show('slow');
@@ -1276,6 +1313,9 @@ $(function () {
     $('#date').daterangepicker({
         singleDatePicker: true,
     });
+    $('#birthday-input').daterangepicker({
+        singleDatePicker: true,
+    });
 });
 
 $("#task_category").change(function () {
@@ -1300,6 +1340,27 @@ $("#task_category").change(function () {
     }
 });
 
+$("#task_subcategory").change(function () {
+     var sub = $('#task_subcategory option:selected').val();
+     if (sub != 0) {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/profile/task/price_find/',
+            data: {
+                id: sub
+            },
+            success: function (data) {
+                $("#input_price").val(data.data);
+                // outputSubcategory(data);
+            },
+            error: function (data) {
+                alert('Error');
+            }
+        })
+    }
+});
+
 function outputSubcategory(data) {
     $('#task_subcategory').removeAttr('disabled');
     var select = document.getElementById('task_subcategory');
@@ -1316,7 +1377,9 @@ function outputSubcategory(data) {
         option.text = data.data[i + 1];
         select.appendChild(option);
     }
+    $("#input_price").val(data.price);
 }
+
 
 $("#customer").click(function () {
 
@@ -1550,6 +1613,30 @@ $('#btn_task_check').click(function () {
             }, 5000);
     }
 });
+
+
+$('#btn_offer_check').click(function () {
+     var title=$("#input_text").val();
+     var description=$("#description").val();
+     var address=$("#input_addr").val();
+
+    if (title == "") $('#input_text').addClass('br-red');
+    if (description == "") $('#description').addClass('br-red');
+    if (address == "") $('#input_addr').addClass('br-red');
+    if(title != "" && description != "" && address != ""){
+        $('#btn_offer_submit').click();
+    }
+    else
+    {
+        $("#alert-danger").show('slow');
+            setTimeout(function () {
+                $("#alert-danger").hide('slow');
+            }, 5000);
+    }
+});
+
+
+
 $("#message-text").click(function () {
     $('#message-text').removeClass('br-red');
 });
@@ -1598,6 +1685,29 @@ $(".select-user-bet").click(function () {
             },
         error: function (data) {
             alert('Error');
+        }
+    })
+});
+
+$('#btn_forgot').click(function () {
+    var email=$('#login_email').val();
+    // const start = new Date().getTime();
+    // console.log("start " + start)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        data:{
+            email:email
+        },
+        url: '/send_new_pass/',
+        success: function (data) {
+            window.location='/page/'
+        },
+        error: function (data) {
+            $("#alert-danger").show('slow');
+            setTimeout(function () {
+                    $("#alert-danger").hide('slow');
+                }, 5000);
         }
     })
 });

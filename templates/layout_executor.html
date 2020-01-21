@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext"
           rel="stylesheet">
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-
         <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -42,19 +39,19 @@
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
                             <a href="{% url 'Profile_tasks' %}" data-toggle="tooltip" data-placement="bottom"
                                              title="Мои задания">
-                                <i class="fas fa-tasks" title="Мои задания"></i>
+                                <i class="fas fa-tasks"></i>
                             </a>
                         </div>
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
                             <a href="{% url 'Dev' %}" data-toggle="tooltip" data-placement="bottom"
                                              title="Уведомления">
-                                <i class="far fa-bell" title="Уведомления"></i>
+                                <i class="far fa-bell"></i>
                             </a>
                         </div>
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
                             <a href="{% url 'Dev' %}" data-toggle="tooltip" data-placement="bottom"
                                              title="Личные сообщения">
-                                <i class="far fa-comments" title="Личный сообщения"></i>
+                                <i class="far fa-comments"></i>
                             </a>
                         </div>
                         <ul class="col-auto navbar-nav">
@@ -359,6 +356,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
+
 <!--<script src="{% static 'js/bootstrap.js' %}"></script>-->
 <!--<script src="{% static 'js/bootstrap.min.js' %}"></script>-->
 <script src="{% static 'js/main.js' %}"></script>

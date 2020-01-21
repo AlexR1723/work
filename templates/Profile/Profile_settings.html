@@ -21,8 +21,8 @@
                             <div class="col-10">
                                 <input type="text" class="mb-1 form-control prof-input" id="user_name" name="user_name" value="{{user.auth_user.first_name}} {{user.auth_user.last_name}}" />
                                 <div class="upload-file">
-                                    <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files">
-                                    <label for="files" class="btn btn-tertiary js-labelFile">
+                                    <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="file_main">
+                                    <label for="file_main" class="btn btn-tertiary js-labelFile">
                                         <i class="fas fa-upload"></i>
                                         <span class="js-fileName">Загрузить файл</span>
                                     </label>
@@ -112,7 +112,8 @@
                                             <p class="mb-1">
                                                 <span class="pr-3">Дата рождения:</span>
                                                 <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>
-                                                <input type="date" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />
+                                                <input type="text" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" placeholder="Дата" value="{{month}}/{{day}}/{{year}}" required>
+<!--                                                <input type="date" placeholder="дд.мм.гггг" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
                                             </p>
                                             <p class="mb-1">
                                                 <span class="pr-3">Пол:</span>
@@ -127,17 +128,17 @@
                                                 {% endif %}
                                                 </select>
                                             </p>
-                                            <div class="row">
-                                                <div class="col-12 col-sm-1 p-0">
-                                                    <span>О себе: </span>
-                                                </div>
-                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
-                                                    <p class="mb-1">
-                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>
-                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>
-                                                    </p>
-                                                </div>
-                                            </div>
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-12 col-sm-1 p-0">-->
+<!--                                                    <span>О себе: </span>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">-->
+<!--                                                    <p class="mb-1">-->
+<!--                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>-->
+<!--                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>-->
+<!--                                                    </p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                         </div>
                                     </div>
                             </div>
@@ -162,6 +163,45 @@
                                                 <label id="phone-label">{{user.phone}}</label>
                                                 <input class="mb-1 form-control prof-input d-none" id="phone-input" name="phone" type="text" value="{{user.phone}}" />
                                             </p>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-12 p-3 item-inf_blk user-inf_blk">
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3 d-inline-block">
+<!--                                            <img src="{% static 'image/user-icon.png' %}" class="item-icon"-->
+<!--                                                 alt="user-icon">-->
+                                        </div>
+                                        <div class="col-11 d-inline-block">
+<!--                                            <p class="mb-1">-->
+<!--                                                <span class="pr-3">Дата рождения:</span>-->
+<!--                                                <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>-->
+<!--                                                <input type="date" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
+<!--                                            </p>-->
+<!--                                            <p class="mb-1">-->
+<!--                                                <span class="pr-3">Пол:</span>-->
+<!--                                                <label id="gender-label">{{user.gender.name}}</label>-->
+<!--                                                <select class="form-control prof-input d-none" id="gender-input" name="gender">-->
+<!--                                                {% if user.gender.name == "Мужской" %}-->
+<!--                                                <option selected value="1">Мужской</option>-->
+<!--                                                <option value="2">Женский</option>-->
+<!--                                                {% else %}-->
+<!--                                                <option value="1">Мужской</option>-->
+<!--                                                <option selected value="2">Женский</option>-->
+<!--                                                {% endif %}-->
+<!--                                                </select>-->
+<!--                                            </p>-->
+                                            <div class="row">
+                                                <div class="col-12 col-sm-1 p-0">
+                                                    <span>О себе: </span>
+                                                </div>
+                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
+                                                    <p class="mb-1">
+                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>
+                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                             </div>
@@ -265,14 +305,23 @@
 
                     <div class="tab-pane fade" id="nav-portfolio" role="tabpanel"
                          aria-labelledby="nav-portfolio-tab">
-                        <div class="d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
+                        <div class="row d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
+                            <div class="col-12 p-0">
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                        Фото играют важную роль и визуализируют качество работы.
+                                    </label>
+                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                           Качественные изображения больше привлекают потенциальных заказчиков!
+                                    </label>
+                            </div>
                             <div class="ml-0 bd-highlight">
+                                {% if portfolio|length < 10 %}
                                 <form class="w-100" action="{% url 'Portfolio_add' %}" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <!--                                            <input type="file" name="files" multiple/>-->
                                     <div class="upload-file">
-                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="profile-files" multiple>
-                                        <label for="profile-files" class="btn btn-tertiary js-labelFile">
+                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files" accept=".jpg,.jpeg,.png,.bmp,.ico" multiple>
+                                        <label for="files" class="btn btn-tertiary js-labelFile">
                                             <i class="fas fa-upload"></i>
                                             <span class="js-fileName">Загрузить файлы</span>
                                         </label>
@@ -282,6 +331,10 @@
                                         Добавить фото
                                     </button>
                                 </form>
+                                {% else %}
+                                <label class="mb-0 w-100">Вы можете загрузить до 10 фото. Для добавления большего количества фото подключите
+                                    <a href="#">услугу</a>!</label>
+                                {% endif %}
                             </div>
                              <div class="col-1 ml-auto px-lg-3 a-right">
                                 <img src="/static/image/pen.png" class="edit-icon" id="portfolio_edit" alt="edit-icon" data-toggle="tooltip" data-placement="left"
@@ -298,7 +351,8 @@
                                      </div>
                                      <a href="#!">
                                          <input type="hidden" value="{{p.id}}" name="delete_id">
-                                         <i class="far fa-trash-alt trash_portfolio d-none"></i>
+                                         <i class="far fa-trash-alt trash_portfolio d-none" data-toggle="tooltip" data-placement="bottom"
+                                     title="Удалить это фото"></i>
                                      </a>
 
                                 </div>
@@ -324,14 +378,14 @@
                             <input type="checkbox" class="custom-control-input" id="email-notice_input">
                             <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input"
                                    data-toggle="tooltip" data-placement="bottom"
-                                   title="Lorem ipsum dolor sit amet.">Email уведомления об изменениях статусов
+                                   title="Уведомления об изменении статусов Ваших заданий будут приходить на зарегистрированный e-mail">Email уведомления об изменениях статусов
                                 заказов</label>
                         </div>
                         <div class="custom-control custom-checkbox my-2 mr-sm-2">
                             <input type="checkbox" class="custom-control-input" id="email-dispatch_input">
                             <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input"
                                    data-toggle="tooltip" data-placement="bottom"
-                                   title="Lorem ipsum dolor sit amet.">Email рассылка новых заказов</label>
+                                   title="Уведомлениях о новых заданиях в Ваших категориях будут приходить на зарегистрированный e-mail">Email рассылка новых заданий</label>
                         </div>
 
                         <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
@@ -381,7 +435,8 @@
 
                             <div class="col-sm-11 col-md-12 col-lg-11 px-0">
                                 <button type="submit" id="btn_profile_change_pass"
-                                        class="btn btn-primary px-5">Сохранить
+                                        class="btn btn-primary px-5"data-toggle="tooltip" data-placement="right"
+                                   title="Пароль будет изменен">Сохранить
                                 </button>
                             </div>
                             <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
@@ -420,4 +475,13 @@
     </div>
   </div>
 </div>
+<input type="hidden" id="view-message" value="{{alert}}">
+<div class="col-12" id="alerts-block">
+<!--                    <div class="row justify-content-center">-->
+<!--                        <div class="alert alert-danger error-city" role="alert" id="alert-success">-->
+<!--                            Успешно.-->
+<!--                        </div>-->
+<!--                    </div>-->
+</div>
+
 {% endblock %}

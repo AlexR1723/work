@@ -43,6 +43,7 @@ class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование")
     image = models.ImageField(upload_to='uploads/subcategory/', blank=True, null=True, verbose_name="Картинка")
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -283,7 +284,7 @@ class Users(models.Model):
     uuid = models.CharField(max_length=50, blank=True, null=True)
     gender = models.ForeignKey(Gender, models.DO_NOTHING, blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
-    about_me = models.CharField(max_length=5000, blank=True, null=True)
+    about_me = models.CharField(max_length=5000, blank=True, null=True, default=" ")
     get_new_order = models.BooleanField(blank=True, null=True)
     get_notice_status = models.BooleanField(blank=True, null=True)
     photo = models.ImageField(upload_to='uploads/users/', max_length=100, blank=True, null=True)
@@ -299,6 +300,34 @@ class UserTaskStatus(models.Model):
     class Meta:
         managed = False
         db_table = 'user_task_status'
+
+
+class UserAdvert(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    title = models.CharField(max_length=200, blank=True, null=True)
+    description = models.CharField(max_length=5000, blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/advert/',max_length=500, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    count_offer = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_advert'
+
+
+class UserOffer(models.Model):
+    user_id_customer = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
+    advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
+    is_accept = models.BooleanField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_offer'
+
 
 
 class UserTask(models.Model):
@@ -317,6 +346,9 @@ class UserTask(models.Model):
     price = models.IntegerField(blank=True, null=True)
     exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='exec_id')
     date_add = models.DateField(blank=True, null=True)
+    rezult_text = models.CharField(max_length=5000, blank=True, null=True)
+    exec_finish = models.BooleanField(blank=True, null=True)
+    offer = models.ForeignKey(UserOffer, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False

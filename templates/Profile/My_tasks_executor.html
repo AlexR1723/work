@@ -2,373 +2,355 @@
 {% load staticfiles %}
 {% block content %}
 
-    <div class="container-fluid p-0">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 perfomer-tasks-blk py-3 mt-5">
-                <div class="row p-0 m-0 justify-content-center">
+<div class="container-fluid p-0">
+    <div class="row justify-content-center">
+        <div class=" w-100"  style="
+    height: auto;
+    min-height: 20vh;
+    background: url(/static/image/task.jpg) 50% 75% no-repeat;
+    background-size: cover;
+">
+                <div class="page_head_img_fon row justify-content-center align-items-center">
+                    <p class="fz_3rem line_height_1 text-center mb-0">Мои задания</p>
+                </div>
+                <!--             style="background: url(/static/image/news_bg.jpg) 100% 100% no-repeat">-->
 
-                    <div class="col-md-12 col-lg-12 px-0 pb-5">
-                        <div class="row">
-                            <div class="col-12 col-md-4 p-0 mb-3 mb-md-0 mr-md-5 cat_select">
-                                <select class="form-control" id="task_filter_select_exec_cat" name="task_search">
-                                    {% if filter_cat == 0 %}
-                                        <option selected value="0">Все категории</option>
-                                    {% else %}
-                                        <option value="0">Все категории</option>
-                                    {% endif %}
-                                    {% for i in list_cat %}
-                                        {% if filter_cat|lower == i|lower %}
-                                            <option selected
-                                                    value="{{ i }}">{{ i }}</option>
-                                        {% else %}}
-                                            <option value="{{ i }}">{{ i }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-4 p-0">
-                                <select class="form-control" id="task_filter_select_exec_stat" name="task_search">
-                                    {% if filter_stat == 0 %}
-                                        <option selected value="0">Все статусы</option>
-                                    {% else %}
-                                        <option value="0">Все статусы</option>
-                                    {% endif %}
-                                    {% for i in list_stat %}
-                                        {% if filter_stat|lower == i|lower %}
-                                            <option selected
-                                                    value="{{ i }}">{{ i }}</option>
-                                        {% else %}}
-                                            <option value="{{ i }}">{{ i }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
-                            </div>
+            </div>
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 perfomer-tasks-blk py-3 mt-5">
+            <div class="row p-0 m-0 justify-content-center">
+
+                <div class="col-md-12 col-lg-12 px-0 pb-5">
+                    <div class="row">
+                        <div class="col-12 col-md-4 p-0 mb-3 mb-md-0 mr-md-5 cat_select">
+                            <select class="form-control" id="task_filter_select_exec_cat" name="task_search">
+                                {% if filter_cat == 0 %}
+                                <option selected value="0">Все категории</option>
+                                {% else %}
+                                <option value="0">Все категории</option>
+                                {% endif %}
+                                {% for i in list_cat %}
+                                {% if filter_cat|lower == i|lower %}
+                                <option selected
+                                        value="{{ i }}">{{ i }}</option>
+                                {% else %}}
+                                <option value="{{ i }}">{{ i }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
-                    </div>
-
-                    {% for i in user_tasks %}
-                        <div class="col-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
-                            <div class="row m-0 justify-content-start">
-                                <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    <img alt="" class="w-100 user-img" src="{{ MEDIA_URL }}{{ i.photo_main.url }}">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                        <a href="#">
-                                            <h3 class="search-category_label m-0">{{i.title}}</h3>
-                                        </a>
-                                    </div>
-                                    <div class="row justify-content-start align-items-center pt-2">
-                                        <p class="mb-0 pr-0 search-card_text pb-2">{{i.description}}</p>
-                                        <span class="search-date_span">{{i.date}}</span>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                        <label class="propose-money_label mb-2">{{i.price}} руб.</label>
-                                        <p class="status-done_span m-0 mt-md-4 px-3">{{i.task_status.name}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="category-line m-0 my-4">
-                    {% endfor %}
-
-{#                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
-{#                        <div class="row m-0 justify-content-start">#}
-                            {#                            <div class="col-12 p-0">#}
-                            {#                                <div class="row">#}
-{#                            <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
-{#                                <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
-{#                            </div>#}
-{#                            <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
-{#                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                    <a href="#">#}
-{#                                        <h3 class="search-category_label m-0">Доставить цветы</h3>#}
-{#                                    </a>#}
-{#                                </div>#}
-{#                                <div class="row justify-content-start align-items-center pt-2">#}
-{#                                    <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet,#}
-{#                                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore#}
-{#                                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud#}
-{#                                        exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
-{#                                    <span class="search-date_span">06.12.2019</span>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
-{#                                <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
-{#                                    <label class="propose-money_label mb-2">600 руб.</label>#}
-{#                                    <p class="status-done_span m-0 mt-md-4 px-3">Выполнено</p>#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-                            {#                                </div>#}
-                            {#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="category-line m-0 my-4">#}
-{#                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
-{#                        <div class="row m-0 justify-content-start">#}
-{#                            <div class="col-12 p-0">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
-{#                                        <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
-{#                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                            <a href="#">#}
-{#                                                <h3 class="search-category_label m-0">Доставить цветы</h3>#}
-{#                                            </a>#}
-{#                                        </div>#}
-{#                                        <div class="row justify-content-start align-items-center pt-2">#}
-{#                                            <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet,#}
-{#                                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore#}
-{#                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud#}
-{#                                                exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
-{#                                            <span class="search-date_span">06.12.2019</span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
-{#                                        <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
-{#                                            <label class="propose-money_label mb-2">600 руб.</label>#}
-{#                                            <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="category-line m-0 my-4">#}
-{#                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
-{#                        <div class="row m-0 justify-content-start">#}
-{#                            <div class="col-12 p-0">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
-{#                                        <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
-{#                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                            <a href="#">#}
-{#                                                <h3 class="search-category_label m-0">Доставить цветы</h3>#}
-{#                                            </a>#}
-{#                                        </div>#}
-{#                                        <div class="row justify-content-start align-items-center pt-2">#}
-{#                                            <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet,#}
-{#                                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore#}
-{#                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud#}
-{#                                                exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
-{#                                            <span class="search-date_span">06.12.2019</span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
-{#                                        <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
-{#                                            <label class="propose-money_label mb-2">600 руб.</label>#}
-{#                                            <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="category-line m-0 my-4">#}
-{#                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
-{#                        <div class="row m-0 justify-content-start">#}
-{#                            <div class="col-12 p-0">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
-{#                                        <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
-{#                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                            <a href="#">#}
-{#                                                <h3 class="search-category_label m-0">Доставить цветы</h3>#}
-{#                                            </a>#}
-{#                                        </div>#}
-{#                                        <div class="row justify-content-start align-items-center pt-2">#}
-{#                                            <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet,#}
-{#                                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore#}
-{#                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud#}
-{#                                                exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
-{#                                            <span class="search-date_span">06.12.2019</span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
-{#                                        <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
-{#                                            <label class="propose-money_label mb-2">600 руб.</label>#}
-{#                                            <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="category-line m-0 my-4">#}
-{#                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
-{#                        <div class="row m-0 justify-content-start">#}
-{#                            <div class="col-12 p-0">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
-{#                                        <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
-{#                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                            <a href="#">#}
-{#                                                <h3 class="search-category_label m-0">Доставить цветы</h3>#}
-{#                                            </a>#}
-{#                                        </div>#}
-{#                                        <div class="row justify-content-start align-items-center pt-2">#}
-{#                                            <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet,#}
-{#                                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore#}
-{#                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud#}
-{#                                                exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
-{#                                            <span class="search-date_span">06.12.2019</span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
-{#                                        <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
-{#                                            <label class="propose-money_label mb-2">600 руб.</label>#}
-{#                                            <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="category-line m-0 my-4">#}
-{#                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
-{#                        <div class="row m-0 justify-content-start">#}
-{#                            <div class="col-12 p-0">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
-{#                                        <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
-{#                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                            <a href="#">#}
-{#                                                <h3 class="search-category_label m-0">Доставить цветы</h3>#}
-{#                                            </a>#}
-{#                                        </div>#}
-{#                                        <div class="row justify-content-start align-items-center pt-2">#}
-{#                                            <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet,#}
-{#                                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore#}
-{#                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud#}
-{#                                                exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
-{#                                            <span class="search-date_span">06.12.2019</span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
-{#                                        <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
-{#                                            <label class="propose-money_label mb-2">600 руб.</label>#}
-{#                                            <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="category-line m-0 my-4">#}
-{#                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
-{#                        <div class="row m-0 justify-content-start">#}
-{#                            <div class="col-12 p-0">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
-{#                                        <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
-{#                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                            <a href="#">#}
-{#                                                <h3 class="search-category_label m-0">Доставить цветы</h3>#}
-{#                                            </a>#}
-{#                                        </div>#}
-{#                                        <div class="row justify-content-start align-items-center pt-2">#}
-{#                                            <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet,#}
-{#                                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore#}
-{#                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud#}
-{#                                                exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
-{#                                            <span class="search-date_span">06.12.2019</span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
-{#                                        <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
-{#                                            <label class="propose-money_label mb-2">600 руб.</label>#}
-{#                                            <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="category-line m-0 my-4">#}
-{#                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">#}
-{#                        <div class="row m-0 justify-content-start">#}
-{#                            <div class="col-12 p-0">#}
-{#                                <div class="row">#}
-{#                                    <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">#}
-{#                                        <img alt="" class="w-100 user-img" src="/static/image/user.png">#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">#}
-{#                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                            <a href="#">#}
-{#                                                <h3 class="search-category_label m-0">Доставить цветы</h3>#}
-{#                                            </a>#}
-{#                                        </div>#}
-{#                                        <div class="row justify-content-start align-items-center pt-2">#}
-{#                                            <p class="mb-0 pr-0 search-card_text pb-2">Lorem ipsum dolor sit amet,#}
-{#                                                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore#}
-{#                                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud#}
-{#                                                exercitation ullamco laboris nisi ut aliquip ex ea</p>#}
-{#                                            <span class="search-date_span">06.12.2019</span>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">#}
-{#                                        <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">#}
-{#                                            <label class="propose-money_label mb-2">600 руб.</label>#}
-{#                                            <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <hr class="category-line m-0 my-4">#}
-
-
-                    <div class="row w-100">
-                        <div class="col-md-12 mb-5">
-                            <nav aria-label="...">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a aria-label="Previous" class="page-link" href="#">
-                                            <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active">
-                            <span class="page-link">1<span class="sr-only">(current)</span>
-                            </span>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href=""><span aria-hidden="true">»</span>
-                                            <span class="sr-only">Next</span></a>
-                                    </li>
-                                </ul>
-                            </nav>
+                        <div class="col-12 col-md-4 p-0">
+                            <select class="form-control" id="task_filter_select_exec_stat" name="task_search">
+                                {% if filter_stat == 0 %}
+                                <option selected value="0">Все статусы</option>
+                                {% else %}
+                                <option value="0">Все статусы</option>
+                                {% endif %}
+                                {% for i in list_stat %}
+                                {% if filter_stat|lower == i.name|lower %}
+                                <option selected
+                                        value="{{ i.name }}">{{ i.name }}</option>
+                                {% else %}}
+                                <option value="{{ i.name }}">{{ i.name }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
                 </div>
+                {% if user_tasks|length == 0 %}
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-auto">
+                    <label class="fontCategorySmall colorDarkGrey w-100">У Вас пока нет ни одного задания!</label>
+                                <label class="fontCategorySmall colorDarkGrey w-100">Ищите подходящие <a href="{% url 'Dev' %}">задания</a>, делайте ставки и получайте задания!</label>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                {% for i in task %}
+                <div class="col-12 p-0 pt-2 pb-3 px-3 px-mb-0 px-lg-0">
+                    <div class="row m-0 justify-content-start">
+                        <div class="col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2 mx-auto">
+                            {% if i.photo_main != Nont and i.photo_main != "" %}
+                            <img alt="" class="w-100 user-img" src="{{ MEDIA_URL }}{{ i.photo_main.url }}">
+                            {% else %}
+                            <div class="row justify-content-center align-items-center bg-gray">
+                                        <span class="alt-text">Без фото</span>
+                                    </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                <a href="{% url 'Profile_task_detail' i.id %}">
+                                    <h3 class="search-category_label m-0">{{i.title}}</h3>
+                                </a>
+                            </div>
+                            <div class="row justify-content-start align-items-center pt-2">
+                                <p class="mb-0 pr-0 search-card_text pb-2 w-100 textrowcount">{{i.description}}</p>
+                                <span class="search-date_span">{{i.date}}</span>
+                            </div>
+                        </div>
+                        <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
+                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
+                                <label class="category-money_label a-right w-100 p mb-2">{{ i.price }} руб.</label>
+                                {% if i.task_status.name == "В поиске" %}
+                                <p class="status-wait_span m-0 mt-md-4 px-3">В поиске</p>
+                                {% endif %}
+                                {% if i.task_status.name == "В работе" %}
+                                <p class="status-doing_span m-0 mt-md-4 px-3">В работе</p>
+                                {% endif %}
+                                {% if i.task_status.name == "Завешено исполнителем" %}
+                                <p class="status-doing_span m-0 mt-md-4 px-3">Завешено исполнителем</p>
+                                {% endif %}
+                                {% if i.task_status.name == "Выполнено" %}
+                                <p class="status-done_span m-0 mt-md-4 px-3">Выполнено</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="category-line m-0 my-4">
+                {% endfor %}
+                {% endif %}
+
+                {% if filter_cat == 0 and filter_stat == 0 %}
+                {% if k > 1 %}
+                <div class="row w-100">
+                    <div class="col-md-12">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-center">
+                                {% if page == 1 %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Profile_tasks_page' pre %}"><span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span></a>
+                                </li>
+                                {% endif %}
+                                {% for i in list_page %}
+                                {% if i != '...' %}
+                                {% if page == i %}
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        {{i}}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Profile_tasks_page' i %}">{{i}}</a>
+                                </li>
+                                {% endif %}
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">{{i}}</span>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if page == k %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Profile_tasks_page' next %}"><span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                {% endif %}
+                {% else %}
+                {% if filter_cat != 0 and filter_stat == 0 %}
+                {% if k > 1 %}
+                <div class="row w-100">
+                    <div class="col-md-12">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-center">
+                                {% if page == 1 %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_cat_page' filter_cat pre %}"><span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span></a>
+                                </li>
+                                {% endif %}
+                                {% for i in list_page %}
+                                {% if i != '...' %}
+                                {% if page == i %}
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        {{i}}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_cat_page' filter_cat i %}">{{i}}</a>
+                                </li>
+                                {% endif %}
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">{{i}}</span>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if page == k %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_cat_page' filter_cat next %}"><span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                {% endif %}
+                {% else %}
+                {% if filter_cat == 0 and filter_stat != 0 %}
+                {% if k > 1 %}
+                <div class="row w-100">
+                    <div class="col-md-12">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-center">
+                                {% if page == 1 %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_stat_page' filter_stat pre %}"><span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span></a>
+                                </li>
+                                {% endif %}
+                                {% for i in list_page %}
+                                {% if i != '...' %}
+                                {% if page == i %}
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        {{i}}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_stat_page' filter_stat i %}">{{i}}</a>
+                                </li>
+                                {% endif %}
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">{{i}}</span>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if page == k %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_stat_page' filter_stat next %}"><span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                {% endif %}
+                {% else %}
+                {% if k > 1 %}
+                <div class="row w-100">
+                    <div class="col-md-12">
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-center">
+                                {% if page == 1 %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_cat_stat_page' filter_cat filter_stat pre %}"><span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span></a>
+                                </li>
+                                {% endif %}
+                                {% for i in list_page %}
+                                {% if i != '...' %}
+                                {% if page == i %}
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        {{i}}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_cat_stat_page' filter_cat filter_stat i %}">{{i}}</a>
+                                </li>
+                                {% endif %}
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">{{i}}</span>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if page == k %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class = "page-link" href="{% url 'Executor_my_tasks_filter_cat_stat_page' filter_cat filter_stat next %}"><span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
 
             </div>
+
         </div>
     </div>
+</div>
 
 {% endblock %}

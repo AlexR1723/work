@@ -11,6 +11,9 @@ body {
     width: 100%;
     height: 100%;
 }
+.border-rad{
+    border-radius: 5px;
+}
 .textrowcount {
     overflow : hidden;
     text-overflow: ellipsis;
@@ -554,7 +557,7 @@ section#titleText {
     width: 2.7rem;
     height: 2.7rem;
     background: white;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     /*color:#3E789D;*/
 
     align-items: center;
@@ -656,7 +659,7 @@ p {
 }
 
 .img_circle {
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 
 .head_icon_color {
@@ -1015,7 +1018,7 @@ hr.line {
   height: 100%;
   margin: 0 auto;
     object-fit: cover;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 .perfomer-tasks-blk .user-img {
     height: auto;
@@ -1024,7 +1027,7 @@ hr.line {
     width: 100%;
   height: 100%;
   margin: 0 auto;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 .all-ads_blk h2 {
     font-size: 1.9rem;
@@ -1836,7 +1839,7 @@ hr.category-line {
 /*.change-password button {*/
 #btn_profile_change_pass,
 .rate-perform_btn,
-.rate-modal .modal-footer .btn,#btn_task_check {
+.rate-modal .modal-footer .btn,#btn_task_check, #btn_task_close {
     border: 1px solid transparent;
     height: 40px;
     background: #AF4B53;
@@ -1846,7 +1849,7 @@ hr.category-line {
 /*.change-password button:hover {*/
 #btn_profile_change_pass:hover,
 .rate-perform_btn:hover,
-.rate-modal .modal-footer .btn:hover,#btn_task_check:hover {
+.rate-modal .modal-footer .btn:hover,#btn_task_check:hover, #btn_task_close:hover {
     background-color: #FFFFFF;
     color: #AF4B53;
     border: 1px solid #AF4B53;
@@ -2067,9 +2070,13 @@ input[type=checkbox]:checked + label::after {
 .main-accordion_blk a {
     text-decoration: none;
 }
+.panel-heading {
+    /*background: rgba(229, 229, 229, .4);*/
+}
 .panel-heading p {
     background: rgba(229, 229, 229, .4);
     color: #000000;
+    /*display: inline-block;*/
     display: block;
     padding: 10px 15px 10px 50px;
     position: relative;
@@ -2241,6 +2248,10 @@ service-card_text {
 }
 .task-details .task-details_txt {
     color: #000000;
+}
+.task-rezult-block{
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
 }
 .del_select::after {
     content: "\f107";
@@ -2510,7 +2521,7 @@ service-card_text {
     font-size: 1.6rem;
 }
 .br-50{
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 .fa-caret-down{
     color: #AAAAAA;
@@ -2670,8 +2681,9 @@ service-card_text {
     right: 0 !important;
 }
 #alerts-block{
-    position: absolute;
-    bottom: 0;
+    /*position: absolute;*/
+    position: fixed;
+    bottom: 2rem;
 }
 .suc-city{
     padding: .3rem .8rem !important;
@@ -2811,4 +2823,11 @@ label.user-name-label a:hover, label.categ-label a:hover{
 label.categ-label, label.categ-label a, i.fa-chevron-right{
     color: rgba(51,51,51,.9);
     font-size: 1.1rem;
+}
+.check_region:hover{
+    cursor: pointer;
+}
+#input_price{
+    display: inline-block;
+    width: auto;
 }

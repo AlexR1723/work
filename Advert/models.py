@@ -98,6 +98,7 @@ class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(unique=True, max_length=100, blank=True, null=True)
     image = models.ImageField(upload_to='uploads/subcategory/', blank=True, null=True, verbose_name="Картинка")
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -137,6 +138,7 @@ class UserAdvert(models.Model):
     photo_main = models.ImageField(upload_to='uploads/advert/',max_length=500, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    count_offer = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

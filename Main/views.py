@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 import json, random,datetime
 from .models import *
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, hashers
 from django.contrib.auth.models import User
 from django.db import transaction
 from django.core.validators import validate_email
@@ -36,13 +36,16 @@ def layout_name(request):
     photo = ''
     user = request.session.get('username', 'no')
     if (user != 'no'):
-        username = AuthUser.objects.all().filter(email=user)[0].first_name
-        photo = Users.objects.all().filter(auth_user__email=user)[0].photo
-        user = Users.objects.all().filter(auth_user__email=user)[0]
-        if (user.type.name == "Заказчик"):
-            layout = 'layout_customer.html'
+        if(AuthUser.objects.all().filter(email=user).count() >= 1):
+            username = AuthUser.objects.all().filter(email=user)[0].first_name
+            photo = Users.objects.all().filter(auth_user__email=user)[0].photo
+            user = Users.objects.all().filter(auth_user__email=user)[0]
+            if (user.type.name == "Заказчик"):
+                layout = 'layout_customer.html'
+            else:
+                layout = 'layout_executor.html'
         else:
-            layout = 'layout_executor.html'
+            logout(request)
     return layout, username, photo
 
 
@@ -245,30 +248,87 @@ def Registrate(request):
                 user = User.objects.create_user(email, email, password)
                 user.first_name = name
                 user.last_name = surname
-                user.is_active = False
+                user.is_active=True
+                # user.is_active = False
                 user.save()
                 auth_user = AuthUser.objects.filter(id=user.id)[0]
                 print(auth_user)
                 new_user = Users(auth_user=auth_user, photo="uploads/users/user.png", phone=tel, uuid=key,
                                  type=UserType.objects.all().filter(name="Исполнитель")[0])
                 new_user.save()
-            subject, from_email, to = 'Верификация', 'romanenko.anastasiya1998@yandex.ua', email
+            subject, from_email, to = 'Успешная регистрация', 'romanenko.anastasiya1998@yandex.ua', email
             text_content = 'Перейдите по ссылке для автивации учетной записи.'
             m = 'https://work-proj.herokuapp.com/verify/' + key
             print(m)
-            html_content = render_to_string('letter.html', {"key": key})
+            html_content = render_to_string('letter.html', {"key": key, "email":email,"pass":password})
             print(html_content)
             # html_content="<a href='%s'>Активировать</a>" % m
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
-            return HttpResponse(json.dumps({'data': 'ok'}))
+
+
+            user_auth = authenticate(username=email, password=password)
+            login(request, user_auth)
+            request.session['username'] = AuthUser.objects.get(id=user_auth.id).username
+            request.session.modified = True
+            return HttpResponse(json.dumps(True))
         else:
             return HttpResponse(json.dumps({'data': 'email'}))
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
 
     # user=models.User(name=name,login=email,password=password)
+
+
+def Forgot(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Forgot.html', locals())
+
+
+
+def Page(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Page.html', locals())
+
+
+def send_new_pass(request):
+    email = request.GET.get("email")
+    print(email)
+    list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+            'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+    try:
+        key = ''
+        us = AuthUser.objects.all().filter(email=email)
+        print(len(us))
+        if (len(us) > 0):
+            key=''
+            print(key)
+            while (len(key) < 8):
+                i = random.randint(0, len(list) - 1)
+                key += str(list[i])
+            print(key)
+            u = User.objects.get(username__exact=email)
+            print(u)
+            u.set_password(key)
+            u.save()
+            print(u)
+            subject, from_email, to = 'Новый пароль', 'romanenko.anastasiya1998@yandex.ua', email
+            text_content = 'Перейдите по ссылке для автивации учетной записи.'
+            m = 'https://work-proj.herokuapp.com/verify/' + key
+            print(m)
+            html_content = render_to_string('forgot.html', {"email": email, "pass": key})
+            print(html_content)
+            # html_content="<a href='%s'>Активировать</a>" % m
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            return HttpResponse(json.dumps(True))
+        else:
+            return HttpResponse(json.dumps({'data': 'email'}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
 
 
 def Verify(request, key):

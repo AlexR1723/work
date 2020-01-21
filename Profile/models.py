@@ -72,18 +72,20 @@ class Region(models.Model):
     # def cities(self):
     #     city=City.objects.filter(region=self)
     #     return city
-
-    def first_reg(self):
-        count=City.objects.filter(region=self).count()/2
-        # print(count)
-        reg=City.objects.filter(region=self).order_by('name')[:count]
+    def all_reg(self):
+        reg=City.objects.filter(region=self).order_by('name')
         return reg
-
-    def second_reg(self):
-        count = City.objects.filter(region=self).count() / 2
-        # print(count)
-        reg = City.objects.filter(region=self).order_by('name')[count:]
-        return reg
+    # def first_reg(self):
+    #     count=City.objects.filter(region=self).count()/2
+    #     # print(count)
+    #     reg=City.objects.filter(region=self).order_by('name')[:count]
+    #     return reg
+    #
+    # def second_reg(self):
+    #     count = City.objects.filter(region=self).count() / 2
+    #     # print(count)
+    #     reg = City.objects.filter(region=self).order_by('name')[count:]
+    #     return reg
 
 
 
@@ -137,24 +139,27 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-    def first_sub(self):
-        count=SubCategory.objects.filter(category=self).count()/2
-        # print(count)
-        sub=SubCategory.objects.filter(category=self).order_by('name')[:count]
+    def all_sub(self):
+        sub=SubCategory.objects.filter(category=self).order_by('name')
         return sub
-
-    def second_sub(self):
-        count = SubCategory.objects.filter(category=self).count() / 2
-        # print(count)
-        sub = SubCategory.objects.filter(category=self).order_by('name')[count:]
-        return sub
+    # def first_sub(self):
+    #     count=SubCategory.objects.filter(category=self).count()/2
+    #     # print(count)
+    #     sub=SubCategory.objects.filter(category=self).order_by('name')[:count]
+    #     return sub
+    #
+    # def second_sub(self):
+    #     count = SubCategory.objects.filter(category=self).count() / 2
+    #     # print(count)
+    #     sub = SubCategory.objects.filter(category=self).order_by('name')[count:]
+    #     return sub
 
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование")
     image = models.ImageField(upload_to='uploads/subcategory/', blank=True, null=True, verbose_name="Картинка")
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -193,6 +198,7 @@ class UserAdvert(models.Model):
     photo_main = models.ImageField(upload_to='uploads/advert/',max_length=500, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    count_offer = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -209,7 +215,7 @@ class UserAdvertPhoto(models.Model):
 
 class UserPortfolio(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
-    photo = models.ImageField(upload_to='uploads/portfolio/',max_length=500, blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/portfolio/', max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -223,6 +229,18 @@ class UserTaskStatus(models.Model):
         managed = False
         db_table = 'user_task_status'
 
+
+
+class UserOffer(models.Model):
+    user_id_customer = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
+    advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
+    is_accept = models.BooleanField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_offer'
 
 
 class UserTask(models.Model):
@@ -241,6 +259,9 @@ class UserTask(models.Model):
     price = models.IntegerField(blank=True, null=True)
     exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='exec_id')
     date_add = models.DateField(blank=True, null=True)
+    rezult_text = models.CharField(max_length=5000, blank=True, null=True)
+    exec_finish = models.BooleanField(blank=True, null=True)
+    offer = models.ForeignKey(UserOffer, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -264,15 +285,4 @@ class UserFavoritesExecutor(models.Model):
         managed = False
         db_table = 'user_favorites_executor'
 
-
-class UserOffer(models.Model):
-    user_id_customer = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
-    advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
-    is_accept = models.BooleanField(blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'user_offer'
 

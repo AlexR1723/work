@@ -14,14 +14,30 @@
 
                             {% for i in regions %}
                                 <div class="panel">
-                                    <div class="panel-heading mb-1">
-                                            <p>{{ i.name }}</p>
-                                    </div>
-                                    <div class="panel-collapse">
+                                    {% if i.id in list_regions %}
+                                        <div class="panel-heading mb-1 in">
+                                                <p>{{ i.name }}</p>
+                                        </div>
+                                    {% else %}
+                                        <div class="panel-heading mb-1">
+                                                <p>{{ i.name }}</p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="panel-collapse" {% if i.id in list_regions %} style="display: block;" {% endif %} >
                                         <div id="collapseOne" class="row collapse show" aria-labelledby="headingOne"
                                              data-parent="#accordionExample">
-                                            <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                                {% for j in i.first_reg %}
+                                             <div class="row w-100 justify-content-end mr-sm-2 fz_1rem" style="    float: right;
+    padding: 10px 0px 10px 10px;">
+                                                        <label class=" check_region pl-1 pr-1 fz_1rem"
+                                                               id="check_region_{{ i.id }}"
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               title="">выбрать/снять все</label>
+                                                    </div>
+                                            <div class="row w-100">
+
+                                             {% for j in i.all_reg %}
+                                            <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 card-body">
+
                                                     <div class="custom-control custom-checkbox mr-sm-2 pt-2">
                                                         <input type="checkbox"
                                                                class="custom-control-input"
@@ -29,39 +45,34 @@
                                                                {% if j.id in list_cities %}
                                                                 checked
                                                                 {% endif %}
-{#                                                               id="check_input_{{ j.category_id }}_{{ forloop.counter }}"#}
-{#                                                               data-name="{{ j.name }}"#}
                                                         >
                                                         <label class="custom-control-label pl-1 pl-sm-3"
                                                                for="check_input_{{ j.id }}"
-{#                                                               for="check_input_{{ j.category_id }}_{{ forloop.counter }}"#}
                                                                data-toggle="tooltip" data-placement="bottom"
                                                                title="">{{ j.name }}</label>
                                                     </div>
-                                                {% endfor %}
-
                                             </div>
-                                            <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">
-                                                {% for j in i.second_reg %}
-                                                    <div class="custom-control custom-checkbox mr-sm-2 pt-2">
-                                                        <input type="checkbox"
-                                                               class="custom-control-input"
-                                                               id="check_input_{{ j.id }}"
-                                                               {% if j.id in list_cities %}
-                                                                checked
-                                                                {% endif %}
-{#                                                               id="check_input_{{ j.category_id }}_{{ forloop.counter }}_"#}
-{#                                                               data-name="{{ j.name }}"#}
-                                                        >
-                                                        <label class="custom-control-label pl-1 pl-sm-3"
-                                                               for="check_input_{{ j.id }}"
-{#                                                               for="check_input_{{ j.category_id }}_{{ forloop.counter }}_"#}
-                                                               data-toggle="tooltip" data-placement="bottom"
-                                                               title="">{{ j.name }}</label>
-                                                    </div>
-                                                {% endfor %}
-
+                                            {% endfor %}
                                             </div>
+
+<!--                                            <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 pb-md-0 pt-md-0 pb-lg-2 pt-lg-2 card-body">-->
+<!--                                                {% for j in i.second_reg %}-->
+<!--                                                    <div class="custom-control custom-checkbox mr-sm-2 pt-2">-->
+<!--                                                        <input type="checkbox"-->
+<!--                                                               class="custom-control-input"-->
+<!--                                                               id="check_input_{{ j.id }}"-->
+<!--                                                               {% if j.id in list_cities %}-->
+<!--                                                                checked-->
+<!--                                                                {% endif %}-->
+<!--                                                        >-->
+<!--                                                        <label class="custom-control-label pl-1 pl-sm-3"-->
+<!--                                                               for="check_input_{{ j.id }}"-->
+<!--                                                               data-toggle="tooltip" data-placement="bottom"-->
+<!--                                                               title="">{{ j.name }}</label>-->
+<!--                                                    </div>-->
+<!--                                                {% endfor %}-->
+
+<!--                                            </div>-->
 
                                         </div>
                                     </div>

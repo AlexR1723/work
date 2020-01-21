@@ -155,6 +155,7 @@ class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True, verbose_name="Категория")
     name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Наименование")
     image = models.ImageField(upload_to='uploads/subcategory/', blank=True, null=True, verbose_name="Картинка")
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -193,6 +194,7 @@ class UserAdvert(models.Model):
     photo_main = models.ImageField(upload_to='uploads/advert/',max_length=500, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    count_offer = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -224,6 +226,17 @@ class UserTaskStatus(models.Model):
         db_table = 'user_task_status'
 
 
+class UserOffer(models.Model):
+    user_id_customer = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
+    advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
+    is_accept = models.BooleanField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_offer'
+
 
 class UserTask(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='user_id')
@@ -241,6 +254,9 @@ class UserTask(models.Model):
     price = models.IntegerField(blank=True, null=True)
     exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='exec_id')
     date_add = models.DateField(blank=True, null=True)
+    rezult_text = models.CharField(max_length=5000, blank=True, null=True)
+    exec_finish = models.BooleanField(blank=True, null=True)
+    offer = models.ForeignKey(UserOffer, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -252,6 +268,10 @@ class UserTask(models.Model):
 
     def all_photo(self):
         photo=TaskPhoto.objects.filter(task=self)
+        return photo
+
+    def all_photo_rezult(self):
+        photo=UserTaskRezultPhoto.objects.filter(task=self)
         return photo
 
 
@@ -295,3 +315,26 @@ class UserTaskBet(models.Model):
     class Meta:
         managed = False
         db_table = 'user_task_bet'
+
+
+
+
+class UserTaskRezultPhoto(models.Model):
+    task = models.ForeignKey(UserTask, models.DO_NOTHING, blank=True, null=True)
+    photo = models.FileField(upload_to='uploads/task_rezult/',max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_rezult_photo'
+
+    def get_type(self):
+        file_types=['avi','css','dll','doc','docx','gif','html','jpeg','jpg','js','mov','mp3','pdf','php','png','ppt','psd','rar','sql','svg','tif','txt','xls','xml','zip']
+        name=str(self.photo.url)
+        name=name.split('.')
+        count=len(name)-1
+        try:
+            if(file_types.index(name[count])):
+                full_name='image/file_type/'+name[count]+'.png'
+        except:
+            full_name = 'image/file_type/txt.png'
+        return full_name

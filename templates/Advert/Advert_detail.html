@@ -12,7 +12,8 @@
 ">
                 <div class="page_head_img_fon row justify-content-center align-items-center">
                     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                        <div class="row"><p class="fz_3rem line_height_1 text-center mb-0">{{advert.title}}</p></div>
+                        <div class="row justify-content-center">
+                            <p class="fz_3rem line_height_1 text-center mb-0">{{advert.title}}</p></div>
 <!--                        <div class="row">-->
 <!--                            <i class="fas fa-user-tie"></i>-->
 <!--                            <label class="user-name-label mb-0">{{advert.user.first_name}}</label>-->
@@ -43,7 +44,11 @@
                             <label class="ads-price mb-0">{{advert.price}} руб</label>
                         </div>
                         <div class="col-auto a-right pr-0">
-                            <a href="{% url 'Dev' %}"><button class="btn view-ads">Предложить работу</button></a>
+                            {% if verify == True %}
+                            <a href="{% url 'Offer_create' advert.id %}"><button class="btn view-ads">Предложить работу</button></a>
+                            {% else %}
+                            <a href="{% url 'Login' %}"><button class="btn view-ads">Предложить работу</button></a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -58,7 +63,7 @@
 
 
                 <p class="news_det_text mb-5">
-                    {% if advert.photo_main != None %}
+                    {% if advert.photo_main != None and advert.photo_main != "" %}
                     <img class="float-left news_det_img mr-3 my-3" src="{{MEDIA.URL}}{{advert.photo_main.url}}" alt="img">
                     {% endif %}
                     {{advert.description}}

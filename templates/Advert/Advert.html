@@ -26,8 +26,12 @@
                         <div class="col-12 p-0">
                             <div class="row">
                                 <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                                    {% if a.photo_main != None %}
+                                    {% if a.photo_main != None and a.photo_main != "" %}
                                     <img alt="" class="w-100 user-advert-img" src="{{MEDIA_URL}}{{a.photo_main.url}}">
+                                    {% else %}
+                                    <div class="row justify-content-center align-items-center bg-gray">
+                                        <span class="alt-text">Без фото</span>
+                                    </div>
                                     {% endif %}
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
@@ -50,9 +54,9 @@
 <!--                                        <a href="{% url 'Dev' %}"><button class="btn edit-ads">Редактировать</button></a>-->
 <!--                                    </div>-->
                                 </div>
-                                <hr class="category-line m-0 my-4">
                             </div>
                         </div>
+                                <hr class="category-line m-0 my-4">
                         {% endfor %}
                     </div>
                 </div>

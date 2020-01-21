@@ -338,6 +338,7 @@ class SubCategory(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(unique=True, max_length=100, blank=True, null=True)
     image = models.CharField(max_length=500, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -346,7 +347,7 @@ class SubCategory(models.Model):
 
 class TaskPhoto(models.Model):
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
-    photo = models.FileField(max_length=500, blank=True, null=True)
+    photo = models.CharField(max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -361,6 +362,7 @@ class UserAdvert(models.Model):
     photo_main = models.CharField(max_length=500, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    count_offer = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -399,6 +401,8 @@ class UserOffer(models.Model):
     user_id_customer = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
     advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
     is_accept = models.BooleanField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -439,6 +443,9 @@ class UserTask(models.Model):
     price = models.IntegerField(blank=True, null=True)
     exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     date_add = models.DateField(blank=True, null=True)
+    rezult_text = models.CharField(max_length=5000, blank=True, null=True)
+    exec_finish = models.BooleanField(blank=True, null=True)
+    offer = models.ForeignKey(UserOffer, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -455,6 +462,15 @@ class UserTaskBet(models.Model):
     class Meta:
         managed = False
         db_table = 'user_task_bet'
+
+
+class UserTaskRezultPhoto(models.Model):
+    task = models.ForeignKey(UserTask, models.DO_NOTHING, blank=True, null=True)
+    photo = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_rezult_photo'
 
 
 class UserTaskStatus(models.Model):

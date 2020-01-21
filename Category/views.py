@@ -64,17 +64,7 @@ def sub_category(request,name):
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
-
-    # name=str(name).lower()
-    # print('start')
     sub = SubCategory.objects.filter(name__icontains=name)
-    # if sub.count() > 1:
-    #     if username=='':
-    #         return HttpResponseRedirect("/login")
-    #     else:
-    #         return HttpResponseRedirect("/profile/create_task/"+name)
-    # else:
-
     task_count = UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date').count()
     count_user=UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
     if(task_count<10):
@@ -99,6 +89,11 @@ def sub_category(request,name):
             list_page.append(i)
     pre = 1
     next = page + 1
+    advert_count=UserAdvert.objects.filter(subcategory=sub[0]).order_by('-count_offer').count()
+    if(advert_count < 10):
+        advert = UserAdvert.objects.filter(subcategory=sub[0]).order_by('-count_offer')[0:]
+    else:
+        advert = UserAdvert.objects.filter(subcategory=sub[0]).order_by('-count_offer')[0:10]
     return render(request, 'Category/Sub_category.html', locals())
 
 def Page_subcategory(request,name,page):
