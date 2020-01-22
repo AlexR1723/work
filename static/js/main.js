@@ -989,11 +989,43 @@ $(document).ready(function () {
     $('.check_region').click(function () {
         var id=this.id;
         var list=$(this).parent().next().children()
+        var flag=true;
         for(var i=0; i < list.length;i++)
         {
-            var inp_list=$(list[i]).children().children('.custom-control-input');
-            inp_list.click();
-            var p=0;
+            var inp=$(list[i]).children().children('.custom-control-input');
+            var ch=inp[0].checked;
+            if(ch == false)
+            {
+                flag=false;
+                break;
+            }
+//             var inp_list=$(list[i]).children().children('.custom-control-input');
+//             inp_list.click();
+//             var p=0;
+        }
+        if(flag==true)
+        {
+            for(var i=0; i < list.length;i++)
+            {
+                var inp_list=$(list[i]).children().children('.custom-control-input');
+                //var ch=inp[0].checked;
+//                 var inp_list=$(list[i]).children().children('.custom-control-input');
+//                 inp_list.click();
+                inp_list.click();
+            }
+        }
+        else{
+            for(var i=0; i < list.length;i++)
+            {
+                var inp=$(list[i]).children().children('.custom-control-input');
+                var ch=inp[0].checked;
+                if(ch == false)
+                {
+                     var inp_list=$(list[i]).children().children('.custom-control-input');
+//                     inp_list.click();
+                    inp_list.click();
+                }
+            }
         }
     });
 
