@@ -260,23 +260,37 @@
                                 </div>
                             </div>
                             <div class="col-12 p-3 item-inf_blk ad-inf_blk" data-toggle="tooltip" data-placement="left"
-                                 title="Добавление объявлений по каждой категории">
+                                 title="Добавление объявлений по каждой категории. Для добавления объявлений, кликните на соответсвующую категорию.">
                                 <div class="row">
                                     <div class="col-1 px-0 px-lg-3">
                                         <img src="{% static 'image/flier.png' %}" class="item-icon" alt="phone-icon">
                                     </div>
-                                    <div class="col-11" >
+                                    <div class="col-6" >
                                         <h5 class="mb-3">Мои объявления</h5>
-                                        {% for cat in subcategory %}
 
-                                        <a href="{% url 'Advert_add' cat.subcategories.name %}"><span class="badge badge-secondary">{{cat.subcategories.name}} - {{cat.count}}</span></a>
-                                        {% endfor %}
                                     </div>
                                     <!--                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
                                     <!--                                                <a href="#">-->
                                     <!--                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">-->
                                     <!--                                                </a>-->
-                                    <!--                                            </div>-->
+<!--                                                                                </div>                                           -->
+                                <div class="col-5 px-0 px-lg-3 a-right">
+                                                                                    <a href="{% url 'All_ads' %}" class="fontCategorySmall colorDarkGrey2 mb-0"
+                                                                                    data-toggle="tooltip" data-placement="top" title="Перейти на страницу 'Мои объявления'">
+                                                                                        Просмотреть все мои объявления
+                                                                                    </a>
+                                                                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 px-0 px-lg-3">
+
+                                    </div>
+                                    <div class="col-11" >
+                                        {% for cat in subcategory %}
+
+                                        <a href="{% url 'Advert_add' cat.subcategories.name %}"><span class="badge badge-secondary">{{cat.subcategories.name}} - {{cat.count}}</span></a>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12 p-3 item-inf_blk city-inf_blk">

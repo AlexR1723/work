@@ -408,6 +408,9 @@ a.nav-link label:hover{
 .colorDarkGrey2 {
     color: #555555;
 }
+.colorDarkGrey2:hover {
+    color: #555555;
+}
 
 .colorDarkGrey:hover {
     /*color: #555555;*/
