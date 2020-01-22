@@ -228,6 +228,9 @@ $("#btn_head_submit").click(function (event) {
         if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == text.trim()) {
             window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
         }
+        else {
+            window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
+        }
         // else {
         //     window.location.href = "/help/find_help/" + text.trim().toLowerCase();
         // }
@@ -239,6 +242,9 @@ $("#btn_main_submit").click(function (event) {
     if (text.trim() != '') {
         let btn_text = document.getElementsByClassName('sid_focus')[0]
         if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == text.trim()) {
+            window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
+        }
+        else {
             window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
         }
     }

@@ -65,8 +65,14 @@ def sub_category(request,name):
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
     sub = SubCategory.objects.filter(name__icontains=name)
+    if sub.count()==0:
+        # print('')
+        return HttpResponseRedirect("/profile/task/create/" + str(name))
+
     task_count = UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date').count()
     count_user=UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
+
+
     if(task_count<10):
         task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date')[0:]
     else:
