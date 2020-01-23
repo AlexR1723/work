@@ -1470,7 +1470,7 @@ function add_alert_suc(index) {
     $("#alert_success" + index).show('slow');
     setTimeout(function () {
         $("#alert_success" + index).hide('slow');
-    }, 5000);
+    }, 2000);
 }
 
 function add_alert_error(index) {
@@ -1488,7 +1488,7 @@ function add_alert_error(index) {
     $("#alert" + index).show('slow');
     setTimeout(function () {
         $("#alert" + index).hide('slow');
-    }, 5000);
+    }, 2000);
 }
 
 $(document).ready(function () {
