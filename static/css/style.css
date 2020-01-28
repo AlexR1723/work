@@ -1533,7 +1533,7 @@ hr.line {
 }
 .notice_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/notices_bg.png) 50% 50% no-repeat;
     background-size: cover;
 }

@@ -482,6 +482,3 @@ def get_counter_values(request):
     # print(UserTask.objects.filter(task_status=UserTaskStatus.objects.get(name='Выполнено'))[0].date)
     return HttpResponse(json.dumps(results))
 
-def Notices(request):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Main/Notices.html', locals())

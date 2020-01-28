@@ -28,4 +28,4 @@ def layout_name(request):
 
 def Notice(request):
     layout, username, photo = layout_name(request)
-    return render(request, 'Profile/Notice.html', locals())
+    return render(request, 'Profile/Notices.html', locals())
