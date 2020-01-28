@@ -48,12 +48,27 @@ def Category_item(request,name):
     category_item=Category.objects.get(name__icontains=name)
     subs=SubCategory.objects.filter(category_id=category_item.id)
 
-    task_count=UserTask.objects.all().filter(subcategory__category=category_item).filter(task_status__name="В поиске").order_by('-date').count()
-    print(task_count)
-    if(task_count<10):
-        task=UserTask.objects.all().filter(subcategory__category=category_item).filter(task_status__name="В поиске").order_by('-date')[0:]
-    else:
-        task = UserTask.objects.all().filter(subcategory__category=category_item).filter(task_status__name="В поиске").order_by('-date')[0:10]
+    if (request.session.get('username', 'no') == 'no'):
+        city = request.session.get('city', 0)
+        if(city != 0):
+            task_count=UserTask.objects.all().filter(subcategory__category=category_item).filter(task_status__name="В поиске").filter(city__name=city).order_by('-date').count()
+            if(task_count<10):
+                task=UserTask.objects.all().filter(subcategory__category=category_item).filter(task_status__name="В поиске").filter(city__name=city).order_by('-date')[0:]
+            else:
+                task = UserTask.objects.all().filter(subcategory__category=category_item).filter(task_status__name="В поиске").filter(city__name=city).order_by('-date')[0:10]
+            task_other=UserTask.objects.all().filter(subcategory__category=category_item).filter(task_status__name="В поиске").exclude(city__name = city).order_by('-date')
+        else:
+            task_count = UserTask.objects.all().filter(subcategory__category=category_item).filter(
+                task_status__name="В поиске").order_by('-date').count()
+            if (task_count < 10):
+                task = UserTask.objects.all().filter(subcategory__category=category_item).filter(
+                    task_status__name="В поиске").order_by('-date')[0:]
+            else:
+                task = UserTask.objects.all().filter(subcategory__category=category_item).filter(
+                    task_status__name="В поиске").order_by('-date')[0:10]
+
+    # else:
+
     return render(request, 'Category/Category_item.html', locals())
 
 list_page = []
