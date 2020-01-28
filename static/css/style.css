@@ -1786,11 +1786,24 @@ hr.line_blk {
     color: rgb(62, 120, 157);
 }
 
-.settings-rew_span {
+.settings-rew_span,
+.profile-unverif-blk .settings-rew_span {
     line-height: 80px;
     color: #AF4B53;
 }
-
+.profile-unverif-blk .settings-rew_span {
+    font-size: 3rem;
+}
+.profile-unverif-blk .settings-rew_label span {
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 28px;
+    color: #000000;
+}
+.profile-unverif-blk h1 {
+    line-height: 45px;
+    color: #000000;
+}
 .settings-rew_label {
     font-size: 1rem;
     line-height: 25px;
@@ -1965,7 +1978,7 @@ input[type=checkbox]:checked + label::after {
 }
 .adverts-add_photos .img_wrapper,
 .portfolio-photos_blk .img_wrapper {
-    /*height: 230px;*/
+    height: 230px;
     overflow: hidden;
     padding: 1rem;
     padding-left: 0;
@@ -1993,7 +2006,8 @@ input[type=checkbox]:checked + label::after {
     line-height: 23px;
     color: #000000;
 }
-.item-inf_blk span {
+.item-inf_blk span,
+.profile-unverif-blk span {
     font-size: 1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
@@ -2004,7 +2018,8 @@ input[type=checkbox]:checked + label::after {
     line-height: 30px;
     color: #000000;
 }
-.item-inf_blk .badge {
+.item-inf_blk .badge,
+.profile-unverif-blk .badge {
     font-size: 1rem;
     font-weight: normal;
     margin: 0 2% 2% 0;
@@ -2032,15 +2047,20 @@ input[type=checkbox]:checked + label::after {
     color: #000000;
 }
 .adverts-add_blk p,
-.adverts-add_blk label {
+.adverts-add_blk label,
+.profile_para {
     font-size: 1.1em;
     line-height: 28px;
     color: #000000;
 }
-.adverts-add_blk span {
+.adverts-add_blk span,
+.profile-unverif-blk .prof-span {
     font-size: 1em;
     line-height: 28px;
     color: rgba(0, 0, 0, 0.7);
+}
+.profile-unverif-blk .prof-span {
+    white-space: normal;
 }
 .adverts-add_blk .adverts_input {
     border: 1px solid #AAAAAA;
@@ -2394,6 +2414,10 @@ service-card_text {
     .edit-icon {
         width: 50%;
     }
+    .profile-unverif-blk .settings-rew_blk::before {
+        left: 0;
+        top: 15px;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 992px) {
@@ -2473,7 +2497,8 @@ service-card_text {
     .edit-icon {
         width: 60%;
     }
-    .item-inf_blk span.badge {
+    .item-inf_blk span.badge,
+    .profile-unverif-blk span.badge {
          white-space: pre-wrap;
     }
     .panel-heading a::before {
@@ -2803,19 +2828,28 @@ button.view-ads:hover{
     color: #AF4B53;
     transition: .3s;
 }
-
-button.edit-ads{
+button.edit-ads,
+.propose_btn {
     background: #3E789D;
     border: 1px solid #3E789D;
     border-radius: 5px;
-    padding: 7px 20px;
     color: white;
     transition: .3s;
+    padding: 7px 20px;
 }
-button.edit-ads:hover{
+.propose_btn {
+    font-size: 1.3rem;
+    line-height: 30px;
+}
+button.edit-ads:hover,
+.propose_btn:hover {
     background: none;
+}
+button.edit-ads:hover {
     color: #3E789D;
-    transition: .3s;
+}
+.propose_btn:hover {
+    color: #000000;
 }
 label.ads-price{
     color: rgba(51,51,51,1);
@@ -2843,13 +2877,23 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
 }
 
 .notices_blk h3,
-.notices_blk span {
+.notices_blk span,
+.profile-unverif-blk .profile-span {
     font-size: 1.3rem;
     line-height: 25px;
 }
 .notices_blk h3 {
     color: rgba(0, 0, 0, 0.7);
 }
-.notices_blk span {
+.notices_blk span,
+.profile-unverif-blk .profile-span {
     color: rgba(0, 0, 0, 0.5);
+}
+.star-rating .fa-star-o,
+.star-rating .fa-star {
+    color: #AF4B53;
+    font-size: 1.5rem;
+}
+.col-bg-gray {
+    background: rgba(229, 229, 229, 0.4);
 }

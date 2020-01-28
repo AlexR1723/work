@@ -485,3 +485,7 @@ def get_counter_values(request):
 def Notices(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Main/Notices.html', locals())
+
+def Profile_unverified(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Profile_unverified.html', locals())
