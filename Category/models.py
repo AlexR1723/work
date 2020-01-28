@@ -279,3 +279,13 @@ class UserTaskBet(models.Model):
     class Meta:
         managed = False
         db_table = 'user_task_bet'
+
+
+class UserCities(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+    # region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_cities'
