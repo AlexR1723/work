@@ -291,7 +291,6 @@ def Page(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Main/Page.html', locals())
 
-
 def send_new_pass(request):
     email = request.GET.get("email")
     print(email)
@@ -482,3 +481,7 @@ def get_counter_values(request):
     # print(datetime.datetime.now().date())
     # print(UserTask.objects.filter(task_status=UserTaskStatus.objects.get(name='Выполнено'))[0].date)
     return HttpResponse(json.dumps(results))
+
+def Notices(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Notices.html', locals())

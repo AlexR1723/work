@@ -1531,6 +1531,12 @@ hr.line {
     background: url(/static/image/work-hardening.jpg) 50% 50% no-repeat;
     background-size: cover;
 }
+.notice_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/notices_bg.png) 50% 50% no-repeat;
+    background-size: cover;
+}
 .offer_hdr_bg_layout,
 .rules_hdr_bg_layout,
 .privacy_hdr_bg_layout,
@@ -1750,7 +1756,8 @@ a.category-card_label:hover{
     outline: #AF4B53;
 }
 
-hr.category-line {
+hr.category-line,
+hr.line_blk {
     background: #aaaaaa;
     border: none;
     height: 1px;
@@ -2833,4 +2840,16 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
 #input_price{
     display: inline-block;
     width: auto;
+}
+
+.notices_blk h3,
+.notices_blk span {
+    font-size: 1.3rem;
+    line-height: 25px;
+}
+.notices_blk h3 {
+    color: rgba(0, 0, 0, 0.7);
+}
+.notices_blk span {
+    color: rgba(0, 0, 0, 0.5);
 }
