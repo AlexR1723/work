@@ -67,7 +67,23 @@ def Category_item(request,name):
                 task = UserTask.objects.all().filter(subcategory__category=category_item).filter(
                     task_status__name="В поиске").order_by('-date')[0:10]
 
-    # else:
+    else:
+        city=[]
+        user = request.session.get('username', 'no')
+        user_city=UserCities.objects.filter(user__email=user)
+        for i in user_city:
+            city.append(i.city.name)
+
+        task_count = UserTask.objects.all().filter(subcategory__category=category_item).filter(
+            task_status__name="В поиске").filter(city__name__in=city).order_by('-date').count()
+        if (task_count < 10):
+            task = UserTask.objects.all().filter(subcategory__category=category_item).filter(
+                task_status__name="В поиске").filter(city__name__in=city).order_by('-date')[0:]
+        else:
+            task = UserTask.objects.all().filter(subcategory__category=category_item).filter(
+                task_status__name="В поиске").filter(city__name__in=city).order_by('-date')[0:10]
+        task_other = UserTask.objects.all().filter(subcategory__category=category_item).filter(
+            task_status__name="В поиске").exclude(city__name__in=city).order_by('-date')
 
     return render(request, 'Category/Category_item.html', locals())
 
