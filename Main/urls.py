@@ -53,6 +53,5 @@ urlpatterns = [
 
     url(r'^dev/$', views.Dev, name="Dev"),
     url(r'^page/$', views.Page, name="Page"),
-    url(r'^profile_unverified/$', views.Profile_unverified, name="profile_unverified"),
     # url(r'^dev/(?P<text>[А-Яа-я\s0-9-()/a-z,]+)/$', views.Dev, name="Dev"),
 ]

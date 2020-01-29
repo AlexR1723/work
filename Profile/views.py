@@ -959,6 +959,12 @@ def Fav_executor(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Profile/Fav_executor.html', locals())
 
+
+def Profile_page(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Profile/Profile_unverified.html', locals())
+
+
 # def Offer(request):
 #     layout, username, photo = layout_name(request)
 #     if username == '':
