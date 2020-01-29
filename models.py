@@ -388,6 +388,21 @@ class UserCities(models.Model):
         db_table = 'user_cities'
 
 
+class UserComment(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    text = models.CharField(max_length=500, blank=True, null=True)
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    customer = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    quality = models.IntegerField(blank=True, null=True)
+    politeness = models.IntegerField(blank=True, null=True)
+    punctuality = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_comment'
+
+
 class UserFavoritesExecutor(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     exec = models.ForeignKey('Users', models.DO_NOTHING, blank=True, null=True)
@@ -500,10 +515,10 @@ class Users(models.Model):
     about_me = models.CharField(max_length=5000, blank=True, null=True)
     get_new_order = models.BooleanField(blank=True, null=True)
     get_notice_status = models.BooleanField(blank=True, null=True)
-    photo = models.ImageField(upload_to='uploads/users/', max_length=100, blank=True, null=True)
+    photo = models.CharField(max_length=100, blank=True, null=True)
     verify_phone = models.BooleanField(blank=True, null=True)
     verify_passport = models.BooleanField(blank=True, null=True)
-    passport_photo = models.ImageField(upload_to='uploads/users/', max_length=500, blank=True, null=True)
+    passport_photo = models.CharField(max_length=500, blank=True, null=True)
     verify_date = models.DateField(blank=True, null=True)
     passport_num_ser = models.CharField(max_length=50, blank=True, null=True)
 
