@@ -97,6 +97,11 @@ class Users(models.Model):
     get_new_order = models.BooleanField(blank=True, null=True)
     get_notice_status = models.BooleanField(blank=True, null=True)
     photo = models.ImageField(upload_to='uploads/users/', max_length=100, blank=True, null=True)
+    verify_phone = models.BooleanField(blank=True, null=True)
+    verify_passport = models.BooleanField(blank=True, null=True)
+    passport_photo = models.ImageField(upload_to='uploads/users/', max_length=500, blank=True, null=True)
+    verify_date = models.DateField(blank=True, null=True)
+    passport_num_ser = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
