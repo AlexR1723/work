@@ -489,3 +489,7 @@ def get_counter_values(request):
 def Profile_unverified(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Main/Profile_unverified.html', locals())
+
+def Profile_verified(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Profile_verified.html', locals())
