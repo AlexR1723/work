@@ -483,3 +483,7 @@ def get_counter_values(request):
     return HttpResponse(json.dumps(results))
 
 
+
+def Profile_verified(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Profile_verified.html', locals())

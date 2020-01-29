@@ -1537,6 +1537,12 @@ hr.line {
     background: url(/static/image/notices_bg.png) 50% 50% no-repeat;
     background-size: cover;
 }
+.profile-verif_hdr_bg {
+    height: auto;
+    min-height: 50vh;
+    background: url(/static/image/prof_verif-bg.png) 50% 50% no-repeat;
+    background-size: cover;
+}
 .offer_hdr_bg_layout,
 .rules_hdr_bg_layout,
 .privacy_hdr_bg_layout,
@@ -1787,14 +1793,17 @@ hr.line_blk {
 }
 
 .settings-rew_span,
-.profile-unverif-blk .settings-rew_span {
+.profile-unverif-blk .settings-rew_span,
+.reviews_blk .reviews_span {
     line-height: 80px;
     color: #AF4B53;
 }
-.profile-unverif-blk .settings-rew_span {
+.profile-unverif-blk .settings-rew_span,
+.reviews_blk .reviews_span {
     font-size: 3rem;
 }
-.profile-unverif-blk .settings-rew_label span {
+.profile-unverif-blk .settings-rew_label span,
+.reviews_blk .reviews_label span {
     font-weight: 600;
     font-size: 1.1rem;
     line-height: 28px;
@@ -1804,7 +1813,8 @@ hr.line_blk {
     line-height: 45px;
     color: #000000;
 }
-.settings-rew_label {
+.settings-rew_label,
+.reviews_blk .reviews_label {
     font-size: 1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.85);
@@ -2006,11 +2016,19 @@ input[type=checkbox]:checked + label::after {
     line-height: 23px;
     color: #000000;
 }
+.profile-unverif-blk .prof-span,
+.profile-verif-blk .prof-span-1 {
+    white-space: normal;
+}
+
 .item-inf_blk span,
-.profile-unverif-blk span {
+.profile-unverif-blk span,
+.profile-verif_blk span {
     font-size: 1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
+}
+.item-inf_blk span {
     white-space: nowrap;
 }
 .item-inf_blk h5 {
@@ -2019,7 +2037,8 @@ input[type=checkbox]:checked + label::after {
     color: #000000;
 }
 .item-inf_blk .badge,
-.profile-unverif-blk .badge {
+.profile-unverif-blk .badge,
+.profile-verif_blk .badge {
     font-size: 1rem;
     font-weight: normal;
     margin: 0 2% 2% 0;
@@ -2054,13 +2073,11 @@ input[type=checkbox]:checked + label::after {
     color: #000000;
 }
 .adverts-add_blk span,
-.profile-unverif-blk .prof-span {
+.profile-unverif-blk .prof-span,
+.profile-verif-blk .prof-span {
     font-size: 1em;
     line-height: 28px;
     color: rgba(0, 0, 0, 0.7);
-}
-.profile-unverif-blk .prof-span {
-    white-space: normal;
 }
 .adverts-add_blk .adverts_input {
     border: 1px solid #AAAAAA;
@@ -2193,7 +2210,8 @@ input[type=checkbox]:checked + label::after {
 .sub_categ_blk hr.line {
     background: #AAAAAA;
 }
-.advert-cards_blk span {
+.advert-cards_blk span,
+.icons-blk span {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
@@ -2208,8 +2226,7 @@ service-card_text {
 }
 .perform-date_span,
 .propose-date_span,
-.search-date_span,
-.count-users_span {
+.search-date_span {
     font-size: 1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
@@ -2414,7 +2431,8 @@ service-card_text {
     .edit-icon {
         width: 50%;
     }
-    .profile-unverif-blk .settings-rew_blk::before {
+    .profile-unverif-blk .settings-rew_blk::before,
+    .reviews_blk .settings-rew_blk::before {
         left: 0;
         top: 15px;
     }
@@ -2467,6 +2485,10 @@ service-card_text {
     .settings-rew_blk::before {
         left: -10px;
     }
+    .reviews_blk .settings-rew_blk::before {
+         left: 0;
+        top: 8px;
+     }
     #nav-portfolio button {
         font-size: 1rem;
         margin-bottom: 2%;
@@ -2481,7 +2503,7 @@ service-card_text {
     .adverts-add_photos .img_wrapper:nth-child(2n+2),
     .portfolio-photos_blk .img_wrapper:nth-child(2n+2) {
         padding-left: .2rem;
-        padding-right: 0;
+        padding-right: .2rem;
     }
      .adverts-add_photos .img_wrapper,
      .portfolio-photos_blk .img_wrapper {
@@ -2498,7 +2520,8 @@ service-card_text {
         width: 60%;
     }
     .item-inf_blk span.badge,
-    .profile-unverif-blk span.badge {
+    .profile-unverif-blk span.badge,
+    .profile-verif_blk span.badge {
          white-space: pre-wrap;
     }
     .panel-heading a::before {
@@ -2896,4 +2919,51 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
 }
 .col-bg-gray {
     background: rgba(229, 229, 229, 0.4);
+}
+.profile-verif_blk .user-img {
+    height: auto;
+    border-radius: 50%;
+}
+.icons-blk img {
+    padding-top: 2.5rem;
+}
+.icons-blk .ellipse {
+    background: #AF4B53;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 100%;
+}
+.icons-blk label {
+    font-size: 1.4rem;
+    line-height: 31px;
+    color: #000000;
+}
+.icons-blk a {
+    border-bottom: 1px solid #AAAAAA;
+}
+.icons-blk a:hover,
+.profile-verif_blk .header_underline:hover {
+    text-decoration: none;
+}
+.profile-verif_blk h2 {
+    /*text-decoration-line: underline;*/
+    /*text-decoration-color: #3E789D;*/
+}
+.profile-verif_blk .header_underline {
+    cursor: text;
+    text-decoration: none;
+    color: #000000;
+}
+.profile-verif_blk .header_underline {
+    border-bottom: 3px solid #3E789D;
+}
+.profile-verif_blk .nav-link {
+    font-size: 1.3rem;
+    color: #FFFFFF;
+}
+
+@media (min-width: 320px) {
+    .profile-verif_blk .user-img_blk {
+        height: auto;
+    }
 }
