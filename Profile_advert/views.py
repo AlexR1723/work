@@ -278,10 +278,11 @@ def user_delete_ads(request):
     advert=UserAdvert.objects.get(id=id)
 
     if advert.user_id ==user_id:
-        photos=UserAdvertPhoto.objects.filter(id=advert.id)
-        for i in photos:
-            i.delete()
         advert.delete()
+        # photos=UserAdvertPhoto.objects.filter(id=advert.id)
+        # for i in photos:
+        #     i.delete()
+
     return HttpResponse(json.dumps(True))
 
 def Edit_advert_save(request):
