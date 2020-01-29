@@ -9,14 +9,16 @@
                 <div class="col-12 p-0">
                     <div class="row">
                         <div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2 p-2">
-                            <img alt="" class="w-100 user-advert-img" src="/static/image/user.png">
+                            <img alt="" class="w-100 user-advert-img" src="{{MEDIA_URL}}{{user.photo.url}}">
                         </div>
                         <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-7 pl-0 pl-lg-4 pr-md-0 pr-lg-2 pr-0 pt-2">
                             <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                <h1 class="m-0 fz_2rem">Иванов Иван</h1>
+                                <h1 class="m-0 fz_2rem">{{user.auth_user.first_name}} {{user.auth_user.last_name}}</h1>
                             </div>
                             <div class="row justify-content-center justify-content-md-start align-items-center pb-2 pb-md-0 pt-2">
-                                <span class="badge">Донецк</span>
+                                {% for c in user_city %}
+                                <span class="badge">{{c.city.name}}</span>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="col-10 col-sm-10 col-md-5 col-lg-4 col-xl-3 p-1 mx-auto">
@@ -32,15 +34,12 @@
                 <div class="col-12 p-0">
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-12 col-xl-12 p-0">
-                            <span class="badge">Курьерская доставка</span>
-                            <span class="badge">Доставка документов</span>
-                            <span class="badge">Доставка лекарств</span>
-                            <span class="badge">Доставка продуктов и готовой еды</span>
-                            <span class="badge">Забрать и отправить почтой</span>
-                            <span class="badge">Столяр</span>
+                            {% for s in user_sub %}
+                            <span class="badge">{{s.subcategories.name}}</span>
+                            {% endfor %}
                         </div>
                         <div class="col-12 col-md-12 col-lg-12 col-xl-12 p-0">
-                            <p class="profile_para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p class="profile_para">{{user.about_me}}</p>
                         </div>
                     </div>
                 </div>
