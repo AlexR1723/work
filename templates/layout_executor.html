@@ -43,9 +43,11 @@
                             </a>
                         </div>
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
-                            <a href="{% url 'Dev' %}" data-toggle="tooltip" data-placement="bottom"
-                                             title="Уведомления">
-                                <i class="far fa-bell"></i>
+                            <a href="{% url 'Notice' %}" data-toggle="tooltip" data-placement="bottom"
+                                             title="Уведомления" id="Notice_button" style="position: relative">
+                                <i class="far fa-bell">
+                                    <div style="background-color: red; border-radius: 50%" id="count_notifications"></div>
+                                </i>
                             </a>
                         </div>
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
@@ -101,7 +103,7 @@
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="{% url 'Notice' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Уведомления
+                                        <a href="{% url 'Notice' %}" class="fontCategorySmall colorDarkGrey mb-0 " id="Notice_button">Уведомления
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">

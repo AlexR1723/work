@@ -6,6 +6,22 @@ body {
     background-color: #fff;
     font-family: 'Source Sans Pro', sans-serif;
 }
+
+#count_notifications{
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    color: black;
+    font-size: 20px;
+    padding: 2px;
+    min-width: 24px;
+    text-align: center;
+    transform: translate(-50%,-50%);
+    display: none;
+}
+
 .bg-gray{
     background: #f9f9f9;
     width: 100%;

@@ -2,90 +2,78 @@
 {% load staticfiles %}
 {% block content %}
 
-<div class="container-fluid p-0">
-    <div class="row justify-content-center">
-        <div class=" w-100 notice_hdr_bg">
-            <div class="offer_hdr_bg_layout row justify-content-center align-items-center">
-                <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                    <p class="m-0 fz_2rem line_height_1 text-center">Ваши уведомления</p>
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center">
+            <div class=" w-100 notice_hdr_bg">
+                <div class="offer_hdr_bg_layout row justify-content-center align-items-center">
+                    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                        <p class="m-0 fz_2rem line_height_1 text-center">Ваши уведомления</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row justify-content-center notices_blk my-5">
-        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-            <div class="row m-0 justify-content-start">
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="col-3 col-sm-1 col-md-2 col-lg-1 col-xl-1 p-2">
-                            <img alt="" class="img-fluid" src="/static/image/notices_image.png">
-                        </div>
-                        <div class="col-9 col-sm-11 col-md-7 col-lg-11 col-xl-11 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
-                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <h3 class="category-card_label m-0">Статус задания изменен на “Выполнено”</h3>
+        <div class="row justify-content-center notices_blk my-5">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                <div class="row m-0 justify-content-start">
+{#                    {% for i in notice_unread %}#}
+{#                        <div class="col-12 p-0">#}
+{#                            <div class="row">#}
+{#                                <div class="col-3 col-sm-1 col-md-2 col-lg-1 col-xl-1 p-2">#}
+{#                                    <img alt="" class="img-fluid" src="/static/image/notices_image.png">#}
+{#                                </div>#}
+{#                                <div class="col-9 col-sm-11 col-md-7 col-lg-11 col-xl-11 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">#}
+{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+{#                                            <h3 class="category-card_label m-0"><b>{{ i.text }}</b></h3>#}
+{#                                    </div>#}
+{#                                    <div class="row justify-content-start align-items-center">#}
+{#                                        {% if i.date.date == today %}#}
+{#                                            <span>Сегодня в {{ i.date.time }}</span>#}
+{#                                        {% else %}#}
+{#                                            <span>{{ i.date.date }} в {{ i.date.time }}</span>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                            <hr class="line_blk m-0 my-4">#}
+{#                    {% endfor %}#}
+
+                    {% for i in notices %}
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-3 col-sm-1 col-md-2 col-lg-1 col-xl-1 p-2">
+                                    <img alt="" class="img-fluid" src="/static/image/notices_image.png">
+                                </div>
+                                <div class="col-9 col-sm-11 col-md-7 col-lg-11 col-xl-11 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        {% if i.is_checked %}
+                                            <h3 class="category-card_label m-0">{{ i.text }}</h3>
+                                        {% else %}
+                                            <h3 class="category-card_label m-0"><b>{{ i.text }}</b></h3>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="row justify-content-start align-items-center">
+                                        {% if i.date_public.date == today %}
+                                            <span>Сегодня в {{ i.date_public.time }}</span>
+                                        {% else %}
+                                            <span>{{ i.date_public.date }} в {{ i.date_public.time }}</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row justify-content-start align-items-center">
-                                <span>Сегодня</span>
-                            </div>
                         </div>
-                    </div>
+                        {% if not forloop.last %}
+                            <hr class="line_blk m-0 my-4">
+                        {% endif %}
+                    {% endfor %}
+
                 </div>
-                <hr class="line_blk m-0 my-4">
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="col-3 col-sm-1 col-md-2 col-lg-1 col-xl-1 p-2">
-                            <img alt="" class="img-fluid" src="/static/image/notices_image.png">
-                        </div>
-                        <div class="col-9 col-sm-11 col-md-7 col-lg-11 col-xl-11 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
-                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <h3 class="category-card_label m-0">Вы выбраны исполнителем для задания.</h3>
-                            </div>
-                            <div class="row justify-content-start align-items-center">
-                                <span>25.01.2020</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="line_blk m-0 my-4">
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="col-3 col-sm-1 col-md-2 col-lg-1 col-xl-1 p-2">
-                            <img alt="" class="img-fluid" src="/static/image/notices_image.png">
-                        </div>
-                        <div class="col-9 col-sm-11 col-md-7 col-lg-11 col-xl-11 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
-                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <h3 class="category-card_label m-0">Появились новые задания по Вашим категориям.</h3>
-                            </div>
-                            <div class="row justify-content-start align-items-center">
-                                <span>24.01.2020</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="line_blk m-0 my-4">
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="col-3 col-sm-1 col-md-2 col-lg-1 col-xl-1 p-2">
-                            <img alt="" class="img-fluid" src="/static/image/notices_image.png">
-                        </div>
-                        <div class="col-9 col-sm-11 col-md-7 col-lg-11 col-xl-11 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
-                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <h3 class="category-card_label m-0">Вы успешно зарегистрировались. Логин и пароль отправлены Вам на почту.</h3>
-                            </div>
-                            <div class="row justify-content-start align-items-center">
-                                <span>20.01.2020</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="line_blk m-0 my-4">
             </div>
         </div>
+
+
     </div>
-
-
-
-</div>
 
 {% endblock %}

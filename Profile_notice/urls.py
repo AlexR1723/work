@@ -19,4 +19,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.Notice, name="Notice"),
 
+    url(r'check_notifications', views.check_notifications, name='check_notifications'),
+
 ]

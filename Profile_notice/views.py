@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 import json,re
 from .models import *
+import datetime
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
 from distutils.util import strtobool
@@ -25,7 +26,39 @@ def layout_name(request):
         else:
             layout = 'layout_executor.html'
     return layout,username,photo
+def get_user_id(request):
+    user_id=request.session.get('username',False)
+    try:
+        user=AuthUser.objects.get(username=user_id).id
+        return int(user)
+    except:
+        return False
 
 def Notice(request):
     layout, username, photo = layout_name(request)
+    # print(username)
+    user_id=get_user_id(request)
+    if user_id:
+        notices=Notifications.objects.filter(user_id=user_id).order_by('-date_public')
+        # notice_read=notices.filter(is_checked=True)
+        # notice_unread=notices.filter(is_checked=False)
+        today=datetime.datetime.today().date()
+        # print(notices[7].is_checked)
+        for i in notices:
+            if i.is_show and not i.is_checked:
+                i.is_checked=True
+                i.save()
+
+        for i in notices:
+            i.is_show=True
+            i.save()
     return render(request, 'Profile/Notices.html', locals())
+
+
+def check_notifications(request):
+    user_id=get_user_id(request)
+    if user_id:
+        count=Notifications.objects.filter(user_id=user_id).filter(is_checked=False).filter(is_show=False).count()
+    else:
+        count=0
+    return HttpResponse(json.dumps(count))

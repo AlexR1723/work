@@ -1,56 +1,55 @@
-function counter(counts,is_scroll) {
+function counter(counts, is_scroll) {
     let blockStatus = true;
     let inc = 0
     let target_blocks = ['div_counter1', 'div_counter2', 'div_counter3']
     let target_blocks1 = [$("#counter1"), $("#counter2"), $("#counter3")]
     // let target_blocks = [$("#counter1"), $("#counter2"), $("#counter3"),]
-    if (is_scroll==true){
+    if (is_scroll == true) {
         $(window).scroll(function () {
-        for (let i = 0; i < target_blocks.length; i++) {
-            let pos = $(window).scrollTop()
-            let height = $(window).height()
-            let block = document.getElementById(target_blocks[i]).getBoundingClientRect().top
-            let res = height - block - (height * 0.3)
-            if (res > 0 && blockStatus) {
-                let start_val = document.getElementById(target_blocks[i]).textContent
-                // start_val=start_val/2
-                $({numberValue: start_val}).animate({numberValue: counts[i]}, {
-                    duration: 5000, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
-                    easing: "linear",
-                    step: function (val) {
-                        // $("#counter").html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
-                        target_blocks1[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
-                    }
-                });
-                // console.log('added? inc=' + inc)
-                inc++
+            for (let i = 0; i < target_blocks.length; i++) {
+                let pos = $(window).scrollTop()
+                let height = $(window).height()
+                let block = document.getElementById(target_blocks[i]).getBoundingClientRect().top
+                let res = height - block - (height * 0.3)
+                if (res > 0 && blockStatus) {
+                    let start_val = document.getElementById(target_blocks[i]).textContent
+                    // start_val=start_val/2
+                    $({numberValue: start_val}).animate({numberValue: counts[i]}, {
+                        duration: 5000, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
+                        easing: "linear",
+                        step: function (val) {
+                            // $("#counter").html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                            target_blocks1[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                        }
+                    });
+                    // console.log('added? inc=' + inc)
+                    inc++
+                }
             }
-        }
-        if (inc > 1) {
-            blockStatus = false; // Запрещаем повторное выполнение функции до следующей перезагрузки страницы.
-        }
+            if (inc > 1) {
+                blockStatus = false; // Запрещаем повторное выполнение функции до следующей перезагрузки страницы.
+            }
 
-    });
-    }
-    else {
+        });
+    } else {
         for (let i = 0; i < target_blocks.length; i++) {
             // let pos = $(window).scrollTop()
             // let height = $(window).height()
             // let block = document.getElementById(target_blocks[i]).getBoundingClientRect().top
             // let res = height - block - (height * 0.3)
             // if (res > 0 && blockStatus) {
-                let start_val = document.getElementById(target_blocks[i]).textContent
-                // start_val=start_val/2
-                $({numberValue: start_val}).animate({numberValue: counts[i]}, {
-                    duration: 5000, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
-                    easing: "linear",
-                    step: function (val) {
-                        // $("#counter").html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
-                        target_blocks1[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
-                    }
-                });
-                // console.log('added? inc=' + inc)
-                // inc++
+            let start_val = document.getElementById(target_blocks[i]).textContent
+            // start_val=start_val/2
+            $({numberValue: start_val}).animate({numberValue: counts[i]}, {
+                duration: 5000, // Продолжительность анимации, где 500 - 0.5 одной секунды, то есть 500 миллисекунд
+                easing: "linear",
+                step: function (val) {
+                    // $("#counter").html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                    target_blocks1[i].html(Math.ceil(val)); // Блок, где необходимо сделать анимацию
+                }
+            });
+            // console.log('added? inc=' + inc)
+            // inc++
             // }
         }
         // if (inc > 1) {
@@ -227,8 +226,7 @@ $("#btn_head_submit").click(function (event) {
         let btn_text = document.getElementsByClassName('sid_focus')[0]
         if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == text.trim()) {
             window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
-        }
-        else {
+        } else {
             window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
         }
         // else {
@@ -243,8 +241,7 @@ $("#btn_main_submit").click(function (event) {
         let btn_text = document.getElementsByClassName('sid_focus')[0]
         if (btn_text != undefined && btn_text.childNodes[0].childNodes[0].childNodes[0].textContent == text.trim()) {
             window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
-        }
-        else {
+        } else {
             window.location.href = "/category/sub_category/" + text.trim().toLowerCase();
         }
     }
@@ -457,46 +454,46 @@ $("#login_pass").keyup(function (event) {
 $('#task_filter_select').change(function () {
     var value = $('#task_filter_select option:selected').val();
     if (value == 0)
-        // window.location.href = '/profile/customer_tasks/';
+    // window.location.href = '/profile/customer_tasks/';
         window.location.href = '/profile/task/';
     else
-        // window.location.href = '/profile/customer_tasks/' + value;
+    // window.location.href = '/profile/customer_tasks/' + value;
         window.location.href = '/profile/task/' + value;
 });
 $('#task_filter_select_exec_cat').change(function () {
     var cat = $('#task_filter_select_exec_cat option:selected').val();
     var stat = $('#task_filter_select_exec_stat option:selected').val();
-    if (cat==0 && stat==0){
-         // window.location.href = '/profile/executor_tasks/';
-         window.location.href = '/profile/task/';
+    if (cat == 0 && stat == 0) {
+        // window.location.href = '/profile/executor_tasks/';
+        window.location.href = '/profile/task/';
     }
-    if (cat!=0 && stat==0){
-         // window.location.href = '/profile/executor_tasks/category='+cat;
-         window.location.href = '/profile/task/category='+cat;
+    if (cat != 0 && stat == 0) {
+        // window.location.href = '/profile/executor_tasks/category='+cat;
+        window.location.href = '/profile/task/category=' + cat;
     }
-    if (cat==0 && stat!=0){
-         // window.location.href = '/profile/executor_tasks/stat='+stat;
-         window.location.href = '/profile/task/stat='+stat;
+    if (cat == 0 && stat != 0) {
+        // window.location.href = '/profile/executor_tasks/stat='+stat;
+        window.location.href = '/profile/task/stat=' + stat;
     }
-    if (cat!=0 && stat!=0){
-         // window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
-         window.location.href = '/profile/task/category='+cat+'/stat='+stat;
+    if (cat != 0 && stat != 0) {
+        // window.location.href = '/profile/executor_tasks/category='+cat+'/stat='+stat;
+        window.location.href = '/profile/task/category=' + cat + '/stat=' + stat;
     }
 })
 $('#task_filter_select_exec_stat').change(function () {
     var cat = $('#task_filter_select_exec_cat option:selected').val();
     var stat = $('#task_filter_select_exec_stat option:selected').val();
-    if (cat==0 && stat==0){
-         window.location.href = '/profile/task/';
+    if (cat == 0 && stat == 0) {
+        window.location.href = '/profile/task/';
     }
-    if (cat!=0 && stat==0){
-         window.location.href = '/profile/task/category='+cat;
+    if (cat != 0 && stat == 0) {
+        window.location.href = '/profile/task/category=' + cat;
     }
-    if (cat==0 && stat!=0){
-         window.location.href = '/profile/task/stat='+stat;
+    if (cat == 0 && stat != 0) {
+        window.location.href = '/profile/task/stat=' + stat;
     }
-    if (cat!=0 && stat!=0){
-         window.location.href = '/profile/task/category='+cat+'/stat='+stat;
+    if (cat != 0 && stat != 0) {
+        window.location.href = '/profile/task/category=' + cat + '/stat=' + stat;
     }
 });
 // let double = function(num)
@@ -535,17 +532,17 @@ $("#accept_advert").click(function (event) {
         },
         success: function (data) {
             // alert(data)
-            if (data==true){
+            if (data == true) {
                 // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
                 // setTimeout(5000)
-                window.location.href= '/profile/offer/';
+                window.location.href = '/profile/offer/';
             }
             // else {
             //     window.location.href= '/login';
             // }
         },
         error: function (data) {
-           alert('error')
+            alert('error')
         }
     })
 });
@@ -563,22 +560,47 @@ $("#btn_del_ads").click(function (event) {
         },
         success: function (data) {
             // alert(data)
-            if (data==true){
+            if (data == true) {
                 // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
                 // setTimeout(5000)
-                window.location.href= '/profile/advert/';
-            }
-            else {
-                window.location.href= '/login';
+                window.location.href = '/profile/advert/';
+            } else {
+                window.location.href = '/login';
             }
         },
         error: function (data) {
-           alert('error')
+            alert('error')
         }
     })
 });
 
 $('#birthday-input').mask('99/99/9999');
+
+function check_notifications(){
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: true,
+        url: "/profile/notice/check_notifications",
+        success: function (data) {
+            console.log(data)
+
+            let el = document.getElementById('count_notifications')
+            if (data!=0){
+                el.style.display='block'
+                el.innerHTML=data
+            }
+            else {
+                el.style.display='none'
+            }
+            setTimeout(check_notifications,1000*5)
+        },
+        error: function (data) {
+            console.log(data)
+        }
+    })
+    // return result
+}
 
 window.onload = function () {
 
@@ -586,6 +608,14 @@ window.onload = function () {
     if (window.location.href.indexOf('help_category') != -1 || window.location.href.indexOf('help') != -1) {
         load_help();
     }
+
+    let notice_btn = $('#Notice_button').length
+    let count_notifications = $('#count_notifications').length
+    if (notice_btn && count_notifications){
+        check_notifications();
+
+    }
+
     try {
         let check1 = document.getElementById('counter1')
         let check2 = document.getElementById('counter2')
@@ -593,30 +623,30 @@ window.onload = function () {
         // if (check1 != null && check2 != null && check3 != null && window.location.href.indexOf('register') == -1) {
         if (check1 != null && check2 != null && check3 != null) {
             // counter([10000, 10, 70000])
-            let is_not_main=false
+            let is_not_main = false
             if (window.location.href.indexOf('register') != -1) {
                 let vals = send_ajax('get_counter_values', 'register_exec,count_tasks,register_perf')
-                counter([vals[0], vals[1], vals[2]],false)
-                is_not_main=true
+                counter([vals[0], vals[1], vals[2]], false)
+                is_not_main = true
             }
             if (window.location.href.indexOf('rabota') != -1) {
                 let vals = send_ajax('get_counter_values', 'today_create_tasks,register_exec,complete_tasks')
-                counter([vals[0], vals[1], vals[2]],true)
-                is_not_main=true
+                counter([vals[0], vals[1], vals[2]], true)
+                is_not_main = true
             }
             if (window.location.href.indexOf('for_business') != -1) {
                 let vals = send_ajax('get_counter_values', 'today_create_tasks,register_exec,complete_tasks')
-                counter([vals[0], vals[1], vals[2]],true)
-                is_not_main=true
+                counter([vals[0], vals[1], vals[2]], true)
+                is_not_main = true
             }
             if (window.location.href.indexOf('about') != -1) {
                 let vals = send_ajax('get_counter_values', 'count_users,avialable_tasks,avialable_tasks')
-                counter([vals[0], vals[1], vals[2]],true)
-                is_not_main=true
+                counter([vals[0], vals[1], vals[2]], true)
+                is_not_main = true
             }
-            if (is_not_main==false){
+            if (is_not_main == false) {
                 let vals = send_ajax('get_counter_values', 'register_exec,count_tasks,register_perf')
-                counter([vals[0], vals[1], vals[2]],true)
+                counter([vals[0], vals[1], vals[2]], true)
             }
 
         }
@@ -964,8 +994,8 @@ $("#safety_btn_executor").click(function () {
     document.getElementById('div_executor').style.display = "block"
 });
 $(document).ready(function () {
-    var al=$('#view-message').val();
-    if(al == 1) {
+    var al = $('#view-message').val();
+    if (al == 1) {
         var el = document.getElementById('alerts-block');
         var row = document.createElement('div');
         row.setAttribute('class', 'row justify-content-center');
@@ -987,41 +1017,34 @@ $(document).ready(function () {
 $(document).ready(function () {
 
     $('.check_region').click(function () {
-        var id=this.id;
-        var list=$(this).parent().next().children()
-        var flag=true;
-        for(var i=0; i < list.length;i++)
-        {
-            var inp=$(list[i]).children().children('.custom-control-input');
-            var ch=inp[0].checked;
-            if(ch == false)
-            {
-                flag=false;
+        var id = this.id;
+        var list = $(this).parent().next().children()
+        var flag = true;
+        for (var i = 0; i < list.length; i++) {
+            var inp = $(list[i]).children().children('.custom-control-input');
+            var ch = inp[0].checked;
+            if (ch == false) {
+                flag = false;
                 break;
             }
 //             var inp_list=$(list[i]).children().children('.custom-control-input');
 //             inp_list.click();
 //             var p=0;
         }
-        if(flag==true)
-        {
-            for(var i=0; i < list.length;i++)
-            {
-                var inp_list=$(list[i]).children().children('.custom-control-input');
+        if (flag == true) {
+            for (var i = 0; i < list.length; i++) {
+                var inp_list = $(list[i]).children().children('.custom-control-input');
                 //var ch=inp[0].checked;
 //                 var inp_list=$(list[i]).children().children('.custom-control-input');
 //                 inp_list.click();
                 inp_list.click();
             }
-        }
-        else{
-            for(var i=0; i < list.length;i++)
-            {
-                var inp=$(list[i]).children().children('.custom-control-input');
-                var ch=inp[0].checked;
-                if(ch == false)
-                {
-                     var inp_list=$(list[i]).children().children('.custom-control-input');
+        } else {
+            for (var i = 0; i < list.length; i++) {
+                var inp = $(list[i]).children().children('.custom-control-input');
+                var ch = inp[0].checked;
+                if (ch == false) {
+                    var inp_list = $(list[i]).children().children('.custom-control-input');
 //                     inp_list.click();
                     inp_list.click();
                 }
@@ -1386,8 +1409,8 @@ $("#task_category").change(function () {
 });
 
 $("#task_subcategory").change(function () {
-     var sub = $('#task_subcategory option:selected').val();
-     if (sub != 0) {
+    var sub = $('#task_subcategory option:selected').val();
+    if (sub != 0) {
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -1603,14 +1626,13 @@ $('#check_edit_advert').click(function () {
             list = list + id.value + ",";
         }
     }
-    var inp =document.getElementById('del_list');
-    inp.setAttribute('value',list);
+    var inp = document.getElementById('del_list');
+    inp.setAttribute('value', list);
 
-    var title=$('#title').val();
-    if(title==""){
+    var title = $('#title').val();
+    if (title == "") {
         $('#title').addClass('br-red');
-    }
-    else{
+    } else {
         $('#save_edit_advert').click();
     }
 });
@@ -1634,12 +1656,12 @@ $("#input_price").click(function () {
     $('#input_price').removeClass('br-red');
 });
 $('#btn_task_check').click(function () {
-     var categ = $("#task_category option:selected").val();
-     var subcateg=$("#task_subcategory option:selected").val();
-     var title=$("#input_text").val();
-     var description=$("#description").val();
-     var address=$("#input_addr").val();
-     var price=$("#input_price").val();
+    var categ = $("#task_category option:selected").val();
+    var subcateg = $("#task_subcategory option:selected").val();
+    var title = $("#input_text").val();
+    var description = $("#description").val();
+    var address = $("#input_addr").val();
+    var price = $("#input_price").val();
 
     if (categ == 0) $('#task_category').addClass('br-red');
     if (subcateg == 0) $('#task_subcategory').addClass('br-red');
@@ -1647,39 +1669,34 @@ $('#btn_task_check').click(function () {
     if (description == "") $('#description').addClass('br-red');
     if (address == "") $('#input_addr').addClass('br-red');
     if (price == "") $('#input_price').addClass('br-red');
-    if(categ != 0 && subcateg != 0 && title != "" && description != "" && address != "" && price != ""){
+    if (categ != 0 && subcateg != 0 && title != "" && description != "" && address != "" && price != "") {
         $('#btn_task_submit').click();
-    }
-    else
-    {
+    } else {
         $("#alert-danger").show('slow');
-            setTimeout(function () {
-                $("#alert-danger").hide('slow');
-            }, 5000);
+        setTimeout(function () {
+            $("#alert-danger").hide('slow');
+        }, 5000);
     }
 });
 
 
 $('#btn_offer_check').click(function () {
-     var title=$("#input_text").val();
-     var description=$("#description").val();
-     var address=$("#input_addr").val();
+    var title = $("#input_text").val();
+    var description = $("#description").val();
+    var address = $("#input_addr").val();
 
     if (title == "") $('#input_text').addClass('br-red');
     if (description == "") $('#description').addClass('br-red');
     if (address == "") $('#input_addr').addClass('br-red');
-    if(title != "" && description != "" && address != ""){
+    if (title != "" && description != "" && address != "") {
         $('#btn_offer_submit').click();
-    }
-    else
-    {
+    } else {
         $("#alert-danger").show('slow');
-            setTimeout(function () {
-                $("#alert-danger").hide('slow');
-            }, 5000);
+        setTimeout(function () {
+            $("#alert-danger").hide('slow');
+        }, 5000);
     }
 });
-
 
 
 $("#message-text").click(function () {
@@ -1689,21 +1706,20 @@ $("#sum-name").click(function () {
     $('#sum-name').removeClass('br-red');
 });
 $('#task-bet-save').click(function () {
-    var id=$("#task-id").val();
+    var id = $("#task-id").val();
     var description = $("#message-text").val();
-    var sum=$("#sum-name").val();
-    if(description == "") $('#message-text').addClass('br-red');
-    if(sum == "") $('#sum-name').addClass('br-red');
-    if(description != "" && sum != "")
-    {
+    var sum = $("#sum-name").val();
+    if (description == "") $('#message-text').addClass('br-red');
+    if (sum == "") $('#sum-name').addClass('br-red');
+    if (description != "" && sum != "") {
         $.ajax({
             type: "GET",
             dataType: "json",
             url: '/profile/task/save_bet/',
             data: {
                 id: id,
-                description:description,
-                sum:sum
+                description: description,
+                sum: sum
             },
             success: function (data) {
                 window.location.reload();
@@ -1715,19 +1731,19 @@ $('#task-bet-save').click(function () {
     }
 });
 $(".select-user-bet").click(function () {
-    var id=$("#task_id").val();
-    var user_id=$(this).prev().val();
+    var id = $("#task_id").val();
+    var user_id = $(this).prev().val();
     $.ajax({
         type: "GET",
         dataType: "json",
         url: '/profile/task/set_exec/',
         data: {
             id: id,
-            user_id:user_id
+            user_id: user_id
         },
         success: function (data) {
-            window.location='/profile/task/';
-            },
+            window.location = '/profile/task/';
+        },
         error: function (data) {
             alert('Error');
         }
@@ -1735,24 +1751,24 @@ $(".select-user-bet").click(function () {
 });
 
 $('#btn_forgot').click(function () {
-    var email=$('#login_email').val();
+    var email = $('#login_email').val();
     // const start = new Date().getTime();
     // console.log("start " + start)
     $.ajax({
         type: "GET",
         dataType: "json",
-        data:{
-            email:email
+        data: {
+            email: email
         },
         url: '/send_new_pass/',
         success: function (data) {
-            window.location='/page/'
+            window.location = '/page/'
         },
         error: function (data) {
             $("#alert-danger").show('slow');
             setTimeout(function () {
-                    $("#alert-danger").hide('slow');
-                }, 5000);
+                $("#alert-danger").hide('slow');
+            }, 5000);
         }
     })
 });
