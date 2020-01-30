@@ -64,4 +64,39 @@ def accept_offer(request):
             task[0].offer.save()
             task[0].task_status=UserTaskStatus.objects.get(name="В работе")
             task[0].save()
+            notice=Notifications(user=task[0].user, text="Ваше предложение принято!",
+                                 date_public=datetime.datetime.now(), is_checked=False, is_show=False)
+            notice.save()
             return HttpResponse(json.dumps(True))
+
+def cancel_offer(request):
+    email = request.session.get('username', 'no')
+    if (email!='no' and Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+        # us = request.session.get('username')
+        user = AuthUser.objects.get(username=email).id
+        print(user)
+        id=int(request.GET.get('id'))
+        print(id)
+        offer=UserOffer.objects.filter(id=id).filter(advert__user__id=user)
+        print(offer)
+        if len(offer) == 0:
+            return HttpResponse(json.dumps(False))
+        else:
+            user=offer[0].user_id_customer
+            notice=Notifications(user=offer[0].user_id_customer, text="Ваше предложение отклонено!",
+                                 date_public=datetime.datetime.now(), is_checked=False, is_show=False)
+            notice.save()
+            task=UserTask.objects.filter(offer=offer[0])
+            task.delete()
+            offer.delete()
+            return HttpResponse(json.dumps(True))
+        # task=UserTask.objects.filter(id=id).filter(offer__advert__user_id=user)
+        # print(task)
+        # print(task[0].id)
+        # if len(task)==0:
+        #     return HttpResponse(json.dumps(False))
+        # else:
+        #     task[0].offer.is_accept=True
+        #     task[0].offer.save()
+        #     task[0].task_status=UserTaskStatus.objects.get(name="В работе")
+        #     task[0].save()

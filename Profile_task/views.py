@@ -521,6 +521,9 @@ def Save_offer(request):
                 tast_photo.save()
         advert.count_offer=advert.count_offer+1
         advert.save()
+        notise=Notifications(user=exec, text="У вас новое предложение. Проверьте страницу 'Предложения'",
+                             date_public=datetime.datetime.now(), is_checked=False, is_show=False)
+        notise.save()
     return HttpResponseRedirect("/profile/task")
 
 

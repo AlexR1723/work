@@ -284,3 +284,15 @@ class UserFavoritesExecutor(models.Model):
     class Meta:
         managed = False
         db_table = 'user_favorites_executor'
+
+
+class Notifications(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    is_checked = models.BooleanField(blank=True, null=True)
+    date_public = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'notifications'
