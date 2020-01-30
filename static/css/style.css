@@ -1574,8 +1574,8 @@ hr.line {
 }
 .profile-verif_hdr_bg {
     height: auto;
-    min-height: 50vh;
-    background: url(/static/image/prof_verif-bg.png) 50% 50% no-repeat;
+    /*min-height: 50vh;*/
+    background: url(/static/image/prof_verif-bg.png) 50% 80% no-repeat;
     background-size: cover;
 }
 .offer_hdr_bg_layout,
