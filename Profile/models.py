@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+
 class Link(models.Model):
     link = models.CharField(max_length=100, blank=True, null=True, verbose_name="Ссылка")
     icon = models.CharField(max_length=100, blank=True, null=True, verbose_name="Иконка")
@@ -34,6 +35,7 @@ class ContactType(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class AuthUser(models.Model):
     password = models.CharField(max_length=128)
@@ -73,7 +75,7 @@ class Region(models.Model):
     #     city=City.objects.filter(region=self)
     #     return city
     def all_reg(self):
-        reg=City.objects.filter(region=self).order_by('name')
+        reg = City.objects.filter(region=self).order_by('name')
         return reg
     # def first_reg(self):
     #     count=City.objects.filter(region=self).count()/2
@@ -86,7 +88,6 @@ class Region(models.Model):
     #     # print(count)
     #     reg = City.objects.filter(region=self).order_by('name')[count:]
     #     return reg
-
 
 
 class City(models.Model):
@@ -144,8 +145,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
     def all_sub(self):
-        sub=SubCategory.objects.filter(category=self).order_by('name')
+        sub = SubCategory.objects.filter(category=self).order_by('name')
         return sub
     # def first_sub(self):
     #     count=SubCategory.objects.filter(category=self).count()/2
@@ -178,8 +180,8 @@ class UserSubcategories(models.Model):
     subcategories = models.ForeignKey('SubCategory', models.DO_NOTHING)
 
     class Meta:
-            managed = False
-            db_table = 'user_subcategories'
+        managed = False
+        db_table = 'user_subcategories'
 
     def count(self):
         count = UserAdvert.objects.filter(subcategory=self.subcategories).filter(user=self.user).count()
@@ -189,18 +191,20 @@ class UserSubcategories(models.Model):
 class UserCities(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
+
     # region = models.ForeignKey(Region, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'user_cities'
 
+
 class UserAdvert(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
     title = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=5000, blank=True, null=True)
-    photo_main = models.ImageField(upload_to='uploads/advert/',max_length=500, blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/advert/', max_length=500, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
     count_offer = models.IntegerField(blank=True, null=True)
@@ -209,14 +213,16 @@ class UserAdvert(models.Model):
         managed = False
         db_table = 'user_advert'
 
+
 class UserAdvertPhoto(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
-    photo = models.ImageField(upload_to='uploads/advert/',max_length=100, blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/advert/', max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'user_advert_photo'
+
 
 class UserPortfolio(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
@@ -235,9 +241,9 @@ class UserTaskStatus(models.Model):
         db_table = 'user_task_status'
 
 
-
 class UserOffer(models.Model):
-    user_id_customer = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='user_id_customer', blank=True, null=True)
+    user_id_customer = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='user_id_customer', blank=True,
+                                         null=True)
     advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
     is_accept = models.BooleanField(blank=True, null=True)
     date = models.DateField(blank=True, null=True)
@@ -249,7 +255,7 @@ class UserOffer(models.Model):
 
 
 class UserTask(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='user_id')
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True, related_name='user_id')
     subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
     title = models.CharField(max_length=500, blank=True, null=True)
     description = models.CharField(max_length=5000, blank=True, null=True)
@@ -259,10 +265,10 @@ class UserTask(models.Model):
     start_time = models.TimeField(blank=True, null=True)
     end_time = models.TimeField(blank=True, null=True)
     pay = models.TextField(blank=True, null=True)
-    photo_main = models.ImageField(upload_to='uploads/task/',max_length=500, blank=True, null=True)
+    photo_main = models.ImageField(upload_to='uploads/task/', max_length=500, blank=True, null=True)
     task_status = models.ForeignKey('UserTaskStatus', models.DO_NOTHING, db_column='task_status', blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
-    exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='exec_id')
+    exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True, related_name='exec_id')
     date_add = models.DateField(blank=True, null=True)
     rezult_text = models.CharField(max_length=5000, blank=True, null=True)
     exec_finish = models.BooleanField(blank=True, null=True)
@@ -275,7 +281,7 @@ class UserTask(models.Model):
 
 class TaskPhoto(models.Model):
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
-    photo = models.FileField(upload_to='uploads/task/',max_length=500, blank=True, null=True)
+    photo = models.FileField(upload_to='uploads/task/', max_length=500, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -295,7 +301,7 @@ class UserComment(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     text = models.CharField(max_length=500, blank=True, null=True)
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
-    customer = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True,related_name='customer_id')
+    customer = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True, related_name='customer_id')
     date = models.DateField(blank=True, null=True)
     quality = models.IntegerField(blank=True, null=True)
     politeness = models.IntegerField(blank=True, null=True)
@@ -305,3 +311,23 @@ class UserComment(models.Model):
         managed = False
         db_table = 'user_comment'
 
+
+class Awards_model(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    tooltip = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'awards'
+
+
+class UserAwards(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    awards = models.ForeignKey('Awards_model', models.DO_NOTHING, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_awards'

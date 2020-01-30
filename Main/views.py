@@ -488,10 +488,10 @@ def Profile_verified(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Main/Profile_verified.html', locals())
 
-def Awards(request):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Main/Awards.html', locals())
-
-def Number_verification(request):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Main/Number_verification.html', locals())
+# def Awards(request):
+#     layout, username, photo = layout_name(request)
+#     return render(request, 'Main/../templates/Profile/Awards.html', locals())
+#
+# def Number_verification(request):
+#     layout, username, photo = layout_name(request)
+#     return render(request, 'Main/../templates/Profile/Number_verification.html', locals())

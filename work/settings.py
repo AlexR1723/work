@@ -152,6 +152,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+LOGIN_URL = '/login'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465

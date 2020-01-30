@@ -5,6 +5,9 @@ from .models import *
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
 from distutils.util import strtobool
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+
 import os
 import datetime
 
@@ -368,3 +371,64 @@ def Profile_page(request):
     else:
         return HttpResponseRedirect("/login")
 
+@login_required()
+def Awards(request):
+    layout, username, photo = layout_name(request)
+
+    user = request.session.get('username')
+    if user:
+        user=AuthUser.objects.get(username=user).id
+        awards=Awards_model.objects.all().order_by('name')
+        user_list = UserAwards.objects.filter(user_id=user).values_list('awards_id','date')
+        user_list=dict(user_list)
+    return render(request, 'Profile/Awards.html', locals())
+
+@login_required()
+def Number_verification(request):
+    layout, username, photo = layout_name(request)
+
+    user = request.session.get('username')
+    if user:
+        user=AuthUser.objects.get(username=user).id
+
+        phonenumber=Users.objects.get(auth_user_id=user).phone
+        # awards=Awards_model.objects.all().order_by('name')
+        # user_list = UserAwards.objects.filter(user_id=user).values_list('awards_id','date')
+        # user_list=dict(user_list)
+    return render(request, 'Profile/Number_verification.html', locals())
+
+@login_required()
+def verify_number(request):
+    phone='+'+str(request.GET.get('phone')).replace(' ','')
+    phone1=phone[1:]
+    print(phone +' - '+ str(len(phone)))
+    print(phone1)
+
+    if (phone.startswith('+7') and len(phone)!=12) or (phone.startswith('+38') and len(phone)!=13) or len(phone)<12 or len(phone)>13:
+        return HttpResponse(json.dumps([False, 'Номер введен некоректно!']))
+
+    user = request.session.get('username')
+    if user:
+        user=AuthUser.objects.get(username=user)
+
+        phonenumber=Users.objects.get(auth_user_id=user.id)
+        if phone != phonenumber.phone:
+            phonenumber.phone=phone
+            phonenumber.save()
+
+        id=user.id
+        name=user.first_name
+        surename=user.last_name
+
+        subj='Запрос на верификацию номера телефона'
+        text='Данные пользователя: \n\r id: '+str(id)+'\n\r Имя: '+name+'\n\r Фамилия: '+surename+'\n\r Номер телефона: '+phone
+
+        message=send_mail(subj,text,'romanenko.anastasiya1998@yandex.ua',['avdeenko.aleksey@yandex.com'])
+
+        if message:
+            s=Users.objects.get(auth_user_id=user.id)
+            s.verify_date=datetime.datetime.today()
+            s.save()
+            return HttpResponse(json.dumps([True,'Запрос на верификацию номера отправлен.']))
+        else:
+            return HttpResponse(json.dumps([False,'Не удалось отправить запрос на верификацию номера.']))

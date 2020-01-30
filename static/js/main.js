@@ -603,36 +603,65 @@ $("#btn_del_ads").click(function (event) {
 
 $('#birthday-input').mask('99/99/9999');
 
-function check_notifications(){
+function check_notifications() {
+    try {
+
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: true,
+            url: "/profile/notice/check_notifications",
+            success: function (data) {
+                console.log(data)
+
+                let el = document.getElementById('count_notifications')
+                let el_menu = document.getElementById('count_notifications_menu')
+                if (data != 0) {
+                    el.style.display = 'block'
+                    el.innerHTML = data
+                    el_menu.style.display = 'inline-block'
+                    // el_menu.children.innerHTML=data
+                    el_menu.children[0].innerHTML = data
+                } else {
+                    el.style.display = 'none'
+                    el_menu.style.display = 'none'
+                }
+                setTimeout(check_notifications, 1000 * 5)
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        })
+    } catch (e) {
+
+    }
+    // return result
+}
+
+$("#btn_number_verify").click(function (event) {
+    let phone=document.getElementById('phonenumber').value
     $.ajax({
         type: "GET",
         dataType: "json",
-        async: true,
-        url: "/profile/notice/check_notifications",
+        async: false,
+        url: 'verify_number',
+        data: {
+            phone:phone
+        },
         success: function (data) {
-            console.log(data)
-
-            let el = document.getElementById('count_notifications')
-            let el_menu = document.getElementById('count_notifications_menu')
-            if (data!=0){
-                el.style.display='block'
-                el.innerHTML=data
-                el_menu.style.display='inline-block'
-                // el_menu.children.innerHTML=data
-                el_menu.children[0].innerHTML=data
+            // alert(data)
+            if (data[0] == true) {
+                alert(data[1])
+            } else {
+                alert(data[1])
             }
-            else {
-                el.style.display='none'
-                el_menu.style.display='none'
-            }
-            setTimeout(check_notifications,1000*5)
         },
         error: function (data) {
-            console.log(data)
+            alert('error')
         }
     })
-    // return result
-}
+});
 
 window.onload = function () {
 
@@ -643,7 +672,7 @@ window.onload = function () {
 
     let notice_btn = $('#Notice_button').length
     let count_notifications = $('#count_notifications').length
-    if (notice_btn && count_notifications){
+    if (notice_btn && count_notifications) {
         check_notifications();
 
     }

@@ -1,0 +1,54 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="container p-0 mx-lg-auto">
+        <div class="row justify-content-center num-verif-blk my-5">
+            <div class="col-12 col-md-8 col-lg-6">
+                <h1>Ваш номер телефона</h1>
+                <p class="text-center mb-4">Для верификации номера телефона он должен иметь вид: <br>+3801234567890 или
+                    +71234567890</p>
+                <form action="" class="a-center">
+                    <div class="form-row mb-2">
+{#                        <div class="form-group col-4 col-md-3">#}
+{#                            <select class="form-control fz_12rem" id="inputTel">#}
+{#                                <option selected>+380</option>#}
+{#                                <option>+7</option>#}
+{#                            </select>#}
+{#                        </div>#}
+                        <div class="form-group col-8 col-md-9 text-center">
+                            <input class="form-control fz_12rem" id="phonenumber" type="number" value="{{ phonenumber }}">
+                        </div>
+                    </div>
+                    <a href="#">
+                        <button class="btn btn-primary num-verif_btn px-5" data-target="#ModalCenter"
+                                data-toggle="modal" type="button">Отправить
+                        </button>
+                    </a>
+                </form>
+
+                <div aria-hidden="true" aria-labelledby="ModalCenterTitle" class="modal fade" id="ModalCenter"
+                     role="dialog" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body a-center">
+                                <p>Если номер в профиле отличается от того, <br> что вы ввели, то первый будет изменён! <br> Хотите продолжить? </p>
+                            </div>
+                            <div class="modal-footer mx-auto">
+                                <button class="btn btn-primary" type="button" id="btn_number_verify">Да</button>
+                                <button class="btn btn-primary" type="button" data-dismiss="modal">Нет</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

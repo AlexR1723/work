@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^settings/$', views.Profile_settings, name="Profile_settings"),
     url(r'^choose_city/$', views.Choose_city, name="Choose_city"),
     url(r'^choose_categ/$', views.Choose_categ, name="Choose_categ"),
+    url(r'^awards/$', views.Awards, name="Awards"),
+    url(r'^number_verification/$', views.Number_verification, name="Number_verification"),
     url(r'^adverts_add/(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_add, name="Advert_add"),
 
 
@@ -33,6 +35,7 @@ urlpatterns = [
     url(r'profile_set_cities', views.profile_set_cities, name='profile_set_cities'),
     url(r'get_notice_status', views.get_notice_status, name='get_notice_status'),
     url(r'get_status', views.get_status, name='get_status'),
+    url(r'verify_number', views.verify_number, name='verify_number'),
 
     url(r'executor/', views.Executor),
     url(r'customer/', views.Customer),
