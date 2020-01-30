@@ -586,12 +586,17 @@ function check_notifications(){
             console.log(data)
 
             let el = document.getElementById('count_notifications')
+            let el_menu = document.getElementById('count_notifications_menu')
             if (data!=0){
                 el.style.display='block'
                 el.innerHTML=data
+                el_menu.style.display='inline-block'
+                // el_menu.children.innerHTML=data
+                el_menu.children[0].innerHTML=data
             }
             else {
                 el.style.display='none'
+                el_menu.style.display='none'
             }
             setTimeout(check_notifications,1000*5)
         },

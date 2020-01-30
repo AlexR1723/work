@@ -8,12 +8,14 @@ body {
 }
 
 #count_notifications{
-    background-color: red;
+    /*background-color: red;*/
+    background-color: #AF4B53;
     border-radius: 50%;
     position: absolute;
     top: 100%;
     left: 100%;
-    color: black;
+    /*color: black;*/
+    color: white;
     font-size: 20px;
     padding: 2px;
     min-width: 24px;
@@ -21,7 +23,24 @@ body {
     transform: translate(-50%,-50%);
     display: none;
 }
-
+#count_notifications_menu{
+    background-color: #AF4B53;
+    border-radius: 50%;
+    /*position: absolute;*/
+    top: 100%;
+    left: 100%;
+    color: white;
+    font-size: 20px;
+    padding: 2px;
+    min-width: 24px;
+    max-height: 24px;
+    text-align: center;
+    /*transform: translate(-50%,-50%);*/
+    display: inline-block;
+}
+#count_notifications_menu label{
+    transform: translateY(-5px);
+}
 .bg-gray{
     background: #f9f9f9;
     width: 100%;
