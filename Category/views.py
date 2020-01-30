@@ -99,15 +99,48 @@ def sub_category(request,name):
     if sub.count()==0:
         # print('')
         return HttpResponseRedirect("/profile/task/create/" + str(name))
+    count_user = UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
 
-    task_count = UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date').count()
-    count_user=UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
+    if (request.session.get('username', 'no') == 'no'):
+        city = request.session.get('city', 0)
+        if (city != 0):
+            task_count = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                task_status__name="В поиске").filter(city__name=city).order_by('-date').count()
+            if (task_count < 10):
+                task = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                    task_status__name="В поиске").filter(city__name=city).order_by('-date')[0:]
+            else:
+                task = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                    task_status__name="В поиске").filter(city__name=city).order_by('-date')[0:10]
+            task_other = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                task_status__name="В поиске").exclude(city__name=city).order_by('-date')
+        else:
+            task_count = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                task_status__name="В поиске").order_by('-date').count()
+            if (task_count < 10):
+                task = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                    task_status__name="В поиске").order_by('-date')[0:]
+            else:
+                task = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                    task_status__name="В поиске").order_by('-date')[0:10]
 
-
-    if(task_count<10):
-        task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date')[0:]
     else:
-        task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date')[0:10]
+        city = []
+        user = request.session.get('username', 'no')
+        user_city = UserCities.objects.filter(user__email=user)
+        for i in user_city:
+            city.append(i.city.name)
+
+        task_count = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+            task_status__name="В поиске").filter(city__name__in=city).order_by('-date').count()
+        if (task_count < 10):
+            task = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                task_status__name="В поиске").filter(city__name__in=city).order_by('-date')[0:]
+        else:
+            task = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+                task_status__name="В поиске").filter(city__name__in=city).order_by('-date')[0:10]
+        task_other = UserTask.objects.all().filter(subcategory=sub[0]).filter(
+            task_status__name="В поиске").exclude(city__name__in=city).order_by('-date')
 
     k = 0
     while (task_count > 0):

@@ -343,3 +343,17 @@ class UserTaskRezultPhoto(models.Model):
         except:
             full_name = 'image/file_type/txt.png'
         return full_name
+
+
+
+
+class Notifications(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    is_checked = models.BooleanField(blank=True, null=True)
+    date_public = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'notifications'

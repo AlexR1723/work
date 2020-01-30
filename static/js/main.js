@@ -526,7 +526,34 @@ $("#accept_advert").click(function (event) {
         type: "GET",
         dataType: "json",
         async: false,
-        url: 'accept_offer',
+        url: '/profile/offer/accept_offer',
+        data: {
+            id: id
+        },
+        success: function (data) {
+            // alert(data)
+            if (data == true) {
+                // alert('Объявление успешно удалено. Авто закрытие через 5 секунд')
+                // setTimeout(5000)
+                window.location.href = '/profile/offer/';
+            }
+            // else {
+            //     window.location.href= '/login';
+            // }
+        },
+        error: function (data) {
+            alert('error')
+        }
+    })
+});
+$("#cancel_advert").click(function (event) {
+    let id = this.name
+    console.log(id)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: '/profile/offer/cancel_offer',
         data: {
             id: id
         },
