@@ -2996,6 +2996,11 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
     font-size: 1.3rem;
     color: #FFFFFF;
 }
+.anchor {
+    position: absolute;
+    left: 0;
+    top: -5rem;
+}
 
 @media (min-width: 320px) {
     .profile-verif_blk .user-img_blk {
