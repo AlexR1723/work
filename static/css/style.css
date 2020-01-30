@@ -202,8 +202,15 @@ div.row {
     border-radius: 5px;
     transition: .3s;
 }
-
-.search-block:hover {
+.award_card {
+    border: 1px solid transparent;
+}
+.award_card:hover {
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 0px 10px #AAAAAA;
+    transition: .3s;
+}
+.search-block:hover{
     box-shadow: 0 0 10px white;
     transition: .3s;
 }
@@ -1572,10 +1579,16 @@ hr.line {
     background: url(/static/image/notices_bg.png) 50% 50% no-repeat;
     background-size: cover;
 }
+.awards_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/awards.png) 50% 30% no-repeat;
+    background-size: cover;
+}
 .profile-verif_hdr_bg {
     height: auto;
-    min-height: 50vh;
-    background: url(/static/image/prof_verif-bg.png) 50% 50% no-repeat;
+    /*min-height: 50vh;*/
+    background: url(/static/image/prof_verif-bg.png) 50% 80% no-repeat;
     background-size: cover;
 }
 .offer_hdr_bg_layout,
@@ -2997,7 +3010,11 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
     font-size: 1.3rem;
     color: #FFFFFF;
 }
-
+.anchor {
+    position: absolute;
+    left: 0;
+    top: -5rem;
+}
 @media (min-width: 320px) {
     .profile-verif_blk .user-img_blk {
         height: auto;
