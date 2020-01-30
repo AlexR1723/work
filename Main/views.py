@@ -491,3 +491,7 @@ def Profile_verified(request):
 def Awards(request):
     layout, username, photo = layout_name(request)
     return render(request, 'Main/Awards.html', locals())
+
+def Number_verification(request):
+    layout, username, photo = layout_name(request)
+    return render(request, 'Main/Number_verification.html', locals())

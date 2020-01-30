@@ -1371,7 +1371,8 @@ hr.line {
 }
 
 .login-block h3,
-.register-block h3 {
+.register-block h3,
+.num-verif-blk h1 {
     margin: 0;
     margin-bottom: 20px;
     font-size: 34px;
@@ -1398,20 +1399,42 @@ hr.line {
     padding: 75px 60px;
 }
 
-.register-link button {
+.register-link button,
+.num-verif-blk .num-verif_btn {
     padding: 0;
     padding: 7px 30px;
     font-size: 20px;
     background: #AF4B53;
     border: 1px solid transparent;
 }
-
-.register-link button:hover {
+.num-verif-blk .modal-footer button:first-child {
+    background: #AF4B53;
+    border: 1px solid transparent;
+}
+.num-verif-blk .modal-footer button:last-child {
+    background: #3E789D;
+    border: 1px solid transparent;
+}
+.num-verif-blk .modal-footer button:last-child:hover {
+    background: none;
+    border: 1px solid #3E789D;
+    color: #3E789D;
+}
+.register-link button:hover,
+.num-verif-blk .num-verif_btn:hover,
+.num-verif-blk .modal-footer button:first-child:hover {
     background: none;
     border: 1px solid #AF4B53;
     color: #AF4B53;
 }
-
+.num-verif-blk .modal-header,
+.num-verif-blk .modal-footer {
+    border-bottom: none;
+    border-top: none;
+}
+.num-verif-blk .modal-footer button {
+    width: 5rem;
+}
 .register-form button {
     padding: 0;
     padding: 7px 25px;
@@ -2267,7 +2290,8 @@ input[type=checkbox]:checked + label::after {
 .advert-card_text,
 .perform-card_text,
 .search-card_text,
-service-card_text {
+.service-card_text,
+.num-verif-blk p {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
@@ -3013,6 +3037,14 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
     position: absolute;
     left: 0;
     top: -5rem;
+}
+.num-verif-blk input[type="number"]::-webkit-outer-spin-button,
+.num-verif-blk input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.num-verif-blk input[type="number"] {
+    -moz-appearance: textfield;
 }
 @media (min-width: 320px) {
     .profile-verif_blk .user-img_blk {
