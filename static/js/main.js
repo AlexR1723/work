@@ -601,7 +601,7 @@ $("#btn_del_ads").click(function (event) {
     })
 });
 
-$('#birthday-input').mask('99/99/9999');
+$('#birthday-input').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
 
 function check_notifications() {
     try {
@@ -1354,6 +1354,9 @@ $("#profile_edit").click(function () {
     lbl.classList.add('d-none');
     var birtday_l = document.getElementById('birthday-label');
     birtday_l.classList.add('d-none');
+     var birtday_desc = document.getElementById('birthday-desc');
+    birtday_desc.classList.remove('d-none');
+    birtday_desc.classList.add('d-inline-block');
     var birtday = document.getElementById('birthday-input');
     birtday.classList.remove('d-none');
     birtday.classList.add('d-inline-block');
@@ -1383,6 +1386,9 @@ $("#cancel_info_btn").click(function () {
     // form.classList.add('d-none');
     var birtday_l = document.getElementById('birthday-label');
     birtday_l.classList.remove('d-none');
+    var birtday_desc = document.getElementById('birthday-desc');
+    birtday_desc.classList.add('d-none');
+    birtday_desc.classList.remove('d-inline-block');
     var birtday = document.getElementById('birthday-input');
     birtday.classList.add('d-none');
     birtday.classList.remove('d-inline-block');
@@ -1410,7 +1416,7 @@ $("#save_info_btn").click(function () {
     var gender = $('#gender-input option:selected').val();
     var about = $("#about-input").val();
     var phone = $("#phone-input").val();
-    if (date != "" && gender != "" && about != "" && phone != "") {
+    if (date != "" && gender != "" && phone != "") {
         $("#save_profile").click();
     } else {
         $("#alert-danger").show('slow');

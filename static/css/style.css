@@ -1802,6 +1802,14 @@ a.category-card_label:hover{
     border-radius: 5px;
     transition: .3s;
 }
+.verify-phone{
+    font-size: 1rem;
+    /*color: #3E789D;*/
+}
+.verify-phone:hover{
+    /*color: #3E789D;*/
+    text-decoration: underline;
+}
 .status-wait_span {
     color: #3E789D;
     font-size: 1rem;

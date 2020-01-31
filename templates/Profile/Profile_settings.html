@@ -113,6 +113,7 @@
                                                 <span class="pr-3">Дата рождения:</span>
                                                 <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>
                                                 <input type="text" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" placeholder="Дата" value="{{month}}/{{day}}/{{year}}" required>
+                                                <label class="prof-input ml-3 d-none" id="birthday-desc">Вводите дату в формате: месяц/день/год</label>
 <!--                                                <input type="date" placeholder="дд.мм.гггг" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
                                             </p>
                                             <p class="mb-1">
@@ -162,7 +163,9 @@
                                                 <span class="pr-3 text-wrap">Телефон: </span>
                                                 <label id="phone-label">{{user.phone}}</label>
                                                 <input class="mb-1 form-control prof-input d-none" id="phone-input" name="phone" type="text" value="{{user.phone}}" />
-                                                <a href="{% url 'Number_verification' %}">Verify</a>
+                                                {% if user.verify_phone != True %}
+                                                    <a class="ml-3 verify-phone" href="{% url 'Number_verification' %}">Подтвердить</a>
+                                                {% endif %}
                                             </p>
                                         </div>
                                     </div>
