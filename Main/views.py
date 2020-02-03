@@ -495,3 +495,7 @@ def Profile_verified(request):
 # def Number_verification(request):
 #     layout, username, photo = layout_name(request)
 #     return render(request, 'Main/../templates/Profile/Number_verification.html', locals())
+
+def Passport_verification(request):
+     layout, username, photo = layout_name(request)
+     return render(request, 'Main/Passport_verification.html', locals())

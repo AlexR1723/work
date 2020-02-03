@@ -1,0 +1,59 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container-fluid p-0 pass-verif-blk">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <h1>Верификация паспорта</h1>
+            <p class="text-center mb-md-5">Пожалуйста внимательно вводите все данные</p>
+            <form action="" class="a-left">
+                <div class="form-group row">
+                    <label class="col-form-label" for="inputPass">Серия и номер паспорта</label>
+                    <div class="col-md-5 p-0 px-md-3">
+                        <input class="form-control" id="inputPass" placeholder="ВТ 000000" type="text">
+                    </div>
+                </div>
+                <div class="form-group row upload-file">
+                    <label class="col-form-label" for="inputPass">Фото лица с разворотом <br class="d-none d-md-block"> паспорта</label>
+                    <div class="col-md-5 p-0 px-md-3">
+                        <input class="mb-1 form-control prof-file d-none" id="files" multiple name="files" type="file">
+                        <label class="btn btn-tertiary js-labelFile my-2 my-md-3" for="files">
+                            <i class="fas fa-upload"></i>
+                            <span class="js-fileName">Добавить файл</span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-5">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row m-0">
+                <div class="col-12 p-0">
+                    <div class="row">
+                        <div class="col-12 col-md-6 p-0 text-left">
+                            <span class="pass-photo_blk fz_13rem">Фото сделано верно, если:</span>
+                            <ol class="pass_list mt-1">
+                                <li>Данные на фото читаемы</li>
+                                <li>Нет бликов и пятен</li>
+                                <li>Не закрыты пальцами фото и другая информация</li>
+                                <li>Видны серия и номер паспорта</li>
+                            </ol>
+                        </div>
+                        <div class="col-12 col-md-6 p-0 text-left">
+                            <span class="pass-photo_blk fz_13rem">Пример фото:</span>
+                            <img alt="" class="img-fluid w-100" src="/static/image/pass_verif.png">
+                        </div>
+                        <a class="mx-auto mt-4" href="#">
+                            <button class="btn btn-primary pass-verif_btn">Отправить
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

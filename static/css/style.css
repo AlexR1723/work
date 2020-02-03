@@ -1110,7 +1110,17 @@ hr.line {
     font-weight: bold;
     padding: .3em .5em;
 }
-.cat-span {
+.ads-breadcrumb a,
+.ads-breadcrumb li.active,
+.pass-verif-blk input {
+    font-size: 1.2rem;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.cat-span,
+.pass-verif-blk .form-group label,
+.pass-verif-blk .form-group input:focus,
+.pass-verif-blk .pass_list {
     color: #000000;
     font-size: 1.2rem;
     line-height: 28px;
@@ -1121,11 +1131,13 @@ hr.line {
     background-color: transparent;
     border-radius: 0;
 }
-.ads-breadcrumb a,
-.ads-breadcrumb li.active {
-    font-size: 1.2rem;
-    line-height: 28px;
-    color: rgba(0, 0, 0, 0.7);
+.pass-verif-blk input::placeholder {
+    padding: 1rem 0;
+}
+.pass-verif-blk .pass-photo_blk {
+    font-weight: 600;
+    line-height: 33px;
+    color: #000000;
 }
 .ads-breadcrumb a {
     text-decoration: none;
@@ -1372,7 +1384,8 @@ hr.line {
 
 .login-block h3,
 .register-block h3,
-.num-verif-blk h1 {
+.num-verif-blk h1,
+.pass-verif-blk h1 {
     margin: 0;
     margin-bottom: 20px;
     font-size: 34px;
@@ -1400,7 +1413,8 @@ hr.line {
 }
 
 .register-link button,
-.num-verif-blk .num-verif_btn {
+.num-verif-blk .num-verif_btn,
+.pass-verif-blk .pass-verif_btn{
     padding: 0;
     padding: 7px 30px;
     font-size: 20px;
@@ -1422,6 +1436,7 @@ hr.line {
 }
 .register-link button:hover,
 .num-verif-blk .num-verif_btn:hover,
+.pass-verif-blk .pass-verif_btn:hover,
 .num-verif-blk .modal-footer button:first-child:hover {
     background: none;
     border: 1px solid #AF4B53;
@@ -2300,7 +2315,8 @@ input[type=checkbox]:checked + label::after {
 .perform-card_text,
 .search-card_text,
 .service-card_text,
-.num-verif-blk p {
+.num-verif-blk p,
+.pass-verif-blk p {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
