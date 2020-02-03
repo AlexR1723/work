@@ -7,6 +7,12 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.absolute_footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
 #count_notifications{
     /*background-color: red;*/
     background-color: #AF4B53;

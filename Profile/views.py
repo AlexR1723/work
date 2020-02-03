@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-import json,re
+import json, re
 from .models import *
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
@@ -11,59 +11,82 @@ from django.core.mail import send_mail
 import os
 import datetime
 
-
 list_page = []
 ads_count = 0
-message=0
+message = 0
+
+
 def layout_contact():
-    contact=ContactType.objects.all()
+    contact = ContactType.objects.all()
     return contact
+
+
 def layout_link():
-    link=Link.objects.all()
+    link = Link.objects.all()
     return link
+
+
 def layout_name(request):
     layout = 'layout.html'
-    username=''
-    photo=''
+    username = ''
+    photo = ''
     user = request.session.get('username', 'no')
     if (user != 'no'):
-        username=AuthUser.objects.all().filter(email=user)[0].first_name
-        photo=Users.objects.all().filter(auth_user__email=user)[0].photo
+        username = AuthUser.objects.all().filter(email=user)[0].first_name
+        photo = Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username,photo
+    return layout, username, photo
+
+
+def send_notice(request, text, is_executor):
+    user_id = request.session.get('username', False)
+    try:
+        user = AuthUser.objects.get(username=user_id).id
+        if is_executor:
+            note = Notifications(user_id=user, text=text, for_executor=True, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        else:
+            note = Notifications(user_id=user, text=text, for_executor=False, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        note.save()
+        print('note saved')
+    except:
+        return False
+
 
 # Create your views here.
 def Profile_settings(request):
-    layout, username,photo = layout_name(request)
-    if(username != ''):
+    layout, username, photo = layout_name(request)
+    if (username != ''):
         email = request.session.get('username', 'no')
-        user=Users.objects.all().filter(auth_user__email=email)[0]
-        if(user.birthday==None):
+        user = Users.objects.all().filter(auth_user__email=email)[0]
+        if (user.birthday == None):
             day = ""
             month = ""
             year = ""
         else:
-            day=user.birthday.day
-            if(day<10):
+            day = user.birthday.day
+            if (day < 10):
                 day = '0' + str(user.birthday.day)
             month = user.birthday.month
-            if(month<10):
-                month='0'+str(user.birthday.month)
-            year=user.birthday.year
+            if (month < 10):
+                month = '0' + str(user.birthday.month)
+            year = user.birthday.year
         # print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
-        subcategory=UserSubcategories.objects.all().filter(user__email=email)
+        subcategory = UserSubcategories.objects.all().filter(user__email=email)
         cities = UserCities.objects.all().filter(user__email=email)
-        portfolio=UserPortfolio.objects.all().filter(user__email=email)
+        portfolio = UserPortfolio.objects.all().filter(user__email=email)
         global message
-        alert=message
+        alert = message
         print(message)
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")
+
 
 def Portfolio_add(request):
     print('portfolio_add')
@@ -73,47 +96,49 @@ def Portfolio_add(request):
         auth = AuthUser.objects.all().filter(email=email)[0]
         if (doc):
             for d in doc.getlist('files'):
-                portfolio=UserPortfolio.objects.filter(user=auth)
-                if (portfolio.count()<10):
+                portfolio = UserPortfolio.objects.filter(user=auth)
+                if (portfolio.count() < 10):
                     if (d.size <= 31457280):
-                        user_portfolio=UserPortfolio(user=auth, photo=d)
+                        user_portfolio = UserPortfolio(user=auth, photo=d)
                         user_portfolio.save()
                     else:
                         global message
-                        message=1
+                        message = 1
     return HttpResponseRedirect("/profile/settings")
 
 
 def Delete_portfolio(request):
     if request.method == 'POST':
-        id=request.POST.get('delete_id')
-        id=id.split(',')
+        id = request.POST.get('delete_id')
+        id = id.split(',')
         print(id)
         for el in id:
-            if(el != ""):
-                user_portfolio=UserPortfolio.objects.get(id=el)
+            if (el != ""):
+                user_portfolio = UserPortfolio.objects.get(id=el)
                 user_portfolio.delete()
     return HttpResponseRedirect("/profile/settings")
+
 
 def Save(request):
     print('save')
     if request.method == 'POST':
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
-        gender=''
-        if(request.POST.get('gender') == '1'):
-            gender=Gender.objects.all().filter(name="Мужской")[0]
+        gender = ''
+        if (request.POST.get('gender') == '1'):
+            gender = Gender.objects.all().filter(name="Мужской")[0]
         else:
             gender = Gender.objects.all().filter(name="Женский")[0]
-        birthday=request.POST.get('birthday')
-        birthday=birthday.split('/')
-        user.birthday=birthday[2] + '-' + birthday[0] + '-' + birthday[1]
-        user.gender_id=gender
-        user.about_me=request.POST.get('about')
+        birthday = request.POST.get('birthday')
+        birthday = birthday.split('/')
+        user.birthday = birthday[2] + '-' + birthday[0] + '-' + birthday[1]
+        user.gender_id = gender
+        user.about_me = request.POST.get('about')
         user.phone = request.POST.get('phone')
         user.save()
 
     return HttpResponseRedirect("/profile/settings")
+
 
 def Save_photo(request):
     print('save_photo')
@@ -121,20 +146,20 @@ def Save_photo(request):
         doc = request.FILES
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
-        if(doc):
+        if (doc):
             user.photo = doc['files']
-        username=request.POST.get('user_name')
-        username=username.split(' ')
-        if(len(username) == 2):
-            user.auth_user.first_name=username[0]
-            user.auth_user.last_name=username[1]
+        username = request.POST.get('user_name')
+        username = username.split(' ')
+        if (len(username) == 2):
+            user.auth_user.first_name = username[0]
+            user.auth_user.last_name = username[1]
         user.auth_user.save()
         user.save()
     return HttpResponseRedirect("/profile/settings")
 
 
 def Choose_city(request):
-    layout, username,photo = layout_name(request)
+    layout, username, photo = layout_name(request)
 
     regions = Region.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -146,12 +171,12 @@ def Choose_city(request):
     for i in user_cities:
         list_cities.append(i.city_id)
 
-    user_regions=UserCities.objects.filter(user_id=user_id)
+    user_regions = UserCities.objects.filter(user_id=user_id)
     list_regions = []
     for i in regions:
         user_cities_reg = UserCities.objects.filter(user_id=user_id).filter(city__region=i)
-        cities_reg=City.objects.filter(region=i)
-        cities_count=cities_reg.count()
+        cities_reg = City.objects.filter(region=i)
+        cities_count = cities_reg.count()
         for j in user_cities:
             if j.city in cities_reg:
                 list_regions.append(i.id)
@@ -166,25 +191,24 @@ def Choose_city(request):
 
 def Advert_add(request, name):
     print('advert')
-    layout, username,photo = layout_name(request)
+    layout, username, photo = layout_name(request)
     if (username != ''):
-        subcategory=SubCategory.objects.all().filter(name=name)[0]
+        subcategory = SubCategory.objects.all().filter(name=name)[0]
         return render(request, 'Profile/Adverts_add.html', locals())
     else:
         return HttpResponseRedirect("/login")
 
 
-
 def Choose_categ(request):
-    layout, username,photo = layout_name(request)
+    layout, username, photo = layout_name(request)
 
-    category=Category.objects.all().order_by('name')
+    category = Category.objects.all().order_by('name')
     user = request.session.get('username', 0)
     if user == 0:
         return HttpResponseRedirect("/login")
     user_id = AuthUser.objects.get(username=user).id
-    user_cat=UserSubcategories.objects.filter(user_id=user_id)
-    cats=[]
+    user_cat = UserSubcategories.objects.filter(user_id=user_id)
+    cats = []
     for i in user_cat:
         cats.append(i.subcategories_id)
 
@@ -289,6 +313,7 @@ def get_status(request):
 
     return HttpResponse(json.dumps(list))
 
+
 # def load_photos(request):
 #     files=request.GET.get('files')
 #     files=request.FILES['newsslide']
@@ -297,53 +322,57 @@ def get_status(request):
 #     return HttpResponse(json.dumps('good'))
 
 def profile_set_subcategories(request):
-    id=request.GET.get('id')
-    status=bool(strtobool(request.GET.get('status')))
-    id=str(id).split('_')[2]
+    id = request.GET.get('id')
+    status = bool(strtobool(request.GET.get('status')))
+    id = str(id).split('_')[2]
 
     user = request.session.get('username', 0)
     print(user)
     if user != 0:
-        us=AuthUser.objects.get(username=user).id
-        sub=SubCategory.objects.get(id=id).id
-        if status==True:
-            UserSubcategories.objects.create(user_id=us,subcategories_id=sub)
+        us = AuthUser.objects.get(username=user).id
+        sub = SubCategory.objects.get(id=id).id
+        if status == True:
+            UserSubcategories.objects.create(user_id=us, subcategories_id=sub)
         else:
             UserSubcategories.objects.get(user_id=us, subcategories_id=sub).delete()
     return HttpResponse(json.dumps('good'))
 
+
 def profile_set_cities(request):
-    id=request.GET.get('id')
-    status=bool(strtobool(request.GET.get('status')))
-    id=str(id).split('_')[2]
+    id = request.GET.get('id')
+    status = bool(strtobool(request.GET.get('status')))
+    id = str(id).split('_')[2]
     print(id)
 
     user = request.session.get('username', 0)
     print(user)
     if user != 0:
-        us=AuthUser.objects.get(username=user).id
-        city=City.objects.get(id=id).id
-        if status==True:
+        us = AuthUser.objects.get(username=user).id
+        city = City.objects.get(id=id).id
+        if status == True:
             UserCities.objects.create(user_id=us, city_id=city)
         else:
             UserCities.objects.get(user_id=us, city_id=city).delete()
     return HttpResponse(json.dumps('good'))
 
+
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect("/")
 
+
 def Executor(request):
     email = request.session.get('username', 'no')
     user = Users.objects.all().filter(auth_user__email=email)[0]
-    user.type=UserType.objects.all().filter(name="Исполнитель")[0]
+    user.type = UserType.objects.all().filter(name="Исполнитель")[0]
     user.save()
     return HttpResponse(json.dumps({'data': 'ok'}))
+
 
 def Customer(request):
     email = request.session.get('username', 'no')
     user = Users.objects.all().filter(auth_user__email=email)[0]
-    user.type=UserType.objects.all().filter(name="Заказчик")[0]
+    user.type = UserType.objects.all().filter(name="Заказчик")[0]
     user.save()
     return HttpResponse(json.dumps({'data': 'ok'}))
 
@@ -358,18 +387,19 @@ def Profile_page(request):
     user = request.session.get('username', 'no')
     if (user != 'no'):
         auth_user = AuthUser.objects.all().get(email=user)
-        user=Users.objects.get(auth_user=auth_user)
-        if(user.verify_passport == True):
+        user = Users.objects.get(auth_user=auth_user)
+        if (user.verify_passport == True):
             return render(request, 'Profile/Profile_unverified.html', locals())
         else:
-            user_city=UserCities.objects.filter(user=auth_user)
-            user_sub=UserSubcategories.objects.filter(user=auth_user)
-            portfolio=UserPortfolio.objects.filter(user=auth_user)
+            user_city = UserCities.objects.filter(user=auth_user)
+            user_sub = UserSubcategories.objects.filter(user=auth_user)
+            portfolio = UserPortfolio.objects.filter(user=auth_user)
             # посчитать процент положительных отзывов
-            user_comment=UserComment.objects.filter(user=auth_user)
+            user_comment = UserComment.objects.filter(user=auth_user)
             return render(request, 'Profile/Profile_unverified.html', locals())
     else:
         return HttpResponseRedirect("/login")
+
 
 @login_required()
 def Awards(request):
@@ -377,11 +407,12 @@ def Awards(request):
 
     user = request.session.get('username')
     if user:
-        user=AuthUser.objects.get(username=user).id
-        awards=Awards_model.objects.all().order_by('name')
-        user_list = UserAwards.objects.filter(user_id=user).values_list('awards_id','date')
-        user_list=dict(user_list)
+        user = AuthUser.objects.get(username=user).id
+        awards = Awards_model.objects.all().order_by('name')
+        user_list = UserAwards.objects.filter(user_id=user).values_list('awards_id', 'date')
+        user_list = dict(user_list)
     return render(request, 'Profile/Awards.html', locals())
+
 
 @login_required()
 def Number_verification(request):
@@ -389,46 +420,98 @@ def Number_verification(request):
 
     user = request.session.get('username')
     if user:
-        user=AuthUser.objects.get(username=user).id
-
-        phonenumber=Users.objects.get(auth_user_id=user).phone
-        # awards=Awards_model.objects.all().order_by('name')
-        # user_list = UserAwards.objects.filter(user_id=user).values_list('awards_id','date')
-        # user_list=dict(user_list)
+        user = AuthUser.objects.get(username=user).id
+        phonenumber = Users.objects.get(auth_user_id=user).phone
     return render(request, 'Profile/Number_verification.html', locals())
+
 
 @login_required()
 def verify_number(request):
-    phone='+'+str(request.GET.get('phone')).replace(' ','')
-    phone1=phone[1:]
-    print(phone +' - '+ str(len(phone)))
-    print(phone1)
+    phone = '+' + str(request.GET.get('phone')).replace(' ', '')
+    # phone1=phone[1:]
+    # print(phone +' - '+ str(len(phone)))
+    print(phone)
 
-    if (phone.startswith('+7') and len(phone)!=12) or (phone.startswith('+38') and len(phone)!=13) or len(phone)<12 or len(phone)>13:
+    if (phone.startswith('+7') and len(phone) != 12) or (phone.startswith('+38') and len(phone) != 13) or len(
+            phone) < 12 or len(phone) > 13:
         return HttpResponse(json.dumps([False, 'Номер введен некоректно!']))
 
     user = request.session.get('username')
     if user:
-        user=AuthUser.objects.get(username=user)
+        user = AuthUser.objects.get(username=user)
 
-        phonenumber=Users.objects.get(auth_user_id=user.id)
+        phonenumber = Users.objects.get(auth_user_id=user.id)
         if phone != phonenumber.phone:
-            phonenumber.phone=phone
+            phonenumber.phone = phone
             phonenumber.save()
 
-        id=user.id
-        name=user.first_name
-        surename=user.last_name
+        id = user.id
+        name = user.first_name
+        surename = user.last_name
+        # print(user.email)
 
-        subj='Запрос на верификацию номера телефона'
-        text='Данные пользователя: \n\r id: '+str(id)+'\n\r Имя: '+name+'\n\r Фамилия: '+surename+'\n\r Номер телефона: '+phone
+        subj = 'Запрос на верификацию номера телефона'
+        text = 'Данные пользователя: \n\r id: ' + str(
+            id) + '\n\r Имя: ' + name + '\n\r Фамилия: ' + surename + '\n\r Номер телефона: ' + phone
 
-        message=send_mail(subj,text,'romanenko.anastasiya1998@yandex.ua',['avdeenko.aleksey@yandex.com'])
-
+        message = send_mail(subj, text, 'romanenko.anastasiya1998@yandex.ua', [user.email])
+        # message=True
         if message:
-            s=Users.objects.get(auth_user_id=user.id)
-            s.verify_date=datetime.datetime.today()
+            s = Users.objects.get(auth_user_id=user.id)
+            s.verify_date = datetime.datetime.today()
             s.save()
-            return HttpResponse(json.dumps([True,'Запрос на верификацию номера отправлен.']))
+            sn = send_notice(request, 'Ваш номер отправлен на верификацию!', True)
+            return HttpResponse(json.dumps([True, 'Запрос на верификацию номера отправлен.']))
         else:
-            return HttpResponse(json.dumps([False,'Не удалось отправить запрос на верификацию номера.']))
+            return HttpResponse(json.dumps([False, 'Не удалось отправить запрос на верификацию номера.']))
+
+
+@login_required()
+def Passport_verification(request):
+    layout, username, photo = layout_name(request)
+
+    # user = request.session.get('username')
+    # if user:
+    #     user = AuthUser.objects.get(username=user).id
+        # phonenumber = Users.objects.get(auth_user_id=user).phone
+    return render(request, 'Profile/Passport_verification.html', locals())
+
+
+@login_required()
+def verify_passport(request):
+    passport =str(request.GET.get('series')).replace(' ', '')
+    # phone1=phone[1:]
+    # print(phone +' - '+ str(len(phone)))
+    # print(phone)
+
+    if (len(passport))==0:
+        return HttpResponse(json.dumps([False, 'Заполните поля!']))
+
+    user = request.session.get('username')
+    if user:
+        user = AuthUser.objects.get(username=user)
+
+        user=Users.objects.get(auth_user_id=user.id)
+        user.passport_num_ser=passport
+        user.save()
+        # sn = send_notice(request, 'Ваш паспорт отправлен на верификацию!', True)
+
+        id = user.id
+        name = user.first_name
+        surename = user.last_name
+        # print(user.email)
+
+        subj = 'Запрос на верификацию паспорта'
+        text = 'Данные пользователя: \n\r id: ' + str(
+            id) + '\n\r Имя: ' + name + '\n\r Фамилия: ' + surename + '\n\r Серия паспорта: ' + passport
+
+        message = send_mail(subj, text, 'romanenko.anastasiya1998@yandex.ua', [user.email])
+        # message=True
+        if message:
+            s = Users.objects.get(auth_user_id=user.id)
+            s.verify_date = datetime.datetime.today()
+            s.save()
+            sn = send_notice(request, 'Ваш паспорт на верификацию!', True)
+            return HttpResponse(json.dumps([True, 'Запрос на верификацию паспорта отправлен.']))
+        else:
+            return HttpResponse(json.dumps([False, 'Не удалось отправить запрос на верификацию паспорта.']))

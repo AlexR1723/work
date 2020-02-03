@@ -498,7 +498,7 @@ def Profile_verified(request):
 
 def Passport_verification(request):
      layout, username, photo = layout_name(request)
-     return render(request, 'Main/Passport_verification.html', locals())
+     return render(request, 'Main/../templates/Profile/Passport_verification.html', locals())
 
 def Service_details(request):
      layout, username, photo = layout_name(request)

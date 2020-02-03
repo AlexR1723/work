@@ -627,14 +627,24 @@ function check_notifications() {
                     el.style.display = 'none'
                     el_menu.style.display = 'none'
                 }
-                setTimeout(check_notifications, 1000 * 5)
+                // try {
+                    setTimeout(check_notifications, 1000 * 5)
+                // }
+                // catch (e) {
+                //     setTimeout(check_notifications, 1000 * 5)
+                // }
+
             },
             error: function (data) {
                 console.log(data)
             }
+        }).fail( function () {
+            // console.log('error connection')
+            // console.clear()
+            setTimeout(check_notifications, 1000 * 10)
         })
     } catch (e) {
-
+        // setTimeout(check_notifications, 1000 * 5)
     }
     // return result
 }
@@ -663,7 +673,42 @@ $("#btn_number_verify").click(function (event) {
     })
 });
 
+$("#btn_passport_verify").click(function (event) {
+    let phone=document.getElementById('series').value
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: 'verify_passport',
+        data: {
+            series:series
+        },
+        success: function (data) {
+            // alert(data)
+            if (data[0] == true) {
+                alert(data[1])
+            } else {
+                alert(data[1])
+            }
+        },
+        error: function (data) {
+            alert('error')
+        }
+    })
+});
+
+
 window.onload = function () {
+
+
+    let body = document.getElementsByTagName('body')[0].getBoundingClientRect().height
+    let wind = document.documentElement.clientHeight
+    if ( wind > body) {
+        let res2 = (wind - body) / 2;
+        $('#main_block_content').css('top', res2);
+        $('#main_footer:first').addClass('absolute_footer');
+    }
+
 
     load_categories();
     if (window.location.href.indexOf('help_category') != -1 || window.location.href.indexOf('help') != -1) {
