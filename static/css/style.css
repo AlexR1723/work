@@ -1414,7 +1414,8 @@ hr.line {
 
 .register-link button,
 .num-verif-blk .num-verif_btn,
-.pass-verif-blk .pass-verif_btn{
+.pass-verif-blk .pass-verif_btn,
+.serv-details_blk button {
     padding: 0;
     padding: 7px 30px;
     font-size: 20px;
@@ -1437,6 +1438,7 @@ hr.line {
 .register-link button:hover,
 .num-verif-blk .num-verif_btn:hover,
 .pass-verif-blk .pass-verif_btn:hover,
+.serv-details_blk button:hover,
 .num-verif-blk .modal-footer button:first-child:hover {
     background: none;
     border: 1px solid #AF4B53;
@@ -1621,6 +1623,12 @@ hr.line {
     height: auto;
     min-height: 30vh;
     background: url(/static/image/awards.png) 50% 30% no-repeat;
+    background-size: cover;
+}
+.serv_details_hdr_bg {
+    height: auto;
+    min-height: 30vh;
+    background: url(/static/image/123.jpeg) 50% 50% no-repeat;
     background-size: cover;
 }
 .profile-verif_hdr_bg {
@@ -1904,7 +1912,8 @@ hr.line_blk {
     line-height: 28px;
     color: #000000;
 }
-.profile-unverif-blk h1 {
+.profile-unverif-blk h1,
+.serv-details_blk .serv-price-span {
     line-height: 45px;
     color: #000000;
 }
@@ -2316,7 +2325,8 @@ input[type=checkbox]:checked + label::after {
 .search-card_text,
 .service-card_text,
 .num-verif-blk p,
-.pass-verif-blk p {
+.pass-verif-blk p,
+.serv-details_blk p {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
@@ -2381,7 +2391,8 @@ input[type=checkbox]:checked + label::after {
     font-weight: normal;
     color: #000000;
 }
-.task-details span {
+.task-details span,
+.serv-details_blk .serv-users-span {
     font-size: 1rem;
     line-height: 23px;
     color: #727272;
@@ -3071,8 +3082,22 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
 .num-verif-blk input[type="number"] {
     -moz-appearance: textfield;
 }
+.serv-details_blk p {
+    margin: 0;
+    text-indent: 1rem;
+}
+
 @media (min-width: 320px) {
     .profile-verif_blk .user-img_blk {
         height: auto;
+    }
+}
+@media (max-width: 425px) {
+    .serv-details_blk .serv-price-span {
+        font-size: 1.5rem;
+    }
+    .serv-details_blk button {
+        padding: 7px 15px;
+        font-size: 1.1rem;
     }
 }

@@ -57,5 +57,6 @@ urlpatterns = [
     # url(r'^awards/$', views.Awards, name="awards"),
     # url(r'^number_verification/$', views.Number_verification, name="number_verification"),
     url(r'^passport_verification/$', views.Passport_verification, name="passport_verification"),
+    url(r'^service_details/$', views.Service_details, name="service_details"),
     # url(r'^dev/(?P<text>[А-Яа-я\s0-9-()/a-z,]+)/$', views.Dev, name="Dev"),
 ]
