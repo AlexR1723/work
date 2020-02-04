@@ -484,9 +484,9 @@ def get_counter_values(request):
 
 
 
-def Profile_verified(request):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Main/Profile_verified.html', locals())
+# def Profile_verified(request):
+#     layout, username, photo = layout_name(request)
+#     return render(request, 'Main/Profile_verified.html', locals())
 
 # def Awards(request):
 #     layout, username, photo = layout_name(request)
@@ -496,9 +496,9 @@ def Profile_verified(request):
 #     layout, username, photo = layout_name(request)
 #     return render(request, 'Main/../templates/Profile/Number_verification.html', locals())
 
-def Passport_verification(request):
-     layout, username, photo = layout_name(request)
-     return render(request, 'Main/../templates/Profile/Passport_verification.html', locals())
+# def Passport_verification(request):
+#      layout, username, photo = layout_name(request)
+#      return render(request, 'Main/../templates/Profile/Passport_verification.html', locals())
 
 def Service_details(request):
      layout, username, photo = layout_name(request)
