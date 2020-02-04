@@ -1930,7 +1930,8 @@ hr.line_blk {
     color: rgba(0, 0, 0, 0.85);
 }
 
-.settings-rew_blk::before {
+.settings-rew_blk::before,
+.settings-rew_blk-1::before {
     position: absolute;
     content: "";
     left: 0;
@@ -2184,10 +2185,15 @@ input[type=checkbox]:checked + label::after {
 }
 .adverts-add_blk span,
 .profile-unverif-blk .prof-span,
-.profile-verif-blk .prof-span {
+.profile-verif-blk .prof-span,
+.chat_blk h1 {
     font-size: 1em;
     line-height: 28px;
     color: rgba(0, 0, 0, 0.7);
+}
+.chat_blk h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 .adverts-add_blk .adverts_input {
     border: 1px solid #AAAAAA;
@@ -2558,7 +2564,8 @@ input[type=checkbox]:checked + label::after {
         width: 50%;
     }
     .profile-unverif-blk .settings-rew_blk::before,
-    .reviews_blk .settings-rew_blk::before {
+    .reviews_blk .settings-rew_blk::before,
+    .reviews_blk .settings-rew_blk-1::before {
         left: 0;
         top: 15px;
     }
@@ -2590,7 +2597,8 @@ input[type=checkbox]:checked + label::after {
         line-height: 45px;
     }
 
-    .settings-rew_blk::before {
+    .settings-rew_blk::before,
+    .settings-rew_blk-1::before {
         left: -20px;
         top: -5px;
     }
@@ -2600,21 +2608,25 @@ input[type=checkbox]:checked + label::after {
 }
 
 @media (min-width: 320px) and (max-width: 576px) {
-    .settings-rew_blk::before {
+    .settings-rew_blk::before,
+    .settings-rew_blk-1::before {
         height: 90%;
     }
-
     .nav-tabs .nav-link {
         padding: .5rem 1rem;
     }
-
-    .settings-rew_blk::before {
+    .settings-rew_blk::before,
+    .settings-rew_blk-1::before {
         left: -10px;
     }
-    .reviews_blk .settings-rew_blk::before {
+    .reviews_blk .settings-rew_blk::before,
+    .reviews_blk .settings-rew_blk-1::before {
          left: 0;
         top: 8px;
      }
+    .reviews_blk .settings-rew_blk-1::before {
+        display: none;
+    }
     #nav-portfolio button {
         font-size: 1rem;
         margin-bottom: 2%;
@@ -3110,6 +3122,29 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
 .user-message_blk .user-message_item {
     cursor: pointer;
 }
+.chat_blk .user-message .message-card,
+.chat_blk .others-message .message-card {
+    max-width: 75%;
+}
+.chat_blk .user-message .message-card {
+    border: 1px solid #AAAAAA;
+    border-radius: 5px;
+}
+.chat_blk .others-message .message-card {
+    background: rgba(62, 120, 157, 0.15);
+    border: 1px solid rgba(62, 120, 157, 0.15);
+    border-radius: 5px;
+}
+.chat_blk .message-card p,
+.chat_blk .message-card p span {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.chat_blk .message-card p span {
+    color: rgba(0, 0, 0, 0.5);
+}
 
 @media (min-width: 320px) {
     .profile-verif_blk .user-img_blk {
@@ -3129,5 +3164,8 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
     .user-message_blk .message-text {
         font-size: 1rem;
     }
-
+    .chat_blk .user-message .message-card,
+    .chat_blk .others-message .message-card {
+        max-width: 100%;
+    }
 }
