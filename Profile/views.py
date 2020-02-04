@@ -389,7 +389,7 @@ def Profile_page(request):
         auth_user = AuthUser.objects.all().get(email=user)
         user = Users.objects.get(auth_user=auth_user)
         if (user.verify_passport == True):
-            return render(request, 'Profile/Profile_unverified.html', locals())
+            return render(request, 'Profile/Profile_verified.html', locals())
         else:
             user_city = UserCities.objects.filter(user=auth_user)
             user_sub = UserSubcategories.objects.filter(user=auth_user)
