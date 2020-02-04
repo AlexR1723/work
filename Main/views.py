@@ -507,3 +507,7 @@ def Service_details(request):
 def User_reviews(request):
      layout, username, photo = layout_name(request)
      return render(request, 'Main/User_reviews.html', locals())
+
+def Private_messages(request):
+     layout, username, photo = layout_name(request)
+     return render(request, 'Main/Private_messages.html', locals())

@@ -2321,7 +2321,8 @@ input[type=checkbox]:checked + label::after {
     background: #AAAAAA;
 }
 .advert-cards_blk span,
-.icons-blk span {
+.icons-blk span,
+.user-message_blk span {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.5);
@@ -2332,10 +2333,21 @@ input[type=checkbox]:checked + label::after {
 .service-card_text,
 .num-verif-blk p,
 .pass-verif-blk p,
-.serv-details_blk p {
+.serv-details_blk p,
+.user-message_blk h1,
+.user-message_blk .message-text {
     font-size: 1.1rem;
     line-height: 25px;
     color: rgba(0, 0, 0, 0.7);
+}
+.user-message_blk h1 {
+    font-weight: 600;
+}
+.user-message_blk .message-text,
+.user-message_blk h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .perform-date_span,
 .propose-date_span,
@@ -3092,6 +3104,12 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
     margin: 0;
     text-indent: 1rem;
 }
+.user-message_blk .user-message_unread {
+    background: rgba(62, 120, 157, 0.15);
+}
+.user-message_blk .user-message_item {
+    cursor: pointer;
+}
 
 @media (min-width: 320px) {
     .profile-verif_blk .user-img_blk {
@@ -3106,4 +3124,10 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
         padding: 7px 15px;
         font-size: 1.1rem;
     }
+    .user-message_blk h1,
+    .user-message_blk span,
+    .user-message_blk .message-text {
+        font-size: 1rem;
+    }
+
 }
