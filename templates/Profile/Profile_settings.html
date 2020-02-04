@@ -39,7 +39,7 @@
                     <div class="row justify-content-start align-items-center pt-2">
                         <p class="mb-0 pr-0 profile-settings_text">Посмотреть, как выглядит профиль
                             для
-                            <a href="{% url 'Profile_page' %}">всех</a>
+                            <a href="{% url 'Profile_page' user.auth_user.id %}">всех</a>
                         </p>
                     </div>
                 </div>

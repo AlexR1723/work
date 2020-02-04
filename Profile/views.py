@@ -382,11 +382,12 @@ def Fav_executor(request):
     return render(request, 'Profile/Fav_executor.html', locals())
 
 
-def Profile_page(request):
+def Profile_page(request,id):
+    id=int(id)
     layout, username, photo = layout_name(request)
     user = request.session.get('username', 'no')
     if (user != 'no'):
-        auth_user = AuthUser.objects.all().get(email=user)
+        auth_user = AuthUser.objects.get(id=id)
         user = Users.objects.get(auth_user=auth_user)
         if (user.verify_passport == True):
             return render(request, 'Profile/Profile_verified.html', locals())
@@ -395,7 +396,22 @@ def Profile_page(request):
             user_sub = UserSubcategories.objects.filter(user=auth_user)
             portfolio = UserPortfolio.objects.filter(user=auth_user)
             # посчитать процент положительных отзывов
-            user_comment = UserComment.objects.filter(user=auth_user)
+            user_comment = UserComment.objects.filter(user=auth_user).order_by('-date')
+            successful_task=UserComment.objects.filter(user=auth_user).filter(quality__gte=4).filter(politeness__gte=4).filter(punctuality__gte=4).count()
+            quality_suc =UserComment.objects.filter(user=auth_user).filter(quality__gte=4).count()
+            politeness_suc = UserComment.objects.filter(user=auth_user).filter(politeness__gte=4).count()
+            punctuality_suc = UserComment.objects.filter(user=auth_user).filter(punctuality__gte=4).count()
+            all_task=user_comment.count()
+            com_percent=0
+            quality_percent=0
+            politeness_persent=0
+            punctuality_persent=0
+            if all_task>0:
+                com_percent=int((successful_task*100)/all_task)
+                quality_percent=int((quality_suc*100)/all_task)
+                politeness_persent=int((politeness_suc*100)/all_task)
+                punctuality_persent=int((punctuality_suc*100)/all_task)
+
             return render(request, 'Profile/Profile_unverified.html', locals())
     else:
         return HttpResponseRedirect("/login")
