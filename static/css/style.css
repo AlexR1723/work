@@ -2184,10 +2184,15 @@ input[type=checkbox]:checked + label::after {
 }
 .adverts-add_blk span,
 .profile-unverif-blk .prof-span,
-.profile-verif-blk .prof-span {
+.profile-verif-blk .prof-span,
+.chat_blk h1 {
     font-size: 1em;
     line-height: 28px;
     color: rgba(0, 0, 0, 0.7);
+}
+.chat_blk h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 .adverts-add_blk .adverts_input {
     border: 1px solid #AAAAAA;
@@ -3110,6 +3115,29 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
 .user-message_blk .user-message_item {
     cursor: pointer;
 }
+.chat_blk .user-message .message-card,
+.chat_blk .others-message .message-card {
+    max-width: 75%;
+}
+.chat_blk .user-message .message-card {
+    border: 1px solid #AAAAAA;
+    border-radius: 5px;
+}
+.chat_blk .others-message .message-card {
+    background: rgba(62, 120, 157, 0.15);
+    border: 1px solid rgba(62, 120, 157, 0.15);
+    border-radius: 5px;
+}
+.chat_blk .message-card p,
+.chat_blk .message-card p span {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.chat_blk .message-card p span {
+    color: rgba(0, 0, 0, 0.5);
+}
 
 @media (min-width: 320px) {
     .profile-verif_blk .user-img_blk {
@@ -3129,5 +3157,8 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
     .user-message_blk .message-text {
         font-size: 1rem;
     }
-
+    .chat_blk .user-message .message-card,
+    .chat_blk .others-message .message-card {
+        max-width: 100%;
+    }
 }

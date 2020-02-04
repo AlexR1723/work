@@ -511,3 +511,7 @@ def User_reviews(request):
 def Private_messages(request):
      layout, username, photo = layout_name(request)
      return render(request, 'Main/Private_messages.html', locals())
+
+def Chat(request):
+     layout, username, photo = layout_name(request)
+     return render(request, 'Main/Chat.html', locals())
