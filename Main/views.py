@@ -503,3 +503,7 @@ def Passport_verification(request):
 def Service_details(request):
      layout, username, photo = layout_name(request)
      return render(request, 'Main/Service_details.html', locals())
+
+def User_reviews(request):
+     layout, username, photo = layout_name(request)
+     return render(request, 'Main/User_reviews.html', locals())
