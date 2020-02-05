@@ -16,28 +16,28 @@
         <div class="row justify-content-center notices_blk my-5">
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
                 <div class="row m-0 justify-content-start">
-{#                    {% for i in notice_unread %}#}
-{#                        <div class="col-12 p-0">#}
-{#                            <div class="row">#}
-{#                                <div class="col-3 col-sm-1 col-md-2 col-lg-1 col-xl-1 p-2">#}
-{#                                    <img alt="" class="img-fluid" src="/static/image/notices_image.png">#}
-{#                                </div>#}
-{#                                <div class="col-9 col-sm-11 col-md-7 col-lg-11 col-xl-11 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">#}
-{#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
-{#                                            <h3 class="category-card_label m-0"><b>{{ i.text }}</b></h3>#}
-{#                                    </div>#}
-{#                                    <div class="row justify-content-start align-items-center">#}
-{#                                        {% if i.date.date == today %}#}
-{#                                            <span>Сегодня в {{ i.date.time }}</span>#}
-{#                                        {% else %}#}
-{#                                            <span>{{ i.date.date }} в {{ i.date.time }}</span>#}
-{#                                        {% endif %}#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                            <hr class="line_blk m-0 my-4">#}
-{#                    {% endfor %}#}
+                    {#                    {% for i in notice_unread %}#}
+                    {#                        <div class="col-12 p-0">#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3 col-sm-1 col-md-2 col-lg-1 col-xl-1 p-2">#}
+                    {#                                    <img alt="" class="img-fluid" src="/static/image/notices_image.png">#}
+                    {#                                </div>#}
+                    {#                                <div class="col-9 col-sm-11 col-md-7 col-lg-11 col-xl-11 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">#}
+                    {#                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">#}
+                    {#                                            <h3 class="category-card_label m-0"><b>{{ i.text }}</b></h3>#}
+                    {#                                    </div>#}
+                    {#                                    <div class="row justify-content-start align-items-center">#}
+                    {#                                        {% if i.date.date == today %}#}
+                    {#                                            <span>Сегодня в {{ i.date.time }}</span>#}
+                    {#                                        {% else %}#}
+                    {#                                            <span>{{ i.date.date }} в {{ i.date.time }}</span>#}
+                    {#                                        {% endif %}#}
+                    {#                                    </div>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                            <hr class="line_blk m-0 my-4">#}
+                    {#                    {% endfor %}#}
 
                     {% for i in notices %}
                         <div class="col-12 p-0">

@@ -522,10 +522,6 @@ def verify_number(request):
 def Passport_verification(request):
     layout, username, photo = layout_name(request)
 
-    # user = request.session.get('username')
-    # if user:
-    #     user = AuthUser.objects.get(username=user).id
-        # phonenumber = Users.objects.get(auth_user_id=user).phone
     return render(request, 'Profile/Passport_verification.html', locals())
 
 

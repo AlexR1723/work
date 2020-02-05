@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^awards/$', views.Awards, name="Awards"),
     url(r'^number_verification/$', views.Number_verification, name="Number_verification"),
     url(r'^passport_verification/$', views.Passport_verification, name="Passport_verification"),
+
     url(r'^adverts_add/(?P<name>[А-Яа-я\s0-9-()/a-z,:]+)/$', views.Advert_add, name="Advert_add"),
 
 

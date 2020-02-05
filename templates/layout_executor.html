@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext"
           rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
 
-<link rel = "stylesheet" type = "text/css" href = "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"  />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 </head>
@@ -26,7 +26,7 @@
                     <div class="row align-items-center">
                         <div>
                             <a class="navbar-brand mr-0" href="{% url 'Main' %}">
-                            <img src="{% static 'image/logo.png' %}" class="w-75" alt="">
+                                <img src="{% static 'image/logo.png' %}" class="w-75" alt="">
                             </a>
                         </div>
                         <div class="col-6 col-sm-7 col-md-6 col-lg-5 col-xl-4 p-0">
@@ -38,23 +38,24 @@
                     <div class="row justify-content-end align-items-center">
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
                             <a href="{% url 'Profile_tasks' %}" data-toggle="tooltip" data-placement="bottom"
-                                             title="Мои задания">
+                               title="Мои задания">
                                 <i class="fas fa-tasks"></i>
                             </a>
                         </div>
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
                             <a href="{% url 'Notice' %}" data-toggle="tooltip" data-placement="bottom"
-                                             title="Уведомления" id="Notice_button" style="position: relative">
+                               title="Уведомления" id="Notice_button" style="position: relative">
                                 <i class="far fa-bell">
                                     <div id="count_notifications"></div>
                                 </i>
-<!--                                 style="background-color: red; border-radius: 50%"-->
                             </a>
                         </div>
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
-                            <a href="{% url 'Dev' %}" data-toggle="tooltip" data-placement="bottom"
-                                             title="Личные сообщения">
-                                <i class="far fa-comments"></i>
+                            <a href="{% url 'Personal_messages' %}" data-toggle="tooltip" data-placement="bottom"
+                               title="Личные сообщения" id="Message_button" style="position: relative">
+                                <i class="far fa-comments">
+                                    <div id="count_messages"></div>
+                                </i>
                             </a>
                         </div>
                         <ul class="col-auto navbar-nav">
@@ -63,8 +64,9 @@
                                 <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     <div class="row align-items-center">
-                                        <div class="col-auto p-0 br-50" style="background: url({{MEDIA_URL}}{{photo.url}}) no-repeat center center; background-size: cover; width: 50px; height: 50px;">
-<!--                                            <img src="{{MEDIA_URL}}{{photo.url}}" alt="" width="50" class="br-50">-->
+                                        <div class="col-auto p-0 br-50" style="background: url(
+                                                {{ MEDIA_URL }}{{ photo.url }}) no-repeat center center; background-size: cover; width: 50px; height: 50px;">
+                                            <!--                                            <img src="{{MEDIA_URL}}{{photo.url}}" alt="" width="50" class="br-50">-->
                                         </div>
                                         <div class="col-auto p-0 pl-2 d-none d-sm-none s-md-block d-lg-block d-xl-block">
                                             <div class="row">
@@ -79,10 +81,12 @@
                                         </div>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu  dropdown-menu-right" id="divDropdown-menu" aria-labelledby="navbarDropdown" style="position: absolute;">
+                                <div class="dropdown-menu  dropdown-menu-right" id="divDropdown-menu"
+                                     aria-labelledby="navbarDropdown" style="position: absolute;">
                                     <div class="row pl-3 pr-3 executor pt-3 justify-content-center align-items-center">
                                         <button type="button" id="customer" class="btn btn-customer">Заказчик</button>
-                                        <button type="button" id="executor" class="btn btn-executor">Исполнитель</button>
+                                        <button type="button" id="executor" class="btn btn-executor">Исполнитель
+                                        </button>
                                     </div>
                                     <hr class="line mb-1">
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
@@ -96,7 +100,8 @@
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="{% url 'Profile_tasks' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Мои задания
+                                        <a href="{% url 'Profile_tasks' %}"
+                                           class="fontCategorySmall colorDarkGrey mb-0 ">Мои задания
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
@@ -104,13 +109,17 @@
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="{% url 'Notice' %}" class="fontCategorySmall colorDarkGrey mb-0 " id="Notice_button">Уведомления
+                                        <a href="{% url 'Notice' %}" class="fontCategorySmall colorDarkGrey mb-0 "
+                                           id="Notice_button">Уведомления
                                         </a>
-                                             <div id="count_notifications_menu" class="ml-4"><label class="mb-0"></label></div>
+                                        <div id="count_notifications_menu" class="ml-4"><label class="mb-0"></label>
+                                        </div>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Личные сообщения
+                                        <a href="{% url 'Personal_messages' %}"
+                                           class="fontCategorySmall colorDarkGrey mb-0 ">Личные сообщения
                                         </a>
+                                        <div id="count_messages_menu" class="ml-4"><label class="mb-0"></label></div>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
                                         <a href="{% url 'Awards' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Награды
@@ -121,7 +130,8 @@
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Баланс  <span class="balance"> 0 руб</span>
+                                        <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Баланс <span
+                                                class="balance"> 0 руб</span>
                                         </a>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
@@ -372,10 +382,8 @@
 <!--<script src="{% static 'js/bootstrap.min.js' %}"></script>-->
 <script src="{% static 'js/main.js' %}"></script>
 <!--    <script type = "text/javascript" src = "https://cdn.jsdelivr.net/jquery/latest/jquery.min.js" > </script>-->
-<script type = "text/javascript" src = "https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"> </script>
-<script type = "text/javascript" src = "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" > </script>
-
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
 </body>

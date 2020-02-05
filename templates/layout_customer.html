@@ -45,14 +45,18 @@
                         </div>
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
                             <a href="{% url 'Notice' %}" data-toggle="tooltip" data-placement="bottom"
-                                             title="Уведомления" id="Notice_button">
-                                <i class="far fa-bell"></i>
+                               title="Уведомления" id="Notice_button" style="position: relative">
+                                <i class="far fa-bell">
+                                    <div id="count_notifications"></div>
+                                </i>
                             </a>
                         </div>
                         <div class="col-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
-                            <a href="{% url 'Dev' %}" data-toggle="tooltip" data-placement="bottom"
-                                             title="Личные сообщения">
-                                <i class="far fa-comments"></i>
+                            <a href="{% url 'Personal_messages' %}" data-toggle="tooltip" data-placement="bottom"
+                               title="Личные сообщения" id="Message_button" style="position: relative">
+                                <i class="far fa-comments">
+                                    <div id="count_messages"></div>
+                                </i>
                             </a>
                         </div>
                               <ul class="col-auto navbar-nav">
@@ -107,8 +111,9 @@
                                         <div id="count_notifications_menu" class="ml-4"><label class="mb-0"></label></div>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
-                                        <a href="#!" class="fontCategorySmall colorDarkGrey mb-0 ">Личные сообщения
+                                        <a href="{% url 'Personal_messages' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Личные сообщения
                                         </a>
+                                        <div id="count_messages_menu" class="ml-4"><label class="mb-0"></label></div>
                                     </div>
                                     <div class="row pl-3 pr-2 pt-2 pb-2 prof-item">
                                         <a href="{% url 'Awards' %}" class="fontCategorySmall colorDarkGrey mb-0 ">Награды

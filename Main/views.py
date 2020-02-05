@@ -508,9 +508,9 @@ def User_reviews(request):
      layout, username, photo = layout_name(request)
      return render(request, 'Main/User_reviews.html', locals())
 
-def Private_messages(request):
-     layout, username, photo = layout_name(request)
-     return render(request, 'Main/Private_messages.html', locals())
+# def Private_messages(request):
+#      layout, username, photo = layout_name(request)
+#      return render(request, 'Main/../templates/Profile/Private_messages.html', locals())
 
 def Chat(request):
      layout, username, photo = layout_name(request)

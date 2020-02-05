@@ -604,49 +604,60 @@ $("#btn_del_ads").click(function (event) {
 $('#birthday-input').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
 
 function check_notifications() {
-    try {
-
-
         $.ajax({
             type: "GET",
             dataType: "json",
             async: true,
             url: "/profile/notice/check_notifications",
             success: function (data) {
-                console.log(data)
-
+                console.log(data+'notice')
                 let el = document.getElementById('count_notifications')
                 let el_menu = document.getElementById('count_notifications_menu')
                 if (data != 0) {
                     el.style.display = 'block'
                     el.innerHTML = data
                     el_menu.style.display = 'inline-block'
-                    // el_menu.children.innerHTML=data
                     el_menu.children[0].innerHTML = data
                 } else {
                     el.style.display = 'none'
                     el_menu.style.display = 'none'
                 }
-                // try {
                     setTimeout(check_notifications, 1000 * 5)
-                // }
-                // catch (e) {
-                //     setTimeout(check_notifications, 1000 * 5)
-                // }
-
             },
             error: function (data) {
                 console.log(data)
             }
         }).fail( function () {
-            // console.log('error connection')
-            // console.clear()
             setTimeout(check_notifications, 1000 * 10)
         })
-    } catch (e) {
-        // setTimeout(check_notifications, 1000 * 5)
-    }
-    // return result
+}
+function check_messages() {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            async: true,
+            url: "profile/message/check_messages",
+            success: function (data) {
+                console.log(data+'message')
+                let el = document.getElementById('count_messages')
+                let el_menu = document.getElementById('count_messages_menu')
+                if (data != 0) {
+                    el.style.display = 'block'
+                    el.innerHTML = data
+                    el_menu.style.display = 'inline-block'
+                    el_menu.children[0].innerHTML = data
+                } else {
+                    el.style.display = 'none'
+                    el_menu.style.display = 'none'
+                }
+                    setTimeout(check_messages, 1000 * 3)
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        }).fail( function () {
+            setTimeout(check_messages, 1000 * 5)
+        })
 }
 
 $("#btn_number_verify").click(function (event) {
@@ -719,7 +730,7 @@ window.onload = function () {
     let count_notifications = $('#count_notifications').length
     if (notice_btn && count_notifications) {
         check_notifications();
-
+        check_messages();
     }
 
     try {

@@ -13,7 +13,7 @@ body {
     bottom: 0;
 }
 
-#count_notifications{
+#count_notifications, #count_messages{
     /*background-color: red;*/
     background-color: #AF4B53;
     border-radius: 50%;
@@ -29,12 +29,12 @@ body {
     transform: translate(-50%,-50%);
     display: none;
 }
-#count_notifications_menu{
+#count_notifications_menu, #count_messages_menu{
     background-color: #AF4B53;
     border-radius: 50%;
     /*position: absolute;*/
-    top: 100%;
-    left: 100%;
+    /*top: 100%;*/
+    /*left: 100%;*/
     color: white;
     font-size: 20px;
     padding: 2px;
@@ -42,9 +42,10 @@ body {
     max-height: 24px;
     text-align: center;
     /*transform: translate(-50%,-50%);*/
-    display: inline-block;
+    /*display: inline-block;*/
+    display: none;
 }
-#count_notifications_menu label{
+#count_notifications_menu label,#count_messages_menu label{
     transform: translateY(-5px);
 }
 .bg-gray{

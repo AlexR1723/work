@@ -1,0 +1,123 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center my-4">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                <div class="row mb-5 mt-3 user-message_blk">
+
+                    {% for i in user_mess %}
+                        <div class="col-12 p-2 user-message_item {% if i.is_checked %}user-message_read{% else %}user-message_unread{% endif %}">
+                            <div class="row">
+                                <div class="col-2 col-md-2 col-lg-1 p-0 p-md-3 p-lg-2 align-self-center">
+                                    <div class="row justify-content-between justify-content-md-start">
+                                        <img alt="" class="img-fluid" src="{{ i.get_photo.url }}">
+                                    </div>
+                                </div>
+                                <div class="col-10 col-md-10 col-lg-11 align-self-center">
+                                    <div class="row justify-content-start justify-content-md-start">
+                                        <div class="col-8 col-md-6 a-left p-0">
+                                            <h1>{{ i.from_user.first_name }} {{ i.from_user.last_name }}</h1>
+                                        </div>
+                                        <div class="col-4 col-md-6 p-0 px-md-3 a-right">
+                                            {% if i.is_checked %}
+                                                {% if i.date.date == today %}
+                                                    <span>Сегодня в {{ i.date.time }}</span>
+                                                {% else %}
+                                                    <span>{{ i.date|date:'d E' }} в {{ i.date.time }}</span>
+                                                {% endif %}
+                                            {% else %}
+                                                {% if i.date.date == today %}
+                                                    <span><b>Сегодня в {{ i.date.time }}</b></span>
+                                                {% else %}
+                                                    <span><b>{{ i.date|date:'d E' }} в {{ i.date.time }}</b></span>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+
+                                        {% if i.is_checked %}
+                                            <p class="message-text m-0 pt-1">{{ i.text }}</p>
+                                        {% else %}
+                                            <p class="message-text m-0 pt-1"><b>{{ i.text }}</b></p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if not forloop.last %}
+                            <hr class="line_blk m-0">
+                        {% endif %}
+                    {% endfor %}
+
+                    {#                    <div class="col-12 p-2 user-message_item user-message_unread">#}
+                    {#                        <div class="row">#}
+                    {#                            <div class="col-2 col-md-2 col-lg-1 p-0 p-md-3 p-lg-2 align-self-center">#}
+                    {#                                <div class="row justify-content-between justify-content-md-start">#}
+                    {#                                    <img alt="" class="img-fluid" src="/static/image/user_profile.png">#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="col-10 col-md-10 col-lg-11 align-self-center">#}
+                    {#                                <div class="row justify-content-start justify-content-md-start">#}
+                    {#                                    <div class="col-8 col-md-6 a-left p-0">#}
+                    {#                                        <h1>Иванов Иван</h1>#}
+                    {#                                    </div>#}
+                    {#                                    <div class="col-4 col-md-6 p-0 px-md-3 a-right">#}
+                    {#                                        <span>20.01.2020</span>#}
+                    {#                                    </div>#}
+                    {#                                    <p class="message-text m-0 pt-1">Lorem ipsum dolor sit amet</p>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                    <hr class="line_blk m-0">#}
+                    {#                    <div class="col-12 p-2 user-message_item user-message_read">#}
+                    {#                        <div class="row">#}
+                    {#                            <div class="col-2 col-md-2 col-lg-1 p-0 p-md-3 p-lg-2 align-self-center">#}
+                    {#                                <div class="row justify-content-between justify-content-md-start">#}
+                    {#                                    <img alt="" class="img-fluid" src="/static/image/user_profile.png">#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="col-10 col-md-10 col-lg-11 align-self-center">#}
+                    {#                                <div class="row justify-content-start justify-content-md-start">#}
+                    {#                                    <div class="col-8 col-md-6 a-left p-0">#}
+                    {#                                        <h1>Петров Иван</h1>#}
+                    {#                                    </div>#}
+                    {#                                    <div class="col-4 col-md-6 p-0 px-md-3 a-right">#}
+                    {#                                        <span>19.01.2020</span>#}
+                    {#                                    </div>#}
+                    {#                                    <p class="message-text m-0 pt-1">Lorem ipsum dolor sit amet, consectetur adipiscing#}
+                    {#                                        elit, sed do eiusmod tempor incididunt ut labore et dolore ...</p>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                    <hr class="line_blk m-0">#}
+                    {#                    <div class="col-12 p-2 user-message_item user-message_unread">#}
+                    {#                        <div class="row">#}
+                    {#                            <div class="col-2 col-md-2 col-lg-1 p-0 p-md-3 p-lg-2 align-self-center">#}
+                    {#                                <div class="row justify-content-between justify-content-md-start">#}
+                    {#                                    <img alt="" class="img-fluid" src="/static/image/user_profile.png">#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="col-10 col-md-10 col-lg-11 align-self-center">#}
+                    {#                                <div class="row justify-content-start justify-content-md-start">#}
+                    {#                                    <div class="col-8 col-md-6 a-left p-0">#}
+                    {#                                        <h1>Петров Сергей</h1>#}
+                    {#                                    </div>#}
+                    {#                                    <div class="col-4 col-md-6 p-0 px-md-3 a-right">#}
+                    {#                                        <span>19.01.2020</span>#}
+                    {#                                    </div>#}
+                    {#                                    <p class="message-text m-0 pt-1">Lorem ipsum dolor sit amet, consectetur adipiscing#}
+                    {#                                        elit, sed do eiusmod tempor incididunt ut labore et dolore ...</p>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                    <hr class="line_blk m-0">#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

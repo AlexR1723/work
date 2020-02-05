@@ -17,5 +17,8 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.Message, name="Message"),
+    url(r'^$', views.Personal_messages, name="Personal_messages"),
+    # url(r'^personal_messages/$', views.Personal_messages, name="Personal_messages"),
+
+    url(r'check_messages', views.check_messages, name='check_messages'),
 ]
