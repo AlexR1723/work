@@ -53,10 +53,13 @@ urlpatterns = [
 
     url(r'^dev/$', views.Dev, name="Dev"),
     url(r'^page/$', views.Page, name="Page"),
-    url(r'^profile_verified/$', views.Profile_verified, name="profile_verified"),
+    # url(r'^profile_verified/$', views.Profile_verified, name="profile_verified"),
     # url(r'^awards/$', views.Awards, name="awards"),
     # url(r'^number_verification/$', views.Number_verification, name="number_verification"),
     # url(r'^passport_verification/$', views.Passport_verification, name="passport_verification"),
     url(r'^service_details/$', views.Service_details, name="service_details"),
+    url(r'^user_reviews/$', views.User_reviews, name="user_reviews"),
+    url(r'^private_messages/$', views.Private_messages, name="private_messages"),
+    url(r'^chat/$', views.Chat, name="chat"),
     # url(r'^dev/(?P<text>[А-Яа-я\s0-9-()/a-z,]+)/$', views.Dev, name="Dev"),
 ]

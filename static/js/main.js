@@ -1461,13 +1461,27 @@ $("#save_info_btn").click(function () {
     var gender = $('#gender-input option:selected').val();
     var about = $("#about-input").val();
     var phone = $("#phone-input").val();
-    if (date != "" && gender != "" && phone != "") {
-        $("#save_profile").click();
-    } else {
-        $("#alert-danger").show('slow');
-        setTimeout(function () {
-            $("#alert-danger").hide('slow');
-        }, 5000);
+    var date_=date.split('/');
+    var now_ = new Date();
+    now_.setHours(0,0,0,0);
+    var date_c=new Date(date_[2],date_[0]-1,date_[1]);
+    var date_90=new Date(1900,0,1);
+    if(date_c < date_90 || date_c > now_)
+    {
+        $("#alert-danger_date").show('slow');
+            setTimeout(function () {
+                $("#alert-danger_date").hide('slow');
+            }, 5000);
+    }
+    else {
+        if (date != "" && gender != "" && phone != "") {
+            $("#save_profile").click();
+        } else {
+            $("#alert-danger").show('slow');
+            setTimeout(function () {
+                $("#alert-danger").hide('slow');
+            }, 5000);
+        }
     }
 
 

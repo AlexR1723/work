@@ -17,7 +17,8 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.Profile_page, name="Profile_page"),
+    url(r'^(?P<id>[0-9]+)/$', views.Profile_page, name="Profile_page"),
+    url(r'^(?P<id>[0-9]+)/adverts/$', views.Profile_adverts, name="Profile_adverts"),
     url(r'^settings/$', views.Profile_settings, name="Profile_settings"),
     url(r'^choose_city/$', views.Choose_city, name="Choose_city"),
     url(r'^choose_categ/$', views.Choose_categ, name="Choose_categ"),

@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-10 col-sm-10 col-md-5 col-lg-4 col-xl-3 p-1 mx-auto">
                             <div class="row justify-content-around justify-content-sm-around justify-content-md-end align-content-end align-items-end">
-                                <a href="#">
+                                <a href="{% url 'Profile_adverts' user.auth_user.id %}">
                                     <button class="propose_btn">Предложить работу</button>
                                 </a>
                             </div>
@@ -45,22 +45,16 @@
                 </div>
                 <hr class="line_blk m-0 my-4">
                 <div class="col-12 p-0">
-                        <div class="row portfolio-photos_blk">
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                <img alt="..." class="img-fluid center-block" src="/static/image/hiw_bg.jpeg">
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                <img alt="..." class="img-fluid center-block" src="/static/image/work-hardening.jpg">
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                <img alt="..." class="img-fluid center-block" src="/static/image/cio-c.jpg">
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                <img alt="..." class="img-fluid center-block" src="/static/image/contract.jpg">
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                                <img alt="..." class="img-fluid center-block" src="/static/image/security.jpg">
-                            </div>
+                        <div class="row portfolio-photos_blk" id="gallery">
+                            {% for p in portfolio %}
+                                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 img_wrapper  d-inline-block p-2">
+                                     <div class="photo">
+                                         <a href="{{MEDIA_URL}}{{p.photo.url}}" data-lightbox="roadtrip">
+                                             <img class="w-100" src="{{MEDIA_URL}}{{p.photo.url}}" alt="Eagle" />
+                                         </a>
+                                     </div>
+                                </div>
+                            {% endfor %}
                         </div>
                 </div>
                 <hr class="line_blk m-0 my-4">
@@ -68,32 +62,37 @@
                     <div class="row">
                         <div class="col-6 col-md-3 col-lg-3 col-xl-2 p-1">
                             <div class="row justify-content-around justify-content-md-center align-content-center align-items-center pt-2">
-                                <span class="col-12 text-center settings-rew_span">10</span>
+                                <span class="col-12 text-center settings-rew_span">{{user_comment|length}}</span>
                                 <label class="settings-rew_label mb-2">отзывов</label>
                             </div>
                         </div>
                         <div class="col-6 col-md-3 col-lg-3 col-xl-2 p-1">
                             <div class="row justify-content-around justify-content-md-center align-content-center align-items-center pt-2 pl-2 settings-rew_blk">
-                                <span class="col-12 text-center settings-rew_span">98%</span>
+                                <span class="col-12 text-center settings-rew_span">{{com_percent}}%</span>
                                 <label class="settings-rew_label mb-2">положительных</label>
                             </div>
                         </div>
                         <div class="col-8 col-md-4 col-lg-3 col-xl-3 p-1">
                             <div class="row justify-content-start justify-content-md-start align-content-center align-items-center pt-md-2 pl-3 settings-rew_blk">
-                                <label class="settings-rew_label w-100 my-2 ">качество работы: <span class="pl-2">98%</span></label>
-                                <label class="settings-rew_label w-100 mb-2">вежливость: <span class="pl-2">98%</span></label>
-                                <label class="settings-rew_label w-100 mb-2">пунктуальность: <span class="pl-2">98%</span></label>
+                                <label class="settings-rew_label w-100 my-2 ">качество работы: <span class="pl-2">{{quality_percent}}%</span></label>
+                                <label class="settings-rew_label w-100 mb-2">вежливость: <span class="pl-2">{{politeness_persent}}%</span></label>
+                                <label class="settings-rew_label w-100 mb-2">пунктуальность: <span class="pl-2">{{punctuality_persent}}%</span></label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr class="line_blk m-0 mt-4">
+                {% for c in user_comment %}
                 <div class="col-12 p-0 mb-3">
-                    <div class="row p-2 p-md-3">
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="row col-bg-gray p-2 p-md-3" >
+                        {% else %}
+                             <div class="row p-2 p-md-3" >
+                        {% endif %}
                         <div class="col-12 col-md-12 p-1">
                             <div class="row justify-content-between justify-content-md-start pt-2">
-                                <h4>Иван И.</h4>
-                                <span class="profile-span pt-1 pl-3">12.07.1979</span>
+                                <h4>{{c.customer.first_name}} {{c.customet.lest_name.0}}.</h4>
+                                <span class="profile-span pt-1 pl-3">{{c.date}}</span>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 p-1">
@@ -109,93 +108,94 @@
                         </div>
                         <div class="col-12 col-md-12 p-1">
                             <div class="row justify-content-start justify-content-md-start pt-2">
-                                <p class="profile_para mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <span class="prof-span">Наименование задания к которому отзыв</span>
+                                <p class="profile_para mb-2">{{c.text}}</p>
+                                <span class="prof-span">{{c.task.title}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 p-0 mb-3">
-                    <div class="row col-bg-gray p-2 p-md-3">
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-between justify-content-md-start pt-2">
-                                <h4>Иван И.</h4>
-                                <span class="profile-span pt-1 pl-3">12.07.1979</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-start justify-content-md-start">
-                                <div class="star-rating">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star-o"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-start justify-content-md-start pt-2">
-                                <p class="profile_para mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <span class="prof-span">Наименование задания к которому отзыв</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 p-0 mb-3">
-                    <div class="row p-2 p-md-3">
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-between justify-content-md-start pt-2">
-                                <h4>Иван И.</h4>
-                                <span class="profile-span pt-1 pl-3">12.07.1979</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-start justify-content-md-start">
-                                <div class="star-rating">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star-o"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-start justify-content-md-start pt-2">
-                                <p class="profile_para mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <span class="prof-span">Наименование задания к которому отзыв</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 p-0 mb-3">
-                    <div class="row col-bg-gray p-2 p-md-3">
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-between justify-content-md-start pt-2">
-                                <h4>Иван И.</h4>
-                                <span class="profile-span pt-1 pl-3">12.07.1979</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-start justify-content-md-start">
-                                <div class="star-rating">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star-o"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-12 p-1">
-                            <div class="row justify-content-start justify-content-md-start pt-2">
-                                <p class="profile_para mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <span class="prof-span">Наименование задания к которому отзыв</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+<!--                <div class="col-12 p-0 mb-3">-->
+<!--                    <div class="row col-bg-gray p-2 p-md-3">-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-between justify-content-md-start pt-2">-->
+<!--                                <h4>Иван И.</h4>-->
+<!--                                <span class="profile-span pt-1 pl-3">12.07.1979</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-start justify-content-md-start">-->
+<!--                                <div class="star-rating">-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star-o"></span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-start justify-content-md-start pt-2">-->
+<!--                                <p class="profile_para mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
+<!--                                <span class="prof-span">Наименование задания к которому отзыв</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 p-0 mb-3">-->
+<!--                    <div class="row p-2 p-md-3">-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-between justify-content-md-start pt-2">-->
+<!--                                <h4>Иван И.</h4>-->
+<!--                                <span class="profile-span pt-1 pl-3">12.07.1979</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-start justify-content-md-start">-->
+<!--                                <div class="star-rating">-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star-o"></span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-start justify-content-md-start pt-2">-->
+<!--                                <p class="profile_para mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
+<!--                                <span class="prof-span">Наименование задания к которому отзыв</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 p-0 mb-3">-->
+<!--                    <div class="row col-bg-gray p-2 p-md-3">-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-between justify-content-md-start pt-2">-->
+<!--                                <h4>Иван И.</h4>-->
+<!--                                <span class="profile-span pt-1 pl-3">12.07.1979</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-start justify-content-md-start">-->
+<!--                                <div class="star-rating">-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star"></span>-->
+<!--                                    <span class="fa fa-star-o"></span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-md-12 p-1">-->
+<!--                            <div class="row justify-content-start justify-content-md-start pt-2">-->
+<!--                                <p class="profile_para mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
+<!--                                <span class="prof-span">Наименование задания к которому отзыв</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
 
         </div>

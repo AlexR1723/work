@@ -484,9 +484,9 @@ def get_counter_values(request):
 
 
 
-def Profile_verified(request):
-    layout, username, photo = layout_name(request)
-    return render(request, 'Main/Profile_verified.html', locals())
+# def Profile_verified(request):
+#     layout, username, photo = layout_name(request)
+#     return render(request, 'Main/Profile_verified.html', locals())
 
 # def Awards(request):
 #     layout, username, photo = layout_name(request)
@@ -503,3 +503,15 @@ def Profile_verified(request):
 def Service_details(request):
      layout, username, photo = layout_name(request)
      return render(request, 'Main/Service_details.html', locals())
+
+def User_reviews(request):
+     layout, username, photo = layout_name(request)
+     return render(request, 'Main/User_reviews.html', locals())
+
+def Private_messages(request):
+     layout, username, photo = layout_name(request)
+     return render(request, 'Main/Private_messages.html', locals())
+
+def Chat(request):
+     layout, username, photo = layout_name(request)
+     return render(request, 'Main/Chat.html', locals())
