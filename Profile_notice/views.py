@@ -50,9 +50,9 @@ def Notice(request):
     if user_id:
         type_id = Users.objects.get(auth_user_id=user_id).type_id
         if type_id == 1:
-            notices = Notifications.objects.filter(user_id=user_id).filter(for_executor=False).order_by('-date_public')
+            notices = Notifications.objects.filter(user_id=user_id).exclude(for_executor=True).order_by('-date_public')
         else:
-            notices = Notifications.objects.filter(user_id=user_id).filter(for_executor=True).order_by('-date_public')
+            notices = Notifications.objects.filter(user_id=user_id).exclude(for_executor=False).order_by('-date_public')
         today = datetime.datetime.today().date()
         for i in notices:
             if i.is_show and not i.is_checked:
@@ -65,29 +65,34 @@ def Notice(request):
     return render(request, 'Profile/Notices.html', locals())
 
 
-def send_notice(request,text,is_executor):
+def send_notice(request, text, is_executor):
     user_id = request.session.get('username', False)
     try:
         user = AuthUser.objects.get(username=user_id).id
-        if is_executor:
-            note = Notifications(user_id=user,text=text,for_executor=True,date_public=datetime.datetime.now())
-        else:
-            note = Notifications(user_id=user,text=text,for_executor=False,date_public=datetime.datetime.now())
+        if is_executor == 'exec':
+            note = Notifications(user_id=user, text=text, for_executor=True, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor == 'cust':
+            note = Notifications(user_id=user, text=text, for_executor=False, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor == 'all':
+            note = Notifications(user_id=user, text=text, for_executor=None, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
         note.save()
+        print('note saved')
     except:
         return False
-
 
 
 def check_notifications(request):
     user_id = get_user_id(request)
     if user_id:
         type_id = Users.objects.get(auth_user_id=user_id).type_id
-        notes= Notifications.objects.filter(user_id=user_id).filter(is_checked=False).filter(is_show=False)
+        notes = Notifications.objects.filter(user_id=user_id).filter(is_checked=False).filter(is_show=False)
         if type_id == 1:
-            count=notes.filter(for_executor=False).count()
+            count = notes.exclude(for_executor=True).count()
         else:
-            count = notes.filter(for_executor=True).count()
+            count = notes.exclude(for_executor=False).count()
     else:
         count = 0
     return HttpResponse(json.dumps(count))

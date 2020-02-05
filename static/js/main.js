@@ -674,7 +674,7 @@ $("#btn_number_verify").click(function (event) {
 });
 
 $("#btn_passport_verify").click(function (event) {
-    let phone=document.getElementById('series').value
+    let series=document.getElementById('series').value
     $.ajax({
         type: "GET",
         dataType: "json",

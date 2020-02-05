@@ -43,14 +43,18 @@ def layout_name(request):
 
 
 def send_notice(request, text, is_executor):
+    # all, exec, cust
     user_id = request.session.get('username', False)
     try:
         user = AuthUser.objects.get(username=user_id).id
-        if is_executor:
+        if is_executor=='exec':
             note = Notifications(user_id=user, text=text, for_executor=True, date_public=datetime.datetime.now(),
                                  is_checked=False, is_show=False)
-        else:
+        if is_executor=='cust':
             note = Notifications(user_id=user, text=text, for_executor=False, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor=='all':
+            note = Notifications(user_id=user, text=text, for_executor=None, date_public=datetime.datetime.now(),
                                  is_checked=False, is_show=False)
         note.save()
         print('note saved')
@@ -460,7 +464,7 @@ def verify_number(request):
             s = Users.objects.get(auth_user_id=user.id)
             s.verify_date = datetime.datetime.today()
             s.save()
-            sn = send_notice(request, 'Ваш номер отправлен на верификацию!', True)
+            sn = send_notice(request, 'Ваш номер отправлен на верификацию!', 'all')
             return HttpResponse(json.dumps([True, 'Запрос на верификацию номера отправлен.']))
         else:
             return HttpResponse(json.dumps([False, 'Не удалось отправить запрос на верификацию номера.']))
@@ -491,15 +495,14 @@ def verify_passport(request):
     if user:
         user = AuthUser.objects.get(username=user)
 
-        user=Users.objects.get(auth_user_id=user.id)
-        user.passport_num_ser=passport
-        user.save()
-        # sn = send_notice(request, 'Ваш паспорт отправлен на верификацию!', True)
+        user1=Users.objects.get(auth_user_id=user.id)
+        user1.passport_num_ser=passport
+        user1.save()
 
         id = user.id
         name = user.first_name
         surename = user.last_name
-        # print(user.email)
+        print(user.email)
 
         subj = 'Запрос на верификацию паспорта'
         text = 'Данные пользователя: \n\r id: ' + str(
@@ -511,7 +514,7 @@ def verify_passport(request):
             s = Users.objects.get(auth_user_id=user.id)
             s.verify_date = datetime.datetime.today()
             s.save()
-            sn = send_notice(request, 'Ваш паспорт на верификацию!', True)
+            sn = send_notice(request, 'Ваш паспорт отправлен на верификацию. Это может занять несколько дней.', 'all')
             return HttpResponse(json.dumps([True, 'Запрос на верификацию паспорта отправлен.']))
         else:
             return HttpResponse(json.dumps([False, 'Не удалось отправить запрос на верификацию паспорта.']))
