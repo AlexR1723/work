@@ -69,26 +69,26 @@ def Personal_messages(request):
     layout, username, photo = layout_name(request)
 
     user_id=get_user_id(request)
-    # user = request.session.get('username')
     if user_id:
-        # user = AuthUser.objects.get(username=user)
-        user_mess=PersonalMessage.objects.filter(to_user=user_id).distinct('from_user')
-        print(user_mess)
-        # type_id = Users.objects.get(auth_user_id=user.id).type_id
-        # if type_id == 1:
-        #     messages = PersonalMessage.objects.filter(to_user=user.id).order_by('-date')
-        # else:
-        #     messages = PersonalMessage.objects.filter(to_user=user.id).order_by('-date')
-        #
-        # today = datetime.datetime.today().date()
+        # user_mess=PersonalMessage.objects.filter(to_user=user_id).distinct('from_user')
 
-        # for i in messages:
+        type_id = Users.objects.get(auth_user_id=user_id).type_id
+        if type_id == 1:
+        #     messages = PersonalMessage.objects.filter(to_user=user.id).order_by('-date')
+            user_mess = PersonalMessage.objects.filter(to_user=user_id).filter(type_is_exec=False).order_by('from_user','-date').distinct('from_user')
+        else:
+        #     messages = PersonalMessage.objects.filter(to_user=user.id).order_by('-date')
+            user_mess = PersonalMessage.objects.filter(to_user=user_id).filter(type_is_exec=True).order_by('from_user','-date').distinct('from_user')
+        print(user_mess[0])
+        # today = datetime.datetime.today().date()
+        #
+        # for i in user_mess:
         #     if i.is_show and not i.is_checked:
-        #         i.date=i.date
+        #         # i.date=i.date
         #         i.is_checked = True
         #         i.save()
-        # for i in messages:
-        #     i.date = i.date
+        # for i in user_mess:
+        #     # i.date = i.date
         #     i.is_show = True
         #     i.save()
 
@@ -98,13 +98,12 @@ def Personal_messages(request):
 def check_messages(request):
     user_id = get_user_id(request)
     if user_id:
-        # type_id = Users.objects.get(auth_user_id=user_id).type_id
-        # notes = Notifications.objects.filter(user_id=user_id).filter(is_checked=False).filter(is_show=False)
-        # if type_id == 1:
-        #     count = notes.exclude(for_executor=True).count()
-        # else:
-        #     count = notes.exclude(for_executor=False).count()
-        count=PersonalMessage.objects.filter(to_user=user_id).count()
+        type_id = Users.objects.get(auth_user_id=user_id).type_id
+        mess = PersonalMessage.objects.filter(to_user=user_id).filter(is_checked=False).filter(is_show=False)
+        if type_id == 1:
+            count = mess.filter(type_is_exec=False).count()
+        else:
+            count = mess.filter(type_is_exec=True).count()
     else:
         count = 0
     return HttpResponse(json.dumps(count))

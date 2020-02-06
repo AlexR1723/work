@@ -314,12 +314,21 @@ class PersonalMessage(models.Model):
     date = models.DateTimeField(blank=True, null=True)
     is_show = models.BooleanField(blank=True, null=True)
     is_checked = models.BooleanField(blank=True, null=True)
+    type_is_exec = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'personal_message'
 
     def get_photo(self):
-        id=self.from_user.id
-        user=Users.objects.get(id=id).photo
+        id = self.from_user.id
+        user = Users.objects.get(id=id).photo
         return user
+
+    def get_count_messages(self):
+        from_id = self.from_user.id
+        to_id = self.to_user.id
+        # user=Users.objects.get(id=from_id).photo
+        count = PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
+            type_is_exec=self.type_is_exec).filter(is_checked=False).filter(is_show=False).count()
+        return count

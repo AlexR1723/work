@@ -708,6 +708,15 @@ $("#btn_passport_verify").click(function (event) {
     })
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    let notice_btn = $('#Notice_button').length
+    let count_notifications = $('#count_notifications').length
+    if (notice_btn && count_notifications) {
+        check_notifications();
+        check_messages();
+    }
+  });
+
 
 window.onload = function () {
 
@@ -726,12 +735,7 @@ window.onload = function () {
         load_help();
     }
 
-    let notice_btn = $('#Notice_button').length
-    let count_notifications = $('#count_notifications').length
-    if (notice_btn && count_notifications) {
-        check_notifications();
-        check_messages();
-    }
+
 
     try {
         let check1 = document.getElementById('counter1')
