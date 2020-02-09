@@ -514,4 +514,4 @@ def User_reviews(request):
 
 def Chat(request):
      layout, username, photo = layout_name(request)
-     return render(request, 'Main/Chat.html', locals())
+     return render(request, 'Main/../templates/Profile/Chat.html', locals())
