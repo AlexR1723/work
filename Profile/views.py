@@ -393,29 +393,47 @@ def Profile_page(request,id):
     if (user != 'no'):
         auth_user = AuthUser.objects.get(id=id)
         user = Users.objects.get(auth_user=auth_user)
+        user_city = UserCities.objects.filter(user=auth_user)
+        user_sub = UserSubcategories.objects.filter(user=auth_user)
+        portfolio = UserPortfolio.objects.filter(user=auth_user)
+        # посчитать процент положительных отзывов
+        user_comment = UserComment.objects.filter(user=auth_user).order_by('-date')
+        successful_task = UserComment.objects.filter(user=auth_user).filter(quality__gte=4).filter(
+            politeness__gte=4).filter(punctuality__gte=4).count()
+        quality_suc = UserComment.objects.filter(user=auth_user).filter(quality__gte=4).count()
+        politeness_suc = UserComment.objects.filter(user=auth_user).filter(politeness__gte=4).count()
+        punctuality_suc = UserComment.objects.filter(user=auth_user).filter(punctuality__gte=4).count()
+        all_task = user_comment.count()
+        com_percent = 0
+        quality_percent = 0
+        politeness_persent = 0
+        punctuality_persent = 0
+        if all_task > 0:
+            com_percent = int((successful_task * 100) / all_task)
+            quality_percent = int((quality_suc * 100) / all_task)
+            politeness_persent = int((politeness_suc * 100) / all_task)
+            punctuality_persent = int((punctuality_suc * 100) / all_task)
+
         if (user.verify_passport == True):
+            advert_count=UserAdvert.objects.filter(user=auth_user).count()
+            if(advert_count>10):
+                advert=UserAdvert.objects.filter(user=auth_user).order_by('-id')[:10]
+            else:
+                advert = UserAdvert.objects.filter(user=auth_user).order_by('-id')
+            task_close=UserTask.objects.filter(exec=auth_user)
+            sub_task_close=[]
+            sub_task_list=""
+            for t in task_close:
+                if t.subcategory.name not in sub_task_close:
+                    sub_task_close.append(t.subcategory.name)
+                    sub_task_list=sub_task_list+t.subcategory.name+'\r\n'
+            advert=UserAdvert.objects.filter(user=auth_user)
+            sub_advert=[]
+            for a in advert:
+                if a.subcategory.name not in advert:
+                    sub_advert.append(a.subcategory.name)
             return render(request, 'Profile/Profile_verified.html', locals())
         else:
-            user_city = UserCities.objects.filter(user=auth_user)
-            user_sub = UserSubcategories.objects.filter(user=auth_user)
-            portfolio = UserPortfolio.objects.filter(user=auth_user)
-            # посчитать процент положительных отзывов
-            user_comment = UserComment.objects.filter(user=auth_user).order_by('-date')
-            successful_task=UserComment.objects.filter(user=auth_user).filter(quality__gte=4).filter(politeness__gte=4).filter(punctuality__gte=4).count()
-            quality_suc =UserComment.objects.filter(user=auth_user).filter(quality__gte=4).count()
-            politeness_suc = UserComment.objects.filter(user=auth_user).filter(politeness__gte=4).count()
-            punctuality_suc = UserComment.objects.filter(user=auth_user).filter(punctuality__gte=4).count()
-            all_task=user_comment.count()
-            com_percent=0
-            quality_percent=0
-            politeness_persent=0
-            punctuality_persent=0
-            if all_task>0:
-                com_percent=int((successful_task*100)/all_task)
-                quality_percent=int((quality_suc*100)/all_task)
-                politeness_persent=int((politeness_suc*100)/all_task)
-                punctuality_persent=int((punctuality_suc*100)/all_task)
-
             return render(request, 'Profile/Profile_unverified.html', locals())
     else:
         return HttpResponseRedirect("/login")

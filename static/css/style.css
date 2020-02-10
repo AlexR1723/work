@@ -3170,3 +3170,12 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
         max-width: 100%;
     }
 }
+
+.small-circle{
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    margin-left: 8px;
+    margin-right: 8px;
+}
