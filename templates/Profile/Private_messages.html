@@ -18,10 +18,20 @@
                                 <div class="col-10 col-md-10 col-lg-11 align-self-center">
                                     <div class="row justify-content-start justify-content-md-start">
                                         <div class="col-8 col-md-6 a-left p-0">
-                                            <h1>{{ i.from_user.first_name }} {{ i.from_user.last_name }}</h1>
+
+                                            {% if i.from_user.id == user_id %}
+                                                <a href="{% url 'Chat' i.to_user.id %}">
+                                                    <h1>{{ i.to_user.first_name }} {{ i.to_user.last_name }}</h1>
+                                                </a>
+                                            {% else %}
+                                                <a href="{% url 'Chat' i.from_user.id %}">
+                                                    <h1>{{ i.from_user.first_name }} {{ i.from_user.last_name }}</h1>
+                                                </a>
+                                            {% endif %}
+
                                         </div>
-                                        <a href="{% url 'Chat' i.from_user.id %}">open</a>
                                         <div class="col-4 col-md-6 p-0 px-md-3 a-right">
+                                        <div class="count_mess" data-res="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">msg:{{ i.get_count_messages }}</div>
                                             {% if i.is_show %}
                                                 {% if i.date.date == today %}
                                                     <span>Сегодня в {{ i.date.time }}</span>
@@ -29,32 +39,36 @@
                                                     <span>{{ i.date|date:'d E' }} в {{ i.date.time }}</span>
                                                 {% endif %}
                                             {% else %}
-                                                {{ i.get_count_messages }}
+
                                                 {% if i.date.date == today %}
                                                     <span><b>Сегодня в {{ i.date.time }}</b></span>
                                                 {% else %}
                                                     <span><b>{{ i.date|date:'d E' }} в {{ i.date.time }}</b></span>
                                                 {% endif %}
                                             {% endif %}
-                                        </div>
-
-                                        {% if i.is_show %}
-                                            <p class="message-text m-0 pt-1">{{ i.text }}</p>
-                                        {% else %}
-                                            <p class="message-text m-0 pt-1"><b>{{ i.text }}</b></p>
-                                        {% endif %}
                                     </div>
+
+                                    {% if i.is_show %}
+                                        {% if i.get_last_message.id == user_id %}
+                                            <p class="message-text m-0 pt-1">Вы: {{ i.get_last_message.text }}</p>
+                                        {% else %}
+                                            <p class="message-text m-0 pt-1">{{ i.get_last_message.text }}</p>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="message-text m-0 pt-1"><b>{{ i.text }}</b></p>
+                                    {% endif %}
                                 </div>
                             </div>
+                        </div>
                         </div>
                         {% if not forloop.last %}
                             <hr class="line_blk m-0">
                         {% endif %}
                     {% endfor %}
 
-                </div>
             </div>
         </div>
+    </div>
     </div>
 
 {% endblock %}

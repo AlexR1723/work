@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+import datetime
 
 
 class Link(models.Model):
@@ -320,6 +321,11 @@ class PersonalMessage(models.Model):
         managed = False
         db_table = 'personal_message'
 
+    # def save(self, *args, **kwargs):
+    #     self.is_show=False
+    #     self.date=datetime.datetime.now()
+    #     super(PersonalMessage, self).save(*args, **kwargs)
+
     def get_photo(self):
         id = self.from_user.id
         user = Users.objects.get(id=id).photo
@@ -332,3 +338,17 @@ class PersonalMessage(models.Model):
         count = PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
             to_type_is_exec=self.from_type_is_exec).filter(is_show=False).count()
         return count
+
+    def get_last_message(self):
+        from_id = self.from_user.id
+        to_id = self.to_user.id
+        to_user=PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
+            to_type_is_exec=self.from_type_is_exec)
+        # print(to_user)
+        fr_user=PersonalMessage.objects.filter(to_user=from_id).filter(from_user=to_id).filter(
+            to_type_is_exec=self.from_type_is_exec)
+        # print(fr_user)
+        mess=to_user.union(fr_user)
+        # print(mess)
+        mydict={'id':mess.last().from_user.id,'text':mess.last().text}
+        return mydict

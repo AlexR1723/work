@@ -22,4 +22,5 @@ urlpatterns = [
     # url(r'^personal_messages/$', views.Personal_messages, name="Personal_messages"),
 
     url(r'check_messages', views.check_messages, name='check_messages'),
+    url(r'send_message', views.send_message, name='send_message'),
 ]

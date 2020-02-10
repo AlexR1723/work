@@ -601,74 +601,171 @@ $("#btn_del_ads").click(function (event) {
     })
 });
 
-$('#birthday-input').mask('99/99/9999',{placeholder:"mm/dd/yyyy"});
+$('#birthday-input').mask('99/99/9999', {placeholder: "mm/dd/yyyy"});
 
 function check_notifications() {
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            async: true,
-            url: "/profile/notice/check_notifications",
-            success: function (data) {
-                console.log(data+'notice')
-                let el = document.getElementById('count_notifications')
-                let el_menu = document.getElementById('count_notifications_menu')
-                if (data != 0) {
-                    el.style.display = 'block'
-                    el.innerHTML = data
-                    el_menu.style.display = 'inline-block'
-                    el_menu.children[0].innerHTML = data
-                } else {
-                    el.style.display = 'none'
-                    el_menu.style.display = 'none'
-                }
-                    setTimeout(check_notifications, 1000 * 5)
-            },
-            error: function (data) {
-                console.log(data)
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: true,
+        url: "/profile/notice/check_notifications",
+        success: function (data) {
+            console.log(data + 'notice')
+            let el = document.getElementById('count_notifications')
+            let el_menu = document.getElementById('count_notifications_menu')
+            if (data != 0) {
+                el.style.display = 'block'
+                el.innerHTML = data
+                el_menu.style.display = 'inline-block'
+                el_menu.children[0].innerHTML = data
+            } else {
+                el.style.display = 'none'
+                el_menu.style.display = 'none'
             }
-        }).fail( function () {
-            setTimeout(check_notifications, 1000 * 10)
-        })
-}
-function check_messages() {
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            async: true,
-            url: "profile/message/check_messages",
-            success: function (data) {
-                console.log(data+'message')
-                let el = document.getElementById('count_messages')
-                let el_menu = document.getElementById('count_messages_menu')
-                if (data != 0) {
-                    el.style.display = 'block'
-                    el.innerHTML = data
-                    el_menu.style.display = 'inline-block'
-                    el_menu.children[0].innerHTML = data
-                } else {
-                    el.style.display = 'none'
-                    el_menu.style.display = 'none'
-                }
-                    setTimeout(check_messages, 1000 * 3)
-            },
-            error: function (data) {
-                console.log(data)
-            }
-        }).fail( function () {
-            setTimeout(check_messages, 1000 * 5)
-        })
+            setTimeout(check_notifications, 1000 * 5)
+        },
+        error: function (data) {
+            console.log(data)
+        }
+    }).fail(function () {
+        setTimeout(check_notifications, 1000 * 10)
+    })
 }
 
+function check_messages() {
+    let from_user = false
+    let to_user = false
+    if (document.getElementById('from_user')) {
+        from_user = document.getElementById('from_user').value
+    }
+    if (document.getElementById('to_user')) {
+        to_user = document.getElementById('to_user').value
+    }
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: true,
+        url: "profile/message/check_messages",
+        data: {
+            from_user: from_user,
+            to_user:to_user
+        },
+        success: function (data) {
+            // console.log(data+'message')
+            var result = data[0].reduce(function (acc, el) {
+                acc[el] = (acc[el] || 0) + 1;
+                return acc;
+            }, {});
+            // console.log(result)
+            let elm = document.getElementsByClassName('count_mess')
+            for (let i = 0; i < elm.length; i++) {
+                if (result[elm[i].dataset.res]) {
+                    elm[i].innerText = result[elm[i].dataset.res]
+                }
+            }
+
+            let count_mess = data[0].length
+
+            let el = document.getElementById('count_messages')
+            let el_menu = document.getElementById('count_messages_menu')
+            if (data[0] != 0) {
+                el.style.display = 'block'
+                el.innerHTML = count_mess
+                el_menu.style.display = 'inline-block'
+                el_menu.children[0].innerHTML = count_mess
+            } else {
+                el.style.display = 'none'
+                el_menu.style.display = 'none'
+            }
+            if (data[1].length > 0) {
+                for (let i = 0; i < data[1].length;i++) {
+
+                    let col = document.createElement('div')
+                    col.setAttribute('class', 'col-12 p-0 user-message')
+                    let div = document.createElement('div')
+                    div.setAttribute('class', 'row justify-content-start')
+                    let div1 = document.createElement('div')
+                    div1.setAttribute('class', 'message-card px-4 py-3 mb-3')
+                    let p = document.createElement('p')
+                    p.setAttribute('class', 'a-left mb-2')
+                    p.innerText =data[1][i][1]
+                    let p1 = document.createElement('p')
+                    p1.setAttribute('class', 'a-right')
+                    let span = document.createElement('span')
+                    span.innerText =data[1][i][0]
+                    p1.appendChild(span)
+                    p.appendChild(p1)
+                    div1.appendChild(p)
+                    div.appendChild(div1)
+                    col.appendChild(div)
+                    document.getElementById('chat').prepend(col)
+                }
+
+            }
+            setTimeout(check_messages, 1000 * 5)
+        },
+        error: function (data) {
+            console.log(data)
+        }
+    }).fail(function () {
+        setTimeout(check_messages, 1000 * 10)
+    })
+}
+
+$("#send_message").click(function (event) {
+    let message = document.getElementById('message').value
+    let user = document.getElementById('to_user').value
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: false,
+        url: 'send_message',
+        data: {
+            message: message,
+            user: user
+        },
+        success: function (data) {
+            // alert(data)
+            if (data !== false) {
+                let col = document.createElement('div')
+                    col.setAttribute('class', 'col-12 p-0 others-message')
+                    let div = document.createElement('div')
+                    div.setAttribute('class', 'row justify-content-end')
+                    let div1 = document.createElement('div')
+                    div1.setAttribute('class', 'message-card px-4 py-3 mb-3')
+                    let p = document.createElement('p')
+                    p.setAttribute('class', 'a-left mb-2')
+                    p.innerText =data[1]
+                    let p1 = document.createElement('p')
+                    p1.setAttribute('class', 'a-right')
+                    let span = document.createElement('span')
+                    span.innerText =data[0]
+                    p1.appendChild(span)
+                    p.appendChild(p1)
+                    div1.appendChild(p)
+                    div.appendChild(div1)
+                    col.appendChild(div)
+                    document.getElementById('chat').prepend(col)
+            } else {
+                alert('message not delivered')
+            }
+        },
+        error: function (data) {
+            alert('error')
+        }
+    })
+});
+
 $("#btn_number_verify").click(function (event) {
-    let phone=document.getElementById('phonenumber').value
+    let phone = document.getElementById('phonenumber').value
     $.ajax({
         type: "GET",
         dataType: "json",
         async: false,
         url: 'verify_number',
         data: {
-            phone:phone
+            phone: phone
         },
         success: function (data) {
             // alert(data)
@@ -685,14 +782,14 @@ $("#btn_number_verify").click(function (event) {
 });
 
 $("#btn_passport_verify").click(function (event) {
-    let series=document.getElementById('series').value
+    let series = document.getElementById('series').value
     $.ajax({
         type: "GET",
         dataType: "json",
         async: false,
         url: 'verify_passport',
         data: {
-            series:series
+            series: series
         },
         success: function (data) {
             // alert(data)
@@ -715,7 +812,7 @@ document.addEventListener("DOMContentLoaded", () => {
         check_notifications();
         check_messages();
     }
-  });
+});
 
 
 window.onload = function () {
@@ -723,7 +820,7 @@ window.onload = function () {
 
     let body = document.getElementsByTagName('body')[0].getBoundingClientRect().height
     let wind = document.documentElement.clientHeight
-    if ( wind > body) {
+    if (wind > body) {
         let res2 = (wind - body) / 2;
         $('#main_block_content').css('top', res2);
         $('#main_footer:first').addClass('absolute_footer');
@@ -734,7 +831,6 @@ window.onload = function () {
     if (window.location.href.indexOf('help_category') != -1 || window.location.href.indexOf('help') != -1) {
         load_help();
     }
-
 
 
     try {
@@ -1414,7 +1510,7 @@ $("#profile_edit").click(function () {
     lbl.classList.add('d-none');
     var birtday_l = document.getElementById('birthday-label');
     birtday_l.classList.add('d-none');
-     var birtday_desc = document.getElementById('birthday-desc');
+    var birtday_desc = document.getElementById('birthday-desc');
     birtday_desc.classList.remove('d-none');
     birtday_desc.classList.add('d-inline-block');
     var birtday = document.getElementById('birthday-input');
@@ -1476,19 +1572,17 @@ $("#save_info_btn").click(function () {
     var gender = $('#gender-input option:selected').val();
     var about = $("#about-input").val();
     var phone = $("#phone-input").val();
-    var date_=date.split('/');
+    var date_ = date.split('/');
     var now_ = new Date();
-    now_.setHours(0,0,0,0);
-    var date_c=new Date(date_[2],date_[0]-1,date_[1]);
-    var date_90=new Date(1900,0,1);
-    if(date_c < date_90 || date_c > now_)
-    {
+    now_.setHours(0, 0, 0, 0);
+    var date_c = new Date(date_[2], date_[0] - 1, date_[1]);
+    var date_90 = new Date(1900, 0, 1);
+    if (date_c < date_90 || date_c > now_) {
         $("#alert-danger_date").show('slow');
-            setTimeout(function () {
-                $("#alert-danger_date").hide('slow');
-            }, 5000);
-    }
-    else {
+        setTimeout(function () {
+            $("#alert-danger_date").hide('slow');
+        }, 5000);
+    } else {
         if (date != "" && gender != "" && phone != "") {
             $("#save_profile").click();
         } else {
