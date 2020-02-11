@@ -40,13 +40,16 @@ def layout_name(request):
             username = AuthUser.objects.all().filter(email=user)[0].first_name
             photo = Users.objects.all().filter(auth_user__email=user)[0].photo
             user = Users.objects.all().filter(auth_user__email=user)[0]
+            balance = user.balance
+            bonus = user.bonus_balance
             if (user.type.name == "Заказчик"):
                 layout = 'layout_customer.html'
             else:
                 layout = 'layout_executor.html'
         else:
             logout(request)
-    return layout, username, photo
+    return layout, username, photo, balance, bonus
+
 
 
 def is_verify(request):
@@ -59,7 +62,7 @@ def is_verify(request):
 
 # Create your views here.
 def Main(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -78,7 +81,7 @@ def Main(request):
 
 
 def How_it_work(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     seo = OrderService.objects.all()
@@ -87,7 +90,7 @@ def How_it_work(request):
 
 
 def Secure_transaction(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -98,7 +101,7 @@ def Secure_transaction(request):
 
 
 def Safety(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -106,7 +109,7 @@ def Safety(request):
 
 
 def Rabota(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -130,7 +133,7 @@ def Rabota(request):
 
 
 def For_business(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -152,7 +155,7 @@ def For_business(request):
 
 
 def Top_performers(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -160,7 +163,7 @@ def Top_performers(request):
 
 
 def Dev(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     id = request.GET.get('id')
     print(id)
 
@@ -168,7 +171,7 @@ def Dev(request):
 
 
 def Login(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -176,7 +179,7 @@ def Login(request):
 
 
 def Register(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -194,7 +197,7 @@ def Register(request):
 #     return render(request, 'Main/../templates/Category/Sub_category.html', locals())
 
 def Task_details_performer(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     return render(request, 'Main/Task_details_performer.html', locals())
 
 #
@@ -282,13 +285,13 @@ def Registrate(request):
 
 
 def Forgot(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     return render(request, 'Main/Forgot.html', locals())
 
 
 
 def Page(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     return render(request, 'Main/Page.html', locals())
 
 def send_new_pass(request):
@@ -331,7 +334,7 @@ def send_new_pass(request):
 
 
 def Verify(request, key):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     user = Users.objects.all().filter(uuid=key)
     print(user[0].auth_user)
     if (len(user) > 0):
@@ -342,7 +345,7 @@ def Verify(request, key):
 
 
 def Public_offer(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -362,7 +365,7 @@ def Public_offer(request):
 
 
 def Rules(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -382,7 +385,7 @@ def Rules(request):
 
 
 def Privacy_rules(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -501,11 +504,11 @@ def get_counter_values(request):
 #      return render(request, 'Main/../templates/Profile/Passport_verification.html', locals())
 
 def Service_details(request):
-     layout, username, photo = layout_name(request)
+     layout, username, photo, balance, bonus = layout_name(request)
      return render(request, 'Main/Service_details.html', locals())
 
 def User_reviews(request):
-     layout, username, photo = layout_name(request)
+     layout, username, photo, balance, bonus = layout_name(request)
      return render(request, 'Main/User_reviews.html', locals())
 
 # def Private_messages(request):
@@ -513,5 +516,5 @@ def User_reviews(request):
 #      return render(request, 'Main/../templates/Profile/Private_messages.html', locals())
 
 def Chat(request):
-     layout, username, photo = layout_name(request)
+     layout, username, photo, balance, bonus = layout_name(request)
      return render(request, 'Main/../templates/Profile/Chat.html', locals())

@@ -148,6 +148,8 @@ class Users(models.Model):
     passport_photo = models.ImageField(upload_to='uploads/users/', max_length=500, blank=True, null=True)
     verify_date = models.DateField(blank=True, null=True)
     passport_num_ser = models.CharField(max_length=50, blank=True, null=True)
+    balance = models.IntegerField(blank=True, null=True)
+    bonus_balance = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

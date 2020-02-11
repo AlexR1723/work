@@ -31,11 +31,13 @@ def layout_name(request):
         username = AuthUser.objects.all().filter(email=user)[0].first_name
         photo = Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
+        balance = user.balance
+        bonus = user.bonus_balance
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout, username, photo
+    return layout, username, photo, balance, bonus
 
 
 def get_user_id(request):
@@ -69,7 +71,7 @@ def send_notice(request, text, is_executor):
 
 @login_required()
 def Personal_messages(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
 
     user_id = get_user_id(request)
     if user_id:
@@ -163,7 +165,7 @@ def check_messages(request):
 
 @login_required()
 def Chat(request, with_user):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
 
     try:
         with_user = int(with_user)
