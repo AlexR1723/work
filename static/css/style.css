@@ -3179,3 +3179,6 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
     margin-left: 8px;
     margin-right: 8px;
 }
+.tooltip-inner {
+    white-space: pre-wrap;
+}

@@ -426,12 +426,14 @@ def Profile_page(request,id):
             for t in task_close:
                 if t.subcategory.name not in sub_task_close:
                     sub_task_close.append(t.subcategory.name)
-                    sub_task_list=sub_task_list+t.subcategory.name+'\r\n'
+                    sub_task_list=sub_task_list+t.subcategory.name+"\n"
             advert=UserAdvert.objects.filter(user=auth_user)
             sub_advert=[]
+            sub_advert_list = ""
             for a in advert:
                 if a.subcategory.name not in advert:
                     sub_advert.append(a.subcategory.name)
+                    sub_advert_list=sub_advert_list+a.subcategory.name+'\n'
             return render(request, 'Profile/Profile_verified.html', locals())
         else:
             return render(request, 'Profile/Profile_unverified.html', locals())

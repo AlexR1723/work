@@ -95,14 +95,15 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-3 col-lg-3 col-xl-2 mx-xl-5 p-1">
-                            <div class="row justify-content-around justify-content-md-center align-content-center align-items-center pt-2">
+                            <div class="row justify-content-around justify-content-md-center align-content-center align-items-center pt-2" data-toggle="tooltip" data-placement="bottom"
+                                             title="{{sub_advert_list}}">
                                 <div class="text-center ellipse mx-auto">
                                     <img alt="" class="img-fluid" src="/static/image/ad-icon.png">
                                 </div>
                                 <div class="col-12 text-center p-0">
                                         <label class="text-center m-0 mt-2">Опубликованные объявления</label><br>
                                         <a class="text-center" href="#">
-                                            <span class="">в 4 категориях</span>
+                                            <span class="">в {{sub_advert|length}} подкатегориях</span>
                                         </a>
                                 </div>
                             </div>
