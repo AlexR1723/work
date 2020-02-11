@@ -42,12 +42,18 @@
                             <a href="{% url 'Profile_page' user.auth_user.id %}">всех</a>
                         </p>
                     </div>
+                    {% if user.verify_passport != True %}
+                    <div class="row">
+                        <a class="verify-phone" href="{% url 'Passport_verification' %}" data-toggle="tooltip" data-placement="bottom"
+                         title="Прикрепите свой паспорт, пройдите верификацию и полечите статус 'Проверенного пользвоателя'">Верифицировать паспорт</a>
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="col-6 col-sm-2 col-md-2 p-1 mx-auto">
                     <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2"
                          data-toggle="tooltip" data-placement="bottom"
                          title="Общее количество отзывов о пользователе.">
-                        <span class="col-12 text-center settings-rew_span fz_3rem">10</span>
+                        <span class="col-12 text-center settings-rew_span fz_3rem">{{all_task}}</span>
                         <label class="settings-rew_label mb-2">отзывов</label>
                     </div>
                 </div>
@@ -55,7 +61,7 @@
                     <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-2 pl-md-0 pl-lg-3 settings-rew_blk"
                          data-toggle="tooltip" data-placement="bottom"
                          title="Рейтинг складывается из средних оценок по трем критериям: качество работы, вежливость и пунктуальность. Положительной считается только оценка 5 из 5-ти">
-                        <span class="col-12 text-center settings-rew_span fz_3rem">98%</span>
+                        <span class="col-12 text-center settings-rew_span fz_3rem">{{com_percent}}%</span>
                         <label class="settings-rew_label mb-2">положительных</label>
                     </div>
                 </div>
@@ -166,7 +172,6 @@
                                                 {% if user.verify_phone != True %}
                                                     <a class="ml-3 verify-phone" href="{% url 'Number_verification' %}">Подтвердить</a>
                                                 {% endif %}
-                                            <a class="ml-3 verify-phone" href="{% url 'Passport_verification' %}">verify passport</a>
                                             </p>
                                         </div>
                                     </div>

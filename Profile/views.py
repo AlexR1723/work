@@ -87,6 +87,12 @@ def Profile_settings(request):
         global message
         alert = message
         print(message)
+        all_task = UserComment.objects.filter(user__email=email).count()
+        successful_task = UserComment.objects.filter(user__email=email).filter(quality__gte=4).filter(
+            politeness__gte=4).filter(punctuality__gte=4).count()
+        com_percent=0
+        if all_task > 0:
+            com_percent = int((successful_task * 100) / all_task)
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")
