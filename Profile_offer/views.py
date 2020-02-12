@@ -25,15 +25,17 @@ def layout_name(request):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
         photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
+        balance = user.balance
+        bonus = user.bonus_balance
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username,photo
+    return layout, username, photo, balance, bonus
 
 
 def Offer(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -100,3 +102,25 @@ def cancel_offer(request):
         #     task[0].offer.save()
         #     task[0].task_status=UserTaskStatus.objects.get(name="В работе")
         #     task[0].save()
+
+
+
+def Offer_detail(request,id):
+    layout, username, photo, balance, bonus = layout_name(request)
+    id=int(id)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        task=UserTask.objects.get(id=id)
+        return render(request, 'Profile/Offer_details.html', locals())
+        # task_bet = UserTaskBet.objects.filter(task=task).order_by('-date')
+        # if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+        #     print('исполнитель')
+        #     if (task.task_status.name=="В работе" and task.exec_finish != True):
+        #         return render(request, 'Profile/Task_details_executor_work.html', locals())
+        #     else:
+        #         return render(request, 'Profile/Task_details_executor_finish.html', locals())
+        # else:
+        #     print(task.exec_finish)
+        #     return render(request, 'Profile/Task_details.html', locals())

@@ -1,0 +1,165 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="container-fluid p-0">
+
+    <div class="row justify-content-center">
+        <div class=" w-100" style="
+    height: auto;
+    min-height: 20vh;
+    background: url({{MEDIA_URL}}{{task.subcategory.image.url}}) 50% 55% no-repeat;
+    background-size: cover;
+">
+            <div class="ques_hdr_bg_layout row justify-content-center align-items-center">
+                <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                    <p class="m-0 fz_2rem line_height_1 text-center">{{task.title}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-0 justify-content-center mt-3 task-details">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
+            <div class="row justify-content-start">
+                <div class="col-12 p-0">
+                    <div class="row mt-4 justify-content-start">
+                        <div class="col-7 col-md-2 p-0">
+                            <a href=""><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">{{task.user.first_name}}</span></a>
+                        </div>
+                        <div class="col-7 col-md-3 p-0">
+                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_2.png">{{task.date_add}}</span>
+                        </div>
+<!--                        <div class="col-6 col-md-2 p-0">-->
+<!--                            {% if task.bet_count == 0 or task.bet_count >= 5 %}-->
+<!--                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставок</span>-->
+<!--                            {% else %}-->
+<!--                            {% if task.bet_count == 1 %}-->
+<!--                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставка</span>-->
+<!--                            {% else %}-->
+<!--                            <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_3.png">{{task.bet_count}} ставки</span>-->
+<!--                            {% endif %}-->
+<!--                            {% endif %}-->
+<!--                        </div>-->
+                        <div class="col-12 col-md-4 p-0 text-left text-md-right pt-3 pt-md-0">
+                            <div class="row align-items-center justify-content-end">
+                                <div class="col-12">
+                                    <span class="price-span">{{task.price}} руб.</span>
+                                </div>
+                                {% if task_bet|length == 0 and task.exec_id == None or task.exec_id == "" %}
+                                <div class="col-12">
+                                    <a href="#">
+                                        <button class="rate-perform_btn mt-2 py-1 px-4 mb-0">Редактировать</button>
+                                    </a>
+                                </div>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+                        <div class="col p-0">
+                            <div class="row justify-content-end align-items-center">
+                                <button class="propose-accept_btn  mr-md-2" id="accept_advert" name="{{ task.id }}">Принять</button>
+                                            <button class="edit-ads btn propose-cancel_btn " id="cancel_advert" name="{{ task.offer.id }}">Отклонить</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-0 justify-content-center task-details">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-2 px-3 px-mb-0 px-lg-0">
+            <div class="row mt-4 justify-content-start">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb ads-breadcrumb p-0">
+                        <li class="breadcrumb-item d-none d-sm-none d-md-block"><a href="#">{{task.subcategory.category.name}}</a></li>
+                        <li aria-current="page" class="breadcrumb-item active p-0">{{task.subcategory.name}}</li>
+                    </ol>
+                </nav>
+            </div>
+            <input type="hidden" id="task_id" value="{{task.id}}">
+            <div class="row mt-4 justify-content-start">
+                <div class="col-12 p-0">
+                    <div class="row mb-3">
+                        <p class="task-details_txt">{{task.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-0 justify-content-center users_rates">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
+            <div class="row justify-content-start">
+                <hr class="category-line m-0 mb-4 mt-0">
+                <div class="col-12 p-0">
+                    <div class="row adverts-add_photos mb-3">
+                        <div class="col-12 col-md-6 p-0">
+                            <span class="rate_span mr-3">Город:</span>
+                            <b class="rate_b">{{task.city.name}}</b>
+                        </div>
+                        <div class="col-12 col-md-6 p-0">
+                            <span class="rate_span mr-3">Адрес:</span>
+                            <b class="rate_b">{{task.address}}</b>
+                        </div>
+                    </div>
+                    <div class="row adverts-add_photos mb-3">
+                        <div class="col-12 col-md-6 p-0">
+                            <span class="rate_span mr-3">Дата выполнения:</span>
+                            <b class="rate_b">{{task.date}}</b>
+                        </div>
+                        <div class="col-12 col-md-6 p-0">
+                            <span class="rate_span mr-3">Время:</span>
+                            {% if task.start_time == None and task.end_time == None %}
+                            <b class="rate_b">в любое время</b>
+                            {% else %}
+                            <b class="rate_b">с {{task.start_time}} до {{task.end_time}}</b>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if  task.all_photo|length != 0 %}
+    <div class="row m-0 justify-content-center users_rates">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
+            <div class="row justify-content-start">
+                <hr class="category-line m-0 mb-3 mt-2">
+                <div class="col-12 p-0">
+                    <div class="row adverts-add_photos mb-3">
+                        {% for p in task.all_photo %}
+                        <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-1 img_wrapper mb-3">
+                            <a href="{{MEDIA_URL}}{{p.photo.url}}">
+                                <img alt="{{p.get_type}}" class="img-fluid center-block" src="{% static p.get_type %}">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row m-0 justify-content-center users_rates">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">
+            <hr class="category-line m-0 my-4">
+            <h2 class="m-0 line_height_1 text-left mb-3">Исполнитель <a href="{% url 'Dev' %}">{{task.exec.first_name}}</a></h2>
+
+
+
+        </div>
+    </div>
+
+<!--    <div class="row m-0 justify-content-center users_rates">-->
+<!--        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">-->
+<!--            -->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+{% endblock %}

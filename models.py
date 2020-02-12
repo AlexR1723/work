@@ -91,6 +91,17 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class Awards(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    tooltip = models.TextField(blank=True, null=True)
+    image = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'awards'
+
+
 class BecomePerformer(models.Model):
     text = models.CharField(max_length=5000, blank=True, null=True)
 
@@ -277,12 +288,39 @@ class NewsType(models.Model):
         db_table = 'news_type'
 
 
+class Notifications(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    is_checked = models.BooleanField(blank=True, null=True)
+    date_public = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True)
+    for_executor = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'notifications'
+
+
 class OrderService(models.Model):
     text = models.CharField(max_length=5000, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'order_service'
+
+
+class PersonalMessage(models.Model):
+    from_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='from_user', blank=True, null=True)
+    to_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='to_user', blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True)
+    to_type_is_exec = models.BooleanField(blank=True, null=True)
+    from_type_is_exec = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'personal_message'
 
 
 class PrivacyRules(models.Model):
@@ -377,6 +415,16 @@ class UserAdvertPhoto(models.Model):
     class Meta:
         managed = False
         db_table = 'user_advert_photo'
+
+
+class UserAwards(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    awards = models.ForeignKey(Awards, models.DO_NOTHING, blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_awards'
 
 
 class UserCities(models.Model):
@@ -506,7 +554,7 @@ class UserType(models.Model):
 
 class Users(models.Model):
     auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
-    phone = models.CharField(max_length=13, blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
     city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
     type = models.ForeignKey(UserType, models.DO_NOTHING, blank=True, null=True)
     uuid = models.CharField(max_length=50, blank=True, null=True)
@@ -518,9 +566,11 @@ class Users(models.Model):
     photo = models.CharField(max_length=100, blank=True, null=True)
     verify_phone = models.BooleanField(blank=True, null=True)
     verify_passport = models.BooleanField(blank=True, null=True)
-    passport_photo = models.CharField(max_length=500, blank=True, null=True)
+    passport_photo = models.TextField(blank=True, null=True)
     verify_date = models.DateField(blank=True, null=True)
     passport_num_ser = models.CharField(max_length=50, blank=True, null=True)
+    balance = models.IntegerField(blank=True, null=True)
+    bonus_balance = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

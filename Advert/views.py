@@ -23,11 +23,13 @@ def layout_name(request):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
         photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
+        balance = user.balance
+        bonus = user.bonus_balance
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username,photo
+    return layout, username, photo, balance, bonus
 
 def is_verify(request):
     if (request.session.get('username', 'no') != 'no'):
@@ -40,7 +42,7 @@ advert_count = 0
 
 # Create your views here.
 def Advert(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -70,7 +72,7 @@ def Advert(request):
     return render(request, 'Advert/Advert.html', locals())
 
 def Advert_page(request,page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
@@ -115,7 +117,7 @@ def Advert_page(request,page):
     return render(request, 'Advert/Advert.html', locals())
 
 def Adverts_detail(request,id):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     verify = is_verify(request)
@@ -137,7 +139,7 @@ def check_user(request,type_user):
     return AuthUser.objects.get(username=user).id
 
 def Adverts_change(request,id):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)

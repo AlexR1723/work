@@ -35,11 +35,13 @@ def layout_name(request):
         username = AuthUser.objects.all().filter(email=user)[0].first_name
         photo = Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
+        balance=user.balance
+        bonus=user.bonus_balance
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout, username, photo
+    return layout, username, photo, balance, bonus
 
 
 def send_notice(request, text, is_executor):
@@ -64,7 +66,7 @@ def send_notice(request, text, is_executor):
 
 # Create your views here.
 def Profile_settings(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if (username != ''):
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
@@ -87,6 +89,12 @@ def Profile_settings(request):
         global message
         alert = message
         print(message)
+        all_task = UserComment.objects.filter(user__email=email).count()
+        successful_task = UserComment.objects.filter(user__email=email).filter(quality__gte=4).filter(
+            politeness__gte=4).filter(punctuality__gte=4).count()
+        com_percent=0
+        if all_task > 0:
+            com_percent = int((successful_task * 100) / all_task)
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")
@@ -163,7 +171,7 @@ def Save_photo(request):
 
 
 def Choose_city(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
 
     regions = Region.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -195,7 +203,7 @@ def Choose_city(request):
 
 def Advert_add(request, name):
     print('advert')
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if (username != ''):
         subcategory = SubCategory.objects.all().filter(name=name)[0]
         return render(request, 'Profile/Adverts_add.html', locals())
@@ -204,7 +212,7 @@ def Advert_add(request, name):
 
 
 def Choose_categ(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
 
     category = Category.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -382,47 +390,67 @@ def Customer(request):
 
 
 def Fav_executor(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     return render(request, 'Profile/Fav_executor.html', locals())
 
 
 def Profile_page(request,id):
     id=int(id)
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     user = request.session.get('username', 'no')
     if (user != 'no'):
         auth_user = AuthUser.objects.get(id=id)
         user = Users.objects.get(auth_user=auth_user)
+        user_city = UserCities.objects.filter(user=auth_user)
+        user_sub = UserSubcategories.objects.filter(user=auth_user)
+        portfolio = UserPortfolio.objects.filter(user=auth_user)
+        # посчитать процент положительных отзывов
+        user_comment = UserComment.objects.filter(user=auth_user).order_by('-date')
+        successful_task = UserComment.objects.filter(user=auth_user).filter(quality__gte=4).filter(
+            politeness__gte=4).filter(punctuality__gte=4).count()
+        quality_suc = UserComment.objects.filter(user=auth_user).filter(quality__gte=4).count()
+        politeness_suc = UserComment.objects.filter(user=auth_user).filter(politeness__gte=4).count()
+        punctuality_suc = UserComment.objects.filter(user=auth_user).filter(punctuality__gte=4).count()
+        all_task = user_comment.count()
+        com_percent = 0
+        quality_percent = 0
+        politeness_persent = 0
+        punctuality_persent = 0
+        if all_task > 0:
+            com_percent = int((successful_task * 100) / all_task)
+            quality_percent = int((quality_suc * 100) / all_task)
+            politeness_persent = int((politeness_suc * 100) / all_task)
+            punctuality_persent = int((punctuality_suc * 100) / all_task)
+
         if (user.verify_passport == True):
+            advert_count=UserAdvert.objects.filter(user=auth_user).count()
+            if(advert_count>10):
+                advert=UserAdvert.objects.filter(user=auth_user).order_by('-id')[:10]
+            else:
+                advert = UserAdvert.objects.filter(user=auth_user).order_by('-id')
+            task_close=UserTask.objects.filter(exec=auth_user)
+            sub_task_close=[]
+            sub_task_list=""
+            for t in task_close:
+                if t.subcategory.name not in sub_task_close:
+                    sub_task_close.append(t.subcategory.name)
+                    sub_task_list=sub_task_list+t.subcategory.name+"\n"
+            advert=UserAdvert.objects.filter(user=auth_user)
+            sub_advert=[]
+            sub_advert_list = ""
+            for a in advert:
+                if a.subcategory.name not in advert:
+                    sub_advert.append(a.subcategory.name)
+                    sub_advert_list=sub_advert_list+a.subcategory.name+'\n'
             return render(request, 'Profile/Profile_verified.html', locals())
         else:
-            user_city = UserCities.objects.filter(user=auth_user)
-            user_sub = UserSubcategories.objects.filter(user=auth_user)
-            portfolio = UserPortfolio.objects.filter(user=auth_user)
-            # посчитать процент положительных отзывов
-            user_comment = UserComment.objects.filter(user=auth_user).order_by('-date')
-            successful_task=UserComment.objects.filter(user=auth_user).filter(quality__gte=4).filter(politeness__gte=4).filter(punctuality__gte=4).count()
-            quality_suc =UserComment.objects.filter(user=auth_user).filter(quality__gte=4).count()
-            politeness_suc = UserComment.objects.filter(user=auth_user).filter(politeness__gte=4).count()
-            punctuality_suc = UserComment.objects.filter(user=auth_user).filter(punctuality__gte=4).count()
-            all_task=user_comment.count()
-            com_percent=0
-            quality_percent=0
-            politeness_persent=0
-            punctuality_persent=0
-            if all_task>0:
-                com_percent=int((successful_task*100)/all_task)
-                quality_percent=int((quality_suc*100)/all_task)
-                politeness_persent=int((politeness_suc*100)/all_task)
-                punctuality_persent=int((punctuality_suc*100)/all_task)
-
             return render(request, 'Profile/Profile_unverified.html', locals())
     else:
         return HttpResponseRedirect("/login")
 
 def Profile_adverts(request,id):
     id = int(id)
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     user = request.session.get('username', 'no')
     if (user != 'no'):
         auth_user = AuthUser.objects.get(id=id)
@@ -455,7 +483,7 @@ def Profile_adverts(request,id):
 
 @login_required()
 def Awards(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
 
     user = request.session.get('username')
     if user:
@@ -468,7 +496,7 @@ def Awards(request):
 
 @login_required()
 def Number_verification(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
 
     user = request.session.get('username')
     if user:
@@ -520,7 +548,7 @@ def verify_number(request):
 
 @login_required()
 def Passport_verification(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
 
     return render(request, 'Profile/Passport_verification.html', locals())
 

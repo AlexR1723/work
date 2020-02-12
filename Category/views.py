@@ -23,15 +23,17 @@ def layout_name(request):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
         photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
+        balance = user.balance
+        bonus = user.bonus_balance
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username,photo
+    return layout, username, photo, balance, bonus
 
 # Create your views here.
 def All_category(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact=layout_contact()
     link=layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -39,7 +41,7 @@ def All_category(request):
     return render(request, 'Category/All_category.html', locals())
 
 def Category_item(request,name):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -91,7 +93,7 @@ list_page = []
 sub_count = 0
 
 def sub_category(request,name):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)
@@ -167,7 +169,7 @@ def sub_category(request,name):
     return render(request, 'Category/Sub_category.html', locals())
 
 def Page_subcategory(request,name,page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city,regs,regions=layout_regions_cities(request)

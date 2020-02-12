@@ -25,11 +25,13 @@ def layout_name(request):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
         photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
+        balance = user.balance
+        bonus = user.bonus_balance
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username,photo
+    return layout, username, photo, balance, bonus
 
 
 
@@ -58,7 +60,7 @@ def Advert_save(request):
 
 
 def All_ads(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if (username != ''):
         email = request.session.get('username', 'no')
         auth = AuthUser.objects.all().filter(email=email)[0]
@@ -91,7 +93,7 @@ def All_ads(request):
         return HttpResponseRedirect("/login")
 
 def All_ads_page(request,page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if (username != ''):
         filter = 0
         email = request.session.get('username', 'no')
@@ -140,7 +142,7 @@ def All_ads_page(request,page):
 
 
 def Advert_filter(request, filter):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     filter = str(filter)
     if (username != ''):
         email = request.session.get('username', 'no')
@@ -173,7 +175,7 @@ def Advert_filter(request, filter):
         return HttpResponseRedirect("/login")
 
 def Advert_filter_page(request, filter, page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     filter = str(filter)
     if (username != ''):
         filter = 0
@@ -221,7 +223,7 @@ def Advert_filter_page(request, filter, page):
         return HttpResponseRedirect("/login")
 
 def Advert_detail(request,id):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
 
@@ -244,7 +246,7 @@ def Advert_detail(request,id):
 
 
 def Adverts_change(request,id):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
 

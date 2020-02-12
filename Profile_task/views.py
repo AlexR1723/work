@@ -25,16 +25,18 @@ def layout_name(request):
         username=AuthUser.objects.all().filter(email=user)[0].first_name
         photo=Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
+        balance = user.balance
+        bonus = user.bonus_balance
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
             layout = 'layout_executor.html'
-    return layout,username,photo
+    return layout, username, photo, balance, bonus
 
 
 
 def Profile_tasks(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     print('start')
     if username=='':
         return HttpResponseRedirect("/login")
@@ -118,7 +120,7 @@ def Profile_tasks(request):
 
 
 def Profile_task_page(request,page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -230,7 +232,7 @@ def Profile_task_page(request,page):
             return HttpResponseRedirect("/profile/settings")
 
 def Profile_task_filter(request,filter):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username=='':
         return HttpResponseRedirect("/login")
     else:
@@ -278,7 +280,7 @@ def Profile_task_filter(request,filter):
     return render(request, 'Profile/My_tasks_customer.html', locals())
 
 def Profile_task_filter_page(request,filter,page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -338,7 +340,7 @@ def Profile_task_filter_page(request,filter,page):
     return render(request, 'Profile/My_tasks_customer.html', locals())
 
 def Create_task(request,text):
-    layout, username,photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if (username != ''):
         email = request.session.get('username', 'no')
         if(Users.objects.all().filter(auth_user__email=email)[0].type.name=='Заказчик'):
@@ -355,7 +357,7 @@ def Create_task(request,text):
 
 def Offer_create(request, id_advert):
     print('offer')
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if (username != ''):
         email = request.session.get('username', 'no')
         if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Заказчик'):
@@ -528,7 +530,7 @@ def Save_offer(request):
 
 
 def Profile_task_detail(request,id):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     id=int(id)
     if username == '':
         return HttpResponseRedirect("/login")
@@ -547,7 +549,7 @@ def Profile_task_detail(request,id):
             return render(request, 'Profile/Task_details.html', locals())
 
 def Bet_save(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     id=int(request.GET.get('id'))
     description=request.GET.get('description')
     sum=int(request.GET.get('sum'))
@@ -565,7 +567,7 @@ def Bet_save(request):
 
 
 def Set_exec(request):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     id = int(request.GET.get('id'))
     user_id = int(request.GET.get('user_id'))
     if username == '':
@@ -585,7 +587,7 @@ def Set_exec(request):
 
 
 def Executor_my_tasks_filter_cat(request,filter_cat):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -630,7 +632,7 @@ def Executor_my_tasks_filter_cat(request,filter_cat):
             return HttpResponseRedirect("/profile/settings")
 
 def Executor_my_tasks_filter_cat_page(request,filter_cat,page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -690,7 +692,7 @@ def Executor_my_tasks_filter_cat_page(request,filter_cat,page):
 
 
 def Executor_my_tasks_filter_stat(request,filter_stat):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -736,7 +738,7 @@ def Executor_my_tasks_filter_stat(request,filter_stat):
             return HttpResponseRedirect("/profile/settings")
 
 def Executor_my_tasks_filter_stat_page(request,filter_stat,page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -795,7 +797,7 @@ def Executor_my_tasks_filter_stat_page(request,filter_stat,page):
             return HttpResponseRedirect("/profile/settings")
 
 def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -840,7 +842,7 @@ def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
             return HttpResponseRedirect("/profile/settings")
 
 def Executor_my_tasks_filter_cat_stat_page(request,filter_cat,filter_stat,page):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -918,7 +920,7 @@ def Rezult_task_save(request):
 
 
 def Close_task(request, id):
-    layout, username, photo = layout_name(request)
+    layout, username, photo, balance, bonus = layout_name(request)
     if (username != ''):
         email = request.session.get('username', 'no')
         id=int(id)
