@@ -24,7 +24,7 @@
                                         {% if i.id in user_list.keys %}
                                             {% for k,v in user_list.items %}
                                             {% if k == i.id %}
-                                             Получено {{ v }}
+                                             Получено {{ v|date:"DATE_FORMAT" }}
                                              {% endif %}
                                              {% endfor %}
                                         {% endif %}
