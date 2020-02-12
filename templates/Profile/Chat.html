@@ -38,7 +38,11 @@
                                 <div class="row justify-content-start">
                                     <div class="message-card px-4 py-3 mb-3">
                                         <p class="a-left mb-2">{{ i.text }}</p>
-                                        <p class="a-right"><span>{{ i.date }}</span></p>
+                                        {% if i.date.year == year %}
+                                            <p class="a-right"><span>{{ i.date }}</span></p>
+                                        {% else %}
+                                            <p class="a-right"><span>{{ i.date|date:'LONG_DATETIME_FORMAT' }}</span></p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +51,17 @@
                                 <div class="row justify-content-end">
                                     <div class="message-card px-4 py-3 mb-3">
                                         <p class="a-left mb-2">{{ i.text }}</p>
-                                        <p class="a-right"><span>{{ i.date }}</span></p>
+                                        {% if i.date.year == year %}
+                                            <p class="a-right"><span>
+                                            {% if i.date.date == today %}
+                                                Сегодня в {{ i.date|date:"TIME_FORMAT" }}
+                                            {% else %}
+                                                {{ i.date }}
+                                            {% endif %}
+                                            </span></p>
+                                        {% else %}
+                                            <p class="a-right"><span>{{ i.date|date:'LONG_DATETIME_FORMAT' }}</span></p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

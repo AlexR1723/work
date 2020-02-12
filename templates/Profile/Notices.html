@@ -56,9 +56,10 @@
                                     </div>
                                     <div class="row justify-content-start align-items-center">
                                         {% if i.date_public.date == today %}
-                                            <span>Сегодня в {{ i.date_public.time }}</span>
+                                            <span>Сегодня в {{ i.date_public|date:'TIME_FORMAT' }}</span>
                                         {% else %}
-                                            <span>{{ i.date_public.date }} в {{ i.date_public.time }}</span>
+{#                                            <span>{{ i.date_public|date:'DATETIME_FORMAT' }}</span>#}
+                                            <span>{{ i.date_public }}</span>
                                         {% endif %}
                                     </div>
                                 </div>

@@ -8,7 +8,11 @@
                 <div class="row mb-5 mt-3 user-message_blk">
 
                     {% for i in user_mess %}
-                        <div class="col-12 p-2 user-message_item {% if i.is_show %}user-message_read{% else %}user-message_unread{% endif %}">
+                        <div class="col-12 p-2 user-message_item {% if i.is_show %}user-message_read{% else %}user-message_unread{% endif %}"
+                             data-user="
+
+
+                                     {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
                             <div class="row">
                                 <div class="col-2 col-md-2 col-lg-1 p-0 p-md-3 p-lg-2 align-self-center">
                                     <div class="row justify-content-between justify-content-md-start">
@@ -31,44 +35,92 @@
 
                                         </div>
                                         <div class="col-4 col-md-6 p-0 px-md-3 a-right">
-                                        <div class="count_mess" data-res="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">msg:{{ i.get_count_messages }}</div>
+                                            <div class="count_mess" data-user-count="
+
+
+                                                    {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                                msg:{{ i.get_count_messages }}</div>
                                             {% if i.is_show %}
-                                                {% if i.date.date == today %}
-                                                    <span>Сегодня в {{ i.date.time }}</span>
+                                                {#                                                {% if i.date.date == today %}#}
+                                                {#                                                    <span>Сегодня в {{ i.date|date:'DATE_FORMAT_D' }}</span>#}
+                                                {#                                                {% else %}#}
+                                                {% if i.date.year == year %}
+                                                    <span data-user-date="
+                                                            {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                                    {% if i.date.date == today %}
+                                                        Сегодня в {{ i.date|date:"TIME_FORMAT" }}
+                                                    {% else %}
+                                                        {{ i.date }}
+                                                    {% endif %}
+                                                    </span>
                                                 {% else %}
-                                                    <span>{{ i.date|date:'d E' }} в {{ i.date.time }}</span>
+                                                    <span data-user-date="
+
+
+                                                            {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">{{ i.date|date:'LONG_DATETIME_FORMAT' }}</span>
                                                 {% endif %}
+                                                {#                                                    <span>{{ i.date|date:'d E' }} в {{ i.date.time }}</span>#}
+                                                {#                                                {% endif %}#}
                                             {% else %}
-
-                                                {% if i.date.date == today %}
-                                                    <span><b>Сегодня в {{ i.date.time }}</b></span>
+                                                {% if i.date.year == year %}
+                                                    <b>
+                                                    <span data-user-date="
+                                                            {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                                        {% if i.date.date == today %}
+                                                            Сегодня в {{ i.date|date:"TIME_FORMAT" }}
+                                                        {% else %}
+                                                            {{ i.date }}
+                                                        {% endif %}
+                                                            </span>
+                                                    </b>
                                                 {% else %}
-                                                    <span><b>{{ i.date|date:'d E' }} в {{ i.date.time }}</b></span>
-                                                {% endif %}
-                                            {% endif %}
-                                    </div>
+                                                    <b>
+                                                    <span data-user-date="
 
-                                    {% if i.is_show %}
-                                        {% if i.get_last_message.id == user_id %}
-                                            <p class="message-text m-0 pt-1">Вы: {{ i.get_last_message.text }}</p>
-                                        {% else %}
-                                            <p class="message-text m-0 pt-1">{{ i.get_last_message.text }}</p>
+
+                                                            {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">{{ i.date|date:'LONG_DATETIME_FORMAT' }}</span>
+                                                    </b>
+                                                {% endif %}
+                                                {#                                                {% if i.date.date == today %}#}
+                                                {#                                                    <span><b>Сегодня в {{ i.date.time }}</b></span>#}
+                                                {#                                                {% else %}#}
+                                                {#                                                    <span><b>{{ i.date|date:'d E' }} в {{ i.date.time }}</b></span>#}
+                                                {#                                                {% endif %}#}
+                                            {% endif %}
+                                        </div>
+
+                                        {% if i.is_show %}
+                                            {% if i.get_last_message.id == user_id %}
+                                                <p class="message-text m-0 pt-1" data-user-text="
+
+
+                                                        {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                                    Вы: {{ i.get_last_message.text }}</p>
+                                            {% else %}
+                                                <p class="message-text m-0 pt-1" data-user-text="
+
+
+                                                        {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">{{ i.get_last_message.text }}</p>
+                                            {% endif %}
+                                        {% else %}<b>
+                                            <p class="message-text m-0 pt-1" data-user-text="
+
+
+                                                    {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">{{ i.text }}</p>
+                                        </b>
                                         {% endif %}
-                                    {% else %}
-                                        <p class="message-text m-0 pt-1"><b>{{ i.text }}</b></p>
-                                    {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                         {% if not forloop.last %}
                             <hr class="line_blk m-0">
                         {% endif %}
                     {% endfor %}
 
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
 {% endblock %}
