@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from distutils.util import strtobool
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives, EmailMessage
+from django.template.loader import render_to_string
 
 import os
 import datetime
@@ -30,6 +32,8 @@ def layout_name(request):
     layout = 'layout.html'
     username = ''
     photo = ''
+    balance = 0
+    bonus = 0
     user = request.session.get('username', 'no')
     if (user != 'no'):
         username = AuthUser.objects.all().filter(email=user)[0].first_name
@@ -555,38 +559,59 @@ def Passport_verification(request):
 
 @login_required()
 def verify_passport(request):
-    passport =str(request.GET.get('series')).replace(' ', '')
-    # phone1=phone[1:]
-    # print(phone +' - '+ str(len(phone)))
-    # print(phone)
+    print('verify-passport')
+    if request.method == 'POST':
+        doc = request.FILES
+        passport =str(request.POST.get('series')).replace(' ', '')
+        # phone1=phone[1:]
+        # print(phone +' - '+ str(len(phone)))
+        # print(phone)
 
-    if (len(passport))==0:
-        return HttpResponse(json.dumps([False, 'Заполните поля!']))
+        # if (len(passport))==0:
+        #     return HttpResponse(json.dumps([False, 'Заполните поля!']))
 
-    user = request.session.get('username')
-    if user:
-        user = AuthUser.objects.get(username=user)
+        user = request.session.get('username')
+        if user:
+            user = AuthUser.objects.get(username=user)
+            if doc:
+                user1=Users.objects.get(auth_user_id=user.id)
+                user1.passport_num_ser=passport
+                user1.passport_photo=doc['files']
+                user1.save()
 
-        user1=Users.objects.get(auth_user_id=user.id)
-        user1.passport_num_ser=passport
-        user1.save()
+            id = user.id
+            name = user.first_name
+            surename = user.last_name
+            photo=user1.passport_photo.url
+            passport=user1.passport_num_ser
+            print(photo)
+            print(user.email)
 
-        id = user.id
-        name = user.first_name
-        surename = user.last_name
-        print(user.email)
+            # subj = 'Запрос на верификацию паспорта'
+            # text = 'Данные пользователя: \n\r id: ' + str(
+            #     id) + '\n\r Имя: ' + name + '\n\r Фамилия: ' + surename + '\n\r Серия паспорта: ' + passport
+            #
+            # message = send_mail(subj, text, 'romanenko.anastasiya1998@yandex.ua', [user.email])
+            # # message=True
+            # if message:
+            #     s = Users.objects.get(auth_user_id=user.id)
+            #     s.verify_date = datetime.datetime.today()
+            #     s.save()
+            #     sn = send_notice(request, 'Ваш паспорт отправлен на верификацию. Это может занять несколько дней.', 'all')
+            #     return HttpResponse(json.dumps([True, 'Запрос на верификацию паспорта отправлен.']))
+            # else:
+            #     return HttpResponse(json.dumps([False, 'Не удалось отправить запрос на верификацию паспорта.']))
 
-        subj = 'Запрос на верификацию паспорта'
-        text = 'Данные пользователя: \n\r id: ' + str(
-            id) + '\n\r Имя: ' + name + '\n\r Фамилия: ' + surename + '\n\r Серия паспорта: ' + passport
+            subject, from_email, to = 'Запрос на верификацию паспорта', 'romanenko.anastasiya1998@yandex.ua', "romanenko.anastasiya1998@yandex.ua"
+            text_content = 'Запрос на верификацию паспорта'
 
-        message = send_mail(subj, text, 'romanenko.anastasiya1998@yandex.ua', [user.email])
-        # message=True
-        if message:
-            s = Users.objects.get(auth_user_id=user.id)
-            s.verify_date = datetime.datetime.today()
-            s.save()
-            sn = send_notice(request, 'Ваш паспорт отправлен на верификацию. Это может занять несколько дней.', 'all')
-            return HttpResponse(json.dumps([True, 'Запрос на верификацию паспорта отправлен.']))
+            print(m)
+            html_content = render_to_string('letter_verify_passport.html', {"surename": surename, "name": name, "passport":passport, "photo":photo})
+            print(html_content)
+            # html_content="<a href='%s'>Активировать</a>" % m
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            return HttpResponseRedirect("/profile/settings")
         else:
-            return HttpResponse(json.dumps([False, 'Не удалось отправить запрос на верификацию паспорта.']))
+            return HttpResponseRedirect("/login")

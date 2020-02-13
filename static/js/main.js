@@ -796,27 +796,29 @@ $("#btn_number_verify").click(function (event) {
 });
 
 $("#btn_passport_verify").click(function (event) {
-    let series = document.getElementById('series').value
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        async: false,
-        url: 'verify_passport',
-        data: {
-            series: series
-        },
-        success: function (data) {
-            // alert(data)
-            if (data[0] == true) {
-                alert(data[1])
-            } else {
-                alert(data[1])
-            }
-        },
-        error: function (data) {
-            alert('error')
-        }
-    })
+    let series = document.getElementById('series').value;
+    var btn=document.getElementById('send-verify-passport');
+    btn.click();
+    // $.ajax({
+    //     type: "GET",
+    //     dataType: "json",
+    //     async: false,
+    //     url: 'verify_passport',
+    //     data: {
+    //         series: series
+    //     },
+    //     success: function (data) {
+    //         // alert(data)
+    //         if (data[0] == true) {
+    //             alert(data[1])
+    //         } else {
+    //             alert(data[1])
+    //         }
+    //     },
+    //     error: function (data) {
+    //         alert('error')
+    //     }
+    // })
 });
 
 document.addEventListener("DOMContentLoaded", () => {

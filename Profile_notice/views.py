@@ -22,6 +22,8 @@ def layout_name(request):
     layout = 'layout.html'
     username = ''
     photo = ''
+    balance = 0
+    bonus = 0
     user = request.session.get('username', 'no')
     if (user != 'no'):
         username = AuthUser.objects.all().filter(email=user)[0].first_name
