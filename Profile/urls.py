@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
+    url(r'verify_passport/$', views.verify_passport, name='verify_passport'),
     url(r'^(?P<id>[0-9]+)/$', views.Profile_page, name="Profile_page"),
     url(r'^(?P<id>[0-9]+)/adverts/$', views.Profile_adverts, name="Profile_adverts"),
     url(r'^settings/$', views.Profile_settings, name="Profile_settings"),
@@ -39,7 +40,6 @@ urlpatterns = [
     url(r'get_notice_status', views.get_notice_status, name='get_notice_status'),
     url(r'get_status', views.get_status, name='get_status'),
     url(r'verify_number', views.verify_number, name='verify_number'),
-    url(r'verify_passport', views.verify_passport, name='verify_passport'),
 
     url(r'executor/', views.Executor),
     url(r'customer/', views.Customer),

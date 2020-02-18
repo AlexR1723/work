@@ -605,7 +605,7 @@ def verify_passport(request):
             subject, from_email, to = 'Запрос на верификацию паспорта', 'romanenko.anastasiya1998@yandex.ua', "romanenko.anastasiya1998@yandex.ua"
             text_content = 'Запрос на верификацию паспорта'
 
-            print(m)
+            # print(m)
             html_content = render_to_string('letter_verify_passport.html', {"surename": surename, "name": name, "passport":passport, "photo":photo})
             print(html_content)
             # html_content="<a href='%s'>Активировать</a>" % m

@@ -632,100 +632,100 @@ function check_notifications() {
     })
 }
 
-function check_messages() {
-    let from_user = false
-    let to_user = false
-    if (document.getElementById('from_user')) {
-        from_user = document.getElementById('from_user').value
-    }
-    if (document.getElementById('to_user')) {
-        to_user = document.getElementById('to_user').value
-    }
-    let is_page = false
-    let elm = document.getElementsByClassName('count_mess')
-    if (elm.length > 0) {
-        is_page = true
-    }
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        async: true,
-        url: "profile/message/check_messages",
-        data: {
-            from_user: from_user,
-            to_user: to_user,
-            is_page: is_page
-        },
-        success: function (data) {
-            // if (data[1].length == 0) {
-            //     for (let i = 0; i < elm.length) {
-            //         document.querySelector('[data-user-count~="' + elm[i] + '"]').innerHTML = ''
-            //         document.querySelector('[data-user-date~="' + data[1][i][0] + '"]').innerHTML = document.querySelector('[data-user-date~="' + data[1][i][0] + '"]').innerHTML.children[0].innerHTML
-            //         document.querySelector('[data-user-text~="' + data[1][i][0] + '"]').innerHTML = document.querySelector('[data-user-text~="' + data[1][i][0] + '"]').innerHTML.children[0].innerHTML
-            //     }
-            // }
-            for (let i = 0; i < data[1].length; i++) {
-                let el = document.querySelector('[data-user-count~="' + data[1][i][0] + '"]');
-                if (el) {
-                    el.innerHTML = data[1][i][3]
-                    document.querySelector('[data-user-date~="' + data[1][i][0] + '"]').innerHTML = '<b>' + data[1][i][2] + '</b>'
-                    document.querySelector('[data-user-text~="' + data[1][i][0] + '"]').innerHTML = '<b>' + data[1][i][1] + '</b>'
-                    let this_div = document.querySelector('[data-user~="' + data[1][i][0] + '"]')
-                    if (this_div.classList.contains('user-message_read')) {
-                        this_div.classList.toggle('user-message_read')
-                        this_div.classList.toggle('user-message_unread')
-                    }
-                }
-            }
-
-            let count_mess = data[0]
-            console.log('mess ' + count_mess.toString())
-
-            let el = document.getElementById('count_messages')
-            let el_menu = document.getElementById('count_messages_menu')
-            if (data[0] != 0) {
-                el.style.display = 'block'
-                el.innerHTML = count_mess
-                el_menu.style.display = 'inline-block'
-                el_menu.children[0].innerHTML = count_mess
-            } else {
-                el.style.display = 'none'
-                el_menu.style.display = 'none'
-            }
-            if (data[2].length > 0) {
-                for (let i = 0; i < data[2].length; i++) {
-
-                    let col = document.createElement('div')
-                    col.setAttribute('class', 'col-12 p-0 user-message')
-                    let div = document.createElement('div')
-                    div.setAttribute('class', 'row justify-content-start')
-                    let div1 = document.createElement('div')
-                    div1.setAttribute('class', 'message-card px-4 py-3 mb-3')
-                    let p = document.createElement('p')
-                    p.setAttribute('class', 'a-left mb-2')
-                    p.innerText = data[2][i][1]
-                    let p1 = document.createElement('p')
-                    p1.setAttribute('class', 'a-right')
-                    let span = document.createElement('span')
-                    span.innerText = data[2][i][0]
-                    p1.appendChild(span)
-                    p.appendChild(p1)
-                    div1.appendChild(p)
-                    div.appendChild(div1)
-                    col.appendChild(div)
-                    document.getElementById('chat').prepend(col)
-                }
-
-            }
-            setTimeout(check_messages, 1000 * 5)
-        },
-        error: function (data) {
-            console.log(data)
-        }
-    }).fail(function () {
-        setTimeout(check_messages, 1000 * 10)
-    })
-}
+// function check_messages() {
+//     let from_user = false
+//     let to_user = false
+//     if (document.getElementById('from_user')) {
+//         from_user = document.getElementById('from_user').value
+//     }
+//     if (document.getElementById('to_user')) {
+//         to_user = document.getElementById('to_user').value
+//     }
+//     let is_page = false
+//     let elm = document.getElementsByClassName('count_mess')
+//     if (elm.length > 0) {
+//         is_page = true
+//     }
+//     $.ajax({
+//         type: "GET",
+//         dataType: "json",
+//         async: true,
+//         url: "/profile/message/check_messages/",
+//         data: {
+//             from_user: from_user,
+//             to_user: to_user,
+//             is_page: is_page
+//         },
+//         success: function (data) {
+//             // if (data[1].length == 0) {
+//             //     for (let i = 0; i < elm.length) {
+//             //         document.querySelector('[data-user-count~="' + elm[i] + '"]').innerHTML = ''
+//             //         document.querySelector('[data-user-date~="' + data[1][i][0] + '"]').innerHTML = document.querySelector('[data-user-date~="' + data[1][i][0] + '"]').innerHTML.children[0].innerHTML
+//             //         document.querySelector('[data-user-text~="' + data[1][i][0] + '"]').innerHTML = document.querySelector('[data-user-text~="' + data[1][i][0] + '"]').innerHTML.children[0].innerHTML
+//             //     }
+//             // }
+//             for (let i = 0; i < data[1].length; i++) {
+//                 let el = document.querySelector('[data-user-count~="' + data[1][i][0] + '"]');
+//                 if (el) {
+//                     el.innerHTML = data[1][i][3]
+//                     document.querySelector('[data-user-date~="' + data[1][i][0] + '"]').innerHTML = '<b>' + data[1][i][2] + '</b>'
+//                     document.querySelector('[data-user-text~="' + data[1][i][0] + '"]').innerHTML = '<b>' + data[1][i][1] + '</b>'
+//                     let this_div = document.querySelector('[data-user~="' + data[1][i][0] + '"]')
+//                     if (this_div.classList.contains('user-message_read')) {
+//                         this_div.classList.toggle('user-message_read')
+//                         this_div.classList.toggle('user-message_unread')
+//                     }
+//                 }
+//             }
+//
+//             let count_mess = data[0]
+//             console.log('mess ' + count_mess.toString())
+//
+//             let el = document.getElementById('count_messages')
+//             let el_menu = document.getElementById('count_messages_menu')
+//             if (data[0] != 0) {
+//                 el.style.display = 'block'
+//                 el.innerHTML = count_mess
+//                 el_menu.style.display = 'inline-block'
+//                 el_menu.children[0].innerHTML = count_mess
+//             } else {
+//                 el.style.display = 'none'
+//                 el_menu.style.display = 'none'
+//             }
+//             if (data[2].length > 0) {
+//                 for (let i = 0; i < data[2].length; i++) {
+//
+//                     let col = document.createElement('div')
+//                     col.setAttribute('class', 'col-12 p-0 user-message')
+//                     let div = document.createElement('div')
+//                     div.setAttribute('class', 'row justify-content-start')
+//                     let div1 = document.createElement('div')
+//                     div1.setAttribute('class', 'message-card px-4 py-3 mb-3')
+//                     let p = document.createElement('p')
+//                     p.setAttribute('class', 'a-left mb-2')
+//                     p.innerText = data[2][i][1]
+//                     let p1 = document.createElement('p')
+//                     p1.setAttribute('class', 'a-right')
+//                     let span = document.createElement('span')
+//                     span.innerText = data[2][i][0]
+//                     p1.appendChild(span)
+//                     p.appendChild(p1)
+//                     div1.appendChild(p)
+//                     div.appendChild(div1)
+//                     col.appendChild(div)
+//                     document.getElementById('chat').prepend(col)
+//                 }
+//
+//             }
+//             setTimeout(check_messages, 1000 * 5)
+//         },
+//         error: function (data) {
+//             console.log(data)
+//         }
+//     }).fail(function () {
+//         setTimeout(check_messages, 1000 * 10)
+//     })
+// }
 
 $("#send_message").click(function (event) {
     let message = document.getElementById('message').value

@@ -3,34 +3,30 @@
 {% block content %}
 
 <div class="container-fluid p-0 pass-verif-blk">
-    <form class="w-100" action="{% url 'verify_passport' %}" method="post" enctype="multipart/form-data">
-                     {% csrf_token %}
     <div class="row justify-content-center mt-5">
-        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 pb-4">
-                <a href="{% url 'Profile_settings' %}" class="back">
-                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Назад в профиль
-                </a>
-            </div>
+
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
             <h1>Верификация паспорта</h1>
             <p class="text-center mb-md-5">Пожалуйста внимательно вводите все данные</p>
-            <form action="" class="a-left">
+            <form class="a-left" action="{% url 'verify_passport' %}" method="post" enctype="multipart/form-data">
+                     {% csrf_token %}
                 <div class="form-group row">
-                    <label class="col-form-label" for="inputPass">Серия и номер паспорта</label>
+                    <label class="col-form-label">Серия и номер паспорта</label>
                     <div class="col-md-5 p-0 px-md-3">
                         <input class="form-control" name="series" id="series" placeholder="ВТ 000000" type="text">
                     </div>
                 </div>
                 <div class="form-group row upload-file">
-                    <label class="col-form-label" for="inputPass">Фото лица с разворотом <br class="d-none d-md-block"> паспорта</label>
+                    <label class="col-form-label">Фото лица с разворотом <br class="d-none d-md-block"> паспорта</label>
                     <div class="col-md-5 p-0 px-md-3">
                         <input class="mb-1 form-control prof-file d-none" id="file_main" name="files" type="file">
-                        <label class="btn btn-tertiary js-labelFile my-2 my-md-3" for="file_main">
+                        <label class="btn btn-tertiary js-labelFile my-2 my-md-3 js-fileNameMain" for="file_main">
                             <i class="fas fa-upload"></i>
                             <span class="js-fileName">Добавить файл</span>
                         </label>
                     </div>
                 </div>
+                            <button type="submit" class="d-none" id="send-verify-passport">Отправить</button>
             </form>
         </div>
     </div>
@@ -55,14 +51,12 @@
                         <a class="mx-auto mt-4" href="#">
                             <button class="btn btn-primary pass-verif_btn" id="btn_passport_verify">Отправить
                             </button>
-                            <button type="submit" class="d-none" id="send-verify-passport">Отправить</button>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </form>
 </div>
 
 {% endblock %}
