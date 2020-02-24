@@ -3201,3 +3201,32 @@ label.categ-label, label.categ-label a, i.fa-chevron-right{
     background: none;
     transition: .3s;
 }
+.price-block{
+    border:1px solid #AAAAAA;
+    border-radius: 5px;
+    text-align: center;
+}
+button.serv-btn-red {
+    padding: 0;
+    padding: 7px 30px;
+    font-size: 20px;
+    background: #AF4B53;
+    border: 1px solid #AF4B53 !important;
+}
+button.serv-btn-red:hover {
+    color: #AF4B53;
+    background: none;
+    transition: .3s;
+}
+button.serv-btn-blue {
+    padding: 0;
+    padding: 7px 30px;
+    font-size: 20px;
+    background: #3E789D;
+    border: 1px solid #3E789D !important;
+}
+button.serv-btn-blue:hover{
+    color: #3E789D;
+    background: none;
+    transition: .3s;
+}

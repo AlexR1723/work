@@ -51,4 +51,10 @@ def Service(request):
 
 def Service_detail(request,id):
     layout, username, photo, balance, bonus = layout_name(request)
+    id=int(id)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        service = Services.objects.get(id=id)
+        service_image=ServicesImage.objects.filter(service=service)
     return render(request, 'Profile/Service_details.html', locals())

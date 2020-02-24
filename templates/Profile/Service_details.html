@@ -7,7 +7,7 @@
         <div class=" w-100 serv_details_hdr_bg">
             <div class="ques_hdr_bg_layout row justify-content-center align-items-center">
                 <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-                    <p class="m-0 fz_2rem line_height_1 text-center">Наименование услуги</p>
+                    <p class="m-0 fz_2rem line_height_1 text-center">{{service.name}}</p>
                 </div>
             </div>
         </div>
@@ -22,10 +22,22 @@
                             <span class="serv-users-span p-1"> 127 пользователей</span>
                         </div>
                         <div class="col-12 col-md-8 p-0 text-center text-md-right">
-                            <span class="serv-price-span fz_2rem">300 руб/мес</span>
-                            <a class="mx-auto" href="#">
-                                <button class="btn btn-primary mb-3 ml-3">Подключить</button>
-                            </a>
+                            <div class="row justify-content-end align-items-center">
+                                <div class="col-auto">
+                                    <div class="row">
+                                        <span class="serv-price-span fz_2rem">{{service.price}} руб/мес</span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="serv-price-span fz_2rem">{{service.price_week}} руб/неделя</span>
+                                    </div>
+
+                                </div>
+                                <div class="col-auto">
+                                    <a class="mx-auto" href="#price">
+                                        <button class="btn btn-primary ml-3">Подключить</button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -38,30 +50,52 @@
                 <div class="col-12 p-0">
                     <div class="row">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tempus imperdiet nulla malesuada pellentesque elit eget. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis. Rhoncus aenean vel elit scelerisque mauris. In nisl nisi scelerisque eu ultrices vitae. Non consectetur a erat nam at lectus urna duis convallis. Duis convallis convallis tellus id interdum velit laoreet. Pulvinar sapien et ligula ullamcorper. Elementum pulvinar etiam non quam lacus. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio.
-                        </p>
-                        <p>
-                            Etiam tempor orci eu lobortis elementum. Dignissim enim sit amet venenatis urna cursus. Nibh cras pulvinar mattis nunc sed blandit libero volutpat. Feugiat nisl pretium fusce id. Eu feugiat pretium nibh ipsum consequat nisl. Nec nam aliquam sem et tortor consequat. Mattis pellentesque id nibh tortor id aliquet lectus proin. Nunc mattis enim ut tellus elementum sagittis. Tempor nec feugiat nisl pretium fusce id velit ut tortor. Libero enim sed faucibus turpis in eu mi bibendum neque. Ultrices vitae auctor eu augue ut lectus arcu bibendum. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget mi proin sed libero enim sed faucibus turpis in. Feugiat scelerisque varius morbi enim. Orci dapibus ultrices in iaculis nunc sed augue lacus viverra. Bibendum est ultricies integer quis.
+                            {{service.description}}
                         </p>
                     </div>
                 </div>
+                {% if service_image|length != 0 %}
                 <div class="col-12 p-0 my-4">
                     <div class="row portfolio-photos_blk">
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                            <img alt="..." class="img-fluid center-block" src="/static/image/hiw_bg.jpeg">
+                         {% for i in service_image %}
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 img_wrapper  d-inline-block p-2">
+                            <div class="photo">
+                                <a href="{{MEDIA_URL}}{{i.image.url}}" data-lightbox="roadtrip">
+                                    <img class="w-100" src="{{MEDIA_URL}}{{i.image.url}}" alt="Eagle" />
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                            <img alt="..." class="img-fluid center-block" src="/static/image/work-hardening.jpg">
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                            <img alt="..." class="img-fluid center-block" src="/static/image/cio-c.jpg">
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                            <img alt="..." class="img-fluid center-block" src="/static/image/contract.jpg">
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">
-                            <img alt="..." class="img-fluid center-block" src="/static/image/security.jpg">
-                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <a name="price"></a>
+    <div class="row justify-content-center pb-4">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+            <div class="row m-0 justify-content-center">
+                <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pl-md-0">
+                    <div class="price-block p-3">
+                        <label class="serv-price-span fz_15rem w-100">{{service.price_week}} руб./неделя</label>
+                        <p>
+                            Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.
+                        </p>
+                        <a class="mx-auto" href="#">
+                            <button class="btn btn-primary serv-btn-red">Подключить</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">
+                    <div class="price-block p-3">
+                        <label class="serv-price-span fz_15rem w-100">{{service.price}} руб./мес.</label>
+                        <p>
+                            Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.
+                        </p>
+                        <a class="mx-auto" href="#">
+                            <button class="btn btn-primary serv-btn-blue">Подключить</button>
+                        </a>
                     </div>
                 </div>
             </div>
