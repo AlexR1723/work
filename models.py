@@ -368,6 +368,7 @@ class Services(models.Model):
     image = models.CharField(max_length=500, blank=True, null=True)
     price_week = models.IntegerField(blank=True, null=True)
     exec = models.BooleanField(blank=True, null=True)
+    back_name = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -401,6 +402,17 @@ class TaskPhoto(models.Model):
     class Meta:
         managed = False
         db_table = 'task_photo'
+
+
+class TaskServices(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_services'
 
 
 class UserAdvert(models.Model):

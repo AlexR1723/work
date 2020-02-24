@@ -359,3 +359,41 @@ class Notifications(models.Model):
     class Meta:
         managed = False
         db_table = 'notifications'
+
+
+
+
+class Services(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    description = models.CharField(max_length=1000, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/service/', max_length=500, blank=True, null=True)
+    price_week = models.IntegerField(blank=True, null=True)
+    exec = models.BooleanField(blank=True, null=True)
+    back_name = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'services'
+
+
+
+class ServicesImage(models.Model):
+    service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/service/', max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'services_image'
+
+
+
+class TaskServices(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_services'

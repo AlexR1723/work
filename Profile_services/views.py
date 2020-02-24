@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .models import *
+import datetime
 # Create your views here.
 def layout_contact():
     contact=ContactType.objects.all()
@@ -58,3 +59,18 @@ def Service_detail(request,id):
         service = Services.objects.get(id=id)
         service_image=ServicesImage.objects.filter(service=service)
     return render(request, 'Profile/Service_details.html', locals())
+
+def Service_task_add(request,id):
+    layout, username, photo, balance, bonus = layout_name(request)
+    id=int(id)
+    service=Services.objects.exclude(exec=True)
+    task=UserTask.objects.get(id=id)
+    aa = task.date
+    bb = datetime.date.today()
+    cc = aa - bb
+    cc=str(cc)
+    print(cc)
+    if(int(cc.split()[0]) > 2):
+        service = service.exclude(back_name='quickly_task')
+    print(service)
+    return render(request, 'Profile/Service_task_add.html', locals())

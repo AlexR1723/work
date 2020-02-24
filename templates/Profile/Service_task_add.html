@@ -1,0 +1,58 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center choose_blk">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8">
+                <div class="row pt-4">
+                    <a href="{% url 'Profile_tasks' %}" class="back"><i class="fas fa-arrow-left"></i> Пропустить и перейти к заданиям</a>
+                </div>
+                <div class="row pt-4">
+                    <div class="alert alert-success w-100" role="alert">
+                      Задание успешно сохранено. Можете подключить дополнительные услуги.
+                    </div>
+                </div>
+                <div class="row pb-5 pt-4">
+                    {% for s in service %}
+                     <div class="col-12 p-0">
+                        <div class="row">
+                            <div class="col-12 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
+                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-3 service-link">
+                                    <a href="{% url 'Service_detail' s.id %}"><h3 class="m-0 w-100">{{s.name}}</h3></a>
+                                    <p class="mb-0 pr-0 service-card_text textrowcount w-100">{{s.description}}</p>
+                                </div>
+                                <div class="row justify-content-center align-items-center pt-2">
+                                    <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pl-md-0">
+                                        <div class="price-block p-3">
+                                            <label class="serv-price-span fz_15rem w-100">{{s.price_week}} руб./неделя</label>
+                                            <p>
+                                                Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.
+                                            </p>
+                                            <a class="mx-auto" href="#">
+                                                <button class="btn btn-primary serv-btn-red">Подключить</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">
+                                        <div class="price-block p-3">
+                                            <label class="serv-price-span fz_15rem w-100">{{s.price}} руб./мес.</label>
+                                            <p>
+                                                Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.
+                                            </p>
+                                            <a class="mx-auto" href="#">
+                                                <button class="btn btn-primary serv-btn-blue">Подключить</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="category-line mt-4 mb-3">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

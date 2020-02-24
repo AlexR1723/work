@@ -195,7 +195,7 @@ def Profile_task_page(request,page):
             task = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).order_by('-date')[start:end]
             task_count = UserTask.objects.filter(exec_id=user).exclude(offer__is_accept = False).order_by('-date').count()
             cats = []
-            for i in user_task:
+            for i in user_tasks:
                 el = SubCategory.objects.get(id=i.subcategory_id).name
                 if el not in cats:
                     cats.append(el)
@@ -458,7 +458,8 @@ def Save_task(request):
             for d in docs.getlist('files'):
                 tast_photo = TaskPhoto(task=user_task, photo=d)
                 tast_photo.save()
-    return HttpResponseRedirect("/profile/task")
+    # return HttpResponseRedirect("/profile/task")
+    return HttpResponseRedirect("/profile/service/task_add/"+str(user_task.id))
 
 
 def Save_offer(request):
