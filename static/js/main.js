@@ -761,6 +761,7 @@ $("#send_message").click(function (event) {
                 div.appendChild(div1)
                 col.appendChild(div)
                 document.getElementById('chat').prepend(col)
+                document.getElementById('message').value="";
             } else {
                 alert('message not delivered')
             }
