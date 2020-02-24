@@ -366,6 +366,8 @@ class Services(models.Model):
     description = models.CharField(max_length=1000, blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
     image = models.CharField(max_length=500, blank=True, null=True)
+    price_week = models.IntegerField(blank=True, null=True)
+    exec = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -420,7 +422,7 @@ class UserAdvertPhoto(models.Model):
 class UserAwards(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     awards = models.ForeignKey(Awards, models.DO_NOTHING, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False

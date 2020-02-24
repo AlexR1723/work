@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .models import *
 # Create your views here.
 def layout_contact():
@@ -36,4 +37,18 @@ def layout_name(request):
 
 def Service(request):
     layout, username, photo, balance, bonus = layout_name(request)
-    return render(request, 'Services/Services.html', locals())
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        if (Users.objects.filter(auth_user__email=email)[0].type.name == 'Исполнитель'):
+            # us = request.session.get('username')
+            service=Services.objects.filter(exec = True)
+        else:
+            service=Services.objects.exclude(exec = True)
+    return render(request, 'Profile/Services.html', locals())
+
+
+def Service_detail(request,id):
+    layout, username, photo, balance, bonus = layout_name(request)
+    return render(request, 'Profile/Service_details.html', locals())

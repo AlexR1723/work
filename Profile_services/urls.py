@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Service, name="Service"),
+    url(r'^(?P<id>[0-9]+)/$', views.Service_detail, name="Service_detail")
     # url(r'^(?P<page>[0-9]+)/$', views.News_page, name="News_page"),
     # url(r'^(?P<filter>[А-Яа-я]+\s[А-Яа-я]+)/$', views.News_filter, name="News_filter"),
     # url(r'^(?P<filter>[А-Яа-я]+\s[А-Яа-я]+)/(?P<page>[0-9]+)/$', views.News_filter_page, name="News_filter_page"),

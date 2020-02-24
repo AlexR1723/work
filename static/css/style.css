@@ -1610,13 +1610,13 @@ hr.line {
 }
 .quest_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/ProblemsLogo.jpg) 60% 20% no-repeat;
     background-size: cover;
 }
 .serv_hdr_bg {
     height: auto;
-    min-height: 30vh;
+    min-height: 20vh;
     background: url(/static/image/work-hardening.jpg) 50% 50% no-repeat;
     background-size: cover;
 }
@@ -1814,7 +1814,7 @@ a.category-card_label:hover{
 .propose-money_label,
 .service-money_label {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 45px;
     color: #000000;
 }

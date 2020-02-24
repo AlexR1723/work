@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'Help',
     'Advert',
     'Task',
-    'Services',
+    'Profile_services',
     'Profile',
     'Profile_advert',
     'Profile_balance',
