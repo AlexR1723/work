@@ -2100,7 +2100,7 @@ $('.btn-price-month').click(function () {
             select[0].classList.add('select-block');
             var not_select=_this.parent().parent().prev().children();
             not_select[0].classList.add('not-select-block');
-            var btn=_this.parent().parent().prev().children().children('.btn-price-month');
+            var btn=_this.parent().parent().prev().children().children('.btn-price-week');
             btn[0].setAttribute('disabled', true);
             btn[0].classList.add('disable');
             btn=_this;

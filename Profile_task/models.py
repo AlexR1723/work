@@ -393,6 +393,7 @@ class TaskServices(models.Model):
     service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    week = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False

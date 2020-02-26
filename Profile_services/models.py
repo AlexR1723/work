@@ -376,6 +376,9 @@ class Services(models.Model):
         managed = False
         db_table = 'services'
 
+    # def select_service(self):
+    #     task_serv=TaskServices.objects.filter(service=self)
+    #     return task_serv
 
 
 class ServicesImage(models.Model):
@@ -393,7 +396,10 @@ class TaskServices(models.Model):
     service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    week = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'task_services'
+
+

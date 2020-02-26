@@ -72,6 +72,20 @@ def Service_task_add(request,id):
         user=Users.objects.get(auth_user__email=email)
         service=Services.objects.exclude(exec=True)
         task=UserTask.objects.get(id=id)
+        task_serv=TaskServices.objects.filter(task=task)
+        select_serv=[]
+        select_serv_week=[]
+        select_serv_month=[]
+        for t in task_serv:
+            select_serv.append(t.service_id)
+            if t.week == True:
+                select_serv_week.append(t.service_id)
+            else:
+                select_serv_month.append(t.service_id)
+        print(select_serv)
+        print(select_serv_week)
+        print(select_serv_month)
+        flag=0
         aa = task.date
         bb = datetime.date.today()
         cc = aa - bb
@@ -98,6 +112,7 @@ def Add_service_in_task(request):
             end += datetime.timedelta(days=7)
             price=service.price_week
             print(end)
+            task_service = TaskServices(task=task, service=service, start_date=start, end_date=end, week=True)
         else:
             start = datetime.datetime.now()
             end = start
@@ -105,7 +120,7 @@ def Add_service_in_task(request):
             end += datetime.timedelta(days=days_in_month)
             price=service.price
             print(end)
-        task_service=TaskServices(task=task, service=service,start_date=start, end_date=end)
+            task_service=TaskServices(task=task, service=service,start_date=start, end_date=end, week=False)
         task_service.save()
         user.bonus_balance=user.bonus_balance-price
         user.save()
