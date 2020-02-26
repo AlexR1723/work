@@ -3230,3 +3230,21 @@ button.serv-btn-blue:hover{
     background: none;
     transition: .3s;
 }
+.disable{
+    background: #AAAAAA !important;
+    border: 1px solid #AAAAAA !important;
+}
+.disable:hover{
+    color: white !important;
+}
+.suc-label{
+    color: #AF4B53;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.select-block{
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.not-select-block{
+    background: rgba(229,229,229,1);
+}

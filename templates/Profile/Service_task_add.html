@@ -13,7 +13,14 @@
                       Задание успешно сохранено. Можете подключить дополнительные услуги.
                     </div>
                 </div>
+                <div class="row pt-4">
+                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                        Нажмите на кнопку "Подключить" возле необходимо услуги и она автоматически будет подключена!
+                    </label>
+                </div>
                 <div class="row pb-5 pt-4">
+                    <input type="hidden" id="task_id" value="{{id}}">
+                    <input type="hidden" id="bonus_count" value="{{user.bonus_balance}}">
                     {% for s in service %}
                      <div class="col-12 p-0">
                         <div class="row">
@@ -29,9 +36,11 @@
                                             <p>
                                                 Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.
                                             </p>
-                                            <a class="mx-auto" href="#">
-                                                <button class="btn btn-primary serv-btn-red">Подключить</button>
-                                            </a>
+<!--                                            <a class="mx-auto" href="#">-->
+                                                <input type="hidden" value="{{s.id}}-{{s.price_week}}">
+                                                <button class="btn btn-primary serv-btn-red btn-price-week">Подключить</button>
+                                                <label class="suc-label w-100 d-none">Подключено!</label>
+<!--                                            </a>-->
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">
@@ -40,9 +49,11 @@
                                             <p>
                                                 Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.
                                             </p>
-                                            <a class="mx-auto" href="#">
-                                                <button class="btn btn-primary serv-btn-blue">Подключить</button>
-                                            </a>
+<!--                                            <a class="mx-auto" href="#">-->
+                                                <input type="hidden" value="{{s.id}}-{{s.price}}">
+                                                <button class="btn btn-primary serv-btn-blue btn-price-month">Подключить</button>
+                                                <label class="suc-label w-100 d-none">Подключено!</label>
+<!--                                            </a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -55,4 +66,11 @@
             </div>
         </div>
     </div>
+ <div class="col-12" id="alerts-block">
+<!--                    <div class="row justify-content-center">-->
+<!--                        <div class="alert alert-danger error-city" role="alert" id="alert-success">-->
+<!--                            Успешно.-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
 {% endblock %}

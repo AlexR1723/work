@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .models import *
+import json
 import datetime
+import calendar
 # Create your views here.
 def layout_contact():
     contact=ContactType.objects.all()
@@ -63,14 +65,50 @@ def Service_detail(request,id):
 def Service_task_add(request,id):
     layout, username, photo, balance, bonus = layout_name(request)
     id=int(id)
-    service=Services.objects.exclude(exec=True)
-    task=UserTask.objects.get(id=id)
-    aa = task.date
-    bb = datetime.date.today()
-    cc = aa - bb
-    cc=str(cc)
-    print(cc)
-    if(int(cc.split()[0]) > 2):
-        service = service.exclude(back_name='quickly_task')
-    print(service)
-    return render(request, 'Profile/Service_task_add.html', locals())
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        user=Users.objects.get(auth_user__email=email)
+        service=Services.objects.exclude(exec=True)
+        task=UserTask.objects.get(id=id)
+        aa = task.date
+        bb = datetime.date.today()
+        cc = aa - bb
+        cc=str(cc)
+        # print(cc)
+        if(int(cc.split()[0]) > 2):
+            service = service.exclude(back_name='quickly_task')
+        # print(service)
+        return render(request, 'Profile/Service_task_add.html', locals())
+
+
+def Add_service_in_task(request):
+    try:
+        task_id = request.GET.get("task")
+        service_id=request.GET.get("serv")
+        time=request.GET.get("time")
+        email = request.session.get('username', 'no')
+        user = Users.objects.get(auth_user__email=email)
+        task=UserTask.objects.get(id=task_id)
+        service=Services.objects.get(id=service_id)
+        if(time=='week'):
+            start=datetime.datetime.now()
+            end = start
+            end += datetime.timedelta(days=7)
+            price=service.price_week
+            print(end)
+        else:
+            start = datetime.datetime.now()
+            end = start
+            days_in_month = calendar.monthrange(start.year, start.month)[1]
+            end += datetime.timedelta(days=days_in_month)
+            price=service.price
+            print(end)
+        task_service=TaskServices(task=task, service=service,start_date=start, end_date=end)
+        task_service.save()
+        user.bonus_balance=user.bonus_balance-price
+        user.save()
+        return HttpResponse(json.dumps({'data': 'ok'}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
