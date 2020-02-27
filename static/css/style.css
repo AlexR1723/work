@@ -2008,6 +2008,19 @@ hr.line_blk {
     padding-top: 0;
     justify-content: center;
 }
+.add-serv-btn{
+    border: 1px solid #3E789D;
+    background: none;
+    color: #3E789D;
+    height: 40px;
+    border-radius: 5px;
+    transition: .3s;
+}
+.add-serv-btn:hover{
+    background: #3E789D;
+    color: white;
+    transition: .3s;
+}
 .tooltip {
     line-height: 15px;
 }
