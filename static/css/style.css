@@ -3261,3 +3261,12 @@ button.serv-btn-blue:hover{
 .not-select-block{
     background: rgba(229,229,229,1);
 }
+.badge{
+    font-size: 1rem !important;
+    color: white !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+}
+.bg_color_task{
+    background: rgba(61,120,157,.2);
+}

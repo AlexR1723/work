@@ -95,6 +95,7 @@ list_page = []
 sub_count = 0
 
 def sub_category(request,name):
+    print('1111111111111111')
     layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
@@ -105,6 +106,14 @@ def sub_category(request,name):
         return HttpResponseRedirect("/profile/task/create/" + str(name))
     count_user = UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
 
+    task_serv=TaskServices.objects.filter(service__back_name="top_task").filter(task__subcategory=sub[0]).filter(
+            task__task_status__name="В поиске")
+    print(task_serv)
+    task_serv_list=[]
+    for t in task_serv:
+        task_serv_list.append(t.task.id)
+    top_task=UserTask.objects.filter(id__in=task_serv_list)
+    print(top_task)
     if (request.session.get('username', 'no') == 'no'):
         city = request.session.get('city', 0)
         if (city != 0):

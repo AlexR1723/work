@@ -275,6 +275,20 @@ class UserTask(models.Model):
         photo=TaskPhoto.objects.filter(task=self)
         return photo
 
+    def quickly_task(self):
+        task_serv=TaskServices.objects.filter(task=self).filter(service__back_name="quickly_task")
+        if len(task_serv) > 0:
+            return True
+        else:
+            return False
+
+    def color_task(self):
+        task_serv = TaskServices.objects.filter(task=self).filter(service__back_name="color_task")
+        if len(task_serv) > 0:
+            return True
+        else:
+            return False
+
 
 class UserTaskBet(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
@@ -296,3 +310,42 @@ class UserCities(models.Model):
     class Meta:
         managed = False
         db_table = 'user_cities'
+
+
+
+
+class Services(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    description = models.CharField(max_length=1000, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/service/', max_length=500, blank=True, null=True)
+    price_week = models.IntegerField(blank=True, null=True)
+    exec = models.BooleanField(blank=True, null=True)
+    back_name = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'services'
+
+
+
+class ServicesImage(models.Model):
+    service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/service/', max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'services_image'
+
+
+
+class TaskServices(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    week = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_services'
