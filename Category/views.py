@@ -114,6 +114,11 @@ def sub_category(request,name):
         task_serv_list.append(t.task.id)
     top_task=UserTask.objects.filter(id__in=task_serv_list)
     print(top_task)
+    advert_serv=AdvertServices.objects.filter(service__back_name="top_advert").filter(advert__subcategory=sub[0])
+    advert_serv_list=[]
+    for a in advert_serv:
+        advert_serv_list.append(a.advert.id)
+    top_advert=UserAdvert.objects.filter(id__in=advert_serv_list)
     if (request.session.get('username', 'no') == 'no'):
         city = request.session.get('city', 0)
         if (city != 0):
@@ -193,6 +198,19 @@ def Page_subcategory(request,name,page):
     sub=SubCategory.objects.get(name__icontains=name)
     task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date')[start:end]
     count_user = UserSubcategories.objects.all().filter(subcategories=sub).count()
+    task_serv = TaskServices.objects.filter(service__back_name="top_task").filter(task__subcategory=sub[0]).filter(
+        task__task_status__name="В поиске")
+    print(task_serv)
+    task_serv_list = []
+    for t in task_serv:
+        task_serv_list.append(t.task.id)
+    top_task = UserTask.objects.filter(id__in=task_serv_list)
+    print(top_task)
+    advert_serv=AdvertServices.objects.filter(service__back_name="top_advert").filter(advert__subcategory=sub[0])
+    advert_serv_list=[]
+    for a in advert_serv:
+        advert_serv_list.append(a.advert.id)
+    top_advert=UserAdvert.objects.filter(id__in=advert_serv_list)
 
     task_count = task=UserTask.objects.all().filter(subcategory=sub[0]).filter(task_status__name='В поиске').order_by('-date').count()
 

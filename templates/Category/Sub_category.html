@@ -278,12 +278,12 @@
     </div>
     <!--    с-->
 </div>
-
-<div class="row justify-content-center sub_categ_blk">
+{% if top_advert|length != 0 %}
+            <div class="row justify-content-center sub_categ_blk">
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
 
         <div class="row my-3">
-            <h2 class="w-100 text-left fz_2rem">Популярные объявления в данной подкатегории</h2>
+            <h2 class="w-100 text-left fz_2rem">Популярные бъявления в данной подкатегории</h2>
         </div>
     </div>
 </div>
@@ -291,43 +291,16 @@
 <div class="row justify-content-center">
     <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-3 pb-3 px-3">
         <div class="row m-0 justify-content-start">
-            {% if advert|length == 0 %}
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-auto">
-                        <label class="fontCategorySmall colorDarkGrey">В данной подкатегории пока нет объявлений!</label>
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            {% for a in advert %}
-            <div class="col-12 p-0">
-                <!--                    <div class="row">-->
-                <!--                        <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">-->
-                <!--                            <img src="/static/image/user.png" class="w-100 user-img" alt="">-->
-                <!--                        </div>-->
-                <!--                        <div class="col-12 col-md-10 p-3">-->
-                <!--                            <div class="row justify-content-between align-items-center">-->
-                <!--                                <div class="col-12 col-md-7 col-lg-8 col-xl-9 p-0">-->
-                <!--                                    <label class="user-name">Иван</label>-->
-                <!--                                </div>-->
-                <!--                                <div class="col-12 col-md-5 col-lg-4 col-xl-3 p-0">-->
-                <!--                                    <button class="user-work-bttn my-2 my-md-0">Предложить работу</button>-->
-                <!--                                </div>-->
-                <!--                            </div>-->
-                <!--                            <div class="row justify-content-start align-items-center">-->
-                <!--                                <label class="rating-com mb-0 a-center pr-2">45 </label>-->
-                <!--                                <label class="news_type mb-0 a-center">отзывов</label>-->
-                <!--                            </div>-->
-                <!--                            <div class="row justify-content-start align-items-center">-->
-                <!--                                <label class="rating-com mb-0 a-center pr-2">83% </label>-->
-                <!--                                <label class="news_type mb-0 a-center">положительных</label>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
+
+            {% for a in top_advert %}
+                    {% if a.color_advert == True %}
+                     <div class="col-12 p-3 bg_color_task">
+                     {% else %}
+                     <div class="col-12 p-3">
+                     {% endif %}
                 <div class="row">
                     <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                        {% if a.photo_main != None %}
+                        {% if a.photo_main != None and a.photo_main != "" %}
                         <img alt="" class="w-100 user-advert-img" src="{{MEDIA_URL}}{{a.photo_main.url}}">
                         {% endif %}
                     </div>
@@ -346,10 +319,63 @@
                         <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
                             <label class="category-money_label p mb-2">{{a.price}} руб.</label>
                         </div>
-                        <!--                                    <div class="row justify-content-around align-items-center pt-4">-->
-                        <!--                                        <a href="{% url 'Dev' %}"><button class="btn view-ads">Просмотреть</button></a>-->
-                        <!--                                        <a href="{% url 'Dev' %}"><button class="btn edit-ads">Редактировать</button></a>-->
-                        <!--                                    </div>-->
+                    </div>
+                </div>
+            </div>
+            <hr class="line">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="row justify-content-center sub_categ_blk">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+
+        <div class="row my-3">
+            <h2 class="w-100 text-left fz_2rem">Объявления в данной подкатегории</h2>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-3 pb-3 px-3">
+        <div class="row m-0 justify-content-start">
+            {% if advert|length == 0 %}
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-auto">
+                        <label class="fontCategorySmall colorDarkGrey">В данной подкатегории пока нет объявлений!</label>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            {% for a in advert %}
+                {% if a.color_advert == True %}
+                <div class="col-12 p-3 bg_color_task">
+                {% else %}
+                 <div class="col-12 p-3">
+                 {% endif %}
+                <div class="row">
+                    <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
+                        {% if a.photo_main != None and a.photo_main != "" %}
+                        <img alt="" class="w-100 user-advert-img" src="{{MEDIA_URL}}{{a.photo_main.url}}">
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                            <a href="{% url 'Adverts_detail' a.id %}">
+                                <h3 class="category-card_label m-0">{{a.title}}</h3>
+                            </a>
+                        </div>
+                        <div class="row justify-content-start align-items-center pt-2">
+                            <p class="w-100 mb-0 pr-0 advert-card_text mb-2 textrowcount">{{a.description}}</p>
+                            <span>{{a.date}}</span>
+                        </div>
+                    </div>
+                    <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3 p-1 mx-auto">
+                        <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-4">
+                            <label class="category-money_label p mb-2">{{a.price}} руб.</label>
+                        </div>
                     </div>
                 </div>
             </div>

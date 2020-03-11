@@ -191,6 +191,14 @@ class UserAdvert(models.Model):
         managed = False
         db_table = 'user_advert'
 
+    def color_advert(self):
+        advert_serv = AdvertServices.objects.filter(advert=self).filter(service__back_name="color_advert")
+        print(advert_serv)
+        if len(advert_serv) > 0:
+            return True
+        else:
+            return False
+
 
 class UserAdvertPhoto(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
@@ -288,6 +296,20 @@ class UserTask(models.Model):
             return True
         else:
             return False
+
+
+class AdvertServices(models.Model):
+    advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
+    service = models.ForeignKey('Services', models.DO_NOTHING, blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    week = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'advert_services'
+
+
 
 
 class UserTaskBet(models.Model):
