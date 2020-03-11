@@ -80,6 +80,7 @@
                             <label class="category-money_label p mb-2">{{a.price}} руб.</label>
                         </div>
                         <div class="row justify-content-around align-items-center">
+                            <a href="{% url 'Service_advert_add' a.id %}" class="pt-2"><button class="btn view-ads">Подлючить услугу</button></a>
                             <a href="{% url 'Advert_detail' a.id %}" class="pt-2"><button class="btn view-ads">Просмотреть</button></a>
                             <a href="{% url 'Adverts_change' a.id %}" class="pt-2"><button class="btn edit-ads">Редактировать</button></a>
                         </div>
