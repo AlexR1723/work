@@ -58,7 +58,8 @@ def Advert_save(request):
             for d in doc.getlist('files'):
                 user_advert_photo=UserAdvertPhoto(user=auth, advert=user_advert, photo=d)
                 user_advert_photo.save()
-    return HttpResponseRedirect("/profile/settings")
+    return HttpResponseRedirect("/profile/service/advert_add/" + str(user_advert.id))
+    # return HttpResponseRedirect("/profile/settings")
 
 
 def All_ads(request):

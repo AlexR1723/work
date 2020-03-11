@@ -127,3 +127,70 @@ def Add_service_in_task(request):
         return HttpResponse(json.dumps({'data': 'ok'}))
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
+
+
+def Service_advert_add(request,id):
+    layout, username, photo, balance, bonus = layout_name(request)
+    id = int(id)
+    if username == '':
+        return HttpResponseRedirect("/login")
+    else:
+        email = request.session.get('username', 'no')
+        user = Users.objects.get(auth_user__email=email)
+        service = Services.objects.filter(exec=True).exclude(back_name='pro')
+        advert = UserAdvert.objects.get(id=id)
+        advert_serv = AdvertServices.objects.filter(advert=advert)
+        select_serv = []
+        select_serv_week = []
+        select_serv_month = []
+        for t in advert_serv:
+            select_serv.append(t.service_id)
+            if t.week == True:
+                select_serv_week.append(t.service_id)
+            else:
+                select_serv_month.append(t.service_id)
+        print(select_serv)
+        print(select_serv_week)
+        print(select_serv_month)
+        flag = 0
+        # aa = task.date
+        # bb = datetime.date.today()
+        # cc = aa - bb
+        # cc = str(cc)
+        # # print(cc)
+        # if (int(cc.split()[0]) > 2):
+        #     service = service.exclude(back_name='quickly_task')
+        # print(service)
+        return render(request, 'Profile/Service_advert_add.html', locals())
+
+
+def Add_service_in_advert(request):
+    try:
+        advert_id = request.GET.get("advert")
+        service_id=request.GET.get("serv")
+        time=request.GET.get("time")
+        email = request.session.get('username', 'no')
+        user = Users.objects.get(auth_user__email=email)
+        advert=UserAdvert.objects.get(id=advert_id)
+        service=Services.objects.get(id=service_id)
+        if(time=='week'):
+            start=datetime.datetime.now()
+            end = start
+            end += datetime.timedelta(days=7)
+            price=service.price_week
+            print(end)
+            advert_service = AdvertServices(advert=advert, service=service, start_date=start, end_date=end, week=True)
+        else:
+            start = datetime.datetime.now()
+            end = start
+            days_in_month = calendar.monthrange(start.year, start.month)[1]
+            end += datetime.timedelta(days=days_in_month)
+            price=service.price
+            print(end)
+            advert_service=AdvertServices(advert=advert, service=service,start_date=start, end_date=end, week=False)
+        advert_service.save()
+        user.bonus_balance=user.bonus_balance-price
+        user.save()
+        return HttpResponse(json.dumps({'data': 'ok'}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))

@@ -2121,3 +2121,94 @@ $('.btn-price-month').click(function () {
         index_serv = index_serv + 1;
     }
 });
+
+$('.btn-price-week-adv').click(function () {
+    var advert=$('#advert_id').val();
+    var bonus_count=$('#bonus_count').val();
+    var serv=$(this).prev().val();
+    var serv=serv.split('-');
+    var _this=$(this);
+    if(bonus_count-serv[1]>=0)
+    {
+        $.ajax({
+        type: "GET",
+        dataType: "json",
+        data: {
+            advert: advert,
+            serv:serv[0],
+            time:'week'
+        },
+        url: '/profile/service/add_service_in_advert',
+        success: function (data) {
+            add_alert_suc(index_serv);
+            index_serv = index_serv + 1;
+            var select=_this.parent();
+            select[0].classList.add('select-block');
+            var not_select=_this.parent().parent().next().children();
+            not_select[0].classList.add('not-select-block');
+            var btn=_this.parent().parent().next().children().children('.btn-price-month-adv');
+            btn[0].setAttribute('disabled', true);
+            btn[0].classList.add('disable');
+            btn=_this;
+            btn[0].classList.add('d-none');
+            btn=_this.next();
+            btn[0].classList.remove('d-none');
+        },
+        error: function (data) {
+            add_alert_error(index_serv);
+            index_serv = index_serv + 1;
+        }
+        })
+
+    }
+    else
+    {
+        add_alert_error(index_serv, 'На Вашем счету недостаточно бонусов!');
+        index_serv = index_serv + 1;
+    }
+});
+$('.btn-price-month-adv').click(function () {
+    var advert=$('#advert_id').val();
+    var bonus_count=$('#bonus_count').val();
+    var serv=$(this).prev().val();
+    var serv=serv.split('-');
+    var _this=$(this);
+    if(bonus_count-serv[1]>=0)
+    {
+        $.ajax({
+        type: "GET",
+        dataType: "json",
+        data: {
+            advert: advert,
+            serv:serv[0],
+            time:'month'
+        },
+        url: '/profile/service/add_service_in_advert',
+        success: function (data) {
+            add_alert_suc(index_serv);
+            index_serv = index_serv + 1;
+            var select=_this.parent();
+            select[0].classList.add('select-block');
+            var not_select=_this.parent().parent().prev().children();
+            not_select[0].classList.add('not-select-block');
+            var btn=_this.parent().parent().prev().children().children('.btn-price-week-adv');
+            btn[0].setAttribute('disabled', true);
+            btn[0].classList.add('disable');
+            btn=_this;
+            btn[0].classList.add('d-none');
+            btn=_this.next();
+            btn[0].classList.remove('d-none');
+        },
+        error: function (data) {
+            add_alert_error(index_serv);
+            index_serv = index_serv + 1;
+        }
+        })
+
+    }
+    else
+    {
+        add_alert_error(index_serv, 'На Вашем счету недостаточно бонусов!');
+        index_serv = index_serv + 1;
+    }
+});

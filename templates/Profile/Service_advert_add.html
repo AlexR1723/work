@@ -1,0 +1,122 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center choose_blk">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8">
+                <div class="row pt-4">
+                    <a href="{% url 'All_ads' %}" class="back"><i class="fas fa-arrow-left"></i> Пропустить и перейти к объявлениям</a>
+                </div>
+                <div class="row pt-4">
+                    <div class="alert alert-success w-100" role="alert">
+                      Объявление успешно сохранено. Можете подключить дополнительные услуги.
+                    </div>
+                </div>
+                <div class="row pt-4">
+                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                        Нажмите на кнопку "Подключить" возле необходимо услуги и она автоматически будет подключена!
+                    </label>
+                </div>
+                <div class="row pb-5 pt-4">
+                    <input type="hidden" id="advert_id" value="{{id}}">
+                    <input type="hidden" id="bonus_count" value="{{user.bonus_balance}}">
+                    {% for s in service %}
+                    <div class="col-12 p-0">
+                        <div class="row">
+                            <div class="col-12 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
+                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-3 service-link">
+                                    <a href="{% url 'Service_detail' s.id %}"><h3 class="m-0 w-100">{{s.name}}</h3></a>
+                                    <p class="mb-0 pr-0 service-card_text textrowcount w-100">{{s.description}}</p>
+                                </div>
+                                <div class="row justify-content-center align-items-center pt-2">
+                                    {% if s.id in select_serv %}
+                                        {% if s.id in select_serv_week %}
+                                            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pl-md-0">
+                                                <div class="price-block p-3 select-block">
+                                                    <label class="serv-price-span fz_15rem w-100">{{s.price_week}} руб./неделя</label>
+                                                    <p>
+                                                        Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.
+                                                    </p>
+                                                        <input type="hidden" value="{{s.id}}-{{s.price_week}}">
+                                                        <button class="btn btn-primary serv-btn-red btn-price-week-adv d-none">Подключить</button>
+                                                        <label class="suc-label w-100">Подключено!</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">
+                                                <div class="price-block p-3 not-select-block">
+                                                    <label class="serv-price-span fz_15rem w-100">{{s.price}} руб./мес.</label>
+                                                    <p>
+                                                        Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.
+                                                    </p>
+                                                        <input type="hidden" value="{{s.id}}-{{s.price}}">
+                                                        <button class="btn btn-primary serv-btn-blue btn-price-month-adv disable" disabled="true">Подключить</button>
+                                                        <label class="suc-label w-100 d-none">Подключено!</label>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pl-md-0">
+                                                <div class="price-block p-3 not-select-block">
+                                                    <label class="serv-price-span fz_15rem w-100">{{s.price_week}} руб./неделя</label>
+                                                    <p>
+                                                        Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.
+                                                    </p>
+                                                        <input type="hidden" value="{{s.id}}-{{s.price_week}}">
+                                                        <button class="btn btn-primary serv-btn-red btn-price-week-adv disable" disabled="true">Подключить</button>
+                                                        <label class="suc-label w-100 d-none">Подключено!</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">
+                                                <div class="price-block p-3 select-block">
+                                                    <label class="serv-price-span fz_15rem w-100">{{s.price}} руб./мес.</label>
+                                                    <p>
+                                                        Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.
+                                                    </p>
+                                                        <input type="hidden" value="{{s.id}}-{{s.price}}">
+                                                        <button class="btn btn-primary serv-btn-blue btn-price-month-adv d-none">Подключить</button>
+                                                        <label class="suc-label w-100">Подключено!</label>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pl-md-0">
+                                            <div class="price-block p-3">
+                                                <label class="serv-price-span fz_15rem w-100">{{s.price_week}} руб./неделя</label>
+                                                <p>
+                                                    Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.
+                                                </p>
+                                                    <input type="hidden" value="{{s.id}}-{{s.price_week}}">
+                                                    <button class="btn btn-primary serv-btn-red btn-price-week-adv">Подключить</button>
+                                                    <label class="suc-label w-100 d-none">Подключено!</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">
+                                            <div class="price-block p-3">
+                                                <label class="serv-price-span fz_15rem w-100">{{s.price}} руб./мес.</label>
+                                                <p>
+                                                    Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.
+                                                </p>
+                                                    <input type="hidden" value="{{s.id}}-{{s.price}}">
+                                                    <button class="btn btn-primary serv-btn-blue btn-price-month-adv">Подключить</button>
+                                                    <label class="suc-label w-100 d-none">Подключено!</label>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <hr class="category-line mt-4 mb-3">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+ <div class="col-12" id="alerts-block">
+<!--                    <div class="row justify-content-center">-->
+<!--                        <div class="alert alert-danger error-city" role="alert" id="alert-success">-->
+<!--                            Успешно.-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+{% endblock %}

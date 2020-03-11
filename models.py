@@ -25,6 +25,15 @@ class AboutType(models.Model):
         db_table = 'about_type'
 
 
+class AdvertServices(models.Model):
+    advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
+    service = models.ForeignKey('Services', models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'advert_services'
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 

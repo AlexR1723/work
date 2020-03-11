@@ -403,3 +403,14 @@ class TaskServices(models.Model):
         db_table = 'task_services'
 
 
+class AdvertServices(models.Model):
+    advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
+    service = models.ForeignKey('Services', models.DO_NOTHING, blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    week = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'advert_services'
+
