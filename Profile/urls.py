@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'save_photo/', views.Save_photo, name='Save_photo'),
     url(r'profile_set_subcategories', views.profile_set_subcategories, name='profile_set_subcategories'),
     url(r'profile_set_cities', views.profile_set_cities, name='profile_set_cities'),
+    url(r'profile_set_pro', views.profile_set_pro, name='profile_set_pro'),
     url(r'get_notice_status', views.get_notice_status, name='get_notice_status'),
     url(r'get_status', views.get_status, name='get_status'),
     url(r'verify_number', views.verify_number, name='verify_number'),

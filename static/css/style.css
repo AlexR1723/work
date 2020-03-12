@@ -1991,6 +1991,20 @@ hr.line_blk {
     color: #FFFFFF;
 }
 
+button.pro_month{
+    border: 1px solid transparent;
+    height: 40px;
+    background: #3E789D;
+    border-radius: 5px;
+    color: #FFFFFF;
+}
+button.pro_month:hover{
+    background-color: #FFFFFF;
+    color: #3E789D;
+    border: 1px solid #3E789D;
+    transition: .3s;
+}
+
 /*.change-password button:hover {*/
 #btn_profile_change_pass:hover,
 .rate-perform_btn:hover,

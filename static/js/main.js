@@ -1141,7 +1141,95 @@ $('#email-dispatch_input').click(function () {
         }
     })
 });
-
+index_pro=0;
+$('#save_pro_week').click( function () {
+    var bonus_balance=$('#bonus_count').val();
+    var price_week=$('#price_week').val();
+    if(bonus_balance-price_week < 0) {
+        add_alert_error(index_pro, 'Не достаточно бонусов!');
+        index_pro = index_pro + 1;
+    }
+    else {
+        var inputs = document.getElementsByClassName('custom-control-input');
+        var check_input = [];
+        for (var i = 0; i < inputs.length; i++) {
+            if ($(inputs[i]).is(':checked')) {
+                check_input.push(inputs[i].id);
+            }
+        }
+        if (check_input.length < 3) {
+            add_alert_error(index_pro, 'Необходимо выбрать 3 подкатегории!');
+            index_pro = index_pro + 1;
+        } else {
+            var string_id = "";
+            for (var i = 0; i < check_input.length; i++) {
+                string_id += check_input[i];
+                string_id += '|';
+            }
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: true,
+                data: {
+                    string_id: string_id,
+                    time:'week'
+                },
+                url: 'profile_set_pro',
+                success: function (data) {
+                    window.location.href = '/profile/settings/'
+                },
+                error: function (data) {
+                    add_alert_error(index_pro, 'Что-то пошло не так, попробуйте позже!');
+                    index_pro = index_pro + 1;
+                }
+            })
+        }
+    }
+});
+$('#save_pro_month').click( function () {
+    var bonus_balance=$('#bonus_count').val();
+    var price_month=$('#price_month').val();
+    if(bonus_balance-price_month < 0) {
+        add_alert_error(index_pro, 'Не достаточно бонусов!');
+        index_pro = index_pro + 1;
+    }
+    else {
+        var inputs = document.getElementsByClassName('custom-control-input');
+        var check_input = [];
+        for (var i = 0; i < inputs.length; i++) {
+            if ($(inputs[i]).is(':checked')) {
+                check_input.push(inputs[i].id);
+            }
+        }
+        if (check_input.length < 3) {
+            add_alert_error(index_pro, 'Необходимо выбрать 3 подкатегории!');
+            index_pro = index_pro + 1;
+        } else {
+            var string_id = "";
+            for (var i = 0; i < check_input.length; i++) {
+                string_id += check_input[i];
+                string_id += '|';
+            }
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                async: true,
+                data: {
+                    string_id: string_id,
+                    time:'month'
+                },
+                url: 'profile_set_pro',
+                success: function (data) {
+                    window.location.href = '/profile/settings/'
+                },
+                error: function (data) {
+                    add_alert_error(index_pro, 'Что-то пошло не так, попробуйте позже!');
+                    index_pro = index_pro + 1;
+                }
+            })
+        }
+    }
+});
 let index_cat = 0;
 $('#profile_list_categories').on('click', 'input', function (event) {
     let id = this.id

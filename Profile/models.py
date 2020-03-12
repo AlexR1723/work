@@ -356,7 +356,24 @@ class Notifications(models.Model):
 class UserPro(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'user_pro'
+
+
+
+
+class Services(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    description = models.CharField(max_length=1000, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/service/', max_length=500, blank=True, null=True)
+    price_week = models.IntegerField(blank=True, null=True)
+    exec = models.BooleanField(blank=True, null=True)
+    back_name = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'services'
