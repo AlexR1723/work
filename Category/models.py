@@ -203,7 +203,7 @@ class UserAdvert(models.Model):
 class UserAdvertPhoto(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     advert = models.ForeignKey(UserAdvert, models.DO_NOTHING, blank=True, null=True)
-    photo = models.ImageField(upload_to='uploads/advert/',max_length=100, blank=True, null=True)
+    photo = models.ImageField(upload_to='uploads/advert/', max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False

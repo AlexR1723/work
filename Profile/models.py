@@ -125,6 +125,11 @@ class Users(models.Model):
         managed = False
         db_table = 'users'
 
+    def is_pro(self):
+        user_pro = UserPro.objects.filter(user = self.auth_user).count()
+        return user_pro
+
+
 
 class UserType(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
@@ -346,3 +351,12 @@ class Notifications(models.Model):
     class Meta:
         managed = False
         db_table = 'notifications'
+
+
+class UserPro(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_pro'
