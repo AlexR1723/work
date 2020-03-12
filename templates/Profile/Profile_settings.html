@@ -45,7 +45,9 @@
                         </div>
                         {% if layout == 'layout_executor.html' and user.is_pro == 0 %}
                         <div class="col-auto">
+                            <a href="{% url 'Buy_pro' %}">
                             <button class="rate-perform_btn pl-3 pr-3">Купить Pro-аккаунт</button>
+                            </a>
                         </div>
                         {% endif %}
 

@@ -615,3 +615,32 @@ def verify_passport(request):
             return HttpResponseRedirect("/profile/settings")
         else:
             return HttpResponseRedirect("/login")
+
+
+def Buy_pro(request):
+    layout, username, photo, balance, bonus = layout_name(request)
+
+    category = Category.objects.all().order_by('name')
+    user = request.session.get('username', 0)
+    if user == 0:
+        return HttpResponseRedirect("/login")
+    user_id = AuthUser.objects.get(username=user).id
+    user_cat = UserSubcategories.objects.filter(user_id=user_id)
+    cats = []
+    for i in user_cat:
+        cats.append(i.subcategories_id)
+
+    list_category = []
+    for i in category:
+        user_sub_cater = UserSubcategories.objects.filter(user_id=user_id).filter(subcategories__category=i)
+        sub_categ = SubCategory.objects.filter(category=i)
+        for j in user_cat:
+            if j.subcategories in sub_categ:
+                list_category.append(i.id)
+                break
+    print(list_category)
+
+    if (username != ''):
+        return render(request, 'Profile/Buy_pro.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
