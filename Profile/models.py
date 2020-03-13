@@ -156,6 +156,20 @@ class Category(models.Model):
     def all_sub(self):
         sub = SubCategory.objects.filter(category=self).order_by('name')
         return sub
+
+    def is_exist_user(self):
+        user_category=UserSubcategories.objects.filter(subcategories__category = self).count()
+        print(user_category)
+        if user_category > 0:
+            return True
+        else:
+            return False
+
+    def user_sub(self):
+        sub=UserSubcategories.objects.filter(subcategories__category = self)
+        print(sub)
+        return sub
+
     # def first_sub(self):
     #     count=SubCategory.objects.filter(category=self).count()/2
     #     # print(count)

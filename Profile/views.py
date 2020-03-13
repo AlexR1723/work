@@ -620,13 +620,22 @@ def verify_passport(request):
 
 def Buy_pro(request):
     layout, username, photo, balance, bonus = layout_name(request)
-
-    category = Category.objects.all().order_by('name')
     user = request.session.get('username', 0)
     if user == 0:
         return HttpResponseRedirect("/login")
     else:
         user = Users.objects.get(auth_user__username=user)
+        user_sub=UserSubcategories.objects.filter(user=user.auth_user)
+        user_sub_list=[]
+        for i in user_sub:
+            if i.subcategories.category.id not in user_sub_list:
+                user_sub_list.append(i.subcategories.category.id)
+        category = Category.objects.filter(id__in=user_sub_list).order_by('name')
+
+        user_sub_list=[]
+        for i in user_sub:
+            if i.subcategories.id not in user_sub_list:
+                user_sub_list.append(i.subcategories.id)
         price_week=Services.objects.get(back_name='pro').price_week
         price_month=Services.objects.get(back_name='pro').price
         return render(request, 'Profile/Buy_pro.html', locals())

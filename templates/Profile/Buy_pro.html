@@ -26,6 +26,7 @@
                     <div class="col-12 d-flex justify-content-center main-accordion_blk">
                         <div class="inner-accordion_blk" id="profile_list_pro">
                             {% for i in category %}
+                                {% if i.is_exist_user == True %}
                                 <div class="panel">
                                     <div class="panel-heading mb-1">
                                         <p>{{ i.name }}</p>
@@ -38,6 +39,7 @@
                                                     </div>
                                             <div class="row w-100">
                                                 {% for j in i.all_sub %}
+                                                {% if j.id in user_sub_list %}
                                             <div class="col-12 col-lg-6 px-1 px-sm-5 pb-0 pt-0 card-body">
                                                     <div class="custom-control custom-checkbox mr-sm-2 pt-2">
                                                         <input type="checkbox"
@@ -51,6 +53,7 @@
                                                     </div>
 
                                             </div>
+                                                {% endif %}
                                                 {% endfor %}
                                             </div>
 
@@ -58,9 +61,7 @@
                                     </div>
                                 </div>
 
-                                {% for j in i.all_sub %}
-
-                                {% endfor %}
+                                {% endif %}
 
                             {% endfor %}
                         </div>
