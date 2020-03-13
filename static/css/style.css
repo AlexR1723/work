@@ -3285,3 +3285,48 @@ button.serv-btn-blue:hover{
 .bg_color_task{
     background: rgba(61,120,157,.2);
 }
+
+/*----wrapper----*/
+#send-box {
+  /*display: flex;*/
+    opacity: 0;
+  background: white;
+  animation: radial-pulse 1s infinite;
+    border-radius: 5px;
+}
+.wrapper {
+  display: flex;
+  /*z-index: 9999;*/
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+    border-radius: 5px;
+    color: black;
+}
+
+@keyframes radial-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(62,120,157, 0.5);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(62,120,157, 0);
+  }
+}
+.active-info{
+    opacity: 1 !important;
+    transition: .3s;
+    z-index: 9999;
+}
+.cancel-btn{
+    font-size: 1.2rem;
+    color: #aaa;
+    background: none;
+    border: none;
+}
+.cancel-btn:hover{
+    color: #000;
+}
+.cancel-btn:focus{
+    outline:none;
+}

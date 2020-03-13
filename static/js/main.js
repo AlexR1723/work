@@ -2300,3 +2300,10 @@ $('.btn-price-month-adv').click(function () {
         index_serv = index_serv + 1;
     }
 });
+
+
+
+$("#cancel-btn").click(function(){
+    var box = $('#send-box');
+    box.removeClass("active-info");
+});
