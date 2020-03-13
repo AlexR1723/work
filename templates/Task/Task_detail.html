@@ -24,7 +24,7 @@
                 <div class="col-12 p-0">
                     <div class="row mt-4 justify-content-start">
                         <div class="col-7 col-md-2 p-0">
-                            <a href=""><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">{{task.user.first_name}}</span></a>
+                            <a href="{% url 'Profile_page' task.user.id %}"><span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_1.png">{{task.user.first_name}}</span></a>
                         </div>
                         <div class="col-7 col-md-3 p-0">
                             <span class=""><img alt="" class="pr-2" src="/static/image/rate-icon_2.png">{{task.date_add}}</span>

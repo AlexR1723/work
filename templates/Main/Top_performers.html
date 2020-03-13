@@ -5,90 +5,95 @@
     <div class="row m-0 justify-content-center">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-3 pb-3">
             <div class="row m-0 justify-content-start">
-                <label class="news_header w-100 mb-0 pb-3">Топ лучших исполнителей</label>
-                <label class="news_type w-100 mb-0">Рейтинг исполнителей рассчитывается на основании количества отзывов, которые исполнитель получил за последние 30 дней и за все время существования сервиса.
-Чтобы предложить работу выбранному исполнителю, нажмите на кнопку "Предложить работу".</label>
+                <label class="news_header w-100 mb-0 pb-3">Pro-исполнители исполнителей в категории "{{name}}"</label>
+<!--                <label class="news_type w-100 mb-0">Рейтинг исполнителей рассчитывается на основании количества отзывов, которые исполнитель получил за последние 30 дней и за все время существования сервиса.-->
+<!--Чтобы предложить работу выбранному исполнителю, нажмите на кнопку "Предложить работу".</label>-->
             </div>
-            <div class="row m-0 justify-content-start pt-3">
-                <div class="col-auto pl-0">
-                    <div class="top-bg"><a class="top-a" href="">Все время</a></div>
+<!--            <div class="row m-0 justify-content-start pt-3">-->
+<!--                <div class="col-auto pl-0">-->
+<!--                    <div class="top-bg"><a class="top-a" href="">Все время</a></div>-->
 
-                </div>
-                <div class="col-auto pr-0">
-                    <div class="top-bg"><a class="top-a" href="">Последние 30 дней</a></div>
-                </div>
-            </div>
+<!--                </div>-->
+<!--                <div class="col-auto pr-0">-->
+<!--                    <div class="top-bg"><a class="top-a" href="">Последние 30 дней</a></div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="row m-0 justify-content-start pt-3">
                 <hr class="line" />
             </div>
             <div class="row m-0 justify-content-start">
-
+                {% for i in top_user %}
                 <div class="col-12 p-0">
                     <div class="row">
                         <div class="col-2 p-3">
-                            <img src="{% static 'image/user.png' %}" class="w-100 user-img" alt="">
+                            <img src="{{MEDIA_URL}}{{i.user.get_user.photo.url}}" class="w-100 user-img" alt="">
                         </div>
                         <div class="col-10 p-3">
                             <div class="row justify-content-between align-items-center">
-                                <label class="user-name">Иван</label>
-                                <button class="user-work-bttn">Предложить работу</button>
+                                <a href="{% url 'Profile_page' i.user.id %}">
+                                    <label class="user-name">{{i.user.first_name}}</label>
+                                </a>
+                                <a href="{% url 'Profile_adverts' i.user.id %}">
+                                    <button class="user-work-bttn">Предложить работу</button>
+                                </a>
                             </div>
                             <div class="row justify-content-start align-items-center">
-                                <label class="rating-com mb-0 a-center pr-2">45 </label>
+                                <label class="rating-com mb-0 a-center pr-2">{{i.user.get_comment_count}} </label>
                                 <label class="news_type mb-0 a-center">отзывов</label>
                             </div>
                             <div class="row justify-content-start align-items-center">
-                                <label class="rating-com mb-0 a-center pr-2">83% </label>
+                                <label class="rating-com mb-0 a-center pr-2">{{i.user.get_percent}}% </label>
                                 <label class="news_type mb-0 a-center">положительных</label>
                             </div>
                         </div>
                         <hr class="line" />
                     </div>
                 </div>
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="col-2 p-3">
-                            <img src="{% static 'image/user.png' %}" class="w-100 user-img" alt="">
-                        </div>
-                        <div class="col-10 p-3">
-                            <div class="row justify-content-between align-items-center">
-                                <label class="user-name">Иван</label>
-                                <button class="user-work-bttn">Предложить работу</button>
-                            </div>
-                            <div class="row justify-content-start align-items-center">
-                                <label class="rating-com mb-0 a-center pr-2">45 </label>
-                                <label class="news_type mb-0 a-center">отзывов</label>
-                            </div>
-                            <div class="row justify-content-start align-items-center">
-                                <label class="rating-com mb-0 a-center pr-2">83% </label>
-                                <label class="news_type mb-0 a-center">положительных</label>
-                            </div>
-                        </div>
-                        <hr class="line" />
-                    </div>
-                </div>
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="col-2 p-3">
-                            <img src="{% static 'image/user.png' %}" class="w-100 user-img" alt="">
-                        </div>
-                        <div class="col-10 p-3">
-                            <div class="row justify-content-between align-items-center">
-                                <label class="user-name">Иван</label>
-                                <button class="user-work-bttn">Предложить работу</button>
-                            </div>
-                            <div class="row justify-content-start align-items-center">
-                                <label class="rating-com mb-0 a-center pr-2">45 </label>
-                                <label class="news_type mb-0 a-center">отзывов</label>
-                            </div>
-                            <div class="row justify-content-start align-items-center">
-                                <label class="rating-com mb-0 a-center pr-2">83% </label>
-                                <label class="news_type mb-0 a-center">положительных</label>
-                            </div>
-                        </div>
-                        <hr class="line" />
-                    </div>
-                </div>
+                {% endfor %}
+<!--                <div class="col-12 p-0">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-2 p-3">-->
+<!--                            <img src="{% static 'image/user.png' %}" class="w-100 user-img" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="col-10 p-3">-->
+<!--                            <div class="row justify-content-between align-items-center">-->
+<!--                                <label class="user-name">Иван</label>-->
+<!--                                <button class="user-work-bttn">Предложить работу</button>-->
+<!--                            </div>-->
+<!--                            <div class="row justify-content-start align-items-center">-->
+<!--                                <label class="rating-com mb-0 a-center pr-2">45 </label>-->
+<!--                                <label class="news_type mb-0 a-center">отзывов</label>-->
+<!--                            </div>-->
+<!--                            <div class="row justify-content-start align-items-center">-->
+<!--                                <label class="rating-com mb-0 a-center pr-2">83% </label>-->
+<!--                                <label class="news_type mb-0 a-center">положительных</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <hr class="line" />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12 p-0">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-2 p-3">-->
+<!--                            <img src="{% static 'image/user.png' %}" class="w-100 user-img" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="col-10 p-3">-->
+<!--                            <div class="row justify-content-between align-items-center">-->
+<!--                                <label class="user-name">Иван</label>-->
+<!--                                <button class="user-work-bttn">Предложить работу</button>-->
+<!--                            </div>-->
+<!--                            <div class="row justify-content-start align-items-center">-->
+<!--                                <label class="rating-com mb-0 a-center pr-2">45 </label>-->
+<!--                                <label class="news_type mb-0 a-center">отзывов</label>-->
+<!--                            </div>-->
+<!--                            <div class="row justify-content-start align-items-center">-->
+<!--                                <label class="rating-com mb-0 a-center pr-2">83% </label>-->
+<!--                                <label class="news_type mb-0 a-center">положительных</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <hr class="line" />-->
+<!--                    </div>-->
+<!--                </div>-->
 
             </div>
         </div>

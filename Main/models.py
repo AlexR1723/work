@@ -268,6 +268,25 @@ class AuthUser(models.Model):
         db_table = 'auth_user'
 
 
+    def get_user(self):
+        user=Users.objects.get(auth_user=self)
+        return user
+
+    def get_comment_count(self):
+        all_task = UserComment.objects.filter(user=self).count()
+        return all_task
+
+    def get_percent(self):
+        all_task = UserComment.objects.filter(user=self).count()
+        successful_task = UserComment.objects.filter(user=self).filter(quality__gte=4).filter(
+            politeness__gte=4).filter(punctuality__gte=4).count()
+        com_percent = 0
+        if all_task > 0:
+            com_percent = int((successful_task * 100) / all_task)
+        return com_percent
+
+
+
 class Gender(models.Model):
     name = models.CharField(max_length=10, blank=True, null=True)
 
@@ -369,3 +388,30 @@ class UserType(models.Model):
     class Meta:
         managed = False
         db_table = 'user_type'
+
+
+
+class UserPro(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_pro'
+
+
+
+class UserComment(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    text = models.CharField(max_length=500, blank=True, null=True)
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    customer = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True, related_name='customer_id')
+    date = models.DateField(blank=True, null=True)
+    quality = models.IntegerField(blank=True, null=True)
+    politeness = models.IntegerField(blank=True, null=True)
+    punctuality = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_comment'

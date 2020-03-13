@@ -2908,6 +2908,7 @@ input[type=checkbox]:checked + label::after {
     /*position: absolute;*/
     position: fixed;
     bottom: 2rem;
+    z-index:99999;
 }
 .suc-city{
     padding: .3rem .8rem !important;

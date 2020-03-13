@@ -123,6 +123,7 @@ class AuthUser(models.Model):
         db_table = 'auth_user'
 
 
+
 class Gender(models.Model):
     name = models.CharField(max_length=10, blank=True, null=True)
 
@@ -371,3 +372,14 @@ class TaskServices(models.Model):
     class Meta:
         managed = False
         db_table = 'task_services'
+
+
+
+class UserPro(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_pro'

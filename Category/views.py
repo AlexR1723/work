@@ -104,7 +104,7 @@ def sub_category(request,name):
     if sub.count()==0:
         # print('')
         return HttpResponseRedirect("/profile/task/create/" + str(name))
-    count_user = UserSubcategories.objects.all().filter(subcategories=sub[0]).count()
+    count_user = UserPro.objects.all().filter(subcategory=sub[0]).count()
 
     task_serv=TaskServices.objects.filter(service__back_name="top_task").filter(task__subcategory=sub[0]).filter(
             task__task_status__name="В поиске")

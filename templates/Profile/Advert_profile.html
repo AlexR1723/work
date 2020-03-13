@@ -28,7 +28,7 @@
                 <div class="col-12 p-0">
                     <div class="row">
                         <div class="col-8 col-sm-10 col-md-2 col-lg-2 col-xl-2 p-2 mx-auto">
-                            {% if a.photo_main != None %}
+                            {% if a.photo_main != None and a.photo_main != "" %}
                             <img alt="" class="w-100 user-advert-img" src="{{MEDIA_URL}}{{a.photo_main.url}}">
                             {% endif %}
                         </div>
