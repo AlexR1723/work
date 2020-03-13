@@ -393,12 +393,23 @@ def PriceFind(request):
     try:
         sub = request.GET.get("id")
         subcategory=SubCategory.objects.all().get(id=sub)
-        # subcategory_list = []
-        # for s in subcategory:
-        #     subcategory_list.append(s.id)
-        #     subcategory_list.append(s.name)
         price=subcategory.price
         return HttpResponse(json.dumps({'data': price}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
+
+
+def SubTypeFind(request):
+    try:
+        sub = request.GET.get("id")
+        sub_type = SubcategoryType.objects.filter(subcategory_id=sub)
+        sub_type_list=[]
+        for i in sub_type:
+            t=[]
+            t.append(i.name)
+            t.append(i.price)
+            sub_type_list.append(t)
+        return HttpResponse(json.dumps({'data': sub_type_list}))
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
 

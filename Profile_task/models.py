@@ -398,3 +398,14 @@ class TaskServices(models.Model):
     class Meta:
         managed = False
         db_table = 'task_services'
+
+
+
+class SubcategoryType(models.Model):
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'subcategory_type'

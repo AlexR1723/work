@@ -28,6 +28,9 @@ class AboutType(models.Model):
 class AdvertServices(models.Model):
     advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
     service = models.ForeignKey('Services', models.DO_NOTHING, blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    week = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -404,6 +407,16 @@ class SubCategory(models.Model):
         db_table = 'sub_category'
 
 
+class SubcategoryType(models.Model):
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'subcategory_type'
+
+
 class TaskPhoto(models.Model):
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
     photo = models.CharField(max_length=500, blank=True, null=True)
@@ -512,6 +525,16 @@ class UserPortfolio(models.Model):
     class Meta:
         managed = False
         db_table = 'user_portfolio'
+
+
+class UserPro(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_pro'
 
 
 class UserSubcategories(models.Model):

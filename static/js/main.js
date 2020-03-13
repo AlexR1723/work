@@ -1765,8 +1765,27 @@ $("#task_subcategory").change(function () {
             error: function (data) {
                 alert('Error');
             }
-        })
+        });
+        var pay_detail=document.getElementById('pay_detail');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/profile/task/sub_type_find/',
+            data: {
+                id: sub
+            },
+            success: function (data) {
+               outputSubType(data);
+                // $("#input_price").val(data.data);
+                // outputSubcategory(data);
+            },
+            error: function (data) {
+                alert('Error');
+            }
+        });
     }
+
+
 });
 
 function outputSubcategory(data) {
@@ -1785,9 +1804,54 @@ function outputSubcategory(data) {
         option.text = data.data[i + 1];
         select.appendChild(option);
     }
-    $("#input_price").val(data.price);
+    $('#task_subcategory').selectedIndex=0;
+    $('#task_subcategory').change();
+    // $("#input_price").val(data.price);
 }
 
+function outputSubType(data){
+    var pay_detail_block=document.getElementById('pay_detail_block');
+    if(pay_detail_block != null) {
+        pay_detail_block.remove();
+    }
+    var pay_block=document.getElementById('pay_detail');
+    if(data.data.length > 0) {
+        var div = document.createElement('div');
+        div.setAttribute('class', 'col-auto custom-checkbox');
+        div.setAttribute('id', 'pay_detail_block');
+        for (var i = 0; i < data.data.length; i++) {
+            var row = document.createElement('div');
+            row.setAttribute('class', 'row');
+            var input = document.createElement('input');
+            input.setAttribute('type', 'checkbox');
+            input.setAttribute('class', 'custom-control-input pay_detail_check');
+            input.setAttribute('id', 'pay_detail_check_' + i);
+            input.setAttribute('value', data.data[i][1]);
+            row.insertAdjacentHTML("beforeend", input.outerHTML);
+            var label = document.createElement('label');
+            label.setAttribute('class', 'custom-control-label pl-1 pl-sm-3')
+            label.setAttribute('for', 'pay_detail_check_' + i);
+            label.textContent = data.data[i][0];
+            row.insertAdjacentHTML("beforeend", label.outerHTML);
+            div.insertAdjacentHTML("beforeend", row.outerHTML);
+        }
+        pay_block.insertAdjacentHTML("afterbegin", div.outerHTML);
+    }
+}
+$(document).on('click','.pay_detail_check', function () {
+    var input=$(this);
+    let val=$(this).val();
+    let price=$("#input_price").val();
+    if(input[0].checked) {
+        price=price+val;
+        $("#input_price").val(price);
+    }
+    else
+    {
+        price=price-val;
+        $("#input_price").val(price);
+    }
+});
 
 $("#customer").click(function () {
 
