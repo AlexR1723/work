@@ -1840,8 +1840,8 @@ function outputSubType(data){
 }
 $(document).on('click','.pay_detail_check', function () {
     var input=$(this);
-    let val=$(this).val();
-    let price=$("#input_price").val();
+    let val=Number($(this).val());
+    let price=Number($("#input_price").val());
     if(input[0].checked) {
         price=price+val;
         $("#input_price").val(price);
