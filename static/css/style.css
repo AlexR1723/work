@@ -3330,3 +3330,8 @@ button.serv-btn-blue:hover{
 .cancel-btn:focus{
     outline:none;
 }
+@media(max-width: 425px){
+    #send-box {
+        opacity: 0!important;
+    }
+}
