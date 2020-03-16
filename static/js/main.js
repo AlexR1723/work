@@ -1825,12 +1825,15 @@ function outputSubType(data){
             var input = document.createElement('input');
             input.setAttribute('type', 'checkbox');
             input.setAttribute('class', 'custom-control-input pay_detail_check');
+            // input.setAttribute('id', data.data[i][2]);
             input.setAttribute('id', 'pay_detail_check_' + i);
             input.setAttribute('value', data.data[i][1]);
+            // input.setAttribute('name', 'pay_detail_check');
             row.insertAdjacentHTML("beforeend", input.outerHTML);
             var label = document.createElement('label');
             label.setAttribute('class', 'custom-control-label pl-1 pl-sm-3')
             label.setAttribute('for', 'pay_detail_check_' + i);
+            label.setAttribute('id',data.data[i][2]);
             label.textContent = data.data[i][0];
             row.insertAdjacentHTML("beforeend", label.outerHTML);
             div.insertAdjacentHTML("beforeend", row.outerHTML);
@@ -2072,6 +2075,8 @@ $('#btn_task_check').click(function () {
     var description = $("#description").val();
     var address = $("#input_addr").val();
     var price = $("#input_price").val();
+    var inputs=$('.pay_detail_check');
+
 
     if (categ == 0) $('#task_category').addClass('br-red');
     if (subcateg == 0) $('#task_subcategory').addClass('br-red');
@@ -2080,6 +2085,16 @@ $('#btn_task_check').click(function () {
     if (address == "") $('#input_addr').addClass('br-red');
     if (price == "") $('#input_price').addClass('br-red');
     if (categ != 0 && subcateg != 0 && title != "" && description != "" && address != "" && price != "") {
+        var el='';
+        for(var i=0;i<inputs.length;i++)
+        {
+            if(inputs[i].checked) {
+                var label=$(inputs[i]).next();
+                el += label[0].id;
+                el += '|';
+            }
+        }
+        $('#input_checks').val(el);
         $('#btn_task_submit').click();
     } else {
         $("#alert-danger").show('slow');

@@ -438,6 +438,15 @@ class TaskServices(models.Model):
         db_table = 'task_services'
 
 
+class TaskSubType(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    subtype = models.ForeignKey(SubcategoryType, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_sub_type'
+
+
 class UserAdvert(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)

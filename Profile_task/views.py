@@ -408,6 +408,7 @@ def SubTypeFind(request):
             t=[]
             t.append(i.name)
             t.append(i.price)
+            t.append(i.id)
             sub_type_list.append(t)
         return HttpResponse(json.dumps({'data': sub_type_list}))
     except:
@@ -429,6 +430,8 @@ def Save_task(request):
         end_time = request.POST.get('end_time')
         gridRadios2 = request.POST.get('gridRadios2')
         price = request.POST.get('input_price')
+        check=request.POST.get('pay_detail_check')
+
         print(date_)
         date_ = date_.split('/')
         date = date_[2] + '-' + date_[0] + '-' + date_[1]
@@ -464,6 +467,13 @@ def Save_task(request):
                                      pay=pay, price=price, task_status=status, date_add=datetime.datetime.now(),
                                      rezult_text="")
         user_task.save()
+        if check != "":
+            check_list=check.split('|')
+            for i in check_list:
+                if i != '':
+                    sub_type=SubcategoryType.objects.get(id=i)
+                    task_sub=TaskSubType(task=user_task, subtype=sub_type)
+                    task_sub.save()
         docs = request.FILES
         if (docs):
             for d in docs.getlist('files'):

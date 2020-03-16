@@ -409,3 +409,13 @@ class SubcategoryType(models.Model):
     class Meta:
         managed = False
         db_table = 'subcategory_type'
+
+
+
+class TaskSubType(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    subtype = models.ForeignKey(SubcategoryType, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_sub_type'
