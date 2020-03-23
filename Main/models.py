@@ -375,6 +375,7 @@ class UserTask(models.Model):
     rezult_text = models.CharField(max_length=5000, blank=True, null=True)
     exec_finish = models.BooleanField(blank=True, null=True)
     offer = models.ForeignKey(UserOffer, models.DO_NOTHING, blank=True, null=True)
+    is_pro = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False

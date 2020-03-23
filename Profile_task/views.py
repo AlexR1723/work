@@ -431,6 +431,7 @@ def Save_task(request):
         gridRadios2 = request.POST.get('gridRadios2')
         price = request.POST.get('input_price')
         check=request.POST.get('pay_detail_check')
+        is_pro=request.POST.get('is_pro')
 
         print(date_)
         date_ = date_.split('/')
@@ -443,6 +444,12 @@ def Save_task(request):
         status = UserTaskStatus.objects.get(name='В поиске')
         doc = request.FILES
         city = City.objects.all().filter(id=city)[0]
+        print (is_pro)
+        # if is_pro == 1:
+        #     is_pro=True
+        # else:
+        #     is_pro=False
+        print(is_pro)
         if (gridRadios2 == 'option1'):
             pay = 0
         if (gridRadios == 'option1'):
@@ -450,22 +457,22 @@ def Save_task(request):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, date=date, pay=pay, price=price,
                                      photo_main=doc['file_main'], task_status=status, date_add=datetime.datetime.now(),
-                                     rezult_text="")
+                                     rezult_text="", is_pro=is_pro)
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, date=date, pay=pay, price=price, task_status=status,
-                                     date_add=datetime.datetime.now(), rezult_text="")
+                                     date_add=datetime.datetime.now(), rezult_text="", is_pro=is_pro)
         else:
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
                                      pay=pay, price=price, photo_main=doc['file_main'], task_status=status,
-                                     date_add=datetime.datetime.now(), rezult_text="")
+                                     date_add=datetime.datetime.now(), rezult_text="", is_pro=is_pro)
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
                                      pay=pay, price=price, task_status=status, date_add=datetime.datetime.now(),
-                                     rezult_text="")
+                                     rezult_text="", is_pro=is_pro)
         user_task.save()
         if check != "":
             check_list=check.split('|')

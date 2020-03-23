@@ -2416,3 +2416,11 @@ $('#check_pro_user').click(function () {
         }
         })
 });
+$('#is_pro_check').click(function () {
+    var ch=$('#is_pro_check').checked;
+    if ($('#is_pro_check').is(':checked')) {
+        $('#is_pro').val(1)
+    } else {
+        $('#is_pro').val(0)
+    }
+});
