@@ -2386,3 +2386,33 @@ $("#cancel-btn").click(function(){
     var box = $('#send-box');
     box.removeClass("active-info");
 });
+
+var index_offer=0;
+$('#check_pro_user').click(function () {
+    var user_id=document.getElementById('check_pro_user_id').value;
+    var sub=document.getElementById('subcateg_name').textContent;
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        data: {
+            user_id: user_id,
+            sub:sub
+        },
+        url: '/profile/offer/check_count',
+        success: function (data) {
+            if(data.data == 'ok')
+            {
+                var btn=document.getElementById('offer_create');
+                btn.click();
+            }
+            else{
+                add_alert_error(index_offer, "Данный пользователь исчерпал количество предложений за день!");
+                index_offer = index_offer + 1;
+            }
+        },
+        error: function (data) {
+            add_alert_error(index_offer, "Что-то пошло не так, попробуйте позже!");
+            index_offer = index_offer + 1;
+        }
+        })
+});

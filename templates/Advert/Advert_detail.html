@@ -30,7 +30,7 @@
                     <div class="row align-items-center">
                         <div class="col-auto pl-0">
                             <i class="fas fa-user-tie pr-2"></i>
-                            <label class="user-name-label mb-0"><a href="{% url 'Dev' %}">{{advert.user.first_name}}</a></label>
+                            <label class="user-name-label mb-0"><a href="{% url 'Profile_page' advert.user.id %}">{{advert.user.first_name}}</a></label>
                         </div>
                         <div class="col-auto pl-5">
                             <i class="far fa-calendar-alt pr-2"></i>
@@ -45,7 +45,9 @@
                         </div>
                         <div class="col-auto a-right pr-0">
                             {% if verify == True %}
-                            <a href="{% url 'Offer_create' advert.id %}"><button class="btn view-ads">Предложить работу</button></a>
+                            <a href="{% url 'Offer_create' advert.id %}" id="offer_create" class="d-none">предложить</a>
+                            <input type="hidden" id="check_pro_user_id" value="{{advert.user.id}}">
+                            <button class="btn view-ads" id="check_pro_user">Предложить работу</button>
                             {% else %}
                             <a href="{% url 'Login' %}"><button class="btn view-ads">Предложить работу</button></a>
                             {% endif %}
@@ -57,7 +59,7 @@
             <div class="row align-items-center mt-3">
                 <label class="mb-0 categ-label"><a href="{% url 'Category_item' advert.subcategory.category.name %}">{{advert.subcategory.category.name}}</a></label>
                 <i class="fas fa-chevron-right pl-2 pr-2"></i>
-                <label class="mb-0 categ-label"><a href="{% url 'sub_category' advert.subcategory.name|lower %}">{{advert.subcategory.name}}</a></label>
+                <label class="mb-0 categ-label" id="subcateg_name"><a href="{% url 'sub_category' advert.subcategory.name|lower %}">{{advert.subcategory.name}}</a></label>
             </div>
             <div class="row mt-3">
 
@@ -96,4 +98,6 @@
         </div>
     </div>
 </div>
+ <div class="col-12" id="alerts-block">
+                </div>
 {% endblock %}

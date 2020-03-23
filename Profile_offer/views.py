@@ -126,3 +126,20 @@ def Offer_detail(request,id):
         # else:
         #     print(task.exec_finish)
         #     return render(request, 'Profile/Task_details.html', locals())
+
+def check_count(request):
+    user_id = request.GET.get("user_id")
+    sub_name=request.GET.get('sub')
+    user_pro=UserPro.objects.filter(user__id=user_id).filter(subcategory__name=sub_name).count()
+    print(user_pro)
+    if user_pro > 0:
+        return HttpResponse(json.dumps({'data': 'ok'}))
+    else:
+        now=datetime.datetime.now()
+        print(now)
+        user_task=UserTask.objects.filter(subcategory__name=sub_name).filter(exec__id=user_id).filter(date_add=now).exclude(offer=None)
+        print(user_task)
+        if(user_task.count() < 3):
+            return HttpResponse(json.dumps({'data': 'ok'}))
+        else:
+            return HttpResponse(json.dumps({'data': 'error'}))

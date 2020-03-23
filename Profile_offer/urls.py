@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^detail/(?P<id>[0-9]+)/$', views.Offer_detail, name="Offer_detail"),
     url(r'accept_offer', views.accept_offer, name="accept_offer"),
     url(r'cancel_offer', views.cancel_offer, name="cancel_offer"),
+    url(r'check_count', views.check_count, name="check_count"),
 ]
