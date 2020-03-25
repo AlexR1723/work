@@ -49,9 +49,11 @@
 
                                 <div class="col-12">
                                     <div class="row justify-content-end">
-                                        <a href="{% url 'Service_task_add' task.id %}">
-                                            <button class="add-serv-btn mt-2 py-1 px-4 mb-0">Подключить услуги</button>
-                                        </a>
+                                        {% if task.exec == None or task.exec == "" %}
+                                            <a href="{% url 'Service_task_add' task.id %}">
+                                                <button class="add-serv-btn mt-2 py-1 px-4 mb-0">Подключить услуги</button>
+                                            </a>
+                                        {% endif %}
                                         {% if task_bet|length == 0 and task.exec_id == None or task.exec_id == "" %}
                                         <a href="#" class="pl-4">
                                             <button class="rate-perform_btn mt-2 py-1 px-4 mb-0">Редактировать</button>
