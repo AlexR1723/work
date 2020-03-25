@@ -60,5 +60,8 @@ def Tasks_detail(request, id):
     sub=task.subcategory
     verify = is_verify(request)
     task_bet=UserTaskBet.objects.filter(task=task).order_by('-date')
-    print(layout)
+    name = request.session.get('username', 'no')
+    user = AuthUser.objects.filter(email=name)[0]
+    is_pro=UserPro.objects.filter(subcategory=sub).filter(user=user).count()
+    print(is_pro)
     return render(request, 'Task/Task_detail.html', locals())

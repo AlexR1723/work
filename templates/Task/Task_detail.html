@@ -105,7 +105,6 @@
     <div class="row m-0 justify-content-center users_rates">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
             <div class="row justify-content-start">
-                {% if task.all_photo|length > 0 %}
                 <hr class="category-line m-0 mb-3 mt-2">
                     <div class="col-12 p-0">
                         <div class="row adverts-add_photos">
@@ -118,13 +117,16 @@
                             {% endfor %}
                         </div>
                     </div>
-                    {% endif %}
                     <div class="col-12 p-0">
-                        <div class="row mb-3">
+                        <div class="row">
                             {% if layout == "layout_executor.html" %}
-                            <a href="#">
-                                <button class="rate-perform_btn mt-md-4 py-1 px-4" data-target="#exampleModalCenter" data-toggle="modal">Сделать ставку</button>
-                            </a>
+                                {% if task.is_pro == True and is_pro != 0 %}
+                                <a href="#">
+                                    <button class="rate-perform_btn mt-md-4 py-1 px-4" data-target="#exampleModalCenter" data-toggle="modal">Сделать ставку</button>
+                                </a>
+                                {% else %}
+                                    <label class="fontCategorySmall colorDarkGrey">Вы не можете оставить ставку на задании для Pro-аккаунтов!</label>
+                                {% endif %}
                             {% endif %}
                             <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="rate-modal modal fade" id="exampleModalCenter" role="dialog" tabindex="-1">
                                 <div class="modal-dialog" role="document">
