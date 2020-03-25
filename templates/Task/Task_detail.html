@@ -105,6 +105,7 @@
     <div class="row m-0 justify-content-center users_rates">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 px-3 px-mb-0 px-lg-0">
             <div class="row justify-content-start">
+                {% if task.all_photo|length > 0 %}
                 <hr class="category-line m-0 mb-3 mt-2">
                     <div class="col-12 p-0">
                         <div class="row adverts-add_photos">
@@ -117,11 +118,14 @@
                             {% endfor %}
                         </div>
                     </div>
+                    {% endif %}
                     <div class="col-12 p-0">
                         <div class="row mb-3">
+                            {% if layout == "layout_executor.html" %}
                             <a href="#">
                                 <button class="rate-perform_btn mt-md-4 py-1 px-4" data-target="#exampleModalCenter" data-toggle="modal">Сделать ставку</button>
                             </a>
+                            {% endif %}
                             <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="rate-modal modal fade" id="exampleModalCenter" role="dialog" tabindex="-1">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -164,32 +168,32 @@
             <h2 class="m-0 line_height_1 text-left mb-5">Ставки других пользователей</h2>
             <div class="row m-0 justify-content-start">
                 {% if verify == True %}
-                {% for t in task_bet %}
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="col-8 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-2 mx-auto">
-                            <img alt="" class="w-100 img-fluid" src="{{MEDIA_URL}}{{t.user.photo.url}}">
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                <a href="#">
-                                    <h3 class="propose-category_label m-0">{{t.user.first_name}}</h3>
-                                </a>
+                    {% for t in task_bet %}
+                    <div class="col-12 p-0">
+                        <div class="row">
+                            <div class="col-8 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-2 mx-auto">
+                                <img alt="" class="w-100 img-fluid" src="{{MEDIA_URL}}{{t.user.photo.url}}">
                             </div>
-                            <div class="row justify-content-start align-items-center pt-2">
-                                <p class="mb-0 pr-0 perform-card_text pb-2 w-100">{{t.description}}</p>
-                                <span class="propose-date_span">{{t.date}}</span>
+                            <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                    <a href="#">
+                                        <h3 class="propose-category_label m-0">{{t.user.first_name}}</h3>
+                                    </a>
+                                </div>
+                                <div class="row justify-content-start align-items-center pt-2">
+                                    <p class="mb-0 pr-0 perform-card_text pb-2 w-100">{{t.description}}</p>
+                                    <span class="propose-date_span">{{t.date}}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                            <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                <label class="propose-money_label mb-2">{{t.price}} руб.</label>
+                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                    <label class="propose-money_label mb-2">{{t.price}} руб.</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr class="category-line m-0 my-4">
-                {% endfor %}
+                    <hr class="category-line m-0 my-4">
+                    {% endfor %}
                 {% else %}
                 <label class="fontCategorySmall colorDarkGrey">Вы сможете видеть ставки других пользвоателей, только после
                     <a href="{% url 'Login' %}">авторизации</a>!</label>

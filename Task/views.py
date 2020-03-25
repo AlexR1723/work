@@ -60,4 +60,5 @@ def Tasks_detail(request, id):
     sub=task.subcategory
     verify = is_verify(request)
     task_bet=UserTaskBet.objects.filter(task=task).order_by('-date')
+    print(layout)
     return render(request, 'Task/Task_detail.html', locals())
