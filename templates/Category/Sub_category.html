@@ -70,6 +70,9 @@
                                         {% if a.quickly_task == True %}
                                         <span class="badge badge-pill badge-danger">Срочно</span>
                                         {% endif %}
+                                        {% if a.is_pro == True %}
+                                        <span class="badge badge-pill badge-info">Pro</span>
+                                        {% endif %}
                                     </div>
                                     <div class="row justify-content-start align-items-center pt-2">
                                         <p class="w-100 mb-0 pr-0 advert-card_text mb-2 textrowcount">{{a.description}}</p>
@@ -132,6 +135,9 @@
                                         <label class="category-card_label m-0 pr-2"><a class="category-card_label" href="{% url 'Tasks_detail' a.id %}">{{a.title}}</a></label>
                                         {% if a.quickly_task == True %}
                                         <span class="badge badge-pill badge-danger">Срочно</span>
+                                        {% endif %}
+                                        {% if a.is_pro == True %}
+                                        <span class="badge badge-pill badge-info">Pro</span>
                                         {% endif %}
                                     </div>
                                     <div class="row justify-content-start align-items-center pt-2">
@@ -245,6 +251,9 @@
                                             <label class="category-card_label m-0 pr-2"><a class="category-card_label" href="{% url 'Tasks_detail' t.id %}">{{t.title}}</a></label>
                                             {% if t.quickly_task == True %}
                                             <span class="badge badge-pill badge-danger">Срочно</span>
+                                            {% endif %}
+                                            {% if a.is_pro == True %}
+                                            <span class="badge badge-pill badge-info">Pro</span>
                                             {% endif %}
                                         </div>
                                         <div class="row justify-content-start align-items-center pt-2">

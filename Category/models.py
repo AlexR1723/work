@@ -300,6 +300,7 @@ class UserTask(models.Model):
             return False
 
 
+
 class AdvertServices(models.Model):
     advert = models.ForeignKey('UserAdvert', models.DO_NOTHING, blank=True, null=True)
     service = models.ForeignKey('Services', models.DO_NOTHING, blank=True, null=True)

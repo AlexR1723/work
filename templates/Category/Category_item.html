@@ -65,8 +65,14 @@
                                 {% endif %}
                             </div>
                             <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-3">
-                                    <label class="category-card_label m-0"><a class="category-card_label" href="{% url 'Tasks_detail' a.id %}">{{a.title}}</a></label>
+                                <div class="row justify-content-center justify-content-sm-center justify-content-md-start align-items-center mt-3">
+                                    <label class="category-card_label m-0 pr-2"><a class="category-card_label" href="{% url 'Tasks_detail' a.id %}">{{a.title}}</a></label>
+                                    {% if a.quickly_task == True %}
+                                        <span class="badge badge-pill badge-danger">Срочно</span>
+                                    {% endif %}
+                                    {% if a.is_pro == True %}
+                                    <span class="badge badge-pill badge-info">Pro</span>
+                                    {% endif %}
                                 </div>
                                 <div class="row justify-content-start align-items-center pt-2">
                                     <p class="mb-0 pr-0 category-card_text textrowcount w-100">{{a.description}}</p>
@@ -108,8 +114,14 @@
                                                 {% endif %}
                                             </div>
                                             <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-3">
-                                                    <label class="category-card_label m-0"><a class="category-card_label" href="{% url 'Tasks_detail' t.id %}">{{t.title}}</a></label>
+                                                <div class="row justify-content-center justify-content-sm-center justify-content-md-start align-items-center mt-3">
+                                                    <label class="category-card_label m-0 pr-2"><a class="category-card_label" href="{% url 'Tasks_detail' t.id %}">{{t.title}}</a></label>
+                                                    {% if a.quickly_task == True %}
+                                                        <span class="badge badge-pill badge-danger">Срочно</span>
+                                                    {% endif %}
+                                                    {% if a.is_pro == True %}
+                                                    <span class="badge badge-pill badge-info">Pro</span>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="row justify-content-start align-items-center pt-2">
                                                     <p class="mb-0 pr-0 category-card_text textrowcount w-100">{{t.description}}</p>
