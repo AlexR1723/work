@@ -959,7 +959,7 @@ def Close_task(request, id):
             task=UserTask.objects.get(id=id)
             task.task_status=UserTaskStatus.objects.get(name='Выполнено')
             task.save()
-            return HttpResponseRedirect("/profile/task/exec_comment")
+            return HttpResponseRedirect("/profile/task/exec_comment/"+task.id+"/"+task.exec.id)
         else:
             return HttpResponseRedirect("/profile/task")
     else:
@@ -975,6 +975,29 @@ def In_work_task(request):
     task.save()
     return HttpResponseRedirect("/profile/task/detail/"+task_id)
 
-def Exec_comment(request):
+def Exec_comment(request, task_id, exec_id):
     layout, username, photo, balance, bonus = layout_name(request)
+    task_id=int(task_id)
+    exec_id=int(exec_id)
     return render(request, 'Profile/Exec_comment.html', locals())
+
+def Save_exec_comment(request):
+    task_id=request.POST.get('task_id')
+    exec_id=request.POST.get('exec_id')
+    text=request.POST.get('comment_text')
+    rating_quality=request.POST.get('rating_quality')
+    rating_politeness=request.POST.get('rating_politeness')
+    rating_punctuality=request.POST.get('rating_punctuality')
+    if rating_quality == None:
+        rating_quality=0
+    if rating_politeness == None:
+        rating_politeness=0
+    if rating_punctuality == None:
+        rating_punctuality=0
+    task=UserTask.objects.get(id=task_id)
+    u = request.session.get('username')
+    customer = AuthUser.objects.get(username=u)
+    user=AuthUser.objects.get(id=exec_id)
+    user_comment=UserComment(user=user, text=text, task=task, customer=customer, quality=rating_quality, politeness=rating_politeness, punctuality=rating_punctuality, date=datetime.datetime.now())
+    user_comment.save()
+    return HttpResponseRedirect("/profile/task")

@@ -2,116 +2,112 @@
 {% load staticfiles %}
 {% block content %}
 
-    <div class="container-fluid p-0">
-        <div class="row justify-content-center choose_blk">
-            <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8">
-                <div class="row pt-4">
-                    <a href="{% url 'Profile_tasks' %}" class="back"><i class="fas fa-arrow-left"></i> Пропустить и открыть все мои задания</a>
+<div class="container-fluid p-0">
+    <div class="row justify-content-center choose_blk">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8">
+            <div class="row pt-4">
+                <a href="{% url 'Profile_tasks' %}" class="back"><i class="fas fa-arrow-left"></i> Пропустить и открыть все мои задания</a>
+            </div>
+            <div class="row pt-4">
+                <div class="alert alert-success w-100" role="alert">
+                    Задание успешно закрыто. Вы можете написать отзыв об исполнителе
                 </div>
-                <div class="row pt-4">
-                    <div class="alert alert-success w-100" role="alert">
-                      Задание успешно закрыто. Вы можете написать отзыв об исполнителе
+            </div>
+            <form class="w-100" action="{% url 'Save_exec_comment' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <input type="hidden" id="task_id" name="task_id" value="{{task_id}}">
+            <input type="hidden" id="exec_id" name="exec_id" value="{{exec_id}}">
+            <div class="row pt-4">
+                <label class="rate_span">Отзыв:</label>
+                <div class="col-12 p-0">
+                    <div class="row mb-3 ">
+                        <textarea class="rate_b mb-0 w-100 border-rad p-1" name="comment_text" id="comment_text"></textarea>
                     </div>
                 </div>
-                <div class="row pb-5 pt-4">
-<!--                    <input type="hidden" id="advert_id" value="{{id}}">-->
-<!--                    <input type="hidden" id="bonus_count" value="{{user.bonus_balance}}">-->
-<!--                    {% for s in service %}-->
-<!--                    <div class="col-12 p-0">-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-12 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">-->
-<!--                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-3 service-link">-->
-<!--                                    <a href="{% url 'Service_detail' s.id %}"><h3 class="m-0 w-100">{{s.name}}</h3></a>-->
-<!--                                    <p class="mb-0 pr-0 service-card_text textrowcount w-100">{{s.description}}</p>-->
-<!--                                </div>-->
-<!--                                <div class="row justify-content-center align-items-center pt-2">-->
-<!--                                    {% if s.id in select_serv %}-->
-<!--                                        {% if s.id in select_serv_week %}-->
-<!--                                            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pl-md-0">-->
-<!--                                                <div class="price-block p-3 select-block">-->
-<!--                                                    <label class="serv-price-span fz_15rem w-100">{{s.price_week}} руб./неделя</label>-->
-<!--                                                    <p>-->
-<!--                                                        Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.-->
-<!--                                                    </p>-->
-<!--                                                        <input type="hidden" value="{{s.id}}-{{s.price_week}}">-->
-<!--                                                        <button class="btn btn-primary serv-btn-red btn-price-week-adv d-none">Подключить</button>-->
-<!--                                                        <label class="suc-label w-100">Подключено!</label>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">-->
-<!--                                                <div class="price-block p-3 not-select-block">-->
-<!--                                                    <label class="serv-price-span fz_15rem w-100">{{s.price}} руб./мес.</label>-->
-<!--                                                    <p>-->
-<!--                                                        Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.-->
-<!--                                                    </p>-->
-<!--                                                        <input type="hidden" value="{{s.id}}-{{s.price}}">-->
-<!--                                                        <button class="btn btn-primary serv-btn-blue btn-price-month-adv disable" disabled="true">Подключить</button>-->
-<!--                                                        <label class="suc-label w-100 d-none">Подключено!</label>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        {% else %}-->
-<!--                                            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pl-md-0">-->
-<!--                                                <div class="price-block p-3 not-select-block">-->
-<!--                                                    <label class="serv-price-span fz_15rem w-100">{{s.price_week}} руб./неделя</label>-->
-<!--                                                    <p>-->
-<!--                                                        Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.-->
-<!--                                                    </p>-->
-<!--                                                        <input type="hidden" value="{{s.id}}-{{s.price_week}}">-->
-<!--                                                        <button class="btn btn-primary serv-btn-red btn-price-week-adv disable" disabled="true">Подключить</button>-->
-<!--                                                        <label class="suc-label w-100 d-none">Подключено!</label>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">-->
-<!--                                                <div class="price-block p-3 select-block">-->
-<!--                                                    <label class="serv-price-span fz_15rem w-100">{{s.price}} руб./мес.</label>-->
-<!--                                                    <p>-->
-<!--                                                        Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.-->
-<!--                                                    </p>-->
-<!--                                                        <input type="hidden" value="{{s.id}}-{{s.price}}">-->
-<!--                                                        <button class="btn btn-primary serv-btn-blue btn-price-month-adv d-none">Подключить</button>-->
-<!--                                                        <label class="suc-label w-100">Подключено!</label>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        {% endif %}-->
-<!--                                    {% else %}-->
-<!--                                        <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pl-md-0">-->
-<!--                                            <div class="price-block p-3">-->
-<!--                                                <label class="serv-price-span fz_15rem w-100">{{s.price_week}} руб./неделя</label>-->
-<!--                                                <p>-->
-<!--                                                    Услуга будет подключена на 1 неделю. После истечения срока, она будет автоматически отключена.-->
-<!--                                                </p>-->
-<!--                                                    <input type="hidden" value="{{s.id}}-{{s.price_week}}">-->
-<!--                                                    <button class="btn btn-primary serv-btn-red btn-price-week-adv">Подключить</button>-->
-<!--                                                    <label class="suc-label w-100 d-none">Подключено!</label>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4 pr-md-0">-->
-<!--                                            <div class="price-block p-3">-->
-<!--                                                <label class="serv-price-span fz_15rem w-100">{{s.price}} руб./мес.</label>-->
-<!--                                                <p>-->
-<!--                                                    Услуга будет подключена на 1 месяц. После истечения срока, она будет автоматически отключена.-->
-<!--                                                </p>-->
-<!--                                                    <input type="hidden" value="{{s.id}}-{{s.price}}">-->
-<!--                                                    <button class="btn btn-primary serv-btn-blue btn-price-month-adv">Подключить</button>-->
-<!--                                                    <label class="suc-label w-100 d-none">Подключено!</label>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    {% endif %}-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <hr class="category-line mt-4 mb-3">-->
-<!--                    {% endfor %}-->
+            </div>
+            <div class="row">
+                <div class="col-auto pl-0">
+                    <label class="rate_span">Качество работы:</label>
                 </div>
+                <div class="col-auto pl-0">
+                    <div class="rating_block">
+                        <input name="rating_quality" value="5" id="rating_quality_5" type="radio" />
+                        <label for="rating_quality_5" class="label_rating"></label>
+
+                        <input name="rating_quality" value="4" id="rating_quality_4" type="radio" />
+                        <label for="rating_quality_4" class="label_rating"></label>
+
+                        <input name="rating_quality" value="3" id="rating_quality_3" type="radio" />
+                        <label for="rating_quality_3" class="label_rating"></label>
+
+                        <input name="rating_quality" value="2" id="rating_quality_2" type="radio" />
+                        <label for="rating_quality_2" class="label_rating"></label>
+
+                        <input name="rating_quality" value="1" id="rating_quality_1" type="radio" />
+                        <label for="rating_quality_1" class="label_rating"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto pl-0">
+                    <label class="rate_span">Вежливость:</label>
+                </div>
+                <div class="col-auto pl-0">
+                    <div class="rating_block">
+                        <input name="rating_politeness" value="5" id="rating_politeness_5" type="radio" />
+                        <label for="rating_politeness_5" class="label_rating"></label>
+
+                        <input name="rating_politeness" value="4" id="rating_politeness_4" type="radio" />
+                        <label for="rating_politeness_4" class="label_rating"></label>
+
+                        <input name="rating_politeness" value="3" id="rating_politeness_3" type="radio" />
+                        <label for="rating_politeness_3" class="label_rating"></label>
+
+                        <input name="rating_politeness" value="2" id="rating_politeness_2" type="radio" />
+                        <label for="rating_politeness_2" class="label_rating"></label>
+
+                        <input name="rating_politeness" value="1" id="rating_politeness_1" type="radio" />
+                        <label for="rating_politeness_1" class="label_rating"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto pl-0">
+                    <label class="rate_span">Пунктуальность:</label>
+                </div>
+                <div class="col-auto pl-0">
+                    <div class="rating_block">
+                        <input name="rating_punctuality" value="5" id="rating_punctuality_5" type="radio" />
+                        <label for="rating_punctuality_5" class="label_rating"></label>
+
+                        <input name="rating_punctuality" value="4" id="rating_punctuality_4" type="radio" />
+                        <label for="rating_punctuality_4" class="label_rating"></label>
+
+                        <input name="rating_punctuality" value="3" id="rating_punctuality_3" type="radio" />
+                        <label for="rating_punctuality_3" class="label_rating"></label>
+
+                        <input name="rating_punctuality" value="2" id="rating_punctuality_2" type="radio" />
+                        <label for="rating_punctuality_2" class="label_rating"></label>
+
+                        <input name="rating_punctuality" value="1" id="rating_punctuality_1" type="radio" />
+                        <label for="rating_punctuality_1" class="label_rating"></label>
+                    </div>
+                </div>
+            </div>
+                <button type="submit" id="send_comment" class="d-none">Отправить</button>
+            </form>
+            <div class="row pt-3 pb-3">
+                <button type="button" class="btn btn-primary px-5" id="check_comment">Сохранить отзыв</button>
             </div>
         </div>
     </div>
- <div class="col-12" id="alerts-block">
-<!--                    <div class="row justify-content-center">-->
-<!--                        <div class="alert alert-danger error-city" role="alert" id="alert-success">-->
-<!--                            Успешно.-->
-<!--                        </div>-->
-<!--                    </div>-->
-                </div>
+</div>
+</div>
+<div class="col-12" id="alerts-block">
+    <!--                    <div class="row justify-content-center">-->
+    <!--                        <div class="alert alert-danger error-city" role="alert" id="alert-success">-->
+    <!--                            Успешно.-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+</div>
 {% endblock %}

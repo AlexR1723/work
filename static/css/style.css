@@ -1984,7 +1984,7 @@ hr.line_blk {
 /*.change-password button {*/
 #btn_profile_change_pass,
 .rate-perform_btn,
-.rate-modal .modal-footer .btn,#btn_task_check, #btn_task_close {
+.rate-modal .modal-footer .btn,#btn_task_check, #btn_task_close, #check_comment {
     border: 1px solid transparent;
     height: 40px;
     background: #AF4B53;
@@ -2008,7 +2008,7 @@ button.pro_month:hover{
 /*.change-password button:hover {*/
 #btn_profile_change_pass:hover,
 .rate-perform_btn:hover,
-.rate-modal .modal-footer .btn:hover,#btn_task_check:hover, #btn_task_close:hover {
+.rate-modal .modal-footer .btn:hover,#btn_task_check:hover, #btn_task_close:hover, #check_comment:hover{
     background-color: #FFFFFF;
     color: #AF4B53;
     border: 1px solid #AF4B53;
@@ -3339,4 +3339,28 @@ button.serv-btn-blue:hover{
     #send-box {
         opacity: 0!important;
     }
+}
+
+/*-------------rating-----------------*/
+.rating_block {
+  width: 125px;
+  height: 25px;
+}
+.rating_block input[type="radio"] {
+  display: none;
+}
+.label_rating {
+  float: right;
+  display: block;
+  width: 25px;
+  height: 25px;
+  background: url(../image/rating_star.png) no-repeat 50% 0;
+  cursor: pointer;
+}
+/*Пишем правила смены положения background-а*/
+.rating_block .label_rating:hover, /*Правило для ховера на текущий лейбл*/
+.rating_block .label_rating:hover ~ .label_rating, /*Правило для всех следующих лейблов по DOM дереву*/
+.rating_block input[type="radio"]:checked ~ .label_rating /*Правило для всех следующих лейблов после выбранного инпута, чтобы звездочки как бы зафиксировались*/
+{
+  background-position: 50% -25px;
 }

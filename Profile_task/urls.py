@@ -30,7 +30,8 @@ urlpatterns = [
     url(r'save_rezult', views.Rezult_task_save, name='Rezult_task_save'),
     url(r'^close_task/(?P<id>[0-9]+)', views.Close_task, name='Close_task'),
     url(r'^in_work_task', views.In_work_task, name='In_work_task'),
-    url(r'^exec_comment$', views.Exec_comment, name="Exec_comment"),
+    url(r'^exec_comment/(?P<task_id>[0-9]+)/(?P<exec_id>[0-9]+)/$', views.Exec_comment, name="Exec_comment"),
+    url(r'^save_exec_comment$', views.Save_exec_comment, name="Save_exec_comment"),
 
 
     #

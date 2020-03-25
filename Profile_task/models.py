@@ -421,3 +421,19 @@ class TaskSubType(models.Model):
     class Meta:
         managed = False
         db_table = 'task_sub_type'
+
+
+
+class UserComment(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    text = models.CharField(max_length=500, blank=True, null=True)
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    customer = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True, related_name='customer_id')
+    date = models.DateField(blank=True, null=True)
+    quality = models.IntegerField(blank=True, null=True)
+    politeness = models.IntegerField(blank=True, null=True)
+    punctuality = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_comment'

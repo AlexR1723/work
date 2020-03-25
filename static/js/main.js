@@ -2433,3 +2433,16 @@ $('#check_task_in_work').click(function () {
         btn.click();
     }
 });
+var index_comment=0;
+$('#check_comment').click(function () {
+    var text=document.getElementById('comment_text').value;
+    if(text != null && text != "")
+    {
+        var btn=document.getElementById('send_comment');
+        btn.click();
+    }
+    else{
+        add_alert_error(index_comment, "Вы не заполнили поле с отзывом!!");
+        index_comment = index_comment + 1;
+    }
+});
