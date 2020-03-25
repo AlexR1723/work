@@ -132,6 +132,17 @@ class BenefitsSafe(models.Model):
         db_table = 'benefits_safe'
 
 
+class Bonuses(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    count = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'bonuses'
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     image = models.CharField(max_length=500, blank=True, null=True)
@@ -575,6 +586,7 @@ class UserTask(models.Model):
     exec_finish = models.BooleanField(blank=True, null=True)
     offer = models.ForeignKey(UserOffer, models.DO_NOTHING, blank=True, null=True)
     is_pro = models.BooleanField(blank=True, null=True)
+    comment = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False

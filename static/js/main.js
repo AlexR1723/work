@@ -2424,3 +2424,12 @@ $('#is_pro_check').click(function () {
         $('#is_pro').val(0)
     }
 });
+
+$('#check_task_in_work').click(function () {
+    var text=document.getElementById('message-text').value;
+    if(text != null && text != "")
+    {
+        var btn=document.getElementById('task_in_work');
+        btn.click();
+    }
+});

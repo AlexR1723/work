@@ -959,8 +959,22 @@ def Close_task(request, id):
             task=UserTask.objects.get(id=id)
             task.task_status=UserTaskStatus.objects.get(name='Выполнено')
             task.save()
-            return HttpResponseRedirect("/profile/task")
+            return HttpResponseRedirect("/profile/task/exec_comment")
         else:
             return HttpResponseRedirect("/profile/task")
     else:
         return HttpResponseRedirect("/login")
+
+
+def In_work_task(request):
+    work=request.POST.get('message-text')
+    task_id=request.POST.get('task-id')
+    task=UserTask.objects.get(id=task_id)
+    task.comment=work
+    task.task_status=UserTaskStatus.objects.get(name='В работе')
+    task.save()
+    return HttpResponseRedirect("/profile/task/detail/"+task_id)
+
+def Exec_comment(request):
+    layout, username, photo, balance, bonus = layout_name(request)
+    return render(request, 'Profile/Exec_comment.html', locals())

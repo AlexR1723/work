@@ -29,6 +29,10 @@ urlpatterns = [
     url(r'set_exec', views.Set_exec, name='Set_exec'),
     url(r'save_rezult', views.Rezult_task_save, name='Rezult_task_save'),
     url(r'^close_task/(?P<id>[0-9]+)', views.Close_task, name='Close_task'),
+    url(r'^in_work_task', views.In_work_task, name='In_work_task'),
+    url(r'^exec_comment$', views.Exec_comment, name="Exec_comment"),
+
+
     #
     # url(r'get_new_order', views.get_new_order, name='get_new_order'),
     #

@@ -2127,7 +2127,7 @@ input[type=checkbox]:checked + label::after {
 }
 .adverts-add_photos .img_wrapper,
 .portfolio-photos_blk .img_wrapper {
-    height: 230px;
+    /*height: 230px;*/
     overflow: hidden;
     padding: 1rem;
     padding-left: 0;
@@ -2135,7 +2135,7 @@ input[type=checkbox]:checked + label::after {
 }
 .adverts-add_photos .img_wrapper img,
 .portfolio-photos_blk .img_wrapper img {
-    min-height: 100%;
+    /*min-height: 100%;*/
     min-width: 100%;
     object-fit: cover;
 }
@@ -2437,6 +2437,11 @@ input[type=checkbox]:checked + label::after {
     font-size: 1.2rem;
     line-height: 28px;
     color: rgba(0, 0, 0, 0.7);
+}
+.red_text {
+    font-size: 1.4rem;
+    line-height: 28px;
+    color: #AF4B53;
 }
 .users_rates .rate_b {
     font-size: 1.2rem;

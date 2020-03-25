@@ -50,15 +50,15 @@
                                 <div class="col-12">
                                     <div class="row justify-content-end">
                                         {% if task.exec == None or task.exec == "" %}
-                                            <a href="{% url 'Service_task_add' task.id %}">
-                                                <button class="add-serv-btn mt-2 py-1 px-4 mb-0">Подключить услуги</button>
-                                            </a>
+                                        <a href="{% url 'Service_task_add' task.id %}">
+                                            <button class="add-serv-btn mt-2 py-1 px-4 mb-0">Подключить услуги</button>
+                                        </a>
                                         {% endif %}
                                         {% if task_bet|length == 0 and task.exec_id == None or task.exec_id == "" %}
                                         <a href="#" class="pl-4">
                                             <button class="rate-perform_btn mt-2 py-1 px-4 mb-0">Редактировать</button>
                                         </a>
-                                {% endif %}
+                                        {% endif %}
                                     </div>
                                 </div>
 
@@ -180,10 +180,13 @@
             <hr class="category-line m-0 my-4">
             {% if task.task_status.name == 'Завешено исполнителем' %}
             <div class="form-group row">
-                <div class="col-sm-10 col-md-5 px-0 pl-md-0 pl-lg-0">
+                <div class="col-sm-10 col-md-auto px-0 pl-md-0 pl-lg-0">
                     <a href="{% url 'Close_task' task.id %}">
                         <button type="button" class="btn btn-primary px-5" id="btn_task_close">Закрыть задание</button>
                     </a>
+                </div>
+                <div class="col-sm-10 col-md-auto px-0 pl-md-3 pl-lg-3">
+                    <button type="button" class="btn btn-primary px-5 choose-user_btn h-100" data-target="#exampleModalCenter" data-toggle="modal">Вернуть задание в работу</button>
                 </div>
             </div>
             {% endif %}
@@ -228,11 +231,36 @@
         </div>
     </div>
 
-<!--    <div class="row m-0 justify-content-center users_rates">-->
-<!--        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">-->
-<!--            -->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="row m-0 justify-content-center users_rates">-->
+    <!--        <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-3 px-3 px-mb-0 px-lg-0">-->
+    <!--            -->
+    <!--        </div>-->
+    <!--    </div>-->
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="rate-modal modal fade" id="exampleModalCenter" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Вернуть задание в работу</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="w-100" action="{% url 'In_work_task' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" id="task-id" value="{{task.id}}" name="task-id">
+                    <div class="form-group">
+                        <textarea class="form-control" name="message-text" id="message-text" placeholder="Введите комментарий и объявснением причины возврата задания в работу"></textarea>
+                    </div>
+                    <button class="d-none" type="submit" id="task_in_work">Отправить</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary px-5 choose-user_btn h-100" id="check_task_in_work">Вернуть задание в работу</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

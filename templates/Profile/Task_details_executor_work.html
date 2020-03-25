@@ -142,6 +142,9 @@
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pb-5 px-3 px-mb-0 px-lg-0">
             <hr class="category-line m-0 my-4">
             <h2 class="m-0 line_height_1 text-left mb-3">Вы назначены исполнителем</h2>
+            {% if task.comment != None and task.comment != "" %}
+                <label class="red_text">Задание возвращено в работу по причине: {{task.comment}}</label>
+            {% endif %}
             <form class="w-100" action="{% url 'Rezult_task_save' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="task_id" value="{{task.id}}">
