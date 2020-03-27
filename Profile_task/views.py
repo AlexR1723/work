@@ -599,8 +599,9 @@ def Bet_save(request):
 
 def Set_exec(request):
     layout, username, photo, balance, bonus = layout_name(request)
-    id = int(request.GET.get('id'))
-    user_id = int(request.GET.get('user_id'))
+    id = int(request.POST.get('task_id'))
+    user_id = int(request.POST.get('user_id'))
+    mess=request.POST.get('text_mess')
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -614,7 +615,10 @@ def Set_exec(request):
         task.price=bet.price
         print(task)
         task.save()
-        return HttpResponse(json.dumps({'data': 'ok'}))
+        message=PersonalMessage(from_user=auth, to_user=user, text=mess, date=datetime.datetime.now(), is_show=False, to_type_is_exec=True, from_type_is_exec=False)
+        message.save()
+        # return HttpResponse(json.dumps({'data': 'ok'}))
+        return HttpResponseRedirect("/profile/task/detail/" + task_id)
 
 
 def Executor_my_tasks_filter_cat(request,filter_cat):

@@ -216,7 +216,7 @@
                                 <label class="propose-money_label mb-2">{{t.price}} руб.</label>
                                 <input type="hidden" value="{{t.user.id}}">
                                 <button class="choose-user_btn mt-md-4 py-1 px-4 select-user-bet">Выбрать <br> исполнителем</button>
-
+                                <button type="button" class="d-none" data-target="#exampleModalCenter2" data-toggle="modal">Сообщение</button>
                             </div>
                         </div>
                     </div>
@@ -262,5 +262,37 @@
         </div>
     </div>
 </div>
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="rate-modal modal fade" id="exampleModalCenter2" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel2">Назначить пользователя исполнителем</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="w-100" action="{% url 'Set_exec' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" id="task_id_mess" value="{{task.id}}" name="task_id">
+                    <input type="hidden" id="user_id_mess" name="user_id">
+                    <label class="rate_span mr-3">Сообщение:</label>
+                    <div class="form-group">
+                        <textarea class="form-control" name="text_mess" id="text_mess">Здравствуйте. Я выбрал Вас исполнителем для своего задания. https://work-proj.herokuapp.com/profile/task/detail/24/</textarea>
+                    </div>
+                    <button class="d-none" type="submit" id="mess_send">Отправить</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary px-5 choose-user_btn h-100" id="check_mess_send">Отправить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="col-12" id="alerts-block">
+
+ </div>
 
 {% endblock %}

@@ -2158,21 +2158,37 @@ $('#task-bet-save').click(function () {
 $(".select-user-bet").click(function () {
     var id = $("#task_id").val();
     var user_id = $(this).prev().val();
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: '/profile/task/set_exec/',
-        data: {
-            id: id,
-            user_id: user_id
-        },
-        success: function (data) {
-            window.location = '/profile/task/';
-        },
-        error: function (data) {
-            alert('Error');
-        }
-    })
+    $('#user_id_mess').val(user_id);
+    var btn=$(this).next();
+    btn.click();
+    // $.ajax({
+    //     type: "GET",
+    //     dataType: "json",
+    //     url: '/profile/task/set_exec/',
+    //     data: {
+    //         id: id,
+    //         user_id: user_id
+    //     },
+    //     success: function (data) {
+    //         window.location = '/profile/task/';
+    //     },
+    //     error: function (data) {
+    //         alert('Error');
+    //     }
+    // })
+});
+index_exec=0;
+$('#check_mess_send').click(function () {
+    var mess=$('#text_mess').val();
+    if(mess != "")
+    {
+        var btn=$('#mess_send');
+        btn.click();
+    }
+    else{
+        add_alert_error(index_exec,'Вы не можете отправить пустое сообщение!');
+        index_exec = index_exec + 1;
+    }
 });
 
 $('#btn_forgot').click(function () {
