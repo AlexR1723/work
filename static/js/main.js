@@ -2134,6 +2134,12 @@ $('#task-bet-save').click(function () {
     var id = $("#task-id").val();
     var description = $("#message-text").val();
     var sum = $("#sum-name").val();
+    var hide=false;
+    if ($('#is_hide_check').is(':checked')) {
+        hide = true;
+    } else {
+        hide = false;
+    }
     if (description == "") $('#message-text').addClass('br-red');
     if (sum == "") $('#sum-name').addClass('br-red');
     if (description != "" && sum != "") {
@@ -2144,7 +2150,8 @@ $('#task-bet-save').click(function () {
             data: {
                 id: id,
                 description: description,
-                sum: sum
+                sum: sum,
+                hide: hide
             },
             success: function (data) {
                 window.location.reload();

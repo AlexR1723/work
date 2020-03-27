@@ -160,6 +160,12 @@
                                                 <div class="form-group">
                                                     <input class="form-control" id="sum-name" placeholder="Введите сумму" type="number">
                                                 </div>
+                                                {% if is_pro != 0 %}
+                                                <div class="form-group row mb-5 mt-4 custom-checkbox pl-4">
+                                                    <input type="checkbox" class="custom-control-input" id="is_hide_check">
+                                                    <label for="is_hide_check" class="custom-control-label pl-1 pl-sm-3">Сделать ставку скрытой для других пользователей</label>
+                                                </div>
+                                                {% endif %}
 <!--                                            </form>-->
                                         </div>
                                         <div class="modal-footer">
@@ -185,30 +191,32 @@
             <div class="row m-0 justify-content-start">
                 {% if verify == True %}
                     {% for t in task_bet %}
-                    <div class="col-12 p-0">
-                        <div class="row">
-                            <div class="col-8 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-2 mx-auto">
-                                <img alt="" class="w-100 img-fluid" src="{{MEDIA_URL}}{{t.user.photo.url}}">
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                                <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
-                                    <a href="{% url 'Profile_page' task.user.id %}">
-                                        <h3 class="propose-category_label m-0">{{t.user.first_name}}</h3>
-                                    </a>
+                        {% if t.is_hide != True %}
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-8 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-2 mx-auto">
+                                    <img alt="" class="w-100 img-fluid" src="{{MEDIA_URL}}{{t.user.photo.url}}">
                                 </div>
-                                <div class="row justify-content-start align-items-center pt-2">
-                                    <p class="mb-0 pr-0 perform-card_text pb-2 w-100">{{t.description}}</p>
-                                    <span class="propose-date_span">{{t.date}}</span>
+                                <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-7 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
+                                        <a href="{% url 'Profile_page' task.user.id %}">
+                                            <h3 class="propose-category_label m-0">{{t.user.first_name}}</h3>
+                                        </a>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 perform-card_text pb-2 w-100">{{t.description}}</p>
+                                        <span class="propose-date_span">{{t.date}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                                <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
-                                    <label class="propose-money_label mb-2">{{t.price}} руб.</label>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
+                                    <div class="row justify-content-between justify-content-sm-between justify-content-md-center align-content-center align-items-center pt-md-0">
+                                        <label class="propose-money_label mb-2">{{t.price}} руб.</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <hr class="category-line m-0 my-4">
+                        <hr class="category-line m-0 my-4">
+                        {% endif %}
                     {% endfor %}
                 {% else %}
                 <label class="fontCategorySmall colorDarkGrey">Вы сможете видеть ставки других пользвоателей, только после

@@ -584,6 +584,7 @@ def Bet_save(request):
     id=int(request.GET.get('id'))
     description=request.GET.get('description')
     sum=int(request.GET.get('sum'))
+    hide=request.GET.get('hide')
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -592,7 +593,12 @@ def Bet_save(request):
         auth=AuthUser.objects.get(email=email)
         print(auth)
         task=UserTask.objects.get(id=id)
-        task_bet=UserTaskBet(user=auth, task=task, description=description, price=sum, date=datetime.datetime.now())
+        if hide == 'true':
+            hide=True
+        else:
+            hide=False
+        task_bet=UserTaskBet(user=auth, task=task, description=description, price=sum, date=datetime.datetime.now(), is_hide=hide)
+        print(task_bet)
         task_bet.save()
         return HttpResponse(json.dumps({'data': 'ok'}))
 
