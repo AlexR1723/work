@@ -497,7 +497,7 @@ class Bonuses(models.Model):
 
 
 class UserBonuses(models.Model):
-    user = models.ForeignKey('Users', models.DO_NOTHING, blank=True, null=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     bonus = models.ForeignKey(Bonuses, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:

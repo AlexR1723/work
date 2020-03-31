@@ -153,7 +153,16 @@ def Save(request):
         user.about_me = request.POST.get('about')
         user.phone = request.POST.get('phone')
         user.save()
-
+        auth=AuthUser.objects.get(email=email)
+        bonus=Bonuses.objects.get(backend_name='profile_100')
+        user_bonus_count=UserBonuses.objects.filter(user__email=email).filter(backend_name='profile_100').count()
+        if user_bonus_count == 0:
+            sub=UserSubcategories.objects.filter(user=auth).count()
+            if user.birthday != None and user.birthday != "" and user.gender != None and user.phone != None and user.phone != "" and user.about_me != None and user.about_me != "" and sub > 0:
+                user_bonus=UserBonuses(user=auth, bonus=bonus)
+                user_bonus.save()
+                user.bonus_balance+=bonus.count
+                user.save()
     return HttpResponseRedirect("/profile/settings")
 
 
