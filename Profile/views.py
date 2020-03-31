@@ -587,6 +587,13 @@ def verify_passport(request):
                 user1=Users.objects.get(auth_user_id=user.id)
                 user1.passport_num_ser=passport
                 user1.passport_photo=doc['files']
+                # user1.save()
+                user_bonus_count=UserBonuses.objects.filter(user=user).filter(bonus__backend_name='verify_passport').count()
+                if user_bonus_count == 0:
+                    bonus=Bonuses.objects.get(backend_name='verify_passport')
+                    user_bonus=UserBonuses(user=user,bonus=bonus)
+                    user_bonus.save()
+                    user1.bonus_balance+=bonus.count
                 user1.save()
 
             id = user.id
