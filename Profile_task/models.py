@@ -481,3 +481,25 @@ class PersonalMessage(models.Model):
         # print(mess)
         mydict={'id':mess.last().from_user.id,'text':mess.last().text}
         return mydict
+
+
+
+class Bonuses(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    count = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'bonuses'
+
+
+
+class UserBonuses(models.Model):
+    user = models.ForeignKey('Users', models.DO_NOTHING, blank=True, null=True)
+    bonus = models.ForeignKey(Bonuses, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_bonuses'

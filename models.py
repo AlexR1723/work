@@ -493,6 +493,15 @@ class UserAwards(models.Model):
         db_table = 'user_awards'
 
 
+class UserBonuses(models.Model):
+    user = models.ForeignKey('Users', models.DO_NOTHING, blank=True, null=True)
+    bonus = models.ForeignKey(Bonuses, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_bonuses'
+
+
 class UserCities(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)

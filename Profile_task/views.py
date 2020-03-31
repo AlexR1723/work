@@ -1010,4 +1010,7 @@ def Save_exec_comment(request):
     user=AuthUser.objects.get(id=exec_id)
     user_comment=UserComment(user=user, text=text, task=task, customer=customer, quality=rating_quality, politeness=rating_politeness, punctuality=rating_punctuality, date=datetime.datetime.now())
     user_comment.save()
+    bonus=Bonuses.object.get(backend_name='review_exec')
+    customer.bonus_balance+=bonus.count
+    customer.save()
     return HttpResponseRedirect("/profile/task")
