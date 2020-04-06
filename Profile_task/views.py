@@ -487,6 +487,28 @@ def Save_task(request):
                 tast_photo = TaskPhoto(task=user_task, photo=d)
                 tast_photo.save()
     # return HttpResponseRedirect("/profile/task")
+        user=Users.objects.get(auth_user=auth)
+        user_task=UserTask.objects.filter(user=auth)
+        user_bonuses_count=UserBonuses.objects.filter(bonus__backend_name='create_3_tasks').count()
+        bonus=""
+        if user_bonuses_count==0:
+            if user_task.count() == 3:
+                bonus=Bonuses.objects.get(backend_name='create_3_tasks')
+        else:
+            user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_5_tasks').count()
+            if user_bonuses_count == 0:
+                if user_task.count() == 5:
+                    bonus = Bonuses.objects.get(backend_name='create_5_tasks')
+            else:
+                user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_10_tasks').count()
+                if user_bonuses_count == 0:
+                    if user_task.count() == 10:
+                        bonus = Bonuses.objects.get(backend_name='create_10_tasks')
+            if bonus != "":
+                user_bonuses=UserBonuses(bonus=bonus,user=auth)
+                user_bonuses.save()
+                user.bonus_balance+=bonus.count
+                user.save()
     return HttpResponseRedirect("/profile/service/task_add/"+str(user_task.id))
 
 
