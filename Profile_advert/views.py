@@ -58,6 +58,34 @@ def Advert_save(request):
             for d in doc.getlist('files'):
                 user_advert_photo=UserAdvertPhoto(user=auth, advert=user_advert, photo=d)
                 user_advert_photo.save()
+        user = Users.objects.get(auth_user=auth)
+        user_advert_count=UserAdvert.objects.filter(user=auth).count()
+        user_advert_sub=UserAdvert.objects.filter(user=auth)
+        user_advert_sub_list=[]
+        for s in user_advert_sub:
+            if s.subcategory.id not in user_advert_sub_list:
+                user_advert_sub_list.append(s.subcategory.id)
+
+        user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_2_ad_2_sub').count()
+        bonus = ""
+        if user_bonuses_count == 0:
+            if user_advert_count == 2 and len(user_advert_sub_list) == 2:
+                bonus = Bonuses.objects.get(backend_name='create_2_ad_2_sub')
+        else:
+            user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_5_ad_3_sub').count()
+            if user_bonuses_count == 0:
+                if user_advert_count == 5 and len(user_advert_sub_list) == 3:
+                    bonus = Bonuses.objects.get(backend_name='create_5_ad_3_sub')
+            else:
+                user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_10_ad_5_sub').count()
+                if user_bonuses_count == 0:
+                    if user_advert_count == 10 and len(user_advert_sub_list) == 5:
+                        bonus = Bonuses.objects.get(backend_name='create_10_tasks')
+            if bonus != "":
+                user_bonuses = UserBonuses(bonus=bonus, user=auth)
+                user_bonuses.save()
+                user.bonus_balance += bonus.count
+                user.save()
     return HttpResponseRedirect("/profile/service/advert_add/" + str(user_advert.id))
     # return HttpResponseRedirect("/profile/settings")
 

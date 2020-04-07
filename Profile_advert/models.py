@@ -288,3 +288,25 @@ class UserFavoritesExecutor(models.Model):
     class Meta:
         managed = False
         db_table = 'user_favorites_executor'
+
+
+
+class Bonuses(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    count = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'bonuses'
+
+
+
+class UserBonuses(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    bonus = models.ForeignKey(Bonuses, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_bonuses'

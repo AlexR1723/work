@@ -490,7 +490,6 @@ def Profile_adverts(request,id):
             #     quality_percent = int((quality_suc * 100) / all_task)
             #     politeness_persent = int((politeness_suc * 100) / all_task)
             #     punctuality_persent = int((punctuality_suc * 100) / all_task)
-
         return render(request, 'Profile/Advert_profile.html', locals())
     else:
         return HttpResponseRedirect("/login")
