@@ -155,19 +155,19 @@ def Save(request):
         user.save()
         auth=AuthUser.objects.get(email=email)
         bonus=Bonuses.objects.get(backend_name='profile_100')
-        user_bonus_count=UserBonuses.objects.filter(user__email=email).filter(backend_name='profile_100').count()
+        user_bonus_count=UserBonuses.objects.filter(user__email=email).filter(bonus__backend_name='profile_100').count()
         if user_bonus_count == 0:
             sub=UserSubcategories.objects.filter(user=auth).count()
-            if user.birthday != None and user.birthday != "" and user.gender != None and user.phone != None and user.phone != "" and user.about_me != None and user.about_me != "" and sub > 0:
+            if user.birthday != None and user.birthday != "" and user.phone != None and user.phone != "" and user.about_me != None and user.about_me != "" and sub > 0:
                 user_bonus=UserBonuses(user=auth, bonus=bonus)
                 user_bonus.save()
                 user.bonus_balance+=bonus.count
                 user.save()
 
-        user_award_count=UserAwards.objects.filter(user__email=email).filter(backend_name='profile_100').count()
+        user_award_count=UserAwards.objects.filter(user__email=email).filter(awards__backend_name='profile_100').count()
         if user_award_count == 0:
-            if user.birthday != None and user.birthday != "" and user.gender != None and user.phone != None and user.phone != "" and user.about_me != None and user.about_me != "":
-                award=Awards.objects.get(backend_name='profile_100')
+            if user.birthday != None and user.birthday != "" and user.phone != None and user.phone != "" and user.about_me != None and user.about_me != "":
+                award=Awards_model.objects.get(backend_name='profile_100')
                 user_award=UserAwards(user=auth, awards=award, date=datetime.datetime.now())
                 user_award.save()
     return HttpResponseRedirect("/profile/settings")
@@ -502,7 +502,7 @@ def Profile_adverts(request,id):
         return HttpResponseRedirect("/login")
 
 @login_required()
-def Awards(request):
+def Awards_fun(request):
     layout, username, photo, balance, bonus = layout_name(request)
 
     user = request.session.get('username')

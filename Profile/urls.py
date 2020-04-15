@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^buy_pro/$', views.Buy_pro, name="Buy_pro"),
     url(r'^choose_city/$', views.Choose_city, name="Choose_city"),
     url(r'^choose_categ/$', views.Choose_categ, name="Choose_categ"),
-    url(r'^awards/$', views.Awards, name="Awards"),
+    url(r'^awards/$', views.Awards_fun, name="Awards"),
     url(r'^number_verification/$', views.Number_verification, name="Number_verification"),
     url(r'^passport_verification/$', views.Passport_verification, name="Passport_verification"),
 
