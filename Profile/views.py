@@ -163,6 +163,13 @@ def Save(request):
                 user_bonus.save()
                 user.bonus_balance+=bonus.count
                 user.save()
+
+        user_award_count=UserAwards.objects.filter(user__email=email).filter(backend_name='profile_100').count()
+        if user_award_count == 0:
+            if user.birthday != None and user.birthday != "" and user.gender != None and user.phone != None and user.phone != "" and user.about_me != None and user.about_me != "":
+                award=Awards.objects.get(backend_name='profile_100')
+                user_award=UserAwards(user=auth, awards=award, date=datetime.datetime.now())
+                user_award.save()
     return HttpResponseRedirect("/profile/settings")
 
 
