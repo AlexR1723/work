@@ -1094,6 +1094,67 @@ def Close_task(request, id):
             task=UserTask.objects.get(id=id)
             task.task_status=UserTaskStatus.objects.get(name='Выполнено')
             task.save()
+
+            task_close_count = UserTask.objects.filter(user=task.user).filter(task_status__name='Выполнено').filter(
+                awards__backend_name='finish_10_task').count()
+            award = ""
+            if task_close_count == 10:
+                if user_award_count == 0:
+                    award = Awards_model.objects.get(backend_name='finish_10_task')
+                    c_t = 10
+            if task_close_count == 50:
+                user_award_count = UserAwards.objects.filter(user=auth).filter(
+                    awards__backend_name='finish_50_task').count()
+                if user_award_count == 0:
+                    award = Awards_model.objects.get(backend_name='finish_50_task')
+                    c_t = 50
+            if task_close_count == 100:
+                user_award_count = UserAwards.objects.filter(user=auth).filter(
+                    awards__backend_name='finish_100_task').count()
+                if user_award_count == 0:
+                    award = Awards_model.objects.get(backend_name='finish_100_task')
+                    c_t = 100
+            if award != "":
+                user_award = UserAwards(user=task.user, awards=award, date=datetime.datetime.now())
+                user_award.save()
+                bonus = Bonuses.objects.get(backend_name='reward_exec')
+                user=Users.objects.get(auth_user=task.user)
+                user.bonus_balance += bonus.count
+                user.save()
+                send_notice(request,
+                            "Вы получили награду за успешно выполненные " + c_t + " заданий и бонус " + bonus.count + " баллов!",
+                            "all")
+
+            task_close_count = UserTask.objects.filter(exec=task.exec).filter(task_status__name='Выполнено').filter(
+                awards__backend_name='close_5_task').count()
+            award = ""
+            if task_close_count == 5:
+                if user_award_count == 0:
+                    award = Awards_model.objects.get(backend_name='close_5_task')
+                    c_t = 5
+            if task_close_count == 10:
+                user_award_count = UserAwards.objects.filter(user=auth).filter(
+                    awards__backend_name='close_10_task').count()
+                if user_award_count == 0:
+                    award = Awards_model.objects.get(backend_name='close_10_task')
+                    c_t = 10
+            if task_close_count == 50:
+                user_award_count = UserAwards.objects.filter(user=auth).filter(
+                    awards__backend_name='close_50_task').count()
+                if user_award_count == 0:
+                    award = Awards_model.objects.get(backend_name='close_50_task')
+                    c_t = 50
+            if award != "":
+                user_award = UserAwards(user=task.exec, awards=award, date=datetime.datetime.now())
+                user_award.save()
+                bonus = Bonuses.objects.get(backend_name='reward_cust')
+                user = Users.objects.get(auth_user=task.exec)
+                user.bonus_balance += bonus.count
+                user.save()
+                send_notice(request,
+                            "Вы получили награду за успешно закрытые " + c_t + " заданий и бонус " + bonus.count + " баллов!",
+                            "all")
+
             return HttpResponseRedirect("/profile/task/exec_comment/"+task.id+"/"+task.exec.id)
         else:
             return HttpResponseRedirect("/profile/task")
