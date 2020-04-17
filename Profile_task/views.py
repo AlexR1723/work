@@ -509,6 +509,26 @@ def Save_task(request):
                 user_bonuses.save()
                 user.bonus_balance+=bonus.count
                 user.save()
+
+        user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='create_10_tasks').count()
+        award = ""
+        if user_task.count() == 10:
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='create_10_tasks')
+        if user_task.count() == 50:
+            user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='create_50_tasks').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='create_50_tasks')
+        if user_task.count() == 100:
+            user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='create_100_tasks').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='create_100_tasks')
+        if award != "":
+            user_award = UserAwards(user=auth, awards=award, date=datetime.datetime.now())
+            user_award.save()
+            bonus = Bonuses.objects.get(backend_name='reward_cust')
+            user.bonus_balance += bonus.count
+            user.save()
     return HttpResponseRedirect("/profile/service/task_add/"+str(user_task.id))
 
 
