@@ -163,6 +163,7 @@ def Save(request):
                 user_bonus.save()
                 user.bonus_balance+=bonus.count
                 user.save()
+                send_notice(request, "Вы получили бонус "+bonus.count+" баллов за полное заполнение профиля!", "all")
 
         user_award_count=UserAwards.objects.filter(user__email=email).filter(awards__backend_name='profile_100').count()
         if user_award_count == 0:
@@ -170,6 +171,7 @@ def Save(request):
                 award=Awards_model.objects.get(backend_name='profile_100')
                 user_award=UserAwards(user=auth, awards=award, date=datetime.datetime.now())
                 user_award.save()
+                send_notice(request, "Вы получили награду за полное заполнение профиля!", "all")
     return HttpResponseRedirect("/profile/settings")
 
 
@@ -600,12 +602,14 @@ def verify_passport(request):
                     user_bonus=UserBonuses(user=user,bonus=bonus)
                     user_bonus.save()
                     user1.bonus_balance+=bonus.count
+                    send_notice(request, "Вы получили бонус "+bonus.count+" баллов за верификацию паспорта!", "all")
                 user1.save()
                 user_award_count=UserAwards.objects.filter(user=user).filter(awards__backend_name='passport_verify').count()
                 if user_award_count == 0:
                     award=Awards_model.objects.get(backend_name='passport_verify')
                     user_award=UserAwards(user=user,awards=award, date=datetime.datetime.now())
                     user_award.save()
+                    send_notice(request, "Вы получили награду за верификацию паспорта!", "all")
 
             id = user.id
             name = user.first_name

@@ -36,6 +36,25 @@ def layout_name(request):
     return layout, username, photo, balance, bonus
 
 
+def send_notice(request, text, is_executor):
+    # all, exec, cust
+    user_id = request.session.get('username', False)
+    try:
+        user = AuthUser.objects.get(username=user_id).id
+        if is_executor=='exec':
+            note = Notifications(user_id=user, text=text, for_executor=True, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor=='cust':
+            note = Notifications(user_id=user, text=text, for_executor=False, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor=='all':
+            note = Notifications(user_id=user, text=text, for_executor=None, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        note.save()
+        print('note saved')
+    except:
+        return False
+
 
 def Advert_save(request):
     print('advert_save')
@@ -68,24 +87,59 @@ def Advert_save(request):
 
         user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_2_ad_2_sub').count()
         bonus = ""
+        c_ad=0
+        c_sub=0
         if user_bonuses_count == 0:
             if user_advert_count == 2 and len(user_advert_sub_list) == 2:
                 bonus = Bonuses.objects.get(backend_name='create_2_ad_2_sub')
+                c_ad=2
+                c_sub=2
         else:
             user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_5_ad_3_sub').count()
             if user_bonuses_count == 0:
                 if user_advert_count == 5 and len(user_advert_sub_list) == 3:
                     bonus = Bonuses.objects.get(backend_name='create_5_ad_3_sub')
+                    c_ad=5
+                    c_sub=3
             else:
                 user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_10_ad_5_sub').count()
                 if user_bonuses_count == 0:
                     if user_advert_count == 10 and len(user_advert_sub_list) == 5:
-                        bonus = Bonuses.objects.get(backend_name='create_10_tasks')
+                        bonus = Bonuses.objects.get(backend_name='create_10_ad_5_sub')
+                    c_ad=10
+                    c_sub=5
             if bonus != "":
                 user_bonuses = UserBonuses(bonus=bonus, user=auth)
                 user_bonuses.save()
                 user.bonus_balance += bonus.count
                 user.save()
+                send_notice(request, "Вы получили бонус "+bonus.count+" баллов за создание "+c_ad+" объявлений в "+c_sub+" подкатегориях!", "all")
+
+        user_advert_count = UserAdvert.objects.filter(user=auth).count()
+        user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_5_ads').count()
+        award = ""
+        c_p=0
+        if user_advert_count == 5:
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='posted_5_ads')
+                c_p=5
+        if user_advert_count == 10:
+            user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_10_ads').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='posted_10_ads')
+                c_p=10
+        if user_advert_count == 20:
+            user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_20_ads').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='posted_20_ads')
+                c_p=20
+        if award != "":
+            user_award = UserAwards(user=auth, awards=award, date=datetime.datetime.now())
+            user_award.save()
+            bonus = Bonuses.objects.get(backend_name='reward_exec')
+            user.bonus_balance += bonus.count
+            user.save()
+            send_notice(request, "Вы получили награду за публикацию "+c_p+" объявлений и бонус "+bonus.count+" баллов!", "all")
     return HttpResponseRedirect("/profile/service/advert_add/" + str(user_advert.id))
     # return HttpResponseRedirect("/profile/settings")
 
@@ -347,26 +401,4 @@ def Edit_advert_save(request):
             for d in doc.getlist('files'):
                 user_advert_photo = UserAdvertPhoto(advert=user_advert, user=auth, photo=d)
                 user_advert_photo.save()
-
-        user_advert_count=UserAdvert.objects.filter(user=auth).count()
-        user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_5_ads').count()
-        award = ""
-        if user_advert_count == 5:
-            if user_award_count == 0:
-                award=Awards_model.objects.get(backend_name='posted_5_ads')
-        if user_advert_count == 10:
-            user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_10_ads').count()
-            if user_award_count == 0:
-                award = Awards_model.objects.get(backend_name='posted_10_ads')
-        if user_advert_count == 20:
-            user_award_count=UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_20_ads').count()
-            if user_award_count == 0:
-                award=Awards_model.objects.get(backend_name='posted_20_ads')
-        if award != "":
-            user_award = UserAwards(user=auth, awards=award, date=datetime.datetime.now())
-            user_award.save()
-            bonus=Bonuses.objects.get(backend_name='reward_exec')
-            user=Users.objects.get(auth_user=auth)
-            user.bonus_balance+=bonus.count
-            user.save()
     return HttpResponseRedirect("/profile/advert")

@@ -491,44 +491,53 @@ def Save_task(request):
         user_task=UserTask.objects.filter(user=auth)
         user_bonuses_count=UserBonuses.objects.filter(bonus__backend_name='create_3_tasks').count()
         bonus=""
+        c_t=0
         if user_bonuses_count==0:
             if user_task.count() == 3:
                 bonus=Bonuses.objects.get(backend_name='create_3_tasks')
+                c_t=3
         else:
             user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_5_tasks').count()
             if user_bonuses_count == 0:
                 if user_task.count() == 5:
                     bonus = Bonuses.objects.get(backend_name='create_5_tasks')
+                    c_t=5
             else:
                 user_bonuses_count = UserBonuses.objects.filter(bonus__backend_name='create_10_tasks').count()
                 if user_bonuses_count == 0:
                     if user_task.count() == 10:
                         bonus = Bonuses.objects.get(backend_name='create_10_tasks')
+                        c_t=10
             if bonus != "":
                 user_bonuses=UserBonuses(bonus=bonus,user=auth)
                 user_bonuses.save()
                 user.bonus_balance+=bonus.count
                 user.save()
+                send_notice(request, "Вы получили бонус "+bonus.count+" баллов за создание "+c_t+" заданий!", "all")
 
         user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='create_10_tasks').count()
         award = ""
         if user_task.count() == 10:
             if user_award_count == 0:
                 award = Awards_model.objects.get(backend_name='create_10_tasks')
+                c_t=10
         if user_task.count() == 50:
             user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='create_50_tasks').count()
             if user_award_count == 0:
                 award = Awards_model.objects.get(backend_name='create_50_tasks')
+                c_t=50
         if user_task.count() == 100:
             user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='create_100_tasks').count()
             if user_award_count == 0:
                 award = Awards_model.objects.get(backend_name='create_100_tasks')
+                c_t=100
         if award != "":
             user_award = UserAwards(user=auth, awards=award, date=datetime.datetime.now())
             user_award.save()
             bonus = Bonuses.objects.get(backend_name='reward_cust')
             user.bonus_balance += bonus.count
             user.save()
+            send_notice(request,"Вы получили награду за создание " + c_t + " заданий и бонус " + bonus.count + " баллов!", "all")
     return HttpResponseRedirect("/profile/service/task_add/"+str(user_task.id))
 
 
@@ -646,17 +655,21 @@ def Bet_save(request):
         user_bet_count = UserTaskBet.objects.filter(user=auth).count()
         user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='bet_10').count()
         award = ""
+        c_b=0
         if user_bet_count == 10:
             if user_award_count == 0:
                 award = Awards_model.objects.get(backend_name='bet_10')
+                c_b=10
         if user_bet_count == 50:
             user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='bet_50').count()
             if user_award_count == 0:
                 award = Awards_model.objects.get(backend_name='bet_50')
+                c_b=50
         if user_bet_count == 100:
             user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='bet_100').count()
             if user_award_count == 0:
                 award = Awards_model.objects.get(backend_name='bet_100')
+                c_b=100
         if award != "":
             user_award = UserAwards(user=auth, awards=award, date=datetime.datetime.now())
             user_award.save()
@@ -664,6 +677,7 @@ def Bet_save(request):
             user = Users.objects.get(auth_user=auth)
             user.bonus_balance += bonus.count
             user.save()
+            send_notice(request, "Вы получили награду за то, что оставили " + c_b + " ставок и бонус " + bonus.count + " баллов!", "all")
         return HttpResponse(json.dumps({'data': 'ok'}))
 
 
