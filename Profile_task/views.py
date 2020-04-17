@@ -35,7 +35,24 @@ def layout_name(request):
             layout = 'layout_executor.html'
     return layout, username, photo, balance, bonus
 
-
+def send_notice(request, text, is_executor):
+    # all, exec, cust
+    user_id = request.session.get('username', False)
+    try:
+        user = AuthUser.objects.get(username=user_id).id
+        if is_executor=='exec':
+            note = Notifications(user_id=user, text=text, for_executor=True, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor=='cust':
+            note = Notifications(user_id=user, text=text, for_executor=False, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor=='all':
+            note = Notifications(user_id=user, text=text, for_executor=None, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        note.save()
+        print('note saved')
+    except:
+        return False
 
 def Profile_tasks(request):
     layout, username, photo, balance, bonus = layout_name(request)
