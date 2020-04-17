@@ -588,7 +588,7 @@ def Save_offer(request):
         subcategory = SubCategory.objects.all().filter(id=sub)[0]
         print(subcategory)
         # status = UserTaskStatus.objects.get(name='В поиске')
-        exec=AuthUser.objects.get(id=advert.user.id)
+        exec_ = AuthUser.objects.get(id=advert.user.id)
         doc = request.FILES
         city = City.objects.all().filter(id=city)[0]
         if (gridRadios2 == 'option1'):
@@ -598,22 +598,22 @@ def Save_offer(request):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, date=date, pay=pay, price=price,
                                      photo_main=doc['file_main'], date_add=datetime.datetime.now(),
-                                     offer=offer, exec=exec, rezult_text="")
+                                     offer=offer, exec=exec_, rezult_text="")
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, date=date, pay=pay, price=price,
-                                     date_add=datetime.datetime.now(), offer=offer, exec=exec, rezult_text="")
+                                     date_add=datetime.datetime.now(), offer=offer, exec=exec_, rezult_text="")
         else:
             if (doc):
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
                                      pay=pay, price=price, photo_main=doc['file_main'],
-                                     date_add=datetime.datetime.now(), offer=offer, exec=exec, rezult_text="")
+                                     date_add=datetime.datetime.now(), offer=offer, exec=exec_, rezult_text="")
             else:
                 user_task = UserTask(user=auth, subcategory=subcategory, title=title, description=description,
                                      city=city, address=address, start_time=start_time, end_time=end_time, date=date,
                                      pay=pay, price=price, date_add=datetime.datetime.now(),
-                                     offer=offer, exec=exec, rezult_text="")
+                                     offer=offer, exec=exec_, rezult_text="")
         user_task.save()
         docs = request.FILES
         if (docs):
@@ -622,9 +622,39 @@ def Save_offer(request):
                 tast_photo.save()
         advert.count_offer=advert.count_offer+1
         advert.save()
-        notise=Notifications(user=exec, text="У вас новое предложение. Проверьте страницу 'Предложения'",
+        notise=Notifications(user=exec_, text="У вас новое предложение. Проверьте страницу 'Предложения'",
                              date_public=datetime.datetime.now(), is_checked=False, is_show=False)
         notise.save()
+
+        user_offer_count = UserTask.objects.filter(exec=exec_).count()
+        user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_10').count()
+        award = ""
+        c_o = 0
+        if user_offer_count == 10:
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='offer_10')
+                c_o = 10
+        if user_offer_count == 20:
+            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_20').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='offer_20')
+                c_o = 20
+        if user_offer_count == 50:
+            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_50').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='offer_50')
+                c_o = 50
+        if award != "":
+            user_award = UserAwards(user=exec_, awards=award, date=datetime.datetime.now())
+            user_award.save()
+            bonus = Bonuses.objects.get(backend_name='reward_exec')
+            user = Users.objects.get(auth_user=exec_)
+            user.bonus_balance += bonus.count
+            user.save()
+            send_notice(request,
+                        "Вы получили награду за то, что получили " + c_o + " предложений по своим объявлениям и бонус " + bonus.count + " баллов!",
+                        "all")
+
     return HttpResponseRedirect("/profile/task")
 
 
