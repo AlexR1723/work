@@ -622,6 +622,28 @@ def Bet_save(request):
         task_bet=UserTaskBet(user=auth, task=task, description=description, price=sum, date=datetime.datetime.now(), is_hide=hide)
         print(task_bet)
         task_bet.save()
+
+        user_bet_count = UserTaskBet.objects.filter(user=auth).count()
+        user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='bet_10').count()
+        award = ""
+        if user_bet_count == 10:
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='bet_10')
+        if user_bet_count == 50:
+            user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='bet_50').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='bet_50')
+        if user_bet_count == 100:
+            user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='bet_100').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='bet_100')
+        if award != "":
+            user_award = UserAwards(user=auth, awards=award, date=datetime.datetime.now())
+            user_award.save()
+            bonus = Bonuses.objects.get(backend_name='reward_exec')
+            user = Users.objects.get(auth_user=auth)
+            user.bonus_balance += bonus.count
+            user.save()
         return HttpResponse(json.dumps({'data': 'ok'}))
 
 
