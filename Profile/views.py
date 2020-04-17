@@ -601,6 +601,11 @@ def verify_passport(request):
                     user_bonus.save()
                     user1.bonus_balance+=bonus.count
                 user1.save()
+                user_award_count=UserAwards.objects.filter(user=user).filter(awards__backend_name='passport_verify').count()
+                if user_award_count == 0:
+                    award=Awards_model.objects.get(backend_name='passport_verify')
+                    user_award=UserAwards(user=user,awards=award, date=datetime.datetime.now())
+                    user_award.save()
 
             id = user.id
             name = user.first_name

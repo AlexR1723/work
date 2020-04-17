@@ -347,4 +347,26 @@ def Edit_advert_save(request):
             for d in doc.getlist('files'):
                 user_advert_photo = UserAdvertPhoto(advert=user_advert, user=auth, photo=d)
                 user_advert_photo.save()
+
+        user_advert_count=UserAdvert.objects.filter(user=auth).count()
+        user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_5_ads').count()
+        award = ""
+        if user_advert_count == 5:
+            if user_advert_count == 0:
+                award=Awards_model.objects.get(backend_name='posted_5_ads')
+        if user_advert_count == 10:
+            user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_10_ads').count()
+            if user_advert_count == 0:
+                award = Awards_model.objects.get(backend_name='posted_10_ads')
+        if user_advert_count == 20:
+            user_award_count=UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_20_ads').count()
+            if user_advert_count == 0:
+                award=Awards_model.objects.get(backend_name='posted_20_ads')
+        if award != "":
+            user_award = UserAwards(user=auth, awards=award, date=datetime.datetime.now())
+            user_award.save()
+            bonus=Bonuses.objects.get(backend_name='reward_exec')
+            user=Users.objects.get(auth_user=auth)
+            user.bonus_balance+=bonus.count
+            user.save()
     return HttpResponseRedirect("/profile/advert")
