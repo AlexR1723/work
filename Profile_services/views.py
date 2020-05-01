@@ -200,6 +200,9 @@ def Add_service_in_advert(request):
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
 
+def for_new_user(request):
+    layout, username, photo, balance, bonus = layout_name(request)
+    return render(request, 'Profile/Services.html', locals())
 
 def tuktuk(request):
     fun1 = ftry(check_services)
@@ -232,17 +235,17 @@ def check_pro(data):
     return True
 
 def check_top(data):
-    users = AuthUser.objects.all()
-    user_dict = {}
-    for user in users:
-        successful_comment = UserComment.objects.filter(user=user).filter(quality__gte=4).filter(
-            politeness__gte=4).filter(punctuality__gte=4).count()
-        quality_suc = UserComment.objects.filter(user=user).filter(quality__gte=4).count()
-        politeness_suc = UserComment.objects.filter(user=user).filter(politeness__gte=4).count()
-        punctuality_suc = UserComment.objects.filter(user=user).filter(punctuality__gte=4).count()
-        all_task = successful_comment.count()
-        com_percent = 0
-        if all_task > 0:
-            com_percent = int((successful_comment * 100) / all_task)
-        user_dict[com_percent] = user.id
+    # users = AuthUser.objects.all()
+    # user_dict = {}
+    # for user in users:
+    #     successful_comment = UserComment.objects.filter(user=user).filter(quality__gte=4).filter(
+    #         politeness__gte=4).filter(punctuality__gte=4).count()
+    #     quality_suc = UserComment.objects.filter(user=user).filter(quality__gte=4).count()
+    #     politeness_suc = UserComment.objects.filter(user=user).filter(politeness__gte=4).count()
+    #     punctuality_suc = UserComment.objects.filter(user=user).filter(punctuality__gte=4).count()
+    #     all_task = successful_comment.count()
+    #     com_percent = 0
+    #     if all_task > 0:
+    #         com_percent = int((successful_comment * 100) / all_task)
+    #     user_dict[com_percent] = user.id
     return True
