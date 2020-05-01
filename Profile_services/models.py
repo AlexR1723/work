@@ -460,7 +460,7 @@ class Awards_model(models.Model):
 class UserAwards(models.Model):
     user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
     awards = models.ForeignKey('Awards_model', models.DO_NOTHING, blank=True, null=True)
-    date = models.DateTimeField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
