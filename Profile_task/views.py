@@ -627,22 +627,22 @@ def Save_offer(request):
         notise.save()
 
         user_offer_count = UserTask.objects.filter(exec=exec_).count()
-        user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_10').count()
+        user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='get_10_offers').count()
         award = ""
         c_o = 0
         if user_offer_count == 10:
             if user_award_count == 0:
-                award = Awards_model.objects.get(backend_name='offer_10')
+                award = Awards_model.objects.get(backend_name='get_10_offers')
                 c_o = 10
         if user_offer_count == 20:
-            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_20').count()
+            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='get_20_offers').count()
             if user_award_count == 0:
-                award = Awards_model.objects.get(backend_name='offer_20')
+                award = Awards_model.objects.get(backend_name='get_20_offers')
                 c_o = 20
         if user_offer_count == 50:
-            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_50').count()
+            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='get_50_offers').count()
             if user_award_count == 0:
-                award = Awards_model.objects.get(backend_name='offer_50')
+                award = Awards_model.objects.get(backend_name='get_50_offers')
                 c_o = 50
         if award != "":
             user_award = UserAwards(user=exec_, awards=award, date=datetime.datetime.now())
@@ -1095,21 +1095,21 @@ def Close_task(request, id):
             task.task_status=UserTaskStatus.objects.get(name='Выполнено')
             task.save()
 
-            task_close_count = UserTask.objects.filter(user=task.user).filter(task_status__name='Выполнено').filter(
-                awards__backend_name='finish_10_task').count()
+            task_close_count = UserTask.objects.filter(user=task.user).filter(task_status__name='Выполнено').count()
+            user_award_count=UserAwards.objects.filter(user=task.user).filter(awards__backend_name='finish_10_task').count()
             award = ""
             if task_close_count == 10:
                 if user_award_count == 0:
                     award = Awards_model.objects.get(backend_name='finish_10_task')
                     c_t = 10
             if task_close_count == 50:
-                user_award_count = UserAwards.objects.filter(user=auth).filter(
+                user_award_count = UserAwards.objects.filter(user=task.user).filter(
                     awards__backend_name='finish_50_task').count()
                 if user_award_count == 0:
                     award = Awards_model.objects.get(backend_name='finish_50_task')
                     c_t = 50
             if task_close_count == 100:
-                user_award_count = UserAwards.objects.filter(user=auth).filter(
+                user_award_count = UserAwards.objects.filter(user=task.user).filter(
                     awards__backend_name='finish_100_task').count()
                 if user_award_count == 0:
                     award = Awards_model.objects.get(backend_name='finish_100_task')
@@ -1133,13 +1133,13 @@ def Close_task(request, id):
                     award = Awards_model.objects.get(backend_name='close_5_task')
                     c_t = 5
             if task_close_count == 10:
-                user_award_count = UserAwards.objects.filter(user=auth).filter(
+                user_award_count = UserAwards.objects.filter(user=task.exec).filter(
                     awards__backend_name='close_10_task').count()
                 if user_award_count == 0:
                     award = Awards_model.objects.get(backend_name='close_10_task')
                     c_t = 10
             if task_close_count == 50:
-                user_award_count = UserAwards.objects.filter(user=auth).filter(
+                user_award_count = UserAwards.objects.filter(user=task.exec).filter(
                     awards__backend_name='close_50_task').count()
                 if user_award_count == 0:
                     award = Awards_model.objects.get(backend_name='close_50_task')
@@ -1199,4 +1199,32 @@ def Save_exec_comment(request):
     bonus=Bonuses.object.get(backend_name='review_exec')
     customer.bonus_balance+=bonus.count
     customer.save()
+
+    user_comment_count = UserComment.objects.filter(user=user).filter(quality__gte=4).filter(politeness__gte=4).filter(punctuality__gte=4).count()
+    user_award_count = UserAwards.objects.filter(user=user).filter(awards__backend_name='positive_comments_10').count()
+    award = ""
+    if user_comment_count == 10:
+        if user_award_count == 0:
+            award = Awards_model.objects.get(backend_name='positive_comments_10')
+            c_t = 10
+    if user_comment_count == 20:
+        user_award_count = UserAwards.objects.filter(user=user).filter(awards__backend_name='positive_comments_20').count()
+        if user_award_count == 0:
+            award = Awards_model.objects.get(backend_name='positive_comments_20')
+            c_t = 20
+    if user_comment_count == 50:
+        user_award_count = UserAwards.objects.filter(user=user).filter(awards__backend_name='positive_comments_50').count()
+        if user_award_count == 0:
+            award = Awards_model.objects.get(backend_name='positive_comments_50')
+            c_t = 50
+    if award != "":
+        user_award = UserAwards(user=user, awards=award, date=datetime.datetime.now())
+        user_award.save()
+        bonus = Bonuses.objects.get(backend_name='reward_exec')
+        user.bonus_balance += bonus.count
+        user.save()
+        send_notice(request, "Вы получили награду за " + c_t + " положительных отзывов и бонус " + bonus.count + " баллов!",
+                    "all")
+
+
     return HttpResponseRedirect("/profile/task")
