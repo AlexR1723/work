@@ -69,8 +69,9 @@ def Notice(request):
     return render(request, 'Profile/Notices.html', locals())
 
 
-def send_notice(request, text, is_executor):
-    user_id = request.session.get('username', False)
+def send_notice(request, text, is_executor, user_id):
+    if not user_id:
+        user_id = request.session.get('username', False)
     try:
         user = AuthUser.objects.get(username=user_id).id
         if is_executor == 'exec':

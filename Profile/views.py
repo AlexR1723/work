@@ -49,9 +49,10 @@ def layout_name(request):
     return layout, username, photo, balance, bonus
 
 
-def send_notice(request, text, is_executor):
+def send_notice(request, text, is_executor, user_id=False):
     # all, exec, cust
-    user_id = request.session.get('username', False)
+    if not user_id:
+        user_id = request.session.get('username', False)
     try:
         user = AuthUser.objects.get(username=user_id).id
         if is_executor=='exec':

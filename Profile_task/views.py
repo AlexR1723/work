@@ -35,9 +35,10 @@ def layout_name(request):
             layout = 'layout_executor.html'
     return layout, username, photo, balance, bonus
 
-def send_notice(request, text, is_executor):
+def send_notice(request, text, is_executor, user_id=False):
     # all, exec, cust
-    user_id = request.session.get('username', False)
+    if not user_id:
+        user_id = request.session.get('username', False)
     try:
         user = AuthUser.objects.get(username=user_id).id
         if is_executor=='exec':
@@ -653,7 +654,7 @@ def Save_offer(request):
             user.save()
             send_notice(request,
                         "Вы получили награду за то, что получили " + c_o + " предложений по своим объявлениям и бонус " + bonus.count + " баллов!",
-                        "all")
+                        "all",user.auth_user.username)
 
     return HttpResponseRedirect("/profile/task")
 
@@ -749,7 +750,7 @@ def Set_exec(request):
         message=PersonalMessage(from_user=auth, to_user=user, text=mess, date=datetime.datetime.now(), is_show=False, to_type_is_exec=True, from_type_is_exec=False)
         message.save()
         # return HttpResponse(json.dumps({'data': 'ok'}))
-        return HttpResponseRedirect("/profile/task/detail/" + task_id)
+        return HttpResponseRedirect("/profile/task/detail/" + task.id)
 
 
 def Executor_my_tasks_filter_cat(request,filter_cat):
@@ -1123,7 +1124,7 @@ def Close_task(request, id):
                 user.save()
                 send_notice(request,
                             "Вы получили награду за успешно выполненные " + c_t + " заданий и бонус " + bonus.count + " баллов!",
-                            "all")
+                            "all", user.auth_user.username)
 
             task_close_count = UserTask.objects.filter(exec=task.exec).filter(task_status__name='Выполнено').filter(
                 awards__backend_name='close_5_task').count()
@@ -1153,7 +1154,7 @@ def Close_task(request, id):
                 user.save()
                 send_notice(request,
                             "Вы получили награду за успешно закрытые " + c_t + " заданий и бонус " + bonus.count + " баллов!",
-                            "all")
+                            "all",user.auth_user.username)
 
             return HttpResponseRedirect("/profile/task/exec_comment/"+task.id+"/"+task.exec.id)
         else:
@@ -1196,9 +1197,38 @@ def Save_exec_comment(request):
     user=AuthUser.objects.get(id=exec_id)
     user_comment=UserComment(user=user, text=text, task=task, customer=customer, quality=rating_quality, politeness=rating_politeness, punctuality=rating_punctuality, date=datetime.datetime.now())
     user_comment.save()
-    bonus=Bonuses.object.get(backend_name='review_exec')
-    customer.bonus_balance+=bonus.count
-    customer.save()
+
+    cust_comment_count = UserComment.objects.filter(customer=customer).count()
+    cust_award_count = UserAwards.objects.filter(user=customer).filter(awards__backend_name='left_10_comments').count()
+    award = ""
+    if cust_comment_count == 10:
+        if cust_award_count == 0:
+            award = Awards_model.objects.get(backend_name='left_10_comments')
+            c_t = 10
+    if cust_comment_count == 20:
+        cust_award_count = UserAwards.objects.filter(user=user).filter(
+            awards__backend_name='left_20_comments').count()
+        if cust_award_count == 0:
+            award = Awards_model.objects.get(backend_name='left_20_comments')
+            c_t = 20
+    if cust_comment_count == 50:
+        cust_award_count = UserAwards.objects.filter(user=user).filter(
+            awards__backend_name='left_50_comments').count()
+        if cust_award_count == 0:
+            award = Awards_model.objects.get(backend_name='left_50_comments')
+            c_t = 50
+    if award != "":
+        user_award = UserAwards(user=customer, awards=award, date=datetime.datetime.today())
+        user_award.save()
+        bonus = Bonuses.objects.get(backend_name='reward_cust')
+        customer.bonus_balance += bonus.count
+        customer.save()
+        send_notice(request,
+                    "Вы получили награду за " + c_t + " положительных отзывов и бонус " + bonus.count + " баллов!",
+                    "all",customer.username)
+    # bonus=Bonuses.object.get(backend_name='review_exec')
+    # customer.bonus_balance+=bonus.count
+    # customer.save()
 
     user_comment_count = UserComment.objects.filter(user=user).filter(quality__gte=4).filter(politeness__gte=4).filter(punctuality__gte=4).count()
     user_award_count = UserAwards.objects.filter(user=user).filter(awards__backend_name='positive_comments_10').count()
@@ -1224,7 +1254,7 @@ def Save_exec_comment(request):
         user.bonus_balance += bonus.count
         user.save()
         send_notice(request, "Вы получили награду за " + c_t + " положительных отзывов и бонус " + bonus.count + " баллов!",
-                    "all")
+                    "all", user.username)
 
 
     return HttpResponseRedirect("/profile/task")
