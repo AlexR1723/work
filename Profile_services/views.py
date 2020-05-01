@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .models import *
-import json,datetime,calendar
+import json, datetime, calendar
 from django.core.mail import send_mail
+
 
 # Create your views here.
 def layout_contact():
@@ -204,6 +205,7 @@ def Add_service_in_advert(request):
 def tuktuk(request):
     fun1 = ftry(check_services)
     fun2 = ftry(check_pro)
+    fun3 = check_top()
     return HttpResponse(json.dumps(True))
 
 
@@ -225,24 +227,75 @@ def check_services(data):
         i.delete()
     return True
 
+
 def check_pro(data):
     pros = UserPro.objects.filter(end_date__lt=data.date())
     for i in pros:
         i.delete()
     return True
 
-def check_top(data):
-    users = AuthUser.objects.all()
+def add_award(top,string_top):
+    print(top)
+    awards = Awards_model.objects.get(backend_name=string_top)
+    user_award = list(UserAwards.objects.filter(awards__backend_name=string_top).values_list('user_id', flat=True))
+    print(user_award)
+    for t in top:
+        if t not in user_award:
+            award = UserAwards(user_id=t, awards=awards, date=datetime.datetime.today())
+            award.save()
+
+
+
+
+def check_top():
+    print('ok')
+    # users = Users.objects.filter(type__name='Исполнитель')
+    users = Users.objects.all()
     user_dict = {}
+    print(users)
     for user in users:
-        successful_comment = UserComment.objects.filter(user=user).filter(quality__gte=4).filter(
+        successful_comment = UserComment.objects.filter(user=user.auth_user).filter(quality__gte=4).filter(
             politeness__gte=4).filter(punctuality__gte=4).count()
-        quality_suc = UserComment.objects.filter(user=user).filter(quality__gte=4).count()
-        politeness_suc = UserComment.objects.filter(user=user).filter(politeness__gte=4).count()
-        punctuality_suc = UserComment.objects.filter(user=user).filter(punctuality__gte=4).count()
-        all_task = successful_comment.count()
+        all_comment = UserComment.objects.filter(user=user.auth_user).count()
         com_percent = 0
-        if all_task > 0:
-            com_percent = int((successful_comment * 100) / all_task)
-        user_dict[com_percent] = user.id
+        if all_comment > 0:
+            com_percent = int((successful_comment * 100) / all_comment)
+        user_dict[user.auth_user.id] = com_percent
+    print(user_dict)
+    list_d = list(user_dict.items())
+    list_d.sort(key=lambda i: i[1], reverse=True)
+    len_list = len(list_d)
+    list_top_10 = []
+    list_top_50 = []
+    list_top_100 = []
+    if len_list >= 10:
+        list_top_10 = list_d[0:10]
+        if len_list >= 50:
+            list_top_50 = list_d[10:50]
+            if len_list >= 100:
+                list_top_100 = list_d[50:100]
+            else:
+                list_top_100 = list_d[50:]
+        else:
+            list_top_50 = list_d[10:]
+    else:
+        list_top_10 = list_d[0:]
+    # print(list_top_10)
+    # print(list_top_50)
+    # print(list_top_100)
+    top_10 = list(dict(list_top_10).keys())
+    top_50 = list(dict(list_top_50).keys())
+    top_100 = list(dict(list_top_100).keys())
+
+    user=UserAwards.objects.filter(awards__backend_name='top_10_exec').filter(awards__backend_name='top_50_exec').filter(awards__backend_name='top_100_exec')
+    for u in user:
+        if u.user.id not in top_10 or u.user.id not in top_50 or u.user.id not in top_100:
+            u.delete()
+
+    add_award(top_10, 'top_10_exec')
+    add_award(top_50, 'top_50_exec')
+    add_award(top_100, 'top_100_exec')
+
+
+
     return True
