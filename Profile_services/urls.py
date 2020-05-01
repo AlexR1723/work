@@ -25,6 +25,7 @@ urlpatterns = [
 
     url(r'^advert_add/(?P<id>[0-9]+)/$', views.Service_advert_add, name="Service_advert_add"),
     url(r'^add_service_in_advert/$', views.Add_service_in_advert, name="Add_service_in_advert"),
+    url(r'tuktuk', views.tuktuk, name="tuktuk"),
     # url(r'^(?P<page>[0-9]+)/$', views.News_page, name="News_page"),
     # url(r'^(?P<filter>[А-Яа-я]+\s[А-Яа-я]+)/$', views.News_filter, name="News_filter"),
     # url(r'^(?P<filter>[А-Яа-я]+\s[А-Яа-я]+)/(?P<page>[0-9]+)/$', views.News_filter_page, name="News_filter_page"),

@@ -610,7 +610,7 @@ function check_notifications() {
         async: true,
         url: "/profile/notice/check_notifications",
         success: function (data) {
-            console.log(data + 'notice')
+            // console.log(data + 'notice')
             let el = document.getElementById('count_notifications')
             let el_menu = document.getElementById('count_notifications_menu')
             if (data != 0) {
@@ -679,7 +679,7 @@ function check_messages() {
             }
 
             let count_mess = data[0]
-            console.log('mess ' + count_mess.toString())
+            // console.log('mess ' + count_mess.toString())
 
             let el = document.getElementById('count_messages')
             let el_menu = document.getElementById('count_messages_menu')

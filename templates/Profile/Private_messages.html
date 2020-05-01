@@ -7,6 +7,10 @@
             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
                 <div class="row mb-5 mt-3 user-message_blk">
 
+                    {% if not user_mess %}
+                        <h1 class="text-center w-100">У вас пока нет сообщений</h1>
+                    {% endif %}
+
                     {% for i in user_mess %}
                         <div class="col-12 p-2 user-message_item {% if i.is_show %}user-message_read{% else %}user-message_unread{% endif %}"
                              data-user="
@@ -39,7 +43,7 @@
 
 
                                                     {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                                msg:{{ i.get_count_messages }}</div>
+                                                {% if i.get_count_messages != 0 %}{{ i.get_count_messages }}{% endif %}</div>
                                             {% if i.is_show %}
                                                 {#                                                {% if i.date.date == today %}#}
                                                 {#                                                    <span>Сегодня в {{ i.date|date:'DATE_FORMAT_D' }}</span>#}
