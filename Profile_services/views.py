@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from .models import *
 import json, datetime, calendar
 from django.core.mail import send_mail
+from django.utils.timezone import make_aware, make_naive, is_naive
 
 
 # Create your views here.
@@ -41,6 +42,27 @@ def layout_name(request):
         else:
             layout = 'layout_executor.html'
     return layout, username, photo, balance, bonus
+
+
+def send_notice(request, text, is_executor, user_id=False):
+    # all, exec, cust
+    if not user_id:
+        user_id = request.session.get('username', False)
+    try:
+        user = AuthUser.objects.get(username=user_id).id
+        if is_executor == 'exec':
+            note = Notifications(user_id=user, text=text, for_executor=True, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor == 'cust':
+            note = Notifications(user_id=user, text=text, for_executor=False, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        if is_executor == 'all':
+            note = Notifications(user_id=user, text=text, for_executor=None, date_public=datetime.datetime.now(),
+                                 is_checked=False, is_show=False)
+        note.save()
+        print('note saved')
+    except:
+        return False
 
 
 def Service(request):
@@ -201,14 +223,18 @@ def Add_service_in_advert(request):
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
 
+
 def for_new_user(request):
     layout, username, photo, balance, bonus = layout_name(request)
     return render(request, 'Profile/Services.html', locals())
 
+
 def tuktuk(request):
-    fun1 = ftry(check_services)
-    fun2 = ftry(check_pro)
-    fun3 = check_top()
+    # fun1 = ftry(check_services)
+    # fun2 = ftry(check_pro)
+    # fun3 = ftry(check_top)
+    # fun4 = check_years()
+    fun5 = check_good_percent()
     return HttpResponse(json.dumps(True))
 
 
@@ -216,7 +242,7 @@ def ftry(func):
     try:
         data = datetime.datetime.now()
         # if data.hour == 0 and data.minute > 0 and data.minute < 30:
-        f = func(data)
+        f = func()
         # else:
         #     f=False
     except:
@@ -224,20 +250,23 @@ def ftry(func):
     return f
 
 
-def check_services(data):
+def check_services():
+    data = datetime.datetime.now()
     serv = TaskServices.objects.filter(end_date__lt=data.date())
     for i in serv:
         i.delete()
     return True
 
 
-def check_pro(data):
+def check_pro():
+    data = datetime.datetime.now()
     pros = UserPro.objects.filter(end_date__lt=data.date())
     for i in pros:
         i.delete()
     return True
 
-def add_award(top,string_top):
+
+def add_award(top, string_top):
     print(top)
     awards = Awards_model.objects.get(backend_name=string_top)
     user_award = list(UserAwards.objects.filter(awards__backend_name=string_top).values_list('user_id', flat=True))
@@ -248,6 +277,82 @@ def add_award(top,string_top):
             award.save()
 
 
+def check_years():
+    dat = datetime.datetime.today() + datetime.timedelta(days=-182)
+    users = Users.objects.select_related('auth_user').filter(auth_user__date_joined__lte=dat).exclude(
+        auth_user__is_superuser=True)
+    oneyear = Awards_model.objects.get(backend_name='one_year')
+    halfyear = Awards_model.objects.get(backend_name='half_year')
+    for i in users:
+        if make_naive(i.auth_user.date_joined) + datetime.timedelta(days=182) <= datetime.datetime.today():
+            if UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=halfyear).count() == 0:
+                award = UserAwards(user_id=i.auth_user.id, awards=halfyear, date=datetime.datetime.today())
+                award.save()
+                bonus = Bonuses.objects.get(backend_name='reward_default')
+                i.bonus_balance += bonus.count
+                i.save()
+                send_notice(False, 'Вы с нами пол года, вам зачислен бонус ' + str(bonus.count) + ' руб.!', 'all',
+                            i.auth_user.username)
+
+        if make_naive(i.auth_user.date_joined) + datetime.timedelta(days=365) <= datetime.datetime.today():
+            if UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=oneyear).count() == 0:
+                award = UserAwards(user_id=i.auth_user.id, awards=oneyear, date=datetime.datetime.today())
+                award.save()
+                bonus = Bonuses.objects.get(backend_name='reward_default')
+                i.bonus_balance += bonus.count
+                i.save()
+                send_notice(False, 'Вы с нами год, вам зачислен бонус ' + str(bonus.count) + ' руб.!', 'all',
+                            i.auth_user.username)
+
+    return True
+
+
+def check_good_percent():
+    users = Users.objects.all()
+    comms = UserComment.objects
+    good75 = Awards_model.objects.get(backend_name='good_com_75')
+    good100 = Awards_model.objects.get(backend_name='good_com_100')
+    for i in users:
+        cnt = comms.filter(user_id=i.auth_user.id).count()
+        good = comms.filter(user_id=i.auth_user.id).filter(quality__gte=4).filter(politeness__gte=4).filter(
+            punctuality__gte=4).count()
+        if cnt != 0 and good != 0:
+            perc = (good / cnt) * 100
+            if perc >= 75 and perc < 100:
+                is_100 = UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=good100)
+                if is_100.count() != 0:
+                    is_100[0].delete()
+                if UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=good75).count() == 0:
+                    award = UserAwards(user_id=i.auth_user.id, awards=good75, date=datetime.datetime.today())
+                    award.save()
+                    bonus = Bonuses.objects.get(backend_name='reward_default')
+                    i.bonus_balance += bonus.count
+                    i.save()
+                    send_notice(False,
+                                'У вас более 75% положительных отзывов, вам зачислен бонус ' + str(
+                                    bonus.count) + ' руб.!', 'all', i.auth_user.username)
+            if perc == 100:
+                is_75 = UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=good75)
+                if is_75.count() > 0:
+                    del75 = is_75[0]
+                    del75.delete()
+                if UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=good100).count() == 0:
+                    award = UserAwards(user_id=i.auth_user.id, awards=good100, date=datetime.datetime.today())
+                    award.save()
+                    bonus = Bonuses.objects.get(backend_name='reward_default')
+                    i.bonus_balance += bonus.count
+                    i.save()
+                    send_notice(False,
+                                'У вас 100% положительных отзывов, вам зачислен бонус ' + str(bonus.count) + ' руб.!',
+                                'all',i.auth_user.username)
+            if perc < 75:
+                is_75 = UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=good75)
+                if is_75.count() > 0:
+                    is_75[0].delete()
+                is_100 = UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=good100)
+                if is_100.count() > 0:
+                    is_100[0].delete()
+    return True
 
 
 def check_top():
@@ -290,7 +395,8 @@ def check_top():
     top_50 = list(dict(list_top_50).keys())
     top_100 = list(dict(list_top_100).keys())
 
-    user=UserAwards.objects.filter(awards__backend_name='top_10_exec').filter(awards__backend_name='top_50_exec').filter(awards__backend_name='top_100_exec')
+    user = UserAwards.objects.filter(awards__backend_name='top_10_exec').filter(
+        awards__backend_name='top_50_exec').filter(awards__backend_name='top_100_exec')
     for u in user:
         if u.user.id not in top_10 or u.user.id not in top_50 or u.user.id not in top_100:
             u.delete()
@@ -298,7 +404,5 @@ def check_top():
     add_award(top_10, 'top_10_exec')
     add_award(top_50, 'top_50_exec')
     add_award(top_100, 'top_100_exec')
-
-
 
     return True

@@ -99,7 +99,7 @@ class City(models.Model):
 
 
 class Users(models.Model):
-    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    auth_user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
     phone = models.CharField(max_length=13, blank=True, null=True)
     city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
     type = models.ForeignKey('UserType', models.DO_NOTHING, blank=True, null=True)
