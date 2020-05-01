@@ -503,3 +503,26 @@ class UserBonuses(models.Model):
     class Meta:
         managed = False
         db_table = 'user_bonuses'
+
+
+
+class Awards_model(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    tooltip = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'awards'
+
+
+
+class UserAwards(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    awards = models.ForeignKey('Awards_model', models.DO_NOTHING, blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_awards'

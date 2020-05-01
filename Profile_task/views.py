@@ -627,22 +627,22 @@ def Save_offer(request):
         notise.save()
 
         user_offer_count = UserTask.objects.filter(exec=exec_).count()
-        user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_10').count()
+        user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='get_10_offers').count()
         award = ""
         c_o = 0
         if user_offer_count == 10:
             if user_award_count == 0:
-                award = Awards_model.objects.get(backend_name='offer_10')
+                award = Awards_model.objects.get(backend_name='get_10_offers')
                 c_o = 10
         if user_offer_count == 20:
-            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_20').count()
+            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='get_20_offers').count()
             if user_award_count == 0:
-                award = Awards_model.objects.get(backend_name='offer_20')
+                award = Awards_model.objects.get(backend_name='get_20_offers')
                 c_o = 20
         if user_offer_count == 50:
-            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='offer_50').count()
+            user_award_count = UserAwards.objects.filter(user=exec_).filter(awards__backend_name='get_50_offers').count()
             if user_award_count == 0:
-                award = Awards_model.objects.get(backend_name='offer_50')
+                award = Awards_model.objects.get(backend_name='get_50_offers')
                 c_o = 50
         if award != "":
             user_award = UserAwards(user=exec_, awards=award, date=datetime.datetime.now())
