@@ -1227,7 +1227,4 @@ def Save_exec_comment(request):
                     "all")
 
 
-    users=Users.objects.all()
-    # for user in users:
-
     return HttpResponseRedirect("/profile/task")
