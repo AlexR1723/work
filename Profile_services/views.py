@@ -201,6 +201,9 @@ def Add_service_in_advert(request):
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
 
+def for_new_user(request):
+    layout, username, photo, balance, bonus = layout_name(request)
+    return render(request, 'Profile/Services.html', locals())
 
 def tuktuk(request):
     fun1 = ftry(check_services)

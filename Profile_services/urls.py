@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^(?P<id>[0-9]+)/$', views.Service_detail, name="Service_detail"),
     url(r'^task_add/(?P<id>[0-9]+)/$', views.Service_task_add, name="Service_task_add"),
     url(r'^add_service_in_task/$', views.Add_service_in_task, name="Add_service_in_task"),
+    url(r'^for_new_user/$', views.for_new_user, name="for_new_user"),
 
     url(r'^advert_add/(?P<id>[0-9]+)/$', views.Service_advert_add, name="Service_advert_add"),
     url(r'^add_service_in_advert/$', views.Add_service_in_advert, name="Add_service_in_advert"),
