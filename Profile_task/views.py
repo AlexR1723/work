@@ -531,7 +531,7 @@ def Save_task(request):
                 user_bonuses.save()
                 user.bonus_balance+=bonus.count
                 user.save()
-                send_notice(request, "Вы получили бонус "+bonus.count+" баллов за создание "+c_t+" заданий!", "all")
+                send_notice(request, "Вы получили бонус "+str(bonus.count)+" баллов за создание "+str(c_t)+" заданий!", "all")
 
         user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='create_10_tasks').count()
         award = ""
@@ -555,7 +555,7 @@ def Save_task(request):
             bonus = Bonuses.objects.get(backend_name='reward_cust')
             user.bonus_balance += bonus.count
             user.save()
-            send_notice(request,"Вы получили награду за создание " + c_t + " заданий и бонус " + bonus.count + " баллов!", "all")
+            send_notice(request,"Вы получили награду за создание " + str(c_t) + " заданий и бонус " + str(bonus.count) + " баллов!", "all")
     return HttpResponseRedirect("/profile/service/task_add/"+str(user_task.id))
 
 
@@ -653,7 +653,7 @@ def Save_offer(request):
             user.bonus_balance += bonus.count
             user.save()
             send_notice(request,
-                        "Вы получили награду за то, что получили " + c_o + " предложений по своим объявлениям и бонус " + bonus.count + " баллов!",
+                        "Вы получили награду за то, что получили " + str(c_o) + " предложений по своим объявлениям и бонус " + str(bonus.count) + " баллов!",
                         "all",user.auth_user.username)
 
     return HttpResponseRedirect("/profile/task")
@@ -725,7 +725,7 @@ def Bet_save(request):
             user = Users.objects.get(auth_user=auth)
             user.bonus_balance += bonus.count
             user.save()
-            send_notice(request, "Вы получили награду за то, что оставили " + c_b + " ставок и бонус " + bonus.count + " баллов!", "all")
+            send_notice(request, "Вы получили награду за то, что оставили " + str(c_b) + " ставок и бонус " + str(bonus.count) + " баллов!", "all")
         return HttpResponse(json.dumps({'data': 'ok'}))
 
 
@@ -1123,7 +1123,7 @@ def Close_task(request, id):
                 user.bonus_balance += bonus.count
                 user.save()
                 send_notice(request,
-                            "Вы получили награду за успешно выполненные " + c_t + " заданий и бонус " + bonus.count + " баллов!",
+                            "Вы получили награду за успешно выполненные " + str(c_t) + " заданий и бонус " + str(bonus.count) + " баллов!",
                             "all", user.auth_user.username)
 
             task_close_count = UserTask.objects.filter(exec=task.exec).filter(task_status__name='Выполнено').filter(
@@ -1153,7 +1153,7 @@ def Close_task(request, id):
                 user.bonus_balance += bonus.count
                 user.save()
                 send_notice(request,
-                            "Вы получили награду за успешно закрытые " + c_t + " заданий и бонус " + bonus.count + " баллов!",
+                            "Вы получили награду за успешно закрытые " + str(c_t) + " заданий и бонус " + str(bonus.count) + " баллов!",
                             "all",user.auth_user.username)
 
             return HttpResponseRedirect("/profile/task/exec_comment/"+task.id+"/"+task.exec.id)
@@ -1224,7 +1224,7 @@ def Save_exec_comment(request):
         customer.bonus_balance += bonus.count
         customer.save()
         send_notice(request,
-                    "Вы получили награду за " + c_t + " положительных отзывов и бонус " + bonus.count + " баллов!",
+                    "Вы получили награду за " + str(c_t) + " положительных отзывов и бонус " + str(bonus.count) + " баллов!",
                     "all",customer.username)
     # bonus=Bonuses.object.get(backend_name='review_exec')
     # customer.bonus_balance+=bonus.count
@@ -1253,7 +1253,7 @@ def Save_exec_comment(request):
         bonus = Bonuses.objects.get(backend_name='reward_exec')
         user.bonus_balance += bonus.count
         user.save()
-        send_notice(request, "Вы получили награду за " + c_t + " положительных отзывов и бонус " + bonus.count + " баллов!",
+        send_notice(request, "Вы получили награду за " + str(c_t) + " положительных отзывов и бонус " + str(bonus.count) + " баллов!",
                     "all", user.username)
 
 

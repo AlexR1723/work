@@ -114,7 +114,7 @@ def Advert_save(request):
                 user_bonuses.save()
                 user.bonus_balance += bonus.count
                 user.save()
-                send_notice(request, "Вы получили бонус "+bonus.count+" баллов за создание "+c_ad+" объявлений в "+c_sub+" подкатегориях!", "all")
+                send_notice(request, "Вы получили бонус "+str(bonus.count)+" баллов за создание "+str(c_ad)+" объявлений в "+str(c_sub)+" подкатегориях!", "all")
 
         user_advert_count = UserAdvert.objects.filter(user=auth).count()
         user_award_count = UserAwards.objects.filter(user=auth).filter(awards__backend_name='posted_5_ads').count()
@@ -140,7 +140,7 @@ def Advert_save(request):
             bonus = Bonuses.objects.get(backend_name='reward_exec')
             user.bonus_balance += bonus.count
             user.save()
-            send_notice(request, "Вы получили награду за публикацию "+c_p+" объявлений и бонус "+bonus.count+" баллов!", "all")
+            send_notice(request, "Вы получили награду за публикацию "+str(c_p)+" объявлений и бонус "+str(bonus.count)+" баллов!", "all")
     return HttpResponseRedirect("/profile/service/advert_add/" + str(user_advert.id))
     # return HttpResponseRedirect("/profile/settings")
 

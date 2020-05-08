@@ -164,7 +164,7 @@ def Save(request):
                 user_bonus.save()
                 user.bonus_balance+=bonus.count
                 user.save()
-                send_notice(request, "Вы получили бонус "+bonus.count+" баллов за полное заполнение профиля!", "all")
+                send_notice(request, "Вы получили бонус "+str(bonus.count)+" баллов за полное заполнение профиля!", "all")
 
         user_award_count=UserAwards.objects.filter(user__email=email).filter(awards__backend_name='profile_100').count()
         if user_award_count == 0:
@@ -358,6 +358,7 @@ def get_status(request):
 #     return HttpResponse(json.dumps('good'))
 
 def profile_set_subcategories(request):
+    print('set_sub')
     id = request.GET.get('id')
     status = bool(strtobool(request.GET.get('status')))
     id = str(id).split('_')[2]
@@ -371,6 +372,48 @@ def profile_set_subcategories(request):
             UserSubcategories.objects.create(user_id=us, subcategories_id=sub)
         else:
             UserSubcategories.objects.get(user_id=us, subcategories_id=sub).delete()
+        user_sub=UserSubcategories.objects.filter(user_id=us)
+        user_categ=[]
+        for u in user_sub:
+            if u.subcategories.category.id not in user_categ:
+                user_categ.append(u.subcategories.category.id)
+        print(len(user_categ))
+        user_award_count = UserAwards.objects.filter(user__id=us).filter(awards__backend_name='exec_5_categ').count()
+        print(user_award_count)
+        award = ""
+        if len(user_categ) == 5:
+            print('first')
+            if user_award_count == 0:
+                print('second')
+                award = Awards_model.objects.get(backend_name='exec_5_categ')
+                print(award)
+                c_t = 5
+                print(5)
+        if len(user_categ) == 10:
+            user_award_count = UserAwards.objects.filter(user_id=us).filter(
+                awards__backend_name='exec_10_categ').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='exec_10_categ')
+                c_t = 10
+                print(10)
+        if len(user_categ) == 20:
+            user_award_count = UserAwards.objects.filter(user_id=us).filter(
+                awards__backend_name='exec_20_categ').count()
+            if user_award_count == 0:
+                award = Awards_model.objects.get(backend_name='exec_20_categ')
+                c_t = 20
+                print(20)
+        if award != "":
+            user_award = UserAwards(user_id=us, awards=award, date=datetime.datetime.now())
+            user_award.save()
+
+            bonus = Bonuses.objects.get(backend_name='reward_exec')
+            user=Users.objects.get(auth_user_id=us)
+            user.bonus_balance += bonus.count
+            user.save()
+            send_notice(request,
+                        "Вы исполнитель в " + str(c_t) + " категориях и получили бонус " + str(bonus.count) + " баллов!",
+                        "all")
     return HttpResponse(json.dumps('good'))
 
 
@@ -603,7 +646,7 @@ def verify_passport(request):
                     user_bonus=UserBonuses(user=user,bonus=bonus)
                     user_bonus.save()
                     user1.bonus_balance+=bonus.count
-                    send_notice(request, "Вы получили бонус "+bonus.count+" баллов за верификацию паспорта!", "all")
+                    send_notice(request, "Вы получили бонус "+str(bonus.count)+" баллов за верификацию паспорта!", "all")
                 user1.save()
                 user_award_count=UserAwards.objects.filter(user=user).filter(awards__backend_name='passport_verify').count()
                 if user_award_count == 0:
