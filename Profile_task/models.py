@@ -99,7 +99,7 @@ class City(models.Model):
 
 
 class Users(models.Model):
-    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    auth_user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
     phone = models.CharField(max_length=13, blank=True, null=True)
     city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
     type = models.ForeignKey('UserType', models.DO_NOTHING, blank=True, null=True)
@@ -358,6 +358,7 @@ class Notifications(models.Model):
     is_checked = models.BooleanField(blank=True, null=True)
     date_public = models.DateTimeField(blank=True, null=True)
     is_show = models.BooleanField(blank=True, null=True)
+    for_executor = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False

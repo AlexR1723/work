@@ -362,6 +362,7 @@ class Notifications(models.Model):
     is_checked = models.BooleanField(blank=True, null=True)
     date_public = models.DateTimeField(blank=True, null=True)
     is_show = models.BooleanField(blank=True, null=True)
+    for_executor = models.BooleanField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -444,6 +445,15 @@ class UserComment(models.Model):
         db_table = 'user_comment'
 
 
+class Bonuses(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    count = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'bonuses'
 
 
 class Awards_model(models.Model):
