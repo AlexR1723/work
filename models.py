@@ -163,7 +163,7 @@ class City(models.Model):
 
 
 class Comments(models.Model):
-    user_id = models.IntegerField(blank=True, null=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     text = models.CharField(max_length=1000, blank=True, null=True)
 
     class Meta:

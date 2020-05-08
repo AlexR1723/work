@@ -56,16 +56,6 @@ class SubCategory(models.Model):
         return count
 
 
-class Comments(models.Model):
-    user_id = models.IntegerField(blank=True, null=True, verbose_name="Пользователь")
-    text = models.CharField(max_length=1000, blank=True, null=True, verbose_name="Текст отзыва")
-
-    class Meta:
-        managed = False
-        db_table = 'comments'
-        verbose_name = _("Отзыв")
-        verbose_name_plural = _("Отзывы")
-
 
 class Link(models.Model):
     link = models.CharField(max_length=100, blank=True, null=True, verbose_name="Ссылка")
@@ -287,6 +277,18 @@ class AuthUser(models.Model):
 
 
 
+
+
+class Comments(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    text = models.CharField(max_length=1000, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'comments'
+
+
+
 class Gender(models.Model):
     name = models.CharField(max_length=10, blank=True, null=True)
 
@@ -417,3 +419,63 @@ class UserComment(models.Model):
     class Meta:
         managed = False
         db_table = 'user_comment'
+
+
+class Bonuses(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    count = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'bonuses'
+
+
+
+
+
+class UserBonuses(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    bonus = models.ForeignKey(Bonuses, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_bonuses'
+
+
+
+class Awards_model(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    tooltip = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'awards'
+
+
+
+class UserAwards(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    awards = models.ForeignKey('Awards_model', models.DO_NOTHING, blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_awards'
+
+
+class Notifications(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    is_checked = models.BooleanField(blank=True, null=True)
+    date_public = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True)
+    for_executor = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'notifications'
+

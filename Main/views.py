@@ -520,4 +520,41 @@ def User_reviews(request):
 
 def Chat(request):
      layout, username, photo, balance, bonus = layout_name(request)
-     return render(request, 'Main/../templates/Profile/Chat.html', locals())
+     return render(request, 'Profile/Chat.html', locals())
+
+
+def Newbies(request):
+    layout, username, photo, balance, bonus = layout_name(request)
+    verify=is_verify(request)
+    if (username != ''):
+        email = request.session.get('username', 'no')
+        user = AuthUser.objects.get(email=email)
+        comments=Comments.objects.filter(user=user).count()
+    bonuce=Bonuses.objects.all()
+    return render(request, 'Main/Newbies.html', locals())
+
+def Comment_save(request):
+    message=request.POST.get('message-text')
+    email = request.session.get('username', 'no')
+    user = AuthUser.objects.get(email=email)
+    comments=Comments(user=user,text=message)
+    comments.save()
+    bonus = Bonuses.objects.get(backend_name='service_review')
+    user_bonuses = UserBonuses(bonus=bonus, user=user)
+    user_bonuses.save()
+    us=Users.objects.get(auth_user=user)
+    us.bonus_balance += bonus.count
+    us.save()
+    note = Notifications(user_id=user.id, text="Вы получили бонус " + str(bonus.count) + " баллов за отзыв о сервисе!", for_executor=None, date_public=datetime.datetime.now(),
+                         is_checked=False, is_show=False)
+    note.save()
+
+    award = Awards_model.objects.get(backend_name='service_review')
+
+    user_award = UserAwards(user=user, awards=award, date=datetime.datetime.now())
+    user_award.save()
+    note = Notifications(user_id=user.id, text="Вы получили награду за отзыв о сервисе!",
+                         for_executor=None, date_public=datetime.datetime.now(),
+                         is_checked=False, is_show=False)
+    note.save()
+    return HttpResponseRedirect("/newbies/")

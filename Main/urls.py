@@ -18,6 +18,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Main, name="Main"),
+    url(r'^newbies/$', views.Newbies, name="Newbies"),
     url(r'^how_it_work/$', views.How_it_work, name="How_it_work"),
     url(r'^secure_transaction/$', views.Secure_transaction, name="Secure_transaction"),
     url(r'^safety/$', views.Safety, name="Safety"),
@@ -61,5 +62,6 @@ urlpatterns = [
     url(r'^user_reviews/$', views.User_reviews, name="user_reviews"),
     # url(r'^private_messages/$', views.Private_messages, name="private_messages"),
     url(r'^chat/$', views.Chat, name="chat"),
+    url(r'^comment_save', views.Comment_save, name='Comment_save'),
     # url(r'^dev/(?P<text>[А-Яа-я\s0-9-()/a-z,]+)/$', views.Dev, name="Dev"),
 ]

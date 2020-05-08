@@ -1,0 +1,112 @@
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center">
+            <div class=" w-100 serv_hdr_bg">
+                <div class="ques_hdr_bg_layout row justify-content-center align-items-center">
+                    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                        <p class="m-0 fz_2rem line_height_1 text-center">Бонусы новичкам</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row m-0 justify-content-center mt-3">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-2 pt-md-5 pb-3 px-3 px-mb-0 px-lg-0">
+                <div class="row m-0 justify-content-start">
+                    {% if verify == False %}
+                        <div class="col-12 p-0 pb-4">
+                            <div class="row"
+                                 style="background: rgba(83,148,189,.3); padding: 15px; border-radius: 5px;">
+                                <div class="col-12 col-sm-12 p-0">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">
+
+                                        <h3 class="m-0">Оставь отзыв о сервисе и получи первый бонус прямо сейчас!</h3>
+
+                                    </div>
+                                    <a href="{% url 'Login' %}">
+                                        <button type="button" class="btn btn-outline-danger3">Получить бонус</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        {% if comments == 0 %}
+                            <div class="col-12 p-0 pb-4">
+                                <div class="row"
+                                     style="background: rgba(83,148,189,.3); padding: 15px; border-radius: 5px;">
+                                    <div class="col-12 col-sm-12 p-0">
+                                        <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">
+
+                                            <h3 class="m-0">Оставь отзыв о сервисе и получи первый бонус прямо
+                                                сейчас!</h3>
+
+                                        </div>
+                                            <button type="button" class="btn btn-outline-danger3"  data-target="#exampleModalCenter" data-toggle="modal">Получить бонус
+                                            </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    {#                <hr class="category-line m-0 my-4">#}
+                    {% for b in bonuce %}
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-9 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
+                                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">
+
+                                        <h3 class="m-0">{{ b.title }}</h3>
+
+                                    </div>
+                                    <div class="row justify-content-start align-items-center pt-2">
+                                        <p class="mb-0 pr-0 service-card_text textrowcount">{{ b.description }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-10 col-sm-10 col-md-4 col-lg-4 col-xl-3 p-1 mx-auto">
+                                    <div class="row justify-content-arounds justify-content-sm-around justify-content-md-start align-content-center align-items-center pt-0">
+                                        <label class="service-money_label p mb-2">{{ b.count }} баллов</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="category-line m-0 my-4">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="rate-modal modal fade" id="exampleModalCenter" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Оставить отзыв</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="w-100" action="{% url 'Comment_save' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea class="form-control" name="message-text" id="message-text" placeholder="Оставьте отзыв о нашем сервисе!"></textarea>
+                    </div>
+                    <button class="d-none" type="submit" id="comment_text">Отправить</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary px-5 choose-user_btn h-100" id="check_comment_text">Отправить отзыв</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
