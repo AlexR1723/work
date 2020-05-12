@@ -519,7 +519,10 @@ def Save_task(request):
         if user_task.pay:
             user.balance -= price
             user.frozen_balance += price
-            user.save()
+        else:
+            user.balance -= price*10/100
+            user.frozen_balance += price*10/100
+        user.save()
         if check != "":
             check_list=check.split('|')
             for i in check_list:
@@ -1124,6 +1127,21 @@ def Close_task(request, id):
             task=UserTask.objects.get(id=id)
             task.task_status=UserTaskStatus.objects.get(name='Выполнено')
             task.save()
+            cust_user=Users.objects.get(auth_user=task.user)
+            exec_user=Users.objects.get(auth_user=task.exec)
+            price=task.price
+            if task.pay:
+                cust_user.frozen_balance-=price
+                cust_user.save()
+                exec_user.balance+=price*90/100
+                exec_user.save()
+            else:
+                cust_user.frozen_balance -= price*10/100
+                cust_user.save()
+
+            admin=Users.object.get(auth_user__is_superuser=True)
+            admin.balance+=price*10/100
+            admin.save()
 
             task_close_count = UserTask.objects.filter(user=task.user).filter(task_status__name='Выполнено').count()
             user_award_count=UserAwards.objects.filter(user=task.user).filter(awards__backend_name='finish_10_task').count()
