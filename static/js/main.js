@@ -2076,6 +2076,8 @@ $('#btn_task_check').click(function () {
     var address = $("#input_addr").val();
     var price = $("#input_price").val();
     var inputs=$('.pay_detail_check');
+    var pay = $('input[name=gridRadios2]:checked').val()
+    var type_pay=0;
 
 
     if (categ == 0) $('#task_category').addClass('br-red');
@@ -2084,6 +2086,7 @@ $('#btn_task_check').click(function () {
     if (description == "") $('#description').addClass('br-red');
     if (address == "") $('#input_addr').addClass('br-red');
     if (price == "") $('#input_price').addClass('br-red');
+    if (pay == 'option2') type_pay=1;
     if (categ != 0 && subcateg != 0 && title != "" && description != "" && address != "" && price != "") {
         var el='';
         for(var i=0;i<inputs.length;i++)
@@ -2099,16 +2102,22 @@ $('#btn_task_check').click(function () {
         dataType: "json",
         url: '/profile/task/check_balance/',
         data:{
-             price: price
+             price: price,
+            pay:type_pay
         },
         success: function (data) {
              if(data.data == 'ok') {
                  $('#input_checks').val(el);
                  $('#btn_task_submit').click();
              }
-             else
+             if(data.data == 'error')
              {
                  add_alert_error(index_exec,'На Вашем счету недостаточно средств!');
+                 index_exec = index_exec + 1;
+             }
+             if(data.data == 'error_1')
+             {
+                 add_alert_error(index_exec,'На Вашем счету недостаточно средств! \r\n При наличной оплате на Вашем счету должно быть 10% от стоимости задания.');
                  index_exec = index_exec + 1;
              }
         },

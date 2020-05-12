@@ -419,14 +419,25 @@ def PriceFind(request):
 def CheckBalance(request):
     try:
         price = request.GET.get("price")
+        pay = request.GET.get("pay")
         email = request.session.get('username', 'no')
         user=Users.objects.get(auth_user__email=email)
-        if(user.balance>=price):
-            return HttpResponse(json.dumps({'data': 'ok'}))
+        price=int(price)
+        print(pay)
+        if(pay == 1):
+            if(user.balance>=price):
+                return HttpResponse(json.dumps({'data': 'ok'}))
+            else:
+                return HttpResponse(json.dumps({'data': 'error'}))
         else:
-            return HttpResponse(json.dumps({'data': 'error'}))
+            persent=price*10/100
+            print(persent)
+            if (user.balance >= persent):
+                return HttpResponse(json.dumps({'data': 'ok'}))
+            else:
+                return HttpResponse(json.dumps({'data': 'error_1'}))
     except:
-        return HttpResponse(json.dumps({'data': 'error'}))
+        return HttpResponse(json.dumps({'data': 'error_2'}))
 
 
 def SubTypeFind(request):
@@ -474,12 +485,13 @@ def Save_task(request):
         status = UserTaskStatus.objects.get(name='В поиске')
         doc = request.FILES
         city = City.objects.all().filter(id=city)[0]
-        print (is_pro)
+        # print (is_pro)
         # if is_pro == 1:
         #     is_pro=True
         # else:
         #     is_pro=False
-        print(is_pro)
+        # print(is_pro)
+        user = Users.objects.get(auth_user=auth)
         if (gridRadios2 == 'option1'):
             pay = 0
         if (gridRadios == 'option1'):
@@ -504,6 +516,10 @@ def Save_task(request):
                                      pay=pay, price=price, task_status=status, date_add=datetime.datetime.now(),
                                      rezult_text="", is_pro=is_pro)
         user_task.save()
+        if user_task.pay:
+            user.balance -= price
+            user.frozen_balance += price
+            user.save()
         if check != "":
             check_list=check.split('|')
             for i in check_list:
@@ -517,7 +533,8 @@ def Save_task(request):
                 tast_photo = TaskPhoto(task=user_task, photo=d)
                 tast_photo.save()
     # return HttpResponseRedirect("/profile/task")
-        user=Users.objects.get(auth_user=auth)
+
+
         user_task=UserTask.objects.filter(user=auth)
         user_bonuses_count=UserBonuses.objects.filter(bonus__backend_name='create_3_tasks').count()
         bonus=""

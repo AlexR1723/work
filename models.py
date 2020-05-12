@@ -493,6 +493,17 @@ class UserAwards(models.Model):
         db_table = 'user_awards'
 
 
+class UserBalance(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    sum = models.IntegerField(blank=True, null=True)
+    decription = models.TextField(blank=True, null=True)
+    balance_type = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_balance'
+
+
 class UserBonuses(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
     bonus = models.ForeignKey(Bonuses, models.DO_NOTHING, blank=True, null=True)
@@ -659,6 +670,7 @@ class Users(models.Model):
     passport_num_ser = models.CharField(max_length=50, blank=True, null=True)
     balance = models.IntegerField(blank=True, null=True)
     bonus_balance = models.IntegerField(blank=True, null=True)
+    frozen_balance = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

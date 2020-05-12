@@ -151,6 +151,7 @@ class Users(models.Model):
     passport_num_ser = models.CharField(max_length=50, blank=True, null=True)
     balance = models.IntegerField(blank=True, null=True)
     bonus_balance = models.IntegerField(blank=True, null=True)
+    frozen_balance = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
