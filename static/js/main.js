@@ -2094,13 +2094,37 @@ $('#btn_task_check').click(function () {
                 el += '|';
             }
         }
-        $('#input_checks').val(el);
-        $('#btn_task_submit').click();
+        $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: '/profile/task/check_balance/',
+        data:{
+             price: price
+        },
+        success: function (data) {
+             if(data.data == 'ok') {
+                 $('#input_checks').val(el);
+                 $('#btn_task_submit').click();
+             }
+             else
+             {
+                 add_alert_error(index_exec,'На Вашем счету недостаточно средств!');
+                 index_exec = index_exec + 1;
+             }
+        },
+        error: function (data) {
+            add_alert_error(index_exec,'Произошла ошибка, попробуйте позже!');
+            index_exec = index_exec + 1;
+        }
+    })
+
     } else {
-        $("#alert-danger").show('slow');
-        setTimeout(function () {
-            $("#alert-danger").hide('slow');
-        }, 5000);
+        // $("#alert-danger").setAttribute('class', 'alert alert-danger error-city');
+        // setTimeout(function () {
+        //     $("#alert-danger").setAttribute('class', 'alert alert-danger error-city d-none');
+        // }, 5000);
+        add_alert_error(index_exec,'Заполнены не все поля!');
+        index_exec = index_exec + 1;
     }
 });
 

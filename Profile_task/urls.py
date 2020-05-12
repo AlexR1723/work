@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^create_offer/(?P<id_advert>[0-9]+)/$', views.Offer_create, name="Offer_create"),
     url(r'subcategory_find/', views.SubcategoryFind),
     url(r'price_find/', views.PriceFind),
+    url(r'check_balance/', views.CheckBalance),
     url(r'sub_type_find/', views.SubTypeFind),
     url(r'save_task/', views.Save_task, name='Save_task'),
     url(r'save_offer/', views.Save_offer, name='Save_offer'),

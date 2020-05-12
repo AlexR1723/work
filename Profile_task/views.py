@@ -416,6 +416,18 @@ def PriceFind(request):
     except:
         return HttpResponse(json.dumps({'data': 'error'}))
 
+def CheckBalance(request):
+    try:
+        price = request.GET.get("price")
+        email = request.session.get('username', 'no')
+        user=Users.objects.get(auth_user__email=email)
+        if(user.balance>=price):
+            return HttpResponse(json.dumps({'data': 'ok'}))
+        else:
+            return HttpResponse(json.dumps({'data': 'error'}))
+    except:
+        return HttpResponse(json.dumps({'data': 'error'}))
+
 
 def SubTypeFind(request):
     try:
