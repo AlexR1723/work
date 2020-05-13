@@ -519,13 +519,13 @@ def Save_task(request):
         if user_task.pay:
             user.balance -= price
             user.frozen_balance += price
-            user_balance=UserBalance(user=auth,sum=price,decription="Стоимость задания заморожена с Вашего счета до завершения задания")
+            user_balance=UserBalance(user=auth,sum=price,decription="Стоимость задания заморожена с Вашего счета до завершения задания", date=datetime.datetime.today())
             user_balance.save()
         else:
             user.balance -= price*10/100
             user.frozen_balance += price*10/100
             user_balance = UserBalance(user=auth, sum=price*10/100,
-                                       decription="10% от стоимости задания заморожено с Вашего счета до завершения задания")
+                                       decription="10% от стоимости задания заморожено с Вашего счета до завершения задания", date=datetime.datetime.today())
             user_balance.save()
 
         user.save()
@@ -1141,14 +1141,14 @@ def Close_task(request, id):
                 cust_user.save()
                 exec_user.balance+=price*90/100
                 exec_user.save()
-                user_balance=UserBalance(user=task.user,sum=price,decription="Списано с 'замороженого счета' при закрытии задания: "+task.title)
+                user_balance=UserBalance(user=task.user,sum=price,decription="Списано с 'замороженого счета' при закрытии задания: "+task.title, date=datetime.datetime.today())
                 user_balance.save()
-                user_balance=UserBalance(user=task.exec,sum=price*90/100,decription="Зачислено на Ваш баланс при закрытии задания: "+task.title)
+                user_balance=UserBalance(user=task.exec,sum=price*90/100,decription="Зачислено на Ваш баланс при закрытии задания: "+task.title, date=datetime.datetime.today())
                 user_balance.save()
             else:
                 cust_user.frozen_balance -= price*10/100
                 cust_user.save()
-                user_balance=UserBalance(user=task.user,sum=price*10/100,decription="Списано с 'замороженого счета' при закрытии задания: "+task.title)
+                user_balance=UserBalance(user=task.user,sum=price*10/100,decription="Списано с 'замороженого счета' при закрытии задания: "+task.title, date=datetime.datetime.today())
                 user_balance.save()
 
             admin=Users.object.get(auth_user__is_superuser=True)

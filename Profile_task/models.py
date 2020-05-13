@@ -537,6 +537,7 @@ class UserBalance(models.Model):
     sum = models.IntegerField(blank=True, null=True)
     decription = models.TextField(blank=True, null=True)
     balance_type = models.TextField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False

@@ -1,10 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends layout %}
+{% load staticfiles %}
+{% block content %}
 
-</body>
-</html>
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center">
+            <div class=" w-100 notice_hdr_bg">
+                <div class="offer_hdr_bg_layout row justify-content-center align-items-center">
+                    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                        <p class="m-0 fz_3rem line_height_1 text-center">Баланс</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center notices_blk my-5">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                <div class="row m-0 justify-content-center">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
+                        <label class="m-0 sum-desc w-100">Основной баланс</label>
+                        <label class="m-0 sum-title w-100">{{ user.balance }}</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
+                        <label class="m-0 sum-desc w-100">Бонусный баланс</label>
+                        <label class="m-0 sum-title w-100">{{ user.bonus_balance }}</label>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
+                        <label class="m-0 sum-desc w-100">Замороженный баланс</label>
+                        <label class="m-0 sum-title w-100">{{ user.frozen_balance }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center notices_blk my-5">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
+                <div class="row m-0 justify-content-start">
+                    {% for b in balance %}
+                        <div class="col-12 p-0">
+                            <div class="row">
+                                <div class="col-3 col-sm-1 col-md-2 col-lg-2 col-xl-2 p-2">
+                                    <div class="row justify-content-md-between align-items-center mb-2">
+                                        <h3 class="category-card_label m-0"><b>{{ b.sum }}</b></h3>
+                                    </div>
+                                </div>
+                                <div class="col-9 col-sm-11 col-md-7 col-lg-10 col-xl-10 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
+                                    <div class="row justify-content-md-between align-items-center mb-2">
+                                        <h3 class="category-card_label m-0">{{ b.description }}</h3>
+                                    </div>
+                                    <div class="row justify-content-start align-items-center">
+                                        {% if b.date.date == today %}
+                                            <span>Сегодня в {{ b.date|date:'TIME_FORMAT' }}</span>
+                                        {% else %}
+                                            <span>{{ b.date }}</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if not forloop.last %}
+                            <hr class="line_blk m-0 my-4">
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

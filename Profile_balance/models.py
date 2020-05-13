@@ -99,7 +99,7 @@ class City(models.Model):
 
 
 class Users(models.Model):
-    auth_user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    auth_user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
     phone = models.CharField(max_length=13, blank=True, null=True)
     city = models.ForeignKey(City, models.DO_NOTHING, blank=True, null=True)
     type = models.ForeignKey('UserType', models.DO_NOTHING, blank=True, null=True)
@@ -272,6 +272,18 @@ class UserTask(models.Model):
         managed = False
         db_table = 'user_task'
 
+    def bet_count(self):
+        count=UserTaskBet.objects.filter(task=self).count()
+        return count
+
+    def all_photo(self):
+        photo=TaskPhoto.objects.filter(task=self)
+        return photo
+
+    def all_photo_rezult(self):
+        photo=UserTaskRezultPhoto.objects.filter(task=self)
+        return photo
+
 
 class TaskPhoto(models.Model):
     task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
@@ -281,6 +293,18 @@ class TaskPhoto(models.Model):
         managed = False
         db_table = 'task_photo'
 
+    def get_type(self):
+        file_types=['avi','css','dll','doc','docx','gif','html','jpeg','jpg','js','mov','mp3','pdf','php','png','ppt','psd','rar','sql','svg','tif','txt','xls','xml','zip']
+        name=str(self.photo.url)
+        name=name.split('.')
+        count=len(name)-1
+        try:
+            if(file_types.index(name[count])):
+                full_name='image/file_type/'+name[count]+'.png'
+        except:
+            full_name = 'image/file_type/txt.png'
+        return full_name
+
 
 class UserFavoritesExecutor(models.Model):
     user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
@@ -289,3 +313,232 @@ class UserFavoritesExecutor(models.Model):
     class Meta:
         managed = False
         db_table = 'user_favorites_executor'
+
+
+class UserTaskBet(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    task = models.ForeignKey(UserTask, models.DO_NOTHING, blank=True, null=True)
+    description = models.CharField(max_length=500, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+    is_hide = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_bet'
+
+
+
+
+class UserTaskRezultPhoto(models.Model):
+    task = models.ForeignKey(UserTask, models.DO_NOTHING, blank=True, null=True)
+    photo = models.FileField(upload_to='uploads/task_rezult/',max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_task_rezult_photo'
+
+    def get_type(self):
+        file_types=['avi','css','dll','doc','docx','gif','html','jpeg','jpg','js','mov','mp3','pdf','php','png','ppt','psd','rar','sql','svg','tif','txt','xls','xml','zip']
+        name=str(self.photo.url)
+        name=name.split('.')
+        count=len(name)-1
+        try:
+            if(file_types.index(name[count])):
+                full_name='image/file_type/'+name[count]+'.png'
+        except:
+            full_name = 'image/file_type/txt.png'
+        return full_name
+
+
+
+
+class Notifications(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    is_checked = models.BooleanField(blank=True, null=True)
+    date_public = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True)
+    for_executor = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'notifications'
+
+
+
+
+class Services(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    description = models.CharField(max_length=1000, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/service/', max_length=500, blank=True, null=True)
+    price_week = models.IntegerField(blank=True, null=True)
+    exec = models.BooleanField(blank=True, null=True)
+    back_name = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'services'
+
+
+
+class ServicesImage(models.Model):
+    service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/service/', max_length=500, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'services_image'
+
+
+
+class TaskServices(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    service = models.ForeignKey(Services, models.DO_NOTHING, blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    week = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_services'
+
+
+
+class SubcategoryType(models.Model):
+    subcategory = models.ForeignKey(SubCategory, models.DO_NOTHING, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'subcategory_type'
+
+
+
+class TaskSubType(models.Model):
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    subtype = models.ForeignKey(SubcategoryType, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'task_sub_type'
+
+
+
+class UserComment(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    text = models.CharField(max_length=500, blank=True, null=True)
+    task = models.ForeignKey('UserTask', models.DO_NOTHING, blank=True, null=True)
+    customer = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True, related_name='customer_id')
+    date = models.DateField(blank=True, null=True)
+    quality = models.IntegerField(blank=True, null=True)
+    politeness = models.IntegerField(blank=True, null=True)
+    punctuality = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_comment'
+
+
+class PersonalMessage(models.Model):
+    from_user = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='from_user', blank=True, null=True,
+                                  related_name='from_user')
+    to_user = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='to_user', blank=True, null=True,
+                                related_name='to_user')
+    text = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True)
+    to_type_is_exec = models.BooleanField(blank=True, null=True)
+    from_type_is_exec = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'personal_message'
+
+    def get_photo(self):
+        id = self.from_user.id
+        user = Users.objects.get(id=id).photo
+        return user
+
+    def get_count_messages(self):
+        from_id = self.from_user.id
+        to_id = self.to_user.id
+        # user=Users.objects.get(id=from_id).photo
+        count = PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
+            to_type_is_exec=self.from_type_is_exec).filter(is_show=False).count()
+        return count
+
+    def get_last_message(self):
+        from_id = self.from_user.id
+        to_id = self.to_user.id
+        to_user=PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
+            to_type_is_exec=self.from_type_is_exec)
+        # print(to_user)
+        fr_user=PersonalMessage.objects.filter(to_user=from_id).filter(from_user=to_id).filter(
+            to_type_is_exec=self.from_type_is_exec)
+        # print(fr_user)
+        mess=to_user.union(fr_user)
+        # print(mess)
+        mydict={'id':mess.last().from_user.id,'text':mess.last().text}
+        return mydict
+
+
+
+class Bonuses(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    count = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'bonuses'
+
+
+
+class UserBonuses(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    bonus = models.ForeignKey(Bonuses, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_bonuses'
+
+
+
+class Awards_model(models.Model):
+    backend_name = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    tooltip = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'awards'
+
+
+
+class UserAwards(models.Model):
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    awards = models.ForeignKey('Awards_model', models.DO_NOTHING, blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_awards'
+
+
+
+
+class UserBalance(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    sum = models.IntegerField(blank=True, null=True)
+    decription = models.TextField(blank=True, null=True)
+    balance_type = models.TextField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_balance'

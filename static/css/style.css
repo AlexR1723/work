@@ -3364,3 +3364,15 @@ button.serv-btn-blue:hover{
 {
   background-position: 50% -25px;
 }
+
+.sum-title{
+    color: #AF4B53;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    /*vertical-align: middle;*/
+}
+.sum-desc{
+    text-align: center;
+    /*vertical-align: middle;*/
+}
