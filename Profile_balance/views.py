@@ -33,6 +33,8 @@ def layout_name(request):
 def Balance(request):
     layout, username, photo, balance, bonus = layout_name(request)
     if (username != ''):
+        # city = [0]
+        # print(layout)
         email = request.session.get('username', 'no')
         user=Users.objects.get(auth_user__email=email)
         balance=UserBalance.objects.filter(user=user.auth_user).order_by('-date')
