@@ -6,35 +6,32 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 settings-blk  pt-5 pb-3">
             <div class="row justify-content-start">
-                <div class="col-9 col-sm-2 col-md-3 col-lg-2 p-2 mx-auto user-img_blk">
+                <div class="col-9 col-sm-2 col-md-3 col-lg-2 p-2 mx-auto">
                     <img alt="" class="img-fluid user-img circle" src="{{MEDIA_URL}}{{user.photo.url}}">
-                </div>
-                <div class="col-12 col-sm-5 col-md-4 col-lg-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
-                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-md-0 mt-lg-4">
-                        <label class="profile-settings_name m-0" id="file_label_edit">{{user.auth_user.first_name}} {{user.auth_user.last_name}}
-                            <img
-                                    src="{% static 'image/pen.png' %}"
-                                    class="profile-name_icon ml-2 mb-md-0 mb-lg-2" id="photo_edit"  data-toggle="tooltip" data-placement="bottom"
-                                    title="Редактировать имя и загрузить фото"></img></label>
-                        <form class="row d-none" id="file_ok" action="{% url 'Save_photo' %}" method="post" enctype="multipart/form-data">
+                    <form class="row" id="file_ok" action="{% url 'Save_photo' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="col-10">
-                                <input type="text" class="mb-1 form-control prof-input" id="user_name" name="user_name" value="{{user.auth_user.first_name}} {{user.auth_user.last_name}}" />
                                 <div class="upload-file">
-                                    <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="file_main">
-                                    <label for="file_main" class="btn btn-tertiary js-labelFile">
+                                    <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="file_save_profile_photo">
+                                    <label for="file_save_profile_photo" class="btn btn-tertiary js-labelFile">
                                         <i class="fas fa-upload"></i>
-                                        <span class="js-fileName">Загрузить файл</span>
+                                        <span class="js-fileName">Изменить фото</span>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <button type="submit"  style="padding: 0;border: 0;background: none;"><img
-                                        src="{% static 'image/save.png' %}"
-                                        class="profile-name_icon ml-2 mb-md-0 mb-lg-2 w-50"></img></button>
-<!--                                <button type="submit" id="save_photo">Сохранить</button>-->
+                                <button type="submit" class="d-none" id="submit_save_profile_photo"></button>
                             </div>
                         </form>
+                </div>
+                <div class="col-12 col-sm-5 col-md-4 col-lg-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
+                    <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-md-0 mt-lg-4">
+                        <label class="profile-settings_name m-0" id="file_label_edit">{{user.auth_user.first_name}} {{user.auth_user.last_name}}
+<!--                            <img-->
+<!--                                    src="{% static 'image/pen.png' %}"-->
+<!--                                    class="profile-name_icon ml-2 mb-md-0 mb-lg-2" id="photo_edit"  data-toggle="tooltip" data-placement="bottom"-->
+<!--                                    title="Редактировать имя и загрузить фото"></img>--></label>
+
                     </div>
                     <div class="row justify-content-start align-items-center pt-2">
                         <div class="col p-0">

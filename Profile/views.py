@@ -184,12 +184,12 @@ def Save_photo(request):
         user = Users.objects.all().filter(auth_user__email=email)[0]
         if (doc):
             user.photo = doc['files']
-        username = request.POST.get('user_name')
-        username = username.split(' ')
-        if (len(username) == 2):
-            user.auth_user.first_name = username[0]
-            user.auth_user.last_name = username[1]
-        user.auth_user.save()
+        # username = request.POST.get('user_name')
+        # username = username.split(' ')
+        # if (len(username) == 2):
+        #     user.auth_user.first_name = username[0]
+        #     user.auth_user.last_name = username[1]
+        # user.auth_user.save()
         user.save()
     return HttpResponseRedirect("/profile/settings")
 

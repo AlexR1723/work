@@ -454,10 +454,10 @@ $("#login_pass").keyup(function (event) {
 $('#task_filter_select').change(function () {
     var value = $('#task_filter_select option:selected').val();
     if (value == 0)
-    // window.location.href = '/profile/customer_tasks/';
+        // window.location.href = '/profile/customer_tasks/';
         window.location.href = '/profile/task/';
     else
-    // window.location.href = '/profile/customer_tasks/' + value;
+        // window.location.href = '/profile/customer_tasks/' + value;
         window.location.href = '/profile/task/' + value;
 });
 $('#task_filter_select_exec_cat').change(function () {
@@ -761,7 +761,7 @@ $("#send_message").click(function (event) {
                 div.appendChild(div1)
                 col.appendChild(div)
                 document.getElementById('chat').prepend(col)
-                document.getElementById('message').value="";
+                document.getElementById('message').value = "";
             } else {
                 alert('message not delivered')
             }
@@ -798,7 +798,7 @@ $("#btn_number_verify").click(function (event) {
 
 $("#btn_passport_verify").click(function (event) {
     let series = document.getElementById('series').value;
-    var btn=document.getElementById('send-verify-passport');
+    var btn = document.getElementById('send-verify-passport');
     btn.click();
     // $.ajax({
     //     type: "GET",
@@ -887,6 +887,15 @@ window.onload = function () {
     } catch (e) {
 
     }
+
+
+    $('input#file_save_profile_photo').on('change', function () {
+        var fileName = $(this).val();
+        if (fileName) {
+            var btn = $('#submit_save_profile_photo');
+            btn.click();
+        }
+    });
 };
 
 $("#btn_profile_change_pass").click(function () {
@@ -1141,15 +1150,14 @@ $('#email-dispatch_input').click(function () {
         }
     })
 });
-index_pro=0;
-$('#save_pro_week').click( function () {
-    var bonus_balance=$('#bonus_count').val();
-    var price_week=$('#price_week').val();
-    if(bonus_balance-price_week < 0) {
+index_pro = 0;
+$('#save_pro_week').click(function () {
+    var bonus_balance = $('#bonus_count').val();
+    var price_week = $('#price_week').val();
+    if (bonus_balance - price_week < 0) {
         add_alert_error(index_pro, 'Не достаточно бонусов!');
         index_pro = index_pro + 1;
-    }
-    else {
+    } else {
         var inputs = document.getElementsByClassName('custom-control-input');
         var check_input = [];
         for (var i = 0; i < inputs.length; i++) {
@@ -1172,7 +1180,7 @@ $('#save_pro_week').click( function () {
                 async: true,
                 data: {
                     string_id: string_id,
-                    time:'week'
+                    time: 'week'
                 },
                 url: 'profile_set_pro',
                 success: function (data) {
@@ -1186,14 +1194,13 @@ $('#save_pro_week').click( function () {
         }
     }
 });
-$('#save_pro_month').click( function () {
-    var bonus_balance=$('#bonus_count').val();
-    var price_month=$('#price_month').val();
-    if(bonus_balance-price_month < 0) {
+$('#save_pro_month').click(function () {
+    var bonus_balance = $('#bonus_count').val();
+    var price_month = $('#price_month').val();
+    if (bonus_balance - price_month < 0) {
         add_alert_error(index_pro, 'Не достаточно бонусов!');
         index_pro = index_pro + 1;
-    }
-    else {
+    } else {
         var inputs = document.getElementsByClassName('custom-control-input');
         var check_input = [];
         for (var i = 0; i < inputs.length; i++) {
@@ -1216,7 +1223,7 @@ $('#save_pro_month').click( function () {
                 async: true,
                 data: {
                     string_id: string_id,
-                    time:'month'
+                    time: 'month'
                 },
                 url: 'profile_set_pro',
                 success: function (data) {
@@ -1766,7 +1773,7 @@ $("#task_subcategory").change(function () {
                 alert('Error');
             }
         });
-        var pay_detail=document.getElementById('pay_detail');
+        var pay_detail = document.getElementById('pay_detail');
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -1775,7 +1782,7 @@ $("#task_subcategory").change(function () {
                 id: sub
             },
             success: function (data) {
-               outputSubType(data);
+                outputSubType(data);
                 // $("#input_price").val(data.data);
                 // outputSubcategory(data);
             },
@@ -1804,18 +1811,18 @@ function outputSubcategory(data) {
         option.text = data.data[i + 1];
         select.appendChild(option);
     }
-    $('#task_subcategory').selectedIndex=0;
+    $('#task_subcategory').selectedIndex = 0;
     $('#task_subcategory').change();
     // $("#input_price").val(data.price);
 }
 
-function outputSubType(data){
-    var pay_detail_block=document.getElementById('pay_detail_block');
-    if(pay_detail_block != null) {
+function outputSubType(data) {
+    var pay_detail_block = document.getElementById('pay_detail_block');
+    if (pay_detail_block != null) {
         pay_detail_block.remove();
     }
-    var pay_block=document.getElementById('pay_detail');
-    if(data.data.length > 0) {
+    var pay_block = document.getElementById('pay_detail');
+    if (data.data.length > 0) {
         var div = document.createElement('div');
         div.setAttribute('class', 'col-auto custom-checkbox');
         div.setAttribute('id', 'pay_detail_block');
@@ -1833,7 +1840,7 @@ function outputSubType(data){
             var label = document.createElement('label');
             label.setAttribute('class', 'custom-control-label pl-1 pl-sm-3')
             label.setAttribute('for', 'pay_detail_check_' + i);
-            label.setAttribute('id',data.data[i][2]);
+            label.setAttribute('id', data.data[i][2]);
             label.textContent = data.data[i][0];
             row.insertAdjacentHTML("beforeend", label.outerHTML);
             div.insertAdjacentHTML("beforeend", row.outerHTML);
@@ -1841,17 +1848,16 @@ function outputSubType(data){
         pay_block.insertAdjacentHTML("afterbegin", div.outerHTML);
     }
 }
-$(document).on('click','.pay_detail_check', function () {
-    var input=$(this);
-    let val=Number($(this).val());
-    let price=Number($("#input_price").val());
-    if(input[0].checked) {
-        price=price+val;
+
+$(document).on('click', '.pay_detail_check', function () {
+    var input = $(this);
+    let val = Number($(this).val());
+    let price = Number($("#input_price").val());
+    if (input[0].checked) {
+        price = price + val;
         $("#input_price").val(price);
-    }
-    else
-    {
-        price=price-val;
+    } else {
+        price = price - val;
         $("#input_price").val(price);
     }
 });
@@ -1903,7 +1909,7 @@ function add_alert_suc(index) {
     }, 2000);
 }
 
-function add_alert_error(index,text=null) {
+function add_alert_error(index, text = null) {
     var el = document.getElementById('alerts-block');
     var row = document.createElement('div');
     row.setAttribute('class', 'row justify-content-center');
@@ -1912,11 +1918,9 @@ function add_alert_error(index,text=null) {
     al.setAttribute('role', 'alert');
     al.setAttribute('id', 'alert' + index);
     al.setAttribute('style', 'display: none;');
-    if(text==null) {
+    if (text == null) {
         al.textContent = 'Что-то пошлоне так, попробуйте позже!';
-    }
-    else
-    {
+    } else {
         al.textContent = text;
     }
     row.insertAdjacentHTML('beforeend', al.outerHTML);
@@ -1950,6 +1954,18 @@ $(document).ready(function () {
             }
         } else {
             $('.js-fileNameMain').text('Выберите файлы');
+        }
+    });
+
+    $('input[type="file"]#file_save_profile_photo').change(function () {
+        if ($(this).val() != '') {
+            if ($(this)[0].files.length == 1) {
+                $('.js-fileNameMain').text($(this).val());
+            } else {
+                $('.js-fileNameMain').text('Выбрано файлов: ' + $(this)[0].files.length);
+            }
+        } else {
+            $('.js-fileNameMain').text('Изменить фото');
         }
     });
 
@@ -2075,9 +2091,9 @@ $('#btn_task_check').click(function () {
     var description = $("#description").val();
     var address = $("#input_addr").val();
     var price = $("#input_price").val();
-    var inputs=$('.pay_detail_check');
+    var inputs = $('.pay_detail_check');
     var pay = $('input[name=gridRadios2]:checked').val()
-    var type_pay=0;
+    var type_pay = 0;
 
 
     if (categ == 0) $('#task_category').addClass('br-red');
@@ -2086,53 +2102,50 @@ $('#btn_task_check').click(function () {
     if (description == "") $('#description').addClass('br-red');
     if (address == "") $('#input_addr').addClass('br-red');
     if (price == "") $('#input_price').addClass('br-red');
-    if (pay == 'option2') type_pay=1;
+    if (pay == 'option2') type_pay = 1;
     if (categ != 0 && subcateg != 0 && title != "" && description != "" && address != "" && price != "") {
-        var el='';
-        for(var i=0;i<inputs.length;i++)
-        {
-            if(inputs[i].checked) {
-                var label=$(inputs[i]).next();
+        var el = '';
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].checked) {
+                var label = $(inputs[i]).next();
                 el += label[0].id;
                 el += '|';
             }
         }
         $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: '/profile/task/check_balance/',
-        data:{
-             price: price,
-            pay:type_pay
-        },
-        success: function (data) {
-             if(data.data == 'ok') {
-                 $('#input_checks').val(el);
-                 $('#btn_task_submit').click();
-             }
-             if(data.data == 'error')
-             {
-                 add_alert_error(index_exec,'На Вашем счету недостаточно средств!');
-                 index_exec = index_exec + 1;
-             }
-             if(data.data == 'error_1')
-             {
-                 add_alert_error(index_exec,'На Вашем счету недостаточно средств! \r\n При наличной оплате на Вашем счету должно быть 10% от стоимости задания.');
-                 index_exec = index_exec + 1;
-             }
-        },
-        error: function (data) {
-            add_alert_error(index_exec,'Произошла ошибка, попробуйте позже!');
-            index_exec = index_exec + 1;
-        }
-    })
+            type: "GET",
+            dataType: "json",
+            url: '/profile/task/check_balance/',
+            data: {
+                price: price,
+                pay: type_pay
+            },
+            success: function (data) {
+                if (data.data == 'ok') {
+                    $('#input_checks').val(el);
+                    $('#btn_task_submit').click();
+                }
+                if (data.data == 'error') {
+                    add_alert_error(index_exec, 'На Вашем счету недостаточно средств!');
+                    index_exec = index_exec + 1;
+                }
+                if (data.data == 'error_1') {
+                    add_alert_error(index_exec, 'На Вашем счету недостаточно средств! \r\n При наличной оплате на Вашем счету должно быть 10% от стоимости задания.');
+                    index_exec = index_exec + 1;
+                }
+            },
+            error: function (data) {
+                add_alert_error(index_exec, 'Произошла ошибка, попробуйте позже!');
+                index_exec = index_exec + 1;
+            }
+        })
 
     } else {
         // $("#alert-danger").setAttribute('class', 'alert alert-danger error-city');
         // setTimeout(function () {
         //     $("#alert-danger").setAttribute('class', 'alert alert-danger error-city d-none');
         // }, 5000);
-        add_alert_error(index_exec,'Заполнены не все поля!');
+        add_alert_error(index_exec, 'Заполнены не все поля!');
         index_exec = index_exec + 1;
     }
 });
@@ -2167,7 +2180,7 @@ $('#task-bet-save').click(function () {
     var id = $("#task-id").val();
     var description = $("#message-text").val();
     var sum = $("#sum-name").val();
-    var hide=false;
+    var hide = false;
     if ($('#is_hide_check').is(':checked')) {
         hide = true;
     } else {
@@ -2199,7 +2212,7 @@ $(".select-user-bet").click(function () {
     var id = $("#task_id").val();
     var user_id = $(this).prev().val();
     $('#user_id_mess').val(user_id);
-    var btn=$(this).next();
+    var btn = $(this).next();
     btn.click();
     // $.ajax({
     //     type: "GET",
@@ -2217,16 +2230,14 @@ $(".select-user-bet").click(function () {
     //     }
     // })
 });
-index_exec=0;
+index_exec = 0;
 $('#check_mess_send').click(function () {
-    var mess=$('#text_mess').val();
-    if(mess != "")
-    {
-        var btn=$('#mess_send');
+    var mess = $('#text_mess').val();
+    if (mess != "") {
+        var btn = $('#mess_send');
         btn.click();
-    }
-    else{
-        add_alert_error(index_exec,'Вы не можете отправить пустое сообщение!');
+    } else {
+        add_alert_error(index_exec, 'Вы не можете отправить пустое сообщение!');
         index_exec = index_exec + 1;
     }
 });
@@ -2253,215 +2264,200 @@ $('#btn_forgot').click(function () {
         }
     })
 });
-index_serv=0;
+index_serv = 0;
 $('.btn-price-week').click(function () {
-    var task=$('#task_id').val();
-    var bonus_count=$('#bonus_count').val();
-    var serv=$(this).prev().val();
-    var serv=serv.split('-');
-    var _this=$(this);
-    if(bonus_count-serv[1]>=0)
-    {
+    var task = $('#task_id').val();
+    var bonus_count = $('#bonus_count').val();
+    var serv = $(this).prev().val();
+    var serv = serv.split('-');
+    var _this = $(this);
+    if (bonus_count - serv[1] >= 0) {
         $.ajax({
-        type: "GET",
-        dataType: "json",
-        data: {
-            task: task,
-            serv:serv[0],
-            time:'week'
-        },
-        url: '/profile/service/add_service_in_task',
-        success: function (data) {
-            add_alert_suc(index_serv);
-            index_serv = index_serv + 1;
-            var select=_this.parent();
-            select[0].classList.add('select-block');
-            var not_select=_this.parent().parent().next().children();
-            not_select[0].classList.add('not-select-block');
-            var btn=_this.parent().parent().next().children().children('.btn-price-month');
-            btn[0].setAttribute('disabled', true);
-            btn[0].classList.add('disable');
-            btn=_this;
-            btn[0].classList.add('d-none');
-            btn=_this.next();
-            btn[0].classList.remove('d-none');
-        },
-        error: function (data) {
-            add_alert_error(index_serv);
-            index_serv = index_serv + 1;
-        }
+            type: "GET",
+            dataType: "json",
+            data: {
+                task: task,
+                serv: serv[0],
+                time: 'week'
+            },
+            url: '/profile/service/add_service_in_task',
+            success: function (data) {
+                add_alert_suc(index_serv);
+                index_serv = index_serv + 1;
+                var select = _this.parent();
+                select[0].classList.add('select-block');
+                var not_select = _this.parent().parent().next().children();
+                not_select[0].classList.add('not-select-block');
+                var btn = _this.parent().parent().next().children().children('.btn-price-month');
+                btn[0].setAttribute('disabled', true);
+                btn[0].classList.add('disable');
+                btn = _this;
+                btn[0].classList.add('d-none');
+                btn = _this.next();
+                btn[0].classList.remove('d-none');
+            },
+            error: function (data) {
+                add_alert_error(index_serv);
+                index_serv = index_serv + 1;
+            }
         })
 
-    }
-    else
-    {
+    } else {
         add_alert_error(index_serv, 'На Вашем счету недостаточно бонусов!');
         index_serv = index_serv + 1;
     }
 });
 $('.btn-price-month').click(function () {
-    var task=$('#task_id').val();
-    var bonus_count=$('#bonus_count').val();
-    var serv=$(this).prev().val();
-    var serv=serv.split('-');
-    var _this=$(this);
-    if(bonus_count-serv[1]>=0)
-    {
+    var task = $('#task_id').val();
+    var bonus_count = $('#bonus_count').val();
+    var serv = $(this).prev().val();
+    var serv = serv.split('-');
+    var _this = $(this);
+    if (bonus_count - serv[1] >= 0) {
         $.ajax({
-        type: "GET",
-        dataType: "json",
-        data: {
-            task: task,
-            serv:serv[0],
-            time:'month'
-        },
-        url: '/profile/service/add_service_in_task',
-        success: function (data) {
-            add_alert_suc(index_serv);
-            index_serv = index_serv + 1;
-            var select=_this.parent();
-            select[0].classList.add('select-block');
-            var not_select=_this.parent().parent().prev().children();
-            not_select[0].classList.add('not-select-block');
-            var btn=_this.parent().parent().prev().children().children('.btn-price-week');
-            btn[0].setAttribute('disabled', true);
-            btn[0].classList.add('disable');
-            btn=_this;
-            btn[0].classList.add('d-none');
-            btn=_this.next();
-            btn[0].classList.remove('d-none');
-        },
-        error: function (data) {
-            add_alert_error(index_serv);
-            index_serv = index_serv + 1;
-        }
+            type: "GET",
+            dataType: "json",
+            data: {
+                task: task,
+                serv: serv[0],
+                time: 'month'
+            },
+            url: '/profile/service/add_service_in_task',
+            success: function (data) {
+                add_alert_suc(index_serv);
+                index_serv = index_serv + 1;
+                var select = _this.parent();
+                select[0].classList.add('select-block');
+                var not_select = _this.parent().parent().prev().children();
+                not_select[0].classList.add('not-select-block');
+                var btn = _this.parent().parent().prev().children().children('.btn-price-week');
+                btn[0].setAttribute('disabled', true);
+                btn[0].classList.add('disable');
+                btn = _this;
+                btn[0].classList.add('d-none');
+                btn = _this.next();
+                btn[0].classList.remove('d-none');
+            },
+            error: function (data) {
+                add_alert_error(index_serv);
+                index_serv = index_serv + 1;
+            }
         })
 
-    }
-    else
-    {
+    } else {
         add_alert_error(index_serv, 'На Вашем счету недостаточно бонусов!');
         index_serv = index_serv + 1;
     }
 });
 
 $('.btn-price-week-adv').click(function () {
-    var advert=$('#advert_id').val();
-    var bonus_count=$('#bonus_count').val();
-    var serv=$(this).prev().val();
-    var serv=serv.split('-');
-    var _this=$(this);
-    if(bonus_count-serv[1]>=0)
-    {
+    var advert = $('#advert_id').val();
+    var bonus_count = $('#bonus_count').val();
+    var serv = $(this).prev().val();
+    var serv = serv.split('-');
+    var _this = $(this);
+    if (bonus_count - serv[1] >= 0) {
         $.ajax({
-        type: "GET",
-        dataType: "json",
-        data: {
-            advert: advert,
-            serv:serv[0],
-            time:'week'
-        },
-        url: '/profile/service/add_service_in_advert',
-        success: function (data) {
-            add_alert_suc(index_serv);
-            index_serv = index_serv + 1;
-            var select=_this.parent();
-            select[0].classList.add('select-block');
-            var not_select=_this.parent().parent().next().children();
-            not_select[0].classList.add('not-select-block');
-            var btn=_this.parent().parent().next().children().children('.btn-price-month-adv');
-            btn[0].setAttribute('disabled', true);
-            btn[0].classList.add('disable');
-            btn=_this;
-            btn[0].classList.add('d-none');
-            btn=_this.next();
-            btn[0].classList.remove('d-none');
-        },
-        error: function (data) {
-            add_alert_error(index_serv);
-            index_serv = index_serv + 1;
-        }
+            type: "GET",
+            dataType: "json",
+            data: {
+                advert: advert,
+                serv: serv[0],
+                time: 'week'
+            },
+            url: '/profile/service/add_service_in_advert',
+            success: function (data) {
+                add_alert_suc(index_serv);
+                index_serv = index_serv + 1;
+                var select = _this.parent();
+                select[0].classList.add('select-block');
+                var not_select = _this.parent().parent().next().children();
+                not_select[0].classList.add('not-select-block');
+                var btn = _this.parent().parent().next().children().children('.btn-price-month-adv');
+                btn[0].setAttribute('disabled', true);
+                btn[0].classList.add('disable');
+                btn = _this;
+                btn[0].classList.add('d-none');
+                btn = _this.next();
+                btn[0].classList.remove('d-none');
+            },
+            error: function (data) {
+                add_alert_error(index_serv);
+                index_serv = index_serv + 1;
+            }
         })
 
-    }
-    else
-    {
+    } else {
         add_alert_error(index_serv, 'На Вашем счету недостаточно бонусов!');
         index_serv = index_serv + 1;
     }
 });
 $('.btn-price-month-adv').click(function () {
-    var advert=$('#advert_id').val();
-    var bonus_count=$('#bonus_count').val();
-    var serv=$(this).prev().val();
-    var serv=serv.split('-');
-    var _this=$(this);
-    if(bonus_count-serv[1]>=0)
-    {
+    var advert = $('#advert_id').val();
+    var bonus_count = $('#bonus_count').val();
+    var serv = $(this).prev().val();
+    var serv = serv.split('-');
+    var _this = $(this);
+    if (bonus_count - serv[1] >= 0) {
         $.ajax({
-        type: "GET",
-        dataType: "json",
-        data: {
-            advert: advert,
-            serv:serv[0],
-            time:'month'
-        },
-        url: '/profile/service/add_service_in_advert',
-        success: function (data) {
-            add_alert_suc(index_serv);
-            index_serv = index_serv + 1;
-            var select=_this.parent();
-            select[0].classList.add('select-block');
-            var not_select=_this.parent().parent().prev().children();
-            not_select[0].classList.add('not-select-block');
-            var btn=_this.parent().parent().prev().children().children('.btn-price-week-adv');
-            btn[0].setAttribute('disabled', true);
-            btn[0].classList.add('disable');
-            btn=_this;
-            btn[0].classList.add('d-none');
-            btn=_this.next();
-            btn[0].classList.remove('d-none');
-        },
-        error: function (data) {
-            add_alert_error(index_serv);
-            index_serv = index_serv + 1;
-        }
+            type: "GET",
+            dataType: "json",
+            data: {
+                advert: advert,
+                serv: serv[0],
+                time: 'month'
+            },
+            url: '/profile/service/add_service_in_advert',
+            success: function (data) {
+                add_alert_suc(index_serv);
+                index_serv = index_serv + 1;
+                var select = _this.parent();
+                select[0].classList.add('select-block');
+                var not_select = _this.parent().parent().prev().children();
+                not_select[0].classList.add('not-select-block');
+                var btn = _this.parent().parent().prev().children().children('.btn-price-week-adv');
+                btn[0].setAttribute('disabled', true);
+                btn[0].classList.add('disable');
+                btn = _this;
+                btn[0].classList.add('d-none');
+                btn = _this.next();
+                btn[0].classList.remove('d-none');
+            },
+            error: function (data) {
+                add_alert_error(index_serv);
+                index_serv = index_serv + 1;
+            }
         })
 
-    }
-    else
-    {
+    } else {
         add_alert_error(index_serv, 'На Вашем счету недостаточно бонусов!');
         index_serv = index_serv + 1;
     }
 });
 
 
-
-$("#cancel-btn").click(function(){
+$("#cancel-btn").click(function () {
     var box = $('#send-box');
     box.removeClass("active-info");
 });
 
-var index_offer=0;
+var index_offer = 0;
 $('#check_pro_user').click(function () {
-    var user_id=document.getElementById('check_pro_user_id').value;
-    var sub=document.getElementById('subcateg_name').textContent;
+    var user_id = document.getElementById('check_pro_user_id').value;
+    var sub = document.getElementById('subcateg_name').textContent;
     $.ajax({
         type: "GET",
         dataType: "json",
         data: {
             user_id: user_id,
-            sub:sub
+            sub: sub
         },
         url: '/profile/offer/check_count',
         success: function (data) {
-            if(data.data == 'ok')
-            {
-                var btn=document.getElementById('offer_create');
+            if (data.data == 'ok') {
+                var btn = document.getElementById('offer_create');
                 btn.click();
-            }
-            else{
+            } else {
                 add_alert_error(index_offer, "Данный пользователь исчерпал количество предложений за день!");
                 index_offer = index_offer + 1;
             }
@@ -2470,10 +2466,10 @@ $('#check_pro_user').click(function () {
             add_alert_error(index_offer, "Что-то пошло не так, попробуйте позже!");
             index_offer = index_offer + 1;
         }
-        })
+    })
 });
 $('#is_pro_check').click(function () {
-    var ch=$('#is_pro_check').checked;
+    var ch = $('#is_pro_check').checked;
     if ($('#is_pro_check').is(':checked')) {
         $('#is_pro').val(1)
     } else {
@@ -2482,30 +2478,26 @@ $('#is_pro_check').click(function () {
 });
 
 $('#check_task_in_work').click(function () {
-    var text=document.getElementById('message-text').value;
-    if(text != null && text != "")
-    {
-        var btn=document.getElementById('task_in_work');
+    var text = document.getElementById('message-text').value;
+    if (text != null && text != "") {
+        var btn = document.getElementById('task_in_work');
         btn.click();
     }
 });
 $('#check_comment_text').click(function () {
-    var text=document.getElementById('message-text').value;
-    if(text != null && text != "")
-    {
-        var btn=document.getElementById('comment_text');
+    var text = document.getElementById('message-text').value;
+    if (text != null && text != "") {
+        var btn = document.getElementById('comment_text');
         btn.click();
     }
 });
-var index_comment=0;
+var index_comment = 0;
 $('#check_comment').click(function () {
-    var text=document.getElementById('comment_text').value;
-    if(text != null && text != "")
-    {
-        var btn=document.getElementById('send_comment');
+    var text = document.getElementById('comment_text').value;
+    if (text != null && text != "") {
+        var btn = document.getElementById('send_comment');
         btn.click();
-    }
-    else{
+    } else {
         add_alert_error(index_comment, "Вы не заполнили поле с отзывом!!");
         index_comment = index_comment + 1;
     }
