@@ -3380,5 +3380,8 @@ button.serv-btn-blue:hover{
 }
 .sum-desc{
     text-align: center;
+    font-weight: 400;
+    font-size: 1.2rem !important;
+    color: black !important;
     /*vertical-align: middle;*/
 }

@@ -446,20 +446,20 @@
                          aria-labelledby="nav-balance-tab">
                         <div class="row d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
                             <div class="col-12 p-0">
-                                <div class="row justify-content-center notices_blk my-5">
+                                <div class="row justify-content-center">
 <!--                                    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">-->
 <!--                                        <div class="row m-0 justify-content-center">-->
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
                                                 <label class="m-0 sum-desc w-100">Основной баланс</label>
-                                                <label class="m-0 sum-title w-100">{{ user.balance }}</label>
+                                                <label class="m-0 sum-title w-100">{{ user.balance }} <span class="sum-desc">руб</span></label>
                                             </div>
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
                                                 <label class="m-0 sum-desc w-100">Бонусный баланс</label>
-                                                <label class="m-0 sum-title w-100">{{ user.bonus_balance }}</label>
+                                                <label class="m-0 sum-title w-100">{{ user.bonus_balance }} <span class="sum-desc">бонус. руб</span></label>
                                             </div>
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
                                                 <label class="m-0 sum-desc w-100">Замороженный баланс</label>
-                                                <label class="m-0 sum-title w-100">{{ user.frozen_balance }}</label>
+                                                <label class="m-0 sum-title w-100">{{ user.frozen_balance }} <span class="sum-desc">руб</span></label>
                                             </div>
 <!--                                        </div>-->
 <!--                                    </div>-->
