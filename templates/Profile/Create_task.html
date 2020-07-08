@@ -6,7 +6,7 @@
     <div class="row justify-content-center create-task_blk">
 
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
-            <form  class="w-100" action="{% url 'Save_task' %}" method="post" enctype="multipart/form-data">
+            <form class="w-100" action="{% url 'Save_task' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row my-3">
                     <h2 class="w-100 text-left fz_2rem">Категория</h2>
@@ -20,7 +20,7 @@
                                 <select class="form-control" id="task_category" name="category">
                                     <option value="0" selected>- Выберите категорию -</option>
                                     {% for c in category %}
-                                    <option value="{{c.id}}" >{{c.name}}</option>
+                                    <option value="{{c.id}}">{{c.name}}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -45,38 +45,55 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-md-4 col-lg-3 col-form-label px-0" for="input_text">Что сделать?</label>
                     <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-lg-0">
-                        <input class="form-control" name="task_title" id="input_text" placeholder="Например: доставка тюльпанов"
+                        <input class="form-control" name="task_title" id="input_text"
+                               placeholder="Например: доставка тюльпанов"
                                type="text">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-md-9 col-lg-3 col-form-label px-0" for="detailsFormControlTextarea1">Опишите
                         подробно детали</label>
-                    <textarea class="form-control col-sm-10 col-md-9 col-lg-9" name="description" id="detailsFormControlTextarea1" placeholder="Например: купить 7 красных тюльпанов и в 12:00 доставить по адресу"
+                    <textarea class="form-control col-sm-10 col-md-9 col-lg-9" name="description"
+                              id="detailsFormControlTextarea1"
+                              placeholder="Например: купить 7 красных тюльпанов и в 12:00 доставить по адресу"
                               rows="4"></textarea>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-3 col-form-label px-0"></div>
+                    <div class="col-sm-3 col-form-label px-0">Загрузите прилагаемые файлы</div>
                     <div class="col-sm-10 col-md-5 px-0 pl-lg-0">
-                        <!--                       <button class="btn btn-primary px-4" id="btn-add-file" type="submit">Добавить файл-->
-                        <!--                        </button> -->
-                        <div class="upload-file">
-                            <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files" multiple>
-                            <label for="files" class="btn btn-tertiary js-labelFile">
-                                <i class="fas fa-upload"></i>
-                                <span class="js-fileName">Загрузить файлы</span>
-                            </label>
+                        <div class="row m-0 align-items-center">
+                            <div class="upload-file d-inline-block">
+                                <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files"
+                                       multiple>
+                                <label for="files" class="btn btn-tertiary js-labelFile">
+                                    <i class="fas fa-upload"></i>
+                                    <span class="js-fileName">Загрузить файлы</span>
+                                </label>
+                            </div>
+                            <i class="fas fa-question-circle pl-5 mb-2" data-toggle="tooltip" data-placement="right"
+                               title="Загрузите файлы, которые могут понадобиться исполнителю для выполнения задания"></i>
                         </div>
+
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-md-9 col-lg-3 col-form-label px-0" for="detailsFormControlTextarea1">Добавить обложку для задания</label>
-                    <div class="upload-file">
-                        <input type="file" class="mb-1 form-control prof-file d-none" name="file_main" id="file_main" multiple>
-                        <label for="file_main" class="btn btn-tertiary js-labelFile">
-                            <i class="fas fa-upload"></i>
-                            <span class="js-fileNameMain">Загрузить файл</span>
-                        </label>
+                    <div class="col-sm-3 col-form-label px-0">Добавить
+                        обложку для задания
+                    </div>
+                    <div class="col-sm-10 col-md-5 px-0 pl-lg-0">
+                        <div class="row m-0 align-items-center">
+                            <div class="upload-file d-inline-block pr-1">
+                                <input type="file" class="mb-1 form-control prof-file d-none" name="file_main"
+                                       id="file_main"
+                                       multiple>
+                                <label for="file_main" class="btn btn-tertiary js-labelFile">
+                                    <i class="fas fa-upload"></i>
+                                    <span class="js-fileNameMain">Загрузить файл</span>
+                                </label>
+                            </div>
+                            <i class="fas fa-question-circle pl-5 mb-2" data-toggle="tooltip" data-placement="right"
+                               title="Добавьте картинку для обложки задания"></i>
+                        </div>
                     </div>
                 </div>
                 <!--            </form>-->
@@ -100,7 +117,8 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label px-0" for="input_addr">Адрес</label>
                     <div class="col-sm-10 col-md-5 col-lg-4 px-0 pl-md-0 pl-lg-0">
-                        <input class="form-control address-task_input" name="address" id="input_addr" placeholder="Например: ул. Первомайская, 12"
+                        <input class="form-control address-task_input" name="address" id="input_addr"
+                               placeholder="Например: ул. Первомайская, 12"
                                type="text">
                     </div>
                 </div>
@@ -141,13 +159,15 @@
                             <div class="form-group row mb-2">
                                 <label class="col-2 col-sm-2 col-form-label px-0" for="time_input1">С</label>
                                 <div class="col-9 col-sm-2 col-md-10 px-0 pl-md-3 pl-lg-0">
-                                    <input class="form-control" id="time_input1" type="time" name="start_time" value="12:00">
+                                    <input class="form-control" id="time_input1" type="time" name="start_time"
+                                           value="12:00">
                                 </div>
                             </div>
                             <div class="form-group row m-0">
                                 <label class="col-2 col-sm-2 col-form-label px-0" for="time_input2">До</label>
                                 <div class="col-9 col-sm-2 col-md-10 px-0 pl-md-3 pl-lg-0">
-                                    <input class="form-control passwords" id="time_input2" type="time" name="end_time" value="13:00">
+                                    <input class="form-control passwords" id="time_input2" type="time" name="end_time"
+                                           value="13:00">
                                 </div>
                             </div>
                         </div>
@@ -162,48 +182,51 @@
                     <h2 class="w-100 text-left fz_2rem mb-3">Оплата</h2>
                 </div>
                 <div class="row" id="pay_detail">
-<!--                    &lt;!&ndash;            <form action="" class="pay-type_form mb-5">&ndash;&gt;-->
-<!--                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 custom-checkbox" id="pay_detail_block">-->
+                    <!--                    &lt;!&ndash;            <form action="" class="pay-type_form mb-5">&ndash;&gt;-->
+                    <!--                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 custom-checkbox" id="pay_detail_block">-->
 
-<!--                    </div>-->
+                    <!--                    </div>-->
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pl-0">
                         <div class="row">
                             <div class="col-6" style="background: rgba(62, 120, 157,.3); width: min-content;">
-    <!--                        <div class="form-group row mb-5">-->
+                                <!--                        <div class="form-group row mb-5">-->
                                 <label class="col-form-label px-0">Стоимость работы</label>
-                                <input class="form-control address-task_input" name="input_price" id="input_price" placeholder="1000"
-                                           type="number"><label class="mb-0">руб.</label>
-                                <label class="color_gray">Данная стоимость служит только для предварительной оценки бюджета вашего задания.</label>
-    <!--                        </div>-->
+                                <input class="form-control address-task_input" name="input_price" id="input_price"
+                                       placeholder="1000"
+                                       type="number"><label class="mb-0">руб.</label>
+                                <label class="color_gray">Данная стоимость служит только для предварительной оценки
+                                    бюджета вашего задания.</label>
+                                <!--                        </div>-->
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="row mb-5 mt-4" >
-                        <label class="col-3 col-form-label px-0">Способ оплаты</label>
-                        <div class="col-9 py-2">
-                            <div class="form-check">
-                                <input checked class="form-check-input" id="gridRadios4" name="gridRadios2"
-                                       type="radio" value="option1">
-                                <label class="form-check-label" for="gridRadios4">
-                                    Оплата наличными
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input checked class="form-check-input" id="gridRadios5" name="gridRadios2"
-                                       type="radio" value="option2">
-                                <label class="form-check-label" for="gridRadios5">
-                                    Безопасная сделка (оплата через сайт)
-                                </label>
-                            </div>
+                <div class="row mb-5 mt-4">
+                    <label class="col-3 col-form-label px-0">Способ оплаты</label>
+                    <div class="col-9 py-2">
+                        <div class="form-check">
+                            <input checked class="form-check-input" id="gridRadios4" name="gridRadios2"
+                                   type="radio" value="option1">
+                            <label class="form-check-label" for="gridRadios4">
+                                Оплата наличными
+                            </label>
                         </div>
+                        <div class="form-check">
+                            <input checked class="form-check-input" id="gridRadios5" name="gridRadios2"
+                                   type="radio" value="option2">
+                            <label class="form-check-label" for="gridRadios5">
+                                Безопасная сделка (оплата через сайт)
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div class="row pl-4">
                     <div class="form-group row mb-5 mt-4 custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="is_pro_check">
-                        <label for="is_pro_check" class="custom-control-label pl-1 pl-sm-3">Только для Pro-пользователей</label>
-                        </div>
+                        <label for="is_pro_check" class="custom-control-label pl-1 pl-sm-3">Только для
+                            Pro-пользователей</label>
+                    </div>
                     <input type="hidden" id="is_pro" name="is_pro">
                 </div>
                 <div class="form-group row">
@@ -222,19 +245,19 @@
         </div>
     </div>
 </div>
-    <div class="col-12" id="alerts-block">
-        <div class="row justify-content-center">
-            <div class="alert alert-danger error-city d-none" role="alert" id="alert-danger">
-                Заполнены не все поля!
-            </div>
+<div class="col-12" id="alerts-block">
+    <div class="row justify-content-center">
+        <div class="alert alert-danger error-city d-none" role="alert" id="alert-danger">
+            Заполнены не все поля!
         </div>
     </div>
-    <div class="col-12" id="alerts-block">
-        <div class="row justify-content-center">
-            <div class="alert alert-danger error-city d-none" role="alert" id="alert-danger2">
-                На Вашем счету недостаточно средств!
-            </div>
+</div>
+<div class="col-12" id="alerts-block">
+    <div class="row justify-content-center">
+        <div class="alert alert-danger error-city d-none" role="alert" id="alert-danger2">
+            На Вашем счету недостаточно средств!
         </div>
     </div>
+</div>
 
 {% endblock %}
