@@ -2087,12 +2087,12 @@ input[type=checkbox]:checked + label::after {
     border: 1px solid #3E789D;
     color: #ffffff;
 }
-#nav-portfolio .btn-add-photo {
+#nav-portfolio .btn-add-photo, .replenish {
     background: #AF4B53;
     border: 1px solid #AF4B53;
     color: #FFFFFF;
 }
-#nav-portfolio .btn-add-photo:hover {
+#nav-portfolio .btn-add-photo:hover, .replenish:hover {
     background: #FFFFFF;
     color: #AF4B53;
     border: 1px solid #AF4B53;
