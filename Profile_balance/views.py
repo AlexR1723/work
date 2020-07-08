@@ -37,5 +37,5 @@ def Balance(request):
         # print(layout)
         email = request.session.get('username', 'no')
         user=Users.objects.get(auth_user__email=email)
-        balance=UserBalance.objects.filter(user=user.auth_user).order_by('-date')
+        balance_list=UserBalance.objects.filter(user=user.auth_user).order_by('-date')
     return render(request, 'Profile/Balance.html', locals())
