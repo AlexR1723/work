@@ -8,42 +8,45 @@
             <div class="row justify-content-start">
                 <div class="col-9 col-sm-2 col-md-3 col-lg-2 p-2 mx-auto">
                     <img alt="" class="img-fluid user-img circle" src="{{MEDIA_URL}}{{user.photo.url}}">
-                    <form class="row" id="file_ok" action="{% url 'Save_photo' %}" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="col-10">
-                                <div class="upload-file">
-                                    <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="file_save_profile_photo">
-                                    <label for="file_save_profile_photo" class="btn btn-tertiary js-labelFile">
-                                        <i class="fas fa-upload"></i>
-                                        <span class="js-fileName">Изменить фото</span>
-                                    </label>
-                                </div>
+                    <form class="row" id="file_ok" action="{% url 'Save_photo' %}" method="post"
+                          enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="col-10">
+                            <div class="upload-file">
+                                <input type="file" class="mb-1 form-control prof-file d-none" name="files"
+                                       id="file_save_profile_photo">
+                                <label for="file_save_profile_photo" class="btn btn-tertiary js-labelFile">
+                                    <i class="fas fa-upload"></i>
+                                    <span class="js-fileName">Изменить фото</span>
+                                </label>
                             </div>
-                            <div class="col-2">
-                                <button type="submit" class="d-none" id="submit_save_profile_photo"></button>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="d-none" id="submit_save_profile_photo"></button>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-12 col-sm-5 col-md-4 col-lg-5 pl-2 pr-0 pb-4 pb-md-0 pt-2 mx-auto">
                     <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mt-md-0 mt-lg-4">
-                        <label class="profile-settings_name m-0" id="file_label_edit">{{user.auth_user.first_name}} {{user.auth_user.last_name}}
-<!--                            <img-->
-<!--                                    src="{% static 'image/pen.png' %}"-->
-<!--                                    class="profile-name_icon ml-2 mb-md-0 mb-lg-2" id="photo_edit"  data-toggle="tooltip" data-placement="bottom"-->
-<!--                                    title="Редактировать имя и загрузить фото"></img>--></label>
+                        <label class="profile-settings_name m-0" id="file_label_edit">{{user.auth_user.first_name}}
+                            {{user.auth_user.last_name}}
+                            <!--                            <img-->
+                            <!--                                    src="{% static 'image/pen.png' %}"-->
+                            <!--                                    class="profile-name_icon ml-2 mb-md-0 mb-lg-2" id="photo_edit"  data-toggle="tooltip" data-placement="bottom"-->
+                            <!--                                    title="Редактировать имя и загрузить фото"></img>--></label>
 
                     </div>
                     <div class="row justify-content-start align-items-center pt-2">
                         <div class="col p-0">
                             <p class="mb-0 pr-0 profile-settings_text">Посмотреть, как выглядит профиль
-                            для
-                            <a href="{% url 'Profile_page' user.auth_user.id %}">всех</a>
+                                для
+                                <a href="{% url 'Profile_page' user.auth_user.id %}">всех</a>
                             </p>
                         </div>
                         {% if layout == 'layout_executor.html' and user.is_pro == 0 %}
                         <div class="col-auto">
                             <a href="{% url 'Buy_pro' %}">
-                            <button class="rate-perform_btn pl-3 pr-3">Купить Pro-аккаунт</button>
+                                <button class="rate-perform_btn pl-3 pr-3">Купить Pro-аккаунт</button>
                             </a>
                         </div>
                         {% endif %}
@@ -51,8 +54,10 @@
                     </div>
                     {% if user.verify_passport != True %}
                     <div class="row">
-                        <a class="verify-phone" href="{% url 'Passport_verification' %}" data-toggle="tooltip" data-placement="bottom"
-                         title="Прикрепите свой паспорт, пройдите верификацию и получите статус 'Проверенного пользователя'">Верифицировать паспорт</a>
+                        <a class="verify-phone" href="{% url 'Passport_verification' %}" data-toggle="tooltip"
+                           data-placement="bottom"
+                           title="Прикрепите свой паспорт, пройдите верификацию и получите статус 'Проверенного пользователя'">Верифицировать
+                            паспорт</a>
                     </div>
                     {% endif %}
                 </div>
@@ -89,6 +94,12 @@
                             <img src="{% static 'image/portfolio.png' %}" class="d-md-block d-lg-none" width="30"
                                  alt="">
                         </a>
+                        <a class="nav-item nav-link" id="nav-balance-tab" data-toggle="tab"
+                           href="#nav-balance" role="tab" aria-controls="nav-balance" aria-selected="false">
+                            <span class="d-none d-sm-none d-md-none d-lg-block">Финансы</span>
+                            <img src="" class="d-md-block d-lg-none" width="30"
+                                 alt="">
+                        </a>
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-notice"
                            role="tab" aria-controls="nav-notice" aria-selected="false">
                             <span class="d-none d-sm-none d-md-none d-lg-block">Настройка уведомлений</span>
@@ -108,14 +119,15 @@
                          aria-labelledby="nav-home-tab">
                         <div class="row justify-content-end">
                             <div class="col-1 px-0 px-lg-3 a-right">
-                                <img src="/static/image/pen.png" class="edit-icon" id="profile_edit" alt="edit-icon" data-toggle="tooltip" data-placement="left"
+                                <img src="/static/image/pen.png" class="edit-icon" id="profile_edit" alt="edit-icon"
+                                     data-toggle="tooltip" data-placement="left"
                                      title="Редактировать информацию в профиле">
                             </div>
                         </div>
                         <form class="w-100" action="{% url 'Save' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                        <div class="row m-0 justify-content-start information_blk">
-                            <div class="col-12 p-3 item-inf_blk user-inf_blk">
+                            <div class="row m-0 justify-content-start information_blk">
+                                <div class="col-12 p-3 item-inf_blk user-inf_blk">
                                     <div class="row">
                                         <div class="col-1 px-0 px-lg-3 d-inline-block">
                                             <img src="{% static 'image/user-icon.png' %}" class="item-icon"
@@ -125,89 +137,96 @@
                                             <p class="mb-1">
                                                 <span class="pr-3">Дата рождения:</span>
                                                 <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>
-                                                <input type="text" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" placeholder="Дата" value="{{month}}/{{day}}/{{year}}" required>
-                                                <label class="prof-input ml-3 d-none" id="birthday-desc">Вводите дату в формате: месяц/день/год</label>
-<!--                                                <input type="date" placeholder="дд.мм.гггг" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
+                                                <input type="text" class="mb-1 form-control prof-input d-none"
+                                                       id="birthday-input" name="birthday" placeholder="Дата"
+                                                       value="{{month}}/{{day}}/{{year}}" required>
+                                                <label class="prof-input ml-3 d-none" id="birthday-desc">Вводите дату в
+                                                    формате: месяц/день/год</label>
+                                                <!--                                                <input type="date" placeholder="дд.мм.гггг" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
                                             </p>
                                             <p class="mb-1">
                                                 <span class="pr-3">Пол:</span>
                                                 <label id="gender-label">{{user.gender.name}}</label>
-                                                <select class="form-control prof-input d-none" id="gender-input" name="gender">
-                                                {% if user.gender.name == "Мужской" %}
-                                                <option selected value="1">Мужской</option>
-                                                <option value="2">Женский</option>
-                                                {% else %}
-                                                <option value="1">Мужской</option>
-                                                <option selected value="2">Женский</option>
-                                                {% endif %}
+                                                <select class="form-control prof-input d-none" id="gender-input"
+                                                        name="gender">
+                                                    {% if user.gender.name == "Мужской" %}
+                                                    <option selected value="1">Мужской</option>
+                                                    <option value="2">Женский</option>
+                                                    {% else %}
+                                                    <option value="1">Мужской</option>
+                                                    <option selected value="2">Женский</option>
+                                                    {% endif %}
                                                 </select>
                                             </p>
-<!--                                            <div class="row">-->
-<!--                                                <div class="col-12 col-sm-1 p-0">-->
-<!--                                                    <span>О себе: </span>-->
-<!--                                                </div>-->
-<!--                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">-->
-<!--                                                    <p class="mb-1">-->
-<!--                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>-->
-<!--                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>-->
-<!--                                                    </p>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
+                                            <!--                                            <div class="row">-->
+                                            <!--                                                <div class="col-12 col-sm-1 p-0">-->
+                                            <!--                                                    <span>О себе: </span>-->
+                                            <!--                                                </div>-->
+                                            <!--                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">-->
+                                            <!--                                                    <p class="mb-1">-->
+                                            <!--                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>-->
+                                            <!--                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>-->
+                                            <!--                                                    </p>-->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
                                         </div>
                                     </div>
-                            </div>
-                            <div class="col-12 p-3 item-inf_blk email-inf_blk">
-                                <div class="row">
-                                    <div class="col-1 px-0 px-lg-3">
-                                        <img src="{% static 'image/email.png' %}" class="item-icon" alt="user-icon">
-                                    </div>
-                                    <div class="col-11">
-                                        <p class="pt-1 m-0"><span class="pr-3 text-wrap">Email: </span> <label>{{user.auth_user.email}}</label></p>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 p-3 item-inf_blk phone-inf_blk">
+                                <div class="col-12 p-3 item-inf_blk email-inf_blk">
                                     <div class="row">
                                         <div class="col-1 px-0 px-lg-3">
-                                            <img src="{% static 'image/phone.png' %}" class="item-icon" alt="phone-icon">
+                                            <img src="{% static 'image/email.png' %}" class="item-icon" alt="user-icon">
+                                        </div>
+                                        <div class="col-11">
+                                            <p class="pt-1 m-0"><span class="pr-3 text-wrap">Email: </span> <label>{{user.auth_user.email}}</label>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 p-3 item-inf_blk phone-inf_blk">
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3">
+                                            <img src="{% static 'image/phone.png' %}" class="item-icon"
+                                                 alt="phone-icon">
                                         </div>
                                         <div class="col-11">
                                             <p class="pt-1 m-0">
                                                 <span class="pr-3 text-wrap">Телефон: </span>
                                                 <label id="phone-label">{{user.phone}}</label>
-                                                <input class="mb-1 form-control prof-input d-none" id="phone-input" name="phone" type="text" value="{{user.phone}}" />
+                                                <input class="mb-1 form-control prof-input d-none" id="phone-input"
+                                                       name="phone" type="text" value="{{user.phone}}"/>
                                                 {% if user.verify_phone != True %}
-                                                    <a class="ml-3 verify-phone" href="{% url 'Number_verification' %}">Подтвердить</a>
+                                                <a class="ml-3 verify-phone" href="{% url 'Number_verification' %}">Подтвердить</a>
                                                 {% endif %}
                                             </p>
                                         </div>
                                     </div>
-                            </div>
-                            <div class="col-12 p-3 item-inf_blk user-inf_blk">
+                                </div>
+                                <div class="col-12 p-3 item-inf_blk user-inf_blk">
                                     <div class="row">
                                         <div class="col-1 px-0 px-lg-3 d-inline-block">
-<!--                                            <img src="{% static 'image/user-icon.png' %}" class="item-icon"-->
-<!--                                                 alt="user-icon">-->
+                                            <!--                                            <img src="{% static 'image/user-icon.png' %}" class="item-icon"-->
+                                            <!--                                                 alt="user-icon">-->
                                         </div>
                                         <div class="col-11 d-inline-block">
-<!--                                            <p class="mb-1">-->
-<!--                                                <span class="pr-3">Дата рождения:</span>-->
-<!--                                                <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>-->
-<!--                                                <input type="date" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
-<!--                                            </p>-->
-<!--                                            <p class="mb-1">-->
-<!--                                                <span class="pr-3">Пол:</span>-->
-<!--                                                <label id="gender-label">{{user.gender.name}}</label>-->
-<!--                                                <select class="form-control prof-input d-none" id="gender-input" name="gender">-->
-<!--                                                {% if user.gender.name == "Мужской" %}-->
-<!--                                                <option selected value="1">Мужской</option>-->
-<!--                                                <option value="2">Женский</option>-->
-<!--                                                {% else %}-->
-<!--                                                <option value="1">Мужской</option>-->
-<!--                                                <option selected value="2">Женский</option>-->
-<!--                                                {% endif %}-->
-<!--                                                </select>-->
-<!--                                            </p>-->
+                                            <!--                                            <p class="mb-1">-->
+                                            <!--                                                <span class="pr-3">Дата рождения:</span>-->
+                                            <!--                                                <label id="birthday-label">{{day}}.{{month}}.{{year}}</label>-->
+                                            <!--                                                <input type="date" class="mb-1 form-control prof-input d-none" id="birthday-input" name="birthday" value="{{year}}-{{month}}-{{day}}" />-->
+                                            <!--                                            </p>-->
+                                            <!--                                            <p class="mb-1">-->
+                                            <!--                                                <span class="pr-3">Пол:</span>-->
+                                            <!--                                                <label id="gender-label">{{user.gender.name}}</label>-->
+                                            <!--                                                <select class="form-control prof-input d-none" id="gender-input" name="gender">-->
+                                            <!--                                                {% if user.gender.name == "Мужской" %}-->
+                                            <!--                                                <option selected value="1">Мужской</option>-->
+                                            <!--                                                <option value="2">Женский</option>-->
+                                            <!--                                                {% else %}-->
+                                            <!--                                                <option value="1">Мужской</option>-->
+                                            <!--                                                <option selected value="2">Женский</option>-->
+                                            <!--                                                {% endif %}-->
+                                            <!--                                                </select>-->
+                                            <!--                                            </p>-->
                                             <div class="row">
                                                 <div class="col-12 col-sm-1 p-0">
                                                     <span>О себе: </span>
@@ -215,123 +234,135 @@
                                                 <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
                                                     <p class="mb-1">
                                                         <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>
-                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>
+                                                        <textarea class="w-100 form-control d-none" name="about"
+                                                                  id="about-input">{{user.about_me}}</textarea>
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                            </div>
-                            <div class="col-12 pt-3 pb-3 pl-5 pr-5 collapse" id="info-inf-blk">
-                                <div class="w-100 pl-5 pr-5 pb-3">
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        Ваш профиль - это ваша визитная карточка. Опишите свои умения, навыки и таланты.
-                                    </label>
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        Например:
-                                    </label>
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        - основные услуги, которые вы можете предоставлять;
-                                    </label>
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        - наличие профессионального инструмента;
-                                    </label>
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        - программа, языки и тд, с которыми вы работаете;
-                                    </label>
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        - наличие автомобиля, фиплома и тд, указывайте как можно больше специфической информации по вашей специальности;
-                                    </label>
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        - укажите свои сильные качества, которые могут помочь в работе;
-                                    </label>
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        - укажите свои хобби - это разнообразит вашу анкету.
-                                    </label>
-                                    <div class="alert alert-danger w-100" style="display: none" role="alert" id="alert-danger">
-                                        Заполнены не все поля!
+                                </div>
+                                <div class="col-12 pt-3 pb-3 pl-5 pr-5 collapse" id="info-inf-blk">
+                                    <div class="w-100 pl-5 pr-5 pb-3">
+                                        <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                            Ваш профиль - это ваша визитная карточка. Опишите свои умения, навыки и
+                                            таланты.
+                                        </label>
+                                        <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                            Например:
+                                        </label>
+                                        <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                            - основные услуги, которые вы можете предоставлять;
+                                        </label>
+                                        <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                            - наличие профессионального инструмента;
+                                        </label>
+                                        <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                            - программа, языки и тд, с которыми вы работаете;
+                                        </label>
+                                        <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                            - наличие автомобиля, фиплома и тд, указывайте как можно больше
+                                            специфической информации по вашей специальности;
+                                        </label>
+                                        <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                            - укажите свои сильные качества, которые могут помочь в работе;
+                                        </label>
+                                        <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                            - укажите свои хобби - это разнообразит вашу анкету.
+                                        </label>
+                                        <div class="alert alert-danger w-100" style="display: none" role="alert"
+                                             id="alert-danger">
+                                            Заполнены не все поля!
+                                        </div>
+                                        <div class="alert alert-danger w-100" style="display: none" role="alert"
+                                             id="alert-danger_date">
+                                            Не верная дата!
+                                        </div>
                                     </div>
-                                    <div class="alert alert-danger w-100" style="display: none" role="alert" id="alert-danger_date">
-                                        Не верная дата!
+                                    <div class="w-100 pl-5 pr-5">
+                                        <button type="button" id="save_info_btn">Сохранить изменения</button>
+                                        <button type="button" id="cancel_info_btn">Отменить</button>
                                     </div>
                                 </div>
-                                <div class="w-100 pl-5 pr-5">
-                                    <button type="button" id="save_info_btn">Сохранить изменения</button>
-                                    <button type="button" id="cancel_info_btn">Отменить</button>
-                                </div>
-                            </div>
-                            <div class="col-12 p-3 item-inf_blk cat-inf_blk" data-toggle="tooltip" data-placement="left"
-                                 title="Категории в которых Вы будете работать и брать задания.">
-                                <div class="row">
-                                    <div class="col-1 px-0 px-lg-3">
-                                        <img src="{% static 'image/work.png' %}" class="item-icon" alt="phone-icon">
-                                    </div>
-                                    <div class="col-10">
-                                        <h5 class="mb-3">Категории работ</h5>
-                                        {% for cat in subcategory %}
-                                        <span class="badge">{{cat.subcategories.name}}</span>
-                                        {% endfor %}
-                                    </div>
-                                    <div class="col-1 px-0 px-lg-3 edit-icon_blk"  >
-                                        <a href="{% url 'Choose_categ' %}">
-                                            <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">
-                                        </a>
+                                <div class="col-12 p-3 item-inf_blk cat-inf_blk" data-toggle="tooltip"
+                                     data-placement="left"
+                                     title="Категории в которых Вы будете работать и брать задания.">
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3">
+                                            <img src="{% static 'image/work.png' %}" class="item-icon" alt="phone-icon">
+                                        </div>
+                                        <div class="col-10">
+                                            <h5 class="mb-3">Категории работ</h5>
+                                            {% for cat in subcategory %}
+                                            <span class="badge">{{cat.subcategories.name}}</span>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                            <a href="{% url 'Choose_categ' %}">
+                                                <img src="{% static 'image/pen.png' %}" class="edit-icon"
+                                                     alt="edit-icon">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 p-3 item-inf_blk ad-inf_blk" data-toggle="tooltip" data-placement="left"
-                                 title="Добавление объявлений по каждой категории. Для добавления объявлений, кликните на соответсвующую категорию.">
-                                <div class="row">
-                                    <div class="col-1 px-0 px-lg-3">
-                                        <img src="{% static 'image/flier.png' %}" class="item-icon" alt="phone-icon">
-                                    </div>
-                                    <div class="col-6" >
-                                        <h5 class="mb-3">Мои объявления</h5>
+                                <div class="col-12 p-3 item-inf_blk ad-inf_blk" data-toggle="tooltip"
+                                     data-placement="left"
+                                     title="Добавление объявлений по каждой категории. Для добавления объявлений, кликните на соответсвующую категорию.">
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3">
+                                            <img src="{% static 'image/flier.png' %}" class="item-icon"
+                                                 alt="phone-icon">
+                                        </div>
+                                        <div class="col-6">
+                                            <h5 class="mb-3">Мои объявления</h5>
 
+                                        </div>
+                                        <!--                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
+                                        <!--                                                <a href="#">-->
+                                        <!--                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">-->
+                                        <!--                                                </a>-->
+                                        <!--                                                                                </div>                                           -->
+                                        <div class="col-5 px-0 px-lg-3 a-right">
+                                            <a href="{% url 'All_ads' %}" class="fontCategorySmall colorDarkGrey2 mb-0"
+                                               data-toggle="tooltip" data-placement="top"
+                                               title="Перейти на страницу 'Мои объявления'">
+                                                Просмотреть все мои объявления
+                                            </a>
+                                        </div>
                                     </div>
-                                    <!--                                            <div class="col-1 px-0 px-lg-3 edit-icon_blk">-->
-                                    <!--                                                <a href="#">-->
-                                    <!--                                                    <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">-->
-                                    <!--                                                </a>-->
-<!--                                                                                </div>                                           -->
-                                <div class="col-5 px-0 px-lg-3 a-right">
-                                                                                    <a href="{% url 'All_ads' %}" class="fontCategorySmall colorDarkGrey2 mb-0"
-                                                                                    data-toggle="tooltip" data-placement="top" title="Перейти на страницу 'Мои объявления'">
-                                                                                        Просмотреть все мои объявления
-                                                                                    </a>
-                                                                                </div>
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3">
+
+                                        </div>
+                                        <div class="col-11">
+                                            {% for cat in subcategory %}
+
+                                            <a href="{% url 'Advert_add' cat.subcategories.name %}"><span
+                                                    class="badge badge-secondary">{{cat.subcategories.name}} - {{cat.count}}</span></a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-1 px-0 px-lg-3">
-
-                                    </div>
-                                    <div class="col-11" >
-                                        {% for cat in subcategory %}
-
-                                        <a href="{% url 'Advert_add' cat.subcategories.name %}"><span class="badge badge-secondary">{{cat.subcategories.name}} - {{cat.count}}</span></a>
-                                        {% endfor %}
+                                <div class="col-12 p-3 item-inf_blk city-inf_blk">
+                                    <div class="row">
+                                        <div class="col-1 px-0 px-lg-3">
+                                            <img src="{% static 'image/map.png' %}" class="item-icon" alt="phone-icon">
+                                        </div>
+                                        <div class="col-10">
+                                            <h5 class="mb-3">Города для работы</h5>
+                                            {% for city in cities %}
+                                            <span class="badge badge-secondary">{{city.city.name}}</span>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-1 px-0 px-lg-3 edit-icon_blk">
+                                            <a href="{% url 'Choose_city' %}">
+                                                <img src="{% static 'image/pen.png' %}" class="edit-icon"
+                                                     alt="edit-icon">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 p-3 item-inf_blk city-inf_blk">
-                                <div class="row">
-                                    <div class="col-1 px-0 px-lg-3">
-                                        <img src="{% static 'image/map.png' %}" class="item-icon" alt="phone-icon">
-                                    </div>
-                                    <div class="col-10">
-                                        <h5 class="mb-3">Города для работы</h5>
-                                        {% for city in cities %}
-                                        <span class="badge badge-secondary">{{city.city.name}}</span>
-                                        {% endfor %}
-                                    </div>
-                                    <div class="col-1 px-0 px-lg-3 edit-icon_blk">
-                                        <a href="{% url 'Choose_city' %}">
-                                            <img src="{% static 'image/pen.png' %}" class="edit-icon" alt="edit-icon">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                             <button type="submit" id="save_profile" class="d-none">Сохранить</button>
                         </form>
                     </div>
@@ -341,20 +372,22 @@
                          aria-labelledby="nav-portfolio-tab">
                         <div class="row d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
                             <div class="col-12 p-0">
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                        Фото играют важную роль и визуализируют качество работы.
-                                    </label>
-                                    <label class="mb-0 w-100" style="word-wrap: break-spaces">
-                                           Качественные изображения больше привлекают потенциальных заказчиков!
-                                    </label>
+                                <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                    Фото играют важную роль и визуализируют качество работы.
+                                </label>
+                                <label class="mb-0 w-100" style="word-wrap: break-spaces">
+                                    Качественные изображения больше привлекают потенциальных заказчиков!
+                                </label>
                             </div>
                             <div class="ml-0 bd-highlight">
                                 {% if portfolio|length < 10 %}
-                                <form class="w-100" action="{% url 'Portfolio_add' %}" method="post" enctype="multipart/form-data">
+                                <form class="w-100" action="{% url 'Portfolio_add' %}" method="post"
+                                      enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <!--                                            <input type="file" name="files" multiple/>-->
                                     <div class="upload-file">
-                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files" id="files" accept=".jpg,.jpeg,.png,.bmp,.ico" multiple>
+                                        <input type="file" class="mb-1 form-control prof-file d-none" name="files"
+                                               id="files" accept=".jpg,.jpeg,.png,.bmp,.ico" multiple>
                                         <label for="files" class="btn btn-tertiary js-labelFile">
                                             <i class="fas fa-upload"></i>
                                             <span class="js-fileName">Загрузить файлы</span>
@@ -366,37 +399,39 @@
                                     </button>
                                 </form>
                                 {% else %}
-                                <label class="mb-0 w-100">Вы можете загрузить до 10 фото. Для добавления большего количества фото подключите
+                                <label class="mb-0 w-100">Вы можете загрузить до 10 фото. Для добавления большего
+                                    количества фото подключите
                                     <a href="#">услугу</a>!</label>
                                 {% endif %}
                             </div>
-                             <div class="col-1 ml-auto px-lg-3 a-right">
-                                <img src="/static/image/pen.png" class="edit-icon" id="portfolio_edit" alt="edit-icon" data-toggle="tooltip" data-placement="left"
+                            <div class="col-1 ml-auto px-lg-3 a-right">
+                                <img src="/static/image/pen.png" class="edit-icon" id="portfolio_edit" alt="edit-icon"
+                                     data-toggle="tooltip" data-placement="left"
                                      title="Удалить фото из портфолио">
                             </div>
                         </div>
                         <div class="row portfolio-photos_blk" id="gallery">
                             {% for p in portfolio %}
-                                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 img_wrapper  d-inline-block p-2">
-                                     <div class="photo">
-                                         <a href="{{MEDIA_URL}}{{p.photo.url}}" data-lightbox="roadtrip">
-                                             <img class="w-100" src="{{MEDIA_URL}}{{p.photo.url}}" alt="Eagle" />
-                                         </a>
-                                     </div>
-                                     <a href="#!">
-                                         <input type="hidden" value="{{p.id}}" name="delete_id">
-                                         <i class="far fa-trash-alt trash_portfolio d-none" data-toggle="tooltip" data-placement="bottom"
-                                     title="Удалить это фото"></i>
-                                     </a>
-
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 img_wrapper  d-inline-block p-2">
+                                <div class="photo">
+                                    <a href="{{MEDIA_URL}}{{p.photo.url}}" data-lightbox="roadtrip">
+                                        <img class="w-100" src="{{MEDIA_URL}}{{p.photo.url}}" alt="Eagle"/>
+                                    </a>
                                 </div>
+                                <a href="#!">
+                                    <input type="hidden" value="{{p.id}}" name="delete_id">
+                                    <i class="far fa-trash-alt trash_portfolio d-none" data-toggle="tooltip"
+                                       data-placement="bottom"
+                                       title="Удалить это фото"></i>
+                                </a>
+
+                            </div>
                             {% endfor %}
 
-<!--                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">-->
-<!--                                <img src="{{MEDIA_URL}}{{p.photo.url}}"-->
-<!--                                     class="img-fluid center-block" alt="...">-->
-<!--                            </div>-->
-
+                            <!--                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 img_wrapper">-->
+                            <!--                                <img src="{{MEDIA_URL}}{{p.photo.url}}"-->
+                            <!--                                     class="img-fluid center-block" alt="...">-->
+                            <!--                            </div>-->
 
 
                         </div>
@@ -407,19 +442,77 @@
                     </div>
 
 
+                    <div class="tab-pane fade" id="nav-balance" role="tabpanel"
+                         aria-labelledby="nav-balance-tab">
+                        <div class="row d-flex flex-column flex-sm-row flex-md-row bd-highlight mb-3">
+                            <div class="col-12 p-0">
+                                <div class="row justify-content-center notices_blk my-5">
+<!--                                    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">-->
+<!--                                        <div class="row m-0 justify-content-center">-->
+                                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
+                                                <label class="m-0 sum-desc w-100">Основной баланс</label>
+                                                <label class="m-0 sum-title w-100">{{ user.balance }}</label>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
+                                                <label class="m-0 sum-desc w-100">Бонусный баланс</label>
+                                                <label class="m-0 sum-title w-100">{{ user.bonus_balance }}</label>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 p-3">
+                                                <label class="m-0 sum-desc w-100">Замороженный баланс</label>
+                                                <label class="m-0 sum-title w-100">{{ user.frozen_balance }}</label>
+                                            </div>
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                                <div class="row justify-content-center notices_blk my-5">
+<!--                                    <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">-->
+<!--                                        <div class="row m-0 justify-content-start">-->
+                                            {% for b in balance_list %}
+                                            <div class="col-12 p-0">
+                                                <div class="row">
+                                                    <div class="col-3 col-sm-1 col-md-2 col-lg-2 col-xl-2 p-2">
+                                                        <div class="row justify-content-md-between align-items-center mb-2">
+                                                            <h3 class="category-card_label m-0"><b>{{ b.sum }}</b></h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-9 col-sm-11 col-md-7 col-lg-10 col-xl-10 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2">
+                                                        <div class="row justify-content-md-between align-items-center mb-2">
+                                                            <h3 class="category-card_label m-0">{{ b.decription }}</h3>
+                                                        </div>
+                                                        <div class="row justify-content-start align-items-center">
+                                                            <span>{{ b.date }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% if not forloop.last %}
+                                            <hr class="line_blk m-0 my-4">
+                                            {% endif %}
+                                            {% endfor %}
+
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="tab-pane fade" id="nav-notice" role="tabpanel" aria-labelledby="nav-notice-tab">
                         <div class="custom-control custom-checkbox my-2 mr-sm-2 pt-2">
                             <input type="checkbox" class="custom-control-input" id="email-notice_input">
                             <label class="custom-control-label pl-1 pl-sm-3" for="email-notice_input"
                                    data-toggle="tooltip" data-placement="bottom"
-                                   title="Уведомления об изменении статусов Ваших заданий будут приходить на зарегистрированный e-mail">Email уведомления об изменениях статусов
+                                   title="Уведомления об изменении статусов Ваших заданий будут приходить на зарегистрированный e-mail">Email
+                                уведомления об изменениях статусов
                                 заказов</label>
                         </div>
                         <div class="custom-control custom-checkbox my-2 mr-sm-2">
                             <input type="checkbox" class="custom-control-input" id="email-dispatch_input">
                             <label class="custom-control-label pl-1 pl-sm-3" for="email-dispatch_input"
                                    data-toggle="tooltip" data-placement="bottom"
-                                   title="Уведомлениях о новых заданиях в Ваших категориях будут приходить на зарегистрированный e-mail">Email рассылка новых заданий</label>
+                                   title="Уведомлениях о новых заданиях в Ваших категориях будут приходить на зарегистрированный e-mail">Email
+                                рассылка новых заданий</label>
                         </div>
 
                         <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
@@ -436,49 +529,52 @@
 
                     <div class="tab-pane fade" id="nav-password" role="tabpanel"
                          aria-labelledby="nav-password-tab">
-                        {#                          <form action="" class="change-password">#}
-                        <div class="form-group row">
-                            <label for="input_Password" class="col-sm-3 col-form-label px-0">Текущий
-                                пароль</label>
-                            <div class="col-sm-10 col-md-5 px-0 pl-md-3 pl-lg-0">
-                                <input type="password" class="form-control passwords" id="input_Password"
-                                       placeholder="Текущий пароль">
+                        {#
+                        <form action="" class="change-password">#}
+                            <div class="form-group row">
+                                <label for="input_Password" class="col-sm-3 col-form-label px-0">Текущий
+                                    пароль</label>
+                                <div class="col-sm-10 col-md-5 px-0 pl-md-3 pl-lg-0">
+                                    <input type="password" class="form-control passwords" id="input_Password"
+                                           placeholder="Текущий пароль">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="input-new_Password" class="col-sm-3 col-form-label px-0">Новый
-                                пароль</label>
-                            <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
-                                <input type="password" class="form-control passwords" id="input-new_Password"
-                                       placeholder="Новый пароль">
+                            <div class="form-group row">
+                                <label for="input-new_Password" class="col-sm-3 col-form-label px-0">Новый
+                                    пароль</label>
+                                <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
+                                    <input type="password" class="form-control passwords" id="input-new_Password"
+                                           placeholder="Новый пароль">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="input-repeat_Password" class="col-sm-3 col-form-label px-0">Повторите
-                                новый пароль</label>
-                            <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
-                                <input type="password" class="form-control passwords" id="input-repeat_Password"
-                                       placeholder="Повторите новый пароль">
+                            <div class="form-group row">
+                                <label for="input-repeat_Password" class="col-sm-3 col-form-label px-0">Повторите
+                                    новый пароль</label>
+                                <div class="col-sm-10 col-md-5 px-0  pl-md-3 pl-lg-0">
+                                    <input type="password" class="form-control passwords" id="input-repeat_Password"
+                                           placeholder="Повторите новый пароль">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
-                                 style="display: none" id="alert-danger_pass">
+                            <div class="form-group row">
+                                <div class="alert alert-danger col-sm-10 col-md-8" role="alert"
+                                     style="display: none" id="alert-danger_pass">
 
-                            </div>
+                                </div>
 
-                            <div class="col-sm-11 col-md-12 col-lg-11 px-0">
-                                <button type="submit" id="btn_profile_change_pass"
-                                        class="btn btn-primary px-5"data-toggle="tooltip" data-placement="right"
-                                   title="Пароль будет изменен">Сохранить
-                                </button>
-                            </div>
-                            <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
-                                 style="display: none" id="alert-success_pass">
+                                <div class="col-sm-11 col-md-12 col-lg-11 px-0">
+                                    <button type="submit" id="btn_profile_change_pass"
+                                            class="btn btn-primary px-5" data-toggle="tooltip" data-placement="right"
+                                            title="Пароль будет изменен">Сохранить
+                                    </button>
+                                </div>
+                                <div class="alert alert-success col-sm-10 col-md-8 mt-2" role="alert"
+                                     style="display: none" id="alert-success_pass">
 
+                                </div>
                             </div>
-                        </div>
-                        {#                            </form>#}
+                            {#
+                        </form>
+                        #}
                     </div>
                 </div>
             </div>
@@ -488,34 +584,36 @@
     </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Подтвержение удаления</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <label>Вы действительно хотите удалить выбранные изображения?</label>
-          <form class="" action="{% url 'Delete_portfolio' %}" method="post" enctype="multipart/form-data" id="delete_portfolio_icon">
-                            {% csrf_token %}
-<!--              <input type="hidden" name="delete_id" id="delete_id">-->
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                <button type="submit" class="btn btn-primary">Удалить</button>
-          </form>
-      </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Подтвержение удаления</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Вы действительно хотите удалить выбранные изображения?</label>
+                <form class="" action="{% url 'Delete_portfolio' %}" method="post" enctype="multipart/form-data"
+                      id="delete_portfolio_icon">
+                    {% csrf_token %}
+                    <!--              <input type="hidden" name="delete_id" id="delete_id">-->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Удалить</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <input type="hidden" id="view-message" value="{{alert}}">
 <div class="col-12" id="alerts-block">
-<!--                    <div class="row justify-content-center">-->
-<!--                        <div class="alert alert-danger error-city" role="alert" id="alert-success">-->
-<!--                            Успешно.-->
-<!--                        </div>-->
-<!--                    </div>-->
+    <!--                    <div class="row justify-content-center">-->
+    <!--                        <div class="alert alert-danger error-city" role="alert" id="alert-success">-->
+    <!--                            Успешно.-->
+    <!--                        </div>-->
+    <!--                    </div>-->
 </div>
 
 {% endblock %}

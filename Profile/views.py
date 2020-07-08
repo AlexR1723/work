@@ -101,6 +101,7 @@ def Profile_settings(request):
         com_percent=0
         if all_task > 0:
             com_percent = int((successful_task * 100) / all_task)
+        balance_list = UserBalance.objects.filter(user=user.auth_user).order_by('-date')
         return render(request, 'Profile/Profile_settings.html', locals())
     else:
         return HttpResponseRedirect("/login")

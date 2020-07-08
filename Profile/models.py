@@ -414,3 +414,17 @@ class UserBonuses(models.Model):
     class Meta:
         managed = False
         db_table = 'user_bonuses'
+
+
+
+
+class UserBalance(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+    sum = models.IntegerField(blank=True, null=True)
+    decription = models.TextField(blank=True, null=True)
+    balance_type = models.TextField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_balance'
