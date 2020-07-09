@@ -58,6 +58,8 @@ def send_notice(request, text, is_executor, user_id=False):
 
 def Profile_tasks(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     print('start')
     if username=='':
         return HttpResponseRedirect("/login")
@@ -142,6 +144,8 @@ def Profile_tasks(request):
 
 def Profile_task_page(request,page):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -254,6 +258,8 @@ def Profile_task_page(request,page):
 
 def Profile_task_filter(request,filter):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username=='':
         return HttpResponseRedirect("/login")
     else:
@@ -302,6 +308,8 @@ def Profile_task_filter(request,filter):
 
 def Profile_task_filter_page(request,filter,page):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -362,6 +370,8 @@ def Profile_task_filter_page(request,filter,page):
 
 def Create_task(request,text):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if (username != ''):
         email = request.session.get('username', 'no')
         if(Users.objects.all().filter(auth_user__email=email)[0].type.name=='Заказчик'):
@@ -379,6 +389,8 @@ def Create_task(request,text):
 def Offer_create(request, id_advert):
     print('offer')
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if (username != ''):
         email = request.session.get('username', 'no')
         if (Users.objects.all().filter(auth_user__email=email)[0].type.name == 'Заказчик'):
@@ -701,6 +713,8 @@ def Save_offer(request):
 
 def Profile_task_detail(request,id):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     id=int(id)
     if username == '':
         return HttpResponseRedirect("/login")
@@ -806,6 +820,8 @@ def Set_exec(request):
 
 def Executor_my_tasks_filter_cat(request,filter_cat):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -851,6 +867,8 @@ def Executor_my_tasks_filter_cat(request,filter_cat):
 
 def Executor_my_tasks_filter_cat_page(request,filter_cat,page):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -911,6 +929,8 @@ def Executor_my_tasks_filter_cat_page(request,filter_cat,page):
 
 def Executor_my_tasks_filter_stat(request,filter_stat):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -957,6 +977,8 @@ def Executor_my_tasks_filter_stat(request,filter_stat):
 
 def Executor_my_tasks_filter_stat_page(request,filter_stat,page):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -1016,6 +1038,8 @@ def Executor_my_tasks_filter_stat_page(request,filter_stat,page):
 
 def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -1061,6 +1085,8 @@ def Executor_my_tasks_filter_cat_stat(request,filter_cat,filter_stat):
 
 def Executor_my_tasks_filter_cat_stat_page(request,filter_cat,filter_stat,page):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -1246,6 +1272,8 @@ def In_work_task(request):
 
 def Exec_comment(request, task_id, exec_id):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     task_id=int(task_id)
     exec_id=int(exec_id)
     return render(request, 'Profile/Exec_comment.html', locals())

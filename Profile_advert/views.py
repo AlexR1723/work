@@ -147,6 +147,8 @@ def Advert_save(request):
 
 def All_ads(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if (username != ''):
         email = request.session.get('username', 'no')
         auth = AuthUser.objects.all().filter(email=email)[0]
@@ -180,6 +182,8 @@ def All_ads(request):
 
 def All_ads_page(request,page):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if (username != ''):
         filter = 0
         email = request.session.get('username', 'no')
@@ -229,6 +233,8 @@ def All_ads_page(request,page):
 
 def Advert_filter(request, filter):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     filter = str(filter)
     if (username != ''):
         email = request.session.get('username', 'no')
@@ -262,6 +268,8 @@ def Advert_filter(request, filter):
 
 def Advert_filter_page(request, filter, page):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     filter = str(filter)
     if (username != ''):
         filter = 0
@@ -312,6 +320,8 @@ def Advert_detail(request,id):
     layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
+    contact = layout_contact()
+    link = layout_link()
 
     user = request.session.get('username', 0)
     if user == 0:
@@ -333,6 +343,8 @@ def Advert_detail(request,id):
 
 def Adverts_change(request,id):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     contact = layout_contact()
     link = layout_link()
 

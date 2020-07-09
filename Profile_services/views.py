@@ -67,6 +67,8 @@ def send_notice(request, text, is_executor, user_id=False):
 
 def Service(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -81,6 +83,8 @@ def Service(request):
 
 def Service_detail(request, id):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     id = int(id)
     if username == '':
         return HttpResponseRedirect("/login")
@@ -92,6 +96,8 @@ def Service_detail(request, id):
 
 def Service_task_add(request, id):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     id = int(id)
     if username == '':
         return HttpResponseRedirect("/login")
@@ -161,6 +167,8 @@ def Add_service_in_task(request):
 
 def Service_advert_add(request, id):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     id = int(id)
     if username == '':
         return HttpResponseRedirect("/login")

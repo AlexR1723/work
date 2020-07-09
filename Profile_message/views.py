@@ -96,6 +96,8 @@ def send_notice(request, text, is_executor):
 @login_required()
 def Personal_messages(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
 
     user_id = get_user_id(request)
     if user_id:
@@ -190,6 +192,8 @@ def check_messages(request):
 @login_required()
 def Chat(request, chat_id):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     chat_id = int(chat_id)
 
     user_id = get_user_id(request)

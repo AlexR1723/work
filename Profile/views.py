@@ -73,6 +73,8 @@ def send_notice(request, text, is_executor, user_id=False):
 # Create your views here.
 def Profile_settings(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if (username != ''):
         email = request.session.get('username', 'no')
         user = Users.objects.all().filter(auth_user__email=email)[0]
@@ -197,6 +199,8 @@ def Save_photo(request):
 
 def Choose_city(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
 
     regions = Region.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -229,6 +233,8 @@ def Choose_city(request):
 def Advert_add(request, name):
     print('advert')
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if (username != ''):
         subcategory = SubCategory.objects.all().filter(name=name)[0]
         return render(request, 'Profile/Adverts_add.html', locals())
@@ -238,6 +244,8 @@ def Advert_add(request, name):
 
 def Choose_categ(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
 
     category = Category.objects.all().order_by('name')
     user = request.session.get('username', 0)
@@ -459,6 +467,8 @@ def Customer(request):
 
 def Fav_executor(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     return render(request, 'Profile/Fav_executor.html', locals())
 
 
@@ -466,6 +476,8 @@ def Profile_page(request,id):
     id=int(id)
     layout, username, photo, balance, bonus = layout_name(request)
     user = request.session.get('username', 'no')
+    contact = layout_contact()
+    link = layout_link()
     if (user != 'no'):
         auth_user = AuthUser.objects.get(id=id)
         user = Users.objects.get(auth_user=auth_user)
@@ -520,6 +532,8 @@ def Profile_adverts(request,id):
     id = int(id)
     layout, username, photo, balance, bonus = layout_name(request)
     user = request.session.get('username', 'no')
+    contact = layout_contact()
+    link = layout_link()
     if (user != 'no'):
         auth_user = AuthUser.objects.get(id=id)
         user = Users.objects.get(auth_user=auth_user)
@@ -551,6 +565,8 @@ def Profile_adverts(request,id):
 @login_required()
 def Awards_fun(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
 
     user = request.session.get('username')
     if user:
@@ -564,6 +580,8 @@ def Awards_fun(request):
 @login_required()
 def Number_verification(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
 
     user = request.session.get('username')
     if user:
@@ -616,6 +634,8 @@ def verify_number(request):
 @login_required()
 def Passport_verification(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
 
     return render(request, 'Profile/Passport_verification.html', locals())
 
@@ -697,6 +717,8 @@ def verify_passport(request):
 def Buy_pro(request):
     layout, username, photo, balance, bonus = layout_name(request)
     user = request.session.get('username', 0)
+    contact = layout_contact()
+    link = layout_link()
     if user == 0:
         return HttpResponseRedirect("/login")
     else:

@@ -49,6 +49,8 @@ def get_user_id(request):
 
 def Notice(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     # print(username)
     user_id = get_user_id(request)
     if user_id:

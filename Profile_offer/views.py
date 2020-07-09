@@ -38,6 +38,8 @@ def layout_name(request):
 
 def Offer(request):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     if username == '':
         return HttpResponseRedirect("/login")
     else:
@@ -109,6 +111,8 @@ def cancel_offer(request):
 
 def Offer_detail(request,id):
     layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
     id=int(id)
     if username == '':
         return HttpResponseRedirect("/login")
