@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
 from distutils.util import strtobool
 import datetime
+from django.db.models import Q
 
 
 list_page = []
@@ -786,8 +787,19 @@ def Set_exec(request):
         task.price=bet.price
         print(task)
         task.save()
-        message=PersonalMessage(from_user=auth, to_user=user, text=mess, date=datetime.datetime.now(), is_show=False, to_type_is_exec=True, from_type_is_exec=True)
+
+        chat=UserChat.objects.filter(from_user=auth).filter(to_user=user)|UserChat.objects.filter(from_user=user).filter(to_user=auth)
+        if chat.count() == 0:
+            chat=UserChat(from_user=auth, to_user=user)
+            chat.save()
+        else:
+            chat=chat[0]
+        print(chat)
+        message=ChatMessage(chat=chat,user=auth,text=mess, date=datetime.datetime.now(), is_show=False)
         message.save()
+
+        # message=PersonalMessage(from_user=auth, to_user=user, text=mess, date=datetime.datetime.now(), is_show=False, to_type_is_exec=True, from_type_is_exec=True)
+        # message.save()
         # return HttpResponse(json.dumps({'data': 'ok'}))
         return HttpResponseRedirect("/profile/task/detail/" + str(id))
 

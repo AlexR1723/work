@@ -18,7 +18,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.Personal_messages, name="Personal_messages"),
-    url(r'^chat/(?P<with_user>[0-9]+)/$', views.Chat, name="Chat"),
+    url(r'^chat/(?P<chat_id>[0-9]+)/$', views.Chat, name="Chat"),
     # url(r'^personal_messages/$', views.Personal_messages, name="Personal_messages"),
 
     url(r'check_messages', views.check_messages, name='check_messages'),

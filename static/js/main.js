@@ -730,6 +730,7 @@ function check_messages() {
 $("#send_message").click(function (event) {
     let message = document.getElementById('message').value
     let user = document.getElementById('to_user').value
+    let chat = document.getElementById('chat_id').value
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -737,7 +738,8 @@ $("#send_message").click(function (event) {
         url: 'send_message',
         data: {
             message: message,
-            user: user
+            user: user,
+            chat:chat
         },
         success: function (data) {
             // alert(data)

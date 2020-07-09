@@ -29,6 +29,7 @@
                                 <div class="col p-0">
                                     <input type="hidden" id="from_user" value="{{ user_id }}">
                                     <input type="hidden" id="to_user" value="{{ with_user.id }}">
+                                    <input type="hidden" id="chat_id" value="{{ chat_id }}">
                                     <button id="send_message" class="send_message w-100 h-100">Отправить</button>
                                 </div>
                             </div>
@@ -42,9 +43,9 @@
                 <div class="row mb-3 mt-3 chat_blk" id="chat">
 
 
-                    {% for i in user_mess %}
+                    {% for i in messages %}
 
-                        {% if i.from_user_id == with_user.id %}
+                        {% if i.user_id == with_user.id %}
                             <div class="col-12 p-0 user-message">
                                 <div class="row justify-content-start">
                                     <div class="message-card px-4 py-3 mb-3">

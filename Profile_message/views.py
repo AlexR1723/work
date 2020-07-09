@@ -99,86 +99,84 @@ def Personal_messages(request):
 
     user_id = get_user_id(request)
     if user_id:
-        type_id = Users.objects.get(auth_user_id=user_id).type_id
-        if type_id == 1:
-            # user_mess = PersonalMessage.objects.filter(to_user=user_id).filter(to_type_is_exec=False).order_by(
-            #     'from_user',
-            #     '-date').distinct(
-            #     'from_user')
-            # user_mess = PersonalMessage.objects.filter(to_user=user_id).filter(to_type_is_exec=False).distinct(
-            #     'from_user')
-            # user_mess1 = PersonalMessage.objects.filter(to_user=user_id).filter(from_type_is_exec=False).distinct(
-            #     'to_user')
-            # user_mess = user_mess.union(user_mess1)
-            # user_mess = user_mess.order_by('-date')
-            user_mess = PersonalMessage.objects.filter(to_type_is_exec=True)
-            user_mess1 = PersonalMessage.objects.filter(to_type_is_exec=True)
-        else:
-            user_mess = PersonalMessage.objects.filter(to_type_is_exec=False)
-            user_mess1 = PersonalMessage.objects.filter(to_type_is_exec=False)
-
-        print(user_mess)
-        user_mess = user_mess.filter(to_user=user_id).order_by('from_user', '-date')
-        us_mess_list = user_mess.values_list('from_user', flat=True)
-        # user_mess1 = user_mess1.filter(from_user=user_id).exclude(to_user__in=us_mess_list).order_by('to_user', '-date')
-        user_mess1 = user_mess1.filter(from_user=user_id).order_by('to_user', '-date')
-        print(user_mess)
-        # print(user_mess1)
-
-        user_mess = user_mess.distinct('from_user')
-        user_mess1 = user_mess1.distinct('to_user')
-        user_mess = user_mess.union(user_mess1).order_by('-date')
+        # type_id = Users.objects.get(auth_user_id=user_id).type_id
+        # if type_id == 1:
+        #     user_mess = PersonalMessage.objects.filter(to_type_is_exec=True)
+        #     user_mess1 = PersonalMessage.objects.filter(to_type_is_exec=True)
+        # else:
+        #     user_mess = PersonalMessage.objects.filter(to_type_is_exec=False)
+        #     user_mess1 = PersonalMessage.objects.filter(to_type_is_exec=False)
+        #
         # print(user_mess)
+        # user_mess = user_mess.filter(to_user=user_id).order_by('from_user', '-date')
+        # us_mess_list = user_mess.values_list('from_user', flat=True)
+        # # user_mess1 = user_mess1.filter(from_user=user_id).exclude(to_user__in=us_mess_list).order_by('to_user', '-date')
+        # user_mess1 = user_mess1.filter(from_user=user_id).order_by('to_user', '-date')
+        # print(user_mess)
+        # # print(user_mess1)
+        #
+        # user_mess = user_mess.distinct('from_user')
+        # user_mess1 = user_mess1.distinct('to_user')
+        # user_mess = user_mess.union(user_mess1).order_by('-date')
+        # # print(user_mess)
+        # today = datetime.datetime.today().date()
+        # year = datetime.datetime.now().year
+
+
+        user_chats=UserChat.objects.filter(from_user__id=user_id)|UserChat.objects.filter(to_user__id=user_id)
+        print(user_chats)
         today = datetime.datetime.today().date()
         year = datetime.datetime.now().year
+
+
 
     return render(request, 'Profile/Private_messages.html', locals())
 
 
 def check_messages(request):
     user_id = get_user_id(request)
-    lst = []
-    if request.GET.get('is_page') == 'true':
-        is_page = True
-    if request.GET.get('is_page') == 'false':
-        is_page = False
+    # lst = []
+    # if request.GET.get('is_page') == 'true':
+    #     is_page = True
+    # if request.GET.get('is_page') == 'false':
+    #     is_page = False
     if user_id:
         type_id = Users.objects.get(auth_user_id=user_id).type_id
-        try:
-            with_user = int(request.GET.get('to_user'))
-            me = int(request.GET.get('from_user'))
-        except:
-            with_user = False
-            me = False
-        mess = PersonalMessage.objects.filter(to_user=user_id).filter(is_show=False)
-        if type_id == 1:
-            mess = mess.filter(to_type_is_exec=False).select_related('from_user')
-        else:
-            mess = mess.filter(to_type_is_exec=True).select_related('from_user')
-        # all_count = mess.count()
-        all_count = mess.distinct('from_user').count()
-        us_mess = []
-        if is_page:
-            users_mess = mess.distinct('from_user').order_by('from_user', '-date')
-            for i in users_mess:
-                us_item = []
-                us_item.append(i.from_user.id)
-                us_item.append(i.text)
-                us_item.append(format_time(i.date))
-                us_item.append(mess.filter(from_user=i.from_user).count())
-                us_mess.append(us_item)
-
-        if with_user and me:
-            messages = PersonalMessage.objects.filter(Q(from_user=with_user) & Q(to_user=me) & Q(is_show=False))
-            messages1 = messages.values_list('date', 'text')
-            for i in messages1:
-                item = []
-                item.append(format_time(i[0]))
-                item.append(i[1])
-                lst.append(item)
-            for i in messages:
-                i.is_show = True
-                i.save()
+    #     try:
+    #         with_user = int(request.GET.get('to_user'))
+    #         me = int(request.GET.get('from_user'))
+    #     except:
+    #         with_user = False
+    #         me = False
+    #     mess = PersonalMessage.objects.filter(to_user=user_id).filter(is_show=False)
+    #     if type_id == 1:
+    #         mess = mess.filter(to_type_is_exec=False).select_related('from_user')
+    #     else:
+    #         mess = mess.filter(to_type_is_exec=True).select_related('from_user')
+    #     # all_count = mess.count()
+    #     all_count = mess.distinct('from_user').count()
+    #     us_mess = []
+    #     if is_page:
+    #         users_mess = mess.distinct('from_user').order_by('from_user', '-date')
+    #         for i in users_mess:
+    #             us_item = []
+    #             us_item.append(i.from_user.id)
+    #             us_item.append(i.text)
+    #             us_item.append(format_time(i.date))
+    #             us_item.append(mess.filter(from_user=i.from_user).count())
+    #             us_mess.append(us_item)
+    #
+    #     if with_user and me:
+    #         messages = PersonalMessage.objects.filter(Q(from_user=with_user) & Q(to_user=me) & Q(is_show=False))
+    #         messages1 = messages.values_list('date', 'text')
+    #         for i in messages1:
+    #             item = []
+    #             item.append(format_time(i[0]))
+    #             item.append(i[1])
+    #             lst.append(item)
+    #         for i in messages:
+    #             i.is_show = True
+    #             i.save()
 
         return HttpResponse(json.dumps([all_count, us_mess, lst]))
     else:
@@ -186,43 +184,53 @@ def check_messages(request):
 
 
 @login_required()
-def Chat(request, with_user):
+def Chat(request, chat_id):
     layout, username, photo, balance, bonus = layout_name(request)
-
-    try:
-        with_user = int(with_user)
-    except:
-        with_user = False
+    chat_id = int(chat_id)
 
     user_id = get_user_id(request)
-    if user_id and with_user:
-        type_id = Users.objects.get(auth_user_id=user_id).type_id
-        if type_id == 1:
-            user_mess = PersonalMessage.objects.filter(to_user=user_id).filter(from_user=with_user).filter(
-                to_type_is_exec=False)
-            user_mess1 = PersonalMessage.objects.filter(to_user=with_user).filter(from_user=user_id).filter(
-                from_type_is_exec=False)
-            user_mess = user_mess.union(user_mess1)
-            user_mess = user_mess.order_by('-date')
-            if user_mess.count() == 0:
-                return redirect('/profile/message/')
-        else:
-            user_mess = PersonalMessage.objects.filter(to_user=user_id).filter(from_user=with_user).filter(
-                to_type_is_exec=True)
-            user_mess1 = PersonalMessage.objects.filter(to_user=with_user).filter(from_user=user_id)
-            user_mess = user_mess.union(user_mess1)
-            user_mess = user_mess.order_by('-date')
-            if user_mess.count() == 0:
-                return redirect('/profile/message/')
-
-        with_user = AuthUser.objects.get(id=with_user)
+    if user_id:
+        user = AuthUser.objects.get(id=user_id)
+        chat=UserChat.objects.get(id=chat_id)
+        with_user=chat.from_user
+        if chat.from_user == user:
+            with_user=chat.to_user
+        messages=ChatMessage.objects.filter(chat__id=chat_id).order_by('-date')
+        user_mess=messages.exclude(user=user)
         year = datetime.datetime.now().year
         today=datetime.datetime.today().day
 
         for i in user_mess:
-            if i.is_show == False and i.to_user.id == user_id:
+            if i.is_show == False:
                 i.is_show = True
                 i.save()
+        # type_id = Users.objects.get(auth_user_id=user_id).type_id
+        # if type_id == 1:
+        #     user_mess = PersonalMessage.objects.filter(to_user=user_id).filter(from_user=with_user).filter(
+        #         to_type_is_exec=False)
+        #     user_mess1 = PersonalMessage.objects.filter(to_user=with_user).filter(from_user=user_id).filter(
+        #         from_type_is_exec=False)
+        #     user_mess = user_mess.union(user_mess1)
+        #     user_mess = user_mess.order_by('-date')
+        #     if user_mess.count() == 0:
+        #         return redirect('/profile/message/')
+        # else:
+        #     user_mess = PersonalMessage.objects.filter(to_user=user_id).filter(from_user=with_user).filter(
+        #         to_type_is_exec=True)
+        #     user_mess1 = PersonalMessage.objects.filter(to_user=with_user).filter(from_user=user_id)
+        #     user_mess = user_mess.union(user_mess1)
+        #     user_mess = user_mess.order_by('-date')
+        #     if user_mess.count() == 0:
+        #         return redirect('/profile/message/')
+        #
+        # with_user = AuthUser.objects.get(id=with_user)
+        # year = datetime.datetime.now().year
+        # today=datetime.datetime.today().day
+        #
+        # for i in user_mess:
+        #     if i.is_show == False and i.to_user.id == user_id:
+        #         i.is_show = True
+        #         i.save()
 
     return render(request, 'Profile/Chat.html', locals())
 
@@ -233,24 +241,27 @@ def send_message(request):
     if user_id:
         try:
             mess = str(request.GET.get('message'))
+            chat_id = str(request.GET.get('chat'))
             to_user = int(request.GET.get('user'))
         except:
             return HttpResponse(json.dumps(False))
-        type_id = Users.objects.get(auth_user_id=user_id).type_id
-        from_user = AuthUser.objects.get(id=user_id)
-        to_user = AuthUser.objects.get(id=to_user)
-        if type_id == 1:
-            send = PersonalMessage(from_user=from_user, to_user=to_user, text=mess, from_type_is_exec=True,
-                                   to_type_is_exec=True, is_show=False, date=datetime.datetime.now())
-            send.save()
-            # if send:
-            #     return HttpResponse(json.dumps([format_time(send.date), send.text]))
-            # else:
-            #     return HttpResponse(json.dumps(False))
-        else:
-            send = PersonalMessage(from_user=from_user, to_user=to_user, text=mess, from_type_is_exec=False,
-                                   to_type_is_exec=False, is_show=False, date=datetime.datetime.now())
-            send.save()
+        # type_id = Users.objects.get(auth_user_id=user_id).type_id
+        # from_user = AuthUser.objects.get(id=user_id)
+        # to_user = AuthUser.objects.get(id=to_user)
+        send=ChatMessage(chat_id=chat_id,user_id=user_id, text=mess, is_show=False, date=datetime.datetime.now())
+        send.save()
+        # if type_id == 1:
+        #     send = PersonalMessage(from_user=from_user, to_user=to_user, text=mess, from_type_is_exec=True,
+        #                            to_type_is_exec=True, is_show=False, date=datetime.datetime.now())
+        #     send.save()
+        #     # if send:
+        #     #     return HttpResponse(json.dumps([format_time(send.date), send.text]))
+        #     # else:
+        #     #     return HttpResponse(json.dumps(False))
+        # else:
+        #     send = PersonalMessage(from_user=from_user, to_user=to_user, text=mess, from_type_is_exec=False,
+        #                            to_type_is_exec=False, is_show=False, date=datetime.datetime.now())
+        #     send.save()
         if send:
             return HttpResponse(json.dumps([format_time(send.date), send.text]))
         else:

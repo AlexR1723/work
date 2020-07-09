@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+
 class Link(models.Model):
     link = models.CharField(max_length=100, blank=True, null=True, verbose_name="Ссылка")
     icon = models.CharField(max_length=100, blank=True, null=True, verbose_name="Иконка")
@@ -442,47 +443,47 @@ class UserComment(models.Model):
         db_table = 'user_comment'
 
 
-class PersonalMessage(models.Model):
-    from_user = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='from_user', blank=True, null=True,
-                                  related_name='from_user')
-    to_user = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='to_user', blank=True, null=True,
-                                related_name='to_user')
-    text = models.TextField(blank=True, null=True)
-    date = models.DateTimeField(blank=True, null=True)
-    is_show = models.BooleanField(blank=True, null=True)
-    to_type_is_exec = models.BooleanField(blank=True, null=True)
-    from_type_is_exec = models.BooleanField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'personal_message'
-
-    def get_photo(self):
-        id = self.from_user.id
-        user = Users.objects.get(id=id).photo
-        return user
-
-    def get_count_messages(self):
-        from_id = self.from_user.id
-        to_id = self.to_user.id
-        # user=Users.objects.get(id=from_id).photo
-        count = PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
-            to_type_is_exec=self.from_type_is_exec).filter(is_show=False).count()
-        return count
-
-    def get_last_message(self):
-        from_id = self.from_user.id
-        to_id = self.to_user.id
-        to_user=PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
-            to_type_is_exec=self.from_type_is_exec)
-        # print(to_user)
-        fr_user=PersonalMessage.objects.filter(to_user=from_id).filter(from_user=to_id).filter(
-            to_type_is_exec=self.from_type_is_exec)
-        # print(fr_user)
-        mess=to_user.union(fr_user)
-        # print(mess)
-        mydict={'id':mess.last().from_user.id,'text':mess.last().text}
-        return mydict
+# class PersonalMessage(models.Model):
+#     from_user = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='from_user', blank=True, null=True,
+#                                   related_name='from_user')
+#     to_user = models.ForeignKey('AuthUser', models.DO_NOTHING, db_column='to_user', blank=True, null=True,
+#                                 related_name='to_user')
+#     text = models.TextField(blank=True, null=True)
+#     date = models.DateTimeField(blank=True, null=True)
+#     is_show = models.BooleanField(blank=True, null=True)
+#     to_type_is_exec = models.BooleanField(blank=True, null=True)
+#     from_type_is_exec = models.BooleanField(blank=True, null=True)
+#
+#     class Meta:
+#         managed = False
+#         db_table = 'personal_message'
+#
+#     def get_photo(self):
+#         id = self.from_user.id
+#         user = Users.objects.get(id=id).photo
+#         return user
+#
+#     def get_count_messages(self):
+#         from_id = self.from_user.id
+#         to_id = self.to_user.id
+#         # user=Users.objects.get(id=from_id).photo
+#         count = PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
+#             to_type_is_exec=self.from_type_is_exec).filter(is_show=False).count()
+#         return count
+#
+#     def get_last_message(self):
+#         from_id = self.from_user.id
+#         to_id = self.to_user.id
+#         to_user=PersonalMessage.objects.filter(to_user=to_id).filter(from_user=from_id).filter(
+#             to_type_is_exec=self.from_type_is_exec)
+#         # print(to_user)
+#         fr_user=PersonalMessage.objects.filter(to_user=from_id).filter(from_user=to_id).filter(
+#             to_type_is_exec=self.from_type_is_exec)
+#         # print(fr_user)
+#         mess=to_user.union(fr_user)
+#         # print(mess)
+#         mydict={'id':mess.last().from_user.id,'text':mess.last().text}
+#         return mydict
 
 
 
@@ -542,3 +543,24 @@ class UserBalance(models.Model):
     class Meta:
         managed = False
         db_table = 'user_balance'
+
+
+class UserChat(models.Model):
+    from_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='from_user', blank=True, null=True,related_name='from_user')
+    to_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='to_user', blank=True, null=True,related_name='to_user')
+
+    class Meta:
+        managed = False
+        db_table = 'user_chat'
+
+
+class ChatMessage(models.Model):
+    chat = models.ForeignKey('UserChat', models.DO_NOTHING, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True, default=False)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'chat_message'

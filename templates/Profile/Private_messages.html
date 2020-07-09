@@ -7,20 +7,21 @@
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9">
             <div class="row mb-5 mt-3 user-message_blk">
 
-                {% if not user_mess %}
+                {% if user_chats|length == 0 %}
                 <h1 class="text-center w-100">У вас пока нет сообщений</h1>
-                {% endif %}
+                {% else %}
 
-                {% for i in user_mess %}
+                {% for i in user_chats %}
                 <div class="col-12 p-2 user-message_item {% if i.is_show %}user-message_read{% else %}user-message_unread{% endif %}"
-                     data-user="
-
-
-                                     {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                     data-user="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
                     <div class="row">
                         <div class="col-2 col-md-2 col-lg-1 p-0 p-md-3 p-lg-2 align-self-center">
                             <div class="row justify-content-between justify-content-md-start">
-                                <img alt="" class="img-fluid" src="{{ i.get_photo.url }}">
+                                {% if i.from_user.id == user_id %}
+                                <img alt="" class="img-fluid" src="{{ i.get_to_proto.url }}">
+                                {% else %}
+                                <img alt="" class="img-fluid" src="{{ i.get_from_proto.url }}">
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-10 col-md-10 col-lg-11 align-self-center">
@@ -28,93 +29,74 @@
                                 <div class="col-8 col-md-6 a-left p-0">
 
                                     {% if i.from_user.id == user_id %}
-                                    <a href="{% url 'Chat' i.to_user.id %}">
+                                    <a href="{% url 'Chat' i.id %}">
                                         <h1>{{ i.to_user.first_name }} {{ i.to_user.last_name }}</h1>
                                     </a>
                                     {% else %}
-                                    <a href="{% url 'Chat' i.from_user.id %}">
+                                    <a href="{% url 'Chat' i.id %}">
                                         <h1>{{ i.from_user.first_name }} {{ i.from_user.last_name }}</h1>
                                     </a>
                                     {% endif %}
 
                                 </div>
                                 <div class="col-4 col-md-6 p-0 px-md-3 a-right">
-                                    <div class="count_mess" data-user-count="
-
-
-                                                    {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                    <div class="count_mess"
+                                         data-user-count="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
                                         {% if i.get_count_messages != 0 %}{{ i.get_count_messages }}{% endif %}
                                     </div>
-                                    {% if i.is_show %}
-                                    <!--                                                {#                                                {% if i.date.date == today %}#}-->
-                                    <!--                                                {#                                                    <span>Сегодня в {{ i.date|date:'DATE_FORMAT_D' }}</span>#}-->
-                                    <!--                                                {#                                                {% else %}#}-->
-                                    {% if i.date.year == year %}
-                                    <span data-user-date="
-                                                            {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                                    {% if i.date.date == today %}
-                                                        Сегодня в {{ i.date|date:"TIME_FORMAT" }}
-                                                    {% else %}
-                                                        {{ i.date }}
-                                                    {% endif %}
-                                                    </span>
+                                    {% if i.get_last_message.is_show %}
+                                    {% if i.get_last_message.date.year == year %}
+                                    <span data-user-date="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                                                                        {% if i.get_last_message.date.date == today %}
+                                                                                            Сегодня в {{ i.get_last_message.date|date:"TIME_FORMAT" }}
+                                                                                        {% else %}
+                                                                                            {{ i.get_last_message.date }}
+                                                                                        {% endif %}
+                                                                                        </span>
                                     {% else %}
-                                    <span data-user-date="
-
-
-                                                            {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">{{ i.date|date:'LONG_DATETIME_FORMAT' }}</span>
+                                    <span data-user-date="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">{{ i.date|date:'LONG_DATETIME_FORMAT' }}</span>
                                     {% endif %}
-                                    <!--                                                {#                                                    <span>{{ i.date|date:'d E' }} в {{ i.date.time }}</span>#}-->
-                                    <!--                                                {#                                                {% endif %}#}-->
                                     {% else %}
-                                    {% if i.date.year == year %}
+                                    {% if i.get_last_message.date.year == year %}
                                     <b>
-                                                    <span data-user-date="
-                                                            {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                                        {% if i.date.date == today %}
-                                                            Сегодня в {{ i.date|date:"TIME_FORMAT" }}
-                                                        {% else %}
-                                                            {{ i.date }}
-                                                        {% endif %}
-                                                            </span>
+                                                                                        <span data-user-date="
+                                                                                                {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                                                                            {% if i.get_last_message.date.date == today %}
+                                                                                                Сегодня в {{ i.get_last_message.date|date:"TIME_FORMAT" }}
+                                                                                            {% else %}
+                                                                                                {{ i.get_last_message.date }}
+                                                                                            {% endif %}
+                                                                                                </span>
                                     </b>
                                     {% else %}
                                     <b>
-                                                    <span data-user-date="
-
-
-                                                            {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">{{ i.date|date:'LONG_DATETIME_FORMAT' }}</span>
+                                        <span data-user-date="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">{{ i.date|date:'LONG_DATETIME_FORMAT' }}</span>
                                     </b>
                                     {% endif %}
-                                    <!--                                                {#                                                {% if i.date.date == today %}#}-->
-                                    <!--                                                {#                                                    <span><b>Сегодня в {{ i.date.time }}</b></span>#}-->
-                                    <!--                                                {#                                                {% else %}#}-->
-                                    <!--                                                {#                                                    <span><b>{{ i.date|date:'d E' }} в {{ i.date.time }}</b></span>#}-->
-                                    <!--                                                {#                                                {% endif %}#}-->
                                     {% endif %}
                                 </div>
 
-                                {% if i.is_show %}
-                                {% if i.get_last_message.id == user_id %}
-                                <p class="message-text m-0 pt-1" data-user-text="
-
-
-                                                        {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                {% if i.get_last_message.is_show %}
+                                {% if i.get_last_message.user.id == user_id %}
+                                <p class="message-text m-0 pt-1"
+                                   data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
                                     Вы: {{ i.get_last_message.text }}</p>
                                 {% else %}
-                                <p class="message-text m-0 pt-1" data-user-text="
-
-
-                                                        {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                    {{ i.get_last_message.text }}</p>
+                                <p class="message-text m-0 pt-1"
+                                   data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                    {{i.get_last_message.user.auth_user.first_name}}{{ i.get_last_message.text }}</p>
                                 {% endif %}
-                                {% else %}<b>
-                                <p class="message-text m-0 pt-1" data-user-text="
-
-
-                                                    {% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                    {{ i.text }}</p>
-                            </b>
+                                {% else %}
+                                {% if i.get_last_message.user.id == user_id %}
+                                <b><p class="message-text m-0 pt-1"
+                                      data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                    Вы: {{ i.get_last_message.text }}</p></b>
+                                {% else %}
+                                <b><p class="message-text m-0 pt-1"
+                                      data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                    {{i.get_last_message.user.auth_user.first_name}}{{ i.get_last_message.text }}</p>
+                                </b>
+                                {% endif %}
                                 {% endif %}
                             </div>
                         </div>
@@ -124,6 +106,7 @@
                 <hr class="line_blk m-0">
                 {% endif %}
                 {% endfor %}
+                {% endif %}
 
             </div>
         </div>

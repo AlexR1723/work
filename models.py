@@ -153,6 +153,18 @@ class Category(models.Model):
         db_table = 'category'
 
 
+class ChatMessage(models.Model):
+    chat = models.ForeignKey('UserChat', models.DO_NOTHING, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    is_show = models.BooleanField(blank=True, null=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'chat_message'
+
+
 class City(models.Model):
     region = models.ForeignKey('Region', models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(max_length=50, blank=True, null=True)
@@ -498,6 +510,7 @@ class UserBalance(models.Model):
     sum = models.IntegerField(blank=True, null=True)
     decription = models.TextField(blank=True, null=True)
     balance_type = models.TextField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -511,6 +524,15 @@ class UserBonuses(models.Model):
     class Meta:
         managed = False
         db_table = 'user_bonuses'
+
+
+class UserChat(models.Model):
+    from_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='from_user', blank=True, null=True)
+    to_user = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='to_user', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_chat'
 
 
 class UserCities(models.Model):
