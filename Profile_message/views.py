@@ -135,13 +135,17 @@ def Personal_messages(request):
 
 def check_messages(request):
     user_id = get_user_id(request)
-    # lst = []
+    lst = []
+    us_mess=[]
     # if request.GET.get('is_page') == 'true':
     #     is_page = True
     # if request.GET.get('is_page') == 'false':
     #     is_page = False
     if user_id:
         type_id = Users.objects.get(auth_user_id=user_id).type_id
+        all_chats=ChatMessage.objects.filter(chat__from_user__id=user_id)|ChatMessage.objects.filter(chat__to_user__id=user_id)
+        all_count=all_chats.exclude(user_id=user_id).filter(is_show=False).count()
+        print(all_count)
     #     try:
     #         with_user = int(request.GET.get('to_user'))
     #         me = int(request.GET.get('from_user'))

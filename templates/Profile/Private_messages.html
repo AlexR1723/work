@@ -77,26 +77,26 @@
                                 </div>
 
                                 {% if i.get_last_message.is_show %}
-                                {% if i.get_last_message.user.id == user_id %}
-                                <p class="message-text m-0 pt-1"
-                                   data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                    Вы: {{ i.get_last_message.text }}</p>
+                                    {% if i.get_last_message.user.id == user_id %}
+                                    <p class="message-text m-0 pt-1"
+                                       data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                        Вы: {{ i.get_last_message.text }}</p>
+                                    {% else %}
+                                    <p class="message-text m-0 pt-1"
+                                       data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                        {{i.get_last_message.user.first_name}}: {{ i.get_last_message.text }}</p>
+                                    {% endif %}
                                 {% else %}
-                                <p class="message-text m-0 pt-1"
-                                   data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                    {{i.get_last_message.user.auth_user.first_name}}{{ i.get_last_message.text }}</p>
-                                {% endif %}
-                                {% else %}
-                                {% if i.get_last_message.user.id == user_id %}
-                                <b><p class="message-text m-0 pt-1"
-                                      data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                    Вы: {{ i.get_last_message.text }}</p></b>
-                                {% else %}
-                                <b><p class="message-text m-0 pt-1"
-                                      data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
-                                    {{i.get_last_message.user.auth_user.first_name}}{{ i.get_last_message.text }}</p>
-                                </b>
-                                {% endif %}
+                                    {% if i.get_last_message.user.id == user_id %}
+                                    <b><p class="message-text m-0 pt-1"
+                                          data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                        Вы: {{ i.get_last_message.text }}</p></b>
+                                    {% else %}
+                                    <b><p class="message-text m-0 pt-1"
+                                          data-user-text="{% if i.from_user.id == user_id %}{{ i.to_user.id }}{% else %}{{ i.from_user.id }}{% endif %}">
+                                        {{i.get_last_message.user.first_name}}: {{ i.get_last_message.text }}</p>
+                                    </b>
+                                    {% endif %}
                                 {% endif %}
                             </div>
                         </div>
