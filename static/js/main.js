@@ -739,7 +739,7 @@ $("#send_message").click(function (event) {
         data: {
             message: message,
             user: user,
-            chat:chat
+            chat: chat
         },
         success: function (data) {
             // alert(data)
@@ -1974,25 +1974,46 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $("#liDropdown").hover(() => {
-            if ($("#liDropdown").hasClass("show")) {
-                $("#liDropdown").removeClass("show")
-                $("#divDropdown-menu").removeClass("show")
-                document.getElementById("navbarDropdown").setAttribute("aria-expanded", "false")
+    // $("#liDropdown").hover(() => {
+    //         if ($("#liDropdown").hasClass("show")) {
+    //             $("#liDropdown").removeClass("show")
+    //             $("#divDropdown-menu").removeClass("show")
+    //             document.getElementById("navbarDropdown").setAttribute("aria-expanded", "false")
+    //
+    //         } else {
+    //             if ($("#liDropdown").hasClass("active")) {
+    //                 document.getElementById("liDropdown").setAttribute("class", "nav-item dropdown show active")
+    //             } else {
+    //                 document.getElementById("liDropdown").setAttribute("class", "nav-item dropdown show")
+    //             }
+    //             document.getElementById("navbarDropdown").setAttribute("aria-expanded", "true")
+    //             document.getElementById("divDropdown-menu").setAttribute("class", "dropdown-menu show")
+    //         }
+    //
+    //     }
+    // )
 
-            } else {
-                if ($("#liDropdown").hasClass("active")) {
-                    document.getElementById("liDropdown").setAttribute("class", "nav-item dropdown show active")
-                } else {
-                    document.getElementById("liDropdown").setAttribute("class", "nav-item dropdown show")
-                }
-                document.getElementById("navbarDropdown").setAttribute("aria-expanded", "true")
-                document.getElementById("divDropdown-menu").setAttribute("class", "dropdown-menu show")
-            }
+});
+function show() {
+        if (!$("#liDropdown").hasClass("show")) {
+            // if ($("#liDropdown").hasClass("active")) {
+            //     document.getElementById("liDropdown").setAttribute("class", "nav-item dropdown show active")
+            // } else {
+            document.getElementById("liDropdown").setAttribute("class", "nav-item dropdown show")
+            // }
+            document.getElementById("navbarDropdown").setAttribute("aria-expanded", "true")
+            document.getElementById("divDropdown-menu").setAttribute("class", "dropdown-menu show")
+        }
+    }
+
+    function hide() {
+        if ($("#liDropdown").hasClass("show")) {
+            $("#liDropdown").removeClass("show")
+            $("#divDropdown-menu").removeClass("show")
+            document.getElementById("navbarDropdown").setAttribute("aria-expanded", "false")
 
         }
-    )
-});
+    }
 $("#portfolio_edit").click(function () {
     var el = document.getElementsByClassName('trash_portfolio');
     for (i = 0; i < el.length; i++) {
@@ -2214,8 +2235,8 @@ $(".select-user-bet").click(function () {
     var id = $("#task_id").val();
     var user_id = $(this).prev().val();
     $('#user_id_mess').val(user_id);
-    var text_mess=$("#text_mess");
-    text_mess.val(text_mess.val()+id+'/');
+    var text_mess = $("#text_mess");
+    text_mess.val(text_mess.val() + id + '/');
     var btn = $(this).next();
     btn.click();
     // $.ajax({
