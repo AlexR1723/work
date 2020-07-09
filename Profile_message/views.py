@@ -111,19 +111,24 @@ def Personal_messages(request):
             #     'to_user')
             # user_mess = user_mess.union(user_mess1)
             # user_mess = user_mess.order_by('-date')
-            user_mess = PersonalMessage.objects.filter(to_type_is_exec=False)
-            user_mess1 = PersonalMessage.objects.filter(to_type_is_exec=False)
-        else:
             user_mess = PersonalMessage.objects.filter(to_type_is_exec=True)
             user_mess1 = PersonalMessage.objects.filter(to_type_is_exec=True)
+        else:
+            user_mess = PersonalMessage.objects.filter(to_type_is_exec=False)
+            user_mess1 = PersonalMessage.objects.filter(to_type_is_exec=False)
 
+        print(user_mess)
         user_mess = user_mess.filter(to_user=user_id).order_by('from_user', '-date')
         us_mess_list = user_mess.values_list('from_user', flat=True)
-        user_mess1 = user_mess1.filter(from_user=user_id).exclude(to_user__in=us_mess_list).order_by('to_user', '-date')
+        # user_mess1 = user_mess1.filter(from_user=user_id).exclude(to_user__in=us_mess_list).order_by('to_user', '-date')
+        user_mess1 = user_mess1.filter(from_user=user_id).order_by('to_user', '-date')
+        print(user_mess)
+        # print(user_mess1)
 
         user_mess = user_mess.distinct('from_user')
         user_mess1 = user_mess1.distinct('to_user')
         user_mess = user_mess.union(user_mess1).order_by('-date')
+        # print(user_mess)
         today = datetime.datetime.today().date()
         year = datetime.datetime.now().year
 
@@ -235,16 +240,16 @@ def send_message(request):
         from_user = AuthUser.objects.get(id=user_id)
         to_user = AuthUser.objects.get(id=to_user)
         if type_id == 1:
-            send = PersonalMessage(from_user=from_user, to_user=to_user, text=mess, from_type_is_exec=False,
-                                   to_type_is_exec=False, is_show=False, date=datetime.datetime.now())
+            send = PersonalMessage(from_user=from_user, to_user=to_user, text=mess, from_type_is_exec=True,
+                                   to_type_is_exec=True, is_show=False, date=datetime.datetime.now())
             send.save()
             # if send:
             #     return HttpResponse(json.dumps([format_time(send.date), send.text]))
             # else:
             #     return HttpResponse(json.dumps(False))
         else:
-            send = PersonalMessage(from_user=from_user, to_user=to_user, text=mess, from_type_is_exec=True,
-                                   to_type_is_exec=True, is_show=False, date=datetime.datetime.now())
+            send = PersonalMessage(from_user=from_user, to_user=to_user, text=mess, from_type_is_exec=False,
+                                   to_type_is_exec=False, is_show=False, date=datetime.datetime.now())
             send.save()
         if send:
             return HttpResponse(json.dumps([format_time(send.date), send.text]))

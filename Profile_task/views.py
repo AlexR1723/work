@@ -470,7 +470,7 @@ def Save_task(request):
         start_time = request.POST.get('start_time')
         end_time = request.POST.get('end_time')
         gridRadios2 = request.POST.get('gridRadios2')
-        price = request.POST.get('input_price')
+        price = int(request.POST.get('input_price'))
         check=request.POST.get('pay_detail_check')
         is_pro=request.POST.get('is_pro')
 
@@ -522,9 +522,10 @@ def Save_task(request):
             user_balance=UserBalance(user=auth,sum=price,decription="Стоимость задания заморожена с Вашего счета до завершения задания", date=datetime.datetime.today())
             user_balance.save()
         else:
-            user.balance -= price*10/100
-            user.frozen_balance += price*10/100
-            user_balance = UserBalance(user=auth, sum=price*10/100,
+            print(price)
+            user.balance -= (price * 10) / 100
+            user.frozen_balance += price * 10 / 100
+            user_balance = UserBalance(user=auth, sum = price * 10 / 100,
                                        decription="10% от стоимости задания заморожено с Вашего счета до завершения задания", date=datetime.datetime.today())
             user_balance.save()
 
@@ -542,7 +543,7 @@ def Save_task(request):
                 tast_photo = TaskPhoto(task=user_task, photo=d)
                 tast_photo.save()
     # return HttpResponseRedirect("/profile/task")
-
+        user_task_id=user_task.id
 
         user_task=UserTask.objects.filter(user=auth)
         user_bonuses_count=UserBonuses.objects.filter(bonus__backend_name='create_3_tasks').count()
@@ -594,7 +595,7 @@ def Save_task(request):
             user.bonus_balance += bonus.count
             user.save()
             send_notice(request,"Вы получили награду за создание " + str(c_t) + " заданий и бонус " + str(bonus.count) + " баллов!", "all")
-    return HttpResponseRedirect("/profile/service/task_add/"+str(user_task.id))
+    return HttpResponseRedirect("/profile/service/task_add/"+str(user_task_id))
 
 
 def Save_offer(request):
@@ -785,10 +786,10 @@ def Set_exec(request):
         task.price=bet.price
         print(task)
         task.save()
-        message=PersonalMessage(from_user=auth, to_user=user, text=mess, date=datetime.datetime.now(), is_show=False, to_type_is_exec=True, from_type_is_exec=False)
+        message=PersonalMessage(from_user=auth, to_user=user, text=mess, date=datetime.datetime.now(), is_show=False, to_type_is_exec=True, from_type_is_exec=True)
         message.save()
         # return HttpResponse(json.dumps({'data': 'ok'}))
-        return HttpResponseRedirect("/profile/task/detail/" + task.id)
+        return HttpResponseRedirect("/profile/task/detail/" + str(id))
 
 
 def Executor_my_tasks_filter_cat(request,filter_cat):

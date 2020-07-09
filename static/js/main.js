@@ -2212,6 +2212,8 @@ $(".select-user-bet").click(function () {
     var id = $("#task_id").val();
     var user_id = $(this).prev().val();
     $('#user_id_mess').val(user_id);
+    var text_mess=$("#text_mess");
+    text_mess.val(text_mess.val()+id+'/');
     var btn = $(this).next();
     btn.click();
     // $.ajax({

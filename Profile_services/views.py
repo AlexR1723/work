@@ -117,9 +117,11 @@ def Service_task_add(request, id):
         aa = task.date
         bb = datetime.date.today()
         cc = aa - bb
+        print(cc)
         cc = str(cc)
+        print(cc)
         # print(cc)
-        if (int(cc.split()[0]) > 2):
+        if cc != '0:00:00' and int(cc.split()[0]) > 2:
             service = service.exclude(back_name='quickly_task')
         # print(service)
         return render(request, 'Profile/Service_task_add.html', locals())
