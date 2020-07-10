@@ -171,7 +171,19 @@ def Top_performers(request):
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
     user_top=Users.objects.all()
-
+    us={}
+    for i in user_top:
+        all_task = UserComment.objects.filter(user=i.auth_user).count()
+        successful_task = UserComment.objects.filter(user=i.auth_user).filter(quality__gte=4).filter(
+            politeness__gte=4).filter(punctuality__gte=4).count()
+        com_percent = 0
+        if all_task > 0:
+            com_percent = int((successful_task * 100) / all_task)
+        us[i]=com_percent
+    us=sorted(us.items(), key=lambda x: x[1], reverse=True)[0:50]
+    user_top=[]
+    for i in us:
+        user_top.append(i[0])
     return render(request, 'Main/Top_performers.html', locals())
 
 
