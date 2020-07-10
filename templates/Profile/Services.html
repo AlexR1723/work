@@ -17,204 +17,74 @@
         <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-9 p-0 pt-2 pt-md-5 pb-3 px-3 px-mb-0 px-lg-0">
             <div class="row m-0 justify-content-start">
                 {% for s in service %}
-                <div class="col-12 p-0">
-                    <div class="row">
-                        <div class="d-none d-sm-none d-md-block col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2">
-                             {% if s.image != None and s.image != "" %}
-                                <img alt="" class="img-fluid" src="{{MEDIA_URL}}{{s.image.url}}">
-                            {% else %}
-                            <div class="row justify-content-center align-items-center bg-gray">
-                                        <span class="alt-text">Без фото</span>
-                                    </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">
-                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">
-                                <a href="{% url 'Service_detail' s.id %}">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 service-link p-0 pl-4 pr-4 service-block">
+                    <div class="bg-shadow h-100">
+                        <div class="row m-0 h-100 align-items-between">
+                            <div class="col-12 p-0">
+                                <div class="row m-0 bg-red pl-4 pr-4 pt-4 justify-content-center">
                                     <h3 class="m-0">{{s.name}}</h3>
-                                </a>
+                                    <div class="col-12">
+                                        <hr class="mb-0">
+                                    </div>
+                                </div>
+                                <div class="row m-0 pb-4 pl-5 pr-5 pt-4">
+                                    <p class="mb-0 pr-0 service-card_text">{{s.description}}</p>
+                                </div>
                             </div>
-                            <div class="row justify-content-start align-items-center pt-2">
-                                <p class="mb-0 pr-0 service-card_text textrowcount">{{s.description}}</p>
+                            <div class="col-12 p-0 pb-4">
+                                <div class="row justify-content-around align-items-end h-100">
+                                    <div class="col-6 pl-4 pr-2">
+                                        <div class="service-prise-week ">
+                                            <label class="mb-0">{{s.price_week}} руб./неделя</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 pr-4 pl-2 ">
+                                        <div class="service-prise-month">
+                                            <label class="mb-0">{{s.price}} руб./мес.</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">
-                            <div class="row justify-content-arounds justify-content-sm-around justify-content-md-start align-content-center align-items-center pt-0">
-                                <label class="service-money_label p mb-2">{{s.price}} руб./мес.</label>
-                            </div>
-                            <div class="row justify-content-around justify-content-sm-around justify-content-md-start align-content-center align-items-center pt-0">
-                                <label class="service-money_label p mb-2">{{s.price_week}} руб./неделя</label>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
-                <hr class="category-line m-0 my-4">
                 {% endfor %}
-<!--                <div class="col-12 p-0">-->
-<!--                    <div class="row">-->
-<!--                        <div class="d-none d-sm-none d-md-block col-8 col-sm-10 col-md-2 col-lg-1 col-xl-1 p-2 my-auto">-->
-<!--                            <img alt="" class="img-fluid" src="/static/image/google-analytics%201.png">-->
-<!--                        </div>-->
-<!--                        <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">-->
-<!--                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">-->
-<!--                                <a href="#">-->
-<!--                                    <h3 class="m-0">Наименование услуги</h3>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="row justify-content-start align-items-center pt-2">-->
-<!--                                <p class="mb-0 pr-0 service-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat....</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-10 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-1 mx-auto">-->
-<!--                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-0">-->
-<!--                                <label class="service-money_label p mb-2">150 руб.</label>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr class="category-line m-0 my-4">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 p-0">-->
-<!--                    <div class="row">-->
-<!--                        <div class="d-none d-sm-none d-md-block col-8 col-sm-10 col-md-2 col-lg-1 col-xl-1 p-2 my-auto">-->
-<!--                            <img alt="" class="img-fluid" src="/static/image/google-analytics%201.png">-->
-<!--                        </div>-->
-<!--                        <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">-->
-<!--                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">-->
-<!--                                <a href="#">-->
-<!--                                    <h3 class="m-0">Наименование услуги</h3>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="row justify-content-start align-items-center pt-2">-->
-<!--                                <p class="mb-0 pr-0 service-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat....</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-10 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-1 mx-auto">-->
-<!--                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-0">-->
-<!--                                <label class="service-money_label p mb-2">500 руб.</label>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr class="category-line m-0 my-4">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 p-0">-->
-<!--                    <div class="row">-->
-<!--                        <div class="d-none d-sm-none d-md-block col-8 col-sm-10 col-md-2 col-lg-1 col-xl-1 p-2 my-auto">-->
-<!--                            <img alt="" class="img-fluid" src="/static/image/google-analytics%201.png">-->
-<!--                        </div>-->
-<!--                        <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">-->
-<!--                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">-->
-<!--                                <a href="#">-->
-<!--                                    <h3 class="m-0">Наименование услуги</h3>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="row justify-content-start align-items-center pt-2">-->
-<!--                                <p class="mb-0 pr-0 service-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat....</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-10 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-1 mx-auto">-->
-<!--                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-0">-->
-<!--                                <label class="service-money_label p mb-2">500 руб.</label>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr class="category-line m-0 my-4">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 p-0">-->
-<!--                    <div class="row">-->
-<!--                        <div class="d-none d-sm-none d-md-block col-8 col-sm-10 col-md-2 col-lg-1 col-xl-1 p-2 my-auto">-->
-<!--                            <img alt="" class="img-fluid" src="/static/image/google-analytics%201.png">-->
-<!--                        </div>-->
-<!--                        <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">-->
-<!--                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">-->
-<!--                                <a href="#">-->
-<!--                                    <h3 class="m-0">Наименование услуги</h3>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="row justify-content-start align-items-center pt-2">-->
-<!--                                <p class="mb-0 pr-0 service-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat....</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-10 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-1 mx-auto">-->
-<!--                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-0">-->
-<!--                                <label class="service-money_label p mb-2">150 руб.</label>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr class="category-line m-0 my-4">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 p-0">-->
-<!--                    <div class="row">-->
-<!--                        <div class="d-none d-sm-none d-md-block col-8 col-sm-10 col-md-2 col-lg-1 col-xl-1 p-2 my-auto">-->
-<!--                            <img alt="" class="img-fluid" src="/static/image/google-analytics%201.png">-->
-<!--                        </div>-->
-<!--                        <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">-->
-<!--                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">-->
-<!--                                <a href="#">-->
-<!--                                    <h3 class="m-0">Наименование услуги</h3>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="row justify-content-start align-items-center pt-2">-->
-<!--                                <p class="mb-0 pr-0 service-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat....</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-10 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-1 mx-auto">-->
-<!--                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-0">-->
-<!--                                <label class="service-money_label p mb-2">200 руб.</label>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr class="category-line m-0 my-4">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-12 p-0">-->
-<!--                    <div class="row">-->
-<!--                        <div class="d-none d-sm-none d-md-block col-8 col-sm-10 col-md-2 col-lg-1 col-xl-1 p-2 my-auto">-->
-<!--                            <img alt="" class="img-fluid" src="/static/image/google-analytics%201.png">-->
-<!--                        </div>-->
-<!--                        <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">-->
-<!--                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">-->
-<!--                                <a href="#">-->
-<!--                                    <h3 class="m-0">Наименование услуги</h3>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="row justify-content-start align-items-center pt-2">-->
-<!--                                <p class="mb-0 pr-0 service-card_text pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat....</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-10 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-1 mx-auto">-->
-<!--                            <div class="row justify-content-around justify-content-sm-around justify-content-md-center align-content-center align-items-center pt-0">-->
-<!--                                <label class="service-money_label p mb-2">300 руб.</label>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr class="category-line m-0 my-4">-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="row w-100">-->
-<!--                    <div class="col-md-12 mb-5 mt-3">-->
-<!--                        <nav aria-label="...">-->
-<!--                            <ul class="pagination justify-content-center">-->
-<!--                                <li class="page-item disabled">-->
-<!--                                    <a aria-label="Previous" class="page-link" href="#">-->
-<!--                                        <span aria-hidden="true">«</span>-->
-<!--                                        <span class="sr-only">Previous</span>-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                <li class="page-item active">-->
-<!--                    <span class="page-link">1<span class="sr-only">(current)</span>-->
-<!--                    </span>-->
-<!--                                </li>-->
-<!--                                <li class="page-item">-->
-<!--                                    <a class="page-link" href="">2</a>-->
-<!--                                </li>-->
-<!--                                <li class="page-item">-->
-<!--                                    <a class="page-link" href=""><span aria-hidden="true">»</span>-->
-<!--                                        <span class="sr-only">Next</span></a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </nav>-->
-<!--                    </div>-->
-<!--                </div>-->
-
+                <!--                {% for s in service %}-->
+                <!--                <div class="col-12 p-0">-->
+                <!--                    <div class="row">-->
+                <!--                        <div class="d-none d-sm-none d-md-block col-8 col-sm-10 col-md-3 col-lg-2 col-xl-2 p-2">-->
+                <!--                             {% if s.image != None and s.image != "" %}-->
+                <!--                                <img alt="" class="img-fluid" src="{{MEDIA_URL}}{{s.image.url}}">-->
+                <!--                            {% else %}-->
+                <!--                            <div class="row justify-content-center align-items-center bg-gray">-->
+                <!--                                        <span class="alt-text">Без фото</span>-->
+                <!--                                    </div>-->
+                <!--                            {% endif %}-->
+                <!--                        </div>-->
+                <!--                        <div class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-8 pl-2 pr-md-0 pr-lg-2 pr-0 pt-2 mx-auto">-->
+                <!--                            <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2 service-link">-->
+                <!--                                <a href="{% url 'Service_detail' s.id %}">-->
+                <!--                                    <h3 class="m-0">{{s.name}}</h3>-->
+                <!--                                </a>-->
+                <!--                            </div>-->
+                <!--                            <div class="row justify-content-start align-items-center pt-2">-->
+                <!--                                <p class="mb-0 pr-0 service-card_text textrowcount">{{s.description}}</p>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-2 p-1 mx-auto">-->
+                <!--                            <div class="row justify-content-arounds justify-content-sm-around justify-content-md-start align-content-center align-items-center pt-0">-->
+                <!--                                <label class="service-money_label p mb-2">{{s.price}} руб./мес.</label>-->
+                <!--                            </div>-->
+                <!--                            <div class="row justify-content-around justify-content-sm-around justify-content-md-start align-content-center align-items-center pt-0">-->
+                <!--                                <label class="service-money_label p mb-2">{{s.price_week}} руб./неделя</label>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <hr class="category-line m-0 my-4">-->
+                <!--                {% endfor %}-->
             </div>
         </div>
     </div>
