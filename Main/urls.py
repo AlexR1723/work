@@ -24,7 +24,8 @@ urlpatterns = [
     url(r'^safety/$', views.Safety, name="Safety"),
     url(r'^rabota/$', views.Rabota, name="Rabota"),
     url(r'^for_business/$', views.For_business, name="For_business"),
-    url(r'^top_performers/(?P<name>[А-Яа-я\s0-9-()/a-zA-Z,:]+)/$', views.Top_performers, name="Top_performers"),
+    url(r'^pro_performers/(?P<name>[А-Яа-я\s0-9-()/a-zA-Z,:]+)/$', views.Pro_performers, name="Pro_performers"),
+    url(r'^top_performers/$', views.Top_performers, name="Top_performers"),
 
     url(r'^login/$', views.Login, name="Login"),
     url(r'^register/$', views.Register, name="Register"),

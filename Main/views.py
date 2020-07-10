@@ -156,12 +156,22 @@ def For_business(request):
     return render(request, 'Main/For_business.html', locals())
 
 
-def Top_performers(request,name):
+def Pro_performers(request,name):
     layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
     city, regs, regions = layout_regions_cities(request)
     top_user=UserPro.objects.filter(subcategory__name=name)
+    return render(request, 'Main/Pro_performers.html', locals())
+
+
+def Top_performers(request):
+    layout, username, photo, balance, bonus = layout_name(request)
+    contact = layout_contact()
+    link = layout_link()
+    city, regs, regions = layout_regions_cities(request)
+    user_top=Users.objects.all()
+
     return render(request, 'Main/Top_performers.html', locals())
 
 
