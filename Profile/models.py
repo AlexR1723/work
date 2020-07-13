@@ -121,14 +121,11 @@ class Users(models.Model):
     balance = models.IntegerField(blank=True, null=True)
     bonus_balance = models.IntegerField(blank=True, null=True)
     frozen_balance = models.IntegerField(blank=True, null=True)
+    last_online = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'users'
-
-    def is_pro(self):
-        user_pro = UserPro.objects.filter(user = self.auth_user).count()
-        return user_pro
 
 
 

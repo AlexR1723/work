@@ -155,6 +155,7 @@ class Users(models.Model):
     balance = models.IntegerField(blank=True, null=True)
     bonus_balance = models.IntegerField(blank=True, null=True)
     frozen_balance = models.IntegerField(blank=True, null=True)
+    last_online = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = False

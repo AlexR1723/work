@@ -282,7 +282,7 @@ def Registrate(request):
                 auth_user = AuthUser.objects.filter(id=user.id)[0]
                 print(auth_user)
                 new_user = Users(auth_user=auth_user, photo="uploads/users/user.png", phone=tel, uuid=key,
-                                 type=UserType.objects.all().filter(name="Исполнитель")[0])
+                                 type=UserType.objects.all().filter(name="Исполнитель")[0], last_online=datetime.datetime.now())
                 new_user.save()
             subject, from_email, to = 'Успешная регистрация', 'romanenko.anastasiya1998@yandex.ua', email
             text_content = 'Перейдите по ссылке для автивации учетной записи.'
