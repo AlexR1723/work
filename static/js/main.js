@@ -632,6 +632,23 @@ function check_notifications() {
     })
 }
 
+function check_action() {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        async: true,
+        url: "/profile/action",
+        success: function (data) {
+            setTimeout(check_action, 1000 * 10)
+        },
+        error: function (data) {
+            console.log(data)
+        }
+    }).fail(function () {
+        setTimeout(check_action, 1000 * 20)
+    })
+}
+
 function check_messages() {
     let from_user = false
     let to_user = false
@@ -830,6 +847,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (notice_btn && count_notifications) {
         check_notifications();
         check_messages();
+        check_action();
     }
 });
 

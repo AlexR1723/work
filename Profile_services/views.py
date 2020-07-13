@@ -354,7 +354,7 @@ def check_good_percent():
                     i.save()
                     send_notice(False,
                                 'У вас 100% положительных отзывов, вам зачислен бонус ' + str(bonus.count) + ' руб.!',
-                                'all',i.auth_user.username)
+                                'all', i.auth_user.username)
             if perc < 75:
                 is_75 = UserAwards.objects.filter(user_id=i.auth_user.id).filter(awards=good75)
                 if is_75.count() > 0:
@@ -416,3 +416,4 @@ def check_top():
     add_award(top_100, 'top_100_exec')
 
     return True
+

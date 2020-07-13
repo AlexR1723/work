@@ -3438,3 +3438,10 @@ button.serv-btn-blue:hover{
     padding: 7px 20px;
     text-align: center;
 }
+.online{
+    width: 10px;
+    height: 10px;
+    background: rgb(98,178,69);
+    display: inline-block;
+    border-radius: 50%;
+}

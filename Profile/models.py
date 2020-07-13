@@ -1,5 +1,7 @@
 from django.db import models
+import datetime
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 
 
 class Link(models.Model):
@@ -126,6 +128,45 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
+
+    def is_online(self):
+        if (datetime.datetime.now() - self.last_online) < datetime.timedelta(minutes=15):
+            return True
+        else:
+            return False
+
+    def get_online_info(self):
+        sub=datetime.datetime.now() - self.last_online
+        month=['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября',
+         'ноября', 'декабря']
+        print(datetime.datetime.now())
+        minute=int(int(sub.seconds)/60)
+        hour = round(minute / 60)
+        days=sub.days
+        if days > 0 :
+            date_=(self.last_online).strftime('%d/%m/%Y')
+            date_=date_.split('/')
+            print(date_[0], date_[1], date_[2])
+            date=date_[0]
+            for i in range(0, len(month)):
+                if int(date_[1]) == i + 1:
+                    date = date + " " + month[i] + " "
+            date=date+date_[2]
+
+            return 'Был в сети ' + date
+        else:
+            if hour > 1 and hour <= 3:
+                return 'Был сегодня ' + str(hour) + ' часа назад'
+            else:
+                if hour == 1:
+                    return 'Был сегодня час назад'
+                else:
+                    if minute <= 59:
+                        return 'Был сегодня ' + str(minute) + ' минут назад'
+
+
+
+
 
 
 

@@ -11,6 +11,7 @@ from django.core.mail import EmailMultiAlternatives, EmailMessage
 from django.template.loader import render_to_string
 import datetime
 import calendar
+from django.utils import timezone
 
 import os
 
@@ -775,3 +776,13 @@ def profile_set_pro(request):
                 user_pro = UserPro(user=us, subcategory=sub, end_date=end)
                 user_pro.save()
     return HttpResponse(json.dumps('good'))
+
+
+
+def action(request):
+    user = request.session.get('username', 'no')
+    if (user != 'no'):
+        user = Users.objects.all().filter(auth_user__email=user)[0]
+        user.last_online = datetime.datetime.now()
+        user.save()
+    return HttpResponse(json.dumps(True))

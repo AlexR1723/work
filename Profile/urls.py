@@ -52,6 +52,7 @@ urlpatterns = [
     # url(r'save_task/', views.Save_task, name='Save_task'),
     # url(r'get_new_order', views.get_new_order, name='get_new_order'),
     url(r'logout_user', views.logout_user, name='logout_user'),
+    url(r'action', views.action, name='action'),
 
     # url(r'^adverts/$', views.All_ads, name="All_ads"),
     # url(r'^adverts/detail/(?P<id>[0-9]+)/$', views.Advert_detail, name="Advert_detail"),

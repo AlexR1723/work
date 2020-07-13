@@ -15,10 +15,14 @@
                             <div class="row justify-content-center justify-content-sm-center justify-content-md-between align-items-center mb-2">
                                 <h1 class="m-0 fz_2rem">{{user.auth_user.first_name}} {{user.auth_user.last_name}}</h1>
                             </div>
+                            {% if user.is_online %}
+                            <span class="text-muted"><div class="online mr-2"></div>online</span>
+                            {% else %}
+                            <span class="text-muted">{{user.get_online_info}}</span>
+                            {% endif %}
                             <div class="row justify-content-center justify-content-md-start align-items-center pb-2 pb-md-0 pt-2">
                                 <label class="settings-rew_label w-100 my-2">{{user.city.name}}</label>
                             </div>
-
                         </div>
                         <div class="col-10 col-sm-10 col-md-5 col-lg-4 col-xl-3 p-1 mx-auto">
                             <div class="row justify-content-around justify-content-sm-around justify-content-md-end align-content-end align-items-end">
