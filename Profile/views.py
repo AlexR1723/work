@@ -40,8 +40,8 @@ def layout_name(request):
         username = AuthUser.objects.all().filter(email=user)[0].first_name
         photo = Users.objects.all().filter(auth_user__email=user)[0].photo
         user = Users.objects.all().filter(auth_user__email=user)[0]
-        balance=user.balance
-        bonus=user.bonus_balance
+        balance = user.balance
+        bonus = user.bonus_balance
         if (user.type.name == "Заказчик"):
             layout = 'layout_customer.html'
         else:
@@ -55,13 +55,13 @@ def send_notice(request, text, is_executor, user_id=False):
         user_id = request.session.get('username', False)
     try:
         user = AuthUser.objects.get(username=user_id).id
-        if is_executor=='exec':
+        if is_executor == 'exec':
             note = Notifications(user_id=user, text=text, for_executor=True, date_public=datetime.datetime.now(),
                                  is_checked=False, is_show=False)
-        if is_executor=='cust':
+        if is_executor == 'cust':
             note = Notifications(user_id=user, text=text, for_executor=False, date_public=datetime.datetime.now(),
                                  is_checked=False, is_show=False)
-        if is_executor=='all':
+        if is_executor == 'all':
             note = Notifications(user_id=user, text=text, for_executor=None, date_public=datetime.datetime.now(),
                                  is_checked=False, is_show=False)
         note.save()
@@ -91,6 +91,7 @@ def Profile_settings(request):
                 month = '0' + str(user.birthday.month)
             year = user.birthday.year
         # print(str(user.birthday.day)+'.'+str(user.birthday.month)+'.'+str(user.birthday.year))
+        city = City.objects.all().order_by('name')
         subcategory = UserSubcategories.objects.all().filter(user__email=email)
         cities = UserCities.objects.all().filter(user__email=email)
         portfolio = UserPortfolio.objects.all().filter(user__email=email)
@@ -100,7 +101,7 @@ def Profile_settings(request):
         all_task = UserComment.objects.filter(user__email=email).count()
         successful_task = UserComment.objects.filter(user__email=email).filter(quality__gte=4).filter(
             politeness__gte=4).filter(punctuality__gte=4).count()
-        com_percent=0
+        com_percent = 0
         if all_task > 0:
             com_percent = int((successful_task * 100) / all_task)
         balance_list = UserBalance.objects.filter(user=user.auth_user).order_by('-date')
@@ -150,30 +151,36 @@ def Save(request):
             gender = Gender.objects.all().filter(name="Мужской")[0]
         else:
             gender = Gender.objects.all().filter(name="Женский")[0]
+        city_id = int(request.POST.get('city'))
+        city = City.objects.get(id=city_id)
         birthday = request.POST.get('birthday')
         birthday = birthday.split('/')
         user.birthday = birthday[2] + '-' + birthday[0] + '-' + birthday[1]
         user.gender_id = gender
+        user.city = city
         user.about_me = request.POST.get('about')
         user.phone = request.POST.get('phone')
         user.save()
-        auth=AuthUser.objects.get(email=email)
-        bonus=Bonuses.objects.get(backend_name='profile_100')
-        user_bonus_count=UserBonuses.objects.filter(user__email=email).filter(bonus__backend_name='profile_100').count()
+        auth = AuthUser.objects.get(email=email)
+        bonus = Bonuses.objects.get(backend_name='profile_100')
+        user_bonus_count = UserBonuses.objects.filter(user__email=email).filter(
+            bonus__backend_name='profile_100').count()
         if user_bonus_count == 0:
-            sub=UserSubcategories.objects.filter(user=auth).count()
+            sub = UserSubcategories.objects.filter(user=auth).count()
             if user.birthday != None and user.birthday != "" and user.phone != None and user.phone != "" and user.about_me != None and user.about_me != "" and sub > 0:
-                user_bonus=UserBonuses(user=auth, bonus=bonus)
+                user_bonus = UserBonuses(user=auth, bonus=bonus)
                 user_bonus.save()
-                user.bonus_balance+=bonus.count
+                user.bonus_balance += bonus.count
                 user.save()
-                send_notice(request, "Вы получили бонус "+str(bonus.count)+" баллов за полное заполнение профиля!", "all")
+                send_notice(request, "Вы получили бонус " + str(bonus.count) + " баллов за полное заполнение профиля!",
+                            "all")
 
-        user_award_count=UserAwards.objects.filter(user__email=email).filter(awards__backend_name='profile_100').count()
+        user_award_count = UserAwards.objects.filter(user__email=email).filter(
+            awards__backend_name='profile_100').count()
         if user_award_count == 0:
             if user.birthday != None and user.birthday != "" and user.phone != None and user.phone != "" and user.about_me != None and user.about_me != "":
-                award=Awards_model.objects.get(backend_name='profile_100')
-                user_award=UserAwards(user=auth, awards=award, date=datetime.datetime.now())
+                award = Awards_model.objects.get(backend_name='profile_100')
+                user_award = UserAwards(user=auth, awards=award, date=datetime.datetime.now())
                 user_award.save()
                 send_notice(request, "Вы получили награду за полное заполнение профиля!", "all")
     return HttpResponseRedirect("/profile/settings")
@@ -381,8 +388,8 @@ def profile_set_subcategories(request):
             UserSubcategories.objects.create(user_id=us, subcategories_id=sub)
         else:
             UserSubcategories.objects.get(user_id=us, subcategories_id=sub).delete()
-        user_sub=UserSubcategories.objects.filter(user_id=us)
-        user_categ=[]
+        user_sub = UserSubcategories.objects.filter(user_id=us)
+        user_categ = []
         for u in user_sub:
             if u.subcategories.category.id not in user_categ:
                 user_categ.append(u.subcategories.category.id)
@@ -417,11 +424,12 @@ def profile_set_subcategories(request):
             user_award.save()
 
             bonus = Bonuses.objects.get(backend_name='reward_exec')
-            user=Users.objects.get(auth_user_id=us)
+            user = Users.objects.get(auth_user_id=us)
             user.bonus_balance += bonus.count
             user.save()
             send_notice(request,
-                        "Вы исполнитель в " + str(c_t) + " категориях и получили бонус " + str(bonus.count) + " баллов!",
+                        "Вы исполнитель в " + str(c_t) + " категориях и получили бонус " + str(
+                            bonus.count) + " баллов!",
                         "all")
     return HttpResponse(json.dumps('good'))
 
@@ -472,8 +480,8 @@ def Fav_executor(request):
     return render(request, 'Profile/Fav_executor.html', locals())
 
 
-def Profile_page(request,id):
-    id=int(id)
+def Profile_page(request, id):
+    id = int(id)
     layout, username, photo, balance, bonus = layout_name(request)
     user = request.session.get('username', 'no')
     contact = layout_contact()
@@ -503,32 +511,33 @@ def Profile_page(request,id):
             punctuality_persent = int((punctuality_suc * 100) / all_task)
 
         if (user.verify_passport == True):
-            advert_count=UserAdvert.objects.filter(user=auth_user).count()
-            if(advert_count>10):
-                advert=UserAdvert.objects.filter(user=auth_user).order_by('-id')[:10]
+            advert_count = UserAdvert.objects.filter(user=auth_user).count()
+            if (advert_count > 10):
+                advert = UserAdvert.objects.filter(user=auth_user).order_by('-id')[:10]
             else:
                 advert = UserAdvert.objects.filter(user=auth_user).order_by('-id')
-            task_close=UserTask.objects.filter(exec=auth_user)
-            sub_task_close=[]
-            sub_task_list=""
+            task_close = UserTask.objects.filter(exec=auth_user)
+            sub_task_close = []
+            sub_task_list = ""
             for t in task_close:
                 if t.subcategory.name not in sub_task_close:
                     sub_task_close.append(t.subcategory.name)
-                    sub_task_list=sub_task_list+t.subcategory.name+"\n"
-            advert=UserAdvert.objects.filter(user=auth_user)
-            sub_advert=[]
+                    sub_task_list = sub_task_list + t.subcategory.name + "\n"
+            advert = UserAdvert.objects.filter(user=auth_user)
+            sub_advert = []
             sub_advert_list = ""
             for a in advert:
                 if a.subcategory.name not in advert:
                     sub_advert.append(a.subcategory.name)
-                    sub_advert_list=sub_advert_list+a.subcategory.name+'\n'
+                    sub_advert_list = sub_advert_list + a.subcategory.name + '\n'
             return render(request, 'Profile/Profile_verified.html', locals())
         else:
             return render(request, 'Profile/Profile_unverified.html', locals())
     else:
         return HttpResponseRedirect("/login")
 
-def Profile_adverts(request,id):
+
+def Profile_adverts(request, id):
     id = int(id)
     layout, username, photo, balance, bonus = layout_name(request)
     user = request.session.get('username', 'no')
@@ -537,30 +546,31 @@ def Profile_adverts(request,id):
     if (user != 'no'):
         auth_user = AuthUser.objects.get(id=id)
         user = Users.objects.get(auth_user=auth_user)
-        advert=UserAdvert.objects.filter(user=auth_user)
-            # user_city = UserCities.objects.filter(user=auth_user)
-            # user_sub = UserSubcategories.objects.filter(user=auth_user)
-            # portfolio = UserPortfolio.objects.filter(user=auth_user)
-            # # посчитать процент положительных отзывов
-            # user_comment = UserComment.objects.filter(user=auth_user).order_by('-date')
-            # successful_task = UserComment.objects.filter(user=auth_user).filter(quality__gte=4).filter(
-            #     politeness__gte=4).filter(punctuality__gte=4).count()
-            # quality_suc = UserComment.objects.filter(user=auth_user).filter(quality__gte=4).count()
-            # politeness_suc = UserComment.objects.filter(user=auth_user).filter(politeness__gte=4).count()
-            # punctuality_suc = UserComment.objects.filter(user=auth_user).filter(punctuality__gte=4).count()
-            # all_task = user_comment.count()
-            # com_percent = 0
-            # quality_percent = 0
-            # politeness_persent = 0
-            # punctuality_persent = 0
-            # if all_task > 0:
-            #     com_percent = int((successful_task * 100) / all_task)
-            #     quality_percent = int((quality_suc * 100) / all_task)
-            #     politeness_persent = int((politeness_suc * 100) / all_task)
-            #     punctuality_persent = int((punctuality_suc * 100) / all_task)
+        advert = UserAdvert.objects.filter(user=auth_user)
+        # user_city = UserCities.objects.filter(user=auth_user)
+        # user_sub = UserSubcategories.objects.filter(user=auth_user)
+        # portfolio = UserPortfolio.objects.filter(user=auth_user)
+        # # посчитать процент положительных отзывов
+        # user_comment = UserComment.objects.filter(user=auth_user).order_by('-date')
+        # successful_task = UserComment.objects.filter(user=auth_user).filter(quality__gte=4).filter(
+        #     politeness__gte=4).filter(punctuality__gte=4).count()
+        # quality_suc = UserComment.objects.filter(user=auth_user).filter(quality__gte=4).count()
+        # politeness_suc = UserComment.objects.filter(user=auth_user).filter(politeness__gte=4).count()
+        # punctuality_suc = UserComment.objects.filter(user=auth_user).filter(punctuality__gte=4).count()
+        # all_task = user_comment.count()
+        # com_percent = 0
+        # quality_percent = 0
+        # politeness_persent = 0
+        # punctuality_persent = 0
+        # if all_task > 0:
+        #     com_percent = int((successful_task * 100) / all_task)
+        #     quality_percent = int((quality_suc * 100) / all_task)
+        #     politeness_persent = int((politeness_suc * 100) / all_task)
+        #     punctuality_persent = int((punctuality_suc * 100) / all_task)
         return render(request, 'Profile/Advert_profile.html', locals())
     else:
         return HttpResponseRedirect("/login")
+
 
 @login_required()
 def Awards_fun(request):
@@ -645,7 +655,7 @@ def verify_passport(request):
     print('verify-passport')
     if request.method == 'POST':
         doc = request.FILES
-        passport =str(request.POST.get('series')).replace(' ', '')
+        passport = str(request.POST.get('series')).replace(' ', '')
         # phone1=phone[1:]
         # print(phone +' - '+ str(len(phone)))
         # print(phone)
@@ -657,30 +667,33 @@ def verify_passport(request):
         if user:
             user = AuthUser.objects.get(username=user)
             if doc:
-                user1=Users.objects.get(auth_user_id=user.id)
-                user1.passport_num_ser=passport
-                user1.passport_photo=doc['files']
+                user1 = Users.objects.get(auth_user_id=user.id)
+                user1.passport_num_ser = passport
+                user1.passport_photo = doc['files']
                 # user1.save()
-                user_bonus_count=UserBonuses.objects.filter(user=user).filter(bonus__backend_name='verify_passport').count()
+                user_bonus_count = UserBonuses.objects.filter(user=user).filter(
+                    bonus__backend_name='verify_passport').count()
                 if user_bonus_count == 0:
-                    bonus=Bonuses.objects.get(backend_name='verify_passport')
-                    user_bonus=UserBonuses(user=user,bonus=bonus)
+                    bonus = Bonuses.objects.get(backend_name='verify_passport')
+                    user_bonus = UserBonuses(user=user, bonus=bonus)
                     user_bonus.save()
-                    user1.bonus_balance+=bonus.count
-                    send_notice(request, "Вы получили бонус "+str(bonus.count)+" баллов за верификацию паспорта!", "all")
+                    user1.bonus_balance += bonus.count
+                    send_notice(request, "Вы получили бонус " + str(bonus.count) + " баллов за верификацию паспорта!",
+                                "all")
                 user1.save()
-                user_award_count=UserAwards.objects.filter(user=user).filter(awards__backend_name='passport_verify').count()
+                user_award_count = UserAwards.objects.filter(user=user).filter(
+                    awards__backend_name='passport_verify').count()
                 if user_award_count == 0:
-                    award=Awards_model.objects.get(backend_name='passport_verify')
-                    user_award=UserAwards(user=user,awards=award, date=datetime.datetime.now())
+                    award = Awards_model.objects.get(backend_name='passport_verify')
+                    user_award = UserAwards(user=user, awards=award, date=datetime.datetime.now())
                     user_award.save()
                     send_notice(request, "Вы получили награду за верификацию паспорта!", "all")
 
             id = user.id
             name = user.first_name
             surename = user.last_name
-            photo=user1.passport_photo.url
-            passport=user1.passport_num_ser
+            photo = user1.passport_photo.url
+            passport = user1.passport_num_ser
             print(photo)
             print(user.email)
 
@@ -703,7 +716,8 @@ def verify_passport(request):
             text_content = 'Запрос на верификацию паспорта'
 
             # print(m)
-            html_content = render_to_string('letter_verify_passport.html', {"surename": surename, "name": name, "passport":passport, "photo": photo})
+            html_content = render_to_string('letter_verify_passport.html',
+                                            {"surename": surename, "name": name, "passport": passport, "photo": photo})
             print(html_content)
             # html_content="<a href='%s'>Активировать</a>" % m
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
@@ -723,26 +737,27 @@ def Buy_pro(request):
         return HttpResponseRedirect("/login")
     else:
         user = Users.objects.get(auth_user__username=user)
-        user_sub=UserSubcategories.objects.filter(user=user.auth_user)
-        user_sub_list=[]
+        user_sub = UserSubcategories.objects.filter(user=user.auth_user)
+        user_sub_list = []
         for i in user_sub:
             if i.subcategories.category.id not in user_sub_list:
                 user_sub_list.append(i.subcategories.category.id)
         category = Category.objects.filter(id__in=user_sub_list).order_by('name')
 
-        user_sub_list=[]
+        user_sub_list = []
         for i in user_sub:
             if i.subcategories.id not in user_sub_list:
                 user_sub_list.append(i.subcategories.id)
-        price_week=Services.objects.get(back_name='pro').price_week
-        price_month=Services.objects.get(back_name='pro').price
+        price_week = Services.objects.get(back_name='pro').price_week
+        price_month = Services.objects.get(back_name='pro').price
         return render(request, 'Profile/Buy_pro.html', locals())
+
 
 def profile_set_pro(request):
     string_id = request.GET.get('string_id')
-    time=request.GET.get('time')
-    end=''
-    if(time == 'week'):
+    time = request.GET.get('time')
+    end = ''
+    if (time == 'week'):
         end = datetime.datetime.now()
         end += datetime.timedelta(days=7)
     else:
@@ -752,11 +767,11 @@ def profile_set_pro(request):
     print(user)
     if user != 0:
         us = AuthUser.objects.get(username=user)
-        id_list=string_id.split('|')
+        id_list = string_id.split('|')
         for id in id_list:
             if id != "":
-                id=id.split('_')[2]
-                sub=SubCategory.objects.get(id=id)
-                user_pro=UserPro(user=us, subcategory=sub, end_date=end)
+                id = id.split('_')[2]
+                sub = SubCategory.objects.get(id=id)
+                user_pro = UserPro(user=us, subcategory=sub, end_date=end)
                 user_pro.save()
     return HttpResponse(json.dumps('good'))

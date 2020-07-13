@@ -1635,6 +1635,11 @@ $("#profile_edit").click(function () {
     var gender = document.getElementById('gender-input');
     gender.classList.remove('d-none');
     gender.classList.add('d-inline-block');
+    var city_l = document.getElementById('city-label');
+    city_l.classList.add('d-none');
+    var city = document.getElementById('city-input');
+    city.classList.remove('d-none');
+    city.classList.add('d-inline-block');
     var about_l = document.getElementById('about-label');
     about_l.classList.add('d-none');
     var about = document.getElementById('about-input');
@@ -1667,6 +1672,11 @@ $("#cancel_info_btn").click(function () {
     var gender = document.getElementById('gender-input');
     gender.classList.add('d-none');
     gender.classList.remove('d-inline-block');
+    var city_l = document.getElementById('city-label');
+    city_l.classList.remove('d-none');
+    var city = document.getElementById('city-input');
+    city.classList.add('d-none');
+    city.classList.remove('d-inline-block');
     var about_l = document.getElementById('about-label');
     about_l.classList.remove('d-none');
     var about = document.getElementById('about-input');
@@ -1684,6 +1694,7 @@ $("#cancel_info_btn").click(function () {
 $("#save_info_btn").click(function () {
     var date = $("#birthday-input").val();
     var gender = $('#gender-input option:selected').val();
+    var city = $('#city-input option:selected').val();
     var about = $("#about-input").val();
     var phone = $("#phone-input").val();
     var date_ = date.split('/');
@@ -1697,7 +1708,7 @@ $("#save_info_btn").click(function () {
             $("#alert-danger_date").hide('slow');
         }, 5000);
     } else {
-        if (date != "" && gender != "" && phone != "") {
+        if (date != "" && gender != "" && phone != "" && city != "") {
             $("#save_profile").click();
         } else {
             $("#alert-danger").show('slow');

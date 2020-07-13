@@ -158,17 +158,6 @@
                                                     {% endif %}
                                                 </select>
                                             </p>
-                                            <!--                                            <div class="row">-->
-                                            <!--                                                <div class="col-12 col-sm-1 p-0">-->
-                                            <!--                                                    <span>О себе: </span>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">-->
-                                            <!--                                                    <p class="mb-1">-->
-                                            <!--                                                        <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>-->
-                                            <!--                                                        <textarea class="w-100 form-control d-none" name="about" id="about-input">{{user.about_me}}</textarea>-->
-                                            <!--                                                    </p>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -227,11 +216,26 @@
                                             <!--                                                {% endif %}-->
                                             <!--                                                </select>-->
                                             <!--                                            </p>-->
+
+                                            <p class="mb-1">
+                                                <span class="pr-3">Город:</span>
+                                                <label id="city-label">{{user.city.name}}</label>
+                                                <select class="form-control prof-input d-none" id="city-input"
+                                                        name="city">
+                                                    {% for i in city %}
+                                                        {% if user.city.name == i.name %}
+                                                        <option selected value="{{i.id}}">{{i.name}}</option>
+                                                        {% else %}
+                                                        <option value="{{i.id}}">{{i.name}}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </p>
                                             <div class="row">
-                                                <div class="col-12 col-sm-1 p-0">
+                                                <div class="col-auto p-0 pr-3">
                                                     <span>О себе: </span>
                                                 </div>
-                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-4 pl-xl-2">
+                                                <div class="col-12 col-sm-11 p-0 pl-0 pl-sm-3 pl-md-3 pl-lg-3 pl-xl-1">
                                                     <p class="mb-1">
                                                         <label style="word-wrap: break-word" id="about-label">{{user.about_me}}</label>
                                                         <textarea class="w-100 form-control d-none" name="about"
