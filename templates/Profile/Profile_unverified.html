@@ -16,9 +16,10 @@
                                 <h1 class="m-0 fz_2rem">{{user.auth_user.first_name}} {{user.auth_user.last_name}}</h1>
                             </div>
                             <div class="row justify-content-center justify-content-md-start align-items-center pb-2 pb-md-0 pt-2">
-                                {% for c in user_city %}
-                                <span class="badge">{{c.city.name}}</span>
-                                {% endfor %}
+                                <label class="settings-rew_label w-100 my-2">{{user.city.name}}</label>
+<!--                                {% for c in user_city %}-->
+<!--                                <span class="badge">{{c.city.name}}</span>-->
+<!--                                {% endfor %}-->
                             </div>
                         </div>
                         <div class="col-10 col-sm-10 col-md-5 col-lg-4 col-xl-3 p-1 mx-auto">

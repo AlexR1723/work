@@ -2186,7 +2186,7 @@ input[type=checkbox]:checked + label::after {
 .profile-verif_blk .badge {
     font-size: 1rem;
     font-weight: normal;
-    margin: 0 2% 2% 0;
+    margin: 0 10px 10px 0;
     padding: .2em 1.2em;
     background: #FFFFFF;
     border: 1px solid #E5E5E5;
