@@ -12,6 +12,11 @@
                     </div>
                     <div class="col-12 col-md-12 col-lg-12 col-xl-12 pb-2 text-center">
                         <h1 class="m-0 fz_2rem">{{user.auth_user.first_name}} {{user.auth_user.last_name}}</h1>
+                        {% if user.is_online %}
+                            <span class="text-muted"><div class="online mr-2"></div>online</span>
+                            {% else %}
+                            <span class="text-muted">{{user.get_online_info}}</span>
+                            {% endif %}
                         <div class="row justify-content-center align-items-center">
                             <div class="small-circle"></div>
                            {% for c in user_city %}

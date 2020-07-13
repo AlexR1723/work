@@ -490,6 +490,9 @@ def Profile_page(request, id):
     if (user != 'no'):
         auth_user = AuthUser.objects.get(id=id)
         user = Users.objects.get(auth_user=auth_user)
+
+
+
         user_city = UserCities.objects.filter(user=auth_user)
         user_sub = UserSubcategories.objects.filter(user=auth_user)
         portfolio = UserPortfolio.objects.filter(user=auth_user)
@@ -510,6 +513,29 @@ def Profile_page(request, id):
             quality_percent = int((quality_suc * 100) / all_task)
             politeness_persent = int((politeness_suc * 100) / all_task)
             punctuality_persent = int((punctuality_suc * 100) / all_task)
+
+        # выполненые задания в катгориях
+        user_task=UserTask.objects.filter(exec=auth_user).filter(task_status=UserTaskStatus.objects.get(name='Выполнено'))
+        user_category=[]
+        for i in user_task:
+            if i.subcategory.category.name not in user_category:
+                user_category.append(i.subcategory.category.name)
+        user_category_exec_count={}
+        for i in user_category:
+            user_category_exec_count[i]=UserTask.objects.filter(exec=auth_user).filter(subcategory__category__name=i).count()
+        user_category_exec_count = sorted(user_category_exec_count.items(), key=lambda x: x[1], reverse=True)
+
+        #  созданные задания в катгориях
+        user_task = UserTask.objects.filter(user=auth_user).filter(task_status=UserTaskStatus.objects.get(name='Выполнено'))
+        user_category = []
+        for i in user_task:
+            if i.subcategory.category.name not in user_category:
+                user_category.append(i.subcategory.category.name)
+        user_category_create_count = {}
+        for i in user_category:
+            user_category_create_count[i] = UserTask.objects.filter(exec=auth_user).filter(
+                subcategory__category__name=i).count()
+        user_category_create_count = sorted(user_category_create_count.items(), key=lambda x: x[1], reverse=True)
 
         if (user.verify_passport == True):
             advert_count = UserAdvert.objects.filter(user=auth_user).count()

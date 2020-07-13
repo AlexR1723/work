@@ -765,6 +765,9 @@ p {
 .fz_12rem {
     font-size: 1.2rem;
 }
+.fz_18rem {
+    font-size: 1.8rem;
+}
 
 .hiw_text {
     /*font-weight: 400;*/
@@ -3444,4 +3447,10 @@ button.serv-btn-blue:hover{
     background: rgb(98,178,69);
     display: inline-block;
     border-radius: 50%;
+}
+.br-r{
+    border-right: 1px solid #aaaaaa;
+}
+.categ{
+    color: black !important;
 }
