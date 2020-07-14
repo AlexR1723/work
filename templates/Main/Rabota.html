@@ -16,9 +16,11 @@
             </div>
         </div>
         <div class="col-10 col-sm-5 col-md-4 col-lg-4 col-xl-3 p-0 mt-5">
+            {% if layout == 'layout.html' %}
             <a href="{% url 'Register' %}">
                 <button class="hiw_btn w-100">Зарегистрироваться</button>
             </a>
+             {% endif %}
         </div>
     </div>
 
@@ -271,6 +273,7 @@
                 <div class="col-12 pb-3">
                     <p class="hiw_headers">Зарегистрируйтесь и начните зарабатывать прямо сейчас</p>
                 </div>
+                 {% if layout == 'layout.html' %}
                 <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-3">
                     <a href="{% url 'Login' %}">
                         <button class="hiw_btn-red w-100">Создать задание</button>
@@ -281,6 +284,14 @@
                         <button class="hiw_btn w-100">Регистрация</button>
                     </a>
                 </div>
+                {% endif %}
+                {% if layout == 'layout_customer.html' %}
+                <div class="col-11 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-3">
+                    <a href="{% url 'Create_task' '0' %}">
+                        <button class="hiw_btn-red w-100">Создать задание</button>
+                    </a>
+                </div>
+                {% endif %}
             </div>
             <div class="row justify-content-around pt-2 pb-5">
                 {% for i in seo %}
