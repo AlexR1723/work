@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^in_work_task', views.In_work_task, name='In_work_task'),
     url(r'^exec_comment/(?P<task_id>[0-9]+)/(?P<exec_id>[0-9]+)/$', views.Exec_comment, name="Exec_comment"),
     url(r'^save_exec_comment$', views.Save_exec_comment, name="Save_exec_comment"),
+    url(r'^find/$', views.Find, name="Find"),
+    url(r'^find/(?P<page>[0-9]+)/$', views.Find_page, name="Find_page"),
 
 
     #

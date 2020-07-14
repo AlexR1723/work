@@ -1358,3 +1358,96 @@ def Save_exec_comment(request):
 
 
     return HttpResponseRedirect("/profile/task")
+
+
+def Find(request):
+    layout, username, photo, balance, bonus = layout_name(request)
+    user = request.session.get('username', 'no')
+    contact = layout_contact()
+    link = layout_link()
+    if (user != 'no'):
+        user = AuthUser.objects.all().filter(email=user)[0]
+        user_subcategory=UserSubcategories.objects.filter(user=user)
+        subcategory=[]
+        for i in user_subcategory:
+            if i.subcategories not in subcategory:
+                subcategory.append(i.subcategories)
+        task_count = UserTask.objects.filter(subcategory__in=subcategory).filter(task_status=UserTaskStatus.objects.get(name='В поиске')).count()
+        if task_count > 10:
+            task=UserTask.objects.filter(subcategory__in=subcategory).filter(task_status=UserTaskStatus.objects.get(name='В поиске'))[0:10]
+        else:
+            task=UserTask.objects.filter(subcategory__in=subcategory).filter(task_status=UserTaskStatus.objects.get(name='В поиске'))[0:]
+        k = 0
+        while (task_count > 0):
+            k = k + 1
+            task_count = task_count - 10
+        list_page = []
+        page = 1
+        if (k > 6):
+            for i in range(1, 4):
+                list_page.append(i)
+            list_page.append('...')
+            for i in range(k - 2, k + 1):
+                list_page.append(i)
+        else:
+            for i in range(1, k + 1):
+                list_page.append(i)
+        pre = 1
+        next = page + 1
+        # print(task)
+        return render(request, 'Profile/Find_task.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
+
+
+def Find_page(request, page):
+    layout, username, photo, balance, bonus = layout_name(request)
+    user = request.session.get('username', 'no')
+    contact = layout_contact()
+    link = layout_link()
+    if (user != 'no'):
+        user = AuthUser.objects.all().filter(email=user)[0]
+        user_subcategory = UserSubcategories.objects.filter(user=user)
+        subcategory = []
+        for i in user_subcategory:
+            if i.subcategories not in subcategory:
+                subcategory.append(i.subcategories)
+        page = int(page)
+        start = page * 10 - 10
+        end = page * 10
+        task_count = UserTask.objects.filter(subcategory__in=subcategory).filter(task_status=UserTaskStatus.objects.get(name='В поиске')).count()
+        task = UserTask.objects.filter(subcategory__in=subcategory).filter(task_status=UserTaskStatus.objects.get(name='В поиске'))[start:end]
+        k = 0
+        while (task_count > 0):
+            k = k + 1
+            task_count = task_count - 10
+        Page = []
+        if k > 6:
+            # записать первые 3
+            for i in range(1, 4):
+                Page.append(i)
+            # записать середину
+            if page >= 3 and page <= (k - 2):
+                for i in range(page - 1, page + 2):
+                    Page.append(i)
+            # записать последние 3
+            for i in range(k - 2, k + 1):
+                Page.append(i)
+        else:
+            for i in range(1, k + 1):
+                Page.append(i)
+        # убрать повторения
+        Page = list(set(Page))
+        print(Page)
+        list_page = []
+        # добавить '...'
+        for i in range(len(Page) - 1):
+            list_page.append(Page[i])
+            if Page[i + 1] - Page[i] > 1:
+                list_page.append('...')
+        list_page.append(Page[len(Page) - 1])
+        pre = page - 1
+        next = page + 1
+        return render(request, 'Profile/Find_task.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
