@@ -2556,3 +2556,64 @@ $('#check_comment').click(function () {
         index_comment = index_comment + 1;
     }
 });
+var index_fav = 0;
+$('#to_favorites').click(function () {
+    var user=document.getElementById('user_id').value;
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        data: {
+            user_id: user,
+        },
+        url: '/profile/add_favorites',
+        success: function (data) {
+            if (data == true) {
+                var div=document.getElementById('not_favorites');
+                div.classList.remove('d-none');
+                var div2=document.getElementById('to_favorites');
+                div2.classList.add('d-none');
+                add_alert_suc(index_fav);
+                index_fav = index_fav + 1;
+                // var btn = document.getElementById('offer_create');
+                // btn.click();
+            } else {
+                add_alert_error(index_fav, "Что-то пошло не так, попробуйте позже!");
+                index_fav = index_fav + 1;
+            }
+        },
+        error: function (data) {
+            add_alert_error(index_fav, "Что-то пошло не так, попробуйте позже!");
+            index_fav = index_fav + 1;
+        }
+    })
+});
+$('#not_favorites').click(function () {
+    var user=document.getElementById('user_id').value;
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        data: {
+            user_id: user,
+        },
+        url: '/profile/delete_favorites',
+        success: function (data) {
+            if (data == true) {
+                var div=document.getElementById('to_favorites');
+                div.classList.remove('d-none');
+                var div2=document.getElementById('not_favorites');
+                div2.classList.add('d-none');
+                add_alert_suc(index_fav);
+                index_fav = index_fav + 1;
+                // var btn = document.getElementById('offer_create');
+                // btn.click();
+            } else {
+                add_alert_error(index_fav, "Что-то пошло не так, попробуйте позже!");
+                index_fav = index_fav + 1;
+            }
+        },
+        error: function (data) {
+            add_alert_error(index_fav, "Что-то пошло не так, попробуйте позже!");
+            index_fav = index_fav + 1;
+        }
+    })
+});

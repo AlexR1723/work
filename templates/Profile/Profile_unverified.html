@@ -29,6 +29,15 @@
                                     </div>
                                 </div>
                                 <div class="col-10 col-sm-10 col-md-5 col-lg-4 col-xl-3 p-1 mx-auto">
+                                    <input type="hidden" id="user_id" value="{{user.auth_user.id}}">
+                                    <div class="row justify-content-around justify-content-sm-around justify-content-md-end  align-items-center pb-3 to_favorites {% if in_fav %} d-none {% endif %}"
+                                         id="to_favorites">
+                                        <i class="far fa-star mr-2"></i><label class="mb-0">Добавить в избранное</label>
+                                    </div>
+                                    <div class="row justify-content-around justify-content-sm-around justify-content-md-end  align-items-center pb-3 to_favorites {% if not in_fav %} d-none {% endif %}"
+                                         id="not_favorites">
+                                        <i class="fas fa-star mr-2"></i><label class="mb-0">Удалить из избранного</label>
+                                    </div>
                                     <div class="row justify-content-around justify-content-sm-around justify-content-md-end align-content-end align-items-end">
                                         <a href="{% url 'Profile_adverts' user.auth_user.id %}">
                                             <button class="propose_btn">Предложить работу</button>
@@ -159,5 +168,8 @@
         </div>
     </div>
 </div>
+<div class="col-12" id="alerts-block">
+</div>
+
 
 {% endblock %}

@@ -143,7 +143,8 @@ class Users(models.Model):
         minute=int(int(sub.seconds)/60)
         hour = round(minute / 60)
         days=sub.days
-        if days > 0 :
+        print(days, hour)
+        if days > 0 or hour > 3:
             date_=(self.last_online).strftime('%d/%m/%Y')
             date_=date_.split('/')
             print(date_[0], date_[1], date_[2])
@@ -152,7 +153,6 @@ class Users(models.Model):
                 if int(date_[1]) == i + 1:
                     date = date + " " + month[i] + " "
             date=date+date_[2]
-
             return 'Был в сети ' + date
         else:
             if hour > 1 and hour <= 3:
@@ -351,8 +351,8 @@ class TaskPhoto(models.Model):
 
 
 class UserFavoritesExecutor(models.Model):
-    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
-    exec = models.ForeignKey('Users', models.DO_NOTHING, blank=True, null=True)
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True, related_name='user_id_fav')
+    exec = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True, related_name='exec_id_fav')
 
     class Meta:
         managed = False

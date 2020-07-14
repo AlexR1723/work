@@ -3042,7 +3042,7 @@ button.edit-ads,
     padding: 7px 20px;
 }
 .propose_btn {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 30px;
 }
 button.edit-ads:hover,
@@ -3453,4 +3453,20 @@ button.serv-btn-blue:hover{
 }
 .categ{
     color: black !important;
+}
+.fa-star{
+    font-size: 1.5rem;
+    color: orange;
+}
+.to_favorites{
+    /*border: 1px solid white;*/
+    transition: .3s;
+    /*padding: 7px 20px;*/
+}
+.to_favorites:hover, .to_favorites:hover label, .to_favorites:hover i{
+    /*border: 1px solid orange;*/
+    /*border-radius: 5px;*/
+    transition: .3s;
+    cursor: pointer;
+
 }

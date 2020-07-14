@@ -488,10 +488,9 @@ def Profile_page(request, id):
     contact = layout_contact()
     link = layout_link()
     if (user != 'no'):
+        me = AuthUser.objects.all().filter(email=user)[0]
         auth_user = AuthUser.objects.get(id=id)
         user = Users.objects.get(auth_user=auth_user)
-
-
 
         user_city = UserCities.objects.filter(user=auth_user)
         user_sub = UserSubcategories.objects.filter(user=auth_user)
@@ -515,18 +514,21 @@ def Profile_page(request, id):
             punctuality_persent = int((punctuality_suc * 100) / all_task)
 
         # выполненые задания в катгориях
-        user_task=UserTask.objects.filter(exec=auth_user).filter(task_status=UserTaskStatus.objects.get(name='Выполнено'))
-        user_category=[]
+        user_task = UserTask.objects.filter(exec=auth_user).filter(
+            task_status=UserTaskStatus.objects.get(name='Выполнено'))
+        user_category = []
         for i in user_task:
             if i.subcategory.category.name not in user_category:
                 user_category.append(i.subcategory.category.name)
-        user_category_exec_count={}
+        user_category_exec_count = {}
         for i in user_category:
-            user_category_exec_count[i]=UserTask.objects.filter(exec=auth_user).filter(subcategory__category__name=i).count()
+            user_category_exec_count[i] = UserTask.objects.filter(exec=auth_user).filter(
+                subcategory__category__name=i).count()
         user_category_exec_count = sorted(user_category_exec_count.items(), key=lambda x: x[1], reverse=True)
 
         #  созданные задания в катгориях
-        user_task = UserTask.objects.filter(user=auth_user).filter(task_status=UserTaskStatus.objects.get(name='Выполнено'))
+        user_task = UserTask.objects.filter(user=auth_user).filter(
+            task_status=UserTaskStatus.objects.get(name='Выполнено'))
         user_category = []
         for i in user_task:
             if i.subcategory.category.name not in user_category:
@@ -536,6 +538,12 @@ def Profile_page(request, id):
             user_category_create_count[i] = UserTask.objects.filter(exec=auth_user).filter(
                 subcategory__category__name=i).count()
         user_category_create_count = sorted(user_category_create_count.items(), key=lambda x: x[1], reverse=True)
+
+        # проверка на наличие пользователя в избранном
+        in_fav = False
+        user_fav = UserFavoritesExecutor.objects.filter(user=me).filter(exec=auth_user).count()
+        if user_fav > 0:
+            in_fav = True
 
         if (user.verify_passport == True):
             advert_count = UserAdvert.objects.filter(user=auth_user).count()
@@ -804,7 +812,6 @@ def profile_set_pro(request):
     return HttpResponse(json.dumps('good'))
 
 
-
 def action(request):
     user = request.session.get('username', 'no')
     if (user != 'no'):
@@ -812,3 +819,35 @@ def action(request):
         user.last_online = datetime.datetime.now()
         user.save()
     return HttpResponse(json.dumps(True))
+
+
+def AddFavorites(request):
+    id = int(request.GET.get('user_id'))
+    layout, username, photo, balance, bonus = layout_name(request)
+    user = request.session.get('username', 'no')
+    contact = layout_contact()
+    link = layout_link()
+    if (user != 'no'):
+        me = AuthUser.objects.all().filter(email=user)[0]
+        auth_user = AuthUser.objects.get(id=id)
+        user_fav=UserFavoritesExecutor(user=me, exec=auth_user)
+        user_fav.save()
+        return HttpResponse(json.dumps(True))
+    else:
+        return HttpResponse(json.dumps(False))
+
+
+def DeleteFavorites(request):
+    id = int(request.GET.get('user_id'))
+    layout, username, photo, balance, bonus = layout_name(request)
+    user = request.session.get('username', 'no')
+    contact = layout_contact()
+    link = layout_link()
+    if (user != 'no'):
+        me = AuthUser.objects.all().filter(email=user)[0]
+        auth_user = AuthUser.objects.get(id=id)
+        user_fav=UserFavoritesExecutor.objects.filter(user=me).filter(exec=auth_user)
+        user_fav.delete()
+        return HttpResponse(json.dumps(True))
+    else:
+        return HttpResponse(json.dumps(False))
