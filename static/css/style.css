@@ -1081,6 +1081,9 @@ hr.line {
     object-fit: cover;
     /*border-radius: 50%;*/
 }
+.user-width-img{
+    width: 100px !important;
+}
 .perfomer-tasks-blk .user-img {
     height: auto;
 }

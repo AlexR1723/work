@@ -478,7 +478,13 @@ def Fav_executor(request):
     layout, username, photo, balance, bonus = layout_name(request)
     contact = layout_contact()
     link = layout_link()
-    return render(request, 'Profile/Fav_executor.html', locals())
+    user = request.session.get('username', 'no')
+    if (user != 'no'):
+        user = AuthUser.objects.all().filter(email=user)[0]
+        fav_exec=UserFavoritesExecutor.objects.filter(user=user).order_by('-id')
+        return render(request, 'Profile/Fav_executor.html', locals())
+    else:
+        return HttpResponseRedirect("/login")
 
 
 def Profile_page(request, id):

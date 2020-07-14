@@ -55,6 +55,23 @@ class AuthUser(models.Model):
         managed = False
         db_table = 'auth_user'
 
+    def get_user(self):
+        user = Users.objects.get(auth_user=self)
+        return user
+
+    def get_comment_count(self):
+        all_task = UserComment.objects.filter(user=self).count()
+        return all_task
+
+    def get_percent(self):
+        all_task = UserComment.objects.filter(user=self).count()
+        successful_task = UserComment.objects.filter(user=self).filter(quality__gte=4).filter(
+            politeness__gte=4).filter(punctuality__gte=4).count()
+        com_percent = 0
+        if all_task > 0:
+            com_percent = int((successful_task * 100) / all_task)
+        return com_percent
+
 
 class Gender(models.Model):
     name = models.CharField(max_length=10, blank=True, null=True)
