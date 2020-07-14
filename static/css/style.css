@@ -2757,7 +2757,7 @@ input[type=checkbox]:checked + label::after {
     color: #AF4B53;
     transition: .3s;
 }
-.fa-tasks, .fa-bell, .fa-comments{
+.fa-tasks, .fa-bell, .fa-comments, .fa-hand-point-up, .fa-eye, .fa-pencil-alt{
     color: #AAAAAA;
     font-size: 1.6rem;
 }

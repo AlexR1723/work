@@ -20,14 +20,8 @@
                             {% for i in awards %}
                                 <div class="col-12 col-md-4 col-lg-4 col-xl-3 pt-3 p-2 a-center award_card"
                                      data-toggle="tooltip" data-placement="bottom"
-                                     title="{{ i.tooltip }}
-                                        {% if i.id in user_list.keys %}
-                                            {% for k,v in user_list.items %}
-                                            {% if k == i.id %}
-                                             Получено {{ v|date:"DATE_FORMAT" }}
-                                             {% endif %}
-                                             {% endfor %}
-                                        {% endif %}
+                                     title="{{ i.tooltip }}{% if i.id in user_list.keys %}{% for k,v in user_list.items %}{% if k == i.id %}
+                                     Получено {{ v|date:'DATE_FORMAT' }}{% endif %}{% endfor %}{% endif %}
                                         ">
                                     <img alt="" class="img-fluid" src="{{ MEDIA_URL }}{{ i.image.url }}"
                                             {% if i.id not in user_list.keys %}
