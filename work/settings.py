@@ -161,8 +161,8 @@ LOGIN_URL = '/login'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = "romanenko.anastasiya1998@yandex.ua"
-EMAIL_HOST_PASSWORD = "anastasiya1998"
+EMAIL_HOST_USER = "porabotaem.dpr@yandex.ru"
+EMAIL_HOST_PASSWORD = "1EDJj9x4yLUX"
 EMAIL_USE_SSL = True
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
