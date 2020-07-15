@@ -545,8 +545,28 @@ def Save_task(request):
             user_balance = UserBalance(user=auth, sum = price * 10 / 100,
                                        decription="10% от стоимости задания заморожено с Вашего счета до завершения задания", date=datetime.datetime.today())
             user_balance.save()
-
         user.save()
+
+        # выбираем всех пользователей с подкатегориями
+        all_users=UserSubcategories.objects.filter(subcategories=subcategory)
+        for i in all_users:
+            us_s = Users.objects.get(auth_user=i.user)
+            if us_s.get_new_order:
+                em = settings.EMAIL_HOST_USER
+                subject, from_email, to = 'Новое задание', em, i.user.email
+                text_content = 'Перейдите по ссылке'
+                # m = 'https://work-proj.herokuapp.com/verify/' + key
+                # print(m)
+                html_content = render_to_string('email_other_letter.html', {"title": "Новое задание",
+                                                                            "text": "Появилось новое задание в категории "+subcategory.name+". Перейдите по ссылке ниже для получения подробной информации",
+                                                                            "url": "http:/www.porabotaem.com/profile/task/detail/" + str(user_task.id), "url_text": user_task.title})
+                print(html_content)
+                # html_content="<a href='%s'>Активировать</a>" % m
+                # html_content="<a href='%s'>Активировать</a>" % m
+                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+
         if check != "":
             check_list=check.split('|')
             for i in check_list:
