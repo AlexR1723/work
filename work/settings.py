@@ -148,7 +148,9 @@ TIME_FORMAT='G:i'
 # DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 # DROPBOX_OAUTH2_TOKEN = 'ikgXw8OltEAAAAAAAAAAGIemvk7w8PnJjNW3tljaG6mNnVhe5y0dbFeOmPgEkL7C'
 # DROPBOX_ROOT_PATH = '/media_img/'
-
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = 'ScXC5sD_X0AAAAAAAAALKqCBn6ERNwdaFAN11EsRWU0V3ApZoSnx0aqtiXHQM3x9'
+DROPBOX_ROOT_PATH = '/porabotaem/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
