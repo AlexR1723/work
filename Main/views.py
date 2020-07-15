@@ -284,7 +284,8 @@ def Registrate(request):
                 new_user = Users(auth_user=auth_user, photo="uploads/users/user.png", phone=tel, uuid=key,
                                  type=UserType.objects.all().filter(name="Исполнитель")[0], last_online=datetime.datetime.now())
                 new_user.save()
-            subject, from_email, to = 'Успешная регистрация', 'romanenko.anastasiya1998@yandex.ua', email
+            em=settings.EMAIL_HOST_USER
+            subject, from_email, to = 'Успешная регистрация', em, email
             text_content = 'Перейдите по ссылке для автивации учетной записи.'
             m = 'https://work-proj.herokuapp.com/verify/' + key
             print(m)
@@ -341,7 +342,8 @@ def send_new_pass(request):
             u.set_password(key)
             u.save()
             print(u)
-            subject, from_email, to = 'Новый пароль', 'romanenko.anastasiya1998@yandex.ua', email
+            em = settings.EMAIL_HOST_USER
+            subject, from_email, to = 'Новый пароль', em, email
             text_content = 'Перейдите по ссылке для автивации учетной записи.'
             m = 'https://work-proj.herokuapp.com/verify/' + key
             print(m)

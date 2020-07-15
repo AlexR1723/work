@@ -6,6 +6,10 @@ from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
 from distutils.util import strtobool
 import datetime
+from django.conf import settings
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives, EmailMessage
+from django.template.loader import render_to_string
 from django.db.models import Q
 
 
@@ -812,6 +816,20 @@ def Set_exec(request):
         message=ChatMessage(chat=chat,user=auth,text=mess, date=datetime.datetime.now(), is_show=False)
         message.save()
 
+        us_s=Users.objects.get(auth_user=user)
+        if us_s.get_notice_status:
+            em = settings.EMAIL_HOST_USER
+            subject, from_email, to = 'Изменение статуса задания', em, user.email
+            text_content = 'Перейдите по ссылке'
+            # m = 'https://work-proj.herokuapp.com/verify/' + key
+            # print(m)
+            html_content = render_to_string('email_other_letter.html', {"title": "Изменение статуса задания", "text": "Вы назначены исполнителем для выполнения задания. Перейдите по ссылке ниже для получения подробной информации", "url": "http:/www.porabotaem.com/profile/task/detail/" + str(id), "url_text": task.title})
+            print(html_content)
+            # html_content="<a href='%s'>Активировать</a>" % m
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+
         # message=PersonalMessage(from_user=auth, to_user=user, text=mess, date=datetime.datetime.now(), is_show=False, to_type_is_exec=True, from_type_is_exec=True)
         # message.save()
         # return HttpResponse(json.dumps({'data': 'ok'}))
@@ -1160,6 +1178,20 @@ def Rezult_task_save(request):
             for d in docs.getlist('files'):
                 tast_rezult_photo = UserTaskRezultPhoto(task=task, photo=d)
                 tast_rezult_photo.save()
+
+        us_s = Users.objects.get(auth_user=task.user)
+        if us_s.get_notice_status:
+            em = settings.EMAIL_HOST_USER
+            subject, from_email, to = 'Изменение статуса задания', em, task.user.email
+            text_content = 'Перейдите по ссылке'
+            html_content = render_to_string('email_other_letter.html', {"title": "Завершено исполнителем",
+                                                                        "text": "Выше задание завершено исполнителем. Перейдите по ссылке ниже для получения подробной информации",
+                                                                        "url": "http:/www.porabotaem.com/profile/task/detail/" + str(task.id), "url_text": task.title})
+            print(html_content)
+            # html_content="<a href='%s'>Активировать</a>" % m
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
     return HttpResponseRedirect("/profile/task")
 
 
@@ -1190,7 +1222,25 @@ def Close_task(request, id):
                 user_balance=UserBalance(user=task.user,sum=price*10/100,decription="Списано с 'замороженого счета' при закрытии задания: "+task.title, date=datetime.datetime.today())
                 user_balance.save()
 
-            admin=Users.object.get(auth_user__is_superuser=True)
+            us_s = Users.objects.get(auth_user=task.exec)
+            if us_s.get_notice_status:
+                em = settings.EMAIL_HOST_USER
+                subject, from_email, to = 'Изменение статуса задания', em, task.exec.email
+                text_content = 'Перейдите по ссылке'
+                # m = 'https://work-proj.herokuapp.com/verify/' + key
+                # print(m)
+                html_content = render_to_string('email_other_letter.html', {"title": "Задание закрыто",
+                                                                            "text": "Задание успешно закрыто заказчиком. Перейдите по ссылке ниже для получения подробной информации",
+                                                                            "url": "http:/www.porabotaem.com/profile/task/detail/" + str(
+                                                                                task.id), "url_text": task.title})
+                print(html_content)
+                # html_content="<a href='%s'>Активировать</a>" % m
+                # html_content="<a href='%s'>Активировать</a>" % m
+                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+
+            admin=Users.objects.get(auth_user__is_superuser=True)
             admin.balance+=price*10/100
             admin.save()
 
@@ -1224,8 +1274,7 @@ def Close_task(request, id):
                             "Вы получили награду за успешно выполненные " + str(c_t) + " заданий и бонус " + str(bonus.count) + " баллов!",
                             "all", user.auth_user.username)
 
-            task_close_count = UserTask.objects.filter(exec=task.exec).filter(task_status__name='Выполнено').filter(
-                awards__backend_name='close_5_task').count()
+            task_close_count = UserTask.objects.filter(exec=task.exec).filter(task_status__name='Выполнено').count()
             award = ""
             if task_close_count == 5:
                 if user_award_count == 0:
@@ -1254,7 +1303,7 @@ def Close_task(request, id):
                             "Вы получили награду за успешно закрытые " + str(c_t) + " заданий и бонус " + str(bonus.count) + " баллов!",
                             "all",user.auth_user.username)
 
-            return HttpResponseRedirect("/profile/task/exec_comment/"+task.id+"/"+task.exec.id)
+            return HttpResponseRedirect("/profile/task/exec_comment/"+str(task.id)+"/"+str(task.exec.id))
         else:
             return HttpResponseRedirect("/profile/task")
     else:
@@ -1268,6 +1317,22 @@ def In_work_task(request):
     task.comment=work
     task.task_status=UserTaskStatus.objects.get(name='В работе')
     task.save()
+    us_s = Users.objects.get(auth_user=task.exec)
+    if us_s.get_notice_status:
+        em = settings.EMAIL_HOST_USER
+        subject, from_email, to = 'Изменение статуса задания', em, task.exec.email
+        text_content = 'Перейдите по ссылке'
+        # m = 'https://work-proj.herokuapp.com/verify/' + key
+        # print(m)
+        html_content = render_to_string('email_other_letter.html', {"title": "Возврат в работу",
+                                                                    "text": "Задание было возвращено в работу. Перейдите по ссылке ниже для получения подробной информации",
+                                                                    "url": "http:/www.porabotaem.com/profile/task/detail/" + str(task.id), "url_text": task.title})
+        print(html_content)
+        # html_content="<a href='%s'>Активировать</a>" % m
+        # html_content="<a href='%s'>Активировать</a>" % m
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
     return HttpResponseRedirect("/profile/task/detail/"+task_id)
 
 def Exec_comment(request, task_id, exec_id):
@@ -1326,9 +1391,7 @@ def Save_exec_comment(request):
         send_notice(request,
                     "Вы получили награду за " + str(c_t) + " положительных отзывов и бонус " + str(bonus.count) + " баллов!",
                     "all",customer.username)
-    # bonus=Bonuses.object.get(backend_name='review_exec')
-    # customer.bonus_balance+=bonus.count
-    # customer.save()
+
 
     user_comment_count = UserComment.objects.filter(user=user).filter(quality__gte=4).filter(politeness__gte=4).filter(punctuality__gte=4).count()
     user_award_count = UserAwards.objects.filter(user=user).filter(awards__backend_name='positive_comments_10').count()
