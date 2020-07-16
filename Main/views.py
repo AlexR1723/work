@@ -264,14 +264,13 @@ def Registrate(request):
             'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
     try:
-        key = ''
         us = AuthUser.objects.all().filter(email=email)
         print(us)
         if (len(us) == 0):
-            key = ''
-            while (len(key) < 50):
-                i = random.randint(0, len(list) - 1)
-                key += str(list[i])
+            # key = ''
+            # while (len(key) < 50):
+            #     i = random.randint(0, len(list) - 1)
+            #     key += str(list[i])
             with transaction.atomic():
                 user = User.objects.create_user(email, email, password)
                 user.first_name = name
@@ -287,9 +286,9 @@ def Registrate(request):
             em=settings.EMAIL_HOST_USER
             subject, from_email, to = 'Успешная регистрация', em, email
             text_content = 'Перейдите по ссылке для автивации учетной записи.'
-            m = 'https://work-proj.herokuapp.com/verify/' + key
-            print(m)
-            html_content = render_to_string('letter.html', {"key": key, "email":email,"pass":password})
+            # m = 'https://work-proj.herokuapp.com/verify/' + key
+            # print(m)
+            html_content = render_to_string('letter.html', {"email":email,"pass":password})
             print(html_content)
             # html_content="<a href='%s'>Активировать</a>" % m
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
