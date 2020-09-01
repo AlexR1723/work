@@ -211,6 +211,9 @@ class Region(models.Model):
         city=City.objects.filter(region=self)
         return city
 
+    def __str__(self):
+        return self.name
+
 
 class HelpCategory(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True, verbose_name="Наименование")

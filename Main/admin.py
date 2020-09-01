@@ -121,3 +121,22 @@ class PublicOfferAdmin(admin.ModelAdmin):
 
 admin.site.register(PublicOffer, PublicOfferAdmin)
 
+
+class CityAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in City._meta.fields]
+
+    class Meta:
+        model = City
+
+
+admin.site.register(City, CityAdmin)
+
+
+class RegionAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Region._meta.fields]
+
+    class Meta:
+        model = Region
+
+
+admin.site.register(Region, RegionAdmin)

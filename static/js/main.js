@@ -1758,9 +1758,27 @@ $("#save_info_btn").click(function () {
 $(function () {
     $('#date').daterangepicker({
         singleDatePicker: true,
+        locale: {
+                format: 'DD-MM-YYYY',
+                applyLabel: 'Выбрать',
+                cancelLabel: 'Отмена',
+                invalidDateLabel: 'Выберите дату',
+                daysOfWeek: ['Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс', 'Пн'],
+                monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+                firstDay: 1
+            }
     });
     $('#birthday-input').daterangepicker({
         singleDatePicker: true,
+        locale: {
+                format: 'DD-MM-YYYY',
+                applyLabel: 'Выбрать',
+                cancelLabel: 'Отмена',
+                invalidDateLabel: 'Выберите дату',
+                daysOfWeek: ['Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс', 'Пн'],
+                monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+                firstDay: 1
+            }
     });
 });
 
