@@ -581,3 +581,6 @@ def Comment_save(request):
                          is_checked=False, is_show=False)
     note.save()
     return HttpResponseRedirect("/newbies/")
+
+def handler413(request,exception):
+    return render(request, '413.html', locals())

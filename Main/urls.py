@@ -54,6 +54,7 @@ urlpatterns = [
     url(r'get_counter_values', views.get_counter_values, name='get_counter_values'),
 
     url(r'^dev/$', views.Dev, name="Dev"),
+    url(r'^413/$', views.handler413, name="handler413"),
     url(r'^page/$', views.Page, name="Page"),
     # url(r'^profile_verified/$', views.Profile_verified, name="profile_verified"),
     # url(r'^awards/$', views.Awards, name="awards"),

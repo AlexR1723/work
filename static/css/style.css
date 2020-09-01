@@ -2066,12 +2066,12 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:checked + label::after {
-    content: "";
-    background: #3E789D;
-    border: 1px solid #3E789D;
-    border-radius: 5px;
-    width: 20px;
-    height: 20px;
+    /*content: "";*/
+    /*background: #3E789D;*/
+    /*border: 1px solid #3E789D;*/
+    /*border-radius: 5px;*/
+    /*width: 20px;*/
+    /*height: 20px;*/
 }
 #nav-portfolio button {
     background: #ffffff;
